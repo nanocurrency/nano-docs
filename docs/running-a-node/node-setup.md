@@ -6,6 +6,11 @@ While you can run a Nano node by downloading a binary or building from source, i
     - You have a basic understanding of Docker.
     - You are using [Nano's official Docker images](https://hub.docker.com/r/nanocurrency/nano/tags/) to manage your node. If you decide to use a different method, you will need to be able to fill in the gaps when following along.
 
+!!! tip "Beta Network Setup"
+	The details below are focused on running a node on the main network. The beta network is also available for testing and is a great place to learn about node management. Beta nodes also help improve our network, so please consider running one!
+
+	See the [Beta Network](/running-a-node/beta-network) page for details on how to setup a node on this test network.
+
 ---
 
 --8<-- "hardware-recommendations.md"
@@ -17,6 +22,11 @@ While you can run a Nano node by downloading a binary or building from source, i
 The nano\_node will use two configurable ports throughout its lifecycle.  The default values suggested by the [network specification](/docs/network-specification) are below:
 
 --8<-- "network-details-simple.md"
+
+---
+
+### Installing Docker
+Docker must be installed on the host machine and instructions can be found here: https://docs.docker.com/install/. We recommend installing the latest stable version available.
 
 ---
 
