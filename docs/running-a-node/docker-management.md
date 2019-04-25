@@ -1,6 +1,8 @@
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
-### Starting the Container
+### Managing the Container
+
+#### Starting
 
 The following command will start the node container. Either set the specified environment variables (i.e. `NANO_NAME=nano_node`) or substitute in explicit values to the `docker run` command.
 
@@ -36,7 +38,7 @@ docker run --restart=unless-stopped -d \
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config.json](/running-a-node/configuration) file.
 
-This will start the docker container using host ports 7075 and 7076. Upon successful startup, Docker will return the container's full ID. A typical ID will look something like the value below.
+This will start the docker container using host ports 7075 and 7076 and put the data in a permanent location in your hosts's home directory, outside the docker container. Upon successful startup, Docker will return the container's full ID. A typical ID will look something like the value below.
 
 ```
 0118ad5b48489303aa9d195f8a45ddc74a90e8a7209fc67d5483aabf3170d619
@@ -52,7 +54,7 @@ This will start the docker container using host ports 7075 and 7076. Upon succes
 
 ---
 
-### Stopping the Container
+#### Stopping
 
 To stop your Nano Node:
 
@@ -62,7 +64,7 @@ docker stop ${NANO_NAME}
 
 ---
 
-### Restarting the Container
+#### Restarting
 
 If you need to restart your node for any reason:
 
@@ -72,7 +74,7 @@ docker restart ${NANO_NAME}
 
 ---
 
-### Checking Container Status
+#### Checking Status
 
 A list of currently running containers can be found by issuing the following command.
 
@@ -87,7 +89,7 @@ CONTAINER ID        IMAGE               COMMAND                 CREATED         
 
 ---
 
-### Updating the Docker Image
+#### Updating the Docker Image
 
 First, [stop the container](#stopping-the-container) if it is running.
 
@@ -125,3 +127,31 @@ sudo docker stop ${NANO_NAME}
 You may now edit the [config.json file](/running-a-node/configuration/#configuration-file) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting-the-container) using the same command.
+
+---
+
+### RPC calls to the node
+
+You can use the RPC interface on the local host via `curl` to interact with the node.
+
+For example the version of the node:
+
+```bash
+curl -d '{ "action" : "version" }' [::1]:7076
+```
+
+Or the blockcount:
+
+```bash
+curl -d '{ "action" : "block_count" }' [::1]:7076
+```
+
+For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
+
+---
+
+### Troubleshooting
+
+If you get `Error starting userland proxy: port is not a proto:IP:port: 'tcp:[:'.` or want to expose IPv4 port, use `-p 127.0.0.1:7076:7076`.
+
+If you get `create ~: volume name is too short, names should be at least two alphanumeric characters.` replace the `~` with the full pathname such as `/Users/someuser`.
