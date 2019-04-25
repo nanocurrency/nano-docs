@@ -1,5 +1,11 @@
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
+### Nano Folder
+
+--8<-- "folder-contents.md"
+
+For Docker setups, the `${NANO_HOST_FOLDER}` indicated in the steps below will be the location of these files on your host machine.
+
 ### Managing the Container
 
 #### Starting
