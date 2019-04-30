@@ -78,7 +78,7 @@ The node uses the `config.json` file found in the following locations:
 	       "allow_local_peers": "false", // To allow local host peering
 	       "signature_checker_threads": "1", // Number of threads to use for verifying signatures
 	       "unchecked_cutoff_time": "14400", // Number of seconds unchecked entry survives before being cleaned
-	       "ipc": { // For more details about these options see the IPC section of the wiki: https://github.com/nanocurrency/nano-node/wiki/IPC
+	       "ipc": { // For more details about these options see the IPC section below
 	           "tcp": {
 	               "enable": "false",
 	               "port": "7077",
@@ -127,7 +127,7 @@ The node uses the `config.json` file found in the following locations:
 
 #### work_peers
 Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work-generate) 
-```javascript
+```json
 "work_peers": [
     "::ffff:127.0.0.1:7076"
 ],
@@ -136,5 +136,44 @@ Used when offloading work generation to another node or service. Format must be 
 #### opencl_enable
 
 To enable GPU acceleration for PoW, set `"opencl_enable"` to `"true"`. Other OpenCL parameters may need to be adjusted depending on the desired setup (see [example config.json file](#example-configjson-file) above).
+
+#### ipc
+
+On startup, the node will generate configuration options for IPC, one entry for each transport. By default, IPC is disabled.
+
+```json
+"ipc": {
+   "tcp": {
+       "enable": "false",
+       "port": "7077",
+       "io_timeout": "15000"
+   },
+   "local": {
+       "enable": "false",
+       "path": "\/tmp\/nano",
+       "io_timeout": "15000"
+     }
+},
+```
+
+Each transport also supports an experimental "io_threads" configuration value. If not present (default), the node's IO event loop will be used. If a value is present, a separate event loop with N threads will be created for the transport. For certain transports, this may scale better on some systems.
+
+Because the only IPC encoding is currently "legacy RPC", the RPC config options like "enable_control" still applies.
+
+For details about using the IPC setup, see the [IPC Integration Guide](/integration-guides/advanced#ipc-integration).
+
+#### websocket
+
+```
+"node": {
+    "websocket": {
+        "enable": "true",
+        "address": "::1",
+        "port": "7078"
+    },
+}
+```
+
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
 
 
