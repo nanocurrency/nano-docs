@@ -68,3 +68,6 @@ Types include:
 - bug
 - example
 - quote
+
+### Mermaid Sequence Diagrams
+Support has been added for Mermaid Sequence Diagrams, documentation can be found here: https://mermaidjs.github.io/sequenceDiagram.html
