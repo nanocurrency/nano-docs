@@ -49,11 +49,6 @@ sequenceDiagram
 
 The process for external private key management in a cold wallet is very similar to external private key management for a hot wallet. The primary difference is that all signing commands (and thus information containing your private key) are isolated to a clean computer with no network connection.
 
-!!! warning "Important"
-	This guide only works with [Universal Blocks](/integration-guides/the-basics/#universal-state-blocks), not the deprecated legacy blocks.
-
----
-
 #### (HOT) Account Information
 
 Get account information by the [`account_info`](/docs/rpc/#account-info) RPC Command:
@@ -134,7 +129,7 @@ Transfer the response over to the `(COLD)` computer.
 
 #### (COLD) Balance Validation (Part 2)
 
-On the `(COLD)` computer, we need to verify the block hash. This allows us to trust the block's balance field enough to create a safe transaction.
+On the `(COLD)` computer, we need to verify the block hash. This allows us to create a safe transaction referencing the reported head block's balance.
 
 ##### Request Format
 

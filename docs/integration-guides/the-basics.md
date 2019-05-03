@@ -16,16 +16,6 @@ The system is akin to writing (send) and cashing (receive) a Cashier's Check.  T
 
 ---
 
-!!! warning "Important"
-    In earlier versions of the Nano Protocol, the format of blocks varied slightly from their current format.  It is important to keep a few details in mind when working with the node:
-
-    * Nano now uses a single `"state"` block type (often referred to as [Universal (State) Blocks](#universal-state-blocks/)) which perform all functions.
-    * Older documentation may explicitly refer to `"send"`, `"receive"`, `"change"`, and `"open"` as **block types**.
-    * Throughout these guides, `"send"`, `"receive"`, `"change"`, and `"open"` will refer to the action of the block, not the internal block format type.
-    * More information on blocks and their formatting can be found in the [Universal Blocks Specification](/protocol-design/universal-blocks/).
-
----
-
 ## Representatives
 
 The Nano Network achieves consensus using a variant of the Delegated Proof-of-Stake (DPoS) model. In this setup, representatives (accounts where nano\_node with the private keys are running 24/7) vote on the outcome of conflicting transaction.
@@ -38,7 +28,7 @@ The Nano Network achieves consensus using a variant of the Delegated Proof-of-St
     * Choosing a representative with good uptime that is also a unique entity (to prevent sybil attacks) helps maintain high Nano network security.
     * If an account's representative goes offline, the account's funds are no longer used to help secure the network; however, the account is unaffected.
     * Anyone that runs a full-time node may be a representative and be delegated voting weight from other users of the protocol.
-    * An account can freely change its representative anytime within any transaction or explicitly by publishing a [change block](/integration-guides/the-basics/#block-types), which most wallets support.
+    * An account can freely change its representative anytime within any transaction or explicitly by publishing [a block which only changes the representative](#change) (sends no funds), which most wallets support.
 
 ---
 
@@ -84,8 +74,8 @@ When dealing with the various IDs in the node it is important to understand the 
 !!! danger "Similar IDs, Different Functions"
     There are several things that can have a similar form but may have very different functions, and mixing them up can result in loss of funds. Use caution when handling them.
 
-### Wallet Id
-This is used in several RPC actions and command line options for the node. It is a **purely local** UUID that is a reference to a block of data about a specific wallet (set of seed/private keys/info about them) in your node's local database file.
+### Wallet ID
+This is a series of 32 random bytes of data and is **not the seed**. It is used in several RPC actions and command line options for the node. It is a **purely local** UUID that is a reference to a block of data about a specific wallet (set of seed/private keys/info about them) in your node's local database file.
 
 The reason this is necessary is because we want to store information about each account in a wallet: whether it's been used, what its account is so we don't have to generate it every time, its balance, etc. Also, so we can hold ad hoc accounts, which are accounts that are not derived from the seed. This identifier is only useful in conjunction with your node's database file and **it will not recover funds if that database is lost or corrupted**. 
 
@@ -105,7 +95,7 @@ This is also a 32 byte value, usually represented as a 64 character, uppercase h
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from a *private key* by using the ed25519 curve using blake2b as the hash function (instead of sha). Usually public keys will not be passed around in this form, however.
 
 ### Account number/identifier
-This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`, then has 52 characters which are the *public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the public key to aid in discovering typos, also encoded with the same base32 scheme.
+This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `nano_`, then has 52 characters which are the *public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the public key to aid in discovering typos, also encoded with the same base32 scheme.
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
 
@@ -129,64 +119,57 @@ $$
     * Always keep units in integer $raw$ amounts to prevent any floating-point error or unit confusion.
     * Depending on your implementation language, you may require a big number library to perform arithmetic directly on $raw$.
     * See [Distribution and Units](/protocol-design/distribution-and-units/) page for more details on units.
+    * Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid loss of funds. Incorrect arithmetic or use of fields may change an intended receive to a send to a non-existent address.
 
 ---
 
-## Universal (State) Blocks
+## Blocks Specifications
 
-All new transactions on the Nano Protocol are communicated in a data format known as Universal Blocks (State Blocks). The account's entire state, including the balance after each transaction, is recorded in every State Block. Transaction amounts are interpreted as the difference in balance between consecutive blocks.
+All new transactions on the Nano Protocol are communicated via blocks. The account's entire state, including the balance after each transaction, is recorded in every block. Transaction amounts are interpreted as the difference in balance between consecutive blocks.
 
-If an account balance decreases, the transaction that caused the decrease is considered a Send. Similarly, if an account balance increases, the transaction that caused the increase is considered a Receive.
+If an account balance decreases, the transaction that caused the decrease is considered a send. Similarly, if an account balance increases, the transaction that caused the increase is considered a receive.
 
 !!! warning "Important"
     Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid sending erroneous amounts.
 
-### Block types
-The `"state"` block type combines all 4 of the [legacy block](/protocol-design/universal-blocks/#legacy-blocks) types into a single block. Because of this, the `"type"` of the block is always `"state"`.
+### Block Format
+Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following field examples include data types used within RPC calls for building blocks:
 
-|Key|Type|Description|
-|--- |--- |--- |
-|type|constant|"state"|
-|previous|32-Byte HEX|Previous head block on account; 0 if *open* block|
-|link|32-Byte HEX|Multipurpose Field - See Link Table below|
-|representative|String|Representative xrb_ address|
-|account|String|This account's xrb_ address|
-|balance|Decimal String in raw|Resulting balance|
-|work|8-Byte HEX|Proof of Work Nonce|
-|signature|64-Byte HEX|ED25519+Blake2b 512-bit signature|
-
-
-Depending on transaction intent, the `"link"` field is multipurpose for [block_create](/docs/commands/rpc-protocol#block-create) RPC calls:
-
-|Tx Type|Type|Description|Example|
-|--- |--- |--- |--- |
-|Open|HEX|Pairing Send Block's Hash|`F076D8F6254F089A8E66D0C934FA63D927F4458FC1D96815066D83B3658ABA26`|
-|Change|HEX|Must be 0|`0000000000000000000000000000000000000000000000000000000000000000`|
-|Send|STR|Destination "xrb_" address|`xrb_1utx843j4hgac1ixbtdygpayqcqho35oy3ufkfp19pj4rdb3sezqt975f8ae`|
-|Receive|HEX|Pairing Send Block's Hash|`F076D8F6254F089A8E66D0C934FA63D927F4458FC1D96815066D83B3658ABA26`|
+| Key            | Type                  | Description |
+|                |                       |             |
+| type           | Constant              | "state" |
+| previous       | 32-Byte HEX           | Previous head block on account; 0 if *open* block |
+| link           | 32-Byte HEX           | Multipurpose Field - See Link Table below |
+| representative | String                | Representative nano_ address |
+| account        | String                | This account's nano_ address |
+| balance        | Decimal String in raw | Resulting balance |
+| work           | 8-Byte HEX            | [Proof of Work](#proof-of-work) Nonce |
+| signature      | 64-Byte HEX           | ED25519+Blake2b 512-bit signature |
 
 
-Any transaction may also simultaneously change the representative; the above description is for an explicit representative change block where no funds are transferred.
+Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/docs/commands/rpc-protocol#block-create) RPC calls:
+
+| Action  | Type | Description                                | Example |
+|         |      |                                            |         |
+| Change  | HEX  | Must be 0                                  | `0000000000000000000000000000000000000000000000000000000000000000` |
+| Send    | STR  | Destination "nano_" address                | `nano_1utx843j4hgac1ixbtdygpayqcqho35oy3ufkfp19pj4rdb3sezqt975f8ae` |
+| Receive | HEX  | Pairing block's hash (block sending funds) | `F076D8F6254F089A8E66D0C934FA63D927F4458FC1D96815066D83B3658ABA26` |
 
 !!! note
-    In the completed, signed transaction json, the `"link"` field is **always** hexadecimal.
-
-!!! tip "Key Points"
-    Below are a few key points to remember:
-    
-    * State Blocks and Universal Blocks are synonymous.
-    * Once State Blocks are used on an account-chain, legacy blocks can no longer be added.
-    * State Blocks can still interact (e.g receive funds) with legacy blocks.
+    * Any transaction may also simultaneously change the representative. The above description of the "Change" action is for creating a block with an explicit representative change where no funds are transferred (balance is not changed).
+    * In the completed, signed transaction json, the `"link"` field is **always** hexadecimal.
+    * The first block on an account must be receiving funds (cannot be an explicit representative change). The first block is often referred to as "opening the account".
 
 ### Self-Signed Blocks
 
 If you choose to implement your own signing, the order of data (in bytes) to hash prior to signing is as follows.
 
-* The State Block Preamble is 32 bytes and has value ``0x6``.
 * All values are binary representations
 * No ASCII/UTF-8 strings.
 
-1. State Block Preamble (32-Bytes)
+Order of data:
+
+1. block preamble (32-Bytes, value ``0x6``)
 2. account (32-Bytes)
 3. previous (32-Bytes)
 4. representative (32-Bytes)
@@ -198,70 +181,35 @@ The digital signing algorithm (which internally applies another Blake2b hashing)
 !!! warning "Private/public key usage"
     Make sure that your private key uses the correct partnering public key while signing as using an incorrect public key may leak information about your private key.
 
-### Examples
+### Block Creation Examples
 
-Lets take a look through a few examples of using Universal Blocks in practice.
+Read these examples in order to correctly interpret balances and block hashes on the example account-chain.
 
-#### Open
-
-*Scenario*
-
-* Address sends 1 $raw$ to account `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`.
-* This receiving address does not have an `"open"` block yet, so needs to create one.
-* Send block hash is `1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8`.
-
-*Action*
-
-* Creates an `"open"` block for `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`.
-* Set `xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j` as the representative.
-* This receives the block hash `1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8` and thus opens the account.
-
-```bash
-curl -d '{
-  "action":"block_create",
-  "type":"state",
-  "previous":"0",
-  "account":"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"1",
-  "link":"1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8",
-  "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
-}' http://127.0.0.1:7076
-```
-
-```json
-{
-  "hash": "FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
-  "block": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n    \"previous\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n    \"representative\": \"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n    \"balance\": \"1\",\n    \"link\": \"1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8\",\n    \"link_as_account\": \"xrb_19qion34cye9pk153m6f93ajtgs747mkyexh47ff39iro3oa8ofa43o4zwx4\",\n    \"signature\": \"593D865DDCC6018F197C0EACD15E5CED3DAF134EDFAF6553DB9C1D0E11DBDCBBE1B01E1A4C6D4378289567E59BA122DA5BFD49729AA6C2B0FC9E592A546B4F09\",\n    \"work\": \"0000000000000000\"\n}\n"
-}
-```
-
-!!! note "Notes"
-    * The `"balance"` field is in $raw$ format.  For more information, see [units](#units).
-    * Take note of the field `"link_as_account"`. This is if the `"link"` field were to be interpreted as a 256-bit public key and translated into an "xrb\_..." address. This field is only provided for convenience and is stripped away before it is broadcast to the network.
-    * If you are creating and signing your own blocks external to nano\_node, you do not need to include a `"link_as_account"` field.
-
----
+!!! note
+    All example `"work"` values included in the responses are not valid (`0000000000000000`).
 
 #### Receive
 
 *Scenario*
 
-* 5 $nano$ is sent to `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
-* Send block hash is `B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F`
+* Address creates block sending 5 $nano$ to `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
+* Hash of block sending funds is `B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F`
+* We want to receive the pending 5 $nano$ into this new (unopened) account
 
 *Action*
 
-* Create a receive block on `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php` account-chain.
+* Create a block to receive Nano for account: `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php` account-chain.
+* Sets `nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j` as the representative.
+* This receives the block hash `B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F` and because this is the first block on the account, it is considered "opened".
 
 ```bash
 curl -d '{
   "action":"block_create",
   "type":"state",
   "previous":"FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
-  "account":"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"5000000000000000000000000000001",
+  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
+  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
+  "balance":"5000000000000000000000000000000",
   "link":"B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F",
   "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
 }' http://127.0.0.1:7076
@@ -270,12 +218,24 @@ curl -d '{
 ```json
 {
   "hash": "597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F",
-  "block": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n    \"previous\": \"FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0\",\n    \"representative\": \"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n    \"balance\": \"5000000000000000000000000000001\",\n    \"link\": \"B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F\",\n    \"link_as_account\": \"xrb_3eqegh1zc1znhr4joosgsfakrrxtjrf1om3exs9cmajhw97xptbzi3kfba1j\",\n    \"signature\": \"90CBD62F5466E35DB3BFE5EFDBC6283BD30C0591A3787C9458D11F2AF6188E45E6E71B5F4A8E3598B1C80080D6024867878E355161AD1935CD757477991D3B0B\",\n    \"work\": \"0000000000000000\"\n}\n"
+  "block": "{\n
+    \"type\": \"state\",\n
+    \"account\": \"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n
+    \"previous\": \"FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0\",\n
+    \"representative\": \"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n
+    \"balance\": \"5000000000000000000000000000001\",\n
+    \"link\": \"B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F\",\n
+    \"link_as_account\": \"nano_3eqegh1zc1znhr4joosgsfakrrxtjrf1om3exs9cmajhw97xptbzi3kfba1j\",\n
+    \"signature\": \"90CBD62F5466E35DB3BFE5EFDBC6283BD30C0591A3787C9458D11F2AF6188E45E6E71B5F4A8E3598B1C80080D6024867878E355161AD1935CD757477991D3B0B\",\n
+    \"work\": \"0000000000000000\"\n
+  }\n"
 }
 ```
 
 !!! info
-    Here the balance is `5000000000000000000000000000001` $raw$ because we originally had 1 $raw$ in our account and now we are adding `5000000000000000000000000000000` (5 $nano$) to it.
+    * The `"balance"` field is in $raw$ format.  For more information, see [units](#units).
+    * Take note of the field `"link_as_account"`. This is if the `"link"` field were to be interpreted as a 256-bit public key and translated into an "nano\_..." address. This field is only provided for convenience and is stripped away before it is broadcast to the network.
+    * If you are creating and signing your own blocks external to nano\_node, you do not need to include a `"link_as_account"` field.
 
 ---
 
@@ -283,8 +243,8 @@ curl -d '{
 
 *Scenario*
 
-* We will be sending from our account `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`.
-* We will be sending 2 $nano$ to account `xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
+* We want to send from our account `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`.
+* We want to send 2 $nano$ to account `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
 
 *Response*
 
@@ -293,10 +253,10 @@ curl -d '{
   "action":"block_create",
   "type":"state",
   "previous":"597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F",
-  "account":"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"3000000000000000000000000000001",
-  "link":"xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
+  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
+  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
+  "balance":"3000000000000000000000000000000",
+  "link":"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
   "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
 }' http://127.0.0.1:7076
 ```
@@ -304,12 +264,22 @@ curl -d '{
 ```json
 {
   "hash": "128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4",
-  "block": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n    \"previous\": \"597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F\",\n    \"representative\": \"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n    \"balance\": \"3000000000000000000000000000001\",\n    \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n    \"link_as_account\": \"xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n    \"signature\": \"D7975EE2F6FAE1FC7DA336FB9DD5F7E30FC1A6825021194E614F0588073D1A4901E34E3CAE8739F1DE2FD85A73D2A0B26F8BE6539E0548C9A45E1C1887BFFC05\",\n    \"work\": \"0000000000000000\"\n}\n"
+  "block": "{\n
+    \"type\": \"state\",\n
+    \"account\": \"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n
+    \"previous\": \"597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F\",\n
+    \"representative\": \"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n
+    \"balance\": \"3000000000000000000000000000000\",\n
+    \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n
+    \"link_as_account\": \"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
+    \"signature\": \"D7975EE2F6FAE1FC7DA336FB9DD5F7E30FC1A6825021194E614F0588073D1A4901E34E3CAE8739F1DE2FD85A73D2A0B26F8BE6539E0548C9A45E1C1887BFFC05\",\n
+    \"work\": \"0000000000000000\"\n
+  }\n"
 }
 ```
 
 !!! info
-    Because the account balance was reduced from `5000000000000000000000000000001` $raw$ to `3000000000000000000000000000001` $raw$, the block is interpreted as a send. The `"link"` field is populated with the public key of the account we are sending to.
+    Because the account balance was reduced from `5000000000000000000000000000000` $raw$ to `3000000000000000000000000000000` $raw$, the block is interpreted as a send. The `"link"` field is populated with the public key of the account we are sending to.
 
 ---
 
@@ -317,8 +287,8 @@ curl -d '{
 
 *Scenario*
 
-* We want to change the representative of our account `xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
-* We want the representative to be `xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`
+* We want to change the representative of our account `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
+* We want the representative to be `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`
 
 *Response*
 
@@ -327,9 +297,9 @@ curl -d '{
   "action":"block_create",
   "type":"state",
   "previous":"128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4",
-  "account":"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
-  "balance":"3000000000000000000000000000001",
+  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
+  "representative":"nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
+  "balance":"3000000000000000000000000000000",
   "link":"0000000000000000000000000000000000000000000000000000000000000000",
   "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
 }' http://127.0.0.1:7076
@@ -338,12 +308,22 @@ curl -d '{
 ```json
 {
   "hash": "2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E",
-  "block": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n    \"previous\": \"128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4\",\n    \"representative\": \"xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs\",\n    \"balance\": \"3000000000000000000000000000001\",\n    \"link\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n    \"link_as_account\": \"xrb_1111111111111111111111111111111111111111111111111111hifc8npp\",\n    \"signature\": \"7E9A7B368DBEB280B01C22633DC82F6CEF00F529E07B76A0232614D2BCDAF85BF52AC9DA4DBE4468B6F144CE82F2FDE44080C8363F903A6EC3D999252CB1E801\",\n    \"work\": \"0000000000000000\"\n}\n"
+  "block": "{\n
+    \"type\": \"state\",\n
+    \"account\": \"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n
+    \"previous\": \"128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4\",\n
+    \"representative\": \"nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs\",\n
+    \"balance\": \"3000000000000000000000000000000\",\n
+    \"link\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n
+    \"link_as_account\": \"nano_1111111111111111111111111111111111111111111111111111hifc8npp\",\n
+    \"signature\": \"7E9A7B368DBEB280B01C22633DC82F6CEF00F529E07B76A0232614D2BCDAF85BF52AC9DA4DBE4468B6F144CE82F2FDE44080C8363F903A6EC3D999252CB1E801\",\n
+    \"work\": \"0000000000000000\"\n
+  }\n"
 }
 ```
 
 !!! note
-    Note that the `""link"` field is all 0's. As another sanity check, we notice the all 0 public key gets translated into the burn address `xrb_1111111111111111111111111111111111111111111111111111hifc8npp`
+    Note that the `""link"` field is all 0's. As another sanity check, we notice the all 0 public key gets translated into the burn address `nano_1111111111111111111111111111111111111111111111111111hifc8npp`
 
 ---
 
@@ -351,9 +331,9 @@ curl -d '{
 
 *Scenario*
 
-* We want to change our representative at the same time we perform a send or receive.
-* We want to send 3 more $nano$ to account `xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`
-* We want to revert our representative back to `xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j`
+* We want to change our representative at the same time we perform a send or receive of funds.
+* We want to send 2 more $nano$ to account `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`
+* We want to revert our representative back to `nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j`
 
 *Response*
 
@@ -362,10 +342,10 @@ curl -d '{
   "action":"block_create",
   "type":"state",
   "previous":"2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E",
-  "account":"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"1",
-  "link":"xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
+  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
+  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
+  "balance":"1000000000000000000000000000000",
+  "link":"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
   "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
 }' http://127.0.0.1:7076
 ```
@@ -373,7 +353,17 @@ curl -d '{
 ```json
 {
   "hash": "9664412A834F0C27056C7BC4A363FBAE86DF8EF51341A5A5EA14061727AE519F",
-  "block": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n    \"previous\": \"2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E\",\n    \"representative\": \"xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n    \"balance\": \"1\",\n    \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n    \"link_as_account\": \"xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n    \"signature\": \"4D388F982188E337D22E0E66CD24BCABD09BED1E920940C453039B55B6A4724D7BD106019AACC1840480938FF4FA024F041E6E6A32B3641C28E0262025020B03\",\n    \"work\": \"0000000000000000\"\n}\n"
+  "block": "{\n
+    \"type\": \"state\",\n
+    \"account\": \"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php\",\n
+    \"previous\": \"2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E\",\n
+    \"representative\": \"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j\",\n
+    \"balance\": \"1000000000000000000000000000000\",\n
+    \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n
+    \"link_as_account\": \"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
+    \"signature\": \"4D388F982188E337D22E0E66CD24BCABD09BED1E920940C453039B55B6A4724D7BD106019AACC1840480938FF4FA024F041E6E6A32B3641C28E0262025020B03\",\n
+    \"work\": \"0000000000000000\"\n
+  }\n"
 }
 ```
 
@@ -423,35 +413,3 @@ Change to representative with label and message
 (to be sent as the `block` argument to the RPC call `process`)
 
     nanoblock:<blob>
-
----
-
-## Wallet Design
-
-The QT wallet that is included with the node is a database of the 256-bit key -> 256-bit value pairs. The primary wallet is stored inside of a separate database in the `wallets.ldb` file.  
-  
-#### Special Pairs
-
-| Index | Description |
-| --- | --- |
-| 0 | Version number |
-| 1 | Wallet salt |
-| 2 | Encrypted wallet key |    
-| 3 | Check key |
-| 4 | Wallet representative |
-| 5 | Wallet seed for deterministic key generation |
-| 6 | Current key index for deterministic keys |
-  
-#### Wallet accounts
-
-`pub(i) -> encrypt_aes_ctr (wallet_key, prv(i), salt)`
-
-| Name            | Value |
-|                 |       |
-| Wallet Key      | A 256 random number that's to encrypt all key entries in the database |
-| Salt            | A random 256-bit value used generate uniqueness in wallets with identical passwords |
-| Encrypt_AES_CTR | A function using the AES encryption algorithm in CTR mode |
-
-The wallet key is stored in encrypted form. The key used for the encryption is generated by passing the password through the Argon2 key derivation function.
-
-All pairs besides the special pairs are key/value pairs mapping the public key (a.k.a. account number) to the encrypted private key.

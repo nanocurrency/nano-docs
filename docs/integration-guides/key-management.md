@@ -35,7 +35,7 @@ Derived Public key:
 ```
 Derived Address:
 ```
-xrb_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
+nano_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
 ```
 
 ## External Management
@@ -56,7 +56,7 @@ In order to properly implement accounting systems external to the Nano node the 
 
 #### Block confirmation procedures
 
-Funds transfer to the receiving Nano account must be confirmed prior to publishing a receive block. This is done by verifying the network has reached quorum on the block. To validate confirmation on a block the following methods can be used:
+Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. To validate confirmation on a block the following methods can be used:
 
 ##### Block callback
 
@@ -118,7 +118,7 @@ curl -d '{
 {
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }
 ```
 
@@ -139,7 +139,7 @@ Using external keys, transactions are generated in two steps: creation and broad
 curl -d '{
   "action": "account_info",
   "representative": "true",
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }' http://127.0.0.1:7076
 ```
 
@@ -153,7 +153,7 @@ curl -d '{
   "balance": "4618869000000000000000000000000",
   "modified_timestamp": "1524626644",
   "block_count": "4",
-  "representative": "xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou"
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou"
 }
 ```
 
@@ -168,7 +168,7 @@ curl -d '{
     | `"previous"`       | `"frontier"` from `account_info` response |
     | `"account"`        | `"address"` used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
-    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will send 1 $nano$ ($10^{30} raw$) to address `xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`. |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will send 1 $nano$ ($10^{30} raw$) to address `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`. |
     | `"link"`           | destination address the funds will move between |
     | `"key"`            | account's private key |
 
@@ -179,10 +179,10 @@ curl -d '{
   "action": "block_create",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
-  "representative": "xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
   "balance": "3618869000000000000000000000000",
-  "link": "xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
+  "link": "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
   "key": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3"
 }' http://127.0.0.1:7076
 ```
@@ -194,12 +194,12 @@ curl -d '{
   "hash": "8DB5C07E0E62E9DFE8558CB9BD654A115B02245B38CD369753CECE36DAD13C05",
   "block": "{\n
       \"type\": \"state\",\n
-      \"account\": \"xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
+      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
       \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
+      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
       \"balance\": \"3618869000000000000000000000000\",\n
       \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n
-      \"link_as_account\": \"xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
+      \"link_as_account\": \"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
       \"signature\": \"79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205\",\n
       \"work\": \"fbffed7c73b61367\"\n
     }\n"
@@ -211,7 +211,7 @@ curl -d '{
     * Always ensure that every quotation mark is properly escaped.
     * [`block_create`](/commands/rpc-protocol#block-create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly escaped for the [`process`](/commands/rpc-protocol#process) RPC command.
     * The nano\_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano\_node knows is that it is creating a block whose previous block on the account chain has hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` results in the account having a balance of `3618869000000000000000000000000`.
-    * If the account's balance at block hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` was actually `5618869000000000000000000000000`, then 2 $nano$ would have been sent to `xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
+    * If the account's balance at block hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` was actually `5618869000000000000000000000000`, then 2 $nano$ would have been sent to `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
 
 !!! question "What if I receive funds on my account and then broadcast the above crafted send? Would this result in me sending excess funds to the recipient?"
     If you followed this guide, then the answer is "no". When you issued the [`account_info`](/commands/rpc-protocol#account-info) RPC command, you received the account's balance at a specific blockhash on its account-chain. In your crafted transaction, you specify that hash in the `"previous"` field. If funds were signed into your account, the headblock on your account-chain would change. Since your send no longer refers to the headblock on your account-chain when broadcasted, the network would reject your transaction.
@@ -246,7 +246,7 @@ curl -d '{
 curl -d '{
   "action": "account_info",
   "representative": "true",
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }' http://127.0.0.1:7076
 ```
 
@@ -260,7 +260,7 @@ curl -d '{
   "balance": "4618869000000000000000000000000",
   "modified_timestamp": "1524626644",
   "block_count": "4",
-  "representative": "xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou"
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou"
 }
 ```
 
@@ -286,8 +286,8 @@ curl -d '{
   "action": "block_create",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
-  "representative": "xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
   "balance": "11618869000000000000000000000000",
   "link": "CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783",
   "key": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3"
@@ -301,12 +301,12 @@ curl -d '{
   "hash": "350D145570578A36D3D5ADE58DC7465F4CAAF257DD55BD93055FF826057E2CDD",
   "block": "{\n
       \"type\": \"state\",\n
-      \"account\": \"xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
+      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
       \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
+      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
       \"balance\": \"11618869000000000000000000000000\",\n
       \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",\n
-      \"link_as_account\": \"xrb_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8\",\n
+      \"link_as_account\": \"nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8\",\n
       \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",\n
       \"work\": \"c5cf86de24b24419\"\n
     }\n"
@@ -348,9 +348,9 @@ curl -d '{
   "action": "process",
   "block": "{
       \"type\": \"state\",
-      \"account\": \"xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",
+      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",
       \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",
-      \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",
+      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",
       \"balance\": \"11618869000000000000000000000000\",
       \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",
       \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",
@@ -366,43 +366,6 @@ curl -d '{
 }
 ```
 
-!!! tip
-    It is best practice to run an additional, auxilary nano\_node to confirm that the transaction was successfully broadcasted to the Nano network. On the auxilary nano\_node, you can check if the transaction is in this secondary nodes local ledger by utilizing the [`block`](/commands/rpc-protocol#retrieve-block) RPC command.
-
-    **Request Example**
-
-    ```bash
-    curl -d '{
-      "action": "block",
-      "hash": "48006BF3146C18CAD3A53A957BF64EF7C57820B21FCCE373FA637559DA260358"
-    }' http://127.0.0.1:7076
-    ```
-
-    **Success Response**
-
-    ```json
-    {
-      "block_account": "xrb_1d6yjscy8th55f1bbfy4ryp6c3m44f3d8m73q1bw349i4jyk53tmn36pskju",
-      "amount": "2000000000000000000000000000",
-      "balance": "2000000000000000000000000000",
-      "height": "1",
-      "local_timestamp": "0",
-      "contents": "{\n
-          \"type\": \"state\",\n
-          \"account\": \"xrb_1d6yjscy8th55f1bbfy4ryp6c3m44f3d8m73q1bw349i4jyk53tmn36pskju\",\n
-          \"previous\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n
-          \"representative\": \"xrb_1cwswatjifmjnmtu5toepkwca64m7qtuukizyjxsghujtpdr9466wjmn89d8\",\n
-          \"balance\": \"2000000000000000000000000000\",\n
-          \"link\": \"BEDC79C87CDCDE662F1050F7DBA66664E11EE7E1F22C54F96D1336F49B9D4D68\",\n
-          \"link_as_account\": \"xrb_3hpwh969sq8yerqj1n9qugm8es935umy5wjecmwpt6spykfstmdae6dcuomf\",\n
-          \"signature\": \"51B7503683EDFAD5304EFF7BAA1640F5DCB370651B670B06D282FDE3B1BECABAE6D8C06343846335F9590EDE5D7537BDF45709664043B38BB5842E716870AB03\",\n
-          \"work\": \"a847c4a3371a2f9c\"\n
-        }\n"
-      }"
-    }
-    ```
-
-
 !!! info
     Below are a few helpful pieces of information to consider:
 
@@ -410,6 +373,7 @@ curl -d '{
     * If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the `"previous"` field in the transaction data refers to a non-existant block.
     * If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.
 
+---
 
 !!! example "Rebroadcasting blocks for an account-chain"
     The following command rebroadcasts all hashes on an account-chain starting at block hash provided:
@@ -460,14 +424,14 @@ If you lose your WALLET\_ID, you can print out all your WALLET\_IDs and public a
 ##### Command Format
 
 ```bash
-sudo docker exec ${NANO_NAME} nano_node --wallet_list
+docker exec ${NANO_NAME} nano_node --wallet_list
 ```
 
 ##### Success Response
 
 ```yaml
 Wallet_ID: E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446
-xrb_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme
+nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme
 Wallet_ID: DB0711484E35A4C75230D898853A86BFAFE9F87FCE99C83A4C2668C39607DD4B
 ```
 
@@ -482,14 +446,14 @@ The following command will print the seed for a given wallet to stdout. Replace 
 ##### Command Format
 
 ```bash
-sudo docker exec ${NANO_NAME:-nano_node_1} nano_node --wallet_decrypt_unsafe --wallet ${WALLET_ID}
+docker exec ${NANO_NAME:-nano_node_1} nano_node --wallet_decrypt_unsafe --wallet ${WALLET_ID}
 ```
 
 ##### Success Response
 
 ```yaml
 Seed: D56143E7561D71C1AF4D563C6AF79EECE93E82479818AD8ED88BED1AAE8BE4E5
-Pub: xrb_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme
+Pub: nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme
 Prv: 1F6FEB5D1E05C10B904E1112F430C3FA93ACC7067206B63AD155199501794E3E
 ```
 
@@ -592,7 +556,7 @@ curl -d '{
 
 ```json
 { 
-  "account": "xrb_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme"
+  "account": "nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme"
 }
 ```
 
@@ -635,11 +599,11 @@ curl -d '{
 ```json
 {
   "accounts": [
-    "xrb_35kgi43t5hgi64715qnppmz1yb6re1igfcrkfx4ppirkqpfmecnpd1mdmafu",
-    "xrb_3t13y6b7h93yn9hehn8p6yqx1yqzrxxs33drhzep8huhymwxamn15pba75oj",
-    "xrb_11exxzfoosai96w7gnrjrn7m6i8bodch37ib8jgxsm5k96na6e1wda8np881",
-    "xrb_3xbsso8pkemwatwdnkcyn1bfcmrb8dpcg3pit9zqxj9mkxa6ifiankff6m9x",
-    "xrb_1q5gpy46moe1csj8md8oq3x57sxqmwskk8mmr7c63q1yebnjcsxg1yib19kn"
+    "nano_35kgi43t5hgi64715qnppmz1yb6re1igfcrkfx4ppirkqpfmecnpd1mdmafu",
+    "nano_3t13y6b7h93yn9hehn8p6yqx1yqzrxxs33drhzep8huhymwxamn15pba75oj",
+    "nano_11exxzfoosai96w7gnrjrn7m6i8bodch37ib8jgxsm5k96na6e1wda8np881",
+    "nano_3xbsso8pkemwatwdnkcyn1bfcmrb8dpcg3pit9zqxj9mkxa6ifiankff6m9x",
+    "nano_1q5gpy46moe1csj8md8oq3x57sxqmwskk8mmr7c63q1yebnjcsxg1yib19kn"
   ]
 }
 ```
@@ -698,8 +662,8 @@ curl -d '{
 | Field       | Description |
 |             |             |
 | wallet      | WALLET_ID containing the source address |
-| source      | Address you control starting with "xrb_" |
-| destination | Destination address starting with "xrb_" |
+| source      | Address you control starting with "nano_" |
+| destination | Destination address starting with "nano_" |
 | amount      | Amount to send in raw |
 | id          | Any string |
 
@@ -717,7 +681,7 @@ curl -d '{
 
 ---
 
-Below is a sample command to send 1 $nano$ from `xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000` to `xrb_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme`.
+Below is a sample command to send 1 $nano$ from `nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000` to `nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme`.
 
 ##### Request Example
 
@@ -725,8 +689,8 @@ Below is a sample command to send 1 $nano$ from `xrb_3e3j5tkog48pnny9dmfzj1r16pg
 curl -d '{
   "action": "send",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
-  "source": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
-  "destination": "xrb_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme",
+  "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+  "destination": "nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme",
   "amount": "1000000000000000000000000000000",
   "id": "7081e2b8fec9146e"
 }' http://127.0.0.1:7076
