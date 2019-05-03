@@ -48,6 +48,8 @@ docker pull nanocurrency/nano:V18.0
 !!! tip
 	If you are running in an enterprise environment, it is recommended that you explicitly specify the latest stable version to ensure deterministic containers. A list of tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano/tags/).
 
+--8<-- "multiple-node-setups-warning.md"
+
 ---
 
 ### Starting the Node
