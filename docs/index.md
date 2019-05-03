@@ -26,4 +26,8 @@ Welcome! 👋 This documentation is focused on helping developers understand the
 
 	_Recommended for advanced node operators and developers_
 
-If you are looking for other details about Nano head over to [Nano.org](https://nano.org) for links to wallets, discussions with the community and more.
+**Join the Community**
+
+If you are looking for other details about Nano, links to wallets, discussions about the network and more, check out our community:
+
+--8<-- "community-links.md"
