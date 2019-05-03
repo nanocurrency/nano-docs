@@ -100,19 +100,19 @@ CONTAINER ID        IMAGE               COMMAND                 CREATED         
 First, [stop the container](#stopping-the-container) if it is running.
 
 ```bash
-sudo docker stop ${NANO_NAME}
+docker stop ${NANO_NAME}
 ```
 
 Then we can download the latest version with `docker pull` (or [whichever version](https://hub.docker.com/r/nanocurrency/nano/tags/) we need).
 
 Pull latest release of the Nano Node
 ```bash
-sudo docker pull nanocurrency/nano
+docker pull nanocurrency/nano
 ```
 
 Or pull the Nano Node tagged with "V18.0" from Dockerhub
 ```bash
-sudo docker pull nanocurrency/nano:V18.0
+docker pull nanocurrency/nano:V18.0
 ```
 
 Lastly, we [start up the docker container again](#starting-the-container) using the same command.
@@ -124,7 +124,7 @@ Lastly, we [start up the docker container again](#starting-the-container) using 
 First, [stop the container](#stopping-the-container) if it is running.
 
 ```bash
-sudo docker stop ${NANO_NAME}
+docker stop ${NANO_NAME}
 ```
 
 !!! warning
