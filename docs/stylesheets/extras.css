@@ -1,0 +1,90 @@
+.md-header-nav__button.md-logo img {
+    display: block;
+    height: 50px;
+    width: 120px;
+}
+
+.md-header-nav__button.md-logo {
+    margin: 0rem;
+    padding: 0rem;
+}
+
+.md-nav__button img {
+    width: 50px;
+    height: 50px;
+}
+
+.md-header-nav__title {
+	padding-left: 0.6rem;
+}
+
+.md-header,
+.md-footer-nav,
+.md-footer-meta {
+    background-color: #4a90e2;
+}
+
+/* Highlight current page in nav menu */
+.md-nav__link--active {
+    color      : #4a90e2;
+    font-weight: bold;
+}
+
+.md-footer-social {
+    font-size: 24px;
+}
+/*
+.md-typeset .codehilite pre {
+	background-color: #EDEFF1;
+}
+
+.md-typeset pre>code {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+*/
+
+.md-typeset {
+    font-size: 0.7rem;
+    line-height: 1.8;
+}
+/*
+.md-typeset details summary {
+    font-size: 14px;
+}
+.md-typeset .admonition-title{
+    font-size: 14px;
+}
+.md-typeset .admonition p{
+    font-size: 14px;
+}
+.md-typeset .admonition ul{
+    font-size: 14px;
+}
+*/
+@media (min-width: 768px) {
+    .md-typeset code {
+        white-space: pre;
+    }
+}
+
+.no-break {
+    white-space: pre;
+}
+
+
+.codehilite {
+	color: #131121;
+}
+
+.codehilite .c1 {
+	color: #7e7c8e;
+}
+
+.md-typeset h1 {
+	color: #131121;
+}
+
+.md-nav__title--site {
+	display: none;
+}
