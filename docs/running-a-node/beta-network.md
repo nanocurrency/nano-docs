@@ -48,12 +48,12 @@ docker pull nanocurrency/nano-beta
 
 Pulls a specific version of the Nano node:
 ```bash
-docker pull nanocurrency/nano:V19.0RC1
+docker pull nanocurrency/nano-beta:V19.0RC1
 ```
 
 Pulls the latest release which includes any release candidate versions:
 ```bash
-docker pull nanocurrency/nano:latest-including-rc
+docker pull nanocurrency/nano-beta:latest-including-rc
 ```
 
 A list of beta tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano-beta/tags)
@@ -65,7 +65,7 @@ docker run --restart=unless-stopped -d \
   -p 54000:54000/udp \
   -p 54000:54000 \
   -p [::1]:55000:55000 \
-  -v ${NANO_HOST_FOLDER}:/root \
+  -v ${NANO_HOST_FOLDER_BETA}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano-beta:latest-including-rc
 ```
@@ -73,6 +73,9 @@ docker run --restart=unless-stopped -d \
 !!! tip
 	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting-the-container) details for the main network.
 	* See [Docker management](/running-a-node/docker-management/) for other related commands
+
+!!! warning "Separate host folders"
+	Be sure to use a different host folder for main network and beta network Docker node setups. Attempting to use the same folder will result in issues.
 
 ## Additional beta resources
 
