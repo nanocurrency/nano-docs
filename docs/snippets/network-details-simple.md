@@ -1,7 +1,3 @@
-<!-- Used on:
-/what-is-nano/design-features.md
-/running-a-node/setup.md
--->
 !!! info "Network Ports Overview"
 	* **7075 UDP:** For [live network](/glossary#live-network) activity  
 	* **7075 TCP:** For [bootstrap network](/glossary#bootstrap-network) activity
