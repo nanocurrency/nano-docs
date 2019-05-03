@@ -13,13 +13,13 @@ Transactions occur between accounts with two separate actions:
 1. The sender publishes a block debiting their own account for the amount to be sent to the receiving account
 1. The receiver publishes a matching block crediting their own account for the amount sent
 
-Once a send block is confirmed by the network, the transaction goes into a [pending](/glossary#pending) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching receiving block to credit their account.
+Once a block sending funds is confirmed by the network, the transaction goes into a [pending](/glossary#pending) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching block receiving the funds to their account.
 
 ### Lightweight, stateful blocks
 
 Nano uses [Universal (State) Blocks](/glossary#universal-blocks) which provide consistent framing, regardless of the type of transaction (send, receive, open, change representative, etc). The block size was kept small enough to fit in a single UDP packet and the addition of account balance to every block provides options in the future for efficient pruning of the ledger.
 
-Every block must also contain a small [Proof-of-Work](/glossary#proof-of-work-pow) value which helps better prioritize network resources so the average user can send occassional transactions quickly and consistently.
+Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which helps better prioritize network resources so the average user can send occassional transactions quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
 
 For more details, see the [Universal (State) Blocks specs](/integration-guides/the-basics/#universal-state-blocks) and [Proof-of-Work specs](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
 
