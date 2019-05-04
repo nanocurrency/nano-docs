@@ -10,7 +10,8 @@ Accounts not derived from a private seed which can be held in the node wallet th
 #### announcement rounds
 A repeating 16 second cycle on the node during which votes are collected for active transactions in attempt to reach quorum.
 
-#### block
+#### block hash
+A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.
 
 #### Block Lattice
 The Block Lattice is a data-structure in which individual accounts control their own blockchain. This allows transactions to be added quickly without conflict and sent to the network for confirmation.
