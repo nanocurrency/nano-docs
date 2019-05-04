@@ -32,7 +32,7 @@ The `snippets` folder contains reusable pieces of content which can be inserted 
 
 `--8<-- "snippet-file-name.md"`
 
-This should be used for simple, duplicated content only and is not a complex templating setup. Please include at the top of any snippet file the commented out filenames of where the snippets are being used for easier tracking and verifying later.
+This should be used for simple, duplicated content only and is not a complex templating setup.
 
 ### Comments
 The StripHTML extension is used so HTML-style comments can be included in the markdown docs, although for best compatibility you should keep them at the top level, not within indented areas/rendered admonition blocks, etc. as much as possible.
