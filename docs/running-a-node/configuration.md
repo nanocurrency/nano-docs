@@ -158,6 +158,8 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 
 #### websocket
 
+*Version 19.0+*
+
 ```
 "node": {
     "websocket": {
