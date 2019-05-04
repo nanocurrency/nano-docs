@@ -1,0 +1,105 @@
+site_name: Documentation
+theme:
+  name: 'material'
+  palette:
+    primary: '#4a90e2'
+    accent: '#131121'
+  font:
+    text: 'Noto Sans'
+    code: 'Roboto Mono'
+  logo: 'images/nano.svg'
+  feature:
+    tabs: false
+nav:
+  - Home: index.md
+  - What is Nano?:
+    - Overview: what-is-nano/overview.md
+    - Contributing: what-is-nano/contributing.md
+    - Exploring More: what-is-nano/exploring-more.md
+  - Running a Node:
+    - Overview: running-a-node/overview.md
+    - Node Setup: running-a-node/node-setup.md
+    - Docker Management: running-a-node/docker-management.md
+    - Beta Network: running-a-node/beta-network.md
+    - Configuration: running-a-node/configuration.md
+    - Beyond the Node: running-a-node/beyond-the-node.md
+  - Integration Guides: 
+    - The Basics: integration-guides/the-basics.md
+    - Key Management: integration-guides/key-management.md
+    - Build Options: integration-guides/build-options.md
+    - Advanced: integration-guides/advanced.md
+  - Commands:
+    - RPC Protocol: commands/rpc-protocol.md
+    - Command Line Interface: commands/command-line-interface.md
+  - Protocol Design:
+    - Overview: protocol-design/overview.md
+    - Distribution and Units: protocol-design/distribution-and-units.md
+    - Networking: protocol-design/networking.md
+    - Network Attacks: protocol-design/network-attacks.md
+    - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+  - Glossary: glossary.md
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+      base_path: 'docs/snippets'
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - footnotes
+  - pymdownx.striphtml:
+      strip_comments: true
+      strip_attributes: ''
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'
+extra_css:
+  - 'stylesheets/extras.css'
+extra:
+  social:
+  - type: 'github'
+    link: 'https://github.com/nanocurrency'
+  - type: 'twitter'
+    link: 'https://twitter.com/nano'
+  - type: 'comments'
+    link: 'https://chat.nano.org'
+  - type: 'reddit'
+    link: 'https://reddit.com/r/nanocurrency'
+  - type: 'medium'
+    link: 'https://medium/nanocurrency'
+  - type: 'facebook'
+    link: 'https://facebook.com/nanofoundation'
+  - type: 'linkedin'
+    link: 'https://linkedin.com/company/nano-foundation'
+  - type: 'youtube'
+    link: 'https://www.youtube.com/nanocurrency/'
+  - type: 'instagram'
+    link: 'https://www.instagram.com/nanocurrency/'
+repo_name: 'nanocurrency/nano-docs'
+repo_url: 'https://github.com/nanocurrency/nano-docs'
