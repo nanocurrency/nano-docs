@@ -376,7 +376,7 @@ sudo apt-get install git cmake g++ curl wget
 wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz   
 tar xzvf boost_1_67_0.tar.gz   
 cd boost_1_67_0   
-./bootstrap.sh --with-libraries=filesystem,log,program_options,thread   
+./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread   
 ./b2 --prefix=../[boost] link=static install   
 cd ..
 ```
@@ -425,7 +425,7 @@ cd ..
 ```bash
 wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz   
 tar xzvf boost_1_67_0.tar.gz && cd boost_1_67_0   
-./bootstrap.sh --with-libraries=filesystem,log,program_options,thread   
+./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread   
 ./b2 --prefix=../[boost] link=static install   
 cd ..
 ```
