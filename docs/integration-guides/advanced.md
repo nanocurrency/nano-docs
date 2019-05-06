@@ -348,15 +348,40 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 
 * See [this GitHub gist for a tutorial on getting nano_node running on an Ubuntu EC2 instance](https://gist.github.com/numtel/96dd51106f0e7e25c50dcf4a4f119499).
 
-**To enable RPC for node edit [config.json](https://github.com/nanocurrency/nano-node/wiki/config.json) after first launch**   
+There are 3 different ways to enable RPC for the node:
+
+**In process**
+
+* `rpc_enable` = **true**
+* `rpc_in_process` = **true** (default, V19.0+)
+
+**Child process**  
+*V19.0+ only*
+
+* `rpc_enable` = **true**
+* `rpc_path` = [path to nano_rpc]
+* `rpc_in_process` = **false**
+* `ipc`.`tcp`.`enable` = **true**
+* `ipc`.`tcp`.`port` = `ipc_port` of `rpc_config.json`
+
+**Out of node process**  
+*V19.0+ only*
+
+* `rpc_enable` = **false**
+* `rpc_path` = [path to nano_rpc]
+* `rpc_in_process` = **false**
+* `ipc`.`tcp`.`enable` = **true**
+* `ipc`.`tcp`.`port` == `ipc_port` of `rpc_config.json`
+
+The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#example-configjson-file)  & [rpc_config.json](/running-a-node/configuration/#example-rpc_configjson-file) (V19.0+) after first launch.
 
     ./nano_node --daemon  
     sed -i 's/"rpc_enable": "false"/"rpc_enable": "true"/g' ~/Nano/config.json   
-    sed -i 's/"enable_control": "false"/"enable_control": "true"/g' ~/Nano/config.json  
+    sed -i 's/"enable_control": "false"/"enable_control": "true"/g' ~/Nano/rpc_config.json  
 
 **Launch nano_node in test mode**   
 
-    ./nano_node --daemon
+    ./nano_node --daemon --network=test
 
 **Check if RPC is enabled with curl (use different terminal or session)**   
 
