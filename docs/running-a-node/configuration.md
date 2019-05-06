@@ -1,10 +1,10 @@
 Below are some specifications and best practices that should be followed while implementing your node.
 
-## Configuration File
+## Configuration Files
 
 ### File Locations
 
-The node uses the `config.json` file found in the following locations:
+The node uses the `config.json` and `rpc_config.json` files found in the following locations:
 
 --8<-- "folder-locations.md"
 
@@ -109,6 +109,27 @@ The node uses the `config.json` file found in the following locations:
    }
 ```
 
+---
+
+### Example rpc_config.json file
+
+!!! note ""
+    Available in Version 19.0+ only
+
+```json
+{
+    "address": "::ffff:127.0.0.1", // Allowed IP for RPC connection
+    "port": "7076", // Default RPC port
+    "enable_control": "true", // Enable particular RPC command like: send, account_create, etc...
+    "max_json_depth": "20", // prevent JSON overflow. Default recommended
+    "version": "1",
+    "max_request_size": "33554432",
+    "io_threads": "8", // Number of threads listening to RPC requests 
+    "ipc_port": "46000",       // Must match port in ipc -> tcp of node config file (only used with child/out of process RPC)
+    "num_ipc_connections": "8" // Max number of connections with nano_node (only used with child/out of process RPC)
+}
+```
+
 --8<-- "multiple-node-setups-warning.md"
 
 ---
@@ -118,6 +139,8 @@ The node uses the `config.json` file found in the following locations:
 ---
 
 ## Configuration Options
+
+### config.json
 
 #### work_peers
 Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work-generate) 
