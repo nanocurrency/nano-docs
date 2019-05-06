@@ -59,7 +59,7 @@ Get account information by the [`account_info`](/docs/rpc/#account-info) RPC Com
 curl -d '{
   "action": "account_info",
   "representative": "true",
-  "account": "xrb_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg"
+  "account": "nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg"
 }' http://127.0.0.1:7076
 ```
 
@@ -73,7 +73,7 @@ curl -d '{
   "balance": "8900000000000000000000000",
   "modified_timestamp": "1524812177",
   "block_count": "105",
-  "representative": "xrb_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf"
+  "representative": "nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf"
 }
 ```
 
@@ -106,12 +106,12 @@ curl -d '{
 ```json
 {
   "type": "state",
-  "account": "xrb_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg",
+  "account": "nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg",
   "previous": "829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77",
-  "representative": "xrb_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf",
+  "representative": "nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf",
   "balance": "8900000000000000000000000",
   "link": "616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA",
-  "link_as_account": "xrb_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk",
+  "link_as_account": "nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk",
   "signature": "5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401",
   "work": "5621a5a58ef8964a"
 }
@@ -146,12 +146,12 @@ curl -d '{
 curl -d '{
   "action": "block_hash", "block": "{\n
     \"type\": \"state\",\n
-    \"account\": \"xrb_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg\",\n
+    \"account\": \"nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg\",\n
     \"previous\": \"829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77\",\n
-    \"representative\": \"xrb_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf\",\n
+    \"representative\": \"nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf\",\n
     \"balance\": \"8900000000000000000000000\",\n
     \"link\": \"616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA\",\n
-    \"link_as_account\": \"xrb_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk\",\n
+    \"link_as_account\": \"nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk\",\n
     \"signature\": \"5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401\",\n
     \"work\": \"5621a5a58ef8964a\"\n
   }\n"
@@ -204,11 +204,11 @@ For details on configuring websockets within a node, see the [websocket section 
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`
 
-**Subscribe and unsubscribe**
+#### Subscribe and unsubscribe
 
 To subscribe to all confirmed blocks:
 
-```
+```json
 {
 	"action": "subscribe",
 	"topic": "confirmation"
@@ -216,7 +216,7 @@ To subscribe to all confirmed blocks:
 ```
 
 To unsubscribe:
-```
+```json
 {
 	"action": "unsubscribe",
 	"topic": "confirmation"
@@ -229,7 +229,7 @@ Future versions may include account filtering and additional topics.
 
 All WebSocket actions can request an acknowledgement.
 
-```
+```json
 {
 	"action": "subscribe", 
 	"topic": "confirmation", 
@@ -240,7 +240,7 @@ All WebSocket actions can request an acknowledgement.
 
 If the subscription succeeds, the following message will be sent back (note that no message ordering is guaranteed):
 
-```
+```json
 {
 	"ack": "subscribe",
 	"time": "1552766057328",
@@ -248,7 +248,9 @@ If the subscription succeeds, the following message will be sent back (note that
 }
 ```
 
-**Sample result**
+#### Sample results
+
+**Confirmation**
 
 !!! note "Differences from the HTTP callback"
     * The "block" contains JSON instead of an escaped string. This makes parsing easier.
@@ -256,27 +258,87 @@ If the subscription succeeds, the following message will be sent back (note that
     * Subtype is part of block (if it's a state block)
     * There is no "is_send" property since "subtype" signifies the intent for state blocks.
 
-```
+```json
 {
 	"topic": "confirmation",
 	"time": "1552766057328",
 	"message": {
-	    "account": "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+	    "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
 	    "amount": "1000000000000000000000000",
 	    "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
 	    "block": {
 	        "type": "state",
-	        "subtype": "send"
-	        "account": "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+	        "subtype": "send",
+	        "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
 	        "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
-	        "representative": "xrb_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
+	        "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
 	        "balance": "135902000000000000000000000000",
 	        "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
-	        "link_as_account": "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+	        "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
 	        "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
 	        "work": "466ac84fc9edd4b3"
 	    }
     }
+}
+```
+
+**Vote**
+
+```json
+{
+  "topic": "vote",
+  "time": "1554995525343",
+  "message": {
+    "account": "nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy",
+    "signature": "1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353",
+    "sequence": "855471574",
+    "blocks": [
+      "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
+    ]
+  }
+}
+```
+
+#### Optional filters
+Some topics support filters. Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
+
+**Confirmation filters**
+
+Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
+
+**Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.**
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "all_local_accounts": true,
+    "accounts": [
+      "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
+    ]
+  }
+}
+```
+
+* When `all_local_accounts` is set to **true**, blocks that mention accounts in any wallet will be broadcasted.
+* `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
+
+**Vote filters**
+
+Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "vote",
+  "options": {
+    "representatives": [
+      "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
+    ]
+  }
 }
 ```
 
