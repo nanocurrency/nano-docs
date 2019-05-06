@@ -3332,9 +3332,13 @@ Request:
 Response:  
 ```
 {  
-    "valid": "1"  
+    "valid": "1",
+    "value": "ffffffd21c3933f4",
+    "multiplier": "1.394647"  
 }
-```  
+```
+
+*Since version 19.0+: The response also includes the work value in hexadecimal format, and a multiplier from the base difficulty (not from the optionally given difficulty).*
 
 **Optional "difficulty"**
 
