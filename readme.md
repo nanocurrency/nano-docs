@@ -17,6 +17,15 @@ The recommended local setup is to use Docker with a pre-built image for MkDocs a
 
 `docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material`
 
+You can also install MkDocs to serve using the following:
+
+``` 
+pip install mkdocs
+pip install pymdown-extensions
+pip install mkdocs-material
+mkdocs serve
+```
+
 Access the site at http://localhost:8000. This supports automatic rebuilding so anytime you save changes to the documentation or configuration it will be rebuilt and refresh the page for you. Some search indexing may remain cache between builds.
 
 ## Formatting and Organization Tips
