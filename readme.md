@@ -6,7 +6,7 @@
 This documentation is focused on various users within the technical community: advanced users, node operators, developers integrating Nano, and those interested in details around how the protocol works. All efforts to help update the documentation should keep in mind these goals as submissions that fall outside of this scope are likely to be rejected.
 
 ### Contributing
-If you want to help with updating documentation, we recommend you join the Discord (https://chat.nano.org) #nano-docs channel to keep up to date on the latest activity. GitHub issues will be used to manage requests for changes. It is recommended any navigational changes or larger updates be discussed on the Discord #nano-docs channel or within a GitHub issue before work is completed - this will help avoid work being wasted if it doesn't align with the documentation goals.
+If you want to help with updating documentation, we recommend you join the Discord (https://chat.nano.org) #documentation channel to keep up to date on the latest activity. GitHub issues will be used to manage requests for changes. It is recommended any navigational changes or larger updates be discussed on the Discord #nano-docs channel or within a GitHub issue before work is completed - this will help avoid work being wasted if it doesn't align with the documentation goals.
 
 To submit changes, please fork the repository and create a branch to make your changes in. Submit a Pull Request back to the source repository when ready and they will be reviewed for possible inclusion.
 
