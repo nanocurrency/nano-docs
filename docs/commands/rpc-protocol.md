@@ -905,6 +905,13 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 ### Confirmation active  
 _version 16.0+_   
 Returns list of active elections roots (excluting stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation-info)  
+
+!!! note
+    The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+    * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
+    * Other blocks: previous hash + previous hash
+
 Request:  
 ```
 {  
@@ -991,6 +998,13 @@ If the block is unknown on the node, the following error will be returned:
 ### Confirmation info  
 _version 16.0+_   
 Returns info about active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each  
+
+!!! note
+    The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+    * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
+    * Other blocks: previous hash + previous hash
+
 Request:  
 ```
 {  
