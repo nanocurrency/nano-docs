@@ -13,6 +13,12 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ### account_balance  
 Balance information for account in raw
 
+**Parameters**
+
+| Key | Version | Required | Type | Default | Description |
+|     |         |          |      |         |             |
+| `account` | All  | Yes | [Nano public address] | | Account balance is being requested for |
+
 **Request**
 ```json
 {  
@@ -20,10 +26,6 @@ Balance information for account in raw
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```
-
-| Key | Version | Required | Format | Description |
-|     |         |          |        |             |
-| `account` | All  | Yes | [Nano public address] | Account balance is being requested for |
 
 **Response**  
 ```json
@@ -43,6 +45,12 @@ Balance information for account in raw
 ### account_block_count
 Number of blocks for the specified account
 
+**Parameters**
+
+| Key | Version | Required | Type | Default | Description |
+|     |         |          |      |         |             |
+| `account` | All  | Yes | [Nano public address] | | Account block count is being requested for |
+
 **Request**  
 ```json
 {  
@@ -50,10 +58,6 @@ Number of blocks for the specified account
   "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
 }
 ```
-
-| Key | Version | Required | Format | Description |
-|     |         |          |        |             |
-| `account` | All  | Yes | [Nano public address] | Account block count is being requested for |
 
 **Response** 
 ```json
@@ -71,6 +75,15 @@ Number of blocks for the specified account
 ### account_info
 Important information from the local database for the provided account. Only works for accounts that have an entry on the ledger.
 
+**Parameters**
+
+| Key | Version | Required | Type | Default | Description |
+|     |         |          |      |         |             |
+| `account`        | All  | Yes | [Nano public address] |       | Account information is being requested for |
+| `representative` | 9.0+ | No  | boolean               | false | Include `representative` in response |
+| `weight`         | 9.0+ | No  | boolean               | false | Include `weight` in response |
+| `pending`        | 9.0+ | No  | boolean               | false | Include `pending` in response |
+
 **Request**
 ```json
 {  
@@ -81,13 +94,6 @@ Important information from the local database for the provided account. Only wor
   "pending": "true"   
 }
 ```
-
-| Key | Version | Required | Format | Description |
-|     |         |          |        |             |
-| `account`        | All  | Yes | [Nano public address] | Account information is being requested for |
-| `representative` | 9.0+ | No  | boolean               | Include `representative` in response |
-| `weight`         | 9.0+ | No  | boolean               | Include `weight` in response |
-| `pending`        | 9.0+ | No  | boolean               | Include `pending` in response |
 
 **Response**
 ```json
@@ -2411,6 +2417,9 @@ Response:
   "blocks" : [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]  
 }
 ```   
+**Optional "count"**
+Number. Determines limit of number of blocks to return.
+
 **Optional "threshold"**
 
 _version 8.0+_   
