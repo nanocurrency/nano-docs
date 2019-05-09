@@ -2,18 +2,31 @@
 
 ## Official release builds
 
-Official release builds are available through [GitHub Releases](https://github.com/nanocurrency/nano-node/releases). Below are build links for the latest main network version:
+**OS Binaries**  
+Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases) as well as on [Nano.org](https://nano.org/en).
 
-| OS      | Builds URL |
-|         |            |
-| Windows | https://repo.nano.org/live/binaries/nano-node-18.0-win64.exe |
-| Linux   | https://repo.nano.org/live/binaries/nano-node-18.0-Linux.tar.bz2 |
-| MacOS   | https://repo.nano.org/live/binaries/nano-node-18.0-Darwin.dmg |
-| Source  | https://repo.nano.org/live/source/nano-18.0.tar.gz |
-| RPM     | https://repo.nano.org/live/rpm/Packages/nanocurrency-18.0-8.el7.x86_64.rpm |
+**Other sources**  
+The node can be also be installed from other sources including [Docker](/running-a-node/node-setup#installing-docker) and RHEL/CentOS rpm:
+```
+sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo
+sudo yum install nanocurrency
+```
+
+This installs `nano_node` to bin.
 
 ### Beta builds
-Each release cycle official beta builds are released and can be found at https://beta.nano.org. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
+
+**OS Binaries**  
+Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released and can be found at https://beta.nano.org. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
+
+**Other sources**  
+The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-netowork#pulling-the-docker-image) and RHEL/CentOS rpm:
+```
+sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
+sudo yum install nanocurrency-beta
+```
+
+This installs `nano_node-beta` to bin.
 
 ## Nano Folder
 
