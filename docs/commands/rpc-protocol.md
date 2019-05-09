@@ -2411,6 +2411,9 @@ Response:
   "blocks" : [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]  
 }
 ```   
+**Optional "count"**
+Number. Determines limit of number of blocks to return.
+
 **Optional "threshold"**
 
 _version 8.0+_   
