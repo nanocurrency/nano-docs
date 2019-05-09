@@ -32,18 +32,6 @@ Each release cycle official beta builds are released and can be found at https:/
     1. Decide on where you want to store the blockchain and create a symbolic link. The command is (in an administrative command-prompt): `mklink /d "C:\Users\<user>\AppData\Local\Nano\" "E:\Some\Other\Directory"`. This command creates a symbolic link for a directory (`/d`) that 'redirects' all requests for files/directories in the `Local\Nano` folder to the `Other\Directory`. This means that a file created in the input directory will actually be in the output directory (on the other disk).
     1. Verify it works. Create a file in your Nano folder in your appdata, and you should see it appear in the directory you linked it to (and vice-versa). If you have old wallets or a partially-downloaded blockchain, copy them back into the local directory. Start the wallet.
 
-## Automated builds
-The following automated builds can be used for specific targeted testing of features on the node:
-
-### Main network
-
-| OS      | Builds URL |
-|         |            |
-| Windows | https://ci.appveyor.com/project/argakiig/raiblocks/history |
-| Linux   | https://gitlab.com/nanocurrency/raiblocks/pipelines |
-| MacOS     | https://travis-ci.org/nanocurrency/nano-node |
-| Docker  | https://hub.docker.com/r/nanocurrency/nano/tags |
-
 ---
 
 ## Build Instructions - Ubuntu
