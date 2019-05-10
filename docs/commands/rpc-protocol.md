@@ -35,7 +35,7 @@ Balance information for account in raw
 }
 ```
 
-| Key | Version | Format | Description |
+| Key | Version | Type | Description |
 |     |         |        |             | 
 | `balance` | All | integer | Current balance for account in raw |
 | `pending` | All | integer | Amount in raw of pending transactions for account |
@@ -66,7 +66,7 @@ Number of blocks for the specified account
 }
 ```
 
-| Key | Version | Format | Description |
+| Key | Version | Type | Description |
 |     |         |        |             | 
 | `block_count` | All | integer | Total number of blocks in the ledger for the account, includes confirmed and unconfirmed blocks |
 
@@ -112,7 +112,7 @@ Important information from the local database for the provided account. Only wor
 }
 ```
 
-| Key | Version | Format | Description |
+| Key | Version | Type | Description |
 |     |         |        |             | 
 | `frontier`             | All   | [block hash] | Frontier (head) block hash for account |
 | `open_block`           | All   | [block hash] | First block on account |
