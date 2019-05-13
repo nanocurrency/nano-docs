@@ -2,7 +2,7 @@ env:
   global:
   - GIT_NAME: "'Nano Development'"
   - GIT_EMAIL: development@nano.org
-  - GH_REF: git@github.com:opensciencegrid/security.git
+  - GH_REF: git@github.com:nanocurrency/nano-docs.git
 language: python
 before_script:
 - pip install mkdocs
