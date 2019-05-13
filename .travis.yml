@@ -8,7 +8,7 @@ before_script:
 - pip install mkdocs
 - pip install MarkdownHighlight
 script:
-- openssl aes-256-cbc -K $encrypted_1d262b48bc9b_key -iv $encrypted_1d262b48bc9b_iv -in deploy-key.enc -out deploy-key -d
+- openssl aes-256-cbc -K $encrypted_5f828affe522_key -iv $encrypted_5f828affe522_iv -in deploy-key.enc -out deploy-key -d
 - chmod 600 deploy-key
 - eval `ssh-agent -s`
 - ssh-add deploy-key
