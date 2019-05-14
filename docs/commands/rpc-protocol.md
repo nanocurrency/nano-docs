@@ -1294,6 +1294,56 @@ The effective peer stake needed for quorum. Per v19, this field is computed as `
 
 ---
 
+### database_txn_tracker
+_v19.0+_  
+NOTE: This call is for debug purposes only and results vary with Operating system and build options.  
+Returns a list of open database transactions which are equal or greater than the `min_read_time` or `min_write_time` for reads and read-writes respectively.  
+Request:  
+```json
+{
+  "action": "database_txn_tracker",
+  "min_read_time" : "1000"
+  "min_write_time" : "0"
+}
+```
+Response (This was on Windows/Debug):  
+```json
+{
+    "txn_tracking": [
+        {
+            "thread": "Blck processing",  // Which thread held the transaction
+            "time_held_open": "2",        // Seconds the transaction has currently been held open for
+            "write": "true",              // If true it is a write lock, otherwise false.
+            "stacktrace": [
+                ...
+                {
+                    "name": "nano::mdb_store::tx_begin_write",
+                    "address": "00007FF7142C5F86",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\lmdb.cpp",
+                    "source_line": "825"
+                },
+                {
+                    "name": "nano::block_processor::process_batch",
+                    "address": "00007FF714121EEA",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\blockprocessor.cpp",
+                    "source_line": "243"
+                },
+                {
+                    "name": "nano::block_processor::process_blocks",
+                    "address": "00007FF71411F8A6",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\blockprocessor.cpp",
+                    "source_line": "103"
+                },
+                ...
+            ]
+        }
+        ....
+    ]
+}
+```
+
+---
+
 ### delegators  
 _version 8.0+_   
 Returns a list of pairs of delegator names given **account** a representative and its balance  
