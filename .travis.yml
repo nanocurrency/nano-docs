@@ -1,19 +1,23 @@
 env:
   global:
-  - GIT_NAME: "'Nano Development'"
-  - GIT_EMAIL: development@nano.org
-  - GH_REF: git@github.com:nanocurrency/nano-docs.git
+    - GIT_NAME: "'Nano Development'"
+    - GIT_EMAIL: development@nano.org
+    - GH_REF: git@github.com:nanocurrency/nano-docs.git
 language: python
+python:
+  - "3.5"
 before_script:
-- pip install mkdocs
-- pip install MarkdownHighlight
+  - pip install mkdocs
+  - pip install pymdown-extensions
+  - pip install mkdocs-material
+  - pip install MarkdownHighlight
 script:
-- openssl aes-256-cbc -K $encrypted_5f828affe522_key -iv $encrypted_5f828affe522_iv -in deploy-key.enc -out deploy-key -d
-- chmod 600 deploy-key
-- eval `ssh-agent -s`
-- ssh-add deploy-key
-- git config user.name "Nano Development"
-- git config user.email "development@nano.org"
-- git remote add gh-token "${GH_REF}";
-- git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/ mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages; fi;
+  - openssl aes-256-cbc -K $encrypted_5f828affe522_key -iv $encrypted_5f828affe522_iv -in deploy-key.enc -out deploy-key -d
+  - chmod 600 deploy-key
+  - eval `ssh-agent -s`
+  - ssh-add deploy-key
+  - git config user.name "Nano Development"
+  - git config user.email "development@nano.org"
+  - git remote add gh-token "${GH_REF}";
+  - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/ mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages; fi;
