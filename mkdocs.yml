@@ -10,6 +10,7 @@ theme:
   logo: 'images/nano.svg'
   feature:
     tabs: false
+  favicon: 'images/favicon.png'
 nav:
   - Home: index.md
   - What is Nano?:
