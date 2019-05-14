@@ -110,15 +110,16 @@ This is the main configuration file for controlling node behavior. Below is an e
                 }
         }
     },
+    "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
-        "address": "::ffff:127.0.0.1", // Allowed IP for RPC connection
-        "port": "7076", // Default RPC port
-        "enable_control": "true", // Enable particular RPC command like: send, account_create, etc...
-        "frontier_request_limit": "16384", 
-        "chain_request_limit": "16384",
-        "max_json_depth": "20" // prevent JSON overflow. Default recommended
+        "enable_sign_hash": "true",
+        "max_work_generate_difficulty": "ffffffffc0000000",
+        "version": "1",
+        "child_process": {
+            "enable": "false" // Whether the rpc server is run as a child process rather than in-process
+            "rpc_path": "C:\\Users\\Wesley\\Documents\\raiblocks\\build\\Debug\\nano_rpc.exe", // The nano_rpc executable  to run if enabled.
+        }
     },
-    "rpc_enable": "true", // Enable or disable RPC
     "opencl_enable": "false", // Enable GPU hashing
     "opencl": {
         "platform": "0", // Platform ID
@@ -222,9 +223,11 @@ This is the configuration that controls how the RPC server connects and behaves 
     "max_json_depth": "20", // prevent JSON overflow. Default recommended
     "version": "1",
     "max_request_size": "33554432",
-    "io_threads": "8", // Number of threads listening to RPC requests 
-    "ipc_port": "46000",       // Must match port in ipc -> tcp of node config file (only used with child/out of process RPC)
-    "num_ipc_connections": "8" // Max number of connections with nano_node (only used with child/out of process RPC)
+    "process": {
+        "io_threads": "8", // Number of threads listening to RPC requests 
+        "ipc_port": "46000", // Must match port in ipc -> tcp of node config file
+        "num_ipc_connections": "8" // Max number of connections with nano_node (io_threads in config.json should be at least this number)
+    }
 }
 ```
 
