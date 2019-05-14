@@ -95,7 +95,7 @@ This is also a 32 byte value, usually represented as a 64 character, uppercase h
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from a *private key* by using the ed25519 curve using blake2b as the hash function (instead of sha). Usually public keys will not be passed around in this form, however.
 
 ### Account number/identifier
-This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `nano_`, then has 52 characters which are the *public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the public key to aid in discovering typos, also encoded with the same base32 scheme.
+This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`, then has 52 characters which are the *public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the public key to aid in discovering typos, also encoded with the same base32 scheme.
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
 
