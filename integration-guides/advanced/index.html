@@ -1,0 +1,1531 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Advanced - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-XXXXXXXX-X", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#cold-wallets" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/nano.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Advanced
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/nano.svg" width="48" height="48">
+      
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      What is Nano?
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        What is Nano?
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">
+      Exploring More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Running a Node
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Running a Node
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/node-setup/" title="Node Setup" class="md-nav__link">
+      Node Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/docker-management/" title="Docker Management" class="md-nav__link">
+      Docker Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beta-network/" title="Beta Network" class="md-nav__link">
+      Beta Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
+      Beyond the Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Integration Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Integration Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../the-basics/" title="The Basics" class="md-nav__link">
+      The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-management/" title="Key Management" class="md-nav__link">
+      Key Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build-options/" title="Build Options" class="md-nav__link">
+      Build Options
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Advanced
+      </label>
+    
+    <a href="./" title="Advanced" class="md-nav__link md-nav__link--active">
+      Advanced
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cold-wallets" title="Cold Wallets" class="md-nav__link">
+    Cold Wallets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-key-management" title="Private Key Management" class="md-nav__link">
+    Private Key Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hot-account-information" title="(HOT) Account Information" class="md-nav__link">
+    (HOT) Account Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-balance-validation-part-1" title="(HOT) Balance Validation (Part 1)" class="md-nav__link">
+    (HOT) Balance Validation (Part 1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cold-balance-validation-part-2" title="(COLD) Balance Validation (Part 2)" class="md-nav__link">
+    (COLD) Balance Validation (Part 2)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notifications" title="Notifications" class="md-nav__link">
+    Notifications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#websocket-support" title="WebSocket Support" class="md-nav__link">
+    WebSocket Support
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscribe-and-unsubscribe" title="Subscribe and unsubscribe" class="md-nav__link">
+    Subscribe and unsubscribe
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-results" title="Sample results" class="md-nav__link">
+    Sample results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-filters" title="Optional filters" class="md-nav__link">
+    Optional filters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-nano-as-a-service" title="Running Nano as a service" class="md-nav__link">
+    Running Nano as a service
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" title="Known issues" class="md-nav__link">
+    Known issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipc-integration" title="IPC Integration" class="md-nav__link">
+    IPC Integration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transports" title="Transports" class="md-nav__link">
+    Transports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc-clients" title="IPC clients" class="md-nav__link">
+    IPC clients
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc-requestresponse-format" title="IPC request/response format" class="md-nav__link">
+    IPC request/response format
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/rpc-protocol/" title="RPC Protocol" class="md-nav__link">
+      RPC Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/command-line-interface/" title="Command Line Interface" class="md-nav__link">
+      Command Line Interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Protocol Design
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Protocol Design
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">
+      Distribution and Units
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">
+      Network Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
+      Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cold-wallets" title="Cold Wallets" class="md-nav__link">
+    Cold Wallets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-key-management" title="Private Key Management" class="md-nav__link">
+    Private Key Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hot-account-information" title="(HOT) Account Information" class="md-nav__link">
+    (HOT) Account Information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hot-balance-validation-part-1" title="(HOT) Balance Validation (Part 1)" class="md-nav__link">
+    (HOT) Balance Validation (Part 1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cold-balance-validation-part-2" title="(COLD) Balance Validation (Part 2)" class="md-nav__link">
+    (COLD) Balance Validation (Part 2)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notifications" title="Notifications" class="md-nav__link">
+    Notifications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#websocket-support" title="WebSocket Support" class="md-nav__link">
+    WebSocket Support
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subscribe-and-unsubscribe" title="Subscribe and unsubscribe" class="md-nav__link">
+    Subscribe and unsubscribe
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-results" title="Sample results" class="md-nav__link">
+    Sample results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-filters" title="Optional filters" class="md-nav__link">
+    Optional filters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-nano-as-a-service" title="Running Nano as a service" class="md-nav__link">
+    Running Nano as a service
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" title="Known issues" class="md-nav__link">
+    Known issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipc-integration" title="IPC Integration" class="md-nav__link">
+    IPC Integration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transports" title="Transports" class="md-nav__link">
+    Transports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc-clients" title="IPC clients" class="md-nav__link">
+    IPC clients
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc-requestresponse-format" title="IPC request/response format" class="md-nav__link">
+    IPC request/response format
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/integration-guides/advanced.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Advanced</h1>
+                
+                <h2 id="cold-wallets">Cold Wallets<a class="headerlink" href="#cold-wallets" title="Permanent link">&para;</a></h2>
+<p>When security of funds is critical, it is a best practice to split your balance between multiple wallets:</p>
+<ol>
+<li>One or more <strong>hot wallets</strong> to handle daily user deposits/withdraws.</li>
+<li>One or more <strong>cold wallets</strong> to securely store Nano in an offline environment.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>A cold wallet manages private keys that have <strong>never</strong> been on a network-enabled computer.</p>
+</div>
+<p>This guide extends the concepts covered in <a href="/integration-guides/key-management/">External Private Key Management</a>.  It is advised that you read that section before continuing.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Operations done on the hot, online, insecure computer will be prefaced with <code>(HOT)</code>. Operations done on the cold, offline, secure computer will be prefaced with <code>(COLD)</code>.</p>
+<p>Both the hot and cold computers need to have the nano_node software installed. The hot nano_node needs to be synced with the network; the cold nano_node by definition should not be synced as it <strong>never connects to the internet</strong>.</p>
+</div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Cold Wallet Workflow</p>
+<p>The typical work flow for a cold wallet is as follows:</p>
+<ol>
+<li><code>(HOT)</code> Gather account and transaction data.</li>
+<li>Transfer this data using an offline method (e.g. via USB stick) to the <code>(COLD)</code> secure offline computer.</li>
+<li><code>(COLD)</code> Verify Head Block hash.</li>
+<li><code>(COLD)</code> Generate and Sign new transaction data.</li>
+<li>Tranfer the signed transaction back to the <code>(HOT)</code> insecure online-computer.</li>
+<li><code>(HOT)</code> Publish the signed transaction to the Nano Network.</li>
+</ol>
+</div>
+<div class="mermaid">sequenceDiagram
+  participant Network
+  participant HOT
+  participant COLD
+  HOT-&gt;&gt;Network: Get Data
+  Network-&gt;&gt;HOT: Data Response
+  HOT--&gt;&gt;COLD: Offline Transfer
+  COLD--&gt;&gt;COLD: Verify
+  COLD--&gt;&gt;COLD: Generate &amp; Sign
+  COLD--&gt;&gt;HOT: Return Signed
+  HOT-&gt;&gt;Network: Publish Signed
+  Note over COLD,HOT: Cold/Hot Wallet transfers are done&lt;br /&gt;offline using USB Stick or similar.</div>
+
+<hr />
+<h3 id="private-key-management">Private Key Management<a class="headerlink" href="#private-key-management" title="Permanent link">&para;</a></h3>
+<p>The process for external private key management in a cold wallet is very similar to external private key management for a hot wallet. The primary difference is that all signing commands (and thus information containing your private key) are isolated to a clean computer with no network connection.</p>
+<h4 id="hot-account-information">(HOT) Account Information<a class="headerlink" href="#hot-account-information" title="Permanent link">&para;</a></h4>
+<p>Get account information by the <a href="/docs/rpc/#account-info"><code>account_info</code></a> RPC Command:</p>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;account_info&quot;,</span>
+<span class="s1">  &quot;representative&quot;: &quot;true&quot;,</span>
+<span class="s1">  &quot;account&quot;: &quot;nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;frontier&quot;</span><span class="p">:</span> <span class="s2">&quot;DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;open_block&quot;</span><span class="p">:</span> <span class="s2">&quot;2E1F5AD4BD2C840FD9DC3929ECE9EE6D0B4A8C870E45EDA11048DE91EC409165&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative_block&quot;</span><span class="p">:</span> <span class="s2">&quot;DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;8900000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modified_timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;1524812177&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block_count&quot;</span><span class="p">:</span> <span class="s2">&quot;105&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h4 id="hot-balance-validation-part-1">(HOT) Balance Validation (Part 1)<a class="headerlink" href="#hot-balance-validation-part-1" title="Permanent link">&para;</a></h4>
+<p>We should always assume the <code>(HOT)</code> computer has been compromised, so cannot trust the balance returned by <a href="/docs/rpc/#account-info"><code>account_info</code></a>. We must obtain the headblock's transaction data and independently confirm the block's hash on our <code>(COLD)</code> offline computer. On the <code>(HOT)</code> online computer, this information can be obtained by the <a href="/docs/rpc/#block"><code>block</code></a> RPC Command.</p>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block&quot;,</span>
+<span class="s1">  &quot;hash&quot;: &quot;{{HEADBLOCK}}&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block&quot;,</span>
+<span class="s1">  &quot;hash&quot;: &quot;DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h6>Success Response</h6>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;8900000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;5621a5a58ef8964a&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Below are a few important points to remember:</p>
+<ul>
+<li>Contents are returned as a stringified JSON object.</li>
+<li>The type of the block is <code>"state"</code>. This guide only covers on how to trustlessly process <code>"state"</code> blocks on an offline computer.</li>
+</ul>
+</div>
+<p>Transfer the response over to the <code>(COLD)</code> computer.</p>
+<hr />
+<h4 id="cold-balance-validation-part-2">(COLD) Balance Validation (Part 2)<a class="headerlink" href="#cold-balance-validation-part-2" title="Permanent link">&para;</a></h4>
+<p>On the <code>(COLD)</code> computer, we need to verify the block hash. This allows us to create a safe transaction referencing the reported head block's balance.</p>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block_hash&quot;,</span>
+<span class="s1">  &quot;block&quot;: &quot;&lt;CONTENTS&gt;&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block_hash&quot;, &quot;block&quot;: &quot;{\n</span>
+<span class="s1">    \&quot;type\&quot;: \&quot;state\&quot;,\n</span>
+<span class="s1">    \&quot;account\&quot;: \&quot;nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg\&quot;,\n</span>
+<span class="s1">    \&quot;previous\&quot;: \&quot;829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77\&quot;,\n</span>
+<span class="s1">    \&quot;representative\&quot;: \&quot;nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf\&quot;,\n</span>
+<span class="s1">    \&quot;balance\&quot;: \&quot;8900000000000000000000000\&quot;,\n</span>
+<span class="s1">    \&quot;link\&quot;: \&quot;616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA\&quot;,\n</span>
+<span class="s1">    \&quot;link_as_account\&quot;: \&quot;nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk\&quot;,\n</span>
+<span class="s1">    \&quot;signature\&quot;: \&quot;5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401\&quot;,\n</span>
+<span class="s1">    \&quot;work\&quot;: \&quot;5621a5a58ef8964a\&quot;\n</span>
+<span class="s1">  }\n&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h6>Success Response</h6>
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Using the responded hash on the <code>(COLD)</code> computer guarentees that the transaction we are about to create on the <code>(COLD)</code> computer will have a safe, expected outcome.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Lets consider the following scenarios where malicious software on the <code>(HOT)</code> computer modifies data:</p>
+<ul>
+<li>You are creating a send transaction.</li>
+<li>Malicious software alters the <code>balance</code> field of the head block to be lower than it actually is in an attempt to get you to send too much Nano to the destination address.</li>
+<li>This alters the block's hash, but the malicious software could report the honest headblock's hash.</li>
+</ul>
+<p>By independently computing the headblock's hash on the <code>(COLD)</code> computer, the generated transaction would be rejected by the network since the <code>previous</code> field references a non-existent block which is certainly not the headblock of your account.</p>
+</div>
+<p>Use the responded hash for the <code>previous</code> field in your new transaction. When computing final account balance, compute it relative to the <code>balance</code> field of the headblock on the <code>(COLD)</code> computer. Complete the rest of the <a href="/integration-guides/key-management/#send-transaction">block creation as described in section External Private Key Management</a>.</p>
+<p>Once the block is created and signed on the <code>(COLD)</code> computer, transfer the contents over to the <code>(HOT)</code> computer. From the <code>(HOT)</code> computer, run the <a href="/commands/rpc-protocol#process"><code>process</code></a> RPC command to broadcast the signed transaction to the network.</p>
+<hr />
+<h2 id="notifications">Notifications<a class="headerlink" href="#notifications" title="Permanent link">&para;</a></h2>
+<h3 id="websocket-support">WebSocket Support<a class="headerlink" href="#websocket-support" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p>Available in Version 19.0+ only</p>
+</div>
+<p>The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.</p>
+<p>The HTTP callback is still available and both mechanisms can be used at the same time.</p>
+<p><strong>Example</strong></p>
+<p>A sample client is available at <a href="https://github.com/cryptocode/nano-websocket-sample-nodejs/blob/master/index.js">https://github.com/cryptocode/nano-websocket-sample-nodejs/blob/master/index.js</a></p>
+<p><strong>Configuration</strong></p>
+<p>For details on configuring websockets within a node, see the <a href="/running-a-node/configuration#websocket">websocket section of Running a Node Configuration</a>.</p>
+<p>With the above configuration, localhost clients should connect to <code>ws://[::1]:7078</code></p>
+<h4 id="subscribe-and-unsubscribe">Subscribe and unsubscribe<a class="headerlink" href="#subscribe-and-unsubscribe" title="Permanent link">&para;</a></h4>
+<p>To subscribe to all confirmed blocks:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>To unsubscribe:
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;unsubscribe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>Future versions may include account filtering and additional topics.</p>
+<p><strong>Optional acknowledgement</strong></p>
+<p>All WebSocket actions can request an acknowledgement.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span> 
+    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span> 
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If the subscription succeeds, the following message will be sent back (note that no message ordering is guaranteed):</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="sample-results">Sample results<a class="headerlink" href="#sample-results" title="Permanent link">&para;</a></h4>
+<p><strong>Confirmation</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Differences from the HTTP callback</p>
+<ul>
+<li>The "block" contains JSON instead of an escaped string. This makes parsing easier.</li>
+<li>The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself. Future versions of the node may offer more topics, as well as filtering capabilities.</li>
+<li>Subtype is part of block (if it's a state block)</li>
+<li>There is no "is_send" property since "subtype" signifies the intent for state blocks.</li>
+</ul>
+</div>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;1000000000000000000000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;send&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;135902000000000000000000000000&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;466ac84fc9edd4b3&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>Vote</strong></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1554995525343&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sequence&quot;</span><span class="p">:</span> <span class="s2">&quot;855471574&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="optional-filters">Optional filters<a class="headerlink" href="#optional-filters" title="Permanent link">&para;</a></h4>
+<p>Some topics support filters. Note that, if <strong>empty</strong> <code>options</code> are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.</p>
+<p><strong>Confirmation filters</strong></p>
+<p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
+<p><strong>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</strong></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;all_local_accounts&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<ul>
+<li>When <code>all_local_accounts</code> is set to <strong>true</strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
+<li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
+</ul>
+<p><strong>Vote filters</strong></p>
+<p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;representatives&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h2 id="running-nano-as-a-service">Running Nano as a service<a class="headerlink" href="#running-nano-as-a-service" title="Permanent link">&para;</a></h2>
+<ul>
+<li>See <a href="https://gist.github.com/numtel/96dd51106f0e7e25c50dcf4a4f119499">this GitHub gist for a tutorial on getting nano_node running on an Ubuntu EC2 instance</a>.</li>
+</ul>
+<p>There are 3 different ways to enable RPC for the node:</p>
+<p><strong>In process</strong></p>
+<ul>
+<li><code>rpc_enable</code> = <strong>true</strong></li>
+<li><code>rpc_in_process</code> = <strong>true</strong> (default, V19.0+)</li>
+</ul>
+<p><strong>Child process</strong><br />
+<em>V19.0+ only</em></p>
+<ul>
+<li><code>rpc_enable</code> = <strong>true</strong></li>
+<li><code>rpc_path</code> = [path to nano_rpc]</li>
+<li><code>rpc_in_process</code> = <strong>false</strong></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>port</code> = <code>ipc_port</code> of <code>rpc_config.json</code></li>
+</ul>
+<p><strong>Out of node process</strong><br />
+<em>V19.0+ only</em></p>
+<ul>
+<li><code>rpc_enable</code> = <strong>false</strong></li>
+<li><code>rpc_path</code> = [path to nano_rpc]</li>
+<li><code>rpc_in_process</code> = <strong>false</strong></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>port</code> == <code>ipc_port</code> of <code>rpc_config.json</code></li>
+</ul>
+<p>The choice depends on the setup and security that you want. The easiest way is to use <em>in_process</em>: edit <a href="/running-a-node/configuration/#example-configjson-file">config.json</a>  &amp; <a href="/running-a-node/configuration/#example-rpc_configjson-file">rpc_config.json</a> (V19.0+) after first launch.</p>
+<div class="codehilite"><pre><span></span>./nano_node --daemon  
+sed -i &#39;s/&quot;rpc_enable&quot;: &quot;false&quot;/&quot;rpc_enable&quot;: &quot;true&quot;/g&#39; ~/Nano/config.json   
+sed -i &#39;s/&quot;enable_control&quot;: &quot;false&quot;/&quot;enable_control&quot;: &quot;true&quot;/g&#39; ~/Nano/rpc_config.json
+</pre></div>
+
+
+<p><strong>Launch nano_node in test mode</strong>   </p>
+<div class="codehilite"><pre><span></span>./nano_node --daemon --network=test
+</pre></div>
+
+
+<p><strong>Check if RPC is enabled with curl (use different terminal or session)</strong>   </p>
+<div class="codehilite"><pre><span></span>curl -g -d &#39;{ &quot;action&quot;: &quot;block_count&quot; }&#39; &#39;[::1]:7076&#39;
+</pre></div>
+
+
+<p><strong>To stop node, use</strong>   </p>
+<div class="codehilite"><pre><span></span>curl -g -d &#39;{ &quot;action&quot;: &quot;stop&quot; }&#39; &#39;[::1]:7076&#39;
+</pre></div>
+
+
+<p><strong>Launch nano_node as a service with systemd</strong>   </p>
+<div class="codehilite"><pre><span></span>sudo touch /etc/systemd/system/nano_node.service   
+sudo chmod 664 /etc/systemd/system/nano_node.service   
+sudo nano /etc/systemd/system/nano_node.service
+</pre></div>
+
+
+<p><strong>Paste your specific user, group, path settings (example)</strong>  </p>
+<div class="codehilite"><pre><span></span>[Unit]
+Description=Nano node service
+After=network.target
+
+[Service]
+ExecStart=/path_to_nano_node/nano_node --daemon
+Restart=on-failure
+User=username
+Group=groupname
+
+[Install]
+WantedBy=multi-user.target
+</pre></div>
+
+
+<p><strong>Start nano_node service</strong></p>
+<div class="codehilite"><pre><span></span>sudo service nano_node start
+</pre></div>
+
+
+<p><strong>Enable at startup</strong>    </p>
+<div class="codehilite"><pre><span></span>sudo systemctl enable nano_node
+</pre></div>
+
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To manage node, use <a href="/commands/rpc-protocol">RPC commands</a> or <a href="/commands/command-line-interface">CLI</a></p>
+</div>
+<h3 id="known-issues">Known issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
+<p><strong>Error initiating bootstrap ... Too many open files</strong></p>
+<p>Increase max open files limit. Edit <code>/etc/security/limits.conf</code> &amp; add  <br />
+<div class="codehilite"><pre><span></span>    *               soft    nofile          65535    
+    *               hard    nofile          65535    
+    root            soft    nofile          65535    
+    root            hard    nofile          65535    
+</pre></div>
+Then restart session &amp; nano_node service. Check changes with <code>ulimit -n</code></p>
+<h2 id="ipc-integration">IPC Integration<a class="headerlink" href="#ipc-integration" title="Permanent link">&para;</a></h2>
+<p>As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available.</p>
+<h3 id="transports">Transports<a class="headerlink" href="#transports" title="Permanent link">&para;</a></h3>
+<p>TCP and unix domain sockets are supported. Named pipes and shared memory may be supported in future releases.</p>
+<h3 id="ipc-clients">IPC clients<a class="headerlink" href="#ipc-clients" title="Permanent link">&para;</a></h3>
+<p>A demo web server written in Go is available at <a href="https://github.com/nanocurrency/rpc-go">https://github.com/nanocurrency/rpc-go</a>. This allows HTTP clients to make JSON requests via IPC, which is compatible with the existing format. The web server can communicate with a node over domain sockets or TCP.</p>
+<p>A NodeJS client is available at <a href="https://github.com/meltingice/nano-ipc-js">https://github.com/meltingice/nano-ipc-js</a></p>
+<p>A Python client is being developed at <a href="https://github.com/guilhermelawless/nano-ipc-py">https://github.com/guilhermelawless/nano-ipc-py</a></p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p>For details on configuring IPC within a node, see the <a href="/running-a-node/configuration/#ipc">IPC section of Running a Node Configuration</a>.</p>
+<h3 id="ipc-requestresponse-format">IPC request/response format<a class="headerlink" href="#ipc-requestresponse-format" title="Permanent link">&para;</a></h3>
+<p>A client must make requests using the following framing format:</p>
+<div class="codehilite"><pre><span></span>REQUEST  ::= HEADER PAYLOAD
+HEADER   ::= u8(&#39;N&#39;) ENCODING u8(0) u8(0)
+ENCODING ::= u8(1)
+PAYLOAD  ::= &lt;encoding specific&gt;
+</pre></div>
+
+<p>Only one encoding currently exists: 1 (legacy RPC)</p>
+<p>The encoding is followed by two reserved zero-bytes. These allow for future extensions, such as versioning and extended headers.</p>
+<p>Note that the framing format does not include a length field - this is optionally placed in the respective payloads. The reason is that some encodings might want to be "streamy", sending responses in chunks, or end with a sentinel.</p>
+<div class="codehilite"><pre><span></span>LEGACY_RPC_PAYLOAD  ::= be32(length) JSON request
+LEGACY_RPC_RESPONSE ::= be32(length) JSON response
+</pre></div>
+
+<p>In short, JSON requests and responses are 32-bit big-endian length-prefixed.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../build-options/" title="Build Options" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Build Options
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../commands/rpc-protocol/" title="RPC Protocol" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                RPC Protocol
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>
+    
+      <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>
+    
+      <a href="https://medium/nanocurrency" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>
+    
+      <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

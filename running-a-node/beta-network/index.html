@@ -1,0 +1,1088 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Beta Network - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-XXXXXXXX-X", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#joining-the-beta-network" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/nano.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Beta Network
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/nano.svg" width="48" height="48">
+      
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      What is Nano?
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        What is Nano?
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">
+      Exploring More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Running a Node
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Running a Node
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../node-setup/" title="Node Setup" class="md-nav__link">
+      Node Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker-management/" title="Docker Management" class="md-nav__link">
+      Docker Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Beta Network
+      </label>
+    
+    <a href="./" title="Beta Network" class="md-nav__link md-nav__link--active">
+      Beta Network
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#node-release-testing" title="Node release testing" class="md-nav__link">
+    Node release testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-beta-node" title="Running a beta node" class="md-nav__link">
+    Running a beta node
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-ports" title="Network ports" class="md-nav__link">
+    Network ports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folder-locations" title="Folder locations" class="md-nav__link">
+    Folder locations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulling-the-docker-image" title="Pulling the Docker image" class="md-nav__link">
+    Pulling the Docker image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-docker-container" title="Starting the Docker container" class="md-nav__link">
+    Starting the Docker container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-beta-resources" title="Additional beta resources" class="md-nav__link">
+    Additional beta resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-rc-testing" title="Current RC testing" class="md-nav__link">
+    Current RC testing
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-candidate-1-for-v19-v19rc1" title="Release Candidate 1 for V19 (V19RC1)" class="md-nav__link">
+    Release Candidate 1 for V19 (V19RC1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../beyond-the-node/" title="Beyond the Node" class="md-nav__link">
+      Beyond the Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Integration Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Integration Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/the-basics/" title="The Basics" class="md-nav__link">
+      The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/key-management/" title="Key Management" class="md-nav__link">
+      Key Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/build-options/" title="Build Options" class="md-nav__link">
+      Build Options
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/rpc-protocol/" title="RPC Protocol" class="md-nav__link">
+      RPC Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/command-line-interface/" title="Command Line Interface" class="md-nav__link">
+      Command Line Interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Protocol Design
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Protocol Design
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">
+      Distribution and Units
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">
+      Network Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
+      Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#node-release-testing" title="Node release testing" class="md-nav__link">
+    Node release testing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-beta-node" title="Running a beta node" class="md-nav__link">
+    Running a beta node
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-ports" title="Network ports" class="md-nav__link">
+    Network ports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#folder-locations" title="Folder locations" class="md-nav__link">
+    Folder locations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulling-the-docker-image" title="Pulling the Docker image" class="md-nav__link">
+    Pulling the Docker image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-docker-container" title="Starting the Docker container" class="md-nav__link">
+    Starting the Docker container
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-beta-resources" title="Additional beta resources" class="md-nav__link">
+    Additional beta resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-rc-testing" title="Current RC testing" class="md-nav__link">
+    Current RC testing
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-candidate-1-for-v19-v19rc1" title="Release Candidate 1 for V19 (V19RC1)" class="md-nav__link">
+    Release Candidate 1 for V19 (V19RC1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/running-a-node/beta-network.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="joining-the-beta-network">Joining the beta network<a class="headerlink" href="#joining-the-beta-network" title="Permanent link">&para;</a></h1>
+<p>A few common reasons for joining the beta network include:</p>
+<ul>
+<li>Learning node setup and management</li>
+<li>Testing out integrations for services build on Nano before running on the main network</li>
+<li><a href="#node-release-testing">Assisting testing new node releases and features</a></li>
+<li>Contributing to a network testing various behaviors and patterns with the protocol</li>
+</ul>
+<p><a href="#running-a-beta-node">Running a beta node</a> is a great way to join in and help the network grow stronger.</p>
+<h2 id="node-release-testing">Node release testing<a class="headerlink" href="#node-release-testing" title="Permanent link">&para;</a></h2>
+<p>The beta network is also used to coordinate the testing of Nano node releases. The Nano Foundation maintains a few beta nodes on the network and various community members also setup nodes to help provide an environment more similar to the main network. Ahead of each release builds are published as Release Candidates (RC). Starting with RC1 and incrementing with each published build (RC2, RC3, etc.), these are intended for use on the beta network to help identify issues not discovered earlier in the development process.</p>
+<p>We invite anyone interested in contributing to Nano to consider participating on the beta network. Not only is it beneficial to the ecosystem, it is also a great way to learn more about setting up and managing a node.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>Release candidate builds are only recommended for use on the beta network</li>
+<li>The fastest and most recommended method of installation is through <a href="#running-a-beta-node">Docker</a></li>
+<li>Binaries and other details can be found at: <a href="https://beta.nano.org/">https://beta.nano.org/</a></li>
+</ul>
+</div>
+<h2 id="running-a-beta-node">Running a beta node<a class="headerlink" href="#running-a-beta-node" title="Permanent link">&para;</a></h2>
+<p>Setting up a node on the beta network is similar to the main network. To start you should <a href="/running-a-node/node-setup/#installing-docker">install docker</a> and be familiar with the general setup and <a href="/running-a-node/docker-management/">Docker management</a> processes.</p>
+<h3 id="network-ports">Network ports<a class="headerlink" href="#network-ports" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Beta Network Ports Overview</p>
+<ul>
+<li><strong>54000 UDP:</strong> For <a href="/glossary#live-network">live network</a> activity  </li>
+<li><strong>54000 TCP:</strong> For <a href="/glossary#bootstrap-network">bootstrap network</a> activity</li>
+<li><strong>55000 TCP:</strong> For communication with RPC server. Anyone with access to this port can control your node's RPC.</li>
+</ul>
+</div>
+<hr />
+<h3 id="folder-locations">Folder locations<a class="headerlink" href="#folder-locations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>OS</strong></th>
+<th><strong>Location</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td><code class="codehilite">C:<span class="se">\U</span>sers<span class="se">\&lt;</span>user&gt;<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\N</span>anoBeta<span class="se">\</span></code></td>
+</tr>
+<tr>
+<td>OSX</td>
+<td><code class="codehilite">/Users/&lt;user&gt;/Library/NanoBeta/</code></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><code class="codehilite">/home/&lt;user&gt;/NanoBeta/</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Directory names for extracting builds downloaded from GitHub or <a href="https://beta.nano.org/">https://beta.nano.org/</a> will be updated with RC versions for V19 and later.</p>
+</div>
+<hr />
+<h3 id="pulling-the-docker-image">Pulling the Docker image<a class="headerlink" href="#pulling-the-docker-image" title="Permanent link">&para;</a></h3>
+<p><a href="https://hub.docker.com/r/nanocurrency/nano-beta"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/nanocurrency/nano.svg" /></a></p>
+<p>Pulls the latest release of the Nano Node:
+<div class="codehilite"><pre><span></span>docker pull nanocurrency/nano-beta
+</pre></div></p>
+<p>Pulls a specific version of the Nano node:
+<div class="codehilite"><pre><span></span>docker pull nanocurrency/nano-beta:V19.0RC1
+</pre></div></p>
+<p>Pulls the latest release which includes any release candidate versions:
+<div class="codehilite"><pre><span></span>docker pull nanocurrency/nano-beta:latest-including-rc
+</pre></div></p>
+<p>A list of beta tags can be found at the official <a href="https://hub.docker.com/r/nanocurrency/nano-beta/tags">Nano Currency Docker Hub</a></p>
+<h3 id="starting-the-docker-container">Starting the Docker container<a class="headerlink" href="#starting-the-docker-container" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>docker run --restart<span class="o">=</span>unless-stopped -d <span class="se">\</span>
+  -p <span class="m">54000</span>:54000/udp <span class="se">\</span>
+  -p <span class="m">54000</span>:54000 <span class="se">\</span>
+  -p <span class="o">[</span>::1<span class="o">]</span>:55000:55000 <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">NANO_HOST_FOLDER_BETA</span><span class="si">}</span>:/root <span class="se">\</span>
+  --name <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> <span class="se">\</span>
+  nanocurrency/nano-beta:latest-including-rc
+</pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>For an explanation of the options included in the Docker <code>run</code> command, see <a href="/running-a-node/docker-management/#starting-the-container">Starting the Container</a> details for the main network.</li>
+<li>See <a href="/running-a-node/docker-management/">Docker management</a> for other related commands</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Separate host folders</p>
+<p>Be sure to use a different host folder for main network and beta network Docker node setups. Attempting to use the same folder will result in issues.</p>
+</div>
+<h2 id="additional-beta-resources">Additional beta resources<a class="headerlink" href="#additional-beta-resources" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://beta.nano.org/">https://beta.nano.org/</a></td>
+<td>Official beta site and faucet</td>
+</tr>
+<tr>
+<td><a href="https://beta.nanocrawler.cc/">https://beta.nanocrawler.cc/</a></td>
+<td>Beta Explorer</td>
+</tr>
+<tr>
+<td><a href="https://b.repnode.org/">https://b.repnode.org/</a></td>
+<td>Beta nodes and Stats</td>
+</tr>
+</tbody>
+</table>
+<h2 id="current-rc-testing">Current RC testing<a class="headerlink" href="#current-rc-testing" title="Permanent link">&para;</a></h2>
+<h3 id="release-candidate-1-for-v19-v19rc1">Release Candidate 1 for V19 (V19RC1)<a class="headerlink" href="#release-candidate-1-for-v19-v19rc1" title="Permanent link">&para;</a></h3>
+<p>We are currently working towards release of V19RC1 on the beta network. Once available the builds will be announced through our media channels and details for recommended testing activities will be included here.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../docker-management/" title="Docker Management" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Docker Management
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../configuration/" title="Configuration" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Configuration
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>
+    
+      <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>
+    
+      <a href="https://medium/nanocurrency" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>
+    
+      <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

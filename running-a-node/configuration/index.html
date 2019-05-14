@@ -1,0 +1,1231 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Configuration - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-XXXXXXXX-X", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#configuration-files" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/nano.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Configuration
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/nano.svg" width="48" height="48">
+      
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      What is Nano?
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        What is Nano?
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">
+      Exploring More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Running a Node
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Running a Node
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../node-setup/" title="Node Setup" class="md-nav__link">
+      Node Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker-management/" title="Docker Management" class="md-nav__link">
+      Docker Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../beta-network/" title="Beta Network" class="md-nav__link">
+      Beta Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuration
+      </label>
+    
+    <a href="./" title="Configuration" class="md-nav__link md-nav__link--active">
+      Configuration
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" title="Configuration Files" class="md-nav__link">
+    Configuration Files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-locations" title="File Locations" class="md-nav__link">
+    File Locations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-configjson-file" title="Example config.json file" class="md-nav__link">
+    Example config.json file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-rpc_configjson-file" title="Example rpc_config.json file" class="md-nav__link">
+    Example rpc_config.json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-details" title="Network Details" class="md-nav__link">
+    Network Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" title="Configuration Options" class="md-nav__link">
+    Configuration Options
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configjson" title="config.json" class="md-nav__link">
+    config.json
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work_peers" title="work_peers" class="md-nav__link">
+    work_peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opencl_enable" title="opencl_enable" class="md-nav__link">
+    opencl_enable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" title="ipc" class="md-nav__link">
+    ipc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket" title="websocket" class="md-nav__link">
+    websocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../beyond-the-node/" title="Beyond the Node" class="md-nav__link">
+      Beyond the Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Integration Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Integration Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/the-basics/" title="The Basics" class="md-nav__link">
+      The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/key-management/" title="Key Management" class="md-nav__link">
+      Key Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/build-options/" title="Build Options" class="md-nav__link">
+      Build Options
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/rpc-protocol/" title="RPC Protocol" class="md-nav__link">
+      RPC Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/command-line-interface/" title="Command Line Interface" class="md-nav__link">
+      Command Line Interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Protocol Design
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Protocol Design
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">
+      Distribution and Units
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">
+      Network Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
+      Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" title="Configuration Files" class="md-nav__link">
+    Configuration Files
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-locations" title="File Locations" class="md-nav__link">
+    File Locations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-configjson-file" title="Example config.json file" class="md-nav__link">
+    Example config.json file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-rpc_configjson-file" title="Example rpc_config.json file" class="md-nav__link">
+    Example rpc_config.json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-details" title="Network Details" class="md-nav__link">
+    Network Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-options" title="Configuration Options" class="md-nav__link">
+    Configuration Options
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configjson" title="config.json" class="md-nav__link">
+    config.json
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work_peers" title="work_peers" class="md-nav__link">
+    work_peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opencl_enable" title="opencl_enable" class="md-nav__link">
+    opencl_enable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" title="ipc" class="md-nav__link">
+    ipc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket" title="websocket" class="md-nav__link">
+    websocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/running-a-node/configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Configuration</h1>
+                
+                <p>Below are some specifications and best practices that should be followed while implementing your node.</p>
+<h2 id="configuration-files">Configuration Files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h2>
+<h3 id="file-locations">File Locations<a class="headerlink" href="#file-locations" title="Permanent link">&para;</a></h3>
+<p>The node uses the <code>config.json</code> and <code>rpc_config.json</code> files found in the following locations:</p>
+<table>
+<thead>
+<tr>
+<th><strong>OS</strong></th>
+<th><strong>Location</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td><code class="codehilite">C:<span class="se">\U</span>sers<span class="se">\&lt;</span>user&gt;<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\N</span>ano<span class="se">\</span></code></td>
+</tr>
+<tr>
+<td>OSX</td>
+<td><code class="codehilite">/Users/&lt;user&gt;/Library/Nano/</code></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><code class="codehilite">/home/&lt;user&gt;/Nano/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="example-configjson-file">Example config.json file<a class="headerlink" href="#example-configjson-file" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>    <span class="p">{</span>
+       <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;(int)&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Wallet</span> <span class="err">version</span>
+       <span class="nt">&quot;wallet&quot;</span><span class="p">:</span> <span class="s2">&quot;(string)&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Default</span> <span class="err">wallet</span> <span class="err">to</span> <span class="err">load</span> <span class="err">on</span> <span class="err">boot</span> <span class="err">(only</span> <span class="err">for</span> <span class="err">GUI</span> <span class="err">wallet)</span>
+       <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;(string)&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Default</span> <span class="err">account</span> <span class="err">to</span> <span class="err">load</span> <span class="err">on</span> <span class="err">boot</span> <span class="err">(only</span> <span class="err">for</span> <span class="err">GUI</span> <span class="err">wallet)</span>
+       <span class="nt">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;(int)&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Node</span> <span class="err">version</span>
+           <span class="nt">&quot;peering_port&quot;</span><span class="p">:</span> <span class="s2">&quot;7075&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Default</span> <span class="err">node</span> <span class="err">port</span>
+           <span class="nt">&quot;bootstrap_fraction_numerator&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> 
+           <span class="nt">&quot;enable_voting&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Enable</span> <span class="err">or</span> <span class="err">disable</span> <span class="err">voting</span> <span class="err">for</span> <span class="err">blocks.</span> <span class="err">If</span> <span class="err">disabled,</span> <span class="err">saves</span> <span class="err">some</span> <span class="err">resources</span>
+           <span class="nt">&quot;receive_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;1000000000000000000000000&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Minimum</span> <span class="err">import</span> <span class="err">receivable,</span> <span class="err">default</span> <span class="err">1</span> <span class="err">Rai</span>
+           <span class="nt">&quot;logging&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;ledger&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">incoming</span> <span class="err">blocks</span>
+               <span class="nt">&quot;ledger_duplicate&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;network&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">general</span> <span class="err">network</span> <span class="err">info</span> <span class="err">like</span> <span class="err">forks</span>
+               <span class="nt">&quot;network_message&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;network_publish&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">blocks</span> <span class="err">you</span> <span class="err">publish</span> <span class="err">to</span>
+               <span class="nt">&quot;network_packet&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">packets</span> <span class="err">origin</span>
+               <span class="nt">&quot;network_keepalive&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">keepalive</span> <span class="err">messages</span>
+               <span class="nt">&quot;network_node_id_handshake&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">node_id</span> <span class="err">messages</span>
+               <span class="nt">&quot;node_lifetime_tracing&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;insufficient_work&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;log_rpc&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">RPC</span> <span class="err">your</span> <span class="err">node</span> <span class="err">execute</span>
+               <span class="nt">&quot;bulk_pull&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Bootstrap</span> <span class="err">related</span> <span class="err">logging</span>
+               <span class="nt">&quot;work_generation_time&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;log_to_cerr&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+               <span class="nt">&quot;max_size&quot;</span><span class="p">:</span> <span class="s2">&quot;16777216&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Max</span> <span class="err">size</span> <span class="err">of</span> <span class="err">logs</span> <span class="err">before</span> <span class="err">old</span> <span class="err">files</span> <span class="err">deletion.</span> <span class="err">Default</span> <span class="err">is</span> <span class="err">16MB</span> 
+               <span class="nt">&quot;rotation_size&quot;</span><span class="p">:</span> <span class="s2">&quot;4194304&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Size</span> <span class="err">of</span> <span class="err">Log</span> <span class="err">File</span> <span class="err">before</span> <span class="err">rotation</span> <span class="err">in</span> <span class="err">bytes,</span> <span class="err">Default</span> <span class="err">is</span> <span class="err">4MB</span> 
+               <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;(int)&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Logging</span> <span class="err">config</span> <span class="err">version</span>
+               <span class="nt">&quot;vote&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Track</span> <span class="err">voting</span> <span class="err">activities</span>
+               <span class="nt">&quot;flush&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>  <span class="err">//</span> <span class="err">Setting</span> <span class="err">this</span> <span class="err">to</span> <span class="err">false</span> <span class="err">gives</span> <span class="err">better</span> <span class="err">performance,</span> <span class="err">but</span> <span class="err">may</span> <span class="err">lose</span> <span class="err">entries</span> <span class="err">on</span> <span class="err">crashes.</span>
+               <span class="nt">&quot;upnp_details&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Determines</span> <span class="err">if</span> <span class="err">upnp</span> <span class="err">discovery</span> <span class="err">details</span> <span class="err">are</span> <span class="err">logged</span> <span class="err">(default</span> <span class="err">off</span> <span class="err">to</span> <span class="err">avoid</span> <span class="err">sharing</span> <span class="err">device</span> <span class="err">info</span> <span class="err">when</span> <span class="err">shipping</span> <span class="err">logs)</span>
+               <span class="nt">&quot;timing&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Logs</span> <span class="err">durations</span> <span class="err">of</span> <span class="err">key</span> <span class="err">functions,</span> <span class="err">such</span> <span class="err">as</span> <span class="err">batch</span> <span class="err">verification,</span> <span class="err">etc.</span>
+               <span class="nt">&quot;log_ipc&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span> <span class="err">//</span> <span class="err">Logging</span> <span class="err">of</span> <span class="err">IPC</span> <span class="err">related</span> <span class="err">messages</span>
+           <span class="p">},</span>
+           <span class="nt">&quot;vote_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;1000000000000000000000000000000000&quot;</span><span class="p">,</span><span class="err">//</span> <span class="err">Prevents</span> <span class="err">voting</span> <span class="err">if</span> <span class="err">delegated</span> <span class="err">weight</span> <span class="err">is</span> <span class="err">under</span> <span class="err">this</span> <span class="err">threshold</span>
+           <span class="nt">&quot;work_peers&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Delegate</span> <span class="err">a</span> <span class="err">node</span> <span class="err">your</span> <span class="err">hash</span> <span class="err">work,</span> <span class="err">you</span> <span class="err">need</span> <span class="err">to</span> <span class="err">get</span> <span class="err">RPC</span> <span class="err">access</span> <span class="err">to</span> <span class="err">that</span> <span class="err">node</span>
+           <span class="nt">&quot;preconfigured_peers&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">List</span> <span class="err">of</span> <span class="err">defaults</span> <span class="err">peers</span> <span class="err">to</span> <span class="err">connect</span> <span class="err">on</span> <span class="err">boot</span>
+               <span class="s2">&quot;peering.nano.org&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;::ffff:138.201.94.249&quot;</span>
+           <span class="p">],</span>
+           <span class="nt">&quot;preconfigured_representatives&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="err">//</span> <span class="err">List</span> <span class="err">of</span> <span class="err">defaults</span> <span class="err">representatives</span><span class="p">,</span> <span class="err">which</span> <span class="err">you</span> <span class="err">delegate</span> <span class="err">voting</span> <span class="err">weight</span><span class="p">,</span> <span class="err">of</span> <span class="err">your</span> <span class="err">wallet</span>
+               <span class="s2">&quot;xrb_3arg3asgtigae3xckabaaewkx3bzsh7nwz7jkmjos79ihyaxwphhm6qgjps4&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis78m&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_3hd4ezdgsp15iemx7h81in7xz5tpxi43b6b41zn3qmwiuypankocw3awes5k&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_1awsn43we17c1oshdru4azeqjz9wii41dy8npubm4rg11so7dx3jtqgoeahy&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1&quot;</span>
+           <span class="p">],</span>
+           <span class="nt">&quot;online_weight_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;60000000000000000000000000000000000000&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Online</span> <span class="err">weight</span> <span class="err">minimum</span> <span class="err">required</span> <span class="err">to</span> <span class="err">confirm</span> <span class="err">block</span>
+           <span class="nt">&quot;online_weight_quorum&quot;</span><span class="p">:</span> <span class="s2">&quot;50&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Percentage</span> <span class="err">of</span> <span class="err">votes</span> <span class="err">required</span> <span class="err">to</span> <span class="err">rollback</span> <span class="err">blocks</span>
+           <span class="nt">&quot;password_fanout&quot;</span><span class="p">:</span> <span class="s2">&quot;1024&quot;</span><span class="p">,</span> 
+           <span class="nt">&quot;io_threads&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> 
+           <span class="nt">&quot;work_threads&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">PoW</span> <span class="err">work</span> <span class="err">threads.</span> <span class="err">By</span> <span class="err">default</span> <span class="err">all</span> <span class="err">available</span> <span class="err">CPU</span> <span class="err">threads,</span> <span class="err">set</span> <span class="err">lower</span> <span class="err">value</span> <span class="err">for</span> <span class="err">24/7</span> <span class="err">services</span>
+           <span class="nt">&quot;callback_address&quot;</span><span class="p">:</span> <span class="s2">&quot;::ffff:127.0.0.1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Callback</span> <span class="err">IP</span> <span class="err">address,</span> <span class="err">in</span> <span class="err">sample</span> <span class="err">IPv4</span> <span class="err">localhost</span>
+           <span class="nt">&quot;callback_port&quot;</span><span class="p">:</span> <span class="s2">&quot;17076&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Callback</span> <span class="err">port</span>
+           <span class="nt">&quot;callback_target&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Callback</span> <span class="err">target,</span> <span class="err">in</span> <span class="err">sample</span> <span class="err">root</span> <span class="err">of</span> <span class="err">callback</span> <span class="err">listening</span> <span class="err">server</span>
+           <span class="nt">&quot;bootstrap_connections&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Multi-connection</span> <span class="err">bootstrap.</span> <span class="err">Should</span> <span class="err">be</span> <span class="err">a</span> <span class="err">power</span> <span class="err">of</span> <span class="err">2.</span>
+           <span class="nt">&quot;bootstrap_connections_max&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Allowed</span> <span class="err">incoming</span> <span class="err">bootstrap</span> <span class="err">connections</span> <span class="err">count.</span> <span class="err">Lower</span> <span class="err">value</span> <span class="err">save</span> <span class="err">IOPS</span> <span class="err">&amp;</span> <span class="err">bandwidth.</span> <span class="err">64</span> <span class="err">recommended</span> <span class="err">for</span> <span class="err">high-end</span> <span class="err">fast</span> <span class="err">nodes,</span> <span class="err">0</span> <span class="err">for</span> <span class="err">HDD</span> <span class="err">home</span> <span class="err">users,</span>
+           <span class="nt">&quot;lmdb_max_dbs&quot;</span><span class="p">:</span> <span class="s2">&quot;128&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Maximum</span> <span class="err">open</span> <span class="err">DBs</span> <span class="err">(MAX_DBS</span> <span class="err">https://lmdb.readthedocs.io/en/release/),</span> <span class="err">increase</span> <span class="err">default</span> <span class="err">if</span> <span class="err">more</span> <span class="err">than</span> <span class="err">100</span> <span class="err">wallets</span> <span class="err">required</span>
+           <span class="nt">&quot;block_processor_batch_max_time&quot;</span><span class="p">:</span> <span class="s2">&quot;5000&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Number</span> <span class="err">of</span> <span class="err">milliseconds</span> <span class="err">the</span> <span class="err">block</span> <span class="err">processor</span> <span class="err">works</span> <span class="err">at</span> <span class="err">a</span> <span class="err">time</span>
+           <span class="nt">&quot;allow_local_peers&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">To</span> <span class="err">allow</span> <span class="err">local</span> <span class="err">host</span> <span class="err">peering</span>
+           <span class="nt">&quot;signature_checker_threads&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Number</span> <span class="err">of</span> <span class="err">threads</span> <span class="err">to</span> <span class="err">use</span> <span class="err">for</span> <span class="err">verifying</span> <span class="err">signatures</span>
+           <span class="nt">&quot;unchecked_cutoff_time&quot;</span><span class="p">:</span> <span class="s2">&quot;14400&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Number</span> <span class="err">of</span> <span class="err">seconds</span> <span class="err">unchecked</span> <span class="err">entry</span> <span class="err">survives</span> <span class="err">before</span> <span class="err">being</span> <span class="err">cleaned</span>
+           <span class="nt">&quot;ipc&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="err">//</span> <span class="err">For</span> <span class="err">more</span> <span class="err">details</span> <span class="err">about</span> <span class="err">these</span> <span class="err">options</span> <span class="err">see</span> <span class="err">the</span> <span class="err">IPC</span> <span class="err">section</span> <span class="err">below</span>
+               <span class="nt">&quot;tcp&quot;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="nt">&quot;enable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+                   <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;7077&quot;</span><span class="p">,</span>
+                   <span class="nt">&quot;io_timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;15&quot;</span>
+               <span class="p">},</span>
+               <span class="nt">&quot;local&quot;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="nt">&quot;enable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+                   <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;\/tmp\/nano&quot;</span><span class="p">,</span>
+                   <span class="nt">&quot;io_timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;15&quot;</span>
+               <span class="p">}</span>
+           <span class="p">},</span>
+       <span class="p">},</span>
+       <span class="nt">&quot;rpc&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;::ffff:127.0.0.1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Allowed</span> <span class="err">IP</span> <span class="err">for</span> <span class="err">RPC</span> <span class="err">connection</span>
+           <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;7076&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Default</span> <span class="err">RPC</span> <span class="err">port</span>
+           <span class="nt">&quot;enable_control&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Enable</span> <span class="err">particular</span> <span class="err">RPC</span> <span class="err">command</span> <span class="err">like:</span> <span class="err">send,</span> <span class="err">account_create,</span> <span class="err">etc...</span>
+           <span class="nt">&quot;frontier_request_limit&quot;</span><span class="p">:</span> <span class="s2">&quot;16384&quot;</span><span class="p">,</span> 
+           <span class="nt">&quot;chain_request_limit&quot;</span><span class="p">:</span> <span class="s2">&quot;16384&quot;</span><span class="p">,</span>
+           <span class="nt">&quot;max_json_depth&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span> <span class="err">//</span> <span class="err">prevent</span> <span class="err">JSON</span> <span class="err">overflow.</span> <span class="err">Default</span> <span class="err">recommended</span>
+       <span class="p">},</span>
+       <span class="nt">&quot;rpc_enable&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Enable</span> <span class="err">or</span> <span class="err">disable</span> <span class="err">RPC</span>
+       <span class="nt">&quot;opencl_enable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Enable</span> <span class="err">GPU</span> <span class="err">hashing</span>
+       <span class="nt">&quot;opencl&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="nt">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Platform</span> <span class="err">ID</span>
+           <span class="nt">&quot;device&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Device</span> <span class="err">ID</span>
+           <span class="nt">&quot;threads&quot;</span><span class="p">:</span> <span class="s2">&quot;1048576&quot;</span> 
+       <span class="p">}</span>
+   <span class="p">}</span>
+</pre></div>
+
+<hr />
+<h3 id="example-rpc_configjson-file">Example rpc_config.json file<a class="headerlink" href="#example-rpc_configjson-file" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p>Available in Version 19.0+ only</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;::ffff:127.0.0.1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Allowed</span> <span class="err">IP</span> <span class="err">for</span> <span class="err">RPC</span> <span class="err">connection</span>
+    <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;7076&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Default</span> <span class="err">RPC</span> <span class="err">port</span>
+    <span class="nt">&quot;enable_control&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Enable</span> <span class="err">particular</span> <span class="err">RPC</span> <span class="err">command</span> <span class="err">like:</span> <span class="err">send,</span> <span class="err">account_create,</span> <span class="err">etc...</span>
+    <span class="nt">&quot;max_json_depth&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">prevent</span> <span class="err">JSON</span> <span class="err">overflow.</span> <span class="err">Default</span> <span class="err">recommended</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;max_request_size&quot;</span><span class="p">:</span> <span class="s2">&quot;33554432&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;io_threads&quot;</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Number</span> <span class="err">of</span> <span class="err">threads</span> <span class="err">listening</span> <span class="err">to</span> <span class="err">RPC</span> <span class="err">requests</span> 
+    <span class="nt">&quot;ipc_port&quot;</span><span class="p">:</span> <span class="s2">&quot;46000&quot;</span><span class="p">,</span>       <span class="err">//</span> <span class="err">Must</span> <span class="err">match</span> <span class="err">port</span> <span class="err">in</span> <span class="err">ipc</span> <span class="err">-&gt;</span> <span class="err">tcp</span> <span class="err">of</span> <span class="err">node</span> <span class="err">config</span> <span class="err">file</span> <span class="err">(only</span> <span class="err">used</span> <span class="err">with</span> <span class="err">child/out</span> <span class="err">of</span> <span class="err">process</span> <span class="err">RPC)</span>
+    <span class="nt">&quot;num_ipc_connections&quot;</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span> <span class="err">//</span> <span class="err">Max</span> <span class="err">number</span> <span class="err">of</span> <span class="err">connections</span> <span class="err">with</span> <span class="err">nano_node</span> <span class="err">(only</span> <span class="err">used</span> <span class="err">with</span> <span class="err">child/out</span> <span class="err">of</span> <span class="err">process</span> <span class="err">RPC)</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning - Multiple Node Setups</p>
+<p><strong>Never</strong> use the same seed on multiple running nano_node instances at the same time.</p>
+<ul>
+<li>Multiple nano_nodes using the same seed can result in network race conditions that degrade performance for your personal accounts.</li>
+<li>In addition, Publishing transactions from two nodes with the same account at the same time may cause an account fork which requires a slower representative voting process.</li>
+<li>Similarly, if you are running a representative account on multiple nodes, they may publish conflicting votes, causing your representative to be ignored by the network.</li>
+<li>Performance degradation in enterprise environments may be significant.</li>
+</ul>
+</div>
+<hr />
+<h2 id="network-details">Network Details<a class="headerlink" href="#network-details" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Type</th>
+<th>Default</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7075</td>
+<td>UDP</td>
+<td>Enabled</td>
+<td><ul><li>Primary node activity port</li><li>Port configurable in <code>config.json:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol datagrams</li><li>All standard ledger activity goes through this port</li><li>If blocked the node will not function</li></ul></td>
+</tr>
+<tr>
+<td>7075</td>
+<td>TCP</td>
+<td>Enabled</td>
+<td><ul><li>Node bootstrapping server</li><li>Share port configuration in <code>config.json:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol stream</li><li>Transmits the ledger to new nodes in bulk</li><li>If blocked other nodes will not be able retrieve the ledger from this node</li></ul></td>
+</tr>
+<tr>
+<td>7076</td>
+<td>TCP</td>
+<td>Disabled</td>
+<td><ul><li>RPC server</li><li>Port configurable in <code>config.json:rpc/port</code></li><li>Enable in <code>config.json:rpc_enable</code></li><li> Binds to localhost by default for security reasons, configurable in <code>config.json:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li></ul></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h2>
+<h3 id="configjson">config.json<a class="headerlink" href="#configjson" title="Permanent link">&para;</a></h3>
+<h4 id="work_peers">work_peers<a class="headerlink" href="#work_peers" title="Permanent link">&para;</a></h4>
+<p>Used when offloading work generation to another node or service. Format must be ipv6, preceded by <code>::ffff:</code> if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format <a href="/commands/rpc-protocol#work-generate">work_generate</a> 
+<div class="codehilite"><pre><span></span><span class="s2">&quot;work_peers&quot;</span><span class="err">:</span> <span class="p">[</span>
+    <span class="s2">&quot;::ffff:127.0.0.1:7076&quot;</span>
+<span class="p">]</span><span class="err">,</span>
+</pre></div></p>
+<h4 id="opencl_enable">opencl_enable<a class="headerlink" href="#opencl_enable" title="Permanent link">&para;</a></h4>
+<p>To enable GPU acceleration for PoW, set <code>"opencl_enable"</code> to <code>"true"</code>. Other OpenCL parameters may need to be adjusted depending on the desired setup (see <a href="#example-configjson-file">example config.json file</a> above).</p>
+<h4 id="ipc">ipc<a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h4>
+<p>On startup, the node will generate configuration options for IPC, one entry for each transport. By default, IPC is disabled.</p>
+<div class="codehilite"><pre><span></span><span class="s2">&quot;ipc&quot;</span><span class="err">:</span> <span class="p">{</span>
+   <span class="nt">&quot;tcp&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;enable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;7077&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;io_timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;15000&quot;</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;local&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;enable&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;\/tmp\/nano&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;io_timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;15000&quot;</span>
+     <span class="p">}</span>
+<span class="p">}</span><span class="err">,</span>
+</pre></div>
+
+<p>Each transport also supports an experimental "io_threads" configuration value. If not present (default), the node's IO event loop will be used. If a value is present, a separate event loop with N threads will be created for the transport. For certain transports, this may scale better on some systems.</p>
+<p>Because the only IPC encoding is currently "legacy RPC", the RPC config options like "enable_control" still applies.</p>
+<p>For details about using the IPC setup, see the <a href="/integration-guides/advanced#ipc-integration">IPC Integration Guide</a>.</p>
+<h4 id="websocket">websocket<a class="headerlink" href="#websocket" title="Permanent link">&para;</a></h4>
+<p><em>Version 19.0+</em></p>
+<div class="codehilite"><pre><span></span>&quot;node&quot;: {
+    &quot;websocket&quot;: {
+        &quot;enable&quot;: &quot;true&quot;,
+        &quot;address&quot;: &quot;::1&quot;,
+        &quot;port&quot;: &quot;7078&quot;
+    },
+}
+</pre></div>
+
+<p>With the above configuration, localhost clients should connect to <code>ws://[::1]:7078</code>. For details on how to integrate using websockets, see the <a href="/integration-guides/advanced#websocket-support">Websocket Support section of the Integration Guides</a>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../beta-network/" title="Beta Network" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Beta Network
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../beyond-the-node/" title="Beyond the Node" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Beyond the Node
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>
+    
+      <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>
+    
+      <a href="https://medium/nanocurrency" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>
+    
+      <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

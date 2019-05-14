@@ -1,0 +1,1927 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Key Management - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-XXXXXXXX-X", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#mnemonic-seed" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/nano.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Key Management
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/nano.svg" width="48" height="48">
+      
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      What is Nano?
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        What is Nano?
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">
+      Exploring More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Running a Node
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Running a Node
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/node-setup/" title="Node Setup" class="md-nav__link">
+      Node Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/docker-management/" title="Docker Management" class="md-nav__link">
+      Docker Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beta-network/" title="Beta Network" class="md-nav__link">
+      Beta Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
+      Beyond the Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Integration Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Integration Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../the-basics/" title="The Basics" class="md-nav__link">
+      The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Key Management
+      </label>
+    
+    <a href="./" title="Key Management" class="md-nav__link md-nav__link--active">
+      Key Management
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mnemonic-seed" title="Mnemonic Seed" class="md-nav__link">
+    Mnemonic Seed
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo-examples" title="Demo Examples" class="md-nav__link">
+    Demo Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-vectors" title="Test Vectors" class="md-nav__link">
+    Test Vectors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-management" title="External Management" class="md-nav__link">
+    External Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-accounting-systems" title="External accounting systems" class="md-nav__link">
+    External accounting systems
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-confirmation-procedures" title="Block confirmation procedures" class="md-nav__link">
+    Block confirmation procedures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-confirmed-balances" title="Tracking confirmed balances" class="md-nav__link">
+    Tracking confirmed balances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-private-keys" title="Expanding Private Keys" class="md-nav__link">
+    Expanding Private Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-transactions" title="Creating Transactions" class="md-nav__link">
+    Creating Transactions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#send-transaction" title="Send Transaction" class="md-nav__link">
+    Send Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive-transaction" title="Receive Transaction" class="md-nav__link">
+    Receive Transaction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcasting-transactions" title="Broadcasting Transactions" class="md-nav__link">
+    Broadcasting Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-management" title="Internal Management" class="md-nav__link">
+    Internal Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-wallet" title="Creating a Wallet" class="md-nav__link">
+    Creating a Wallet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovering-wallet_id" title="Recovering WALLET_ID" class="md-nav__link">
+    Recovering WALLET_ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backing-up-seed" title="Backing Up Seed" class="md-nav__link">
+    Backing Up Seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoringchanging-seed" title="Restoring/Changing Seed" class="md-nav__link">
+    Restoring/Changing Seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-create" title="Account Create" class="md-nav__link">
+    Account Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-account-create" title="Bulk Account Create" class="md-nav__link">
+    Bulk Account Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receiving-funds" title="Receiving Funds" class="md-nav__link">
+    Receiving Funds
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semi-manual-receiving-funds" title="Semi-Manual Receiving Funds" class="md-nav__link">
+    Semi-Manual Receiving Funds
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sending-funds" title="Sending funds" class="md-nav__link">
+    Sending funds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#republishing-transactions" title="Republishing Transactions" class="md-nav__link">
+    Republishing Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build-options/" title="Build Options" class="md-nav__link">
+      Build Options
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/rpc-protocol/" title="RPC Protocol" class="md-nav__link">
+      RPC Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../commands/command-line-interface/" title="Command Line Interface" class="md-nav__link">
+      Command Line Interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Protocol Design
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Protocol Design
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">
+      Distribution and Units
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">
+      Network Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
+      Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mnemonic-seed" title="Mnemonic Seed" class="md-nav__link">
+    Mnemonic Seed
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#demo-examples" title="Demo Examples" class="md-nav__link">
+    Demo Examples
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-vectors" title="Test Vectors" class="md-nav__link">
+    Test Vectors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-management" title="External Management" class="md-nav__link">
+    External Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-accounting-systems" title="External accounting systems" class="md-nav__link">
+    External accounting systems
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-confirmation-procedures" title="Block confirmation procedures" class="md-nav__link">
+    Block confirmation procedures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-confirmed-balances" title="Tracking confirmed balances" class="md-nav__link">
+    Tracking confirmed balances
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanding-private-keys" title="Expanding Private Keys" class="md-nav__link">
+    Expanding Private Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-transactions" title="Creating Transactions" class="md-nav__link">
+    Creating Transactions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#send-transaction" title="Send Transaction" class="md-nav__link">
+    Send Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive-transaction" title="Receive Transaction" class="md-nav__link">
+    Receive Transaction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#broadcasting-transactions" title="Broadcasting Transactions" class="md-nav__link">
+    Broadcasting Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-management" title="Internal Management" class="md-nav__link">
+    Internal Management
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-wallet" title="Creating a Wallet" class="md-nav__link">
+    Creating a Wallet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovering-wallet_id" title="Recovering WALLET_ID" class="md-nav__link">
+    Recovering WALLET_ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backing-up-seed" title="Backing Up Seed" class="md-nav__link">
+    Backing Up Seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoringchanging-seed" title="Restoring/Changing Seed" class="md-nav__link">
+    Restoring/Changing Seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-create" title="Account Create" class="md-nav__link">
+    Account Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-account-create" title="Bulk Account Create" class="md-nav__link">
+    Bulk Account Create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receiving-funds" title="Receiving Funds" class="md-nav__link">
+    Receiving Funds
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semi-manual-receiving-funds" title="Semi-Manual Receiving Funds" class="md-nav__link">
+    Semi-Manual Receiving Funds
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sending-funds" title="Sending funds" class="md-nav__link">
+    Sending funds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#republishing-transactions" title="Republishing Transactions" class="md-nav__link">
+    Republishing Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/integration-guides/key-management.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Key Management</h1>
+                
+                <h2 id="mnemonic-seed">Mnemonic Seed<a class="headerlink" href="#mnemonic-seed" title="Permanent link">&para;</a></h2>
+<p>Nano's private key(s) from mnemonic derivation follows the BIP<a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">39</a>/<a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">44</a> standard. Only hardened paths are defined. Nano's <a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md">coin-type</a> is 165' (0x800000a5)</p>
+<p><code>44'/165'/0'</code> derives the first private key, <code>44'/165'/1'</code> derives the second private key, and so on.</p>
+<p>The BIP39 seed modifier "ed25519 seed" is used which makes wallets compatible with each other. This was chosen due to it being used by the Ledger Nano implementation.</p>
+<h3 id="demo-examples">Demo Examples<a class="headerlink" href="#demo-examples" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/roosmaa/nano-bip39-demo">https://github.com/roosmaa/nano-bip39-demo</a></p>
+<p><a href="https://github.com/joltwallet/bip-mnemonic">https://github.com/joltwallet/bip-mnemonic</a></p>
+<h3 id="test-vectors">Test Vectors<a class="headerlink" href="#test-vectors" title="Permanent link">&para;</a></h3>
+<p>Given 24-Word Mnemonic:
+<div class="codehilite"><pre><span></span>edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur
+</pre></div>
+Given Passphrase:
+<div class="codehilite"><pre><span></span>some password
+</pre></div>
+Derived BIP39 Seed:
+<div class="codehilite"><pre><span></span>0dc285fde768f7ff29b66ce7252d56ed92fe003b605907f7a4f683c3dc8586d34a914d3c71fc099bb38ee4a59e5b081a3497b7a323e90cc68f67b5837690310c
+</pre></div>
+Derived Private Key for <code>44'/165'/0'</code>:
+<div class="codehilite"><pre><span></span>3be4fc2ef3f3b7374e6fc4fb6e7bb153f8a2998b3b3dab50853eabe128024143
+</pre></div>
+Derived Public key:
+<div class="codehilite"><pre><span></span>5b65b0e8173ee0802c2c3e6c9080d1a16b06de1176c938a924f58670904e82c4
+</pre></div>
+Derived Address:
+<div class="codehilite"><pre><span></span>nano_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
+</pre></div></p>
+<h2 id="external-management">External Management<a class="headerlink" href="#external-management" title="Permanent link">&para;</a></h2>
+<p>For larger, more robust systems, external private key management is recommended. In this setup, the node operator generates and stores private keys in an external database and only queries the nano_node to:</p>
+<ol>
+<li>Find pending blocks for an account</li>
+<li>Sign transactions given a private key. More advanced systems may choose to implement signing themselves.</li>
+<li>Broadcast the signed transaction to the network.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="/glossary#wallet_id">WALLET_IDs</a> are not used for External Private Key Management since private keys are not stored in the nano_node. Much of this section builds off of the <a href="/integration-guides/the-basics#universal-state-blocks/">Universal Blocks</a> documentation.</p>
+</div>
+<hr />
+<h3 id="external-accounting-systems">External accounting systems<a class="headerlink" href="#external-accounting-systems" title="Permanent link">&para;</a></h3>
+<p>In order to properly implement accounting systems external to the Nano node the following best practices should be put into place which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.</p>
+<h4 id="block-confirmation-procedures">Block confirmation procedures<a class="headerlink" href="#block-confirmation-procedures" title="Permanent link">&para;</a></h4>
+<p>Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. To validate confirmation on a block the following methods can be used:</p>
+<h5>Block callback</h5>
+<p>Setup the config file with the necessary information to receive <a href="/commands/rpc-protocol#rpc-callback">RPC callbacks</a> for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are <code>callback_address</code>, <code>callback_port</code> and <code>callback_target</code> in the <a href="/running-a-node/configuration#example-configjson-file">config.json</a> file.</p>
+<p>To provide redundancy around callback function it is recommended to also use confirmation history polling outlined below.</p>
+<h5>Confirmation history polling</h5>
+<p>Calls to <a href="/commands/rpc-protocol#confirmation-history"><code>confirmation_history</code></a> RPC command will return a list of up to 2048 recently confirmed blocks which can be searched for the necessary hashes you wish to verify confirmation for. Consistent polling of <code>confirmation_history</code> is recommended to capture confirmations on all blocks on the network.</p>
+<h5>Block confirmation request</h5>
+<p>If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the <a href="/commands/rpc-protocol#block-confirm"><code>block_confirm</code></a> RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.</p>
+<h4 id="tracking-confirmed-balances">Tracking confirmed balances<a class="headerlink" href="#tracking-confirmed-balances" title="Permanent link">&para;</a></h4>
+<p>External accounting systems that track balances arriving to the node must track hashes of blocks that have been received in order to guarantee idempotency. Once confirmation of a block has been validated, the block hash should be recorded for the account along with any credits, debits or other related information. Any attempts to credit or debit accounts external to the node should check that no previous conflicting or duplicate activity was already recorded for that same block hash.</p>
+<hr />
+<h3 id="expanding-private-keys">Expanding Private Keys<a class="headerlink" href="#expanding-private-keys" title="Permanent link">&para;</a></h3>
+<p>A Nano private key is a 256-bit piece of data produced from a cryptographically secure random number generator.</p>
+<div class="admonition danger">
+<p class="admonition-title">Secure Private Keys</p>
+<ul>
+<li>Generating private keys from an insecure source may result in loss of funds.</li>
+<li>Be sure to backup any generated private key; if lost the funds in the account will become inaccessible.</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 1: Generate secure private key</p>
+<p>The bash command below generates a valid private key from a cryptographically secure random number generator. <strong>Always use a cryptographically secure processes for generating any private keys.</strong></p>
+</div>
+<h5>Command Example</h5>
+<div class="codehilite"><pre><span></span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;0-9A-F&#39;</span> <span class="p">|</span> head -c<span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">64</span><span class="si">}</span>
+</pre></div>
+
+<h5>Success Result</h5>
+<div class="codehilite"><pre><span></span>781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3
+</pre></div>
+
+<div class="admonition example">
+<p class="admonition-title">Step 2: Expand private key</p>
+<p>From the private key, a public key can be derived, and the public key can be translated into a Nano Address using the <a href="/commands/rpc-protocol#key-expand"><code>key_expand</code></a> RPC command.</p>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;key_expand&quot;,</span>
+<span class="s1">  &quot;key&quot;: &quot;781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;private&quot;</span><span class="p">:</span> <span class="s2">&quot;781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;public&quot;</span><span class="p">:</span> <span class="s2">&quot;3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h3 id="creating-transactions">Creating Transactions<a class="headerlink" href="#creating-transactions" title="Permanent link">&para;</a></h3>
+<p>Using external keys, transactions are generated in two steps: creation and broadcast. This section will be more heavy on example rather than precise specifications.</p>
+<h4 id="send-transaction">Send Transaction<a class="headerlink" href="#send-transaction" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Step 1: Get Account Info</p>
+<p>To send funds to an account, first call the <a href="/commands/rpc-protocol#account-information"><code>account_info</code></a> RPC command to gather necessary account information to craft your transaction. Setting <code>"representative": "true"</code> makes the nano_node also return the account's representative address, a necessary piece of data for creating a transaction.</p>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;account_info&quot;,</span>
+<span class="s1">  &quot;representative&quot;: &quot;true&quot;,</span>
+<span class="s1">  &quot;account&quot;: &quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;frontier&quot;</span><span class="p">:</span> <span class="s2">&quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;open_block&quot;</span><span class="p">:</span> <span class="s2">&quot;B292BFFAAE9013BE630B31144EF15205E986940080687C0441CCFE6EAB67FE53&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative_block&quot;</span><span class="p">:</span> <span class="s2">&quot;B292BFFAAE9013BE630B31144EF15205E986940080687C0441CCFE6EAB67FE53&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;4618869000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modified_timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;1524626644&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block_count&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition example">
+<p class="admonition-title">Step 2: Build <code>block_create</code> request</p>
+<p>Using details from the <code>account_info</code> call response, along with other information, we can create the <a href="/commands/rpc-protocol#block_create"><code>block_create</code></a> RPC request.</p>
+<p>For more details on values, see <a href="/protocol-design/universal-state-blocks">Universal Blocks specification</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"type"</code></td>
+<td>always the constant <code>"state"</code></td>
+</tr>
+<tr>
+<td><code>"previous"</code></td>
+<td><code>"frontier"</code> from <code>account_info</code> response</td>
+</tr>
+<tr>
+<td><code>"account"</code></td>
+<td><code>"address"</code> used in the <code>account_info</code> call above that the block will be created for</td>
+</tr>
+<tr>
+<td><code>"representative"</code></td>
+<td><code>"representative"</code> address returned in the <code>account_info</code> call</td>
+</tr>
+<tr>
+<td><code>"balance"</code></td>
+<td>balance of the account in <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span> <strong>after</strong> this transaction is completed (decreased if sending, increased if receiving). In this example, we will send 1 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> (<span><span class="MathJax_Preview">10^{30} raw</span><script type="math/tex">10^{30} raw</script></span>) to address <code>nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p</code>.</td>
+</tr>
+<tr>
+<td><code>"link"</code></td>
+<td>destination address the funds will move between</td>
+</tr>
+<tr>
+<td><code>"key"</code></td>
+<td>account's private key</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block_create&quot;,</span>
+<span class="s1">  &quot;type&quot;: &quot;state&quot;,</span>
+<span class="s1">  &quot;previous&quot;: &quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D&quot;,</span>
+<span class="s1">  &quot;account&quot;: &quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx&quot;,</span>
+<span class="s1">  &quot;representative&quot;: &quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;,</span>
+<span class="s1">  &quot;balance&quot;: &quot;3618869000000000000000000000000&quot;,</span>
+<span class="s1">  &quot;link&quot;: &quot;nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p&quot;,</span>
+<span class="s1">  &quot;key&quot;: &quot;781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;8DB5C07E0E62E9DFE8558CB9BD654A115B02245B38CD369753CECE36DAD13C05&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;{\n</span>
+<span class="s2">      \&quot;type\&quot;: \&quot;state\&quot;,\n</span>
+<span class="s2">      \&quot;account\&quot;: \&quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\&quot;,\n</span>
+<span class="s2">      \&quot;previous\&quot;: \&quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\&quot;,\n</span>
+<span class="s2">      \&quot;representative\&quot;: \&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\&quot;,\n</span>
+<span class="s2">      \&quot;balance\&quot;: \&quot;3618869000000000000000000000000\&quot;,\n</span>
+<span class="s2">      \&quot;link\&quot;: \&quot;5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\&quot;,\n</span>
+<span class="s2">      \&quot;link_as_account\&quot;: \&quot;nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\&quot;,\n</span>
+<span class="s2">      \&quot;signature\&quot;: \&quot;79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205\&quot;,\n</span>
+<span class="s2">      \&quot;work\&quot;: \&quot;fbffed7c73b61367\&quot;\n</span>
+<span class="s2">    }\n&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Additional details</p>
+<ul>
+<li>The newlines (<code>"\n"</code>) in the response are for display purposes only and are ignored.</li>
+<li>Always ensure that every quotation mark is properly escaped.</li>
+<li><a href="/commands/rpc-protocol#block-create"><code>block_create</code></a> RPC commands generally take longer than other RPC commands because the nano_node has to generate the <a href="/integration-guides/the-basics/#proof-of-work">Proof-of-Work</a> for the transaction. The response block data is already properly escaped for the <a href="/commands/rpc-protocol#process"><code>process</code></a> RPC command.</li>
+<li>The nano_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano_node knows is that it is creating a block whose previous block on the account chain has hash <code>92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D</code> results in the account having a balance of <code>3618869000000000000000000000000</code>.</li>
+<li>If the account's balance at block hash <code>92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D</code> was actually <code>5618869000000000000000000000000</code>, then 2 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> would have been sent to <code>nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p</code>.</li>
+</ul>
+</div>
+<div class="admonition question">
+<p class="admonition-title">What if I receive funds on my account and then broadcast the above crafted send? Would this result in me sending excess funds to the recipient?</p>
+<p>If you followed this guide, then the answer is "no". When you issued the <a href="/commands/rpc-protocol#account-info"><code>account_info</code></a> RPC command, you received the account's balance at a specific blockhash on its account-chain. In your crafted transaction, you specify that hash in the <code>"previous"</code> field. If funds were signed into your account, the headblock on your account-chain would change. Since your send no longer refers to the headblock on your account-chain when broadcasted, the network would reject your transaction.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since only the resulting balance is recorded, the transaction amount is interpreted as the difference in balance from the previous block on the account-chain and the newly created block. For this reason, it is crucial that you obtain the current account balance and headblock in the same atomic <a href="/commands/rpc-protocol#account-info"><code>account_info</code></a> RPC command.</p>
+<p>When not following this guide closely, the following <strong>inappropriate sequence of events could lead to erroneous amounts sent</strong> to a recipient.</p>
+<ol>
+<li>An account's balance, say 5 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, was obtained using the <a href="/commands/rpc-protocol#account-balance"><code>account_balance</code></a> RPC command (<strong>never use this command for transaction related operations</strong>). This balance is valid as of hypothetical <strong>BLOCK_A</strong>.</li>
+<li>By another process you control, a receive (<strong>BLOCK_B</strong>) was signed and broadcasted into your account-chain (race-condition).</li>
+<li>Lets say this <code>receive</code> increased the funds on the account chain by 10 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, resulting in a final balance 15 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>.</li>
+<li>The account's frontier block is obtained by the <a href="/commands/rpc-protocol#accounts-frontiers"><code>accounts_frontiers</code></a> RPC command, returning the hash of <strong>BLOCK_B</strong>. Other transaction metadata is obtained by other RPC commands.</li>
+<li>With the collected data, if a send transaction was created for 3 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, the final balance would be computed as <span><span class="MathJax_Preview">5 - 3</span><script type="math/tex">5 - 3</script></span>, or 2 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>.</li>
+<li>When this is broadcasted, since it is referring to the current head block on the account, <strong>BLOCK_B</strong>, the network would accept it. But, because the balance as of <strong>BLOCK_B</strong> was actually 15 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, this would result in 12 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> being sent to the recipient.</li>
+</ol>
+<p>For this reason, <strong>only populate transaction data source from a single <a href="/commands/rpc-protocol#account-info"><code>account_info</code></a> RPC call</strong>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 3: Broadcast the transaction</p>
+<p>As a result of the command above, the nano_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the <a href="#broadcasting-a-transaction">Broadcasting a Transaction</a> section.</p>
+</div>
+<hr />
+<h4 id="receive-transaction">Receive Transaction<a class="headerlink" href="#receive-transaction" title="Permanent link">&para;</a></h4>
+<div class="admonition example">
+<p class="admonition-title">Step 1: Get Account Info</p>
+<p>Receiving funds is very similar to sending funds outlined in the previous section, starting with calling <code>account_info</code> to get block details for the account frontier. The scenario below pretends that our previous example of a send transaction was <strong>not</strong> broadcast and confirmed on the network because the starting <code>account_info</code> details are identical.</p>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;account_info&quot;,</span>
+<span class="s1">  &quot;representative&quot;: &quot;true&quot;,</span>
+<span class="s1">  &quot;account&quot;: &quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;frontier&quot;</span><span class="p">:</span> <span class="s2">&quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;open_block&quot;</span><span class="p">:</span> <span class="s2">&quot;B292BFFAAE9013BE630B31144EF15205E986940080687C0441CCFE6EAB67FE53&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative_block&quot;</span><span class="p">:</span> <span class="s2">&quot;B292BFFAAE9013BE630B31144EF15205E986940080687C0441CCFE6EAB67FE53&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;4618869000000000000000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;modified_timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;1524626644&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block_count&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition example">
+<p class="admonition-title">Step 2: Build <code>block_create</code> request</p>
+<p>Using details from the <code>account_info</code> call response, along with other information, we can create the <a href="/commands/rpc-protocol#block_create"><code>block_create</code></a> RPC request. The two differences between the send transaction are the <code>"link"</code> and <code>"balance"</code> fields.</p>
+<p>For more details on values, see <a href="/protocol-design/universal-state-blocks">Universal Blocks specification</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"type"</code></td>
+<td>always the constant <code>"state"</code></td>
+</tr>
+<tr>
+<td><code>"previous"</code></td>
+<td><code>"frontier"</code> from <code>account_info</code> response</td>
+</tr>
+<tr>
+<td><code>"account"</code></td>
+<td><code>"address"</code> used in the <code>account_info</code> call above that the block will be created for</td>
+</tr>
+<tr>
+<td><code>"representative"</code></td>
+<td><code>"representative"</code> address returned in the <code>account_info</code> call</td>
+</tr>
+<tr>
+<td><code>"balance"</code></td>
+<td>balance of the account in <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span> <strong>after</strong> this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> (<span><span class="MathJax_Preview">7 x 10^{30} raw</span><script type="math/tex">7 x 10^{30} raw</script></span>) based on the assumed details of the block the <code>"link"</code> hash refers to (block contents not shown in this example).</td>
+</tr>
+<tr>
+<td><code>"link"</code></td>
+<td>block hash of its paired send transaction, assumed to be a 7 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> send from block hash <code>CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783</code></td>
+</tr>
+<tr>
+<td><code>"key"</code></td>
+<td>account's private key</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;block_create&quot;,</span>
+<span class="s1">  &quot;type&quot;: &quot;state&quot;,</span>
+<span class="s1">  &quot;previous&quot;: &quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D&quot;,</span>
+<span class="s1">  &quot;account&quot;: &quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx&quot;,</span>
+<span class="s1">  &quot;representative&quot;: &quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;,</span>
+<span class="s1">  &quot;balance&quot;: &quot;11618869000000000000000000000000&quot;,</span>
+<span class="s1">  &quot;link&quot;: &quot;CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783&quot;,</span>
+<span class="s1">  &quot;key&quot;: &quot;781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;350D145570578A36D3D5ADE58DC7465F4CAAF257DD55BD93055FF826057E2CDD&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;{\n</span>
+<span class="s2">      \&quot;type\&quot;: \&quot;state\&quot;,\n</span>
+<span class="s2">      \&quot;account\&quot;: \&quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\&quot;,\n</span>
+<span class="s2">      \&quot;previous\&quot;: \&quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\&quot;,\n</span>
+<span class="s2">      \&quot;representative\&quot;: \&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\&quot;,\n</span>
+<span class="s2">      \&quot;balance\&quot;: \&quot;11618869000000000000000000000000\&quot;,\n</span>
+<span class="s2">      \&quot;link\&quot;: \&quot;CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\&quot;,\n</span>
+<span class="s2">      \&quot;link_as_account\&quot;: \&quot;nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8\&quot;,\n</span>
+<span class="s2">      \&quot;signature\&quot;: \&quot;EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\&quot;,\n</span>
+<span class="s2">      \&quot;work\&quot;: \&quot;c5cf86de24b24419\&quot;\n</span>
+<span class="s2">    }\n&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Additional details</p>
+<p>Here the follow scenario occurs:</p>
+<ul>
+<li>Previous balance was 4618869000000000000000000000000 <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span></li>
+<li>Increased our balance by 7000000000000000000000000000000 <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span></li>
+<li>Final balance becomes 11618869000000000000000000000000 <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span></li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 3: Broadcast the transaction</p>
+<p>As a result of the command above, the nano_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the <a href="#broadcasting-a-transaction">Broadcasting a Transaction</a> section.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Manually receiving first block</p>
+<p>The very first transaction on an account-chain, which is always a receive, is a bit special since it doesn't have a <code>"previous"</code> block. The process however, is very similar to a conventional receive transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>previous</td>
+<td>Value is 0 (32 0's)</td>
+</tr>
+<tr>
+<td>account</td>
+<td>Same as normal receive.</td>
+</tr>
+<tr>
+<td>representative</td>
+<td>Choose a reliable, trustworthy representative.</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>Same as normal receive. This will be the transaction amount of the pairing send.</td>
+</tr>
+<tr>
+<td>link</td>
+<td>Same as normal receive.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>Same as normal receive.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h3 id="broadcasting-transactions">Broadcasting Transactions<a class="headerlink" href="#broadcasting-transactions" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Broadcast using <a href="/commands/rpc-protocol/#process"><code>process</code></a> RPC command</p>
+<p>Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the <a href="/commands/rpc-protocol#process-block"><code>process</code> RPC command</a> which accepts the block as stringified JSON data. A successful broadcast will return the broadcasted block's hash.</p>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;process&quot;,</span>
+<span class="s1">  &quot;block&quot;: &quot;{</span>
+<span class="s1">      \&quot;type\&quot;: \&quot;state\&quot;,</span>
+<span class="s1">      \&quot;account\&quot;: \&quot;nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\&quot;,</span>
+<span class="s1">      \&quot;previous\&quot;: \&quot;92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\&quot;,</span>
+<span class="s1">      \&quot;representative\&quot;: \&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\&quot;,</span>
+<span class="s1">      \&quot;balance\&quot;: \&quot;11618869000000000000000000000000\&quot;,</span>
+<span class="s1">      \&quot;link\&quot;: \&quot;CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\&quot;,</span>
+<span class="s1">      \&quot;signature\&quot;: \&quot;EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\&quot;,</span>
+<span class="s1">      \&quot;work\&quot;: \&quot;c5cf86de24b24419\&quot;</span>
+<span class="s1">    }&quot;</span>
+<span class="s1">  }&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;42A723D2B60462BF7C9A003FE9A70057D3A6355CA5F1D0A57581000000000000&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Below are a few helpful pieces of information to consider:</p>
+<ul>
+<li>It may take a few seconds for the transaction to appear. If the transaction fails to appear, you may call the same <a href="/commands/rpc-protocol#process-block">process</a> RPC command with the same block data with no risk. Account-chains must be <strong>continuous and unbroken</strong>.</li>
+<li>If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the <code>"previous"</code> field in the transaction data refers to a non-existant block.</li>
+<li>If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.</li>
+</ul>
+</div>
+<hr />
+<div class="admonition example">
+<p class="admonition-title">Rebroadcasting blocks for an account-chain</p>
+<p>The following command rebroadcasts all hashes on an account-chain starting at block hash provided:</p>
+</div>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;republish&quot;,</span>
+<span class="s1">  &quot;hash&quot;: &quot;48006BF3146C18CAD3A53A957BF64EF7C57820B21FCCE373FA637559DA260358&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<hr />
+<h2 id="internal-management">Internal Management<a class="headerlink" href="#internal-management" title="Permanent link">&para;</a></h2>
+<p>The nano_node software has a built-in private-key manager that is suitable for smaller operations (&lt;1000 accounts). <a href="/integration-guides/key-management/#external-management">External Key Management</a> allows more powerful and robust systems at the cost of additional complexity. External Key Management is recommended for larger operations.</p>
+<h3 id="creating-a-wallet">Creating a Wallet<a class="headerlink" href="#creating-a-wallet" title="Permanent link">&para;</a></h3>
+<p>To create an account, you first must create a wallet to hold the seed that will subsequently create the account.</p>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;wallet_create&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;wallet&quot;</span><span class="p">:</span> <span class="s2">&quot;E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The nano_node responds with the WALLET_ID. If you lose your WALLET_ID, it can only be recovered via a CLI command. To reiterate, the <strong>WALLET_ID is not a seed</strong>. The seed can be extracted for backup in <a href="#backing-up-seed">Backing Up Seed</a>. Many of the RPC commands in this guide require the WALLET_ID.</p>
+<hr />
+<h3 id="recovering-wallet_id">Recovering WALLET_ID<a class="headerlink" href="#recovering-wallet_id" title="Permanent link">&para;</a></h3>
+<p>If you lose your WALLET_ID, you can print out all your WALLET_IDs and public addresses in those wallets with the <a href="/commands/command-line-interface#-wallet_list"><code>--wallet_list</code></a> CLI command as follows:</p>
+<h5>Command Format</h5>
+<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> nano_node --wallet_list
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="nt">Wallet_ID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446</span>
+<span class="l l-Scalar l-Scalar-Plain">nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme</span>
+<span class="nt">Wallet_ID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DB0711484E35A4C75230D898853A86BFAFE9F87FCE99C83A4C2668C39607DD4B</span>
+</pre></div>
+
+<p>In this example, the nano_node's internal private-key management system contains two wallets, each with a different 256-bit seed. The first wallet has a single account and the second wallet has zero accounts. Account creation will be covered later.</p>
+<hr />
+<h3 id="backing-up-seed">Backing Up Seed<a class="headerlink" href="#backing-up-seed" title="Permanent link">&para;</a></h3>
+<p>The following command will print the seed for a given wallet to stdout. Replace <code>${WALLET_ID}</code> with the WALLET_ID that you would like to display the seed of.</p>
+<h5>Command Format</h5>
+<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> <span class="si">${</span><span class="nv">NANO_NAME</span><span class="k">:-</span><span class="nv">nano_node_1</span><span class="si">}</span> nano_node --wallet_decrypt_unsafe --wallet <span class="si">${</span><span class="nv">WALLET_ID</span><span class="si">}</span>
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="nt">Seed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">D56143E7561D71C1AF4D563C6AF79EECE93E82479818AD8ED88BED1AAE8BE4E5</span>
+<span class="nt">Pub</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme</span>
+<span class="nt">Prv</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1F6FEB5D1E05C10B904E1112F430C3FA93ACC7067206B63AD155199501794E3E</span>
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The nano_node responds with three pieces of information:</p>
+<ol>
+<li>The seed of the wallet (back this up).</li>
+<li>The pairing public address</li>
+<li>The private key (deterministically derived from seed) of accounts within the wallet.</li>
+</ol>
+<p>Additional notes:</p>
+<ul>
+<li>If you change the seed in a wallet, future created accounts will be derived from that seed.</li>
+<li>Changing seeds on a wallet that already has accounts can cause accidental loss of funds from improper seed or private key backup.</li>
+<li>It is recommended to always create a new wallet when restoring a seed.</li>
+</ul>
+</div>
+<h5>Error Response</h5>
+<div class="codehilite"><pre><span></span>Wallet doesn&#39;t exist
+</pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If anyone has access to the seed, they can freely access funds, so keep this very secure. Since the above command prints to stdout, it is recommended to wipe stdout afterwards using:</p>
+<div class="codehilite"><pre><span></span>clear <span class="o">&amp;&amp;</span> <span class="nb">printf</span> <span class="s1">&#39;\e[3J&#39;</span>
+</pre></div>
+
+</div>
+<hr />
+<h3 id="restoringchanging-seed">Restoring/Changing Seed<a class="headerlink" href="#restoringchanging-seed" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only change the seed of a wallet that contains no accounts. Changing the seed of a wallet that already has accounts may lead to a false sense of security: accounts are generated by the seed that is currently in the wallet. Generating accounts, then switching the seed and backing up the new seed does <strong>not</strong> backup the previously generated accounts.</p>
+</div>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;wallet_change_seed&quot;,</span>
+<span class="s1">  &quot;wallet&quot;: &quot;&lt;WALLET_ID&gt;&quot;,</span>
+<span class="s1">  &quot;seed&quot;: &quot;&lt;SEED&gt;&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;:&quot;wallet_change_seed&quot;,</span>
+<span class="s1">  &quot;wallet&quot;:&quot;DB0711484E35A4C75230D898853A86BFAFE9F87FCE99C83A4C2668C39607DD4B&quot;,</span>
+<span class="s1">  &quot;seed&quot;:&quot;D56143E7561D71C1AF4D563C6AF79EECE93E82479818AD8ED88BED1AAE8BE4E5&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Error Response</h5>
+<p>Response if the wallet_id isn't found in nano_node:
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Wallet not found&quot;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>Response if the seed field contains non-hexidecimal values or is too long:
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Bad seed&quot;</span>
+<span class="p">}</span>
+</pre></div></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the hexidecimal seed represents less than 256 bits, the seed will be 0-padded on the left to become 256 bits.</p>
+</div>
+<hr />
+<h3 id="account-create">Account Create<a class="headerlink" href="#account-create" title="Permanent link">&para;</a></h3>
+<p>After creating a wallet, it's corresponding WALLET_ID, and <strong>backing up the seed (not the wallet_id)</strong>, the wallet can be populated with accounts. To create a new account in a wallet:</p>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;account_create&quot;,</span>
+<span class="s1">  &quot;wallet&quot;: &quot;&lt;WALLET_ID&gt;&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Error Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Wallet not found&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h3 id="bulk-account-create">Bulk Account Create<a class="headerlink" href="#bulk-account-create" title="Permanent link">&para;</a></h3>
+<p>To generate many accounts in bulk, it is more efficient to create them all at once using the <a href="/commands/rpc-protocol#accounts-create"><code>accounts_create</code></a> RPC command:</p>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">    &quot;action&quot;: &quot;accounts_create&quot;,</span>
+<span class="s1">    &quot;wallet&quot;: &quot;&lt;WALLET_ID&gt;&quot;,</span>
+<span class="s1">    &quot;count&quot;: &quot;&lt;NUM_ACCOUNTS&gt;&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;accounts_create&quot;,</span>
+<span class="s1">  &quot;wallet&quot;: &quot;DB0711484E35A4C75230D898853A86BFAFE9F87FCE99C83A4C2668C39607DD4B&quot;,</span>
+<span class="s1">  &quot;count&quot;:&quot;5&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;nano_35kgi43t5hgi64715qnppmz1yb6re1igfcrkfx4ppirkqpfmecnpd1mdmafu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nano_3t13y6b7h93yn9hehn8p6yqx1yqzrxxs33drhzep8huhymwxamn15pba75oj&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nano_11exxzfoosai96w7gnrjrn7m6i8bodch37ib8jgxsm5k96na6e1wda8np881&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nano_3xbsso8pkemwatwdnkcyn1bfcmrb8dpcg3pit9zqxj9mkxa6ifiankff6m9x&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nano_1q5gpy46moe1csj8md8oq3x57sxqmwskk8mmr7c63q1yebnjcsxg1yib19kn&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h3 id="receiving-funds">Receiving Funds<a class="headerlink" href="#receiving-funds" title="Permanent link">&para;</a></h3>
+<p>As long as the nano_node is synced and unlocked (nano_node locking is not covered in this guide), nano_node automatically creates and signs receive transactions for all accounts in the wallet's internal private-key management system.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In the event that a receive is not automatically generated, it can be manually generated using the <a href="/commands/rpc-protocol#receive"><code>receive</code></a> RPC command.</p>
+</div>
+<h4 id="semi-manual-receiving-funds">Semi-Manual Receiving Funds<a class="headerlink" href="#semi-manual-receiving-funds" title="Permanent link">&para;</a></h4>
+<p>If the nano_node does not automatically sign in a pending transaction, transactions can be manually signed in. The easiest way is to explicitly command the nano_node to check all of the accounts in all of its wallets for pending blocks.</p>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;search_pending_all&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As the number of accounts in a nano_node grows, this command becomes increasingly computationally expensive.</p>
+</div>
+<hr />
+<h3 id="sending-funds">Sending funds<a class="headerlink" href="#sending-funds" title="Permanent link">&para;</a></h3>
+<p>The <a href="/commands/rpc-protocol#send"><code>send</code></a> RPC command sends funds from an account in the specified wallet to a destination address.</p>
+<h5>Request Format</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;send&quot;,</span>
+<span class="s1">  &quot;wallet&quot;: &quot;&lt;WALLET_ID&gt;&quot;,</span>
+<span class="s1">  &quot;source&quot;: &quot;&lt;SOURCE_ADDRESS&gt;&quot;,</span>
+<span class="s1">  &quot;destination&quot;: &quot;&lt;DESTINATION_ADDRESS&gt;&quot;,</span>
+<span class="s1">  &quot;amount&quot;: &quot;1000000&quot;,</span>
+<span class="s1">  &quot;id&quot;: &quot;7081e2b8fec9146e&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wallet</td>
+<td>WALLET_ID containing the source address</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Address you control starting with "nano_"</td>
+</tr>
+<tr>
+<td>destination</td>
+<td>Destination address starting with "nano_"</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Amount to send in raw</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Any string</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>The <code>"id"</code> field is a safety mechanism that prevents issuing a transaction multiple times by repeating the RPC command.</p>
+<ul>
+<li>If a transaction is successful, any subsequent <a href="/commands/rpc-protocol#send"><code>send</code></a> RPC commands with the same identifier will be ignored by the nano_node.</li>
+<li>If the request times out, then the send may or may not have gone through.</li>
+<li>Most exchange "double withdraw" issues are caused by naive error-handling routines which re-issue the send request without the <code>"id"</code> parameter.</li>
+<li>The <code>"id"</code> field is local to your nano_node instance and does not offer protection when sent to different instances of nano_node that manage the same seed.</li>
+<li>As previously mentioned, having a seed loaded in multiple online nano_node is strongly discouraged.</li>
+<li>If managing more than 1000 accounts, building a separate system for managing keys and accounts externally is recommended</li>
+</ul>
+</div>
+<hr />
+<p>Below is a sample command to send 1 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span> from <code>nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000</code> to <code>nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme</code>.</p>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;send&quot;,</span>
+<span class="s1">  &quot;wallet&quot;: &quot;000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F&quot;,</span>
+<span class="s1">  &quot;source&quot;: &quot;nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000&quot;,</span>
+<span class="s1">  &quot;destination&quot;: &quot;nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme&quot;,</span>
+<span class="s1">  &quot;amount&quot;: &quot;1000000000000000000000000000000&quot;,</span>
+<span class="s1">  &quot;id&quot;: &quot;7081e2b8fec9146e&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span> 
+  <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>On success, the nano_node returns the hash of the transaction's block.</p>
+<hr />
+<h3 id="republishing-transactions">Republishing Transactions<a class="headerlink" href="#republishing-transactions" title="Permanent link">&para;</a></h3>
+<p>It may take a few seconds for the transaction to appear on the Nano Network. If the transaction fails to appear, you may call the <a href="/commands/rpc-protocol#republish"><code>republish</code></a> RPC command with the oldest missing transaction's hash. Account-chains must be <strong>continuous and unbroken</strong>. If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain will not be accepted by the network since the <code>"previous"</code> field in the transaction data refers to a block  unknown to to other nodes on the network.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Republishing the missing transaction(s) will make all the subsequent blocks valid in the network's ledger. Republishing does not create new transactions.</p>
+</div>
+<p>The following command rebroadcasts all hashes on an acccount-chain starting at block with hash <code>${BLOCK_HASH}</code>:</p>
+<h5>Request Example</h5>
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
+<span class="s1">  &quot;action&quot;: &quot;republish&quot;,</span>
+<span class="s1">  &quot;hash&quot;: &quot;AF9C1D46AAE66CC8F827904ED02D4B3D95AA98B1FF058352BA6B670BEFD40231&quot;</span>
+<span class="s1">}&#39;</span> http://127.0.0.1:7076
+</pre></div>
+
+<h5>Success Response</h5>
+<p><div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;AF9C1D46AAE66CC8F827904ED02D4B3D95AA98B1FF058352BA6B670BEFD40231&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;C9A111580A21F3E63F2283DAF6450D5178BFAC2A6C38E09B76EEA9CE37EC9CE0&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+On success, the nano_node returns the hashes of all republished blocks.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../the-basics/" title="The Basics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                The Basics
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../build-options/" title="Build Options" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Build Options
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>
+    
+      <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>
+    
+      <a href="https://medium/nanocurrency" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>
+    
+      <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
