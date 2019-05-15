@@ -397,8 +397,6 @@ Response:
 
 ---
 
-
-
 ### accounts_frontiers  
 Returns a list of pairs of account and block hash representing the head block for **accounts list**  
 Request:  
@@ -2767,7 +2765,12 @@ Response:
 {  
   "changed" : "1"
 }
-```
+```   
+**Optional "count"**
+Number. Determines limit of number of blocks to return.
+
+**Optional "threshold"**
+>>>>>>> a74a850db5ef97500ec445de317bdc8bd3f05b44
 
 ---
 
