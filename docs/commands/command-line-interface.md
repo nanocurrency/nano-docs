@@ -56,6 +56,9 @@ Profile vote verification
 ### --debug_profile_kdf
 Profile kdf function
 
+### --debug_validate_blocks
+Validate blocks in the ledger
+
 ### --debug_verify_profile
 Profile signature verification
 
