@@ -1,7 +1,9 @@
 <!--
 Link references
 -->
-[Nano public address]: /integration-guides/the-basics/#account-numberidentifier
+[account public address]: /integration-guides/the-basics/#account-public-address
+[account private key]: /integration-guides/the-basics/#account-private-key 
+[account public key]: /integration-guides/the-basics/#account-public-key
 [block hash]: /glossary/#block-hash
 
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
@@ -13,115 +15,174 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 | <span class="no-break">**[Wallet RPCs](#wallet-rpc)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
 | <span class="no-break">**[Deprecated RPCs](#deprecated-rpcs)**</span>           | No longer recommended for use. |
 
+All calls have a required `action` parameter which the lists below are alphabetically organized by.
+
 ## Unit Conversion RPCs
 
 ---
 
 ### krai_from_raw   
-Divide a raw amount down by the krai ratio.  
-Request:  
-```
+Divide a raw amount down by the knano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).  
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of raw to convert to knano |
+
+**Request**
+
+```json
 {  
   "action": "krai_from_raw",  
   "amount": "1000000000000000000000000000"
 }
-```  
-Response:  
 ```
+
+**Response**
+
+```json
 {  
   "amount": "1"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of knano after conversion |
+
 ---
 
 ### krai_to_raw    
-Multiply an krai amount by the krai ratio.  
-Request:  
-```
+Multiply an knano amount by the knano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of knano to convert raw |
+
+**Request**  
+```json
 {  
   "action": "krai_to_raw",  
   "amount": "1"
 }
 ```  
-Response:  
-```
+**Response**  
+```json
 {  
   "amount": "1000000000000000000000000000"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of raw after conversion |
+
 ---
 
 ### mrai_from_raw    
-Divide a raw amount down by the Mrai ratio.  
-Request:  
-```
+Divide a raw amount down by the Mnano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of raw to convert to Mnano |
+
+**Request**
+```json
 {  
   "action": "mrai_from_raw",  
   "amount": "1000000000000000000000000000000"
 }
 ```  
-Response:  
-```
+**Response** 
+```json
 {  
   "amount": "1"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of Mnano after conversion |
+
 ---
 
 ### mrai_to_raw    
-Multiply an Mrai amount by the Mrai ratio.  
-Request:  
-```
+Multiply an Mnano (NANO/Nano) amount by the Mano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of Mnano to convert to raw |
+
+**Request**  
+```json
 {  
   "action": "mrai_to_raw",  
   "amount": "1"
 }
 ```  
-Response:  
-```
+**Response**
+```json
 {  
   "amount": "1000000000000000000000000000000"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of raw after conversion |
+
 ---
 
 ### rai_from_raw    
-Divide a raw amount down by the rai ratio.  
-Request:  
-```
+Divide a raw amount down by the nano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of raw to convert to nano |
+
+**Request**  
+```json
 {  
   "action": "rai_from_raw",  
   "amount": "1000000000000000000000000"
 }
 ```  
-Response:  
-```
+**Response**
+```json
 {  
   "amount": "1"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of nano after conversion |
+
 ---
 
 ### rai_to_raw   
-Multiply an rai amount by the rai ratio.  
-Request:  
-```
+Multiply an nano amount by the nano ratio ([unit dividers](/protocol-design/distribution-and-units/#unit-dividers)).
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `amount`  | All | Yes | integer | | Amount of nano to convert to raw |
+
+**Request**
+```json
 {  
   "action": "rai_to_raw",  
   "amount": "1"
 }
 ```  
-Response:  
-```
+**Response**
+```json
 {  
   "amount": "1000000000000000000000000"  
 }
 ```
+
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `amount` | All | integer | Amount of raw after conversion |
 
 ---
 
@@ -132,11 +193,9 @@ Response:
 ### account_balance  
 Balance information for account in raw
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account` | All  | Yes | [Nano public address] | | Account balance is being requested for |
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All  | Yes | [account public address] | | Account balance is being requested for |
 
 **Request**
 ```json
@@ -154,8 +213,8 @@ Balance information for account in raw
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
 | `balance` | All | integer | Current balance for account in raw |
 | `pending` | All | integer | Amount in raw of pending transactions for account |
 
@@ -164,11 +223,9 @@ Balance information for account in raw
 ### account_block_count
 Number of blocks for the specified account
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account` | All  | Yes | [Nano public address] | | Account block count is being requested for |
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All  | Yes | [account public address] | | Account block count is being requested for |
 
 **Request**  
 ```json
@@ -185,81 +242,145 @@ Number of blocks for the specified account
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
 | `block_count` | All | integer | Total number of blocks in the ledger for the account, includes confirmed and unconfirmed blocks |
 
 ---
 
 ### account_get
-Get account number for the **public key**  
-Request:  
-```
+Get account public adddress for the provided account public key
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `key` | All  | Yes | [account public key] | | Key to derive the [account public address] from |
+
+**Request**  
+```json
 {  
   "action": "account_get",  
   "key": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"  
 }
 ```
 
-Response:  
-```
+**Response**
+```json
 {  
   "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```
 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `account` | All | [account public address] | Address derived from the provided [account public key] |
+
 ---
 
 ### account_history  
+Returns information for blocks on an account. By default:
 
-Reports send/receive information for an account. Returns only **send & receive** blocks by default (unless raw is set to true - see optional parameters below): change, state change & state epoch blocks are skipped, open & state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". **Note**: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0   
+* **Only blocks performing sending and receiving of funds are included** (no epoch or representative change only blocks)
+* Blocks shown in `history` are simplified for easier use by wallets and other integrations
+* Blocks are returned starting from the frontier and `count` back towards the first block on the account  
 
-Request:  
-```
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All     | Yes | [account public address] |       | Account the history is being requested for |
+| `count`   | All     | Yes | integer               |       | Number of blocks to return starting with the frontier. Returns all blocks back to first block opening the account if value = `-1` |
+| `raw`     | All     | No  | bool                  | false | See details above and separate request and response details below |
+| `head`    | All     | No  | [block hash]          |       | Alternative block to start returning from (instead of the frontier). Useful for pagination. |
+| `offset`  | V11.0+  | No  | decimal integer       |       | Skips a number of blocks starting from `head` (if given) |
+| `reverse` | V19.0+  | No  | bool                  | false | Response starts from `head` (if given) or first block of the account, and `count` back up toward the frontier |
+
+**Request with defaults**
+```json
 {  
   "action": "account_history",  
-  "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+  "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
   "count": "1"
 }
 ```
 
-Response:  
+**Response with defaults**  
+```json
+{
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+    "history": [
+        {
+            "type": "send",
+            "account": "nano_3jrwstf4qqaxps36py6ripnhqpjbjrfu14apdedk37uj51oic4g94qcabf1i",
+            "amount": "80000000000000000000000000000000000",
+            "local_timestamp": "1556746519",
+            "height": "135",
+            "hash": "E2773A784E97FE888CDFE4A6C80C70C2297D9BB10DBBBFF94581BA4397CEB22B"
+        }
+    ],
+    "previous": "AF7C7995173E645A33F2272D383EC3E519E6E12A32DD1F02181B11DBC717ADCE"
+} 
 ```
-{  
-    "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",   
-    "history": [   
-        {   
-            "type": "send",   
-            "account": "xrb_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
-            "amount": "80000000000000000000000000000000000",   
-            "local_timestamp": "1551532723",   
-            "height": "60",   
-            "hash": "80392607E85E73CC3E94B4126F24488EBDFEB174944B890C97E8F36D89591DC5"   
-        }   
-    ],   
-    "previous": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"   
-}   
+
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `account`                   | All    | [account public address] | Request address blocks are returned for |
+| `history`.`type`            | All    | `send` or `receive`   | Action the block is taking |
+| `history`.`account`         | All    | [account public address] | Address the action was made with |
+| `history`.`amount`          | All    | integer               | Amount of the transaction |
+| `history`.`local_timestamp` | V18.0+ | UNIX timestamp        | Time the block was inserted into the ledger (confirmed or not) |
+| `history`.`height`          | V19.0+ | integer               | Count of the block on the account chain, starting at 1 for the first block |
+| `history`.`hash`            | All    | [block hash]          | Hash of block data is returned for |
+| `previous`                  | All    | [block hash]          | Hash of previous block. Not included if return includes first block on account. |
+
+The addition of the `raw` option will change the response as follows:
+
+* Outputs all parameters of the block itself - for details on these values see [block_create](#block_create) section
+* For non-legacy blocks, `subtype` parameter added to identify the equivalent legacy block type
+* Derived `amount` and `account` parameters in the blocks the same as the default call are also added
+* For the first block on the account, the `account` value returned is the account of the source block, not the account of the open block, to preserve similarity with the non-raw history
+
+**Request with `raw`**
+```json
+{
+  "action": "account_history",  
+  "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+  "count": "1",
+  "raw": "true"
+}
 ```
 
-If the `count` limit results in stopping before the end of the account chain, then the response will also contain a `previous` field (outside of the `history` field) which contains the block hash that would be next to process if `count` was larger.
-
-**Optional parameters:**
-
-- `raw` (bool): if set to `true` instead of the default `false`, instead of outputting a simplified send or receive explanation of blocks (intended for wallets), output all parameters of the block itself as seen in block_create or other APIs returning blocks. It still includes the "account" and "amount" properties you'd see without this option.  State/universal blocks in the raw history will also have a `subtype` field indicating their equivalent "old" block. Unfortunately, the "account" parameter for open blocks is the account of the source block, not the account of the open block, to preserve similarity with the non-raw history.   
-- `head` (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   
-- `offset` (decimal integer): skips a number of blocks starting from `head` (if given). Not often used. _Available since version 11.0_    
-- `reverse` (bool): if set to `true` instead of the default `false`, the response starts from `head` (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). **Note**: the field `previous` in the response changes to `next`. _Available since version 19.0_   
+**Response with `raw`**  
+```json
+{
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+    "history": [
+        {
+            "type": "state",
+            "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+            "link": "C71CCE9A2BDD1DB6424B789885A8FBDA298E1BB009165B17209771182B0509C7",
+            "balance": "3437050039385907797636004420881469440",
+            "previous": "AF7C7995173E645A33F2272D383EC3E519E6E12A32DD1F02181B11DBC717ADCE",
+            "subtype": "send",
+            "account": "nano_3jrwstf4qqaxps36py6ripnhqpjbjrfu14apdedk37uj51oic4g94qcabf1i",
+            "amount": "80000000000000000000000000000000000",
+            "local_timestamp": "1556759999",
+            "height": "135",
+            "hash": "E2773A784E97FE888CDFE4A6C80C70C2297D9BB10DBBBFF94581BA4397CEB22B",
+            "work": "aa7abfea83a382a9",
+            "signature": "250CCF360173A50567A58D3BCE4CB87483356A542585891729F79B9B50768E326F50BB889AE4280C1E194D61D5572CBC953FD4458C4915197AE2717C42D5530A"
+        }
+    ],
+    "previous": "AF7C7995173E645A33F2272D383EC3E519E6E12A32DD1F02181B11DBC717ADCE"
+}
+```  
 
 ---
 
 ### account_info
 Important information from the local database for the provided account. Only works for accounts that have an entry on the ledger.
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account`        | All  | Yes | [Nano public address] |       | Account information is being requested for |
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account`        | All  | Yes | [account public address] |       | Account information is being requested for |
 | `representative` | 9.0+ | No  | boolean               | false | Include `representative` in response |
 | `weight`         | 9.0+ | No  | boolean               | false | Include `weight` in response |
 | `pending`        | 9.0+ | No  | boolean               | false | Include `pending` in response |
@@ -292,8 +413,8 @@ Important information from the local database for the provided account. Only wor
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
 | `frontier`             | All   | [block hash] | Frontier (head) block hash for account |
 | `open_block`           | All   | [block hash] | First block on account |
 | `representative_block` | All   | [block hash] | Block the current representative for the account was set in |
@@ -302,7 +423,7 @@ Important information from the local database for the provided account. Only wor
 | `block_count`          | All   | integer      | Count of number of blocks on the account |
 | `confirmation_height`  | 19.0+ | integer      | Block height of the most recently confirmed block |
 | `account_version`      | All   | integer      | Version 1 = upgraded to consolidated blocks containing account state<br />Version 0 = legacy blocks allowed |
-| `representative`       | 9.0+  | [Nano public address] | Representative address currently set for the account |
+| `representative`       | 9.0+  | [account public address] | Representative address currently set for the account |
 | `weight`               | 9.0+  | integer               | Voting weight of the representative set for the account |
 | `pending`              | 9.0+  | integer               | Amount in raw of pending transactions for account |
 
@@ -315,20 +436,30 @@ Important information from the local database for the provided account. Only wor
 ---
 
 ### account_key
-Get the public key for **account**  
-Request:  
-```
+Get the account public key for provided account public address
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All | Yes | [account public address] | | Account address to get the [account public key] for |
+
+**Request**
+```json
 {  
   "action": "account_key",  
   "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
-```  
-Response:  
 ```
+
+**Response**
+```json
 {  
   "key": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"  
 }
 ```
+
+| Parameter | Version | Type | Description |
+|           |         |      |             | 
+| `key` | All | [account public key] | Key for the provided [account public address] |
 
 ---
 
@@ -1294,7 +1425,9 @@ The effective peer stake needed for quorum. Per v19, this field is computed as `
 
 ### database_txn_tracker
 _v19.0+_  
-NOTE: This call is for debug purposes only and results vary with Operating system and build options.  
+
+--8<-- "debug-only-command.md"
+
 Returns a list of open database transactions which are equal or greater than the `min_read_time` or `min_write_time` for reads and read-writes respectively.  
 Request:  
 ```json
