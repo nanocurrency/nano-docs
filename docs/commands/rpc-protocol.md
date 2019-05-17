@@ -45,8 +45,8 @@ Divide a raw amount down by the knano ratio ([unit dividers](/protocol-design/di
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of knano after conversion |
 
 ---
@@ -72,8 +72,8 @@ Multiply an knano amount by the knano ratio ([unit dividers](/protocol-design/di
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of raw after conversion |
 
 ---
@@ -99,8 +99,8 @@ Divide a raw amount down by the Mnano ratio ([unit dividers](/protocol-design/di
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of Mnano after conversion |
 
 ---
@@ -126,8 +126,8 @@ Multiply an Mnano (NANO/Nano) amount by the Mano ratio ([unit dividers](/protoco
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of raw after conversion |
 
 ---
@@ -153,8 +153,8 @@ Divide a raw amount down by the nano ratio ([unit dividers](/protocol-design/dis
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of nano after conversion |
 
 ---
@@ -180,8 +180,8 @@ Multiply an nano amount by the nano ratio ([unit dividers](/protocol-design/dist
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `amount` | All | integer | Amount of raw after conversion |
 
 ---
@@ -213,8 +213,8 @@ Balance information for account in raw
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `balance` | All | integer | Current balance for account in raw |
 | `pending` | All | integer | Amount in raw of pending transactions for account |
 
@@ -242,8 +242,8 @@ Number of blocks for the specified account
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `block_count` | All | integer | Total number of blocks in the ledger for the account, includes confirmed and unconfirmed blocks |
 
 ---
@@ -270,8 +270,8 @@ Get account public adddress for the provided account public key
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `account` | All | [account public address] | Address derived from the provided [account public key] |
 
 ---
@@ -286,12 +286,12 @@ Returns information for blocks on an account. By default:
 
 | Parameter | Version | Required | Type | Default | Description |
 |           |         |          |      |         |             |
-| `account` | All     | Yes | [account public address] |       | Account the history is being requested for |
-| `count`   | All     | Yes | integer               |       | Number of blocks to return starting with the frontier. Returns all blocks back to first block opening the account if value = `-1` |
-| `raw`     | All     | No  | bool                  | false | See details above and separate request and response details below |
-| `head`    | All     | No  | [block hash]          |       | Alternative block to start returning from (instead of the frontier). Useful for pagination. |
-| `offset`  | V11.0+  | No  | decimal integer       |       | Skips a number of blocks starting from `head` (if given) |
-| `reverse` | V19.0+  | No  | bool                  | false | Response starts from `head` (if given) or first block of the account, and `count` back up toward the frontier |
+| `account` | All     | Yes | [account public address] |        | Account the history is being requested for |
+| `count`   | All     | Yes | integer                  |        | Number of blocks to return starting with the frontier. Returns all blocks back to first block opening the account if value = `-1` |
+| `raw`     | All     | No  | bool                     | false  | See details above and separate request and response details below |
+| `head`    | All     | No  | [block hash]             |        | Alternative block to start returning from (instead of the frontier). Useful for pagination. |
+| `offset`  | V11.0+  | No  | decimal integer          |        | Skips a number of blocks starting from `head` (if given) |
+| `reverse` | V19.0+  | No  | bool                     | false  | Response starts from `head` (if given) or first block of the account, and `count` back up toward the frontier |
 
 **Request with defaults**
 ```json
@@ -320,16 +320,16 @@ Returns information for blocks on an account. By default:
 } 
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
-| `account`                   | All    | [account public address] | Request address blocks are returned for |
-| `history`.`type`            | All    | `send` or `receive`   | Action the block is taking |
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `account`                   | All    | [account public address] | Account containing the returned blocks |
+| `history`.`type`            | All    | `send` or `receive`      | Action the block is taking |
 | `history`.`account`         | All    | [account public address] | Address the action was made with |
-| `history`.`amount`          | All    | integer               | Amount of the transaction |
-| `history`.`local_timestamp` | V18.0+ | UNIX timestamp        | Time the block was inserted into the ledger (confirmed or not) |
-| `history`.`height`          | V19.0+ | integer               | Count of the block on the account chain, starting at 1 for the first block |
-| `history`.`hash`            | All    | [block hash]          | Hash of block data is returned for |
-| `previous`                  | All    | [block hash]          | Hash of previous block. Not included if return includes first block on account. |
+| `history`.`amount`          | All    | integer                  | Amount of the transaction |
+| `history`.`local_timestamp` | V18.0+ | UNIX timestamp           | Time the block was inserted into the ledger (confirmed or not) |
+| `history`.`height`          | V19.0+ | integer                  | Count of the block on the account chain, starting at 1 for the first block |
+| `history`.`hash`            | All    | [block hash]             | Hash of block data is returned for |
+| `previous`                  | All    | [block hash]             | Hash of previous block. Not included if return includes first block on account. |
 
 The addition of the `raw` option will change the response as follows:
 
@@ -413,8 +413,8 @@ Important information from the local database for the provided account. Only wor
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `frontier`             | All   | [block hash] | Frontier (head) block hash for account |
 | `open_block`           | All   | [block hash] | First block on account |
 | `representative_block` | All   | [block hash] | Block the current representative for the account was set in |
@@ -436,11 +436,11 @@ Important information from the local database for the provided account. Only wor
 ---
 
 ### account_key
-Get the account public key for provided account public address
+Returns the account public key for provided account
 
 | Parameter | Version | Required | Type | Default | Description |
 |           |         |          |      |         |             |
-| `account` | All | Yes | [account public address] | | Account address to get the [account public key] for |
+| `account` | All | Yes | [account public address] | | Account to get the [account public key] for |
 
 **Request**
 ```json
@@ -457,33 +457,47 @@ Get the account public key for provided account public address
 }
 ```
 
-| Parameter | Version | Type | Description |
-|           |         |      |             | 
+| Key | Version | Type | Description |
+|     |         |      |             | 
 | `key` | All | [account public key] | Key for the provided [account public address] |
 
 ---
 
 ### account_representative 
-Returns the representative for **account**  
-Request:  
-```
+Returns the representative for the provided account
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All | Yes | [account public address] | | Account to get the representative address for |
+
+**Request**  
+```json
 {  
   "action": "account_representative",  
   "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
-Response:  
-```
+**Response**  
+```json
 {  
   "representative" : "xrb_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
 ```
 
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `representative` | All | [account public address] | Address of representative currently set on the provided account |
+
 ---
 
-### account_weight  
-Returns the voting weight for **account**  
-Request:  
+### account_weight
+Returns the voting weight for the provided account
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `account` | All | Yes | [account public address] | | Account to get the voting weight for |
+
+**Request**  
 ```
 {  
   "action": "account_weight",  
@@ -496,6 +510,10 @@ Response:
   "weight": "10000"  
 }
 ```
+
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `representative` | All | [account public address] | Address of representative currently set on the provided account |
 
 ---
 
