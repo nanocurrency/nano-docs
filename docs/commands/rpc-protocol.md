@@ -2,6 +2,7 @@
 Link references
 -->
 [account public address]: /integration-guides/the-basics/#account-public-address
+[account public addresses]: /integration-guides/the-basics/#account-public-address
 [account private key]: /integration-guides/the-basics/#account-private-key 
 [account public key]: /integration-guides/the-basics/#account-public-key
 [block hash]: /glossary/#block-hash
@@ -498,14 +499,14 @@ Returns the voting weight for the provided account
 | `account` | All | Yes | [account public address] | | Account to get the voting weight for |
 
 **Request**  
-```
+```json
 {  
   "action": "account_weight",  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```  
-Response:  
-```
+**Response**  
+```json
 {  
   "weight": "10000"  
 }
@@ -513,79 +514,110 @@ Response:
 
 | Key | Version | Type | Description |
 |     |         |      |             | 
-| `representative` | All | [account public address] | Address of representative currently set on the provided account |
+| `weight` | All | integer | Amount of voting weight delegated to the provided account |
 
 ---
 
 ### accounts_balances  
-Returns how many RAW is owned and how many have not yet been received by **accounts list**  
-Request:  
-```
+Returns how many raw is owned and how many have not yet been received by accounts in provided list
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `accounts` | All | Yes | array of [account public addresses] | | Accounts to get the balances for |
+
+**Request**  
+```json
 {  
   "action": "accounts_balances",  
-  "accounts": ["xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
+  "accounts": ["nano_17bfbmjfdwxqmgnzupyp168nj7ar7gwcokkw4pwp8z1zkgjjsp4aci4cttuc", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
-```  
-Response:  
 ```
-{  
-  "balances" : {  
-    "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
-    {  
-      "balance": "10000",  
-      "pending": "10000"  
-    },  
-    "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":  
-    {  
-      "balance": "10000000",  
-      "pending": "0"  
-    }  
-  }  
+
+**Response**
+```json
+{
+    "balances": {
+        "nano_1115m38cqnm8mhegsts4stc7yzs1xhzfcxo4zyuexdmej4s8p3bhs59kh1p4": {
+            "balance": "0",
+            "pending": "1000000000000000000000000"
+        },
+        "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": {
+            "balance": "0",
+            "pending": "0"
+        }
+    }
 }
 ```  
+
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `balances`.address.`balance` | All | integer | Amount of raw received to the account |
+| `balances`.address.`pending` | All | integer | Amount of raw [pending](/glossary#unpocketed) (not received) for the account |
+
 
 ---
 
 ### accounts_frontiers  
-Returns a list of pairs of account and block hash representing the head block for **accounts list**  
-Request:  
-```
+Returns a list of pairs of account and block hash representing the head block for accounts in provided list
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `accounts` | All | Yes | array of [account public addresses] | | Accounts to get the frontiers for |  
+
+**Request**
+```json
 {  
   "action": "accounts_frontiers",  
-  "accounts": ["xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
+  "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
 ```  
-Response:  
+**Response**  
+```json
+{
+  "frontiers": {
+      "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "6875C0DBFE5C44D8F8CFF431BC69ED5587C68F89F0663F2BC1FBBFCB46DC5989",
+      "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": "346DD06B28722A48D8BFE0363B90692DCDEFCE8D32752425FB20F48C08B50806"
+  }
+}
 ```
-{  
-  "frontiers" : {  
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A",  
-    "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": "6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F"  
-  }  
-}
-```  
+
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `frontiers`.address.hash | All | [block hash] | Hash for the current [head block] on the account |
 
 ---
 
 ### accounts_pending  
-Returns a list of block hashes which have not yet been received by these **accounts**  
-Request:  
-```
+Returns a list of block hashes which have not yet been received by accounts in provided list
+
+| Parameter | Version | Required | Type | Default | Description |
+|           |         |          |      |         |             |
+| `accounts`   | All | Yes | array of [account public addresses] | | Accounts to get the pending block hashes for |
+| `threshhold` | All | Yes | array of [account public addresses] | | Accounts to get the pending block hashes for |
+
+**Request**
+```json
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": 1
 }
 ```  
-Response:  
-```
+
+**Response**
+```json
 {  
   "blocks" : {  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
     "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]  
   }  
 }
-```  
+```
+
+| Key | Version | Type | Description |
+|     |         |      |             | 
+| `blocks`.address.hash | All | Array of [block hashes] | Hashes for all blocks which have not yet been received |
+
 **Optional "threshold"**  
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
