@@ -1,4 +1,4 @@
-While you can run a Nano node by downloading a binary or building from source, it is recommended to use a [Docker container](https://www.docker.com/). When using the [official Docker images](https://hub.docker.com/r/nanocurrency/nano/tags/), your node will be much easier to upgrade and maintain.
+While you can run a Nano node by downloading a binary or building from source, it is recommended to use a Docker container. When using the [official Docker images](https://hub.docker.com/r/nanocurrency/nano/tags/), your node will be much easier to upgrade and maintain.
 
 !!! note
     The guides found on this site make some basic assumptions that should be understood before continuing:
@@ -19,7 +19,7 @@ While you can run a Nano node by downloading a binary or building from source, i
 
 ### Network Ports
 
-The nano\_node will use two configurable ports throughout its lifecycle.  The default values suggested by the [network specification](/docs/network-specification) are below:
+The nano\_node will use two configurable ports throughout its lifecycle.  The default values suggested by the [network details](/running-a-node/configuration/#network-details) are below:
 
 --8<-- "network-details-simple.md"
 
@@ -53,7 +53,7 @@ docker pull nanocurrency/nano:V18.0
 ---
 
 ### Starting the Node
-With Docker there are basic commands for managing containers. To properly bring the node up, learn these commands beginning with [starting the container](/running-a-node/docker-management#starting-the-container).
+With Docker there are basic commands for managing containers. To properly bring the node up, learn these commands beginning with [starting the container](/running-a-node/docker-management#starting).
 
 !!! info "Advanced Builds"
 	For additional options around building the node to run on various platforms, head over to the [Integration Guides Build Options](/integration-guides/build-options).

@@ -71,7 +71,7 @@ docker run --restart=unless-stopped -d \
 ```
 
 !!! tip
-	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting-the-container) details for the main network.
+	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting) details for the main network.
 	* See [Docker management](/running-a-node/docker-management/) for other related commands
 
 !!! warning "Separate host folders"

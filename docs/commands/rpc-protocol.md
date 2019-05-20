@@ -2301,7 +2301,9 @@ Generates **work** for block
 **Response:**
 ```json
 {  
-    "work": "2bf29ef00786a6bc"  
+    "work": "2bf29ef00786a6bc",
+    "difficulty": "ffffffd21c3933f4",
+    "multiplier": "1.394647" 
 }
 ```  
 
@@ -2393,7 +2395,7 @@ Check whether **work** is valid for block
 ```json
 {  
     "valid": "1",
-    "value": "ffffffd21c3933f4",
+    "difficulty": "ffffffd21c3933f4",
     "multiplier": "1.394647"  
 }
 ```
@@ -3394,7 +3396,6 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
   ]       
 }
 ```   
-
 
 ---
 

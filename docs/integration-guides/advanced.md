@@ -51,7 +51,7 @@ The process for external private key management in a cold wallet is very similar
 
 #### (HOT) Account Information
 
-Get account information by the [`account_info`](/docs/rpc/#account-info) RPC Command:
+Get account information by the [`account_info`](/commands/rpc-protocol#account_info) RPC Command:
 
 ##### Request Example
 
@@ -81,13 +81,13 @@ curl -d '{
 
 #### (HOT) Balance Validation (Part 1)
 
-We should always assume the `(HOT)` computer has been compromised, so cannot trust the balance returned by [`account_info`](/docs/rpc/#account-info). We must obtain the headblock's transaction data and independently confirm the block's hash on our `(COLD)` offline computer. On the `(HOT)` online computer, this information can be obtained by the [`block`](/docs/rpc/#block) RPC Command.
+We should always assume the `(HOT)` computer has been compromised, so cannot trust the balance returned by [`account_info`](/commands/rpc-protocol#account_info). We must obtain the headblock's transaction data and independently confirm the block's hash on our `(COLD)` offline computer. On the `(HOT)` online computer, this information can be obtained by the [`block_info`](/commands/rpc-protocol#block_info) RPC Command.
 
 ##### Request Format
 
 ```bash
 curl -d '{
-  "action": "block",
+  "action": "block_info",
   "hash": "{{HEADBLOCK}}"
 }' http://127.0.0.1:7076
 ```
@@ -96,7 +96,7 @@ curl -d '{
 
 ```bash
 curl -d '{
-  "action": "block",
+  "action": "block_info",
   "hash": "DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E"
 }' http://127.0.0.1:7076
 ```
@@ -105,15 +105,22 @@ curl -d '{
 
 ```json
 {
-  "type": "state",
-  "account": "nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg",
-  "previous": "829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77",
-  "representative": "nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf",
-  "balance": "8900000000000000000000000",
-  "link": "616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA",
-  "link_as_account": "nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk",
-  "signature": "5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401",
-  "work": "5621a5a58ef8964a"
+    "block_account": "nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg",
+    "amount": "100000000000000000000000",
+    "balance": "8900000000000000000000000",
+    "height": "105",
+    "local_timestamp": "0",
+    "contents": "{\n
+      \"type\": \"state\",\n
+      \"account\": \"nano_3qb1qckpady6njewfotrdrcgakrgbfh7ytqfrd9r8txsx7d91b9pu6z1ixrg\",\n
+      \"previous\": \"829C33C4E1F41F24F50AB6AF8D0893F484E7078F0FA05F8F56CB69223E8EEE77\",\n
+      \"representative\": \"nano_3rropjiqfxpmrrkooej4qtmm1pueu36f9ghinpho4esfdor8785a455d16nf\",\n
+      \"balance\": \"8900000000000000000000000\",\n
+      \"link\": \"616349D5A5EBA49A73324EF29044B65E13644EC182FFC1ACA4371F897EFF22AA\",\n
+      \"link_as_account\": \"nano_1rd5b9ctdtx6mbsm6mqkk34deqimej9e51qzr8pcafrzj7zhyaockuye93sk\",\n
+      \"signature\": \"5058A5A1D371CE367D88DB232D398B33DF15FF95D84206986848F4165FFD9FB009B99D9DC6E90D2A3D96C639C7772497C6D6FFB8A67143AE9BB07DC49EB72401\",\n
+      \"work\": \"5621a5a58ef8964a\"\n
+    }\n"
 }
 ```
 
@@ -129,7 +136,7 @@ Transfer the response over to the `(COLD)` computer.
 
 #### (COLD) Balance Validation (Part 2)
 
-On the `(COLD)` computer, we need to verify the block hash. This allows us to create a safe transaction referencing the reported head block's balance.
+On the `(COLD)` computer, we need to verify the block hash using the [`block_hash`](/commands/rpc-protocol#block_hash) RPC Command.. This allows us to create a safe transaction referencing the reported head block's balance.
 
 ##### Request Format
 
@@ -315,7 +322,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
   "options": {
     "all_local_accounts": true,
     "accounts": [
-      "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
       "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
     ]
   }
@@ -335,7 +342,7 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
   "topic": "vote",
   "options": {
     "representatives": [
-      "xrb_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
       "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
     ]
   }
@@ -355,36 +362,36 @@ For details on configuring the HTTP callback within a node, see the [HTTP callba
 
 ```json
 {  
-    "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
     "hash": "B785D56473DE6330AC9A2071F19BD44BCAF1DE5C200A826B4BBCC85E588620FB",  
     "block": "{\n    
              \"type\": \"state\",\n
-             \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
              \"previous\": \"82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2\",\n    
-             \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
              \"balance\": \"5256159500000000000000000000000000000\",\n    
              \"link\": \"8B95FEB05496327471F4729F0B0919E1994F9116FD213F44C76F696B7ECD386A\",\n    
-             \"link_as_account\": \"xrb_34woztr7b7jkgjrzawnz3e6jmresbyajfzb39x4eguubffzetg5c96f3s16p\",\n    
+             \"link_as_account\": \"nano_34woztr7b7jkgjrzawnz3e6jmresbyajfzb39x4eguubffzetg5c96f3s16p\",\n    
              \"signature\": \"FBE5CC5491B54FE9CD8C48312A7A6D3945835FD97F4526571E9BED50E407A27ED8FB0E4AA0BF67E2831B8DB32A74E686A62BF4EC162E8FBB6E665196135C050B\",\n    
             \"work\": \"824ca671ce7067ac\"\n    
          }\n",  
     "amount": "2500000000000000000000000000000"  
 }
-```  
+```
 
 Send state blocks have special fields "is_send" & "subtype"   
 ```json
 {  
-    "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
     "hash": "82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2",  
     "block": "{\n    
              \"type\": \"state\",\n
-             \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
              \"previous\": \"BE716FE4E21E0DC923ED67543601090A17547474CBA6D6F4B3FD6C113775860F\",\n    
-             \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
              \"balance\": \"5256157000000000000000000000000000000\",\n    
              \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-             \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+             \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
              \"signature\": \"5AF10D3DDD0E3D7A0EF18670560D194C35A519943150650BBBE0CBDB2A47A1E41817DA69112F996A9898E11F1D79EF51C041BD57C1686B81E7F9DFCCFFBAB000\",\n    
             \"work\": \"13ae0ea3e2af9004\"\n    
          }\n",  
@@ -401,8 +408,6 @@ Send state blocks have special fields "is_send" & "subtype"
 ---
 
 ## Running Nano as a service
-
-* See [this GitHub gist for a tutorial on getting nano_node running on an Ubuntu EC2 instance](https://gist.github.com/numtel/96dd51106f0e7e25c50dcf4a4f119499).
 
 There are 3 different ways to enable RPC for the node:
 
@@ -429,7 +434,7 @@ There are 3 different ways to enable RPC for the node:
 * `ipc`.`tcp`.`enable` = **true**
 * `ipc`.`tcp`.`port` == `ipc_port` of `rpc_config.json`
 
-The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#example-configjson-file)  & [rpc_config.json](/running-a-node/configuration/#example-rpc_configjson-file) (V19.0+) after first launch.
+The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#configjson)  & [rpc_config.json](/running-a-node/configuration/#rpc_configjson) (V19.0+) after first launch.
 
     ./nano_node --daemon  
     sed -i 's/"rpc_enable": "false"/"rpc_enable": "true"/g' ~/Nano/config.json   
