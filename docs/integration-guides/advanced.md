@@ -377,7 +377,7 @@ For details on configuring the HTTP callback within a node, see the [HTTP callba
          }\n",  
     "amount": "2500000000000000000000000000000"  
 }
-```  
+```
 
 Send state blocks have special fields "is_send" & "subtype"   
 ```json

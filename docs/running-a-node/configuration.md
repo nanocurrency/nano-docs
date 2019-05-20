@@ -173,8 +173,6 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 !!! note ""
     Available in Version 19.0+ only
 
-Websockets can be configured for accepting notifications about block confirmation and voting, with additional plans for more option and filters in the future.
-
 ```json
 "node": {
     "websocket": {
@@ -203,8 +201,6 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 
 !!! tip
 	When possible, using the [websockets](#websocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
-
----
 
 ## rpc_config.json
 
@@ -236,7 +232,3 @@ This is the configuration that controls how the RPC server connects and behaves 
 ---
 
 --8<-- "network-details.md"
-
----
-
-

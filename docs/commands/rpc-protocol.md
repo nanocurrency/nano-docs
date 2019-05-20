@@ -3397,7 +3397,6 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
 }
 ```   
 
-
 ---
 
 ### wallet_work_get
