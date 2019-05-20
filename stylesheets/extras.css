@@ -44,6 +44,16 @@
 }
 */
 
+/*tighten up table padding*/
+.md-typeset table:not([class]) td {
+    padding: 0.6rem 0.6rem;
+}
+
+.md-typeset table:not([class]) th {
+    padding: 0.6rem 0.6rem;
+    min-width: 50px;
+}
+
 .md-typeset {
     font-size: 0.7rem;
     line-height: 1.8;
