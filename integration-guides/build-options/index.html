@@ -3,7 +3,7 @@
   }
   ga.l = +new Date
   /* Setup integration and send page view */
-  ga("create", "UA-XXXXXXXX-X", "auto")
+  ga("create", "UA-140489311-1", "auto")
   ga("set", "anonymizeIp", true)
   ga("send", "pageview")
   /* Register handler to log search on blur */
@@ -38,14 +38,14 @@ sudo yum install nanocurrency
 <p><strong>OS Binaries</strong><br />
 Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released and can be found at <a href="https://beta.nano.org">https://beta.nano.org</a>. Go to the <a href="/running-a-node/beta-network/">Beta Network page</a> for more details.</p>
 <p><strong>Other sources</strong><br />
-The beta node can be also be installed from other sources including <a href="/running-a-node/beta-netowork#pulling-the-docker-image">Docker</a> and RHEL/CentOS rpm:
+The beta node can be also be installed from other sources including <a href="/running-a-node/beta-network#pulling-the-docker-image">Docker</a> and RHEL/CentOS rpm:
 <div class="codehilite"><pre><span></span>sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
 sudo yum install nanocurrency-beta
 </pre></div></p>
 <p>This installs <code>nano_node-beta</code> to bin.</p>
 <h2 id="nano-folder">Nano Folder<a class="headerlink" href="#nano-folder" title="Permanent link">&para;</a></h2>
 <h3 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">&para;</a></h3>
-<p>The Nano folder contains: wallets file (wallets.ldb), <a href="/running-a-node/troubleshooting/#log-files">log files</a>, ledger file (data.ldb), config file (<a href="/running-a-node/configuration/#configuration-file">config.json</a>) and related lock files.</p>
+<p>The Nano folder contains: wallets file (wallets.ldb), <a href="/running-a-node/troubleshooting/#log-files">log files</a>, ledger file (data.ldb), config file (<a href="/running-a-node/configuration/#configjson">config.json</a>) and related lock files.</p>
 <h3 id="locations">Locations<a class="headerlink" href="#locations" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -159,7 +159,7 @@ WantedBy=multi-user.target
 <p><strong>Check Status</strong>
 <div class="codehilite"><pre><span></span>nano_node --debug_block_count
 </pre></div>
-This will show you how far along the node is to syncing the blocks. You can compare this to the current block count at <a href="https://www.nanode.co/blocks">https://www.nanode.co/blocks</a> to see how far along the syncing process your are</p>
+This will show you how far along the node is to syncing the blocks. You can compare this to the current block count from Aggregate Network Stats at <a href="https://nanocrawler.cc/network">https://nanocrawler.cc/network</a> to see how far along the syncing process your are.</p>
 <h3 id="qt-wallet">QT Wallet<a class="headerlink" href="#qt-wallet" title="Permanent link">&para;</a></h3>
 <p><strong>Install dependencies</strong></p>
 <div class="codehilite"><pre><span></span>sudo apt-get update &amp;&amp; sudo apt-get upgrade
@@ -315,7 +315,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 </ul>
 <p><strong>Beta Network Participation</strong></p>
 <ul>
-<li>More information can be found <a href="https://beta.nano.org">Here</a></li>
+<li>More information can be found on the <a href="/running-a-node/beta-network/">Beta Network page</a></li>
 <li>To run a node on the beta network, set CMake variable: <code>-DACTIVE_NETWORK=nano_beta_network</code></li>
 </ul>
 <hr />
@@ -446,4 +446,4 @@ git submodule update --init --recursive
 cmake -DBOOST_ROOT=../[boost]/ -G &quot;Unix Makefiles&quot;
 make
 ./nano_node/nano_node --daemon
-</pre></div></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../key-management/" title="Key Management" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Key Management</span></div></a><a href="../advanced/" title="Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>Advanced</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>  <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>  <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>  <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>  <a href="https://medium/nanocurrency" class="md-footer-social__link fa fa-medium"></a>  <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>  <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>  <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>  <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a> </div></div></div></footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script></body></html>
+</pre></div></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../key-management/" title="Key Management" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Key Management</span></div></a><a href="../advanced/" title="Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>Advanced</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>  <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>  <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>  <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>  <a href="https://medium.com/nanocurrency" class="md-footer-social__link fa fa-medium"></a>  <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>  <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>  <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>  <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a> </div></div></div></footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script></body></html>
