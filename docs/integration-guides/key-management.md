@@ -60,7 +60,7 @@ Before crediting funds to an account internally based on a deposit on the networ
 
 ##### Block callback
 
-Setup the config file with the necessary information to receive [HTTP callbacks](/running-a-node/configuration/#http-callback) for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are `callback_address`, `callback_port` and `callback_target` in the [config.json](/running-a-node/configuration#example-configjson-file) file.
+Setup the config file with the necessary information to receive [HTTP callbacks](/running-a-node/configuration/#http-callback) for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are `callback_address`, `callback_port` and `callback_target` in the [config.json](/running-a-node/configuration#configjson) file.
 
 To provide redundancy around callback function it is recommended to also use confirmation history polling outlined below.
 

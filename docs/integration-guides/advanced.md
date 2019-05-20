@@ -434,7 +434,7 @@ There are 3 different ways to enable RPC for the node:
 * `ipc`.`tcp`.`enable` = **true**
 * `ipc`.`tcp`.`port` == `ipc_port` of `rpc_config.json`
 
-The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#example-configjson-file)  & [rpc_config.json](/running-a-node/configuration/#example-rpc_configjson-file) (V19.0+) after first launch.
+The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#configjson)  & [rpc_config.json](/running-a-node/configuration/#rpc_configjson) (V19.0+) after first launch.
 
     ./nano_node --daemon  
     sed -i 's/"rpc_enable": "false"/"rpc_enable": "true"/g' ~/Nano/config.json   
