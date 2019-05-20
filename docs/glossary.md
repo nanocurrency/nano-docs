@@ -48,7 +48,7 @@ A Proof-of-Work is a piece of data which satisfies certain requirements and is d
 When the delta between the two successive blocks of a root is > 50% of the online voting weight
 
 #### rebroadcasting representative
-A Nano account with >= 0.1% (133,248.290903662 NANO) voting weight delegated to it. When configured on a node which is online, it will rebroadcast votes for each block to it's peers to help the network reach consensus.
+A Nano account with >= 0.1% (133,248.290903662 NANO) voting weight delegated to it. When configured on a node which is online, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
 
 #### representative
 A Nano account with > 0 voting weight delegated to it. Unlike [rebroadcasting representatives](#rebroadcasting-representative), when configured on a node which is online it will not send out votes and thus won't participate in network-wide consensus.

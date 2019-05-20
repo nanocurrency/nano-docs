@@ -147,7 +147,7 @@ Because each block contains the current state of the account, the `"type"` of th
 | signature      | 64-Byte HEX           | ED25519+Blake2b 512-bit signature |
 
 
-Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/docs/commands/rpc-protocol#block-create) RPC calls:
+Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/commands/rpc-protocol#block_create) RPC command:
 
 | Action  | Type | Description                                | Example |
 |         |      |                                            |         |

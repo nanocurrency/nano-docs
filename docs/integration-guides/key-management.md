@@ -47,7 +47,7 @@ For larger, more robust systems, external private key management is recommended.
 3. Broadcast the signed transaction to the network.
 
 !!! note
-    [WALLET\_IDs](/glossary#wallet_id) are not used for External Private Key Management since private keys are not stored in the nano\_node. Much of this section builds off of the [Universal Blocks](/integration-guides/the-basics#universal-state-blocks/) documentation.
+    [WALLET\_IDs](/integration-guides/the-basics/#wallet-id) are not used for External Private Key Management since private keys are not stored in the nano\_node. Much of this section builds off of the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
 ---
 ### External accounting systems
@@ -60,17 +60,17 @@ Before crediting funds to an account internally based on a deposit on the networ
 
 ##### Block callback
 
-Setup the config file with the necessary information to receive [RPC callbacks](/commands/rpc-protocol#rpc-callback) for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are `callback_address`, `callback_port` and `callback_target` in the [config.json](/running-a-node/configuration#example-configjson-file) file.
+Setup the config file with the necessary information to receive [HTTP callbacks](/running-a-node/configuration/#http-callback) for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are `callback_address`, `callback_port` and `callback_target` in the [config.json](/running-a-node/configuration#example-configjson-file) file.
 
 To provide redundancy around callback function it is recommended to also use confirmation history polling outlined below.
 
 ##### Confirmation history polling
 
-Calls to [`confirmation_history`](/commands/rpc-protocol#confirmation-history) RPC command will return a list of up to 2048 recently confirmed blocks which can be searched for the necessary hashes you wish to verify confirmation for. Consistent polling of `confirmation_history` is recommended to capture confirmations on all blocks on the network.
+Calls to [`confirmation_history`](/commands/rpc-protocol#confirmation_history) RPC command will return a list of up to 2048 recently confirmed blocks which can be searched for the necessary hashes you wish to verify confirmation for. Consistent polling of `confirmation_history` is recommended to capture confirmations on all blocks on the network.
 
 ##### Block confirmation request
 
-If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the [`block_confirm`](/commands/rpc-protocol#block-confirm) RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.
+If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the [`block_confirm`](/commands/rpc-protocol#block_confirm) RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.
 
 #### Tracking confirmed balances
 
@@ -101,7 +101,7 @@ cat /dev/urandom | tr -dc '0-9A-F' | head -c${1:-64}
 ```
 
 !!! example "Step 2: Expand private key"
-    From the private key, a public key can be derived, and the public key can be translated into a Nano Address using the [`key_expand`](/commands/rpc-protocol#key-expand) RPC command.
+    From the private key, a public key can be derived, and the public key can be translated into a Nano Address using the [`key_expand`](/commands/rpc-protocol#key_expand) RPC command.
 
 ##### Request Example
 
@@ -131,7 +131,7 @@ Using external keys, transactions are generated in two steps: creation and broad
 #### Send Transaction
 
 !!! example "Step 1: Get Account Info"
-    To send funds to an account, first call the [`account_info`](/commands/rpc-protocol#account-information) RPC command to gather necessary account information to craft your transaction. Setting `"representative": "true"` makes the nano\_node also return the account's representative address, a necessary piece of data for creating a transaction.
+    To send funds to an account, first call the [`account_info`](/commands/rpc-protocol#account_info) RPC command to gather necessary account information to craft your transaction. Setting `"representative": "true"` makes the nano\_node also return the account's representative address, a necessary piece of data for creating a transaction.
     
 ##### Request Example
 
@@ -160,7 +160,7 @@ curl -d '{
 !!! example "Step 2: Build `block_create` request"
     Using details from the `account_info` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request.
 
-    For more details on values, see [Universal Blocks specification](/protocol-design/universal-state-blocks).
+    For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
     | Field              | Value |
     |                    |       |
@@ -209,29 +209,29 @@ curl -d '{
 !!! info "Additional details"
     * The newlines (`"\n"`) in the response are for display purposes only and are ignored.
     * Always ensure that every quotation mark is properly escaped.
-    * [`block_create`](/commands/rpc-protocol#block-create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly escaped for the [`process`](/commands/rpc-protocol#process) RPC command.
+    * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly escaped for the [`process`](/commands/rpc-protocol#process) RPC command.
     * The nano\_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano\_node knows is that it is creating a block whose previous block on the account chain has hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` results in the account having a balance of `3618869000000000000000000000000`.
     * If the account's balance at block hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` was actually `5618869000000000000000000000000`, then 2 $nano$ would have been sent to `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
 
 !!! question "What if I receive funds on my account and then broadcast the above crafted send? Would this result in me sending excess funds to the recipient?"
-    If you followed this guide, then the answer is "no". When you issued the [`account_info`](/commands/rpc-protocol#account-info) RPC command, you received the account's balance at a specific blockhash on its account-chain. In your crafted transaction, you specify that hash in the `"previous"` field. If funds were signed into your account, the headblock on your account-chain would change. Since your send no longer refers to the headblock on your account-chain when broadcasted, the network would reject your transaction.
+    If you followed this guide, then the answer is "no". When you issued the [`account_info`](/commands/rpc-protocol#account_info) RPC command, you received the account's balance at a specific blockhash on its account-chain. In your crafted transaction, you specify that hash in the `"previous"` field. If funds were signed into your account, the headblock on your account-chain would change. Since your send no longer refers to the headblock on your account-chain when broadcasted, the network would reject your transaction.
 
 !!! warning
-    Since only the resulting balance is recorded, the transaction amount is interpreted as the difference in balance from the previous block on the account-chain and the newly created block. For this reason, it is crucial that you obtain the current account balance and headblock in the same atomic [`account_info`](/commands/rpc-protocol#account-info) RPC command.
+    Since only the resulting balance is recorded, the transaction amount is interpreted as the difference in balance from the previous block on the account-chain and the newly created block. For this reason, it is crucial that you obtain the current account balance and headblock in the same atomic [`account_info`](/commands/rpc-protocol#account_info) RPC command.
 
     When not following this guide closely, the following **inappropriate sequence of events could lead to erroneous amounts sent** to a recipient.
 
-    1. An account's balance, say 5 $nano$, was obtained using the [`account_balance`](/commands/rpc-protocol#account-balance) RPC command (**never use this command for transaction related operations**). This balance is valid as of hypothetical **BLOCK_A**.
+    1. An account's balance, say 5 $nano$, was obtained using the [`account_balance`](/commands/rpc-protocol#account_balance) RPC command (**never use this command for transaction related operations**). This balance is valid as of hypothetical **BLOCK_A**.
     1. By another process you control, a receive (**BLOCK_B**) was signed and broadcasted into your account-chain (race-condition).
     * Lets say this `receive` increased the funds on the account chain by 10 $nano$, resulting in a final balance 15 $nano$.
-    1. The account's frontier block is obtained by the [`accounts_frontiers`](/commands/rpc-protocol#accounts-frontiers) RPC command, returning the hash of **BLOCK_B**. Other transaction metadata is obtained by other RPC commands.
+    1. The account's frontier block is obtained by the [`accounts_frontiers`](/commands/rpc-protocol#accounts_frontiers) RPC command, returning the hash of **BLOCK_B**. Other transaction metadata is obtained by other RPC commands.
     1. With the collected data, if a send transaction was created for 3 $nano$, the final balance would be computed as $5 - 3$, or 2 $nano$.
     1. When this is broadcasted, since it is referring to the current head block on the account, **BLOCK_B**, the network would accept it. But, because the balance as of **BLOCK_B** was actually 15 $nano$, this would result in 12 $nano$ being sent to the recipient.
 
-    For this reason, **only populate transaction data source from a single [`account_info`](/commands/rpc-protocol#account-info) RPC call**.
+    For this reason, **only populate transaction data source from a single [`account_info`](/commands/rpc-protocol#account_info) RPC call**.
 
 !!! example "Step 3: Broadcast the transaction"
-    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting a Transaction](#broadcasting-a-transaction) section.
+    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 ---
 
@@ -267,7 +267,7 @@ curl -d '{
 !!! example "Step 2: Build `block_create` request"
     Using details from the `account_info` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The two differences between the send transaction are the `"link"` and `"balance"` fields.
 
-    For more details on values, see [Universal Blocks specification](/protocol-design/universal-state-blocks).
+    For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
     | Field              | Value |
     |                    |       |
@@ -321,7 +321,7 @@ curl -d '{
     * Final balance becomes 11618869000000000000000000000000 $raw$
 
 !!! example "Step 3: Broadcast the transaction"
-    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting a Transaction](#broadcasting-a-transaction) section.
+    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 !!! info "Manually receiving first block"
     The very first transaction on an account-chain, which is always a receive, is a bit special since it doesn't have a `"previous"` block. The process however, is very similar to a conventional receive transaction.
@@ -340,7 +340,7 @@ curl -d '{
 ### Broadcasting Transactions
 
 !!! example "Broadcast using [`process`](/commands/rpc-protocol/#process) RPC command"
-    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process` RPC command](/commands/rpc-protocol#process-block) which accepts the block as stringified JSON data. A successful broadcast will return the broadcasted block's hash.
+    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. A successful broadcast will return the broadcasted block's hash.
 
 ##### Request Example
 ```bash
@@ -369,7 +369,7 @@ curl -d '{
 !!! info
     Below are a few helpful pieces of information to consider:
 
-    * It may take a few seconds for the transaction to appear. If the transaction fails to appear, you may call the same [process](/commands/rpc-protocol#process-block) RPC command with the same block data with no risk. Account-chains must be **continuous and unbroken**.
+    * It may take a few seconds for the transaction to appear. If the transaction fails to appear, you may call the same [`process`](/commands/rpc-protocol#process) RPC command with the same block data with no risk. Account-chains must be **continuous and unbroken**.
     * If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the `"previous"` field in the transaction data refers to a non-existant block.
     * If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.
 
@@ -541,7 +541,7 @@ Response if the seed field contains non-hexidecimal values or is too long:
 
 ### Account Create
 
-After creating a wallet, it's corresponding WALLET\_ID, and **backing up the seed (not the wallet\_id)**, the wallet can be populated with accounts. To create a new account in a wallet:
+After creating a wallet, it's corresponding WALLET\_ID, and **backing up the seed (not the wallet\_id)**, the wallet can be populated with accounts. To create a new account in a wallet use the [`account_create`](/commands/rpc-protocol#account_create) RPC command:
 
 ##### Request Format
 
@@ -572,7 +572,7 @@ curl -d '{
 
 ### Bulk Account Create
 
-To generate many accounts in bulk, it is more efficient to create them all at once using the [`accounts_create`](/commands/rpc-protocol#accounts-create) RPC command:
+To generate many accounts in bulk, it is more efficient to create them all at once using the [`accounts_create`](/commands/rpc-protocol#accounts_create) RPC command:
 
 ##### Request Format
 

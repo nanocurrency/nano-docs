@@ -132,7 +132,7 @@ This is the main configuration file for controlling node behavior. Below is an e
 ### Configuration options
 
 #### work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work-generate) 
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). 
 ```json
 "work_peers": [
     "::ffff:127.0.0.1:7076"

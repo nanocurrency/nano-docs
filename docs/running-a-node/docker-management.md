@@ -97,7 +97,7 @@ CONTAINER ID        IMAGE               COMMAND                 CREATED         
 
 #### Updating the Docker Image
 
-First, [stop the container](#stopping-the-container) if it is running.
+First, [stop the container](#stopping) if it is running.
 
 ```bash
 docker stop ${NANO_NAME}
@@ -115,13 +115,13 @@ Or pull the Nano Node tagged with "V18.0" from Dockerhub
 docker pull nanocurrency/nano:V18.0
 ```
 
-Lastly, we [start up the docker container again](#starting-the-container) using the same command.
+Lastly, we [start up the docker container again](#starting) using the same command.
 
 ---
 
 ### Updating Node Configuration
 
-First, [stop the container](#stopping-the-container) if it is running.
+First, [stop the container](#stopping) if it is running.
 
 ```bash
 docker stop ${NANO_NAME}
@@ -132,7 +132,7 @@ docker stop ${NANO_NAME}
 
 You may now edit the [config.json file](/running-a-node/configuration/#configuration-file) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
 
-Once modifications are complete, [start up the docker container again](#starting-the-container) using the same command.
+Once modifications are complete, [start up the docker container again](#starting) using the same command.
 
 ---
 
