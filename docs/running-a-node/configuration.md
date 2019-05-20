@@ -183,7 +183,7 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 
 *Version 19.0+*
 
-```
+```json
 "node": {
     "websocket": {
         "enable": "true",
@@ -194,5 +194,22 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 ```
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
+
+#### HTTP callback
+
+```json
+"node": {
+	"callback_address": "::ffff:127.0.0.1",
+	"callback_port": "17076",
+	"callback_target": "/"
+}
+```
+
+JSON POST requests with every confirmed block are sent to the callback server as defined in the config values above: `http://callback_address:callback_port<callback_target>`. Callback target should include a leading slash.
+
+For details on how to integrate using the HTTP callback, see the [HTTP Callback section of the Integration Guides](/integration-guides/advanced#http-callback).
+
+!!! tip
+	When possible, using the [websockets](#websocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
 
 

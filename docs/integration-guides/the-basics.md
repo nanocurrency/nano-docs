@@ -82,24 +82,24 @@ The reason this is necessary is because we want to store information about each 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
 ### Seed
-This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatentation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
+This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatentation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
 Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to 2^32 - 1 (because the index value is a unsigned 32 bit integer).
 
 Wallet implementations will commonly start from index 0 and increment it by 1 each time you create a new account so that recovering accounts is as easy as importing the seed and then repeating this account creation process.
 
-### Private Key
+### Account private key
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string(0-9A-F). It can either be random (an *ad-hoc key*) or derived from a seed, as described above. This is what represents control of a specific account on the ledger. If you know or can know the private key of someone's account, you can transact as if you own that account.
 
-### Public Key
-This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from a *private key* by using the ed25519 curve using blake2b as the hash function (instead of sha). Usually public keys will not be passed around in this form, however.
+### Account public key
+This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from an *account private key* by using the ed25519 curve using blake2b as the hash function (instead of sha). Usually account public keys will not be passed around in this form, rather the below address is used.
 
-### Account number/identifier
-This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`, then has 52 characters which are the *public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the public key to aid in discovering typos, also encoded with the same base32 scheme.
+### Account public address
+This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the account public key to aid in discovering typos, also encoded with the same base32 scheme.
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
 
-| Prefix  | Public Key                                             | Checksum   |
+| Prefix  | Encoded Account Public Key                             | Checksum   |
 |         |                                                        |            |
 | `nano_` | `1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjt` | `wnqposrs` |
 
