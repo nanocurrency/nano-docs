@@ -1,152 +1,28 @@
-<!--
-Link references
--->
-[Nano public address]: /integration-guides/the-basics/#account-numberidentifier
-[block hash]: /glossary/#block-hash
-
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
 
 | Section | Purpose |
 |         |         |
-| <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
 | <span class="no-break">**[Node RPCs](#node-rpc)**</span>                        | For interacting with the node and ledger. |
 | <span class="no-break">**[Wallet RPCs](#wallet-rpc)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
+| <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
 | <span class="no-break">**[Deprecated RPCs](#deprecated-rpcs)**</span>           | No longer recommended for use. |
-
-## Unit Conversion RPCs
-
----
-
-### krai_from_raw   
-Divide a raw amount down by the krai ratio.  
-Request:  
-```
-{  
-  "action": "krai_from_raw",  
-  "amount": "1000000000000000000000000000"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1"  
-}
-```
-
----
-
-### krai_to_raw    
-Multiply an krai amount by the krai ratio.  
-Request:  
-```
-{  
-  "action": "krai_to_raw",  
-  "amount": "1"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1000000000000000000000000000"  
-}
-```
-
----
-
-### mrai_from_raw    
-Divide a raw amount down by the Mrai ratio.  
-Request:  
-```
-{  
-  "action": "mrai_from_raw",  
-  "amount": "1000000000000000000000000000000"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1"  
-}
-```
-
----
-
-### mrai_to_raw    
-Multiply an Mrai amount by the Mrai ratio.  
-Request:  
-```
-{  
-  "action": "mrai_to_raw",  
-  "amount": "1"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1000000000000000000000000000000"  
-}
-```
-
----
-
-### rai_from_raw    
-Divide a raw amount down by the rai ratio.  
-Request:  
-```
-{  
-  "action": "rai_from_raw",  
-  "amount": "1000000000000000000000000"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1"  
-}
-```
-
----
-
-### rai_to_raw   
-Multiply an rai amount by the rai ratio.  
-Request:  
-```
-{  
-  "action": "rai_to_raw",  
-  "amount": "1"
-}
-```  
-Response:  
-```
-{  
-  "amount": "1000000000000000000000000"  
-}
-```
-
----
 
 ## Node RPCs
 
 ---
 
-### account_balance  
-Balance information for account in raw
+### account_balance 
+Returns how many RAW is owned and how many have not yet been received by **account**  
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account` | All  | Yes | [Nano public address] | | Account balance is being requested for |
-
-**Request**
-```json
+**Request:**
+```json 
 {  
   "action": "account_balance",  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```
 
-**Response**  
+**Response:**
 ```json
 {  
   "balance": "10000",  
@@ -154,23 +30,12 @@ Balance information for account in raw
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
-| `balance` | All | integer | Current balance for account in raw |
-| `pending` | All | integer | Amount in raw of pending transactions for account |
-
 ---
 
 ### account_block_count
-Number of blocks for the specified account
+Get number of blocks for a specific **account**  
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account` | All  | Yes | [Nano public address] | | Account block count is being requested for |
-
-**Request**  
+**Request:**
 ```json
 {  
   "action": "account_block_count",  
@@ -178,31 +43,28 @@ Number of blocks for the specified account
 }
 ```
 
-**Response** 
+**Response:**
 ```json
 {  
   "block_count" : "19"  
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
-| `block_count` | All | integer | Total number of blocks in the ledger for the account, includes confirmed and unconfirmed blocks |
-
 ---
 
 ### account_get
 Get account number for the **public key**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_get",  
   "key": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"  
 }
 ```
 
-Response:  
-```
+**Response:**
+```json
 {  
   "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
@@ -214,8 +76,9 @@ Response:
 
 Reports send/receive information for an account. Returns only **send & receive** blocks by default (unless raw is set to true - see optional parameters below): change, state change & state epoch blocks are skipped, open & state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". **Note**: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0   
 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_history",  
   "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
@@ -223,8 +86,8 @@ Request:
 }
 ```
 
-Response:  
-```
+**Response:**
+```json
 {  
     "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",   
     "history": [   
@@ -253,29 +116,17 @@ If the `count` limit results in stopping before the end of the account chain, th
 ---
 
 ### account_info
-Important information from the local database for the provided account. Only works for accounts that have an entry on the ledger.
+Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  
 
-**Parameters**
-
-| Key | Version | Required | Type | Default | Description |
-|     |         |          |      |         |             |
-| `account`        | All  | Yes | [Nano public address] |       | Account information is being requested for |
-| `representative` | 9.0+ | No  | boolean               | false | Include `representative` in response |
-| `weight`         | 9.0+ | No  | boolean               | false | Include `weight` in response |
-| `pending`        | 9.0+ | No  | boolean               | false | Include `pending` in response |
-
-**Request**
+**Request:**
 ```json
 {  
   "action": "account_info",  
-  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",  
-  "representative": "true",  
-  "weight": "true",  
-  "pending": "true"   
+  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
 }
 ```
 
-**Response**
+**Response:**
 ```json
 {  
     "frontier": "FF84533A571D953A596EA401FD41743AC85D04F406E76FDE4408EAED50B473C5",   
@@ -285,46 +136,56 @@ Important information from the local database for the provided account. Only wor
     "modified_timestamp": "1501793775",   
     "block_count": "33",   
     "confirmation_height" : "28",
-    "account_version": "1",
-    "representative": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",   
-    "weight": "1105577030935649664609129644855132177",   
-    "pending": "2309370929000000000000000000000000" 
+    "account_version": "1"   
 }
 ```
 
-| Key | Version | Type | Description |
-|     |         |        |             | 
-| `frontier`             | All   | [block hash] | Frontier (head) block hash for account |
-| `open_block`           | All   | [block hash] | First block on account |
-| `representative_block` | All   | [block hash] | Block the current representative for the account was set in |
-| `balance`              | All   | integer      | Current balance for account in raw |
-| `modified_timestamp`   | All   | integer      | UNIX timestamp of latest local modification to account |
-| `block_count`          | All   | integer      | Count of number of blocks on the account |
-| `confirmation_height`  | 19.0+ | integer      | Block height of the most recently confirmed block |
-| `account_version`      | All   | integer      | Version 1 = upgraded to consolidated blocks containing account state<br />Version 0 = legacy blocks allowed |
-| `representative`       | 9.0+  | [Nano public address] | Representative address currently set for the account |
-| `weight`               | 9.0+  | integer               | Voting weight of the representative set for the account |
-| `pending`              | 9.0+  | integer               | Amount in raw of pending transactions for account |
+In response `confirmation_height` only available for _version 19.0+_ 
 
-**Errors**
+**Optional "representative", "weight", "pending"**
+_version 9.0+_   
+Booleans, false by default. Additionally returns representative, voting weight, pending balance for account   
 
-| Error message | Reason |
-|               |        |
-| `Account not found` | Account does not have entry in the ledger |
+**Request:**
+```json
+{  
+  "action": "account_info",  
+  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",    
+  "representative": "true",  
+  "weight": "true",  
+  "pending": "true"  
+}
+```
+
+**Response:**
+```json
+{  
+    "frontier": "FF84533A571D953A596EA401FD41743AC85D04F406E76FDE4408EAED50B473C5",   
+    "open_block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",   
+    "representative_block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",   
+    "balance": "235580100176034320859259343606608761791",   
+    "modified_timestamp": "1501793775",   
+    "block_count": "33",   
+    "representative": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",   
+    "weight": "1105577030935649664609129644855132177",   
+    "pending": "2309370929000000000000000000000000"   
+}
+```
 
 ---
 
 ### account_key
 Get the public key for **account**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_key",  
   "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "key": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"  
 }
@@ -334,15 +195,16 @@ Response:
 
 ### account_representative 
 Returns the representative for **account**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_representative",  
   "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "representative" : "xrb_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
@@ -352,15 +214,16 @@ Response:
 
 ### account_weight  
 Returns the voting weight for **account**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_weight",  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "weight": "10000"  
 }
@@ -370,15 +233,16 @@ Response:
 
 ### accounts_balances  
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_balances",  
   "accounts": ["xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "balances" : {  
     "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
@@ -397,19 +261,18 @@ Response:
 
 ---
 
-
-
 ### accounts_frontiers  
 Returns a list of pairs of account and block hash representing the head block for **accounts list**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_frontiers",  
   "accounts": ["xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "frontiers" : {  
     "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A",  
@@ -422,16 +285,17 @@ Response:
 
 ### accounts_pending  
 Returns a list of block hashes which have not yet been received by these **accounts**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": 1
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
@@ -442,8 +306,9 @@ Response:
 **Optional "threshold"**  
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
@@ -451,8 +316,8 @@ Request:
   "threshold": "1000000000000000000000000"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
@@ -466,8 +331,9 @@ Response:
 **Optional "source"**  
 _version 9.0+_   
 Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
@@ -475,8 +341,8 @@ Request:
   "source": "true"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
@@ -497,8 +363,9 @@ Response:
 
 _version 15.0+_   
 Boolean, false by default. Include active (not confirmed) blocks    
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
@@ -521,14 +388,15 @@ Boolean, false by default. Only returns block which have their confirmation heig
 
 ### available_supply  
 Returns how many raw are in the public supply  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "available_supply"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "available": "133248061996216572282917317807824970865"  
 }
@@ -538,15 +406,16 @@ Response:
 
 ### block_account  
 Returns the account containing block  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "block_account",  
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
@@ -556,16 +425,17 @@ Response:
 
 ### block_confirm   
 _version 12.2+_   
-Request confirmation for **block** from known online representative nodes. Check results with [Confirmation history](#confirmation-history)   
-Request:  
-```
+Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history)   
+
+**Request:**
+```json
 {  
   "action": "block_confirm",  
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "started": "1"  
 }
@@ -575,14 +445,15 @@ Response:
 
 ### block_count  
 Reports the number of blocks in the ledger and unchecked synchronizing blocks   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "block_count"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "count": "1000",  
   "unchecked": "10"  
@@ -593,14 +464,15 @@ Response:
 
 ### block_count_type  
 Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "block_count_type"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
     "send": "5016664",
     "receive": "4081228",
@@ -619,8 +491,8 @@ _enable_control required, version 9.0+_
 Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing.  
    
 
-Request sample for **state block**:  
-```
+**Request sample for state block:**  
+```json
 {  
   "action": "block_create",   
   "type": "state",   
@@ -631,16 +503,17 @@ Request sample for **state block**:
   "previous": "F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4"   
 }
 ```  
-Parameters for **state block**:
-* balance: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
-* wallet (optional): The wallet ID that the account the block is being created for is in.
-* account (optional): The account the block is being created for (xrb_youraccount).
-* key (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
-* source (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
-* destination (optional): The account that the sent funds should be accessible to.
-* link (optional): Instead of using "source" & "destination" parameters, you can directly pass "link" (source to receive or destination public key to send).
-* representative: The account that block account will use as its representative.
-* previous: The block hash of the previous block on this account's block chain ("0" for first block).
+Parameters for state block:
+
+* `balance`: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
+* `wallet` (optional): The wallet ID that the account the block is being created for is in.
+* `account` (optional): The account the block is being created for (xrb_youraccount).
+* `key` (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
+* `source` (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
+* `destination` (optional): The account that the sent funds should be accessible to.
+* `link` (optional): Instead of using "source" & "destination" parameters, you can directly pass "link" (source to receive or destination public key to send).
+* `representative`: The account that block account will use as its representative.
+* `previous`: The block hash of the previous block on this account's block chain ("0" for first block).
 
 **Warning:** It is **critical** that `balance` is the balance of the account **after** created block!
 
@@ -651,8 +524,8 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 
 **Examples**
 
-Response sample for **state block**:  
-```
+**Response sample for state block**:  
+```json
 {  
    "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",   
    "block": "{\n    
@@ -668,115 +541,7 @@ Response sample for **state block**:
    }\n"
 }
 ```  
-   
-Request sample for **open block**:  
-```
-{  
-  "action": "block_create",  
-  "type": "open",  
-  "key": "0000000000000000000000000000000000000000000000000000000000000001",   
-  "account": "xrb_3kdbxitaj7f6mrir6miiwtw4muhcc58e6tn5st6rfaxsdnb7gr4roudwn951",   
-  "representative": "xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1",   
-  "source": "19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858"   
-}
-```  
-Parameters for **open block**:
-* wallet (optional): The wallet ID that the account account the block is being created for is in.
-* key (optional): Instead of using "wallet" parameter, you can directly pass in a private key.
-* account: The account the block is being created for (xrb_youraccount)
-* source: The block hash of the source of funds for this receive block (the send block that this receive block will pocket)
-* representative: The account that the newly created account will use as its representative.
-
-Response sample for **open block**:  
-```
-{  
-  "hash": "F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4",
-  "block": "{\n    \"type\": \"open\",\n    \"source\": \"19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858\",\n    \"representative\": \"xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1\",\n    \"account\": \"xrb_3kdbxitaj7f6mrir6miiwtw4muhcc58e6tn5st6rfaxsdnb7gr4roudwn951\",\n    \"work\": \"4ec76c9bda2325ed\",\n    \"signature\": \"5974324F8CC42DA56F62FC212A17886BDCB18DE363D04DA84EEDC99CB4A33919D14A2CF9DE9D534FAA6D0B91D01F0622205D898293525E692586C84F2DCF9208\"\n}\n"   
-}
-```  
-Request sample for **receive block**:  
-```
-{  
-  "action": "block_create",  
-  "type": "receive",  
-  "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
-  "account": "xrb_3kdbxitaj7f6mrir6miiwtw4muhcc58e6tn5st6rfaxsdnb7gr4roudwn951",   
-  "source": "19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858",   
-  "previous": "F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4"
-}
-```  
-Parameters for **receive block**:
-* wallet (optional): The wallet ID that the account account the block is being created for is in.
-* key (optional): Instead of using "wallet" parameter, you can directly pass in a private key.
-* account: The account the block is being created for (xrb_youraccount)
-* source: The block hash of the source of funds for this receive block (the send block that this receive block will pocket)
-* previous: The block hash of the previous block on this account's block chain.
-
-Response sample for **receive block**:  
-```
-{  
-  "hash": "314BA8D9057678C1F53371C2DB3026C1FAC01EC8E7802FD9A2E8130FC523429E",
-  "block": "{\n    \"type\": \"receive\",\n    \"previous\": \"F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4\",\n    \"source\": \"19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858\",\n    \"work\": \"6acb5dd43a38d76a\",\n    \"signature\": \"A13FD22527771667D5DFF33D69787D734836A3561D8A490C1F4917A05D77EA09860461D5FBFC99246A4EAB5627F119AD477598E22EE021C4711FACF4F3C80D0E\"\n}\n"   
-}
-```  
-Request sample for **send block**:  
-```
-{  
-  "action": "block_create",  
-  "type": "send",  
-  "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
-  "account": "xrb_3kdbxitaj7f6mrir6miiwtw4muhcc58e6tn5st6rfaxsdnb7gr4roudwn951",   
-  "destination": "xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc",   
-  "balance": "20000000000000000000000000000000",   
-  "amount": "10000000000000000000000000000000",   
-  "previous": "314BA8D9057678C1F53371C2DB3026C1FAC01EC8E7802FD9A2E8130FC523429E"  
-}
-```  
-Parameters for **send block**:
-* wallet (optional): The wallet ID that the account account the block is being created for is in.
-* key (optional): Instead of using "wallet" parameter, you can directly pass in a private key.
-* account: The account the block is being created for (xrb_youraccount)
-* destination: The account that the sent funds should be accessible to
-* balance: The **current balance** of the account that the send is originating from, formatted in 'raw' units using a decimal integer.
-* amount: The amount being sent (must be less than or equal to balance), formatted in 'raw' units using a decimal integer.
-* previous: The block hash of the previous block on this account's block chain.
-
-**Warning:** It is **critical** that `balance` is the balance of the account at the `previous` block. If this is not the case, then the amount sent will be different than the `amount` parameter. This is because send blocks contain the balance after the send, so nano_node uses `balance - amount`. If balance is 1 Nano less than it should be, then 1 Nano more will be sent than should be.
-
-Response sample for **send block**:  
-```
-{  
-  "hash": "F958305C0FF0551421D4ABEDCCF302079D020A0A3833E33F185E2B0415D4567A",   
-  "block": "{\n    \"type\": \"send\",\n    \"previous\": \"314BA8D9057678C1F53371C2DB3026C1FAC01EC8E7802FD9A2E8130FC523429E\",\n    \"destination\": \"xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    \"balance\": \"0000007E37BE2022C0914B2680000000\",\n    \"work\": \"478563b2d9facfd4\",\n    \"signature\": \"F19CA177EFA8692C8CBF7478CE3213F56E4A85DF760DA7A9E69141849831F8FD79BA9ED89CEC807B690FB4AA42D5008F9DBA7115E63C935401F1F0EFA547BC00\"\n}\n"   
-}
-```  
-In the response, the balance field contains the funds that will be left in the sending account afterwards (original balance minus amount sent), formatted in a 32 digit (128bit) zerofilled HEX number.  
-
-Request sample for **change block**:  
-```
-{  
-  "action": "block_create",  
-  "type": "change",  
-  "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
-  "account": "xrb_3kdbxitaj7f6mrir6miiwtw4muhcc58e6tn5st6rfaxsdnb7gr4roudwn951",   
-  "representative": "xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc",     
-  "previous": "F958305C0FF0551421D4ABEDCCF302079D020A0A3833E33F185E2B0415D4567A"  
-}
-```  
-Parameters for **change block**:
-* wallet (optional): The wallet ID that the account account the block is being created for is in.
-* key (optional): Instead of using "wallet" parameter, you can directly pass in a private key.
-* account: The account the block is being created for (xrb_youraccount)
-* representative: The account that the newly created account will use as its representative.
-* previous: The block hash of the previous block on this account's block chain.
-
-Response sample for **change block**:  
-```
-{  
-  "hash": "654FA425CEBFC9E7726089E4EDE7A105462D93DBC915FFB70B50909920A7D286",  
-  "block": "{\n    \"type\": \"change\",\n    \"previous\": \"F958305C0FF0551421D4ABEDCCF302079D020A0A3833E33F185E2B0415D4567A\",\n    \"representative\": \"xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    \"work\": \"55e5b7a83edc3f4f\",\n    \"signature\": \"98B4D56881D9A88B170A6B2976AE21900C26A27F0E2C338D93FDED56183B73D19AA5BEB48E43FCBB8FF8293FDD368CEF50600FECEFD490A0855ED702ED209E04\"\n}\n"  
-}
-```  
+ 
 **Optional "work"**
 
 Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
@@ -786,8 +551,9 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 ### block_hash  
 _version 13.0+_   
 Returning block hash for given **block** content   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "block_hash",     
   "block": "{\n    
@@ -803,8 +569,8 @@ Request:
    }\n"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
    "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17"   
 }
@@ -821,15 +587,16 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 Retrieves a json representation of **block**  
 _Returns block account, amount, balance, block height in account chain & local timestamp since version 18.0_  
 _Returns confirmation status & subtype for state block since version 19.0_  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "block_info",  
   "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
   "amount": "30000000000000000000000000000000000",  
@@ -852,7 +619,7 @@ Response:
 }
 ```
 
-Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 Mxrb](https://github.com/nanocurrency/nano-node/wiki/Distribution,-Mining-and-Units)) when the block is a *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
+Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 Mnano](/protocol-design/distribution-and-units/)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
 
 **Optional "json_block"**
 
@@ -863,15 +630,16 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 ### blocks  
 Retrieves a json representations of **blocks**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "blocks",  
   "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {  
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": "{\n    
@@ -893,15 +661,16 @@ Response:
 
 ### blocks_info   
 Retrieves a json representations of **blocks** with block **account**, transaction **amount**, block **balance**, block **height** in account chain, block local modification **timstamp**, block **confirmation status** (since version 19.0), **subtype** (for state blocks since version 19.0)
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "blocks_info",  
   "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {   
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {   
@@ -932,8 +701,9 @@ Response:
 _pending, source: version 9.0+_
 _balance: version 12.0+_
 Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "blocks_info",  
   "hashes": ["E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"],
@@ -942,8 +712,8 @@ Request:
   "balance": "true"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {   
     "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3": {   
@@ -966,16 +736,17 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 ### bootstrap  
 Initialize bootstrap to specific **IP address** and **port**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "bootstrap",  
   "address": "::ffff:138.201.94.249",  
   "port": "7075"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "success": ""  
 }
@@ -985,14 +756,15 @@ Response:
 
 ### bootstrap_any  
 Initialize multi-connection bootstrap to random peers   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "bootstrap_any"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "success": ""  
 }
@@ -1003,15 +775,16 @@ Response:
 ### bootstrap_lazy  
 _version 17.0+_   
 Initialize lazy bootstrap with given block **hash**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "bootstrap_lazy",  
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "started": "1"  
 }
@@ -1023,17 +796,20 @@ Boolean, false by default. Manually force closing of all current bootstraps
 ---
 
 ### bootstrap_status  
-_version 17.0+    
-This is an internal/diagnostic RPC, do not rely on its interface being stable_   
+_version 17.0+_
+
+--8<-- "debug-only-command.md"
+
 Returning status of current bootstrap attempt
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "bootstrap_status"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
     "clients": "5790",   
     "pulls": "141065",   
@@ -1057,16 +833,17 @@ Response:
 
 ### chain  
 Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Will list all blocks back to the open block of this chain when count is set to "-1". The requested block hash is included in the answer.  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "chain",
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "count": "1"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks" : [  
   "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
@@ -1095,14 +872,15 @@ Returns list of active elections roots (excluding stopped & aborted elections). 
     * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
     * Other blocks: previous hash + previous hash
 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "confirmation_active"      
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
    "confirmations": [
        "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"   
@@ -1118,15 +896,19 @@ Number, 0 by default. Returns only active elections with equal or higher announc
 
 ### confirmation_height_currently_processing
 _version 19.0+_
-Returns the hash of the block which is having the confirmation height set for, error otherwise. Debug/Unstable. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed.
-Request:  
-```
+
+--8<-- "debug-only-command.md"
+
+Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed.
+
+**Request:**
+```json
 {  
   "action": "confirmation_height_currently_processing"      
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
@@ -1138,14 +920,15 @@ Response:
 _version 12.0+  
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "confirmation_history"      
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
    "confirmation_stats": {    
         "count": "2",  
@@ -1194,15 +977,16 @@ Returns info about active election by **root**. Including announcements count, l
     * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
     * Other blocks: previous hash + previous hash
 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "confirmation_info",    
   "root": "F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
     "announcements": "1",   
     "last_winner": "36CC459675E9FB2DB960C330BAFECB50132DB0394E83C14C7D1359ACB17F5BD2",   
@@ -1228,16 +1012,17 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 **Optional "representatives"**
 
 Boolean, false by default. Returns list of votes representatives & its weights for each block   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "confirmation_info",    
   "root": "F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44",   
   "representatives": "true"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
     "announcements": "1",   
     "last_winner": "36CC459675E9FB2DB960C330BAFECB50132DB0394E83C14C7D1359ACB17F5BD2",   
@@ -1262,14 +1047,15 @@ Response:
 ### confirmation_quorum  
 _version 16.0+_   
 Returns information about node elections settings & observed network state: delta tally required to rollback block, percentage of online weight for delta, minimum online weight to confirm block, currently observed online total weight, known peers total weight   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "confirmation_quorum"      
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
     "quorum_delta": "41469707173777717318245825935516662250",   
     "online_weight_quorum_percent": "50",   
@@ -1294,18 +1080,72 @@ The effective peer stake needed for quorum. Per v19, this field is computed as `
 
 ---
 
+### database_txn_tracker
+_v19.0+_  
+
+--8<-- "debug-only-command.md"
+  
+Returns a list of open database transactions which are equal or greater than the `min_read_time` or `min_write_time` for reads and read-writes respectively.  
+
+**Request:**
+```json
+{
+  "action": "database_txn_tracker",
+  "min_read_time" : "1000"
+  "min_write_time" : "0"
+}
+```
+**Response on Windows/Debug:**  
+```json
+{
+    "txn_tracking": [
+        {
+            "thread": "Blck processing",  // Which thread held the transaction
+            "time_held_open": "2",        // Seconds the transaction has currently been held open for
+            "write": "true",              // If true it is a write lock, otherwise false.
+            "stacktrace": [
+                ...
+                {
+                    "name": "nano::mdb_store::tx_begin_write",
+                    "address": "00007FF7142C5F86",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\lmdb.cpp",
+                    "source_line": "825"
+                },
+                {
+                    "name": "nano::block_processor::process_batch",
+                    "address": "00007FF714121EEA",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\blockprocessor.cpp",
+                    "source_line": "243"
+                },
+                {
+                    "name": "nano::block_processor::process_blocks",
+                    "address": "00007FF71411F8A6",
+                    "source_file": "c:\\users\\wesley\\documents\\raiblocks\\nano\\node\\blockprocessor.cpp",
+                    "source_line": "103"
+                },
+                ...
+            ]
+        }
+        ....
+    ]
+}
+```
+
+---
+
 ### delegators  
 _version 8.0+_   
 Returns a list of pairs of delegator names given **account** a representative and its balance  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "delegators",    
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
    "delegators": {   
         "xrb_13bqhi1cdqq8yb9szneoc38qk899d58i5rcrgdk5mkdm86hekpoez3zxw5sd": "500000000000000000000000000000000000",   
@@ -1319,15 +1159,16 @@ Response:
 ### delegators_count  
 _version 8.0+_   
 Get number of delegators for a specific representative **account**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "delegators_count",    
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
    "count": "2"   
 }
@@ -1337,16 +1178,17 @@ Response:
 
 ### deterministic_key  
 Derive deterministic keypair from **seed** based on **index**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "deterministic_key",
   "seed": "0000000000000000000000000000000000000000000000000000000000000000",  
   "index": "0"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "private": "9F0E444C69F77A49BD0BE89DB92C38FE713E0963165CCA12FAF5712D7657120F",  
   "public": "C008B814A7D269A1FA3C6528B19201A24D797912DB9996FF02A1FF356E45552B",  
@@ -1358,14 +1200,15 @@ Response:
 
 ### frontier_count  
 Reports the number of accounts in the ledger  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "frontier_count"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "count": "920471"  
 }
@@ -1375,16 +1218,17 @@ Response:
 
 ### frontiers  
 Returns a list of pairs of account and block hash representing the head block starting at **account** up to **count**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "frontiers",
   "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",  
   "count": "1"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "frontiers" : {  
   "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
@@ -1397,16 +1241,17 @@ Response:
 ### keepalive  
 _enable_control required_  
 Tells the node to send a keepalive packet to **address**:**port**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "keepalive",
   "address": "::ffff:192.169.0.1",
   "port": "1024"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {      
 }
 ```
@@ -1415,14 +1260,15 @@ Response:
 
 ### key_create 
 Generates an **adhoc random keypair**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "key_create"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",  
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",  
@@ -1434,15 +1280,16 @@ Response:
 
 ### key_expand  
 Derive public key and account number from **private key**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "key_expand",  
   "key": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",  
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",  
@@ -1455,16 +1302,17 @@ Response:
 ### ledger
 _enable_control required, version 9.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at **account** up to **count**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "ledger",  
   "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
   "count": "1"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts": {   
     "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
@@ -1481,8 +1329,9 @@ Response:
 **Optional "representative", "weight", "pending"**
 
 Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "ledger",  
   "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
@@ -1492,8 +1341,8 @@ Request:
   "pending": "true"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts": {   
     "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
@@ -1523,17 +1372,20 @@ NOTE: The "count" option is ignored if "sorting" is specified
 ---
 
 ### node_id
-_enable_control required, version 17.0+    
-This is an internal/diagnostic RPC, do not rely on its interface being stable_   
-Derive prive, public keys and account number from node ID
-Request:  
-```
+_enable_control required, version 17.0+_ 
+
+--8<-- "debug-only-command.md"
+ 
+Derive private key, public key and account number from node ID
+
+**Request:**
+```json
 {  
     "action": "node_id"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "private": "2AD75C9DC20EA497E41722290C4DC966ECC4D6C75CAA4E447961F918FD73D8C7",  
     "public": "78B11E1777B8E7DF9090004376C3EDE008E84680A497C0805F68CA5928626E1C",  
@@ -1544,17 +1396,20 @@ Response:
 ---
 
 ### node_id_delete
-_enable_control required, version 17.0+    
-This is an internal/diagnostic RPC, do not rely on its interface being stable_   
+_enable_control required, version 17.0+_
+
+--8<-- "debug-only-command.md"
+
 Removing node ID (restart required to take effect)
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "node_id_delete"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "deleted": "1"  
 }
@@ -1564,23 +1419,25 @@ Response:
 
 ### peers  
 Returns a list of pairs of online peer IPv6:port and its node protocol network version    
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "peers" 
 }
 ```  
-_version 8.0+_   
-Response:  
-```
+ 
+**Response version 8.0+:**
+```json
 {
     "peers": {  
         "[::ffff:172.17.0.1]:32841": "16"  
     }  
 }
 ```   
-Response before 8.0+:  
-```
+
+**Response before version 8.0:**
+```json
 {
     "peers": [  
         "[::ffff:172.17.0.1]:32841"  
@@ -1591,8 +1448,8 @@ Response before 8.0+:
 
 _version 18.0+_   
 Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID    
-Response:  
-```
+**Response:**
+```json
 {
     "peers": {  
         "[::ffff:172.17.0.1]:32841": {  
@@ -1606,16 +1463,18 @@ Response:
 ---
 
 ### pending  
-Returns a list of block hashes which have not yet been received by this account.  
-```
+Returns a list of block hashes which have not yet been received by this account.
+
+**Request:**
+```json
 {  
   "action": "pending",
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
   "count": "1"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks" : [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]  
 }
@@ -1627,8 +1486,9 @@ Number. Determines limit of number of blocks to return.
 
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "pending",  
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
@@ -1636,20 +1496,20 @@ Request:
   "threshold": "1000000000000000000000000"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {    
         "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": "6000000000000000000000000000000"    
     }  
 }
 ```  
-**Optional "source"**
-**
+**Optional "source"**  
 _version 9.0+_   
 Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "pending",  
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
@@ -1657,8 +1517,8 @@ Request:
   "source": "true"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {    
         "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": {   
@@ -1672,8 +1532,9 @@ Response:
 
 _version 15.0+_   
 Boolean, false by default. Include active blocks without finished confirmations 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "pending",  
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
@@ -1688,7 +1549,7 @@ Boolean, false by default. Additionally sorts the blocks by their amounts in des
 
 **Optional "include_only_confirmed"**
 
-_version 19.0+_
+_version 19.0+_  
 Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
 
 ---
@@ -1696,15 +1557,16 @@ Boolean, false by default. Only returns block which have their confirmation heig
 ### pending_exists  
 _version 8.0+_   
 Check whether block is pending by **hash**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "pending_exists",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "exists" : "1"
 }
@@ -1714,26 +1576,28 @@ Response:
 
 _version 15.0+_   
 Boolean, false by default. Include active blocks without finished confirmations 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "pending_exists",  
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" 
+  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F", 
   "include_active": "true"   
 }
 ```  
 
 **Optional "include_only_confirmed"**
 
-_version 19.0+_
+_version 19.0+_  
 Boolean, false by default. Only returns hashes which have their confirmation height set or are undergoing confirmation height processing.
 
 ---
 
 ### process  
 Publish **block** to the network  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "process",  
   "block": "{   
@@ -1749,8 +1613,8 @@ Request:
   }"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"   
 }
@@ -1774,14 +1638,15 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 
 ### representatives  
 Returns a list of pairs of representative and its voting weight  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "representatives"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "representatives" : {  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": "3822372327060170000000000000000000000",  
@@ -1807,14 +1672,15 @@ NOTE: The "count" option is ignored if "sorting" is specified
 ### representatives_online  
 _version 18.0+_   
 Returns a list of online representative accounts that have voted recently  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "representatives_online"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "representatives" : [  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
@@ -1825,8 +1691,8 @@ Response:
 ```
 _versions 11.2–17.1_   
 Returns a list of pairs of online representative accounts that have voted recently and empty strings  
-Response:  
-```
+**Response:**
+```json
 {    
   "representatives" : {  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": "",  
@@ -1838,9 +1704,9 @@ Response:
 **Optional "weight"**
 
 _version 17.0+_   
-Boolean, false by default. Returns voting weight for each representative.
-Response:  
-```
+Boolean, false by default. Returns voting weight for each representative.  
+**Response:**
+```json
 {    
   "representatives" : {  
     "xrb_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": {
@@ -1854,15 +1720,16 @@ Response:
 
 ### republish  
 Rebroadcast blocks starting at **hash** to the network    
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "republish",    
   "hash": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks": [   
      "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",   
@@ -1875,8 +1742,9 @@ Response:
 
 _version 8.0+_   
 Boolean, false by default. Additionally rebroadcast source chain blocks for receive/open up to **sources** depth   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "republish",    
   "hash": "90D0C16AC92DD35814E84BFBCC739A039615D0A42A76EF44ADAEF1D99E9F8A35",    
@@ -1884,8 +1752,8 @@ Request:
   "sources": "2"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks": [   
       "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",   
@@ -1899,8 +1767,9 @@ Response:
 
 _version 8.0+_   
 Boolean, false by default. Additionally rebroadcast destination chain blocks from receive up to **destinations** depth   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "republish",    
   "hash": "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293",    
@@ -1908,8 +1777,8 @@ Request:
   "destinations": "2"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks": [   
       "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293",   
@@ -1924,8 +1793,9 @@ Response:
 ### sign
 _version 18.0+_  
 Signing provided **block** with private **key** or key of **account** from **wallet**
-Request 1:
-```
+
+**Request with private key:**
+```json
 {
   "action": "sign",  
   "key": "1D3759BB2CA187A66875D3B8497624159A576FD315E07F702B99B92BC59FC14A",  
@@ -1942,8 +1812,9 @@ Request 1:
   }"   
 }
 ```
-Request 2:
-```
+
+**Request with account from wallet:**
+```json
 {
   "action": "sign",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -1961,8 +1832,8 @@ Request 2:
   }"   
 }
 ```
-Response:  
-```
+**Response:**
+```json
 {  
   "signature": "2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D",  
   "block": "{   
@@ -1985,17 +1856,18 @@ _version 19.0+_
 Default "false". If "true", the input "block" must contain a JSON subtree instead of a JSON string. In addition, the response block will be a JSON subtree.
 
 
-**Optional sign block hash**
+**Optional sign block hash**  
 _Requires config.json modification. Set "enable_sign_hash" to "true"_  
-Request:
-```
+
+**Request:**
+```json
 {
   "action": "sign",  
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "signature": "2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D"   
 }
@@ -2005,18 +1877,18 @@ Response:
 
 ### stats
 _version 12.2+_  
-For configuration and other details, please see [Statistics](https://github.com/nanocurrency/nano-node/wiki/Statistics)
+For configuration and other details, please see [Statistics from RPC](/running-a-node/troubleshooting/#statistics-from-rpc)
 
-Request counters:
-```
+**Request counters:**
+```json
 {
     "action": "stats",
     "type": "counters"
 }
 ```
 
-Counters response:
-```
+**Counters response:**
+```json
 {
     "type": "counters",
     "created": "2018.03.29 01:46:36",
@@ -2042,16 +1914,16 @@ Counters response:
 
 _version 18.0+ also returns "stat_duration_seconds": the number of seconds since startup or since the last "stats_clear" call_
 
-Request samples:
-```
+**Request samples:**
+```json
 {
     "action": "stats",
     "type": "samples"
 }
 ```
 
-Samples response:
-```
+**Samples response:**
+```json
 {
     "type": "samples",
     "created": "2018.03.29 01:47:08",
@@ -2077,17 +1949,16 @@ Samples response:
 _version 18.0+_  
 NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed.
 
-Request objects:
-
-```
+**Request objects:**
+```json
 {
     "action": "stats",
     "type": "objects"
 }
 ```
 
-Objects response:
-```
+**Objects response:**
+```json
 {
     "node": {
         "ledger": {
@@ -2095,7 +1966,7 @@ Objects response:
                 "count": "125",
                 "size": "7000"
             }
-        }
+        },
         "peers": {
             "peers": {
                 "count": "38",
@@ -2106,8 +1977,6 @@ Objects response:
                 "size": "3800"
             },
         },
-        .
-        .
         ...
     }
 }
@@ -2117,16 +1986,18 @@ Objects response:
 
 ### stats_clear
 _version 18.0+_
+
 Clears all collected statistics. The "stat_duration_seconds" value in the "stats" action is also reset.
 
-Request:
-```
+
+**Request:**
+```json
 {
   "action": "stats_clear"
 }
 ```  
-Response: 
-```
+**Response:**
+```json
 {  
   "success": ""  
 }
@@ -2137,14 +2008,15 @@ Response:
 ### stop   
 _enable_control required_  
 Method to safely shutdown node  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "stop"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "success": ""  
 }
@@ -2154,16 +2026,17 @@ Response:
 
 ### successors  
 Returns a list of block hashes in the account chain starting at **block** up to **count** (direction from open block up to frontier, from older blocks to newer). Will list all blocks up to frontier (latest block) of this chain when count is set to "-1". The requested block hash is included in the answer.    
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "successors",
   "block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",  
   "count": "1"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks" : [  
   "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948"  
@@ -2184,15 +2057,16 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 
 ### validate_account_number 
 Check whether **account** is a valid account number using checksum  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "validate_account_number",  
   "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "valid" : "1"
 }
@@ -2203,14 +2077,15 @@ Response:
 ### version 
 Returns version information for RPC, Store, Protocol (network) & Node (Major & Minor version)  
 _RPC Version always returns "1" as of 01/11/2018_  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "version" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "rpc_version" : "1",
   "store_version": "11",
@@ -2224,15 +2099,16 @@ Response:
 ### unchecked  
 _version 8.0+_   
 Returns a list of pairs of unchecked synchronizing block hash and its json representation up to **count**          
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "unchecked",
   "count": "1" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "blocks": {  
        "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": "{\n    
@@ -2255,14 +2131,15 @@ Response:
 ### unchecked_clear   
 _enable_control required, version 8.0+_     
 Clear unchecked synchronizing blocks   
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "unchecked_clear"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "success": ""  
 }
@@ -2273,15 +2150,16 @@ Response:
 ### unchecked_get  
 _version 8.0+_  
 Retrieves a json representation of unchecked synchronizing block by **hash**     
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "unchecked_get",  
   "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "contents" : "{\n    
          \"type\": \"state\",\n
@@ -2306,16 +2184,17 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 ### unchecked_keys   
 _version 8.0+_   
 Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "unchecked_keys",
   "key": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E",   
   "count": "1" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "unchecked": [
        { 
@@ -2349,37 +2228,39 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 _enable_control required, version 19.0+_   
 
 Returns the total pending balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
-Request:  
-  ```   
+
+**Request:**
+```json
   {   
     "action": "unopened",   
     "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
     "count": "1"   
   }   
-  ```   
+```   
 
-Response:   
-  ```   
+**Response:**
+```json 
   {   
     "accounts": {   
       "xrb_1111111111111111111111111111111111111111111111111111hifc8npp": "207034077034226183413773082289554618448"   
     }   
   }   
-  ```   
+```   
 
 ---
 
 ### uptime   
 _version 18.0+_   
 Return node uptime in seconds  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "uptime"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "seconds": "6000"
 }
@@ -2390,15 +2271,16 @@ Response:
 ### work_cancel
 _enable_control required_  
 Stop generating **work** for block  
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_cancel",  
     "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
 }
 ```  
@@ -2408,15 +2290,16 @@ Response:
 ### work_generate
 _enable_control required_  
 Generates **work** for block  
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_generate",  
     "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "work": "2bf29ef00786a6bc"  
 }
@@ -2438,16 +2321,17 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 ### work_peer_add  
 _enable_control required, version 8.0+_     
 Add specific **IP address** and **port** as work peer for node until restart   
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_peer_add",  
     "address": "::ffff:172.17.0.1",  
     "port": "7076" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "success": ""  
 }
@@ -2457,14 +2341,15 @@ Response:
 
 ### work_peers   
 _enable_control required, version 8.0+_     
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_peers"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "work_peers": [   
         "::ffff:172.17.0.1:7076"   
@@ -2477,14 +2362,15 @@ Response:
 ### work_peers_clear  
 _enable_control required, version 8.0+_     
 Clear work peers node list until restart   
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_peers_clear"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "success": ""  
 }
@@ -2494,16 +2380,17 @@ Response:
 
 ### work_validate 
 Check whether **work** is valid for block  
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_validate",  
     "work": "2bf29ef00786a6bc",  
     "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "valid": "1",
     "value": "ffffffd21c3933f4",
@@ -2511,7 +2398,7 @@ Response:
 }
 ```
 
-*Since version 19.0+: The response also includes the work value in hexadecimal format, and a multiplier from the base difficulty (not from the optionally given difficulty).*
+*Since version 19.0+:* The response also includes the work `value` in hexadecimal format, and a `multiplier` from the base difficulty (not from the optionally given difficulty).
 
 **Optional "difficulty"**
 
@@ -2530,16 +2417,17 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 ### account_create  
 _enable_control required_  
 Creates a new account, insert next deterministic key in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_create",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```
   
-Response:  
-```
+**Response:**
+```json
 {  
   "account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
@@ -2548,8 +2436,9 @@ Response:
 
 _version 18.0+_  
 unset by default. Indicates which index to create account for starting with 0  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_create",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2561,8 +2450,9 @@ Request:
 
 _version 9.0+_  
 Boolean, true by default. Setting false disables work generation after creating account  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_create",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2574,15 +2464,16 @@ Request:
 
 ### account_list  
 Lists all the accounts inside **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_list",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts" : [
   "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
@@ -2595,8 +2486,9 @@ Response:
 ### account_move  
 _enable_control required_  
 Moves **accounts** from **source** to **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_move",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2606,8 +2498,8 @@ Request:
   ]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "moved" : "1"
 }
@@ -2618,16 +2510,17 @@ Response:
 ### account_remove
 _enable_control required_  
 Remove **account** from **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_remove",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "removed": "1"
 }
@@ -2638,8 +2531,9 @@ Response:
 ### account_representative_set  
 _enable_control required_  
 Sets the representative for **account** in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "account_representative_set",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2647,8 +2541,8 @@ Request:
   "representative" : "xrb_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
@@ -2663,16 +2557,17 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 ### accounts_create  
 _enable_control required, version 9.0+_  
 Creates new accounts, insert next deterministic keys in **wallet** up to **count**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_create",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "count": "2"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts": [    
      "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",   
@@ -2683,8 +2578,9 @@ Response:
 **Optional enabling work generation**  
 _version 11.2+_  
 Boolean, false by default. Enables work generation after creating accounts  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "accounts_create",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2704,40 +2600,37 @@ See [block_create](#block_create) Node RPC command above
 ### password_change  
 _enable_control required_  
 Changes the password for **wallet** to **password**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "password_change",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "password": "test"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "changed" : "1"
 }
-```   
-**Optional "count"**
-Number. Determines limit of number of blocks to return.
-
-**Optional "threshold"**
->>>>>>> a74a850db5ef97500ec445de317bdc8bd3f05b44
+```
 
 ---
 
 ### password_enter  
 Enters the **password** in to **wallet** to unlock it  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "password_enter",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "password": "test"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "valid" : "1"
 }
@@ -2747,15 +2640,16 @@ Response:
 
 ### password_valid  
 Checks whether the password entered for **wallet** is valid  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "password_valid",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "valid" : "1"
 }
@@ -2766,8 +2660,9 @@ Response:
 ### receive  
 _enable_control required_  
 Receive pending **block** for **account** in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "receive",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2775,8 +2670,8 @@ Request:
   "block": "53EAA25CE28FA0E6D55EA9704B32604A736966255948594D55CBB05267CECD48"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "block": "EE5286AB32F580AB65FD84A69E107C69FBEB571DEC4D99297E19E3FA5529547B"  
 }
@@ -2791,14 +2686,15 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 ### receive_minimum  
 _enable_control required, version 8.0+_   
 Returns receive minimum for node wallet  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "receive_minimum"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "amount": "1000000000000000000000000"  
 }
@@ -2809,15 +2705,16 @@ Response:
 ### receive_minimum_set  
 _enable_control required, version 8.0+_   
 Set **amount** as new receive minimum for node wallet until restart  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "receive_minimum_set",  
   "amount": "1000000000000000000000000000000"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "success": ""  
 }
@@ -2828,15 +2725,16 @@ Response:
 ### search_pending  
 _enable_control required_  
 Tells the node to look for pending blocks for any account in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "search_pending",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "started": "1"  
 }
@@ -2848,14 +2746,15 @@ Response:
 ### search_pending_all  
 _enable_control required, version 8.0+_  
 Tells the node to look for pending blocks for any account in all available wallets  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "search_pending_all"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {
   "success": ""  
 }
@@ -2866,8 +2765,9 @@ Response:
 ### send  
 _enable_control required_  
 Send **amount** from **source** in **wallet** to **destination**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2876,15 +2776,15 @@ Request:
   "amount": "1000000"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```
-Proof of Work is precomputed for **one** transaction in the background.  If it has been a while since your last transaction it will send instantly, the next one will need to wait for Proof of Work to be generated.
+Proof of Work is precomputed for **one** transaction in the background when you are using the node wallet to track accounts.  If it has been a while since your last transaction it will send instantly, the next one will need to wait for Proof of Work to be generated.
 
-If the request times out, then the send may or may not have gone through. Most exchange "double withdraw" bugs are caused because a request was incorrectly retried. If you want to the ability to retry a failed send, all send calls must specify the id parameter as follows
+If the request times out, then the send may or may not have gone through. If you want to the ability to retry a failed send, all send calls must specify the id parameter as follows
 
 **Highly recommended "id"**
 
@@ -2896,8 +2796,9 @@ If you accidentally reuse an id, the send will not go through (it will be seen a
 
 Using the same id for requests with different parameters (wallet, source, destination, and amount) is undefined behavior and may result in an error in the future.
 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2907,8 +2808,8 @@ Request:
   "id": "7081e2b8fec9146e"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
@@ -2916,14 +2817,13 @@ Response:
 
 Sending the request again will yield the same block, and will not affect the ledger.
 
-In the future, the response may also indicate if the block is new. However, that has not yet been implemented.
-
 **Optional "work"**
 
 _version 9.0+_  
 Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2944,16 +2844,17 @@ See [sign](#sign) Node RPC command above
 ### wallet_add  
 _enable_control required_  
 Add an adhoc private key **key** to **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_add",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "key": "34F0A37AAD20F4A260F0A5B3CB3D7FB50673212263E58A380BC10474BB039CE4"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
@@ -2962,8 +2863,9 @@ Response:
 
 _version 9.0+_  
 Boolean, false by default. Disables work generation after adding account  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_add",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2977,8 +2879,9 @@ Request:
 ### wallet_add_watch  
 _enable_control required, version 11.0+_  
 Add watch-only **accounts** to **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_add_watch",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
@@ -2988,8 +2891,8 @@ Request:
   ]  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "success" : ""
 }
@@ -2998,16 +2901,17 @@ Response:
 ---
 
 ### wallet_balances  
-Returns how many rai is owned and how many have not yet been received by all accounts in **wallet**  
-Request:  
-```
+Returns how many raw is owned and how many have not yet been received by all accounts in **wallet**  
+
+**Request:**
+```json
 {  
   "action": "wallet_balances",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "balances" : {  
     "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {  
@@ -3026,17 +2930,18 @@ Number (128 bit, decimal). Returns wallet accounts balances more or equal to **t
 
 ### wallet_change_seed  
 _enable_control required_  
-Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [Accounts create](#accounts-create)  
-Request:  
-```
+Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create)  
+
+**Request:**
+```json
 {  
   "action": "wallet_change_seed",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "seed": "74F2B37AAD20F4A260F0A5B3CB3D7FB51673212263E58A380BC10474BB039CEE"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "success" : "",  
   "last_restored_account": "xrb_1mhdfre3zczr86mp44jd3xft1g1jg66jwkjtjqixmh6eajfexxti7nxcot9c",  
@@ -3053,16 +2958,17 @@ Number, 0 by default. Manually set **count** of accounts to restore from seed
 
 ### wallet_contains  
 Check whether **wallet** contains **account**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_contains",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "exists" : "1"
 }
@@ -3073,14 +2979,15 @@ Response:
 ### wallet_create  
 _enable_control required_  
 Creates a new random wallet id  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_create" 
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "wallet" : "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
@@ -3095,15 +3002,16 @@ Seed value (64 hexadecimal digits string, 256 bit). Changes seed for a new walle
 ### wallet_destroy  
 _enable_control required_  
 Destroys **wallet** and all contained accounts  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_destroy",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "destroyed": "1"
 }
@@ -3113,15 +3021,16 @@ Response:
 
 ### wallet_export  
 Return a json representation of **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_export",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "json" : "{\"0000000000000000000000000000000000000000000000000000000000000000\": \"0000000000000000000000000000000000000000000000000000000000000001\"}"
 }
@@ -3131,15 +3040,16 @@ Response:
 
 ### wallet_frontiers  
 Returns a list of pairs of account and block hash representing the head block starting for accounts from **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_frontiers",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"    
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "frontiers" : {  
   "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
@@ -3152,15 +3062,16 @@ Response:
 ### wallet_history  
 _version 18.0+_   
 Reports send/receive information for accounts in wallet. Change blocks are skipped, open blocks will appear as receive. Response will start with most recent blocks according to local ledger.
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_history",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "history":   
   [  
@@ -3191,15 +3102,16 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 ### wallet_info  
 _version 15.0+_   
 Returns the sum of all accounts balances in **wallet**, number of accounts in wallet, number of deterministic & adhoc (non-deterministic) accounts, deterministic index (index of last account derived from seed. Equal to deterministic accounts number if no accounts were removed)   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_info",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "balance": "10000",   
   "pending": "10000",   
@@ -3215,15 +3127,16 @@ Response:
 ### wallet_ledger
 _enable_control required, version 11.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for accounts from **wallet**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_ledger",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts": {   
     "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
@@ -3240,8 +3153,9 @@ Response:
 **Optional "representative", "weight", "pending"**
 
 Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_ledger",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
@@ -3250,8 +3164,8 @@ Request:
   "pending": "true"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "accounts": {   
     "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
@@ -3277,15 +3191,16 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 ### wallet_lock   
 _enable_control required, version 9.0+_  
 Locks **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_lock",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "locked" : "1"
 }
@@ -3295,15 +3210,16 @@ Response:
 
 ### wallet_locked   
 Checks whether **wallet** is locked  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_locked",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "locked" : "0"
 }
@@ -3314,16 +3230,17 @@ Response:
 ### wallet_pending  
 _enable_control required, version 8.0+_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_pending",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"    
   "count": "1"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {  
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
@@ -3334,8 +3251,9 @@ Response:
 **Optional "threshold"**
 
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_pending",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",    
@@ -3343,8 +3261,8 @@ Request:
   "threshold": "1000000000000000000000000"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
@@ -3359,8 +3277,9 @@ Response:
 
 _version 9.0+_   
 Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_pending",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",    
@@ -3368,8 +3287,8 @@ Request:
   "source": "true"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "blocks" : {
     "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
@@ -3390,8 +3309,9 @@ Response:
 
 _version 15.0+_   
 Boolean, false by default. Include active blocks without finished confirmations 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_pending",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",    
@@ -3409,15 +3329,16 @@ Boolean, false by default. Only returns block which have their confirmation heig
 
 ### wallet_representative  
 Returns the default representative for **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_representative",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "representative" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
@@ -3428,16 +3349,17 @@ Response:
 ### wallet_representative_set  
 _enable_control required_  
 Sets the default **representative** for **wallet** _(used only for new accounts, already existing accounts use already set representatives)_  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_representative_set",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "representative": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "set": "1"
 }
@@ -3453,16 +3375,17 @@ Boolean, false by default. Change representative for existing accounts in wallet
 ### wallet_republish  
 _enable_control required, version 8.0+_   
 Rebroadcast blocks for accounts from **wallet** starting at frontier down to **count** to the network     
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "wallet_republish",    
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "2"   
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {    
   "blocks": [   
       "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",   
@@ -3478,15 +3401,16 @@ Response:
 ### wallet_work_get
 _enable_control required, version 8.0+_     
 Returns a list of pairs of account and work from **wallet**   
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "wallet_work_get",  
     "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
    "works": {
        "xrb_1111111111111111111111111111111111111111111111111111hifc8npp": "432e5cf728c90f4f"   
@@ -3499,16 +3423,17 @@ Response:
 ### work_get
 _enable_control required, version 8.0+_     
 Retrieves work for **account** in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_get",  
     "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
     "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "work": "432e5cf728c90f4f"  
 }
@@ -3519,8 +3444,9 @@ Response:
 ### work_set
 _enable_control required, version 8.0+_     
 Set **work** for **account** in **wallet**  
-Request:  
-```
+
+**Request:**
+```json
 {  
     "action": "work_set",  
     "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
@@ -3528,12 +3454,130 @@ Request:
     "work": "0000000000000000"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
     "success": ""  
 }
 ```  
+
+---
+
+## Unit Conversion RPCs
+
+---
+
+### krai_from_raw   
+Divide a raw amount down by the krai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "krai_from_raw",  
+  "amount": "1000000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1"  
+}
+```
+
+---
+
+### krai_to_raw    
+Multiply an krai amount by the krai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "krai_to_raw",  
+  "amount": "1"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1000000000000000000000000000"  
+}
+```
+
+---
+
+### mrai_from_raw    
+Divide a raw amount down by the Mrai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "mrai_from_raw",  
+  "amount": "1000000000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1"  
+}
+```
+
+---
+
+### mrai_to_raw    
+Multiply an Mrai amount by the Mrai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "mrai_to_raw",  
+  "amount": "1"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1000000000000000000000000000000"  
+}
+```
+
+---
+
+### rai_from_raw    
+Divide a raw amount down by the rai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "rai_from_raw",  
+  "amount": "1000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1"  
+}
+```
+
+---
+
+### rai_to_raw   
+Multiply an rai amount by the rai ratio.  
+
+**Request:**
+```json
+{  
+  "action": "rai_to_raw",  
+  "amount": "1"
+}
+```  
+**Response:**
+```json
+{  
+  "amount": "1000000000000000000000000"  
+}
+```
 
 ---
 
@@ -3550,15 +3594,16 @@ Response:
 ### payment_begin   
 **_Deprecated_**, to be removed in version 22  
 Begin a new payment session. Searches wallet for an account that's marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned.  
-Request:  
-```
+
+**Request:**
+```json
 {  
 "action": "payment_begin",  
 "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
 "account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
@@ -3569,16 +3614,17 @@ Response:
 ### payment_end  
 **_Deprecated_**, to be removed in version 22  
 End a payment session.  Marks the account as available for use in a payment session. 
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "payment_end",  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
   "wallet": "FFFD1BAEC8EC20814BBB9059B393051AAA8380F9B5A2E6B2489A277D81789EEE"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {}
 ```   
 
@@ -3587,15 +3633,16 @@ Response:
 ### payment_init  
 **_Deprecated_**, to be removed in version 22  
 Marks all accounts in wallet as available for being used as a payment session.  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "payment_init",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "status" : "Ready"  
 }
@@ -3606,8 +3653,9 @@ Response:
 ### payment_wait  
 **_Deprecated_**, to be removed in version 22  
 Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseconds have elapsed.  
-Request:  
-```
+
+**Request:**
+```json
 {  
   "action": "payment_wait",  
   "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
@@ -3615,8 +3663,8 @@ Request:
   "timeout": "1000"  
 }
 ```  
-Response:  
-```
+**Response:**
+```json
 {  
   "status" : "success"  
 }

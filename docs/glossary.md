@@ -27,7 +27,13 @@ During initial sync, the nano\_node requests old transactions to independently v
 
 #### election
 
+#### frontier
+The most recent block added to the account chain. Also called the head block. Can be either confirmed or unconfirmed.
+
 #### genesis
+
+#### head block
+See [frontier](#frontier)
 
 #### inbound send
 A block with funds being transferred to an [account](#account) owned by a [wallet](#wallet) on your node

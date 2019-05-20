@@ -23,6 +23,7 @@ nav:
     - Docker Management: running-a-node/docker-management.md
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
+    - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
