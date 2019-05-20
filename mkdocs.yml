@@ -41,7 +41,7 @@ nav:
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
   - Glossary: glossary.md
 google_analytics:
-  - 'UA-XXXXXXXX-X'
+  - 'UA-140489311-1'
   - 'auto'
 markdown_extensions:
   - admonition
