@@ -17,7 +17,7 @@ Once a block sending funds is confirmed by the network, the transaction goes int
 
 ### Lightweight, stateful blocks
 
-Nano uses [Universal (State) Blocks](/glossary#universal-blocks) contain all the information about an account at point in time: account number, balance, representative.
+Nano uses [Universal (State) Blocks](/glossary#universal-blocks) contain all the information about an account at that point in time: account number, balance, representative.
 
 Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which is a Quality-of-Service prioritization mechanism allowing occasional, average user transactions to process quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
 
