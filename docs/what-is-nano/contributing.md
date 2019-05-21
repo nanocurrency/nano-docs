@@ -8,11 +8,11 @@ At the core of the Nano network are nodes that help manage and achieve consensus
 * Representative nodes publish vote message which validates transactions on the network
 * Rebroadcasting representatives are representatives who have sufficient vote weight so the network rebroadcasts their votes to other nodes
 
-Head over to the [Running a Node](/running-a-node/getting-started) section to find out more about the different node setups.
+Head over to the [Running a Node](/running-a-node/overview/) section to find out more about the different node setups.
 
 ## Building tools and services
 
-If you're a developer and want to build using Nano you've come to the right place. Learn how [Running a Node](/running-a-node/getting-started) works. If you have already started running a node, head on over to the [Integration Guides](/integration-guides/the-basics/) for some great examples that will help you in your journey. There are tons of great projects built on top of Nano: tipbots, wallets, payment processors, pay walls, payment activated hardware installations and so much more - show off what you can build!
+If you're a developer and want to build using Nano you've come to the right place. Learn how [Running a Node](/running-a-node/overview/) works. If you have already started running a node, head on over to the [Integration Guides](/integration-guides/the-basics/) for some great examples that will help you in your journey. There are tons of great projects built on top of Nano: tipbots, wallets, payment processors, pay walls, payment activated hardware installations and so much more - show off what you can build!
 
 ## Helping out further
 

@@ -8,30 +8,6 @@ The default location of standard node log files for various systems:
 | OSX     | `:::bash /Users/<user>/Library/Nano/log ` |
 | Linux   | `:::bash /home/<user>/Nano/log ` |
 
-## Missing transactions
-
-* Check if wallet status is locked. If true, unlock wallet with password
-* Check if block count is close to [nanocrawler.cc](https://nanocrawler.cc/status) > Checked Blocks.  Expect this to take a few hours to 24h or more from a brand new install - depends on bandwidth, disk performance and other factors.
-* Check for connectivity.  Advanced -> Peers -> Refresh and make sure IPs are listed
-* Check for correct wallet version.
-* Check for and disable your router's "IP Flood Detection" feature
-* Restart wallet and wait for synchronization to complete
-* Make sure accounts are not in more than one wallet
-
-## Miscellaneous errors
-
-#### Api-ms-win-crt-runtime-l1-1-0.dll missing
-
-* Install Universal C Runtime for [your Windows version](https://support.microsoft.com/en-us/help/3118401/update-for-universal-c-runtime-in-windows)
-
-#### VCRUNTIME140.dll missing
-
-* For Windows 64-bit
-[Visual C++ Redistributable for Visual Studio 2015 Update 3 (64-bit)](https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x64.exe)
-* For Windows 32-bit
-[Visual C++ Redistributable for Visual Studio 2015 Update 3 (32-bit)](https://download.microsoft.com/download/6/A/A/6AA4EDFF-645B-48C5-81CC-ED5963AEAD48/vc_redist.x86.exe)
-
-
 ## Statistics from RPC
 
 The "stats" RPC command can be used by external processes to query statistics, such as traffic counters. This is useful for diagnostics, monitoring and display in admin consoles. 

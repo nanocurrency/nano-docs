@@ -17,15 +17,15 @@ Once a block sending funds is confirmed by the network, the transaction goes int
 
 ### Lightweight, stateful blocks
 
-Nano uses [Universal (State) Blocks](/glossary#universal-blocks) contain all the information about an account at that point in time: account number, balance, representative.
+Nano uses a structure for each block which contains all the information about an account at that point in time: account number, balance, representative.
 
 Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which is a Quality-of-Service prioritization mechanism allowing occasional, average user transactions to process quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
 
-For more details, see the [Universal (State) Blocks specs](/integration-guides/the-basics/#universal-state-blocks) and [Proof-of-Work specs](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
+For more details, see the [Blocks](/integration-guides/the-basics/#blocks-specifications) and [Proof-of-Work specifications](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
 
 ### Representatives and Voting
 
-The network is comprised of nodes which can join and leave the network as they need. New nodes bootstrap their ledger from others on the network and depending on how much voting weight is delegated by users to their [representative](/glossary#representative) account, they can participate in the consensus process by voting on the validity of transactions. This consensus mechanism is a variant of Delegated Proof-of-Stake systems and is unique to the Nano network.
+The network is comprised of nodes which can join and leave the network as they need. New nodes bootstrap their ledger from others on the network and, depending on how much voting weight is delegated by users to their [representative](/glossary#representative) account, they can participate in the consensus process by voting on the validity of transactions. This consensus mechanism is a variant of Delegated Proof-of-Stake systems and is unique to the Nano network.
 
 Because Nano accounts can freely delegate their voting weight to representatives at any time, the users have more control over who has power with consensus and how decentralized the network is. With no direct monetary incentive for nodes, this removes emergent centralization forces for longer-term trending toward decentralization of the network.[^1]
 
