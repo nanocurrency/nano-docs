@@ -17,9 +17,9 @@ Once a block sending funds is confirmed by the network, the transaction goes int
 
 ### Lightweight, stateful blocks
 
-Nano uses a structure for each block which provide consistent framing, regardless of the type of transaction (send, receive, open, change representative, etc). The block size was kept small enough to fit in a single UDP packet and the addition of account balance to every block provides options in the future for efficient pruning of the ledger.
+Nano uses a structure for each block which contains all the information about an account at that point in time: account number, balance, representative.
 
-Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which helps better prioritize network resources so the average user can send occassional transactions quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
+Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which is a Quality-of-Service prioritization mechanism allowing occasional, average user transactions to process quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
 
 For more details, see the [Blocks](/integration-guides/the-basics/#blocks-specifications) and [Proof-of-Work specifications](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
 

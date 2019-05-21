@@ -4,4 +4,4 @@ Nano is designed to use the minimum amount of computing resources possible by co
 --8<-- "network-details.md"
 
 ### IPV4/IPV6 addressing
-The system is built to completely support both IPV4 and IPV6.
+The system is built to only operate on IPv6 and uses IPv4-mapped IPv6 addresses to connect to IPv4 hosts.
