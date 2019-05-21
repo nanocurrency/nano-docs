@@ -154,6 +154,5 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 
 | Item | Status | Details | Updates |
 |------|--------|---------|---------|
-| NET1 | Additional tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols | |
-
-* TCP is not currently enabled with V19 RC 1 or RC 2 as the channels for certain message types are still be established - testing for TCP will be a focus for V19 RC 3 or later
+| NET1 | Tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
+| NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | |
