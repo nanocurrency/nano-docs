@@ -8,6 +8,7 @@ Welcome! 👋 This documentation is focused on helping developers understand the
 |<span class="no-break">**[Integration Guides](/integration-guides/the-basics)**</span>| Learn practical concepts, structures and features for building wallets, payment systems and other services on the network. | Developers  |
 |<span class="no-break">**[Commands](/commands/rpc-protocol/)**</span>|  Explore an exhaustive list interaction methods for the node via RPC and CLI. | Node operators, developers |
 |<span class="no-break">**[Protocol Design](/protocol-design/overview)**</span>|  Dig deeper into the design and behaviors driving this amazing protocol including the election process, peering mechanics and more. | Developers |
+|<span class="no-break">**[Releases](/releases/node-releases)**</span>| Review past node releases and get details about the features coming soon in new releases.  | Everyone  |
 
 **Join the Community**
 

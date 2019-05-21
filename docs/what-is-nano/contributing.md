@@ -6,7 +6,7 @@ At the core of the Nano network are nodes that help manage and achieve consensus
 
 * Non-voting nodes can be used to follow transactions and assist other nodes with bootstrapping
 * Representative nodes publish vote message which validates transactions on the network
-* Rebroadcasting representatives are representatives who have sufficient vote weight so the network rebroadcasts their votes to other nodes
+* Principal representatives are representatives who have sufficient vote weight so the network rebroadcasts their votes to other nodes
 
 Head over to the [Running a Node](/running-a-node/overview/) section to find out more about the different node setups.
 

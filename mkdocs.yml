@@ -39,6 +39,10 @@ nav:
     - Networking: protocol-design/networking.md
     - Network Attacks: protocol-design/network-attacks.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+  - Releases:
+    - Node Releases: releases/node-releases.md
+    - Upcoming Features: releases/upcoming-features.md
+    - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
 google_analytics:
   - 'UA-140489311-1'

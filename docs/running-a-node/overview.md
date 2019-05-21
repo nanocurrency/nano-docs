@@ -5,17 +5,17 @@ There are many reasons individuals and organizations have decided to run a Nano 
 
 - To have a trusted copy of the ledger for reference
 - To help further decentralize the network
-- To receive public exposure as a rebroadcasting representative
+- To receive public exposure as a Primary Representative
 - To have an access point to build tools and services on top of
 
 Regardless of your motivation for running a node, your efforts will only be helpful if you take proper care of running it on correctly provisioned machines and keep up with ongoing maintenance of both the node, OS and any supporting systems.
 
 ## Node types
 
-### Rebroadcasting Representative Nodes
-Currently, nodes with at least 0.1% of voting weight (133,248.061999106 Nano) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast. With the ability for any user on the network to redelegate their voting weight, even a node with no weight today can become a rebroadcasting node over time.
+### Principal Representative Nodes
+Currently, nodes configured with Representative accounts with at least 0.1% of voting weight (133,248.061999106 Nano) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast. With the ability for any user on the network to redelegate their voting weight, even an account with no weight today can become a Principal Representative over time.
 
-### Non-rebroadcasting Representative Nodes
+### Representative Nodes
 Nodes with less than 0.1% of voting weight will validate and vote on transactions seen on the network; however, other peers on the network will not rebroadcast their votes.
 
 ## Resources and ongoing maintenance
