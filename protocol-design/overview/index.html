@@ -76,7 +76,7 @@
 </tr>
 <tr>
 <td>lmdb</td>
-<td>The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys.</td>
+<td>The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys. It is extremely resilient to crashes in the program, OS, and power-downs without corruption.</td>
 </tr>
 <tr>
 <td>miniupnp</td>
@@ -122,6 +122,7 @@
 <ul>
 <li>Review your code locally. Have you followed the guidelines in this document?</li>
 <li>Run tests. Did you consider adding a test case for your feature?</li>
+<li>Run ASAN and TSAN to detect memory or threading bugs</li>
 <li>Commit and push your fork</li>
 <li>Create pull request on the upstream repository:<ul>
 <li>Make sure you add a description that clearly describes the purpose of the PR.</li>
