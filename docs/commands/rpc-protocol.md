@@ -1447,18 +1447,20 @@ Returns a list of pairs of online peer IPv6:port and its node protocol network v
 **Optional "peer_details"**
 
 _version 18.0+_   
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID    
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. `type` returned in version 19.0+ as either `tcp` (preferred) or `udp` (fallback) used for peering with that node.
+
 **Response:**
 ```json
 {
     "peers": {  
         "[::ffff:172.17.0.1]:32841": {  
            "protocol_version": "16",  
-           "node_id": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
+           "node_id": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
+           "type": "udp"
         }  
     }  
 }
-```   
+```
 
 ---
 
