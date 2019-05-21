@@ -1,1 +1,1 @@
-The Nano folder contains: wallets file (wallets.ldb), [log files](/running-a-node/troubleshooting/#log-files), ledger file (data.ldb), config file ([config.json](/running-a-node/configuration/#configuration-file)) and related lock files.
+The Nano folder contains: wallets file (wallets.ldb), [log files](/running-a-node/troubleshooting/#log-files), ledger file (data.ldb), config file ([config.json](/running-a-node/configuration/#configjson)) and related lock files.

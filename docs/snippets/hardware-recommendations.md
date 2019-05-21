@@ -1,15 +1,15 @@
 ### Hardware Recommendations
 
-#### Rebroadcasting Representative Node
-The following are minimum recommended specifications for nodes with 0.1% or greater voting weight:
+#### Principal Representative Node
+The following are minimum recommended specifications for nodes with 0.1% or greater voting weight ([Principal Representatives](/glossary#principal-representative)):
 
 * 4GB RAM
 * Quad-Core CPU
 * 250 MB/s bandwidth (2TB of available monthly bandwidth)
 * SSD-based hard drive
 
-#### Non-Rebroadcasting Representative Node
-The following are minimum recommended specifications for nodes with less than 0.1% voting weight:
+#### Representative Node
+The following are minimum recommended specifications for nodes with less than 0.1% voting weight (regular [Representatives](/glossary#representative)):
 
 * 2GB RAM
 * Dual-Core CPU

@@ -17,17 +17,19 @@ Once a block sending funds is confirmed by the network, the transaction goes int
 
 ### Lightweight, stateful blocks
 
-Nano uses [Universal (State) Blocks](/glossary#universal-blocks) which provide consistent framing, regardless of the type of transaction (send, receive, open, change representative, etc). The block size was kept small enough to fit in a single UDP packet and the addition of account balance to every block provides options in the future for efficient pruning of the ledger.
+Nano uses a structure for each block which contains all the information about an account at that point in time: account number, balance, representative.
 
-Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which helps better prioritize network resources so the average user can send occassional transactions quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
+Every block must also contain a small, user-generated [Proof-of-Work](/glossary#proof-of-work-pow) value which is a Quality-of-Service prioritization mechanism allowing occasional, average user transactions to process quickly and consistently. The PoW computation for a transaction typically takes a few seconds on a modern desktop CPU.
 
-For more details, see the [Universal (State) Blocks specs](/integration-guides/the-basics/#universal-state-blocks) and [Proof-of-Work specs](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
+For more details, see the [Blocks](/integration-guides/the-basics/#blocks-specifications) and [Proof-of-Work specifications](/integration-guides/the-basics/#proof-of-work) in our [Integration Guides](/integration-guides/the-basics/).
 
 ### Representatives and Voting
 
-The network is comprised of nodes which can join and leave the network as they need. New nodes bootstrap their ledger from others on the network and depending on how much voting weight is delegated by users to their [representative](/glossary#representative) account, they can participate in the consensus process by voting on the validity of transactions. This consensus mechanism is a variant of Delegated Proof-of-Stake systems and is unique to the Nano network.
+Nano has a unique consensus mechanism called [Open Representative Voting (ORV)](/glossary/#open-representative-voting-orv). Every account can freely choose a [Representative](/glossary#representative) at any time to vote on their behalf, even when the delegating account itself is offline. These Representative accounts are configured on nodes that remain online and vote on the validity of transactions they see on the network. Their voting weight is the sum of balances for accounts delegating to them, and if they have enough voting weight they become a [Principal Representative](/glossary/#principal-representative). The votes these Principal Representatives send out will subsequently be rebroadcasted by other nodes.
 
-Because Nano accounts can freely delegate their voting weight to representatives at any time, the users have more control over who has power with consensus and how decentralized the network is. With no direct monetary incentive for nodes, this removes emergent centralization forces for longer-term trending toward decentralization of the network.[^1]
+As these votes are shared and rebroadcasted between nodes, they are tallied up and compared against the online voting weight available. Once a node sees a block get enough votes to reach [quorum](/glossary/#quorum), that block is confirmed. Due to the lightweight nature of blocks and votes, the network is able to reach confirmation for transaction ultrafast, often in under a couple seconds. Also note that delegation of voting weight does not mean staking of any funds - the account delegating can still spend all their available funds at any time without restrictions.
+
+Because Nano accounts can freely delegate their voting weight to representatives at any time, the users have more control over who has power with consensus and how decentralized the network is. This is a key advantage to the design of [Open Representative Voting (ORV)](/glossary/#open-representative-voting-orv). With no direct monetary incentive for nodes, this removes emergent centralization forces for longer-term trending toward decentralization of the network.[^1]
 
 ### Design Advantages
 Nano was designed with new data structures, consensus mechanisms and other features to gain some key advantages over competing digital currencies:

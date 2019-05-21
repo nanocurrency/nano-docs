@@ -20,7 +20,7 @@ This installs `nano_node` to bin.
 Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released and can be found at https://beta.nano.org. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
 
 **Other sources**  
-The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-netowork#pulling-the-docker-image) and RHEL/CentOS rpm:
+The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-network#pulling-the-docker-image) and RHEL/CentOS rpm:
 ```
 sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
 sudo yum install nanocurrency-beta
@@ -153,7 +153,7 @@ You should now have a brand new node up and running, and the blocks syncing.
 ```
 nano_node --debug_block_count
 ```
-This will show you how far along the node is to syncing the blocks. You can compare this to the current block count at [https://www.nanode.co/blocks](https://www.nanode.co/blocks) to see how far along the syncing process your are
+This will show you how far along the node is to syncing the blocks. You can compare this to the current block count from Aggregate Network Stats at [https://nanocrawler.cc/network](https://nanocrawler.cc/network) to see how far along the syncing process your are.
 
 ### QT Wallet
 
@@ -310,7 +310,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 **Beta Network Participation**
 
-* More information can be found [Here](https://beta.nano.org)
+* More information can be found on the [Beta Network page](/running-a-node/beta-network/)
 * To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
 
 ---
