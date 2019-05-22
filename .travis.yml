@@ -20,4 +20,5 @@ script:
   - git config user.email "development@nano.org"
   - git remote add gh-token "${GH_REF}";
   - git fetch gh-token && git fetch gh-token gh-pages:gh-pages;
-  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; PYTHONPATH=src/ mkdocs gh-deploy -v --clean --remote-name gh-token; git push gh-token gh-pages; fi;
+  - PYTHONPATH=src/ mkdocs gh-deploy -v --clean --remote-name gh-token;
+  - git push gh-token gh-pages;
