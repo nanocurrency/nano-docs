@@ -77,8 +77,8 @@ This is the main configuration file for controlling node behavior. Below is an e
         "allow_local_peers": "false", // To allow local host peering
         "signature_checker_threads": "1", // Number of threads to use for verifying signatures
         "unchecked_cutoff_time": "14400", // Number of seconds unchecked entry survives before being cleaned
-        "tcp_client_timeout": "5",
-        "tcp_server_timeout": "30",
+        "tcp_io_timeout": "15", // Timeout in seconds for TCP connect-, read- and write operations
+        "tcp_idle_timeout": "120", // Default idle disconnection timeout in seconds
         "pow_sleep_interval": "0", // The amount to sleep after each batch of POW calculations. Reduces max CPU usage at the expensive of a longer workgeneration time.
         "external_address": "::",
         "external_port": "0",
