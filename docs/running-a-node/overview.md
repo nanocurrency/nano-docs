@@ -13,7 +13,10 @@ Regardless of your motivation for running a node, your efforts will only be help
 ## Node types
 
 ### Principal Representative Nodes
-Currently, nodes configured with Representative accounts with at least 0.1% of voting weight (133,248.061999106 Nano) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast. With the ability for any user on the network to redelegate their voting weight, even an account with no weight today can become a Principal Representative over time.
+Currently, nodes configured with Representative accounts with at least 0.1% of voting weight (133,248.061999106 Nano) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast.
+
+!!! success "Becoming a Principal Representative"
+	With the ability for any user on the network to redelegate their voting weight, even an account with no weight today can become a Principal Representative over time.
 
 ### Representative Nodes
 Nodes with less than 0.1% of voting weight will validate and vote on transactions seen on the network; however, other peers on the network will not rebroadcast their votes.

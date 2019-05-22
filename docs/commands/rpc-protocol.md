@@ -2,8 +2,8 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 
 | Section | Purpose |
 |         |         |
-| <span class="no-break">**[Node RPCs](#node-rpc)**</span>                        | For interacting with the node and ledger. |
-| <span class="no-break">**[Wallet RPCs](#wallet-rpc)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
+| <span class="no-break">**[Node RPCs](#node-rpcs)**</span>                        | For interacting with the node and ledger. |
+| <span class="no-break">**[Wallet RPCs](#wallet-rpcs)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
 | <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
 | <span class="no-break">**[Deprecated RPCs](#deprecated-rpcs)**</span>           | No longer recommended for use. |
 
@@ -291,7 +291,7 @@ Returns a list of block hashes which have not yet been received by these **accou
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
-  "count": 1
+  "count": "1"
 }
 ```  
 **Response:**
@@ -1447,18 +1447,20 @@ Returns a list of pairs of online peer IPv6:port and its node protocol network v
 **Optional "peer_details"**
 
 _version 18.0+_   
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID    
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. `type` returned in version 19.0+ as either `tcp` (preferred) or `udp` (fallback) used for peering with that node.
+
 **Response:**
 ```json
 {
     "peers": {  
         "[::ffff:172.17.0.1]:32841": {  
            "protocol_version": "16",  
-           "node_id": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
+           "node_id": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
+           "type": "udp"
         }  
     }  
 }
-```   
+```
 
 ---
 
