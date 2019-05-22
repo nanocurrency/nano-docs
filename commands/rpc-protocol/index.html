@@ -27,11 +27,11 @@
 </thead>
 <tbody>
 <tr>
-<td><span class="no-break"><strong><a href="#node-rpc">Node RPCs</a></strong></span></td>
+<td><span class="no-break"><strong><a href="#node-rpcs">Node RPCs</a></strong></span></td>
 <td>For interacting with the node and ledger.</td>
 </tr>
 <tr>
-<td><span class="no-break"><strong><a href="#wallet-rpc">Wallet RPCs</a></strong></span></td>
+<td><span class="no-break"><strong><a href="#wallet-rpcs">Wallet RPCs</a></strong></span></td>
 <td>For interacting with the built-in, QT-based node wallet. <strong>NOTE</strong>: This wallet is only recommended for development and testing.</td>
 </tr>
 <tr>
@@ -260,7 +260,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;accounts_pending&quot;</span><span class="p">,</span>  
   <span class="nt">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;xrb_1111111111111111111111111111111111111111111111111117353trpda&quot;</span><span class="p">,</span> <span class="s2">&quot;xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3&quot;</span><span class="p">],</span>  
-  <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
@@ -1192,13 +1192,14 @@ NOTE: The "count" option is ignored if "sorting" is specified</p>
 </pre></div>
 <strong>Optional "peer_details"</strong></p>
 <p><em>version 18.0+</em> <br />
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID  <br />
-<strong>Response:</strong>
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. <code>type</code> returned in version 19.0+ as either <code>tcp</code> (preferred) or <code>udp</code> (fallback) used for peering with that node.</p>
+<p><strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;peers&quot;</span><span class="p">:</span> <span class="p">{</span>  
         <span class="nt">&quot;[::ffff:172.17.0.1]:32841&quot;</span><span class="p">:</span> <span class="p">{</span>  
            <span class="nt">&quot;protocol_version&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>  
-           <span class="nt">&quot;node_id&quot;</span><span class="p">:</span> <span class="s2">&quot;xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span>  
+           <span class="nt">&quot;node_id&quot;</span><span class="p">:</span> <span class="s2">&quot;xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span><span class="p">,</span>
+           <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;udp&quot;</span>
         <span class="p">}</span>  
     <span class="p">}</span>  
 <span class="p">}</span>
