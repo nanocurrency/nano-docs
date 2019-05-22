@@ -2,8 +2,8 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 
 | Section | Purpose |
 |         |         |
-| <span class="no-break">**[Node RPCs](#node-rpc)**</span>                        | For interacting with the node and ledger. |
-| <span class="no-break">**[Wallet RPCs](#wallet-rpc)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
+| <span class="no-break">**[Node RPCs](#node-rpcs)**</span>                        | For interacting with the node and ledger. |
+| <span class="no-break">**[Wallet RPCs](#wallet-rpcs)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
 | <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
 | <span class="no-break">**[Deprecated RPCs](#deprecated-rpcs)**</span>           | No longer recommended for use. |
 
@@ -291,7 +291,7 @@ Returns a list of block hashes which have not yet been received by these **accou
 {  
   "action": "accounts_pending",  
   "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
-  "count": 1
+  "count": "1"
 }
 ```  
 **Response:**
