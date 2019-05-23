@@ -315,43 +315,6 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 ---
 
-## Build Instructions - ARM
-
-These instructions are for creating an ArchlinuxARM 64bit build.
-
---8<-- "unsupported-configuration.md"
-
-
-### Dependencies
-
-```bash
-pacman -Syu  
-pacman -S base-devel git gcc cmake curl wget
-```
-
-### Static Boost
-
-```bash
-wget -O boost_1_67_0.tar.gz http://sourceforge.net/projects/boost/files/boost/1.67.0/boost_1_67_0.tar.gz/download   
-tar xzvf boost_1_67_0.tar.gz   
-cd boost_1_67_0   
-./bootstrap.sh   
-./b2 --prefix=../[boost] link=static install   
-cd ..
-```
-
-### Node
-
-```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build   
-cd nano_build   
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"   
-make nano_node   
-cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics   
-```
-
----
-
 ## Build Instructions - Unix
 
 These instructions are for creating a build on the following systems:
@@ -439,6 +402,43 @@ cd nano_build
 cmake -DBOOST_ROOT=../[boost]/ -G "Unix Makefiles"   
 make nano_node   
 cp nano_node .. && cd .. && ./nano_node --diagnostics
+```
+
+---
+
+## Build Instructions - Arch Linux
+
+These instructions are for creating an Arch Linux 64bit build.
+
+--8<-- "unsupported-configuration.md"
+
+
+### Dependencies
+
+```bash
+pacman -Syu  
+pacman -S base-devel git gcc cmake curl wget
+```
+
+### Static Boost
+
+```bash
+wget -O boost_1_67_0.tar.gz http://sourceforge.net/projects/boost/files/boost/1.67.0/boost_1_67_0.tar.gz/download   
+tar xzvf boost_1_67_0.tar.gz   
+cd boost_1_67_0   
+./bootstrap.sh   
+./b2 --prefix=../[boost] link=static install   
+cd ..
+```
+
+### Node
+
+```bash
+git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build   
+cd nano_build   
+cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"   
+make nano_node   
+cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics   
 ```
 
 ---
