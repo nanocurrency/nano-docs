@@ -2291,7 +2291,7 @@ Stop generating **work** for block
 
 ### work_generate
 _enable_control required_  
-Generates **work** for block  
+Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
 
 **Request:**
 ```json
