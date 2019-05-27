@@ -386,6 +386,29 @@ Boolean, false by default. Only returns block which have their confirmation heig
 
 ---
 
+### active_difficulty
+_version 19.0+_ 
+
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty is also provided for comparison.
+
+**Request:**
+```json
+{  
+  "action": "active_difficulty"  
+}
+```  
+
+**Response:**
+```json
+{
+    "network_minimum": "ffffffc000000000",
+    "network_current": "ffffffcdbf40aa45",
+    "multiplier": "1.273557846739298"
+}
+```
+
+---
+
 ### available_supply  
 Returns how many raw are in the public supply  
 
