@@ -1,6 +1,8 @@
 While you can run a Nano node by downloading a binary or building from source, it is recommended to use a Docker container. When using the [official Docker images](https://hub.docker.com/r/nanocurrency/nano/tags/), your node will be much easier to upgrade and maintain.
 
-!!! note
+--8<-- "docker-limitations.md"
+
+!!! note "Setup Assumptions"
     The guides found on this site make some basic assumptions that should be understood before continuing:
 
     - You have a basic understanding of Docker.

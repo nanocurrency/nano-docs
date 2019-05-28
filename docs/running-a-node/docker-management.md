@@ -1,5 +1,7 @@
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
+--8<-- "docker-limitations.md"
+
 ### Nano Folder
 
 --8<-- "folder-contents.md"
@@ -133,6 +135,8 @@ docker stop ${NANO_NAME}
 You may now edit the [config.json file](/running-a-node/configuration/#configjson) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
+
+--8<-- "enable-voting.md"
 
 ---
 

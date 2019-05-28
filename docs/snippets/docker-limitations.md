@@ -1,0 +1,2 @@
+!!! warning "Docker Limitations"
+	Although Docker is a great choice for many setups, there is one main limitation worth noting. Due to the startup script built into the Docker containers, [Launch Options](/commands/command-line-interface/#launch-options) for the `nano_node` service run inside the container cannot be easily used. This may change in future versions, but is currently a limitation as of V18.
