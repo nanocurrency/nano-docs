@@ -87,8 +87,8 @@ docker run --restart=unless-stopped -d \
 
 ## Current Release Candidate Testing
 
-### Release Candidate 2 for V19 (V19 RC2)
-V19 RC2 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
+### Release Candidate 3 for V19 (V19 RC3)
+V19 RC3 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
 
 **Upgrade from pre-V18**
 
@@ -110,7 +110,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 |------|--------|---------|---------|
 | DPT1 | Additional tests desired | Spam the network and attempt to saturate it | **5/12: Saturation has been achieved with ~50+ TPS multi-account spam, additional tests still desired** |
 | DPT2 | Needs testing in RC 3 | For low-powered nodes, try publishing some blocks and watch for work values increasing during saturation | **5/12: Tests have indicated active difficulty does increase, changes to the algorithm controlling this will be included in RC 3 for further testing** |
-| DPT3 | Needs testing in RC 3 | Create conditions that would cause blocks to fail confirmation in less than 5 seconds, trigger some sends (noting work values) and then watch for node to do rework and republish the block with new work value after ~ 5s. Conditions to slow confirmations could be created with saturating the network with spam or possibly setting a high `online_weight_quorum`/`online_weight_minimum` value in config.json | **5/12: Rework is being updated and needs further testing in RC 3** |
+| DPT3 | Additional tests desired in RC 3 | Create conditions that would cause blocks to fail confirmation in less than 5 seconds, trigger some sends (noting work values) and then watch for node to do rework and republish the block with new work value after ~ 5s. Conditions to slow confirmations could be created with saturating the network with spam or possibly setting a high `online_weight_quorum`/`online_weight_minimum` value in config.json | **5/27: Successful tests completed in RC3, additional testing desired** |
 | DPM1 | Needs testing in RC 3 | Capture average work values using the active_difficulty RPC | **5/12: Average work values have been captured and monitored, but behavior may be changed with RC 3 and if so, would make more tests desirable** |
 
 **Websocket support**
@@ -135,7 +135,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 | RPT2 | :heavy_check_mark: Complete | Update RPC configuration for child process setups per https://github.com/nanocurrency/nano-node/pull/1874 - verify RPC is responsive to calls, including heavy usage | **5/14: Testing looks good** |
 | RPT3 | :heavy_check_mark: Complete | Update RPC configuration for out of node process setups per https://github.com/nanocurrency/nano-node/pull/1874 - verify RPC is responsive to calls, including heavy usage | **5/14: Testing looks good** |
 | RPT4 | Additional testing needed | Test that `--network` and `data_path` command line arguments are transferred correctly to `nano_rpc` when used as child/out of process RPC. | |
-| RPT5 | Additional testing needed | Use an incorrect `rpc_path` in `config.json` and confirm that an appropriate error message is displayed. | |
+| RPT5 | :heavy_check_mark: Complete | Use an incorrect `rpc_path` in `config.json` and confirm that an appropriate error message is displayed. | |
 | RPT6 | :heavy_check_mark: Complete | Spam many RPC requests (don't wait to response) with low numbers of `io_threads`, confirm node is still responsive after. | |
 
 **Confirmation times**
@@ -155,4 +155,10 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 | Item | Status | Details | Updates |
 |------|--------|---------|---------|
 | NET1 | Tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
-| NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | |
+| NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | **5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4** |
+
+**Other tests**
+
+| Item | Status | Details | Updates |
+|------|--------|---------|---------|
+| OTT1 | Tests needed | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | Pending: Linux<br />Pending: Windows |
