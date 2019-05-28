@@ -1,18 +1,23 @@
-## Mnemonic Seed
+## Seeds
+
+### Hex Seed
+Nano's private key(s) have been traditionally derived from a 64 character, uppercase hexadecimal string (0-9A-F). This is currently the more popular form of seed supported by a variety of services and wallets. Additional details available in [The Basics guide](/integration-guides/the-basics/#seed).
+
+### Mnemonic Seed
 Nano's private key(s) from mnemonic derivation follows the BIP[39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)/[44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) standard. Only hardened paths are defined. Nano's [coin-type](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) is 165' (0x800000a5)
 
 `44'/165'/0'` derives the first private key, `44'/165'/1'` derives the second private key, and so on.
 
 The BIP39 seed modifier "ed25519 seed" is used which makes wallets compatible with each other. This was chosen due to it being used by the Ledger Nano implementation.
 
-### Demo Examples
+#### Demo Examples
 
 https://github.com/roosmaa/nano-bip39-demo
 
 https://github.com/joltwallet/bip-mnemonic
 
 
-### Test Vectors
+#### Test Vectors
 Given 24-Word Mnemonic:
 ```
 edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur
