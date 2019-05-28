@@ -138,7 +138,16 @@ As of V18.0, newly setup nodes will have voting disabled by default. In order to
 "enable_voting": "true"
 ```
 
+---
 
+#### vote_minimum
+As of V18.0, nodes with weight delegated to them under this value in their config will not vote, regardless of the `enable_voting` flag setting. In order for a node to vote, this value must be lower than the weight delegated to the representative account setup on the node.
+
+```json
+"vote_minimum": "1000000000000000000000000000000000"
+```
+
+---
 
 #### work_peers
 Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). 
@@ -148,9 +157,13 @@ Used when offloading work generation to another node or service. Format must be 
 ],
 ```
 
+---
+
 #### opencl_enable
 
 To enable GPU acceleration for PoW, set `"opencl_enable"` to `"true"`. Other OpenCL parameters may need to be adjusted depending on the desired setup (see [example config.json file](#example-configjson-file) above).
+
+---
 
 #### ipc
 
@@ -177,6 +190,8 @@ Because the only IPC encoding is currently "legacy RPC", the RPC config options 
 
 For details about using the IPC setup, see the [IPC Integration Guide](/integration-guides/advanced#ipc-integration).
 
+---
+
 #### websocket
 
 !!! note ""
@@ -194,6 +209,8 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
 
+---
+
 #### HTTP callback
 
 ```json
@@ -210,6 +227,8 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 
 !!! tip
 	When possible, using the [websockets](#websocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
+
+---
 
 ## rpc_config.json
 
