@@ -136,6 +136,8 @@ You may now edit the [config.json file](/running-a-node/configuration/#configjso
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
 
+--8<-- "enable-voting.md"
+
 ---
 
 ### RPC calls to the node
