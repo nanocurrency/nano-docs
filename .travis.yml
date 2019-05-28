@@ -13,9 +13,11 @@ before_script:
   - pip install MarkdownHighlight
 script:
   - |
-    if [ "${TRAVIS_BRANCH}" != "master" ]; then
+    echo "${TRAVIS_PULL_REQUEST}"
+    echo "${TRAVIS_BRANCH}"
+    if [ "${TRAVIS_PULL_REQUEST}" = "true" ]; then
       mkdocs build
-    elif [ "${TRAVIS_BRANCH}" = "master" ]; then
+    elif [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
       openssl aes-256-cbc -K $encrypted_5f828affe522_key -iv $encrypted_5f828affe522_iv -in deploy-key.enc -out deploy-key -d
       chmod 600 deploy-key
       eval `ssh-agent -s`
