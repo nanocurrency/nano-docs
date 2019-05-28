@@ -131,6 +131,15 @@ This is the main configuration file for controlling node behavior. Below is an e
 
 ### Configuration options
 
+#### enable_voting
+As of V18.0, newly setup nodes will have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
+
+```json
+"enable_voting": "true"
+```
+
+
+
 #### work_peers
 Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). 
 ```json
@@ -226,6 +235,8 @@ This is the configuration that controls how the RPC server connects and behaves 
     }
 }
 ```
+
+More details about the RPC setup can be found in the [Running Nano as a service guide](/integration-guides/advanced/#running-nano-as-a-service).
 
 --8<-- "multiple-node-setups-warning.md"
 
