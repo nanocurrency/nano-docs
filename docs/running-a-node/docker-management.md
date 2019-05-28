@@ -1,5 +1,7 @@
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
+--8<-- "docker-limitations.md"
+
 ### Nano Folder
 
 --8<-- "folder-contents.md"
