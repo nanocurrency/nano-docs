@@ -75,7 +75,7 @@ Status                 | Details
 	Benefits | Reduction in network traffic previously caused by elections for unconfirmed blocks started during bootstrapping.
 	Links    | 
 
-??? abstract "Proto-buff based RPCs"
+??? abstract "Protobuf based RPCs"
 
 	Release  | V20 (Targeted)
 	---------|----------------------- 
