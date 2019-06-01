@@ -108,7 +108,7 @@ This is the main configuration file for controlling node behavior. Below is an e
                     "min_write_txn_time": "500", // Logs stacktrace when write transactions are held longer than this time (milliseconds)
                     "ignore_writes_below_block_processor_max_time": "true" // Ignore any block processor writes less than block_processor_max_time
                 }
-        }
+        },
 	"use_memory_pool": "true" // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
