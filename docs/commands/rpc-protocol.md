@@ -1349,8 +1349,7 @@ Returns frontier, open block, change representative block, balance, last modifie
   }   
 }
 ```  
-**Optional "representative", "weight", "pending"**
-
+**Optional "representative", "weight", "pending"**  
 Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
 
 **Request:**
@@ -1382,15 +1381,17 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   }   
 }
 ```  
-**Optional "modified_since"**
-
+**Optional "modified_since"**  
 _version 11.0+_   
 UNIX timestamp (number), 0 by default. Return only accounts modified in local database after specific timestamp   
 
-**Optional "sorting"**
-
+**Optional "sorting"**  
 Boolean, false by default. Additional sorting accounts in descending order  
 NOTE: The "count" option is ignored if "sorting" is specified
+
+**Optional "threshold"**  
+_version 19.0+_  
+Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **pending** is also given, the number compared with the threshold is the sum of account balance and pending balance.
 
 ---
 
@@ -2271,6 +2272,9 @@ Returns the total pending balance for unopened accounts in the local database, s
     }   
   }   
 ```   
+
+**Optional "threshold"**  
+Number (128 bit, decimal), default 0. Return only accounts with total pending balance above **threshold**.
 
 ---
 
