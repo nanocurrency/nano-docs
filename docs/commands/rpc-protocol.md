@@ -755,6 +755,39 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
 _version 19.0+_  
 Default "false". If "true", "contents" will contain a JSON subtree instead of a JSON string.
 
+**Optional "include_not_found"**  
+_version 19.0+_  
+Default "false". If "true", an additional "blocks_not_found" is provided in the response, containing a list of the block hashes that were not found in the local database. Previously to this version an error would be produced if any block was not found.
+
+**Request:**
+```json
+{
+  "action": "blocks_info",
+  "include_not_found": "true",
+  "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9", "0000000000000000000000000000000000000000000000000000000000000001"]
+}
+```
+
+**Response:**
+```json
+{
+  "blocks" : {
+    "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {
+         "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+         "amount": "30000000000000000000000000000000000",
+         "balance": "5606157000000000000000000000000000000",
+         "height": "58",
+         "local_timestamp": "0",
+         "confirmed": "false",
+       "contents": "{ ...skipped... }"
+     }
+  },
+  "blocks_not_found": [
+    "0000000000000000000000000000000000000000000000000000000000000001"
+  ]
+}
+```
+
 ---
 
 ### bootstrap  
@@ -1349,8 +1382,7 @@ Returns frontier, open block, change representative block, balance, last modifie
   }   
 }
 ```  
-**Optional "representative", "weight", "pending"**
-
+**Optional "representative", "weight", "pending"**  
 Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
 
 **Request:**
@@ -1382,15 +1414,17 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   }   
 }
 ```  
-**Optional "modified_since"**
-
+**Optional "modified_since"**  
 _version 11.0+_   
 UNIX timestamp (number), 0 by default. Return only accounts modified in local database after specific timestamp   
 
-**Optional "sorting"**
-
+**Optional "sorting"**  
 Boolean, false by default. Additional sorting accounts in descending order  
 NOTE: The "count" option is ignored if "sorting" is specified
+
+**Optional "threshold"**  
+_version 19.0+_  
+Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **pending** is also given, the number compared with the threshold is the sum of account balance and pending balance.
 
 ---
 
@@ -2271,6 +2305,9 @@ Returns the total pending balance for unopened accounts in the local database, s
     }   
   }   
 ```   
+
+**Optional "threshold"**  
+Number (128 bit, decimal), default 0. Return only accounts with total pending balance above **threshold**.
 
 ---
 
