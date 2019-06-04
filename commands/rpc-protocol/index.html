@@ -1139,8 +1139,8 @@ Returns frontier, open block, change representative block, balance, last modifie
   <span class="p">}</span>   
 <span class="p">}</span>
 </pre></div>
-<strong>Optional "representative", "weight", "pending"</strong></p>
-<p>Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   </p>
+<strong>Optional "representative", "weight", "pending"</strong><br />
+Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;ledger&quot;</span><span class="p">,</span>  
@@ -1168,12 +1168,15 @@ Returns frontier, open block, change representative block, balance, last modifie
   <span class="p">}</span>   
 <span class="p">}</span>
 </pre></div>
-<strong>Optional "modified_since"</strong></p>
-<p><em>version 11.0+</em> <br />
+<strong>Optional "modified_since"</strong><br />
+<em>version 11.0+</em> <br />
 UNIX timestamp (number), 0 by default. Return only accounts modified in local database after specific timestamp   </p>
-<p><strong>Optional "sorting"</strong></p>
-<p>Boolean, false by default. Additional sorting accounts in descending order<br />
+<p><strong>Optional "sorting"</strong><br />
+Boolean, false by default. Additional sorting accounts in descending order<br />
 NOTE: The "count" option is ignored if "sorting" is specified</p>
+<p><strong>Optional "threshold"</strong><br />
+<em>version 19.0+</em><br />
+Number (128 bit, decimal), default 0. Return only accounts with balance above <strong>threshold</strong>. If <strong>pending</strong> is also given, the number compared with the threshold is the sum of account balance and pending balance.</p>
 <hr />
 <h3 id="node_id">node_id<a class="headerlink" href="#node_id" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required, version 17.0+</em> </p>
@@ -1873,6 +1876,8 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
     <span class="p">}</span>   
   <span class="p">}</span>   
 </pre></div></p>
+<p><strong>Optional "threshold"</strong><br />
+Number (128 bit, decimal), default 0. Return only accounts with total pending balance above <strong>threshold</strong>.</p>
 <hr />
 <h3 id="uptime">uptime<a class="headerlink" href="#uptime" title="Permanent link">&para;</a></h3>
 <p><em>version 18.0+</em> <br />
