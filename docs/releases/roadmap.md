@@ -8,8 +8,6 @@ This document represents the current areas that are being pursued by the Nano Fo
 ??? info "Global Markets"
 	**Status**
 
-	* Chinese Community Hub [Nanochina.co](https://nanochina.co/) Launched (Nov. 11 2018)
-
 	* Huobi Launched (Oct. 31st 2018)
 
 	* Bitinka Launched (Jul. 10th 2018)
