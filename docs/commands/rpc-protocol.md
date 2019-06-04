@@ -755,6 +755,39 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
 _version 19.0+_  
 Default "false". If "true", "contents" will contain a JSON subtree instead of a JSON string.
 
+**Optional "include_not_found"**  
+_version 19.0+_  
+Default "false". If "true", an additional "blocks_not_found" is provided in the response, containing a list of the block hashes that were not found in the local database. Previously to this version an error would be produced if any block was not found.
+
+**Request:**
+```json
+{
+  "action": "blocks_info",
+  "include_not_found": "true",
+  "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9", "0000000000000000000000000000000000000000000000000000000000000001"]
+}
+```
+
+**Response:**
+```json
+{
+  "blocks" : {
+    "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {
+         "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+         "amount": "30000000000000000000000000000000000",
+         "balance": "5606157000000000000000000000000000000",
+         "height": "58",
+         "local_timestamp": "0",
+         "confirmed": "false",
+       "contents": "{ ...skipped... }"
+     }
+  },
+  "blocks_not_found": [
+    "0000000000000000000000000000000000000000000000000000000000000001"
+  ]
+}
+```
+
 ---
 
 ### bootstrap  
