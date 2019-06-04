@@ -110,7 +110,7 @@ This is the main configuration file for controlling node behavior. Below is an e
                 }
         },
 	"use_memory_pool": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
-	"confirmation_history_size": "2048" // Controls confirmation history size Preservs existing behavior
+	"confirmation_history_size": "2048" // Controls confirmation history size, default seeting preserves existing behavior
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
