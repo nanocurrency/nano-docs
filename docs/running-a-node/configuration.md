@@ -163,7 +163,7 @@ Used when offloading work generation to another node or service. Format must be 
 
 #### opencl_enable
 
-To enable GPU acceleration for PoW, set `"opencl_enable"` to `"true"`. Other OpenCL parameters may need to be adjusted depending on the desired setup (see [example config.json file](#example-configjson-file) above).
+To enable GPU acceleration for PoW, set `"opencl_enable"` to `"true"`. Other OpenCL parameters may need to be adjusted depending on the desired setup (see [example config.json file](#configjson) above).
 
 ---
 
