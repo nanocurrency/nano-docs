@@ -1,14 +1,14 @@
 Running a node is a key way to help decentralize the network and provide a network access point for systems built on top of Nano. Before setting up a node we recommend reviewing the following details in order to understand more about the motivations for running, required upkeep, types and recommended specifications for nodes.
 
 ## Why run a node?
-There are many reasons individuals and organizations have decided to run a Nano node, but a few common ones are:
+By design, the incentives for running a Nano node are not built into the network itself, but instead are external. This is an important difference compared to nearly all other cryptocurrency networks and allows Nano to operate securely without transaction fees.[^1][^2] These indirect, external incentives include the following and more:
 
-- To have a trusted copy of the ledger for reference
-- To help further decentralize the network
-- To receive public exposure as a Primary Representative
-- To have an access point to build tools and services on top of
+* Advertising exposure from their representative showing up on curated representative lists
+* Transaction fee savings for businesses and organizations accepting Nano as payment
+* Helping support and further decentralize a global payment network
+* Having a trusted access point for building additional software on the network
 
-Regardless of your motivation for running a node, your efforts will only be helpful if you take proper care of running it on correctly provisioned machines and keep up with ongoing maintenance of both the node, OS and any supporting systems.
+Regardless of the motivation for running a node, it will only benefit the network if proper care is taken to ensure it is run on correctly provisioned machines and ongoing maintenance of the node, OS and any supporting systems are routinely done.
 
 ## Node types
 
@@ -33,3 +33,6 @@ And with any system, ongoing maintenance must be taken into account to avoid iss
 - Following best practices for securing passwords or other sensitive data related to the node
 
 Without taking care with the security and maintenance of systems hosting the node, any benefit to the network could be lost.
+
+[^1]: https://medium.com/nanocurrency/the-incentives-to-run-a-node-ccc3510c2562
+[^2]: https://medium.com/@clemahieu/emergent-centralization-due-to-economies-of-scale-83cc85a7cbef
