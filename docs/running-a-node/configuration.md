@@ -109,8 +109,8 @@ This is the main configuration file for controlling node behavior. Below is an e
                     "ignore_writes_below_block_processor_max_time": "true" // Ignore any block processor writes less than block_processor_max_time
                 }
         },
-	"use_memory_pool": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
-	"confirmation_history_size": "2048" // Controls confirmation history size, default seeting preserves existing behavior
+	"use_memory_pools": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
+	"confirmation_history_size": "2048" // Controls confirmation history size, default setting preserves existing behavior
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
@@ -118,7 +118,7 @@ This is the main configuration file for controlling node behavior. Below is an e
         "max_work_generate_difficulty": "ffffffffc0000000",
         "version": "1",
         "child_process": {
-            "enable": "false" // Whether the rpc server is run as a child process rather than in-process
+            "enable": "false", // Whether the rpc server is run as a child process rather than in-process
             "rpc_path": "C:\\Users\\Wesley\\Documents\\raiblocks\\build\\Debug\\nano_rpc.exe", // The nano_rpc executable to run if enabled.
         }
     },
