@@ -161,4 +161,4 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 
 | Item | Status | Details | Updates |
 |------|--------|---------|---------|
-| OTT1 | Tests needed | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | Pending: Linux<br />Pending: Windows |
+| OTT1 | Tests needed | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | Pending: Linux<br />Pending: Windows<br />:heavy_check_mark: Mac |

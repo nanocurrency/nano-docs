@@ -9,10 +9,15 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 
 ## Node RPCs
 
+!!! warning "Unconfirmed blocks returned"
+    Unless otherwise specified, RPC calls can return unconfirmed blocks and related details. In the most important cases where balances or similar details may include unconfirmed amounts, additional warnings have been included.
+
 ---
 
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json 
@@ -76,6 +81,7 @@ Get account number for the **public key**
 
 Reports send/receive information for an account. Returns only **send & receive** blocks by default (unless raw is set to true - see optional parameters below): change, state change & state epoch blocks are skipped, open & state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". **Note**: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0   
 
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -117,6 +123,8 @@ If the `count` limit results in stopping before the end of the account chain, th
 
 ### account_info
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -233,6 +241,8 @@ Returns the voting weight for **account**
 
 ### accounts_balances  
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -448,7 +458,7 @@ Returns the account containing block
 
 ### block_confirm   
 _version 12.2+_   
-Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history)   
+Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).  
 
 **Request:**
 ```json
@@ -977,6 +987,8 @@ _version 12.0+
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time   
 
+With version 19.0+ `confirmation_history_size` can be managed in [config.json](/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+
 **Request:**
 ```json
 {  
@@ -1358,6 +1370,8 @@ Derive public key and account number from **private key**
 ### ledger
 _enable_control required, version 9.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at **account** up to **count**   
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -2967,6 +2981,8 @@ Add watch-only **accounts** to **wallet**
 ### wallet_balances  
 Returns how many raw is owned and how many have not yet been received by all accounts in **wallet**  
 
+--8<-- "includes-unconfirmed.md"
+
 **Request:**
 ```json
 {  
@@ -3127,6 +3143,8 @@ Returns a list of pairs of account and block hash representing the head block st
 _version 18.0+_   
 Reports send/receive information for accounts in wallet. Change blocks are skipped, open blocks will appear as receive. Response will start with most recent blocks according to local ledger.
 
+--8<-- "includes-unconfirmed.md"
+
 **Request:**
 ```json
 {  
@@ -3167,6 +3185,8 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 _version 15.0+_   
 Returns the sum of all accounts balances in **wallet**, number of accounts in wallet, number of deterministic & adhoc (non-deterministic) accounts, deterministic index (index of last account derived from seed. Equal to deterministic accounts number if no accounts were removed)   
 
+--8<-- "includes-unconfirmed.md"
+
 **Request:**
 ```json
 {  
@@ -3191,6 +3211,8 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
 ### wallet_ledger
 _enable_control required, version 11.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for accounts from **wallet**   
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
