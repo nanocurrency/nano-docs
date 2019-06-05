@@ -45,9 +45,17 @@
 </tbody>
 </table>
 <h2 id="node-rpcs">Node RPCs<a class="headerlink" href="#node-rpcs" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Unconfirmed blocks returned</p>
+<p>Unless otherwise specified, RPC calls can return unconfirmed blocks and related details. In the most important cases where balances or similar details may include unconfirmed amounts, additional warnings have been included.</p>
+</div>
 <hr />
 <h3 id="account_balance">account_balance<a class="headerlink" href="#account_balance" title="Permanent link">&para;</a></h3>
 <p>Returns how many RAW is owned and how many have not yet been received by <strong>account</strong>  </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;account_balance&quot;</span><span class="p">,</span>  
@@ -91,6 +99,10 @@
 <hr />
 <h3 id="account_history">account_history<a class="headerlink" href="#account_history" title="Permanent link">&para;</a></h3>
 <p>Reports send/receive information for an account. Returns only <strong>send &amp; receive</strong> blocks by default (unless raw is set to true - see optional parameters below): change, state change &amp; state epoch blocks are skipped, open &amp; state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". <strong>Note</strong>: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0   </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;account_history&quot;</span><span class="p">,</span>  
@@ -125,6 +137,10 @@
 <hr />
 <h3 id="account_info">account_info<a class="headerlink" href="#account_info" title="Permanent link">&para;</a></h3>
 <p>Returns frontier, open block, change representative block, balance, last modified timestamp from local database &amp; block count for <strong>account</strong>. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;account_info&quot;</span><span class="p">,</span>  
@@ -214,6 +230,10 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 <hr />
 <h3 id="accounts_balances">accounts_balances<a class="headerlink" href="#accounts_balances" title="Permanent link">&para;</a></h3>
 <p>Returns how many RAW is owned and how many have not yet been received by <strong>accounts list</strong>  </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;accounts_balances&quot;</span><span class="p">,</span>  
@@ -384,7 +404,7 @@ Boolean, false by default. Only returns block which have their confirmation heig
 <hr />
 <h3 id="block_confirm">block_confirm<a class="headerlink" href="#block_confirm" title="Permanent link">&para;</a></h3>
 <p><em>version 12.2+</em> <br />
-Request confirmation for <strong>block</strong> from known online representative nodes. Check results with <a href="#confirmation_history">confirmation history</a>   </p>
+Request confirmation for <strong>block</strong> from known online representative nodes. Check results with <a href="#confirmation_history">confirmation history</a>.  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;block_confirm&quot;</span><span class="p">,</span>  
@@ -812,6 +832,7 @@ Returns list of active elections roots (excluding stopped &amp; aborted election
 <p><em>version 12.0+<br />
 duration, time, confirmation_stats: version 17.0+</em> <br />
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time   </p>
+<p>With version 19.0+ <code>confirmation_history_size</code> can be managed in <a href="/running-a-node/configuration/#example-file">config.json</a> to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation_history&quot;</span>      
@@ -1118,6 +1139,10 @@ Tells the node to send a keepalive packet to <strong>address</strong>:<strong>po
 <h3 id="ledger">ledger<a class="headerlink" href="#ledger" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required, version 9.0+</em> <br />
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database &amp; block count starting at <strong>account</strong> up to <strong>count</strong>   </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;ledger&quot;</span><span class="p">,</span>  
@@ -2371,6 +2396,10 @@ Add watch-only <strong>accounts</strong> to <strong>wallet</strong>  </p>
 <hr />
 <h3 id="wallet_balances">wallet_balances<a class="headerlink" href="#wallet_balances" title="Permanent link">&para;</a></h3>
 <p>Returns how many raw is owned and how many have not yet been received by all accounts in <strong>wallet</strong>  </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet_balances&quot;</span><span class="p">,</span>  
@@ -2492,6 +2521,10 @@ Destroys <strong>wallet</strong> and all contained accounts  </p>
 <h3 id="wallet_history">wallet_history<a class="headerlink" href="#wallet_history" title="Permanent link">&para;</a></h3>
 <p><em>version 18.0+</em> <br />
 Reports send/receive information for accounts in wallet. Change blocks are skipped, open blocks will appear as receive. Response will start with most recent blocks according to local ledger.</p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet_history&quot;</span><span class="p">,</span>  
@@ -2526,6 +2559,10 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
 <h3 id="wallet_info">wallet_info<a class="headerlink" href="#wallet_info" title="Permanent link">&para;</a></h3>
 <p><em>version 15.0+</em> <br />
 Returns the sum of all accounts balances in <strong>wallet</strong>, number of accounts in wallet, number of deterministic &amp; adhoc (non-deterministic) accounts, deterministic index (index of last account derived from seed. Equal to deterministic accounts number if no accounts were removed)   </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet_info&quot;</span><span class="p">,</span>  
@@ -2546,6 +2583,10 @@ Returns the sum of all accounts balances in <strong>wallet</strong>, number of a
 <h3 id="wallet_ledger">wallet_ledger<a class="headerlink" href="#wallet_ledger" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required, version 11.0+</em> <br />
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database &amp; block count for accounts from <strong>wallet</strong>   </p>
+<div class="admonition warning">
+<p class="admonition-title">Includes unconfirmed blocks</p>
+<p>This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.</p>
+</div>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet_ledger&quot;</span><span class="p">,</span>  
