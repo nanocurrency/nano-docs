@@ -19,7 +19,7 @@ The distribution of Nano (formerly RaiBlocks) was performed through solving manu
 During distribution the Genesis seed was kept in cold storage and funds were moved to the Landing account once per week to minimize the number of live, undistributed blocks. These were subsequently moved into the Faucet account for distribution until the faucet was closed and remaining funds sent to the Burn account.
 
 !!! info "Total Supply"
-	With 2^128 - 1 Nano in the original Genesis account, upon closing of the faucet the total supply which is 100% in circulation ended at **133,248,290.903662 Nano**.
+	With 2^128 - 1 Nano in the original Genesis account, upon closing of the faucet and burning of the remaining funds, the total supply which is 100% in circulation ended at **~133,248,297 Nano** (or more precisely 133248297920938463463374607431768211455 raw). Since then, additional funds have been sent to the known burn address slightly lowering the amount in circulation as a result. This amount can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
 
 ### Unit Dividers
 A 128 bit integer is used to represent account balances.  A set of SI prefixes was used to make the numbers more accessible and avoid confusion.  The reference wallet uses Mnano (or NANO/Nano) as a divider.  
