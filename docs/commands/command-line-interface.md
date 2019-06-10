@@ -160,6 +160,10 @@ Turn off use of wallet-based bootstrap
 ### --disable_bootstrap_listener
 Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
 
+### --disable_udp
+_version 19.0+_
+Turn off use of UDP live network
+
 ### --disable_unchecked_cleanup
 Prevent periodic cleaning of unchecked table
 
