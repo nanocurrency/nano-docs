@@ -120,8 +120,8 @@ Status                 | Details
 	Release  | V21 (Targeted)
 	---------|----------------------- 
 	Goal     | Allow optional pruning of ledger blocks down to frontier, frontier predecessor and pending blocks.
-	Benefits | Reduce ledger size on disk and lower requirements nodes joining the network.
-	Links    | 
+	Benefits | Reduce ledger size on disk and lower requirements for nodes joining the network.
+	Links    | [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
 
 ### Researching
 
