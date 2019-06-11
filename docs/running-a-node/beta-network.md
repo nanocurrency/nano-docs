@@ -119,7 +119,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 |------|--------|---------|---------|
 | WST1 | :heavy_check_mark: Complete | Configure node to use the websocket callbacks and spam network with a known set of pre-calculated blocks | **5/12: Multiple cases of websocket setups completed and functioning** |
 | WST2 | Tests needed | Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. **NOTE:** This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network. | Not yet tested |
-| WST3 | Tests needed | Setup websocket with confirmation of various subscription types (configuration details pending in documentation) | |
+| WST3 | Tests needed | Setup websocket with subscription confirmation including [various filters](/integration-guides/advanced/#optional-filters) for active, conf height, inactive as use cases need. | |
 | WSM1 | Additional tests desired | Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps | **5/12: Comparison of websocket to callback for validating full block capture has been attempted but so far is inconclusive, additional testing desired** |
 
 
