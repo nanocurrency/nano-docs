@@ -317,9 +317,9 @@ Some topics support filters. Note that, if **empty** `options` are supplied (see
 
 The node classifies block confirmations into the following categories:
 
-* Active quorum, where a block is confirmed through voting (including RPC "block_confirm" if block is previously unconfirmed)
-* Active confirmation height, where a block which is confirmed as a dependent election from a successor through voting (or by RPC "block_confirm" if the block is already confirmed)
-* Inactive, where a block that is not in active elections is implicitly confirmed by a successor.
+* **Active quorum**: a block is confirmed through voting (including `block_confirm` RPC if block is previously unconfirmed)
+* **Active confirmation height**: a block which is confirmed as a dependent election from a successor through voting (or by `block_confirm` RPC if the block is already confirmed)
+* **Inactive**: a block that is not in active elections is implicitly confirmed by a successor.
 
 By default, the node emits **all** confirmations to WebSocket clients. However, the following filtering option is available:
 
@@ -333,18 +333,18 @@ By default, the node emits **all** confirmations to WebSocket clients. However, 
 }
 ```
 
-The most common values for `confirmation_type` are `"all"` (default), `"active"` and `"inactive"`.
+The most common values for `confirmation_type` are `all` (default), `active` and `inactive`.
 
-If more fine-grained filtering is needed, `"active"` can be replaced with `"active_quorum"` or `"active_confirmation_height"`.
+If more fine-grained filtering is needed, `active` can be replaced with `active_quorum` or `active_confirmation_height` per the definitions above.
 
 ###### Type field
 
-Confirmations sent through WebSockets, whether filtering is used or not, contains a `"confirmation_type"` field with values `"active_quorum"`, `"active_confirmation_height"` or `"inactive"`.
+Confirmations sent through WebSockets, whether filtering is used or not, contains a `confirmation_type` field with values `active_quorum`, `active_confirmation_height` or `inactive`.
 
 
 ###### Block content inclusion
 
-By setting "include_block" to "false", the block content will not be present. Default is "true".
+By setting `include_block` to `false`, the block content will not be present. Default is `true`.
 Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.
 
 ```json
@@ -377,7 +377,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 }
 ```
 
-* When `all_local_accounts` is set to **true**, blocks that mention accounts in any wallet will be broadcasted.
+* When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
 ##### Votes
