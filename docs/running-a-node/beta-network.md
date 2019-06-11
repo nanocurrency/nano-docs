@@ -87,8 +87,8 @@ docker run --restart=unless-stopped -d \
 
 ## Current Release Candidate Testing
 
-### Release Candidate 3 for V19 (V19 RC3)
-V19 RC3 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
+### Release Candidate 4 for V19 (V19 RC4)
+V19 RC4 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
 
 **Upgrade from pre-V18**
 
@@ -157,6 +157,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 |------|--------|---------|---------|
 | NET1 | Tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
 | NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | **5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4** |
+| NET3 | Tests needed | Bandwidth limiting covers outbound vote traffic and defaults the limit to 1.5Mb/s. Configure the node to lower levels of bandwidth limiting (see `bandwidth_limit` option in [config.json](/running-a-node/configuration/#example-file)), especially during spam events, and report level of bandwidth seen vs. network volume. Using [stats](/commands/rpc-protocol/#stats) RPC with `type` = `counters` will show in the response `type` = `drop`, `detail` = message type, and `value` = number of messages dropped. Values seen here indicate the bandwidth limit is being hit. | |
 
 **Other tests**
 
