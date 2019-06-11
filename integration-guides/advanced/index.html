@@ -228,14 +228,16 @@
 <p class="admonition-title">Differences from the HTTP callback</p>
 <ul>
 <li>The "block" contains JSON instead of an escaped string. This makes parsing easier.</li>
-<li>The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself. Future versions of the node may offer more topics, as well as filtering capabilities.</li>
+<li>The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.</li>
 <li>Subtype is part of block (if it's a state block)</li>
 <li>There is no "is_send" property since "subtype" signifies the intent for state blocks.</li>
+<li>A confirmation type is added, which can be filtered.</li>
 </ul>
 </div>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
     <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;active_quorum&quot;</span><span class="p">,</span>
     <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
         <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;1000000000000000000000000&quot;</span><span class="p">,</span>
@@ -273,7 +275,41 @@
 
 <h4 id="optional-filters">Optional filters<a class="headerlink" href="#optional-filters" title="Permanent link">&para;</a></h4>
 <p>Some topics support filters. Note that, if <strong>empty</strong> <code>options</code> are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.</p>
-<p><strong>Confirmation filters</strong></p>
+<h5>Confirmations</h5>
+<h6>Type filtering</h6>
+<p>The node classifies block confirmations into the following categories:</p>
+<ul>
+<li><strong>Active quorum</strong>: a block is confirmed through voting (including <code>block_confirm</code> RPC if block is previously unconfirmed)</li>
+<li><strong>Active confirmation height</strong>: a block which is confirmed as a dependent election from a successor through voting (or by <code>block_confirm</code> RPC if the block is already confirmed)</li>
+<li><strong>Inactive</strong>: a block that is not in active elections is implicitly confirmed by a successor.</li>
+</ul>
+<p>By default, the node emits <strong>all</strong> confirmations to WebSocket clients. However, the following filtering option is available:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;type&gt;&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The most common values for <code>confirmation_type</code> are <code>all</code> (default), <code>active</code> and <code>inactive</code>.</p>
+<p>If more fine-grained filtering is needed, <code>active</code> can be replaced with <code>active_quorum</code> or <code>active_confirmation_height</code> per the definitions above.</p>
+<h6>Type field</h6>
+<p>Confirmations sent through WebSockets, whether filtering is used or not, contains a <code>confirmation_type</code> field with values <code>active_quorum</code>, <code>active_confirmation_height</code> or <code>inactive</code>.</p>
+<h6>Block content inclusion</h6>
+<p>By setting <code>include_block</code> to <code>false</code>, the block content will not be present. Default is <code>true</code>.
+Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;include_block&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Accounts</h5>
 <p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
 <p><strong>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
@@ -290,10 +326,10 @@
 </pre></div>
 
 <ul>
-<li>When <code>all_local_accounts</code> is set to <strong>true</strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
+<li>When <code>all_local_accounts</code> is set to <strong><code>true</code></strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
 <li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
 </ul>
-<p><strong>Vote filters</strong></p>
+<h5>Votes</h5>
 <p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
