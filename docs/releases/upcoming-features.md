@@ -75,14 +75,6 @@ Status                 | Details
 	Benefits | Reduction in network traffic previously caused by elections for unconfirmed blocks started during bootstrapping.
 	Links    | 
 
-??? abstract "Protobuf based RPCs"
-
-	Release  | V20 (Targeted)
-	---------|----------------------- 
-	Goal     | Add support for protocol buffer based RPCs.
-	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
-	Links    | 
-
 ??? abstract "Local account priority bootstrapping"
 
 	Release  | V20 (Targeted)
@@ -91,20 +83,28 @@ Status                 | Details
 	Benefits | Nodes can send/receive Nano before fully synced.
 	Links    | [GitHub Issue #1731](https://github.com/nanocurrency/nano-node/issues/1731)
 
-??? abstract "RPC 2.0"
-
-	Release  | V20 (Targeted)
-	---------|----------------------- 
-	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
-	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
-	Links    | 
-
 ??? abstract "Move wallet out of process"
 
 	Release  | V20 (Targeted)
 	---------|----------------------- 
 	Goal     | Remove wallet operations out of node process.
 	Benefits | Reduced node attack surface.
+	Links    | 
+
+??? abstract "Protobuf based RPCs"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Add support for protocol buffer based RPCs.
+	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
+	Links    | 
+
+??? abstract "RPC 2.0"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
+	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
 	Links    | 
 
 ??? abstract "Node Telemetry"
