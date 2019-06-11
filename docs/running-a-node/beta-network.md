@@ -119,6 +119,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 |------|--------|---------|---------|
 | WST1 | :heavy_check_mark: Complete | Configure node to use the websocket callbacks and spam network with a known set of pre-calculated blocks | **5/12: Multiple cases of websocket setups completed and functioning** |
 | WST2 | Tests needed | Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. **NOTE:** This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network. | Not yet tested |
+| WST3 | Tests needed | Setup websocket with confirmation of various subscription types (configuration details pending in documentation) | |
 | WSM1 | Additional tests desired | Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps | **5/12: Comparison of websocket to callback for validating full block capture has been attempted but so far is inconclusive, additional testing desired** |
 
 
@@ -156,11 +157,13 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 | Item | Status | Details | Updates |
 |------|--------|---------|---------|
 | NET1 | Tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
-| NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | **5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4** |
+| NET2 | Tests needed | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3+, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | **5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4** |
 | NET3 | Tests needed | Bandwidth limiting covers outbound vote traffic and defaults the limit to 1.5Mb/s. Configure the node to lower levels of bandwidth limiting (see `bandwidth_limit` option in [config.json](/running-a-node/configuration/#example-file)), especially during spam events, and report level of bandwidth seen vs. network volume. Using [stats](/commands/rpc-protocol/#stats) RPC with `type` = `counters` will show in the response `type` = `drop`, `detail` = message type, and `value` = number of messages dropped. Values seen here indicate the bandwidth limit is being hit. | |
+| NET4 | Tests needed | Launch node with optional flag [`--disable_udp`](/commands/command-line-interface/#-disable_udp) to communicate entirely over TCP (ensure enough voting weight on beta is upgraded to RC4 first). Similar tests to NET1 above with different network configurations desired. | |
 
 **Other tests**
 
 | Item | Status | Details | Updates |
 |------|--------|---------|---------|
 | OTT1 | Tests needed | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | Pending: Linux<br />Pending: Windows<br />:heavy_check_mark: Mac |
+| OTT2 | Tests needed | Update config setting for confirmation_history_size and use [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC to capture larger batches of confirmations. Test higher limits during heavy spam periods to verify active confirmations from the live network appear. Note that if the node does not have enough resources to keep up with live network traffic and confirmations, some blocks may be bootstrapped and confirmed dependently via confirmation height, and thus wouldn't be included in this call | |
