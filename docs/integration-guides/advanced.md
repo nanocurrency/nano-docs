@@ -261,14 +261,16 @@ If the subscription succeeds, the following message will be sent back (note that
 
 !!! note "Differences from the HTTP callback"
     * The "block" contains JSON instead of an escaped string. This makes parsing easier.
-    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself. Future versions of the node may offer more topics, as well as filtering capabilities.
+    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
     * Subtype is part of block (if it's a state block)
     * There is no "is_send" property since "subtype" signifies the intent for state blocks.
+    * A confirmation type is added, which can be filtered.
 
 ```json
 {
 	"topic": "confirmation",
 	"time": "1552766057328",
+	"confirmation_type": "active_quorum",
 	"message": {
 	    "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
 	    "amount": "1000000000000000000000000",
@@ -309,7 +311,53 @@ If the subscription succeeds, the following message will be sent back (note that
 #### Optional filters
 Some topics support filters. Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
 
-**Confirmation filters**
+##### Confirmations
+
+###### Type filtering
+
+The node classifies block confirmations into the following categories:
+
+* Active quorum, where a block is confirmed through voting (including RPC "block_confirm" if block is previously unconfirmed)
+* Active confirmation height, where a block which is confirmed as a dependent election from a successor through voting (or by RPC "block_confirm" if the block is already confirmed)
+* Inactive, where a block that is not in active elections is implicitly confirmed by a successor.
+
+By default, the node emits **all** confirmations to WebSocket clients. However, the following filtering option is available:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "confirmation_type": "<type>"
+  }
+}
+```
+
+The most common values for `confirmation_type` are `"all"` (default), `"active"` and `"inactive"`.
+
+If more fine-grained filtering is needed, `"active"` can be replaced with `"active_quorum"` or `"active_confirmation_height"`.
+
+###### Type field
+
+Confirmations sent through WebSockets, whether filtering is used or not, contains a `"confirmation_type"` field with values `"active_quorum"`, `"active_confirmation_height"` or `"inactive"`.
+
+
+###### Block content inclusion
+
+By setting "include_block" to "false", the block content will not be present. Default is "true".
+Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "include_block": "false",
+  }
+}
+```
+
+##### Accounts
 
 Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
 
@@ -332,7 +380,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * When `all_local_accounts` is set to **true**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
-**Vote filters**
+##### Votes
 
 Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
 
