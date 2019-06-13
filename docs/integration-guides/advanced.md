@@ -462,25 +462,24 @@ There are 3 different ways to enable RPC for the node:
 **In process**
 
 * `rpc_enable` = **true**
-* `rpc_in_process` = **true** (default, V19.0+)
+* `child_process.enable` = **false** (default, V19.0+)
 
 **Child process**  
 *V19.0+ only*
 
 * `rpc_enable` = **true**
-* `rpc_path` = [path to nano_rpc]
-* `rpc_in_process` = **false**
+* `child_process.enable` = **true**
+* `child_process.rpc_path` = [path to nano_rpc]
 * `ipc`.`tcp`.`enable` = **true**
-* `ipc`.`tcp`.`port` = `ipc_port` of `rpc_config.json`
+* `ipc`.`tcp`.`port` = `process.ipc_port` of `rpc_config.json`
 
 **Out of node process**  
 *V19.0+ only*
 
 * `rpc_enable` = **false**
-* `rpc_path` = [path to nano_rpc]
-* `rpc_in_process` = **false**
+* `child_process.enable` = **false**
 * `ipc`.`tcp`.`enable` = **true**
-* `ipc`.`tcp`.`port` == `ipc_port` of `rpc_config.json`
+* `ipc`.`tcp`.`port` == `process.ipc_port` of `rpc_config.json`
 
 The choice depends on the setup and security that you want. The easiest way is to use *in_process*: edit [config.json](/running-a-node/configuration/#configjson)  & [rpc_config.json](/running-a-node/configuration/#rpc_configjson) (V19.0+) after first launch.
 
