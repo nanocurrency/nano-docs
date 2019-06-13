@@ -195,7 +195,7 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 ### WebSocket Support
 
 !!! note ""
-    Available in Version 19.0+ only
+    Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.
 
 The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.
 
@@ -268,26 +268,26 @@ If the subscription succeeds, the following message will be sent back (note that
 
 ```json
 {
-	"topic": "confirmation",
-	"time": "1552766057328",
-	"confirmation_type": "active_quorum",
-	"message": {
-	    "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-	    "amount": "1000000000000000000000000",
-	    "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
-	    "block": {
-	        "type": "state",
-	        "subtype": "send",
-	        "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-	        "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
-	        "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
-	        "balance": "135902000000000000000000000000",
-	        "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
-	        "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-	        "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
-	        "work": "466ac84fc9edd4b3"
-	    }
-    }
+  "topic": "confirmation",
+  "time": "1552766057328",
+  "message": {
+      "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "amount": "1000000000000000000000000",
+      "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
+      "confirmation_type": "active_quorum",
+      "block": {
+          "type": "state",
+          "subtype": "send",
+          "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+          "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
+          "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
+          "balance": "135902000000000000000000000000",
+          "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
+          "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+          "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
+          "work": "466ac84fc9edd4b3"
+      }
+  }
 }
 ```
 
@@ -393,6 +393,30 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
       "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
       "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
     ]
+  }
+}
+```
+
+#### Stopped elections
+
+If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via RPC "process" when there's a fork.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "stopped_election"
+  }
+}
+```
+
+Sample notification:
+
+```json
+{
+  "topic": "stopped_election",
+  "time": "1560437195533",
+  "message": {
+      "hash": "FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3"
   }
 }
 ```
