@@ -397,25 +397,24 @@ Because account filtering needs block content to function, setting this flag to 
 <p><strong>In process</strong></p>
 <ul>
 <li><code>rpc_enable</code> = <strong>true</strong></li>
-<li><code>rpc_in_process</code> = <strong>true</strong> (default, V19.0+)</li>
+<li><code>child_process.enable</code> = <strong>false</strong> (default, V19.0+)</li>
 </ul>
 <p><strong>Child process</strong><br />
 <em>V19.0+ only</em></p>
 <ul>
 <li><code>rpc_enable</code> = <strong>true</strong></li>
-<li><code>rpc_path</code> = [path to nano_rpc]</li>
-<li><code>rpc_in_process</code> = <strong>false</strong></li>
+<li><code>child_process.enable</code> = <strong>true</strong></li>
+<li><code>child_process.rpc_path</code> = [path to nano_rpc]</li>
 <li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
-<li><code>ipc</code>.<code>tcp</code>.<code>port</code> = <code>ipc_port</code> of <code>rpc_config.json</code></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>port</code> = <code>process.ipc_port</code> of <code>rpc_config.json</code></li>
 </ul>
 <p><strong>Out of node process</strong><br />
 <em>V19.0+ only</em></p>
 <ul>
 <li><code>rpc_enable</code> = <strong>false</strong></li>
-<li><code>rpc_path</code> = [path to nano_rpc]</li>
-<li><code>rpc_in_process</code> = <strong>false</strong></li>
+<li><code>child_process.enable</code> = <strong>false</strong></li>
 <li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
-<li><code>ipc</code>.<code>tcp</code>.<code>port</code> == <code>ipc_port</code> of <code>rpc_config.json</code></li>
+<li><code>ipc</code>.<code>tcp</code>.<code>port</code> == <code>process.ipc_port</code> of <code>rpc_config.json</code></li>
 </ul>
 <p>The choice depends on the setup and security that you want. The easiest way is to use <em>in_process</em>: edit <a href="/running-a-node/configuration/#configjson">config.json</a>  &amp; <a href="/running-a-node/configuration/#rpc_configjson">rpc_config.json</a> (V19.0+) after first launch.</p>
 <div class="codehilite"><pre><span></span>./nano_node --daemon  
