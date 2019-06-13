@@ -399,7 +399,7 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 
 #### Stopped elections
 
-If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via RPC "process" when there's a fork.
+If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
 
 ```json
 {
