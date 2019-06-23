@@ -417,6 +417,35 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 }
 ```
 
+**Optional "include_trend"**
+
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. 
+
+**Request:**
+```json
+{  
+  "action": "active_difficulty",
+  "include_trend": "true"
+}
+```
+
+**Response:**
+```json
+{
+    "network_minimum": "ffffffc000000000",
+    "network_current": "ffffffc1816766f2",
+    "multiplier": "1.024089858417128",
+    "difficulty_trend": [
+        "1.156096135149775",
+        "1.190133894573061",
+        "1.135567138563921",
+        "1.000000000000000",
+        "...skipped...",
+        "1.000000000000000"
+    ]
+}
+```
+
 ---
 
 ### available_supply  
