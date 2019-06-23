@@ -1,4 +1,75 @@
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../images/favicon.png"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.1"><title>RPC Protocol - Documentation</title><link rel="stylesheet" href="../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content=""><script src="../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../assets/fonts/material-icons.css"><link rel="stylesheet" href="../../stylesheets/extras.css"><script>window.ga = window.ga || function() {
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>RPC Protocol - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
     (ga.q = ga.q || []).push(arguments)
   }
   ga.l = +new Date
@@ -17,7 +88,2456 @@
         }
       })
     }
-  })</script><script async src="https://www.google-analytics.com/analytics.js"></script></head><body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#node-rpcs" tabindex="1" class="md-skip">Skip to content </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="../.." title="Documentation" class="md-header-nav__button md-logo"><img src="../../images/nano.svg" width="24" height="24"></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">Documentation</span><span class="md-header-nav__topic">RPC Protocol</span></div></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--search md-header-nav__button" for="__search"></label><div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">nanocurrency/nano-docs</div></a></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="../.." title="Documentation" class="md-nav__button md-logo"><img src="../../images/nano.svg" width="48" height="48"></a>Documentation</label><div class="md-nav__source"><a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">nanocurrency/nano-docs</div></a></div><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../.." title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2"><label class="md-nav__link" for="nav-2">What is Nano?</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-2">What is Nano?</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">Overview</a></li><li class="md-nav__item"><a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">Contributing</a></li><li class="md-nav__item"><a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">Exploring More</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3"><label class="md-nav__link" for="nav-3">Running a Node</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-3">Running a Node</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../running-a-node/overview/" title="Overview" class="md-nav__link">Overview</a></li><li class="md-nav__item"><a href="../../running-a-node/node-setup/" title="Node Setup" class="md-nav__link">Node Setup</a></li><li class="md-nav__item"><a href="../../running-a-node/docker-management/" title="Docker Management" class="md-nav__link">Docker Management</a></li><li class="md-nav__item"><a href="../../running-a-node/beta-network/" title="Beta Network" class="md-nav__link">Beta Network</a></li><li class="md-nav__item"><a href="../../running-a-node/configuration/" title="Configuration" class="md-nav__link">Configuration</a></li><li class="md-nav__item"><a href="../../running-a-node/troubleshooting/" title="Troubleshooting" class="md-nav__link">Troubleshooting</a></li><li class="md-nav__item"><a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">Beyond the Node</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4"><label class="md-nav__link" for="nav-4">Integration Guides</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-4">Integration Guides</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../integration-guides/the-basics/" title="The Basics" class="md-nav__link">The Basics</a></li><li class="md-nav__item"><a href="../../integration-guides/key-management/" title="Key Management" class="md-nav__link">Key Management</a></li><li class="md-nav__item"><a href="../../integration-guides/build-options/" title="Build Options" class="md-nav__link">Build Options</a></li><li class="md-nav__item"><a href="../../integration-guides/advanced/" title="Advanced" class="md-nav__link">Advanced</a></li></ul></nav></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked><label class="md-nav__link" for="nav-5">Commands</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-5">Commands</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">RPC Protocol</label><a href="./" title="RPC Protocol" class="md-nav__link md-nav__link--active">RPC Protocol</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#node-rpcs" title="Node RPCs" class="md-nav__link">Node RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#account_balance" title="account_balance" class="md-nav__link">account_balance</a></li><li class="md-nav__item"><a href="#account_block_count" title="account_block_count" class="md-nav__link">account_block_count</a></li><li class="md-nav__item"><a href="#account_get" title="account_get" class="md-nav__link">account_get</a></li><li class="md-nav__item"><a href="#account_history" title="account_history" class="md-nav__link">account_history</a></li><li class="md-nav__item"><a href="#account_info" title="account_info" class="md-nav__link">account_info</a></li><li class="md-nav__item"><a href="#account_key" title="account_key" class="md-nav__link">account_key</a></li><li class="md-nav__item"><a href="#account_representative" title="account_representative" class="md-nav__link">account_representative</a></li><li class="md-nav__item"><a href="#account_weight" title="account_weight" class="md-nav__link">account_weight</a></li><li class="md-nav__item"><a href="#accounts_balances" title="accounts_balances" class="md-nav__link">accounts_balances</a></li><li class="md-nav__item"><a href="#accounts_frontiers" title="accounts_frontiers" class="md-nav__link">accounts_frontiers</a></li><li class="md-nav__item"><a href="#accounts_pending" title="accounts_pending" class="md-nav__link">accounts_pending</a></li><li class="md-nav__item"><a href="#active_difficulty" title="active_difficulty" class="md-nav__link">active_difficulty</a></li><li class="md-nav__item"><a href="#available_supply" title="available_supply" class="md-nav__link">available_supply</a></li><li class="md-nav__item"><a href="#block_account" title="block_account" class="md-nav__link">block_account</a></li><li class="md-nav__item"><a href="#block_confirm" title="block_confirm" class="md-nav__link">block_confirm</a></li><li class="md-nav__item"><a href="#block_count" title="block_count" class="md-nav__link">block_count</a></li><li class="md-nav__item"><a href="#block_count_type" title="block_count_type" class="md-nav__link">block_count_type</a></li><li class="md-nav__item"><a href="#block_create" title="block_create" class="md-nav__link">block_create</a></li><li class="md-nav__item"><a href="#block_hash" title="block_hash" class="md-nav__link">block_hash</a></li><li class="md-nav__item"><a href="#block_info" title="block_info" class="md-nav__link">block_info</a></li><li class="md-nav__item"><a href="#blocks" title="blocks" class="md-nav__link">blocks</a></li><li class="md-nav__item"><a href="#blocks_info" title="blocks_info" class="md-nav__link">blocks_info</a></li><li class="md-nav__item"><a href="#bootstrap" title="bootstrap" class="md-nav__link">bootstrap</a></li><li class="md-nav__item"><a href="#bootstrap_any" title="bootstrap_any" class="md-nav__link">bootstrap_any</a></li><li class="md-nav__item"><a href="#bootstrap_lazy" title="bootstrap_lazy" class="md-nav__link">bootstrap_lazy</a></li><li class="md-nav__item"><a href="#bootstrap_status" title="bootstrap_status" class="md-nav__link">bootstrap_status</a></li><li class="md-nav__item"><a href="#chain" title="chain" class="md-nav__link">chain</a></li><li class="md-nav__item"><a href="#confirmation_active" title="confirmation_active" class="md-nav__link">confirmation_active</a></li><li class="md-nav__item"><a href="#confirmation_height_currently_processing" title="confirmation_height_currently_processing" class="md-nav__link">confirmation_height_currently_processing</a></li><li class="md-nav__item"><a href="#confirmation_history" title="confirmation_history" class="md-nav__link">confirmation_history</a></li><li class="md-nav__item"><a href="#confirmation_info" title="confirmation_info" class="md-nav__link">confirmation_info</a></li><li class="md-nav__item"><a href="#confirmation_quorum" title="confirmation_quorum" class="md-nav__link">confirmation_quorum</a></li><li class="md-nav__item"><a href="#database_txn_tracker" title="database_txn_tracker" class="md-nav__link">database_txn_tracker</a></li><li class="md-nav__item"><a href="#delegators" title="delegators" class="md-nav__link">delegators</a></li><li class="md-nav__item"><a href="#delegators_count" title="delegators_count" class="md-nav__link">delegators_count</a></li><li class="md-nav__item"><a href="#deterministic_key" title="deterministic_key" class="md-nav__link">deterministic_key</a></li><li class="md-nav__item"><a href="#frontier_count" title="frontier_count" class="md-nav__link">frontier_count</a></li><li class="md-nav__item"><a href="#frontiers" title="frontiers" class="md-nav__link">frontiers</a></li><li class="md-nav__item"><a href="#keepalive" title="keepalive" class="md-nav__link">keepalive</a></li><li class="md-nav__item"><a href="#key_create" title="key_create" class="md-nav__link">key_create</a></li><li class="md-nav__item"><a href="#key_expand" title="key_expand" class="md-nav__link">key_expand</a></li><li class="md-nav__item"><a href="#ledger" title="ledger" class="md-nav__link">ledger</a></li><li class="md-nav__item"><a href="#node_id" title="node_id" class="md-nav__link">node_id</a></li><li class="md-nav__item"><a href="#node_id_delete" title="node_id_delete" class="md-nav__link">node_id_delete</a></li><li class="md-nav__item"><a href="#peers" title="peers" class="md-nav__link">peers</a></li><li class="md-nav__item"><a href="#pending" title="pending" class="md-nav__link">pending</a></li><li class="md-nav__item"><a href="#pending_exists" title="pending_exists" class="md-nav__link">pending_exists</a></li><li class="md-nav__item"><a href="#process" title="process" class="md-nav__link">process</a></li><li class="md-nav__item"><a href="#representatives" title="representatives" class="md-nav__link">representatives</a></li><li class="md-nav__item"><a href="#representatives_online" title="representatives_online" class="md-nav__link">representatives_online</a></li><li class="md-nav__item"><a href="#republish" title="republish" class="md-nav__link">republish</a></li><li class="md-nav__item"><a href="#sign" title="sign" class="md-nav__link">sign</a></li><li class="md-nav__item"><a href="#stats" title="stats" class="md-nav__link">stats</a></li><li class="md-nav__item"><a href="#stats_clear" title="stats_clear" class="md-nav__link">stats_clear</a></li><li class="md-nav__item"><a href="#stop" title="stop" class="md-nav__link">stop</a></li><li class="md-nav__item"><a href="#successors" title="successors" class="md-nav__link">successors</a></li><li class="md-nav__item"><a href="#validate_account_number" title="validate_account_number" class="md-nav__link">validate_account_number</a></li><li class="md-nav__item"><a href="#version" title="version" class="md-nav__link">version</a></li><li class="md-nav__item"><a href="#unchecked" title="unchecked" class="md-nav__link">unchecked</a></li><li class="md-nav__item"><a href="#unchecked_clear" title="unchecked_clear" class="md-nav__link">unchecked_clear</a></li><li class="md-nav__item"><a href="#unchecked_get" title="unchecked_get" class="md-nav__link">unchecked_get</a></li><li class="md-nav__item"><a href="#unchecked_keys" title="unchecked_keys" class="md-nav__link">unchecked_keys</a></li><li class="md-nav__item"><a href="#unopened" title="unopened" class="md-nav__link">unopened</a></li><li class="md-nav__item"><a href="#uptime" title="uptime" class="md-nav__link">uptime</a></li><li class="md-nav__item"><a href="#work_cancel" title="work_cancel" class="md-nav__link">work_cancel</a></li><li class="md-nav__item"><a href="#work_generate" title="work_generate" class="md-nav__link">work_generate</a></li><li class="md-nav__item"><a href="#work_peer_add" title="work_peer_add" class="md-nav__link">work_peer_add</a></li><li class="md-nav__item"><a href="#work_peers" title="work_peers" class="md-nav__link">work_peers</a></li><li class="md-nav__item"><a href="#work_peers_clear" title="work_peers_clear" class="md-nav__link">work_peers_clear</a></li><li class="md-nav__item"><a href="#work_validate" title="work_validate" class="md-nav__link">work_validate</a></li></ul></nav></li><li class="md-nav__item"><a href="#wallet-rpcs" title="Wallet RPCs" class="md-nav__link">Wallet RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#account_create" title="account_create" class="md-nav__link">account_create</a></li><li class="md-nav__item"><a href="#account_list" title="account_list" class="md-nav__link">account_list</a></li><li class="md-nav__item"><a href="#account_move" title="account_move" class="md-nav__link">account_move</a></li><li class="md-nav__item"><a href="#account_remove" title="account_remove" class="md-nav__link">account_remove</a></li><li class="md-nav__item"><a href="#account_representative_set" title="account_representative_set" class="md-nav__link">account_representative_set</a></li><li class="md-nav__item"><a href="#accounts_create" title="accounts_create" class="md-nav__link">accounts_create</a></li><li class="md-nav__item"><a href="#block_create-optional-wallet" title="block_create (optional wallet)" class="md-nav__link">block_create (optional wallet)</a></li><li class="md-nav__item"><a href="#password_change" title="password_change" class="md-nav__link">password_change</a></li><li class="md-nav__item"><a href="#password_enter" title="password_enter" class="md-nav__link">password_enter</a></li><li class="md-nav__item"><a href="#password_valid" title="password_valid" class="md-nav__link">password_valid</a></li><li class="md-nav__item"><a href="#receive" title="receive" class="md-nav__link">receive</a></li><li class="md-nav__item"><a href="#receive_minimum" title="receive_minimum" class="md-nav__link">receive_minimum</a></li><li class="md-nav__item"><a href="#receive_minimum_set" title="receive_minimum_set" class="md-nav__link">receive_minimum_set</a></li><li class="md-nav__item"><a href="#search_pending" title="search_pending" class="md-nav__link">search_pending</a></li><li class="md-nav__item"><a href="#search_pending_all" title="search_pending_all" class="md-nav__link">search_pending_all</a></li><li class="md-nav__item"><a href="#send" title="send" class="md-nav__link">send</a></li><li class="md-nav__item"><a href="#sign-optional-wallet" title="sign (optional wallet)" class="md-nav__link">sign (optional wallet)</a></li><li class="md-nav__item"><a href="#wallet_add" title="wallet_add" class="md-nav__link">wallet_add</a></li><li class="md-nav__item"><a href="#wallet_add_watch" title="wallet_add_watch" class="md-nav__link">wallet_add_watch</a></li><li class="md-nav__item"><a href="#wallet_balances" title="wallet_balances" class="md-nav__link">wallet_balances</a></li><li class="md-nav__item"><a href="#wallet_change_seed" title="wallet_change_seed" class="md-nav__link">wallet_change_seed</a></li><li class="md-nav__item"><a href="#wallet_contains" title="wallet_contains" class="md-nav__link">wallet_contains</a></li><li class="md-nav__item"><a href="#wallet_create" title="wallet_create" class="md-nav__link">wallet_create</a></li><li class="md-nav__item"><a href="#wallet_destroy" title="wallet_destroy" class="md-nav__link">wallet_destroy</a></li><li class="md-nav__item"><a href="#wallet_export" title="wallet_export" class="md-nav__link">wallet_export</a></li><li class="md-nav__item"><a href="#wallet_frontiers" title="wallet_frontiers" class="md-nav__link">wallet_frontiers</a></li><li class="md-nav__item"><a href="#wallet_history" title="wallet_history" class="md-nav__link">wallet_history</a></li><li class="md-nav__item"><a href="#wallet_info" title="wallet_info" class="md-nav__link">wallet_info</a></li><li class="md-nav__item"><a href="#wallet_ledger" title="wallet_ledger" class="md-nav__link">wallet_ledger</a></li><li class="md-nav__item"><a href="#wallet_lock" title="wallet_lock" class="md-nav__link">wallet_lock</a></li><li class="md-nav__item"><a href="#wallet_locked" title="wallet_locked" class="md-nav__link">wallet_locked</a></li><li class="md-nav__item"><a href="#wallet_pending" title="wallet_pending" class="md-nav__link">wallet_pending</a></li><li class="md-nav__item"><a href="#wallet_representative" title="wallet_representative" class="md-nav__link">wallet_representative</a></li><li class="md-nav__item"><a href="#wallet_representative_set" title="wallet_representative_set" class="md-nav__link">wallet_representative_set</a></li><li class="md-nav__item"><a href="#wallet_republish" title="wallet_republish" class="md-nav__link">wallet_republish</a></li><li class="md-nav__item"><a href="#wallet_work_get" title="wallet_work_get" class="md-nav__link">wallet_work_get</a></li><li class="md-nav__item"><a href="#work_get" title="work_get" class="md-nav__link">work_get</a></li><li class="md-nav__item"><a href="#work_set" title="work_set" class="md-nav__link">work_set</a></li></ul></nav></li><li class="md-nav__item"><a href="#unit-conversion-rpcs" title="Unit Conversion RPCs" class="md-nav__link">Unit Conversion RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#krai_from_raw" title="krai_from_raw" class="md-nav__link">krai_from_raw</a></li><li class="md-nav__item"><a href="#krai_to_raw" title="krai_to_raw" class="md-nav__link">krai_to_raw</a></li><li class="md-nav__item"><a href="#mrai_from_raw" title="mrai_from_raw" class="md-nav__link">mrai_from_raw</a></li><li class="md-nav__item"><a href="#mrai_to_raw" title="mrai_to_raw" class="md-nav__link">mrai_to_raw</a></li><li class="md-nav__item"><a href="#rai_from_raw" title="rai_from_raw" class="md-nav__link">rai_from_raw</a></li><li class="md-nav__item"><a href="#rai_to_raw" title="rai_to_raw" class="md-nav__link">rai_to_raw</a></li></ul></nav></li><li class="md-nav__item"><a href="#deprecated-rpcs" title="Deprecated RPCs" class="md-nav__link">Deprecated RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#history" title="history" class="md-nav__link">history</a></li><li class="md-nav__item"><a href="#payment_begin" title="payment_begin" class="md-nav__link">payment_begin</a></li><li class="md-nav__item"><a href="#payment_end" title="payment_end" class="md-nav__link">payment_end</a></li><li class="md-nav__item"><a href="#payment_init" title="payment_init" class="md-nav__link">payment_init</a></li><li class="md-nav__item"><a href="#payment_wait" title="payment_wait" class="md-nav__link">payment_wait</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="../command-line-interface/" title="Command Line Interface" class="md-nav__link">Command Line Interface</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6"><label class="md-nav__link" for="nav-6">Protocol Design</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-6">Protocol Design</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">Overview</a></li><li class="md-nav__item"><a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">Distribution and Units</a></li><li class="md-nav__item"><a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">Networking</a></li><li class="md-nav__item"><a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">Network Attacks</a></li><li class="md-nav__item"><a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">Signing, Hashing and Key Derivation</a></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7"><label class="md-nav__link" for="nav-7">Releases</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-7">Releases</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../../releases/node-releases/" title="Node Releases" class="md-nav__link">Node Releases</a></li><li class="md-nav__item"><a href="../../releases/upcoming-features/" title="Upcoming Features" class="md-nav__link">Upcoming Features</a></li><li class="md-nav__item"><a href="../../releases/roadmap/" title="Roadmap" class="md-nav__link">Roadmap</a></li></ul></nav></li><li class="md-nav__item"><a href="../../glossary/" title="Glossary" class="md-nav__link">Glossary</a></li></ul></nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#node-rpcs" title="Node RPCs" class="md-nav__link">Node RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#account_balance" title="account_balance" class="md-nav__link">account_balance</a></li><li class="md-nav__item"><a href="#account_block_count" title="account_block_count" class="md-nav__link">account_block_count</a></li><li class="md-nav__item"><a href="#account_get" title="account_get" class="md-nav__link">account_get</a></li><li class="md-nav__item"><a href="#account_history" title="account_history" class="md-nav__link">account_history</a></li><li class="md-nav__item"><a href="#account_info" title="account_info" class="md-nav__link">account_info</a></li><li class="md-nav__item"><a href="#account_key" title="account_key" class="md-nav__link">account_key</a></li><li class="md-nav__item"><a href="#account_representative" title="account_representative" class="md-nav__link">account_representative</a></li><li class="md-nav__item"><a href="#account_weight" title="account_weight" class="md-nav__link">account_weight</a></li><li class="md-nav__item"><a href="#accounts_balances" title="accounts_balances" class="md-nav__link">accounts_balances</a></li><li class="md-nav__item"><a href="#accounts_frontiers" title="accounts_frontiers" class="md-nav__link">accounts_frontiers</a></li><li class="md-nav__item"><a href="#accounts_pending" title="accounts_pending" class="md-nav__link">accounts_pending</a></li><li class="md-nav__item"><a href="#active_difficulty" title="active_difficulty" class="md-nav__link">active_difficulty</a></li><li class="md-nav__item"><a href="#available_supply" title="available_supply" class="md-nav__link">available_supply</a></li><li class="md-nav__item"><a href="#block_account" title="block_account" class="md-nav__link">block_account</a></li><li class="md-nav__item"><a href="#block_confirm" title="block_confirm" class="md-nav__link">block_confirm</a></li><li class="md-nav__item"><a href="#block_count" title="block_count" class="md-nav__link">block_count</a></li><li class="md-nav__item"><a href="#block_count_type" title="block_count_type" class="md-nav__link">block_count_type</a></li><li class="md-nav__item"><a href="#block_create" title="block_create" class="md-nav__link">block_create</a></li><li class="md-nav__item"><a href="#block_hash" title="block_hash" class="md-nav__link">block_hash</a></li><li class="md-nav__item"><a href="#block_info" title="block_info" class="md-nav__link">block_info</a></li><li class="md-nav__item"><a href="#blocks" title="blocks" class="md-nav__link">blocks</a></li><li class="md-nav__item"><a href="#blocks_info" title="blocks_info" class="md-nav__link">blocks_info</a></li><li class="md-nav__item"><a href="#bootstrap" title="bootstrap" class="md-nav__link">bootstrap</a></li><li class="md-nav__item"><a href="#bootstrap_any" title="bootstrap_any" class="md-nav__link">bootstrap_any</a></li><li class="md-nav__item"><a href="#bootstrap_lazy" title="bootstrap_lazy" class="md-nav__link">bootstrap_lazy</a></li><li class="md-nav__item"><a href="#bootstrap_status" title="bootstrap_status" class="md-nav__link">bootstrap_status</a></li><li class="md-nav__item"><a href="#chain" title="chain" class="md-nav__link">chain</a></li><li class="md-nav__item"><a href="#confirmation_active" title="confirmation_active" class="md-nav__link">confirmation_active</a></li><li class="md-nav__item"><a href="#confirmation_height_currently_processing" title="confirmation_height_currently_processing" class="md-nav__link">confirmation_height_currently_processing</a></li><li class="md-nav__item"><a href="#confirmation_history" title="confirmation_history" class="md-nav__link">confirmation_history</a></li><li class="md-nav__item"><a href="#confirmation_info" title="confirmation_info" class="md-nav__link">confirmation_info</a></li><li class="md-nav__item"><a href="#confirmation_quorum" title="confirmation_quorum" class="md-nav__link">confirmation_quorum</a></li><li class="md-nav__item"><a href="#database_txn_tracker" title="database_txn_tracker" class="md-nav__link">database_txn_tracker</a></li><li class="md-nav__item"><a href="#delegators" title="delegators" class="md-nav__link">delegators</a></li><li class="md-nav__item"><a href="#delegators_count" title="delegators_count" class="md-nav__link">delegators_count</a></li><li class="md-nav__item"><a href="#deterministic_key" title="deterministic_key" class="md-nav__link">deterministic_key</a></li><li class="md-nav__item"><a href="#frontier_count" title="frontier_count" class="md-nav__link">frontier_count</a></li><li class="md-nav__item"><a href="#frontiers" title="frontiers" class="md-nav__link">frontiers</a></li><li class="md-nav__item"><a href="#keepalive" title="keepalive" class="md-nav__link">keepalive</a></li><li class="md-nav__item"><a href="#key_create" title="key_create" class="md-nav__link">key_create</a></li><li class="md-nav__item"><a href="#key_expand" title="key_expand" class="md-nav__link">key_expand</a></li><li class="md-nav__item"><a href="#ledger" title="ledger" class="md-nav__link">ledger</a></li><li class="md-nav__item"><a href="#node_id" title="node_id" class="md-nav__link">node_id</a></li><li class="md-nav__item"><a href="#node_id_delete" title="node_id_delete" class="md-nav__link">node_id_delete</a></li><li class="md-nav__item"><a href="#peers" title="peers" class="md-nav__link">peers</a></li><li class="md-nav__item"><a href="#pending" title="pending" class="md-nav__link">pending</a></li><li class="md-nav__item"><a href="#pending_exists" title="pending_exists" class="md-nav__link">pending_exists</a></li><li class="md-nav__item"><a href="#process" title="process" class="md-nav__link">process</a></li><li class="md-nav__item"><a href="#representatives" title="representatives" class="md-nav__link">representatives</a></li><li class="md-nav__item"><a href="#representatives_online" title="representatives_online" class="md-nav__link">representatives_online</a></li><li class="md-nav__item"><a href="#republish" title="republish" class="md-nav__link">republish</a></li><li class="md-nav__item"><a href="#sign" title="sign" class="md-nav__link">sign</a></li><li class="md-nav__item"><a href="#stats" title="stats" class="md-nav__link">stats</a></li><li class="md-nav__item"><a href="#stats_clear" title="stats_clear" class="md-nav__link">stats_clear</a></li><li class="md-nav__item"><a href="#stop" title="stop" class="md-nav__link">stop</a></li><li class="md-nav__item"><a href="#successors" title="successors" class="md-nav__link">successors</a></li><li class="md-nav__item"><a href="#validate_account_number" title="validate_account_number" class="md-nav__link">validate_account_number</a></li><li class="md-nav__item"><a href="#version" title="version" class="md-nav__link">version</a></li><li class="md-nav__item"><a href="#unchecked" title="unchecked" class="md-nav__link">unchecked</a></li><li class="md-nav__item"><a href="#unchecked_clear" title="unchecked_clear" class="md-nav__link">unchecked_clear</a></li><li class="md-nav__item"><a href="#unchecked_get" title="unchecked_get" class="md-nav__link">unchecked_get</a></li><li class="md-nav__item"><a href="#unchecked_keys" title="unchecked_keys" class="md-nav__link">unchecked_keys</a></li><li class="md-nav__item"><a href="#unopened" title="unopened" class="md-nav__link">unopened</a></li><li class="md-nav__item"><a href="#uptime" title="uptime" class="md-nav__link">uptime</a></li><li class="md-nav__item"><a href="#work_cancel" title="work_cancel" class="md-nav__link">work_cancel</a></li><li class="md-nav__item"><a href="#work_generate" title="work_generate" class="md-nav__link">work_generate</a></li><li class="md-nav__item"><a href="#work_peer_add" title="work_peer_add" class="md-nav__link">work_peer_add</a></li><li class="md-nav__item"><a href="#work_peers" title="work_peers" class="md-nav__link">work_peers</a></li><li class="md-nav__item"><a href="#work_peers_clear" title="work_peers_clear" class="md-nav__link">work_peers_clear</a></li><li class="md-nav__item"><a href="#work_validate" title="work_validate" class="md-nav__link">work_validate</a></li></ul></nav></li><li class="md-nav__item"><a href="#wallet-rpcs" title="Wallet RPCs" class="md-nav__link">Wallet RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#account_create" title="account_create" class="md-nav__link">account_create</a></li><li class="md-nav__item"><a href="#account_list" title="account_list" class="md-nav__link">account_list</a></li><li class="md-nav__item"><a href="#account_move" title="account_move" class="md-nav__link">account_move</a></li><li class="md-nav__item"><a href="#account_remove" title="account_remove" class="md-nav__link">account_remove</a></li><li class="md-nav__item"><a href="#account_representative_set" title="account_representative_set" class="md-nav__link">account_representative_set</a></li><li class="md-nav__item"><a href="#accounts_create" title="accounts_create" class="md-nav__link">accounts_create</a></li><li class="md-nav__item"><a href="#block_create-optional-wallet" title="block_create (optional wallet)" class="md-nav__link">block_create (optional wallet)</a></li><li class="md-nav__item"><a href="#password_change" title="password_change" class="md-nav__link">password_change</a></li><li class="md-nav__item"><a href="#password_enter" title="password_enter" class="md-nav__link">password_enter</a></li><li class="md-nav__item"><a href="#password_valid" title="password_valid" class="md-nav__link">password_valid</a></li><li class="md-nav__item"><a href="#receive" title="receive" class="md-nav__link">receive</a></li><li class="md-nav__item"><a href="#receive_minimum" title="receive_minimum" class="md-nav__link">receive_minimum</a></li><li class="md-nav__item"><a href="#receive_minimum_set" title="receive_minimum_set" class="md-nav__link">receive_minimum_set</a></li><li class="md-nav__item"><a href="#search_pending" title="search_pending" class="md-nav__link">search_pending</a></li><li class="md-nav__item"><a href="#search_pending_all" title="search_pending_all" class="md-nav__link">search_pending_all</a></li><li class="md-nav__item"><a href="#send" title="send" class="md-nav__link">send</a></li><li class="md-nav__item"><a href="#sign-optional-wallet" title="sign (optional wallet)" class="md-nav__link">sign (optional wallet)</a></li><li class="md-nav__item"><a href="#wallet_add" title="wallet_add" class="md-nav__link">wallet_add</a></li><li class="md-nav__item"><a href="#wallet_add_watch" title="wallet_add_watch" class="md-nav__link">wallet_add_watch</a></li><li class="md-nav__item"><a href="#wallet_balances" title="wallet_balances" class="md-nav__link">wallet_balances</a></li><li class="md-nav__item"><a href="#wallet_change_seed" title="wallet_change_seed" class="md-nav__link">wallet_change_seed</a></li><li class="md-nav__item"><a href="#wallet_contains" title="wallet_contains" class="md-nav__link">wallet_contains</a></li><li class="md-nav__item"><a href="#wallet_create" title="wallet_create" class="md-nav__link">wallet_create</a></li><li class="md-nav__item"><a href="#wallet_destroy" title="wallet_destroy" class="md-nav__link">wallet_destroy</a></li><li class="md-nav__item"><a href="#wallet_export" title="wallet_export" class="md-nav__link">wallet_export</a></li><li class="md-nav__item"><a href="#wallet_frontiers" title="wallet_frontiers" class="md-nav__link">wallet_frontiers</a></li><li class="md-nav__item"><a href="#wallet_history" title="wallet_history" class="md-nav__link">wallet_history</a></li><li class="md-nav__item"><a href="#wallet_info" title="wallet_info" class="md-nav__link">wallet_info</a></li><li class="md-nav__item"><a href="#wallet_ledger" title="wallet_ledger" class="md-nav__link">wallet_ledger</a></li><li class="md-nav__item"><a href="#wallet_lock" title="wallet_lock" class="md-nav__link">wallet_lock</a></li><li class="md-nav__item"><a href="#wallet_locked" title="wallet_locked" class="md-nav__link">wallet_locked</a></li><li class="md-nav__item"><a href="#wallet_pending" title="wallet_pending" class="md-nav__link">wallet_pending</a></li><li class="md-nav__item"><a href="#wallet_representative" title="wallet_representative" class="md-nav__link">wallet_representative</a></li><li class="md-nav__item"><a href="#wallet_representative_set" title="wallet_representative_set" class="md-nav__link">wallet_representative_set</a></li><li class="md-nav__item"><a href="#wallet_republish" title="wallet_republish" class="md-nav__link">wallet_republish</a></li><li class="md-nav__item"><a href="#wallet_work_get" title="wallet_work_get" class="md-nav__link">wallet_work_get</a></li><li class="md-nav__item"><a href="#work_get" title="work_get" class="md-nav__link">work_get</a></li><li class="md-nav__item"><a href="#work_set" title="work_set" class="md-nav__link">work_set</a></li></ul></nav></li><li class="md-nav__item"><a href="#unit-conversion-rpcs" title="Unit Conversion RPCs" class="md-nav__link">Unit Conversion RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#krai_from_raw" title="krai_from_raw" class="md-nav__link">krai_from_raw</a></li><li class="md-nav__item"><a href="#krai_to_raw" title="krai_to_raw" class="md-nav__link">krai_to_raw</a></li><li class="md-nav__item"><a href="#mrai_from_raw" title="mrai_from_raw" class="md-nav__link">mrai_from_raw</a></li><li class="md-nav__item"><a href="#mrai_to_raw" title="mrai_to_raw" class="md-nav__link">mrai_to_raw</a></li><li class="md-nav__item"><a href="#rai_from_raw" title="rai_from_raw" class="md-nav__link">rai_from_raw</a></li><li class="md-nav__item"><a href="#rai_to_raw" title="rai_to_raw" class="md-nav__link">rai_to_raw</a></li></ul></nav></li><li class="md-nav__item"><a href="#deprecated-rpcs" title="Deprecated RPCs" class="md-nav__link">Deprecated RPCs</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#history" title="history" class="md-nav__link">history</a></li><li class="md-nav__item"><a href="#payment_begin" title="payment_begin" class="md-nav__link">payment_begin</a></li><li class="md-nav__item"><a href="#payment_end" title="payment_end" class="md-nav__link">payment_end</a></li><li class="md-nav__item"><a href="#payment_init" title="payment_init" class="md-nav__link">payment_init</a></li><li class="md-nav__item"><a href="#payment_wait" title="payment_wait" class="md-nav__link">payment_wait</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/commands/rpc-protocol.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1>RPC Protocol</h1><p>The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:</p>
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="#4a90e2" data-md-color-accent="#131121">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#node-rpcs" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/nano.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              
+                RPC Protocol
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo">
+      
+        <img src="../../images/nano.svg" width="48" height="48">
+      
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/nanocurrency/nano-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      What is Nano?
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        What is Nano?
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../what-is-nano/exploring-more/" title="Exploring More" class="md-nav__link">
+      Exploring More
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Running a Node
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Running a Node
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/node-setup/" title="Node Setup" class="md-nav__link">
+      Node Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/docker-management/" title="Docker Management" class="md-nav__link">
+      Docker Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beta-network/" title="Beta Network" class="md-nav__link">
+      Beta Network
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/troubleshooting/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
+      Beyond the Node
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Integration Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Integration Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/the-basics/" title="The Basics" class="md-nav__link">
+      The Basics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/key-management/" title="Key Management" class="md-nav__link">
+      Key Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/build-options/" title="Build Options" class="md-nav__link">
+      Build Options
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integration-guides/advanced/" title="Advanced" class="md-nav__link">
+      Advanced
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Commands
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Commands
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RPC Protocol
+      </label>
+    
+    <a href="./" title="RPC Protocol" class="md-nav__link md-nav__link--active">
+      RPC Protocol
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#node-rpcs" title="Node RPCs" class="md-nav__link">
+    Node RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account_balance" title="account_balance" class="md-nav__link">
+    account_balance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_block_count" title="account_block_count" class="md-nav__link">
+    account_block_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_get" title="account_get" class="md-nav__link">
+    account_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_history" title="account_history" class="md-nav__link">
+    account_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_info" title="account_info" class="md-nav__link">
+    account_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_key" title="account_key" class="md-nav__link">
+    account_key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_representative" title="account_representative" class="md-nav__link">
+    account_representative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_weight" title="account_weight" class="md-nav__link">
+    account_weight
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_balances" title="accounts_balances" class="md-nav__link">
+    accounts_balances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_frontiers" title="accounts_frontiers" class="md-nav__link">
+    accounts_frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_pending" title="accounts_pending" class="md-nav__link">
+    accounts_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_difficulty" title="active_difficulty" class="md-nav__link">
+    active_difficulty
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available_supply" title="available_supply" class="md-nav__link">
+    available_supply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_account" title="block_account" class="md-nav__link">
+    block_account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_confirm" title="block_confirm" class="md-nav__link">
+    block_confirm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_count" title="block_count" class="md-nav__link">
+    block_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_count_type" title="block_count_type" class="md-nav__link">
+    block_count_type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_create" title="block_create" class="md-nav__link">
+    block_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_hash" title="block_hash" class="md-nav__link">
+    block_hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_info" title="block_info" class="md-nav__link">
+    block_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocks" title="blocks" class="md-nav__link">
+    blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocks_info" title="blocks_info" class="md-nav__link">
+    blocks_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" title="bootstrap" class="md-nav__link">
+    bootstrap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_any" title="bootstrap_any" class="md-nav__link">
+    bootstrap_any
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_lazy" title="bootstrap_lazy" class="md-nav__link">
+    bootstrap_lazy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_status" title="bootstrap_status" class="md-nav__link">
+    bootstrap_status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain" title="chain" class="md-nav__link">
+    chain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_active" title="confirmation_active" class="md-nav__link">
+    confirmation_active
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_height_currently_processing" title="confirmation_height_currently_processing" class="md-nav__link">
+    confirmation_height_currently_processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_history" title="confirmation_history" class="md-nav__link">
+    confirmation_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_info" title="confirmation_info" class="md-nav__link">
+    confirmation_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_quorum" title="confirmation_quorum" class="md-nav__link">
+    confirmation_quorum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database_txn_tracker" title="database_txn_tracker" class="md-nav__link">
+    database_txn_tracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegators" title="delegators" class="md-nav__link">
+    delegators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegators_count" title="delegators_count" class="md-nav__link">
+    delegators_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deterministic_key" title="deterministic_key" class="md-nav__link">
+    deterministic_key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontier_count" title="frontier_count" class="md-nav__link">
+    frontier_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontiers" title="frontiers" class="md-nav__link">
+    frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keepalive" title="keepalive" class="md-nav__link">
+    keepalive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_create" title="key_create" class="md-nav__link">
+    key_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_expand" title="key_expand" class="md-nav__link">
+    key_expand
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ledger" title="ledger" class="md-nav__link">
+    ledger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_id" title="node_id" class="md-nav__link">
+    node_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_id_delete" title="node_id_delete" class="md-nav__link">
+    node_id_delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peers" title="peers" class="md-nav__link">
+    peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pending" title="pending" class="md-nav__link">
+    pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pending_exists" title="pending_exists" class="md-nav__link">
+    pending_exists
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process" title="process" class="md-nav__link">
+    process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representatives" title="representatives" class="md-nav__link">
+    representatives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representatives_online" title="representatives_online" class="md-nav__link">
+    representatives_online
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#republish" title="republish" class="md-nav__link">
+    republish
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign" title="sign" class="md-nav__link">
+    sign
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats" title="stats" class="md-nav__link">
+    stats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats_clear" title="stats_clear" class="md-nav__link">
+    stats_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" title="stop" class="md-nav__link">
+    stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#successors" title="successors" class="md-nav__link">
+    successors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_account_number" title="validate_account_number" class="md-nav__link">
+    validate_account_number
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" title="version" class="md-nav__link">
+    version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked" title="unchecked" class="md-nav__link">
+    unchecked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_clear" title="unchecked_clear" class="md-nav__link">
+    unchecked_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_get" title="unchecked_get" class="md-nav__link">
+    unchecked_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_keys" title="unchecked_keys" class="md-nav__link">
+    unchecked_keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unopened" title="unopened" class="md-nav__link">
+    unopened
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uptime" title="uptime" class="md-nav__link">
+    uptime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_cancel" title="work_cancel" class="md-nav__link">
+    work_cancel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_generate" title="work_generate" class="md-nav__link">
+    work_generate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peer_add" title="work_peer_add" class="md-nav__link">
+    work_peer_add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peers" title="work_peers" class="md-nav__link">
+    work_peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peers_clear" title="work_peers_clear" class="md-nav__link">
+    work_peers_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_validate" title="work_validate" class="md-nav__link">
+    work_validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wallet-rpcs" title="Wallet RPCs" class="md-nav__link">
+    Wallet RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account_create" title="account_create" class="md-nav__link">
+    account_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_list" title="account_list" class="md-nav__link">
+    account_list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_move" title="account_move" class="md-nav__link">
+    account_move
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_remove" title="account_remove" class="md-nav__link">
+    account_remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_representative_set" title="account_representative_set" class="md-nav__link">
+    account_representative_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_create" title="accounts_create" class="md-nav__link">
+    accounts_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_create-optional-wallet" title="block_create (optional wallet)" class="md-nav__link">
+    block_create (optional wallet)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_change" title="password_change" class="md-nav__link">
+    password_change
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_enter" title="password_enter" class="md-nav__link">
+    password_enter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_valid" title="password_valid" class="md-nav__link">
+    password_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive" title="receive" class="md-nav__link">
+    receive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_minimum" title="receive_minimum" class="md-nav__link">
+    receive_minimum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_minimum_set" title="receive_minimum_set" class="md-nav__link">
+    receive_minimum_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_pending" title="search_pending" class="md-nav__link">
+    search_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_pending_all" title="search_pending_all" class="md-nav__link">
+    search_pending_all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send" title="send" class="md-nav__link">
+    send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-optional-wallet" title="sign (optional wallet)" class="md-nav__link">
+    sign (optional wallet)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_add" title="wallet_add" class="md-nav__link">
+    wallet_add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_add_watch" title="wallet_add_watch" class="md-nav__link">
+    wallet_add_watch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_balances" title="wallet_balances" class="md-nav__link">
+    wallet_balances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_change_seed" title="wallet_change_seed" class="md-nav__link">
+    wallet_change_seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_contains" title="wallet_contains" class="md-nav__link">
+    wallet_contains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_create" title="wallet_create" class="md-nav__link">
+    wallet_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_destroy" title="wallet_destroy" class="md-nav__link">
+    wallet_destroy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_export" title="wallet_export" class="md-nav__link">
+    wallet_export
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_frontiers" title="wallet_frontiers" class="md-nav__link">
+    wallet_frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_history" title="wallet_history" class="md-nav__link">
+    wallet_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_info" title="wallet_info" class="md-nav__link">
+    wallet_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_ledger" title="wallet_ledger" class="md-nav__link">
+    wallet_ledger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_lock" title="wallet_lock" class="md-nav__link">
+    wallet_lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_locked" title="wallet_locked" class="md-nav__link">
+    wallet_locked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_pending" title="wallet_pending" class="md-nav__link">
+    wallet_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_representative" title="wallet_representative" class="md-nav__link">
+    wallet_representative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_representative_set" title="wallet_representative_set" class="md-nav__link">
+    wallet_representative_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_republish" title="wallet_republish" class="md-nav__link">
+    wallet_republish
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_work_get" title="wallet_work_get" class="md-nav__link">
+    wallet_work_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_get" title="work_get" class="md-nav__link">
+    work_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_set" title="work_set" class="md-nav__link">
+    work_set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-conversion-rpcs" title="Unit Conversion RPCs" class="md-nav__link">
+    Unit Conversion RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krai_from_raw" title="krai_from_raw" class="md-nav__link">
+    krai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#krai_to_raw" title="krai_to_raw" class="md-nav__link">
+    krai_to_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mrai_from_raw" title="mrai_from_raw" class="md-nav__link">
+    mrai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mrai_to_raw" title="mrai_to_raw" class="md-nav__link">
+    mrai_to_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rai_from_raw" title="rai_from_raw" class="md-nav__link">
+    rai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rai_to_raw" title="rai_to_raw" class="md-nav__link">
+    rai_to_raw
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deprecated-rpcs" title="Deprecated RPCs" class="md-nav__link">
+    Deprecated RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" title="history" class="md-nav__link">
+    history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_begin" title="payment_begin" class="md-nav__link">
+    payment_begin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_end" title="payment_end" class="md-nav__link">
+    payment_end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_init" title="payment_init" class="md-nav__link">
+    payment_init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_wait" title="payment_wait" class="md-nav__link">
+    payment_wait
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-line-interface/" title="Command Line Interface" class="md-nav__link">
+      Command Line Interface
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Protocol Design
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Protocol Design
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/distribution-and-units/" title="Distribution and Units" class="md-nav__link">
+      Distribution and Units
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/networking/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/network-attacks/" title="Network Attacks" class="md-nav__link">
+      Network Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
+      Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Releases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Releases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../releases/node-releases/" title="Node Releases" class="md-nav__link">
+      Node Releases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../releases/upcoming-features/" title="Upcoming Features" class="md-nav__link">
+      Upcoming Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../releases/roadmap/" title="Roadmap" class="md-nav__link">
+      Roadmap
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../glossary/" title="Glossary" class="md-nav__link">
+      Glossary
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#node-rpcs" title="Node RPCs" class="md-nav__link">
+    Node RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account_balance" title="account_balance" class="md-nav__link">
+    account_balance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_block_count" title="account_block_count" class="md-nav__link">
+    account_block_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_get" title="account_get" class="md-nav__link">
+    account_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_history" title="account_history" class="md-nav__link">
+    account_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_info" title="account_info" class="md-nav__link">
+    account_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_key" title="account_key" class="md-nav__link">
+    account_key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_representative" title="account_representative" class="md-nav__link">
+    account_representative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_weight" title="account_weight" class="md-nav__link">
+    account_weight
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_balances" title="accounts_balances" class="md-nav__link">
+    accounts_balances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_frontiers" title="accounts_frontiers" class="md-nav__link">
+    accounts_frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_pending" title="accounts_pending" class="md-nav__link">
+    accounts_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_difficulty" title="active_difficulty" class="md-nav__link">
+    active_difficulty
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available_supply" title="available_supply" class="md-nav__link">
+    available_supply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_account" title="block_account" class="md-nav__link">
+    block_account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_confirm" title="block_confirm" class="md-nav__link">
+    block_confirm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_count" title="block_count" class="md-nav__link">
+    block_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_count_type" title="block_count_type" class="md-nav__link">
+    block_count_type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_create" title="block_create" class="md-nav__link">
+    block_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_hash" title="block_hash" class="md-nav__link">
+    block_hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_info" title="block_info" class="md-nav__link">
+    block_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocks" title="blocks" class="md-nav__link">
+    blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocks_info" title="blocks_info" class="md-nav__link">
+    blocks_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" title="bootstrap" class="md-nav__link">
+    bootstrap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_any" title="bootstrap_any" class="md-nav__link">
+    bootstrap_any
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_lazy" title="bootstrap_lazy" class="md-nav__link">
+    bootstrap_lazy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap_status" title="bootstrap_status" class="md-nav__link">
+    bootstrap_status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain" title="chain" class="md-nav__link">
+    chain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_active" title="confirmation_active" class="md-nav__link">
+    confirmation_active
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_height_currently_processing" title="confirmation_height_currently_processing" class="md-nav__link">
+    confirmation_height_currently_processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_history" title="confirmation_history" class="md-nav__link">
+    confirmation_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_info" title="confirmation_info" class="md-nav__link">
+    confirmation_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_quorum" title="confirmation_quorum" class="md-nav__link">
+    confirmation_quorum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database_txn_tracker" title="database_txn_tracker" class="md-nav__link">
+    database_txn_tracker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegators" title="delegators" class="md-nav__link">
+    delegators
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delegators_count" title="delegators_count" class="md-nav__link">
+    delegators_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deterministic_key" title="deterministic_key" class="md-nav__link">
+    deterministic_key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontier_count" title="frontier_count" class="md-nav__link">
+    frontier_count
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontiers" title="frontiers" class="md-nav__link">
+    frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keepalive" title="keepalive" class="md-nav__link">
+    keepalive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_create" title="key_create" class="md-nav__link">
+    key_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key_expand" title="key_expand" class="md-nav__link">
+    key_expand
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ledger" title="ledger" class="md-nav__link">
+    ledger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_id" title="node_id" class="md-nav__link">
+    node_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_id_delete" title="node_id_delete" class="md-nav__link">
+    node_id_delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peers" title="peers" class="md-nav__link">
+    peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pending" title="pending" class="md-nav__link">
+    pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pending_exists" title="pending_exists" class="md-nav__link">
+    pending_exists
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process" title="process" class="md-nav__link">
+    process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representatives" title="representatives" class="md-nav__link">
+    representatives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representatives_online" title="representatives_online" class="md-nav__link">
+    representatives_online
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#republish" title="republish" class="md-nav__link">
+    republish
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign" title="sign" class="md-nav__link">
+    sign
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats" title="stats" class="md-nav__link">
+    stats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stats_clear" title="stats_clear" class="md-nav__link">
+    stats_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" title="stop" class="md-nav__link">
+    stop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#successors" title="successors" class="md-nav__link">
+    successors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_account_number" title="validate_account_number" class="md-nav__link">
+    validate_account_number
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" title="version" class="md-nav__link">
+    version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked" title="unchecked" class="md-nav__link">
+    unchecked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_clear" title="unchecked_clear" class="md-nav__link">
+    unchecked_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_get" title="unchecked_get" class="md-nav__link">
+    unchecked_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unchecked_keys" title="unchecked_keys" class="md-nav__link">
+    unchecked_keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unopened" title="unopened" class="md-nav__link">
+    unopened
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uptime" title="uptime" class="md-nav__link">
+    uptime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_cancel" title="work_cancel" class="md-nav__link">
+    work_cancel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_generate" title="work_generate" class="md-nav__link">
+    work_generate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peer_add" title="work_peer_add" class="md-nav__link">
+    work_peer_add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peers" title="work_peers" class="md-nav__link">
+    work_peers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_peers_clear" title="work_peers_clear" class="md-nav__link">
+    work_peers_clear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_validate" title="work_validate" class="md-nav__link">
+    work_validate
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wallet-rpcs" title="Wallet RPCs" class="md-nav__link">
+    Wallet RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account_create" title="account_create" class="md-nav__link">
+    account_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_list" title="account_list" class="md-nav__link">
+    account_list
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_move" title="account_move" class="md-nav__link">
+    account_move
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_remove" title="account_remove" class="md-nav__link">
+    account_remove
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account_representative_set" title="account_representative_set" class="md-nav__link">
+    account_representative_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accounts_create" title="accounts_create" class="md-nav__link">
+    accounts_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block_create-optional-wallet" title="block_create (optional wallet)" class="md-nav__link">
+    block_create (optional wallet)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_change" title="password_change" class="md-nav__link">
+    password_change
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_enter" title="password_enter" class="md-nav__link">
+    password_enter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_valid" title="password_valid" class="md-nav__link">
+    password_valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive" title="receive" class="md-nav__link">
+    receive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_minimum" title="receive_minimum" class="md-nav__link">
+    receive_minimum
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive_minimum_set" title="receive_minimum_set" class="md-nav__link">
+    receive_minimum_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_pending" title="search_pending" class="md-nav__link">
+    search_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search_pending_all" title="search_pending_all" class="md-nav__link">
+    search_pending_all
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send" title="send" class="md-nav__link">
+    send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-optional-wallet" title="sign (optional wallet)" class="md-nav__link">
+    sign (optional wallet)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_add" title="wallet_add" class="md-nav__link">
+    wallet_add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_add_watch" title="wallet_add_watch" class="md-nav__link">
+    wallet_add_watch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_balances" title="wallet_balances" class="md-nav__link">
+    wallet_balances
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_change_seed" title="wallet_change_seed" class="md-nav__link">
+    wallet_change_seed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_contains" title="wallet_contains" class="md-nav__link">
+    wallet_contains
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_create" title="wallet_create" class="md-nav__link">
+    wallet_create
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_destroy" title="wallet_destroy" class="md-nav__link">
+    wallet_destroy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_export" title="wallet_export" class="md-nav__link">
+    wallet_export
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_frontiers" title="wallet_frontiers" class="md-nav__link">
+    wallet_frontiers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_history" title="wallet_history" class="md-nav__link">
+    wallet_history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_info" title="wallet_info" class="md-nav__link">
+    wallet_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_ledger" title="wallet_ledger" class="md-nav__link">
+    wallet_ledger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_lock" title="wallet_lock" class="md-nav__link">
+    wallet_lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_locked" title="wallet_locked" class="md-nav__link">
+    wallet_locked
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_pending" title="wallet_pending" class="md-nav__link">
+    wallet_pending
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_representative" title="wallet_representative" class="md-nav__link">
+    wallet_representative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_representative_set" title="wallet_representative_set" class="md-nav__link">
+    wallet_representative_set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_republish" title="wallet_republish" class="md-nav__link">
+    wallet_republish
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet_work_get" title="wallet_work_get" class="md-nav__link">
+    wallet_work_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_get" title="work_get" class="md-nav__link">
+    work_get
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work_set" title="work_set" class="md-nav__link">
+    work_set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-conversion-rpcs" title="Unit Conversion RPCs" class="md-nav__link">
+    Unit Conversion RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krai_from_raw" title="krai_from_raw" class="md-nav__link">
+    krai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#krai_to_raw" title="krai_to_raw" class="md-nav__link">
+    krai_to_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mrai_from_raw" title="mrai_from_raw" class="md-nav__link">
+    mrai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mrai_to_raw" title="mrai_to_raw" class="md-nav__link">
+    mrai_to_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rai_from_raw" title="rai_from_raw" class="md-nav__link">
+    rai_from_raw
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rai_to_raw" title="rai_to_raw" class="md-nav__link">
+    rai_to_raw
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deprecated-rpcs" title="Deprecated RPCs" class="md-nav__link">
+    Deprecated RPCs
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" title="history" class="md-nav__link">
+    history
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_begin" title="payment_begin" class="md-nav__link">
+    payment_begin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_end" title="payment_end" class="md-nav__link">
+    payment_end
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_init" title="payment_init" class="md-nav__link">
+    payment_init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payment_wait" title="payment_wait" class="md-nav__link">
+    payment_wait
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/commands/rpc-protocol.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>RPC Protocol</h1>
+                
+                <p>The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:</p>
 <table>
 <thead>
 <tr>
@@ -372,6 +2892,29 @@ Boolean, false by default. Only returns block which have their confirmation heig
     <span class="nt">&quot;network_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffc000000000&quot;</span><span class="p">,</span>
     <span class="nt">&quot;network_current&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffcdbf40aa45&quot;</span><span class="p">,</span>
     <span class="nt">&quot;multiplier&quot;</span><span class="p">:</span> <span class="s2">&quot;1.273557846739298&quot;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p><strong>Optional "include_trend"</strong></p>
+<p>Boolean, false by default. Also returns the trend of difficulty seen on the network as a <strong>list of multipliers</strong>. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. </p>
+<p><strong>Request:</strong>
+<div class="codehilite"><pre><span></span><span class="p">{</span>  
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;include_trend&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p><strong>Response:</strong>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;network_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffc000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;network_current&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffc1816766f2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;multiplier&quot;</span><span class="p">:</span> <span class="s2">&quot;1.024089858417128&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;difficulty_trend&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;1.156096135149775&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1.190133894573061&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1.135567138563921&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1.000000000000000&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;...skipped...&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1.000000000000000&quot;</span>
+    <span class="p">]</span>
 <span class="p">}</span>
 </pre></div></p>
 <hr />
@@ -3002,4 +5545,107 @@ Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseco
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;status&quot;</span> <span class="p">:</span> <span class="s2">&quot;success&quot;</span>  
 <span class="p">}</span>
-</pre></div></p></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../../integration-guides/advanced/" title="Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Advanced</span></div></a><a href="../command-line-interface/" title="Command Line Interface" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>Command Line Interface</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>  <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>  <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>  <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>  <a href="https://medium.com/nanocurrency" class="md-footer-social__link fa fa-medium"></a>  <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>  <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>  <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>  <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a> </div></div></div></footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script><script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script></body></html>
+</pre></div></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../integration-guides/advanced/" title="Advanced" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Advanced
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../command-line-interface/" title="Command Line Interface" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Command Line Interface
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/nanocurrency" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/nano" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://chat.nano.org" class="md-footer-social__link fa fa-comments"></a>
+    
+      <a href="https://reddit.com/r/nanocurrency" class="md-footer-social__link fa fa-reddit"></a>
+    
+      <a href="https://medium.com/nanocurrency" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://facebook.com/nanofoundation" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://linkedin.com/company/nano-foundation" class="md-footer-social__link fa fa-linkedin"></a>
+    
+      <a href="https://www.youtube.com/nanocurrency/" class="md-footer-social__link fa fa-youtube"></a>
+    
+      <a href="https://www.instagram.com/nanocurrency/" class="md-footer-social__link fa fa-instagram"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
