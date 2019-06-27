@@ -468,8 +468,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#release-candidate-4-for-v19-v19-rc4" title="Release Candidate 4 for V19 (V19 RC4)" class="md-nav__link">
-    Release Candidate 4 for V19 (V19 RC4)
+  <a href="#release-candidate-5-for-v19-v19-rc5" title="Release Candidate 5 for V19 (V19 RC5)" class="md-nav__link">
+    Release Candidate 5 for V19 (V19 RC5)
   </a>
   
 </li>
@@ -891,8 +891,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#release-candidate-4-for-v19-v19-rc4" title="Release Candidate 4 for V19 (V19 RC4)" class="md-nav__link">
-    Release Candidate 4 for V19 (V19 RC4)
+  <a href="#release-candidate-5-for-v19-v19-rc5" title="Release Candidate 5 for V19 (V19 RC5)" class="md-nav__link">
+    Release Candidate 5 for V19 (V19 RC5)
   </a>
   
 </li>
@@ -1038,8 +1038,8 @@
 </tbody>
 </table>
 <h2 id="current-release-candidate-testing">Current Release Candidate Testing<a class="headerlink" href="#current-release-candidate-testing" title="Permanent link">&para;</a></h2>
-<h3 id="release-candidate-4-for-v19-v19-rc4">Release Candidate 4 for V19 (V19 RC4)<a class="headerlink" href="#release-candidate-4-for-v19-v19-rc4" title="Permanent link">&para;</a></h3>
-<p>V19 RC4 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:</p>
+<h3 id="release-candidate-5-for-v19-v19-rc5">Release Candidate 5 for V19 (V19 RC5)<a class="headerlink" href="#release-candidate-5-for-v19-v19-rc5" title="Permanent link">&para;</a></h3>
+<p>V19 RC5 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:</p>
 <p><strong>Upgrade from pre-V18</strong></p>
 <p>Anyone attempting to upgrade to V19 from versions earlier than V18 will see a long period where the node will not participate on the network and RPC will not be responsive. This is because the sideband upgrade has been changed from a background process to being on the main thread this version.  It is recommended that older nodes are upgraded to V18 before attempting the upgrade to V19 to avoid the service interruption.</p>
 <p><strong>Confirmation Height</strong></p>
@@ -1076,6 +1076,12 @@
 <td>Additional tests desired</td>
 <td>Attempt triggering fork resolution on an already confirmed block and monitor elections to ensure they aren't started for that block (ideally an older one that someone without confirmation height enabled wouldn't be trying to trigger an election for)</td>
 <td><strong>5/12: At least one successful validation of this case has been done, additional tests are welcome</strong></td>
+</tr>
+<tr>
+<td>CHT5</td>
+<td>Additional tests desired</td>
+<td>During spam event, validate that blocks are efficiently cemented using the <code>include_cemented</code> option on <a href="/commands/rpc-protocol/#block_count">block_count</a> RPC call to track this over time. This is a computationally heavy call, so if you plan on consistently polling it, do so every 30s or longer. You can also follow along with <code>"{"action": "stats","type":"objects"}"</code>. There is a pending_confirmation_height size included (number of blocks which won an election (or dependent election) passed to conf height processor).</td>
+<td></td>
 </tr>
 <tr>
 <td>CHM1</td>
