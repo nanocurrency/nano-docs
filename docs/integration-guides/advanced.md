@@ -211,26 +211,33 @@ For details on configuring websockets within a node, see the [websocket section 
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`
 
-#### Subscribe and unsubscribe
+**Subscribing and unsubscribing**
 
-To subscribe to all confirmed blocks:
+To receive notifications through the websocket you must subscribe to the specific topic and a standard subscription without filters looks like this:
 
 ```json
 {
-	"action": "subscribe",
-	"topic": "confirmation"
+  "action": "subscribe",
+  "topic": "confirmation"
 }
 ```
+
+Unsubscribing also has the format:
 
 To unsubscribe:
 ```json
 {
-	"action": "unsubscribe",
-	"topic": "confirmation"
+  "action": "unsubscribe",
+  "topic": "confirmation"
 }
 ```
 
-Future versions may include account filtering and additional topics.
+**Optional Filters**
+
+Some topics support filters as well. Details of the subscription filter options for each topic are included in examples below.
+
+!!! note
+    Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
 
 **Optional acknowledgement**
 
@@ -238,10 +245,10 @@ All WebSocket actions can request an acknowledgement.
 
 ```json
 {
-	"action": "subscribe", 
-	"topic": "confirmation", 
-	"ack": true,
-	"id": "<optional unique id>"
+  "action": "subscribe", 
+  "topic": "confirmation", 
+  "ack": true,
+  "id": "<optional unique id>"
 }
 ```
 
@@ -249,69 +256,37 @@ If the subscription succeeds, the following message will be sent back (note that
 
 ```json
 {
-	"ack": "subscribe",
-	"time": "1552766057328",
-	"id": "<optional unique id>"
-}
-```
-
-#### Sample results
-
-**Confirmation**
-
-!!! note "Differences from the HTTP callback"
-    * The "block" contains JSON instead of an escaped string. This makes parsing easier.
-    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
-    * Subtype is part of block (if it's a state block)
-    * There is no "is_send" property since "subtype" signifies the intent for state blocks.
-    * A confirmation type is added, which can be filtered.
-
-```json
-{
-  "topic": "confirmation",
+  "ack": "subscribe",
   "time": "1552766057328",
-  "message": {
-      "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-      "amount": "1000000000000000000000000",
-      "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
-      "confirmation_type": "active_quorum",
-      "block": {
-          "type": "state",
-          "subtype": "send",
-          "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-          "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
-          "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
-          "balance": "135902000000000000000000000000",
-          "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
-          "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-          "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
-          "work": "466ac84fc9edd4b3"
-      }
-  }
+  "id": "<optional unique id>"
 }
 ```
 
-**Vote**
+**Available Topics**
+
+Current topics available for subscribing to include:
+
+* `confirmation`
+* `vote`
+* `stopped_election`
+* `active_difficulty`
+
+---
+
+#### Confirmations
+
+##### Subscribing
+
+To subscribe to all confirmed blocks:
 
 ```json
 {
-  "topic": "vote",
-  "time": "1554995525343",
-  "message": {
-    "account": "nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy",
-    "signature": "1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353",
-    "sequence": "855471574",
-    "blocks": [
-      "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
-    ]
-  }
+  "action": "subscribe",
+  "topic": "confirmation"
 }
 ```
 
-#### Optional filters
-Some topics support filters. Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
-
-##### Confirmations
+##### Filters
 
 ###### Type filtering
 
@@ -357,7 +332,7 @@ Because account filtering needs block content to function, setting this flag to 
 }
 ```
 
-##### Accounts
+###### Accounts
 
 Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
 
@@ -380,7 +355,57 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
-##### Votes
+##### Sample Results
+
+!!! note "Differences from the HTTP callback"
+    * The "block" contains JSON instead of an escaped string. This makes parsing easier.
+    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
+    * Subtype is part of block (if it's a state block)
+    * There is no "is_send" property since "subtype" signifies the intent for state blocks.
+    * A confirmation type is added, which can be filtered.
+
+```json
+{
+  "topic": "confirmation",
+  "time": "1552766057328",
+  "message": {
+      "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "amount": "1000000000000000000000000",
+      "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
+      "confirmation_type": "active_quorum",
+      "block": {
+          "type": "state",
+          "subtype": "send",
+          "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+          "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
+          "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
+          "balance": "135902000000000000000000000000",
+          "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
+          "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+          "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
+          "work": "466ac84fc9edd4b3"
+      }
+  }
+}
+```
+
+
+---
+
+#### Votes
+
+##### Subscribing
+
+To subscribe to all votes notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "vote"
+}
+```
+
+##### Filters
 
 Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
 
@@ -397,19 +422,44 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 }
 ```
 
-#### Stopped elections
+##### Sample Results
 
+```json
+{
+  "topic": "vote",
+  "time": "1554995525343",
+  "message": {
+    "account": "nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy",
+    "signature": "1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353",
+    "sequence": "855471574",
+    "blocks": [
+      "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
+    ]
+  }
+}
+```
+
+---
+
+#### Stopped elections
 If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
+
+##### Subscribing
+
+To subscribe to all stopped elections notifications:
 
 ```json
 {
   "action": "subscribe",
   "topic": "stopped_election"
-  }
 }
 ```
 
-Sample notification:
+##### Filters
+
+No filters are currently available for `stopped_election` topic.
+
+##### Sample Results
 
 ```json
 {
@@ -418,6 +468,39 @@ Sample notification:
   "message": {
       "hash": "FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3"
   }
+}
+```
+
+---
+
+#### Active difficulty
+
+##### Subscribing
+
+To subscribe to all active difficulty notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "active_difficulty"
+}
+```
+
+##### Filters
+
+No filters are currently available for `active_difficulty` topic.
+
+##### Sample Results
+
+```json
+{
+    "topic": "active_difficulty",
+    "time": "1561661736065",
+    "message": {
+        "network_minimum": "ffffffc000000000",
+        "network_current": "ffffffc81644d01f",
+        "multiplier": "1.144635159892734"
+    }
 }
 ```
 
