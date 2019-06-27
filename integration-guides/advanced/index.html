@@ -572,22 +572,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#subscribe-and-unsubscribe" title="Subscribe and unsubscribe" class="md-nav__link">
-    Subscribe and unsubscribe
+  <a href="#confirmations" title="Confirmations" class="md-nav__link">
+    Confirmations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample-results" title="Sample results" class="md-nav__link">
-    Sample results
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#optional-filters" title="Optional filters" class="md-nav__link">
-    Optional filters
+  <a href="#votes" title="Votes" class="md-nav__link">
+    Votes
   </a>
   
 </li>
@@ -595,6 +588,13 @@
           <li class="md-nav__item">
   <a href="#stopped-elections" title="Stopped elections" class="md-nav__link">
     Stopped elections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-difficulty" title="Active difficulty" class="md-nav__link">
+    Active difficulty
   </a>
   
 </li>
@@ -979,22 +979,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#subscribe-and-unsubscribe" title="Subscribe and unsubscribe" class="md-nav__link">
-    Subscribe and unsubscribe
+  <a href="#confirmations" title="Confirmations" class="md-nav__link">
+    Confirmations
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample-results" title="Sample results" class="md-nav__link">
-    Sample results
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#optional-filters" title="Optional filters" class="md-nav__link">
-    Optional filters
+  <a href="#votes" title="Votes" class="md-nav__link">
+    Votes
   </a>
   
 </li>
@@ -1002,6 +995,13 @@
           <li class="md-nav__item">
   <a href="#stopped-elections" title="Stopped elections" class="md-nav__link">
     Stopped elections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-difficulty" title="Active difficulty" class="md-nav__link">
+    Active difficulty
   </a>
   
 </li>
@@ -1277,41 +1277,118 @@
 <p><strong>Configuration</strong></p>
 <p>For details on configuring websockets within a node, see the <a href="/running-a-node/configuration#websocket">websocket section of Running a Node Configuration</a>.</p>
 <p>With the above configuration, localhost clients should connect to <code>ws://[::1]:7078</code></p>
-<h4 id="subscribe-and-unsubscribe">Subscribe and unsubscribe<a class="headerlink" href="#subscribe-and-unsubscribe" title="Permanent link">&para;</a></h4>
-<p>To subscribe to all confirmed blocks:</p>
+<p><strong>Subscribing and unsubscribing</strong></p>
+<p>To receive notifications through the websocket you must subscribe to the specific topic and a standard subscription without filters looks like this:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
+<p>Unsubscribing also has the format:</p>
 <p>To unsubscribe:
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;unsubscribe&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;unsubscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
 <span class="p">}</span>
 </pre></div></p>
-<p>Future versions may include account filtering and additional topics.</p>
+<p><strong>Optional Filters</strong></p>
+<p>Some topics support filters as well. Details of the subscription filter options for each topic are included in examples below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that, if <strong>empty</strong> <code>options</code> are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.</p>
+</div>
 <p><strong>Optional acknowledgement</strong></p>
 <p>All WebSocket actions can request an acknowledgement.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span> 
-    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span> 
-    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span> 
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span> 
+  <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
 <p>If the subscription succeeds, the following message will be sent back (note that no message ordering is guaranteed):</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
+  <span class="nt">&quot;ack&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;optional unique id&gt;&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
-<h4 id="sample-results">Sample results<a class="headerlink" href="#sample-results" title="Permanent link">&para;</a></h4>
-<p><strong>Confirmation</strong></p>
+<p><strong>Available Topics</strong></p>
+<p>Current topics available for subscribing to include:</p>
+<ul>
+<li><code>confirmation</code></li>
+<li><code>vote</code></li>
+<li><code>stopped_election</code></li>
+<li><code>active_difficulty</code></li>
+</ul>
+<hr />
+<h4 id="confirmations">Confirmations<a class="headerlink" href="#confirmations" title="Permanent link">&para;</a></h4>
+<h5>Subscribing</h5>
+<p>To subscribe to all confirmed blocks:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Filters</h5>
+<h6>Type filtering</h6>
+<p>The node classifies block confirmations into the following categories:</p>
+<ul>
+<li><strong>Active quorum</strong>: a block is confirmed through voting (including <code>block_confirm</code> RPC if block is previously unconfirmed)</li>
+<li><strong>Active confirmation height</strong>: a block which is confirmed as a dependent election from a successor through voting (or by <code>block_confirm</code> RPC if the block is already confirmed)</li>
+<li><strong>Inactive</strong>: a block that is not in active elections is implicitly confirmed by a successor.</li>
+</ul>
+<p>By default, the node emits <strong>all</strong> confirmations to WebSocket clients. However, the following filtering option is available:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;type&gt;&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The most common values for <code>confirmation_type</code> are <code>all</code> (default), <code>active</code> and <code>inactive</code>.</p>
+<p>If more fine-grained filtering is needed, <code>active</code> can be replaced with <code>active_quorum</code> or <code>active_confirmation_height</code> per the definitions above.</p>
+<h6>Type field</h6>
+<p>Confirmations sent through WebSockets, whether filtering is used or not, contains a <code>confirmation_type</code> field with values <code>active_quorum</code>, <code>active_confirmation_height</code> or <code>inactive</code>.</p>
+<h6>Block content inclusion</h6>
+<p>By setting <code>include_block</code> to <code>false</code>, the block content will not be present. Default is <code>true</code>.
+Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;include_block&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h6>Accounts</h6>
+<p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
+<p><strong>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</strong></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;all_local_accounts&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<ul>
+<li>When <code>all_local_accounts</code> is set to <strong><code>true</code></strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
+<li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
+</ul>
+<h5>Sample Results</h5>
 <div class="admonition note">
 <p class="admonition-title">Differences from the HTTP callback</p>
 <ul>
@@ -1346,7 +1423,31 @@
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Vote</strong></p>
+<hr />
+<h4 id="votes">Votes<a class="headerlink" href="#votes" title="Permanent link">&para;</a></h4>
+<h5>Subscribing</h5>
+<p>To subscribe to all votes notifications:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Filters</h5>
+<p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;representatives&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Sample Results</h5>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
   <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1554995525343&quot;</span><span class="p">,</span>
@@ -1361,92 +1462,50 @@
 <span class="p">}</span>
 </pre></div>
 
-<h4 id="optional-filters">Optional filters<a class="headerlink" href="#optional-filters" title="Permanent link">&para;</a></h4>
-<p>Some topics support filters. Note that, if <strong>empty</strong> <code>options</code> are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.</p>
-<h5>Confirmations</h5>
-<h6>Type filtering</h6>
-<p>The node classifies block confirmations into the following categories:</p>
-<ul>
-<li><strong>Active quorum</strong>: a block is confirmed through voting (including <code>block_confirm</code> RPC if block is previously unconfirmed)</li>
-<li><strong>Active confirmation height</strong>: a block which is confirmed as a dependent election from a successor through voting (or by <code>block_confirm</code> RPC if the block is already confirmed)</li>
-<li><strong>Inactive</strong>: a block that is not in active elections is implicitly confirmed by a successor.</li>
-</ul>
-<p>By default, the node emits <strong>all</strong> confirmations to WebSocket clients. However, the following filtering option is available:</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;type&gt;&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>The most common values for <code>confirmation_type</code> are <code>all</code> (default), <code>active</code> and <code>inactive</code>.</p>
-<p>If more fine-grained filtering is needed, <code>active</code> can be replaced with <code>active_quorum</code> or <code>active_confirmation_height</code> per the definitions above.</p>
-<h6>Type field</h6>
-<p>Confirmations sent through WebSockets, whether filtering is used or not, contains a <code>confirmation_type</code> field with values <code>active_quorum</code>, <code>active_confirmation_height</code> or <code>inactive</code>.</p>
-<h6>Block content inclusion</h6>
-<p>By setting <code>include_block</code> to <code>false</code>, the block content will not be present. Default is <code>true</code>.
-Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;include_block&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<h5>Accounts</h5>
-<p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
-<p><strong>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</strong></p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;all_local_accounts&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;accounts&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<ul>
-<li>When <code>all_local_accounts</code> is set to <strong><code>true</code></strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
-<li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
-</ul>
-<h5>Votes</h5>
-<p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;representatives&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
+<hr />
 <h4 id="stopped-elections">Stopped elections<a class="headerlink" href="#stopped-elections" title="Permanent link">&para;</a></h4>
 <p>If an election is stopped for any reason, the corresponding block hash is sent on the <code>"stopped_election"</code> topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via <a href="/commands/rpc-protocol/#process"><code>process</code></a> RPC when there's a fork.</p>
+<h5>Subscribing</h5>
+<p>To subscribe to all stopped elections notifications:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;stopped_election&quot;</span>
-  <span class="p">}</span>
-<span class="err">}</span>
+<span class="p">}</span>
 </pre></div>
 
-<p>Sample notification:</p>
+<h5>Filters</h5>
+<p>No filters are currently available for <code>stopped_election</code> topic.</p>
+<h5>Sample Results</h5>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;stopped_election&quot;</span><span class="p">,</span>
   <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1560437195533&quot;</span><span class="p">,</span>
   <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3&quot;</span>
   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h4 id="active-difficulty">Active difficulty<a class="headerlink" href="#active-difficulty" title="Permanent link">&para;</a></h4>
+<h5>Subscribing</h5>
+<p>To subscribe to all active difficulty notifications:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>Filters</h5>
+<p>No filters are currently available for <code>active_difficulty</code> topic.</p>
+<h5>Sample Results</h5>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1561661736065&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;network_minimum&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffc000000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;network_current&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffc81644d01f&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;multiplier&quot;</span><span class="p">:</span> <span class="s2">&quot;1.144635159892734&quot;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
