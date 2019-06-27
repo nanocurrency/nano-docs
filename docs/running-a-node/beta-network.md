@@ -87,8 +87,8 @@ docker run --restart=unless-stopped -d \
 
 ## Current Release Candidate Testing
 
-### Release Candidate 4 for V19 (V19 RC4)
-V19 RC4 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
+### Release Candidate 5 for V19 (V19 RC5)
+V19 RC5 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:
 
 **Upgrade from pre-V18**
 
@@ -102,6 +102,7 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 | CHT2 | Additional tests desired | Requests to RPC block_confirm with already confirmed blocks will still include that block in confirmation_history and through the callback | **5/12: At least one successful validation of this case has been done, additional tests are welcome** |
 | CHT3 | Additional tests needed | Requests to block_info and blocks_info should return confirmed true for recently confirmed blocks even during confirmation height upgrade process. Blocks underneath these recent ones may show unconfirmed status during upgrade. | **5/12: Still pending testing on beta network** |
 | CHT4 | Additional tests desired | Attempt triggering fork resolution on an already confirmed block and monitor elections to ensure they aren't started for that block (ideally an older one that someone without confirmation height enabled wouldn't be trying to trigger an election for) | **5/12: At least one successful validation of this case has been done, additional tests are welcome** |
+| CHT5 | Additional tests desired | During spam event, validate that blocks are efficiently cemented using the `include_cemented` option on [block_count](/commands/rpc-protocol/#block_count) RPC call to track this over time. This is a computationally heavy call, so if you plan on consistently polling it, do so every 30s or longer. You can also follow along with `"{"action": "stats","type":"objects"}"`. There is a pending_confirmation_height size included (number of blocks which won an election (or dependent election) passed to conf height processor). | |
 | CHM1 | Waiting for reports | Start upgrade and note start time, immediately publish a new block on a new account and poll account_info for it repeatedly until you see confirmation_height value appear - this is roughly the confirmation height upgrade time. CLI command `nano_node --debug_cemented_block_count` can also be used to see how far along the confirmed block count is vs. total block count | **5/12: Various upgrades have been done, waiting on reported times for upgrade completion** |
 
 **Dynamic PoW and Prioritization**
