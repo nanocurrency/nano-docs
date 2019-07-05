@@ -3043,7 +3043,8 @@ Number (128 bit, decimal). Returns wallet accounts balances more or equal to **t
 
 ### wallet_change_seed  
 _enable_control required_  
-Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create)  
+Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create).  
+`last_restored_account` and `restored_count` fields in response returned since _version 19.0+_  
 
 **Request:**
 ```json
