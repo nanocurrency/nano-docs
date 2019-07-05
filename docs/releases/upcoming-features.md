@@ -1,5 +1,7 @@
 Below are the more notable features the protocol development team is considering for implementation. In addition to these items there are always other updates, optimizations and new features added in. We encourage participation on [GitHub](https://github.com/nanocurrency) for anyone capable of [contributing to the code base](/protocol-design/overview/#contributing-code-to-the-nano-node).
 
+Changes made to this document are tracked at the bottom in the [Recent changes](#recent-changes) section.
+
 Status                 | Details
 -----------------------|--------------
 **In Progress**        | In active development to be included in upcoming releases
@@ -65,14 +67,6 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Provide methods for export and importing snapshots of durable votes between nodes.
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
-	Links    | 
-
-??? abstract "Confirmed-only bootstrapping"
-
-	Release  | V20 (Targeted)
-	---------|----------------------- 
-	Goal     | Limit responses to bootstrap requests to only confirmed blocks.
-	Benefits | Reduction in network traffic previously caused by elections for unconfirmed blocks started during bootstrapping.
 	Links    | 
 
 ??? abstract "Local account priority bootstrapping"
@@ -149,3 +143,14 @@ Status                 | Details
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
 	Links    | N/A
 
+### Recent Changes
+
+**2019-07-05**
+
+* Confirmed-only bootstrapping removed from list - the complexity and effort level of this feature for the provided benefits didn't align to implement on it's own at this time. Situations that may warrant such a change, including long strings of forked blocks, will be monitored on the network and if seen, this feature will be reevaluated for inclusion in the future.
+
+??? info "Other past changes"
+	**2019-06-11**
+
+	* Protobuf based RPCs target moved from V20 to V21
+	* RPC 2.0 target moved from V20 to V21
