@@ -18,7 +18,7 @@ The system is akin to writing (send) and cashing (receive) a Cashier's Check.  T
 
 ## Representatives
 
-The Nano Network achieves consensus using a variant of the Delegated Proof-of-Stake (DPoS) model. In this setup, representatives (accounts where nano\_node with the private keys are running 24/7) vote on the outcome of conflicting transaction.
+The Nano Network achieves consensus using the unique [Open Representative Voting (ORV)](/what-is-nano/overview/#representatives-and-voting) model. In this setup, representatives (accounts where nano\_node with the private keys are running 24/7) vote on transactions.
 
 !!! info
     Below are some helpful things to remember about Nano's representatives and consensus:

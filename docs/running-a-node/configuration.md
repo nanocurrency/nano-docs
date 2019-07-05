@@ -84,7 +84,7 @@ This is the main configuration file for controlling node behavior. Below is an e
         "external_port": "0",
         "websocket": {
             "enable": "false",
-            "address": "::1",
+            "address": "::1", // Docker has inconsistent support for ipv6 so default Docker setup will have ::ffff:127.0.0.1 and it should be kept this value
             "port": "7078"
         },
         "ipc": { // For more details about these options see the IPC section below
