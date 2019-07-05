@@ -468,8 +468,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#release-candidate-5-for-v19-v19-rc5" title="Release Candidate 5 for V19 (V19 RC5)" class="md-nav__link">
-    Release Candidate 5 for V19 (V19 RC5)
+  <a href="#release-candidate-6-for-v19-v19-rc6" title="Release Candidate 6 for V19 (V19 RC6)" class="md-nav__link">
+    Release Candidate 6 for V19 (V19 RC6)
   </a>
   
 </li>
@@ -891,8 +891,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#release-candidate-5-for-v19-v19-rc5" title="Release Candidate 5 for V19 (V19 RC5)" class="md-nav__link">
-    Release Candidate 5 for V19 (V19 RC5)
+  <a href="#release-candidate-6-for-v19-v19-rc6" title="Release Candidate 6 for V19 (V19 RC6)" class="md-nav__link">
+    Release Candidate 6 for V19 (V19 RC6)
   </a>
   
 </li>
@@ -1038,8 +1038,8 @@
 </tbody>
 </table>
 <h2 id="current-release-candidate-testing">Current Release Candidate Testing<a class="headerlink" href="#current-release-candidate-testing" title="Permanent link">&para;</a></h2>
-<h3 id="release-candidate-5-for-v19-v19-rc5">Release Candidate 5 for V19 (V19 RC5)<a class="headerlink" href="#release-candidate-5-for-v19-v19-rc5" title="Permanent link">&para;</a></h3>
-<p>V19 RC5 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:</p>
+<h3 id="release-candidate-6-for-v19-v19-rc6">Release Candidate 6 for V19 (V19 RC6)<a class="headerlink" href="#release-candidate-6-for-v19-v19-rc6" title="Permanent link">&para;</a></h3>
+<p>V19 RC6 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:</p>
 <p><strong>Upgrade from pre-V18</strong></p>
 <p>Anyone attempting to upgrade to V19 from versions earlier than V18 will see a long period where the node will not participate on the network and RPC will not be responsive. This is because the sideband upgrade has been changed from a background process to being on the main thread this version.  It is recommended that older nodes are upgraded to V18 before attempting the upgrade to V19 to avoid the service interruption.</p>
 <p><strong>Confirmation Height</strong></p>
@@ -1057,25 +1057,25 @@
 <td>CHT1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Verifying RPC commands responsive during upgrade period (confirmation height setting of initial long chains occurs in background so shouldn't interrupt RPC, will take a while so confirmation height values may not show up for a while)</td>
-<td><strong>5/12: Confirmation height updates ongoing and completed for various nodes with no reported cases of impacts to RPC responsiveness</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>CHT2</td>
 <td>Additional tests desired</td>
 <td>Requests to RPC block_confirm with already confirmed blocks will still include that block in confirmation_history and through the callback</td>
-<td><strong>5/12: At least one successful validation of this case has been done, additional tests are welcome</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>CHT3</td>
-<td>Additional tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Requests to block_info and blocks_info should return confirmed true for recently confirmed blocks even during confirmation height upgrade process. Blocks underneath these recent ones may show unconfirmed status during upgrade.</td>
-<td><strong>5/12: Still pending testing on beta network</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>CHT4</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Attempt triggering fork resolution on an already confirmed block and monitor elections to ensure they aren't started for that block (ideally an older one that someone without confirmation height enabled wouldn't be trying to trigger an election for)</td>
-<td><strong>5/12: At least one successful validation of this case has been done, additional tests are welcome</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>CHT5</td>
@@ -1085,9 +1085,9 @@
 </tr>
 <tr>
 <td>CHM1</td>
-<td>Waiting for reports</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Start upgrade and note start time, immediately publish a new block on a new account and poll account_info for it repeatedly until you see confirmation_height value appear - this is roughly the confirmation height upgrade time. CLI command <code>nano_node --debug_cemented_block_count</code> can also be used to see how far along the confirmed block count is vs. total block count</td>
-<td><strong>5/12: Various upgrades have been done, waiting on reported times for upgrade completion</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1122,7 +1122,7 @@
 </tr>
 <tr>
 <td>DPM1</td>
-<td>Needs testing in RC 3</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Capture average work values using the active_difficulty RPC</td>
 <td><strong>5/12: Average work values have been captured and monitored, but behavior may be changed with RC 3 and if so, would make more tests desirable</strong></td>
 </tr>
@@ -1147,7 +1147,7 @@
 </tr>
 <tr>
 <td>WST2</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. <strong>NOTE:</strong> This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network.</td>
 <td>Not yet tested</td>
 </tr>
@@ -1158,8 +1158,14 @@
 <td></td>
 </tr>
 <tr>
+<td>WST4</td>
+<td>Tests needed</td>
+<td>Setup websocket with subscription <a href="https://docs.nano.org/integration-guides/advanced/#stopped-elections">stopped elections</a> and verify blocks dropped out of active confirmations trigger notifications.</td>
+<td></td>
+</tr>
+<tr>
 <td>WSM1</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps</td>
 <td><strong>5/12: Comparison of websocket to callback for validating full block capture has been attempted but so far is inconclusive, additional testing desired</strong></td>
 </tr>
@@ -1184,8 +1190,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>New RPC process</strong></p>
-<table>
+<details class="success"><summary><strong>New RPC process</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1199,13 +1204,13 @@
 <td>RPT1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Verify RPC is responsive and doesn't spawn new process with default configuration  - verify RPC is responsive to calls, including heavy usage</td>
-<td><strong>5/12: In process RPC observed behaving as expected with RC 2 build</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>RPT2</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Update RPC configuration for child process setups per <a href="https://github.com/nanocurrency/nano-node/pull/1874">https://github.com/nanocurrency/nano-node/pull/1874</a> - verify RPC is responsive to calls, including heavy usage</td>
-<td><strong>5/14: Testing looks good</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>RPT3</td>
@@ -1215,7 +1220,7 @@
 </tr>
 <tr>
 <td>RPT4</td>
-<td>Additional testing needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Test that <code>--network</code> and <code>data_path</code> command line arguments are transferred correctly to <code>nano_rpc</code> when used as child/out of process RPC.</td>
 <td></td>
 </tr>
@@ -1233,8 +1238,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Confirmation times</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Confirmation times</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1246,14 +1251,14 @@
 <tbody>
 <tr>
 <td>RPM1</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Keep tracking confirmation times as the vote_generator delay was removed, likely helping reduce confirmation times during lower TPS situations</td>
-<td><strong>5/12: Confirmation times continually tracked on beta network. Under low network volume confirmation times under 0.2s, rising higher under saturation. Continued monitoring is desirable.</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Fast bootstrap</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Fast bootstrap</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1265,12 +1270,13 @@
 <tbody>
 <tr>
 <td>FBT1</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Attempt bootstrapping from scratch using <code>--fast_bootstrap</code> option and report times and final ledger file size (NOTE: using this option doesn't clear unchecked)</td>
 <td><strong>5/12: Additional data for fast bootstrap times and resulting ledger file sizes is desired</strong></td>
 </tr>
 </tbody>
 </table>
+</details>
 <p><strong>Networking/TCP</strong></p>
 <table>
 <thead>
@@ -1290,7 +1296,7 @@
 </tr>
 <tr>
 <td>NET2</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Track peering with other nodes via TCP by calling <a href="/commands/rpc-protocol/#peers"><code>peers</code></a> RPC command with <code>peer_details</code> = <code>true</code>. Expect to see connections via TCP to other nodes running V19RC3+, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded.</td>
 <td><strong>5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4</strong></td>
 </tr>
@@ -1302,7 +1308,7 @@
 </tr>
 <tr>
 <td>NET4</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Launch node with optional flag <a href="/commands/command-line-interface/#-disable_udp"><code>--disable_udp</code></a> to communicate entirely over TCP (ensure enough voting weight on beta is upgraded to RC4 first). Similar tests to NET1 above with different network configurations desired.</td>
 <td></td>
 </tr>
@@ -1327,7 +1333,7 @@
 </tr>
 <tr>
 <td>OTT2</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Update config setting for confirmation_history_size and use <a href="/commands/rpc-protocol/#confirmation_history">confirmation_history</a> RPC to capture larger batches of confirmations. Test higher limits during heavy spam periods to verify active confirmations from the live network appear. Note that if the node does not have enough resources to keep up with live network traffic and confirmations, some blocks may be bootstrapped and confirmed dependently via confirmation height, and thus wouldn't be included in this call</td>
 <td></td>
 </tr>

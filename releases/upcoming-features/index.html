@@ -709,6 +709,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#recent-changes" title="Recent Changes" class="md-nav__link">
+    Recent Changes
+  </a>
+  
+</li>
+      
       
       
       
@@ -788,6 +795,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#recent-changes" title="Recent Changes" class="md-nav__link">
+    Recent Changes
+  </a>
+  
+</li>
+      
       
       
       
@@ -810,6 +824,7 @@
                   <h1>Upcoming Features</h1>
                 
                 <p>Below are the more notable features the protocol development team is considering for implementation. In addition to these items there are always other updates, optimizations and new features added in. We encourage participation on <a href="https://github.com/nanocurrency">GitHub</a> for anyone capable of <a href="/protocol-design/overview/#contributing-code-to-the-nano-node">contributing to the code base</a>.</p>
+<p>Changes made to this document are tracked at the bottom in the <a href="#recent-changes">Recent changes</a> section.</p>
 <table>
 <thead>
 <tr>
@@ -987,29 +1002,6 @@
 <tr>
 <td>Benefits</td>
 <td>Easier bootstrap verification through dependence on durable votes plus frontier elections only.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="abstract"><summary>Confirmed-only bootstrapping</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20 (Targeted)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Limit responses to bootstrap requests to only confirmed blocks.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Reduction in network traffic previously caused by elections for unconfirmed blocks started during bootstrapping.</td>
 </tr>
 <tr>
 <td>Links</td>
@@ -1225,6 +1217,17 @@
 </tr>
 </tbody>
 </table>
+</details>
+<h3 id="recent-changes">Recent Changes<a class="headerlink" href="#recent-changes" title="Permanent link">&para;</a></h3>
+<p><strong>2019-07-05</strong></p>
+<ul>
+<li>Confirmed-only bootstrapping removed from list - the complexity and effort level of this feature for the provided benefits didn't align to implement on it's own at this time. Situations that may warrant such a change, including long strings of forked blocks, will be monitored on the network and if seen, this feature will be reevaluated for inclusion in the future.</li>
+</ul>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-06-11</strong></p>
+<ul>
+<li>Protobuf based RPCs target moved from V20 to V21</li>
+<li>RPC 2.0 target moved from V20 to V21</li>
+</ul>
 </details>
                 
                   
