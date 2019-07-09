@@ -41,11 +41,20 @@ List representatives and weights
 ### --debug_mass_activity
 Generates fake debug activity
 
+### --debug_output_last_backtrace_dump
+Output the stacktrace stored after a node crash.
+
 ### --debug_profile_bootstrap
 Profile simulated bootstrap process
 
 ### --debug_profile_generate
 Profile work generation
+
+### --debug_profile_kdf
+Profile kdf function
+
+### --debug_profile_sign
+Profile signature generation
 
 ### --debug_profile_verify
 Profile work verification
@@ -53,17 +62,11 @@ Profile work verification
 ### --debug_profile_votes
 Profile vote verification
 
-### --debug_profile_kdf
-Profile kdf function
-
 ### --debug_validate_blocks
 Validate blocks in the ledger
 
 ### --debug_verify_profile
 Profile signature verification
-
-### --debug_profile_sign
-Profile signature generation
 
 ### --debug_xorshift_profile
 [Disabled] Profile xorshift algorithms
