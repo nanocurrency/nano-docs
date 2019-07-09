@@ -75,7 +75,7 @@ _[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<
 Delete the node ID in the database
 
 ### --diagnostics
-Run internal diagnostics
+Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
 ### --help
 Print out options
