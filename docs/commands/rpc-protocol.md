@@ -1589,11 +1589,10 @@ Returns a list of block hashes which have not yet been received by this account.
   "blocks" : [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]  
 }
 ```   
-**Optional "count"**
+**Optional "count"**  
 Number. Determines limit of number of blocks to return.
 
-**Optional "threshold"**
-
+**Optional "threshold"**  
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**  
 
