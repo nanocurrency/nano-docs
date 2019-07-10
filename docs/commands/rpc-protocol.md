@@ -650,9 +650,10 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 ---
 
 ### block_info  
-Retrieves a json representation of **block**  
-_Returns block account, amount, balance, block height in account chain & local timestamp since version 18.0_  
-_Returns confirmation status & subtype for state block since version 19.0_  
+Retrieves a json representation of the block in `contents` along with:
+
+* _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+* _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
 
 **Request:**
 ```json
@@ -726,7 +727,10 @@ Retrieves a json representations of **blocks**
 ---
 
 ### blocks_info   
-Retrieves a json representations of **blocks** with block **account**, transaction **amount**, block **balance**, block **height** in account chain, block local modification **timstamp**, block **confirmation status** (since version 19.0), **subtype** (for state blocks since version 19.0)
+Retrieves a json representations of `blocks` in `contents` along with:
+
+* _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+* _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
 
 **Request:**
 ```json
