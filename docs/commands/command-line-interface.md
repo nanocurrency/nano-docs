@@ -12,7 +12,7 @@ Get the public key for `<account>`
 Remove all send IDs from the database (dangerous: not intended for production use)
 
 ### --confirmation_height_clear
-_version 19.0+_ Sets the confirmation heights of all accounts to 0 (use --account to only reset a single account).
+_version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
 
 ### --daemon
 Start node daemon
