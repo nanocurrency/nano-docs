@@ -2408,7 +2408,8 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 ```json
 {  
     "action": "work_generate",  
-    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
+    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
+    "difficulty": "ffffffd21c3933f3"
 }
 ```  
 **Response:**
@@ -2501,7 +2502,8 @@ Check whether **work** is valid for block
 {  
     "action": "work_validate",  
     "work": "2bf29ef00786a6bc",  
-    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
+    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
+    "difficulty": "ffffffd21c3933f3"
 }
 ```  
 **Response:**
