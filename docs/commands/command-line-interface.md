@@ -86,6 +86,9 @@ Generates a adhoc random keypair and prints it to stdout
 ### --key_expand --key=`<key>`
 Derive public key and account number from `<key>`
 
+### --network
+Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
+
 ### --online_weight_clear
 Clear record history for long term online weight trending
 
