@@ -1181,7 +1181,7 @@ Boolean, false by default. If true, add account/ip/rep weight for each peer cons
 
 _version 19.0+_
 
-The effective peer stake needed for quorum. Per v19, this field is computed as `max(quorum_delta, online_weight_minimum)`
+The effective stake needed from directly connected peers for quorum. Per v19, this field is computed as `max(quorum_delta, online_weight_minimum)`. If `peers_stake_total` is lower than this value, the node will not mark blocks as confirmed.
 
 ---
 
