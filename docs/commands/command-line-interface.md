@@ -62,9 +62,6 @@ Profile kdf function
 ### --debug_validate_blocks
 Validate blocks in the ledger
 
-### --debug_validate_ledger
-Does various checks on the ledger to make sure it is valid
-
 ### --debug_verify_profile
 Profile signature verification
 
