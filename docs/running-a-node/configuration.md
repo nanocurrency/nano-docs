@@ -118,7 +118,7 @@ This is the main configuration file for controlling node behavior. Below is an e
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
         "enable_sign_hash": "true",
-        "max_work_generate_difficulty": "ffffffffc0000000",
+        "max_work_generate_difficulty": "ffffffffc0000000", // Maximum difficulty allowed on work_generate RPC requests
         "version": "1",
         "child_process": {
             "enable": "false", // Whether the rpc server is run as a child process rather than in-process
