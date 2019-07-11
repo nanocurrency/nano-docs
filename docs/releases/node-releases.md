@@ -70,7 +70,7 @@ The addition of confirmation height to the database requires the node to validat
 !!! warning "Tracking confirmed block hashes required"
 	It is required that tracking of confirmed block hashes outside the node is done to avoid potential duplicate notifications from causing issues. This was a requirement in previous versions and remains the same with V19.
 
-For those looking to utilize the new WebSocket confirmation subscription or new confirmed option in [`block_info`](/commands/rpc-protocol/#block_info) RPC responses, special considerations should be taken if implementing before confirmation height updates are complete:
+For those looking to utilize the new WebSocket confirmation subscription or new `confirmed` field in [`block_info`](/commands/rpc-protocol/#block_info) RPC responses, special considerations should be taken if implementing before confirmation height updates are complete:
 
 * If the [websocket confirmation subscription](/integration-guides/advanced/#confirmations) is hooked up to receive all confirmations (default) then notifications for confirmations will come through during the cementing process on a new or upgrading ledger as the confirmation process will occur (it also fires for dependent confirmations)
 * Calls to [`block_info`](/commands/rpc-protocol/#block_info) for blocks in the ledger before the confirmation height upgrade process began may indicate `confirmed` as `false` despite their having been confirmed on the network before. This is expected behavior.
@@ -102,7 +102,7 @@ Blocks being published and voted on live are now supported via TCP, with UDP rem
 With the ability to track work difficulty seen on the network and have the node wallet produce more difficult work for local blocks, this feature allows users to get their transactions prioritized for processing. More details about this feature can be found in the Medium article: https://medium.com/nanocurrency/dynamic-proof-of-work-prioritization-4618b78c5be9
 
 **RPC Process Options**  
-By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process, depending on your needs. See [Running Nano as a service](/integration-guides/advanced/#running-nano-as-a-service) for more details.
+By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (including on a different computer), depending on your needs. See [Running Nano as a service](/integration-guides/advanced/#running-nano-as-a-service) for more details.
 
 ---
 
