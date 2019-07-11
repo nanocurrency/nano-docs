@@ -145,6 +145,15 @@ When initially starting the nano_node or nano_wallet as a service the following 
 
 NOTE: These options are only for developer use so please understand the impacts before use.
 
+### --block_processor_batch_size
+Increase block processor transaction batch write size, default 0 (limited by config block_processor_batch_max_time), 256k for fast_bootstrap
+
+### --block_processor_full_size
+Increase block processor allowed blocks queue size before dropping live network packets and holding bootstrap download, default 65536, 1 million for fast_bootstrap
+
+### --block_processor_verification_size
+Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
+
 ### --disable_backup
 Turn off automatic wallet backup process
 
