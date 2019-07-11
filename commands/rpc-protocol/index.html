@@ -2652,7 +2652,8 @@
 <li><code>raw</code> (bool): if set to <code>true</code> instead of the default <code>false</code>, instead of outputting a simplified send or receive explanation of blocks (intended for wallets), output all parameters of the block itself as seen in block_create or other APIs returning blocks. It still includes the "account" and "amount" properties you'd see without this option.  State/universal blocks in the raw history will also have a <code>subtype</code> field indicating their equivalent "old" block. Unfortunately, the "account" parameter for open blocks is the account of the source block, not the account of the open block, to preserve similarity with the non-raw history.   </li>
 <li><code>head</code> (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   </li>
 <li><code>offset</code> (decimal integer): skips a number of blocks starting from <code>head</code> (if given). Not often used. <em>Available since version 11.0</em>    </li>
-<li><code>reverse</code> (bool): if set to <code>true</code> instead of the default <code>false</code>, the response starts from <code>head</code> (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). <strong>Note</strong>: the field <code>previous</code> in the response changes to <code>next</code>. <em>Available since version 19.0</em>   </li>
+<li><code>reverse</code> (bool): if set to <code>true</code> instead of the default <code>false</code>, the response starts from <code>head</code> (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). <strong>Note</strong>: the field <code>previous</code> in the response changes to <code>next</code>. <em>Available since version 19.0</em>  </li>
+<li><code>account_filter</code> (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s) <em>Available since version 19.0</em>  </li>
 </ul>
 <hr />
 <h3 id="account_info">account_info<a class="headerlink" href="#account_info" title="Permanent link">&para;</a></h3>
@@ -2876,12 +2877,12 @@ Boolean, false by default. Include active (not confirmed) blocks    </p>
 <p><em>version 19.0+</em>  <br />
 Boolean, false by default. Additionally sorts each account's blocks by their amounts in descending order.</p>
 <p><strong>Optional "include_only_confirmed"</strong></p>
-<p><em>version 19.0+</em>
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.</p>
+<p><em>version 19.0+</em><br />
+Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.</p>
 <hr />
 <h3 id="active_difficulty">active_difficulty<a class="headerlink" href="#active_difficulty" title="Permanent link">&para;</a></h3>
 <p><em>version 19.0+</em> </p>
-<p>Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty is also provided for comparison.</p>
+<p>Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (<code>network_minimum</code>) as well as the current active difficulty seen on the network (<code>network_current</code>, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the <code>network_current</code> from the base difficulty of <code>network_minimum</code> is also provided for comparison.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span>  
@@ -3511,7 +3512,7 @@ Returns information about node elections settings &amp; observed network state: 
 <p>Boolean, false by default. If true, add account/ip/rep weight for each peer considered in the summation of <em>peers_stake_total</em>.</p>
 <p><strong>Response field "peers_stake_required"</strong></p>
 <p><em>version 19.0+</em></p>
-<p>The effective peer stake needed for quorum. Per v19, this field is computed as <code>max(quorum_delta, online_weight_minimum)</code></p>
+<p>The effective stake needed from directly connected peers for quorum. Per v19, this field is computed as <code>max(quorum_delta, online_weight_minimum)</code>. If <code>peers_stake_total</code> is lower than this value, the node will not mark blocks as confirmed.</p>
 <hr />
 <h3 id="database_txn_tracker">database_txn_tracker<a class="headerlink" href="#database_txn_tracker" title="Permanent link">&para;</a></h3>
 <p><em>v19.0+</em>  </p>
@@ -3523,8 +3524,8 @@ Returns information about node elections settings &amp; observed network state: 
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;database_txn_tracker&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;min_read_time&quot;</span> <span class="p">:</span> <span class="s2">&quot;1000&quot;</span>
-  <span class="s2">&quot;min_write_time&quot;</span> <span class="p">:</span> <span class="s2">&quot;0&quot;</span>
+  <span class="nt">&quot;min_read_time&quot;</span> <span class="p">:</span> <span class="s2">&quot;1000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;min_write_time&quot;</span> <span class="p">:</span> <span class="s2">&quot;0&quot;</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response on Windows/Debug:</strong><br />

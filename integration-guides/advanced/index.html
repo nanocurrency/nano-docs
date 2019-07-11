@@ -1326,7 +1326,7 @@
 </ul>
 <hr />
 <h4 id="confirmations">Confirmations<a class="headerlink" href="#confirmations" title="Permanent link">&para;</a></h4>
-<h5>Subscribing</h5>
+<p><strong>Subscribing</strong></p>
 <p>To subscribe to all confirmed blocks:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1334,7 +1334,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<h5>Filters</h5>
+<p><strong>Filters</strong></p>
 <h6>Type filtering</h6>
 <p>The node classifies block confirmations into the following categories:</p>
 <ul>
@@ -1370,7 +1370,10 @@ Because account filtering needs block content to function, setting this flag to 
 
 <h6>Accounts</h6>
 <p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
-<p><strong>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Legacy blocks never broadcasted</p>
+<p>Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.</p>
+</div>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
@@ -1388,7 +1391,7 @@ Because account filtering needs block content to function, setting this flag to 
 <li>When <code>all_local_accounts</code> is set to <strong><code>true</code></strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
 <li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
 </ul>
-<h5>Sample Results</h5>
+<p><strong>Sample Results</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Differences from the HTTP callback</p>
 <ul>
@@ -1425,7 +1428,7 @@ Because account filtering needs block content to function, setting this flag to 
 
 <hr />
 <h4 id="votes">Votes<a class="headerlink" href="#votes" title="Permanent link">&para;</a></h4>
-<h5>Subscribing</h5>
+<p><strong>Subscribing</strong></p>
 <p>To subscribe to all votes notifications:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1433,7 +1436,7 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<h5>Filters</h5>
+<p><strong>Filters</strong></p>
 <p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1447,7 +1450,7 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<h5>Sample Results</h5>
+<p><strong>Sample Results</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span>
   <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1554995525343&quot;</span><span class="p">,</span>
@@ -1465,7 +1468,7 @@ Because account filtering needs block content to function, setting this flag to 
 <hr />
 <h4 id="stopped-elections">Stopped elections<a class="headerlink" href="#stopped-elections" title="Permanent link">&para;</a></h4>
 <p>If an election is stopped for any reason, the corresponding block hash is sent on the <code>"stopped_election"</code> topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via <a href="/commands/rpc-protocol/#process"><code>process</code></a> RPC when there's a fork.</p>
-<h5>Subscribing</h5>
+<p><strong>Subscribing</strong></p>
 <p>To subscribe to all stopped elections notifications:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1473,9 +1476,9 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<h5>Filters</h5>
+<p><strong>Filters</strong></p>
 <p>No filters are currently available for <code>stopped_election</code> topic.</p>
-<h5>Sample Results</h5>
+<p><strong>Sample Results</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;stopped_election&quot;</span><span class="p">,</span>
   <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1560437195533&quot;</span><span class="p">,</span>
@@ -1487,7 +1490,7 @@ Because account filtering needs block content to function, setting this flag to 
 
 <hr />
 <h4 id="active-difficulty">Active difficulty<a class="headerlink" href="#active-difficulty" title="Permanent link">&para;</a></h4>
-<h5>Subscribing</h5>
+<p><strong>Subscribing</strong></p>
 <p>To subscribe to all active difficulty notifications:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1495,9 +1498,9 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<h5>Filters</h5>
+<p><strong>Filters</strong></p>
 <p>No filters are currently available for <code>active_difficulty</code> topic.</p>
-<h5>Sample Results</h5>
+<p><strong>Sample Results</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span><span class="p">,</span>
     <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1561661736065&quot;</span><span class="p">,</span>
@@ -1668,7 +1671,11 @@ ENCODING ::= u8(1)
 PAYLOAD  ::= &lt;encoding specific&gt;
 </pre></div>
 
-<p>Only one encoding currently exists: 1 (legacy RPC)</p>
+<p>Two encodings currently exist:</p>
+<ul>
+<li>1: legacy RPC [<em>since v18.0</em>]</li>
+<li>2: legacy RPC allowing unsafe operations if node is configured so [<em>since v19.0</em>]</li>
+</ul>
 <p>The encoding is followed by two reserved zero-bytes. These allow for future extensions, such as versioning and extended headers.</p>
 <p>Note that the framing format does not include a length field - this is optionally placed in the respective payloads. The reason is that some encodings might want to be "streamy", sending responses in chunks, or end with a sentinel.</p>
 <div class="codehilite"><pre><span></span>LEGACY_RPC_PAYLOAD  ::= be32(length) JSON request

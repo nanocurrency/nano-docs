@@ -634,6 +634,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-debug_dump_frontier_unchecked_dependents" title="--debug_dump_frontier_unchecked_dependents" class="md-nav__link">
+    --debug_dump_frontier_unchecked_dependents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-debug_dump_online_weight" title="--debug_dump_online_weight" class="md-nav__link">
     --debug_dump_online_weight
   </a>
@@ -830,15 +837,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-wallet_create-keykey-passwordpassword" title="--wallet_create --key=&lt;key&gt; --password=&lt;password&gt;" class="md-nav__link">
-    --wallet_create --key=&lt;key&gt; --password=&lt;password&gt;
+  <a href="#-wallet_create-seedseed-passwordpassword" title="--wallet_create --seed=&lt;seed&gt; --password=&lt;password&gt;" class="md-nav__link">
+    --wallet_create --seed=&lt;seed&gt; --password=&lt;password&gt;
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-wallet_change_seed-walletwallet-keykey" title="--wallet_change_seed --wallet=&lt;wallet&gt; --key=&lt;key&gt;" class="md-nav__link">
-    --wallet_change_seed --wallet=&lt;wallet&gt; --key=&lt;key&gt;
+  <a href="#-wallet_change_seed-walletwallet-seedseed" title="--wallet_change_seed --wallet=&lt;wallet&gt; --seed=&lt;seed&gt;" class="md-nav__link">
+    --wallet_change_seed --wallet=&lt;wallet&gt; --seed=&lt;seed&gt;
   </a>
   
 </li>
@@ -899,6 +906,27 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_batch_size" title="--block_processor_batch_size" class="md-nav__link">
+    --block_processor_batch_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_full_size" title="--block_processor_full_size" class="md-nav__link">
+    --block_processor_full_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_verification_size" title="--block_processor_verification_size" class="md-nav__link">
+    --block_processor_verification_size
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#-disable_backup" title="--disable_backup" class="md-nav__link">
@@ -1243,6 +1271,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-debug_dump_frontier_unchecked_dependents" title="--debug_dump_frontier_unchecked_dependents" class="md-nav__link">
+    --debug_dump_frontier_unchecked_dependents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-debug_dump_online_weight" title="--debug_dump_online_weight" class="md-nav__link">
     --debug_dump_online_weight
   </a>
@@ -1439,15 +1474,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-wallet_create-keykey-passwordpassword" title="--wallet_create --key=&lt;key&gt; --password=&lt;password&gt;" class="md-nav__link">
-    --wallet_create --key=&lt;key&gt; --password=&lt;password&gt;
+  <a href="#-wallet_create-seedseed-passwordpassword" title="--wallet_create --seed=&lt;seed&gt; --password=&lt;password&gt;" class="md-nav__link">
+    --wallet_create --seed=&lt;seed&gt; --password=&lt;password&gt;
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-wallet_change_seed-walletwallet-keykey" title="--wallet_change_seed --wallet=&lt;wallet&gt; --key=&lt;key&gt;" class="md-nav__link">
-    --wallet_change_seed --wallet=&lt;wallet&gt; --key=&lt;key&gt;
+  <a href="#-wallet_change_seed-walletwallet-seedseed" title="--wallet_change_seed --wallet=&lt;wallet&gt; --seed=&lt;seed&gt;" class="md-nav__link">
+    --wallet_change_seed --wallet=&lt;wallet&gt; --seed=&lt;seed&gt;
   </a>
   
 </li>
@@ -1508,6 +1543,27 @@
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_batch_size" title="--block_processor_batch_size" class="md-nav__link">
+    --block_processor_batch_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_full_size" title="--block_processor_full_size" class="md-nav__link">
+    --block_processor_full_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-block_processor_verification_size" title="--block_processor_verification_size" class="md-nav__link">
+    --block_processor_verification_size
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#-disable_backup" title="--disable_backup" class="md-nav__link">
@@ -1616,7 +1672,11 @@
 <h3 id="-confirmation_height_clear">--confirmation_height_clear<a class="headerlink" href="#-confirmation_height_clear" title="Permanent link">&para;</a></h3>
 <p><em>version 19.0+</em> Sets the confirmation heights of all accounts to 0. Optional <code>--account</code> to only reset a single account.</p>
 <h3 id="-daemon">--daemon<a class="headerlink" href="#-daemon" title="Permanent link">&para;</a></h3>
-<p>Start node daemon</p>
+<p>Start node daemon. Since version 19.0, network and path will be output, similar to:
+<div class="codehilite"><pre><span></span>./nano_node --daemon --network test
+Network: test, version: 19.0
+Path: /home/USER/NanoTest
+</pre></div></p>
 <h3 id="-data_pathpath">--data_path=<code>&lt;path&gt;</code><a class="headerlink" href="#-data_pathpath" title="Permanent link">&para;</a></h3>
 <p>Use the supplied <code>&lt;path&gt;</code> as the data directory</p>
 <h3 id="-debug_account_count">--debug_account_count<a class="headerlink" href="#-debug_account_count" title="Permanent link">&para;</a></h3>
@@ -1627,6 +1687,8 @@
 <p>Generate bootstrap sequence of blocks</p>
 <h3 id="-debug_cemented_block_count">--debug_cemented_block_count<a class="headerlink" href="#-debug_cemented_block_count" title="Permanent link">&para;</a></h3>
 <p><em>version 19.0+</em> Display the number of cemented blocks (blocks which are under the confirmation height of their accounts)</p>
+<h3 id="-debug_dump_frontier_unchecked_dependents">--debug_dump_frontier_unchecked_dependents<a class="headerlink" href="#-debug_dump_frontier_unchecked_dependents" title="Permanent link">&para;</a></h3>
+<p><em>version 19.0+</em> Dump frontiers which have matching unchecked keys</p>
 <h3 id="-debug_dump_online_weight">--debug_dump_online_weight<a class="headerlink" href="#-debug_dump_online_weight" title="Permanent link">&para;</a></h3>
 <p>List online weights table and current online_weights value</p>
 <h3 id="-debug_dump_representatives">--debug_dump_representatives<a class="headerlink" href="#-debug_dump_representatives" title="Permanent link">&para;</a></h3>
@@ -1649,7 +1711,7 @@ Optional <code>--pow_sleep_interval</code> in version 19.0+ which sets an amount
 <h3 id="-debug_profile_votes">--debug_profile_votes<a class="headerlink" href="#-debug_profile_votes" title="Permanent link">&para;</a></h3>
 <p>Profile vote verification</p>
 <h3 id="-debug_validate_blocks">--debug_validate_blocks<a class="headerlink" href="#-debug_validate_blocks" title="Permanent link">&para;</a></h3>
-<p>Validate blocks in the ledger</p>
+<p><em>version 19.0+</em> Validate blocks in the ledger, includes checks for confirmation height</p>
 <h3 id="-debug_verify_profile">--debug_verify_profile<a class="headerlink" href="#-debug_verify_profile" title="Permanent link">&para;</a></h3>
 <p>Profile signature verification</p>
 <h3 id="-debug_xorshift_profile">--debug_xorshift_profile<a class="headerlink" href="#-debug_xorshift_profile" title="Permanent link">&para;</a></h3>
@@ -1685,10 +1747,10 @@ Optional <code>--confirmation_height_clear</code> in version 19.0+</p>
 <p>Dump most recent votes from representatives</p>
 <h3 id="-wallet_add_adhoc-walletwallet-keykey">--wallet_add_adhoc --wallet=<code>&lt;wallet&gt;</code> --key=<code>&lt;key&gt;</code><a class="headerlink" href="#-wallet_add_adhoc-walletwallet-keykey" title="Permanent link">&para;</a></h3>
 <p>Insert <code>&lt;key&gt;</code> in to <code>&lt;wallet&gt;</code></p>
-<h3 id="-wallet_create-keykey-passwordpassword">--wallet_create --key=<code>&lt;key&gt;</code> --password=<code>&lt;password&gt;</code><a class="headerlink" href="#-wallet_create-keykey-passwordpassword" title="Permanent link">&para;</a></h3>
-<p>Creates a new wallet with optional <code>&lt;key&gt;</code> (seed) and optional <code>&lt;password&gt;</code>, and prints the ID</p>
-<h3 id="-wallet_change_seed-walletwallet-keykey">--wallet_change_seed --wallet=<code>&lt;wallet&gt;</code> --key=<code>&lt;key&gt;</code><a class="headerlink" href="#-wallet_change_seed-walletwallet-keykey" title="Permanent link">&para;</a></h3>
-<p>Changes seed for <code>&lt;wallet&gt;</code> to <code>&lt;key&gt;</code></p>
+<h3 id="-wallet_create-seedseed-passwordpassword">--wallet_create --seed=<code>&lt;seed&gt;</code> --password=<code>&lt;password&gt;</code><a class="headerlink" href="#-wallet_create-seedseed-passwordpassword" title="Permanent link">&para;</a></h3>
+<p>Creates a new wallet with optional <code>&lt;seed&gt;</code> and optional <code>&lt;password&gt;</code>, and prints the ID. Note the legacy <code>--key</code> option can still be used and will function the same as <code>--seed</code>.</p>
+<h3 id="-wallet_change_seed-walletwallet-seedseed">--wallet_change_seed --wallet=<code>&lt;wallet&gt;</code> --seed=<code>&lt;seed&gt;</code><a class="headerlink" href="#-wallet_change_seed-walletwallet-seedseed" title="Permanent link">&para;</a></h3>
+<p>Changes seed for <code>&lt;wallet&gt;</code> to <code>&lt;seed&gt;</code>.  Note the legacy <code>--key</code> option can still be used and will function the same as <code>--seed</code>.</p>
 <h3 id="-wallet_decrypt_unsafe-walletwallet-passwordpassword">--wallet_decrypt_unsafe --wallet=<code>&lt;wallet&gt;</code> --password=<code>&lt;password&gt;</code><a class="headerlink" href="#-wallet_decrypt_unsafe-walletwallet-passwordpassword" title="Permanent link">&para;</a></h3>
 <p>Decrypts <code>&lt;wallet&gt;</code> using <code>&lt;password&gt;</code><br />
 <strong>!!THIS WILL PRINT YOUR PRIVATE KEY AND SEED TO STDOUT!!</strong><br />
@@ -1696,7 +1758,7 @@ If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=<code>&lt;w
 <h3 id="-wallet_destroy-walletwallet">--wallet_destroy --wallet=<code>&lt;wallet&gt;</code><a class="headerlink" href="#-wallet_destroy-walletwallet" title="Permanent link">&para;</a></h3>
 <p>Destroys <code>&lt;wallet&gt;</code> and all keys it contains</p>
 <h3 id="-wallet_import-filefilepath-walletwallet-passwordpassword">--wallet_import  --file=<code>&lt;filepath&gt;</code> --wallet=<code>&lt;wallet&gt;</code> --password=<code>&lt;password&gt;</code><a class="headerlink" href="#-wallet_import-filefilepath-walletwallet-passwordpassword" title="Permanent link">&para;</a></h3>
-<p>Imports keys in <code>&lt;filepath&gt;</code> using <code>&lt;password&gt;</code> in to <code>&lt;wallet&gt;</code></p>
+<p>Imports keys in <code>&lt;filepath&gt;</code> using <code>&lt;password&gt;</code> in to <code>&lt;wallet&gt;</code>. If the provided wallet id does not exist and <code>--force</code> is included, a new wallet will be created with the provided wallet id value, and the json file will be imported as is with existing seed and password (instead of a set of private keys without a change of seed).</p>
 <h3 id="-wallet_list">--wallet_list<a class="headerlink" href="#-wallet_list" title="Permanent link">&para;</a></h3>
 <p>Dumps wallet IDs and public keys</p>
 <h3 id="-wallet_remove-walletwallet-accountaccount">--wallet_remove --wallet=<code>&lt;wallet&gt;</code> --account=<code>&lt;account&gt;</code><a class="headerlink" href="#-wallet_remove-walletwallet-accountaccount" title="Permanent link">&para;</a></h3>
@@ -1708,6 +1770,12 @@ If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=<code>&lt;w
 <h2 id="launch-options">Launch options<a class="headerlink" href="#launch-options" title="Permanent link">&para;</a></h2>
 <p>When initially starting the nano_node or nano_wallet as a service the following launch options are available.</p>
 <p>NOTE: These options are only for developer use so please understand the impacts before use.</p>
+<h3 id="-block_processor_batch_size">--block_processor_batch_size<a class="headerlink" href="#-block_processor_batch_size" title="Permanent link">&para;</a></h3>
+<p>Increase block processor transaction batch write size, default 0 (limited by config block_processor_batch_max_time), 256k for fast_bootstrap</p>
+<h3 id="-block_processor_full_size">--block_processor_full_size<a class="headerlink" href="#-block_processor_full_size" title="Permanent link">&para;</a></h3>
+<p>Increase block processor allowed blocks queue size before dropping live network packets and holding bootstrap download, default 65536, 1 million for fast_bootstrap</p>
+<h3 id="-block_processor_verification_size">--block_processor_verification_size<a class="headerlink" href="#-block_processor_verification_size" title="Permanent link">&para;</a></h3>
+<p>Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap</p>
 <h3 id="-disable_backup">--disable_backup<a class="headerlink" href="#-disable_backup" title="Permanent link">&para;</a></h3>
 <p>Turn off automatic wallet backup process</p>
 <h3 id="-disable_lazy_bootstrap">--disable_lazy_bootstrap<a class="headerlink" href="#-disable_lazy_bootstrap" title="Permanent link">&para;</a></h3>
