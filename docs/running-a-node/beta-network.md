@@ -94,42 +94,42 @@ V19 RC6 is the latest build available for the beta network. In addition to any g
 
 Anyone attempting to upgrade to V19 from versions earlier than V18 will see a long period where the node will not participate on the network and RPC will not be responsive. This is because the sideband upgrade has been changed from a background process to being on the main thread this version.  It is recommended that older nodes are upgraded to V18 before attempting the upgrade to V19 to avoid the service interruption.
 
-**Confirmation Height**
+??? success "**Confirmation Height**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| CHT1 | :heavy_check_mark: Complete | Verifying RPC commands responsive during upgrade period (confirmation height setting of initial long chains occurs in background so shouldn't interrupt RPC, will take a while so confirmation height values may not show up for a while) | |
-| CHT2 | Additional tests desired | Requests to RPC block_confirm with already confirmed blocks will still include that block in confirmation_history and through the callback |  |
-| CHT3 | :heavy_check_mark: Complete | Requests to block_info and blocks_info should return confirmed true for recently confirmed blocks even during confirmation height upgrade process. Blocks underneath these recent ones may show unconfirmed status during upgrade. |  |
-| CHT4 |:heavy_check_mark: Complete | Attempt triggering fork resolution on an already confirmed block and monitor elections to ensure they aren't started for that block (ideally an older one that someone without confirmation height enabled wouldn't be trying to trigger an election for) | |
-| CHT5 | Additional tests desired | During spam event, validate that blocks are efficiently cemented using the `include_cemented` option on [block_count](/commands/rpc-protocol/#block_count) RPC call to track this over time. This is a computationally heavy call, so if you plan on consistently polling it, do so every 30s or longer. You can also follow along with `"{"action": "stats","type":"objects"}"`. There is a pending_confirmation_height size included (number of blocks which won an election (or dependent election) passed to conf height processor). | |
-| CHM1 | :heavy_check_mark: Complete | Start upgrade and note start time, immediately publish a new block on a new account and poll account_info for it repeatedly until you see confirmation_height value appear - this is roughly the confirmation height upgrade time. CLI command `nano_node --debug_cemented_block_count` can also be used to see how far along the confirmed block count is vs. total block count | |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| CHT1 | :heavy_check_mark: Complete | Verifying RPC commands responsive during upgrade period (confirmation height setting of initial long chains occurs in background so shouldn't interrupt RPC, will take a while so confirmation height values may not show up for a while) | |
+	| CHT2 | :heavy_check_mark: Complete | Requests to RPC block_confirm with already confirmed blocks will still include that block in confirmation_history and through the callback |  |
+	| CHT3 | :heavy_check_mark: Complete | Requests to block_info and blocks_info should return confirmed true for recently confirmed blocks even during confirmation height upgrade process. Blocks underneath these recent ones may show unconfirmed status during upgrade. |  |
+	| CHT4 |:heavy_check_mark: Complete | Attempt triggering fork resolution on an already confirmed block and monitor elections to ensure they aren't started for that block (ideally an older one that someone without confirmation height enabled wouldn't be trying to trigger an election for) | |
+	| CHT5 | :heavy_check_mark: Complete | During spam event, validate that blocks are efficiently cemented using the `include_cemented` option on [block_count](/commands/rpc-protocol/#block_count) RPC call to track this over time. This is a computationally heavy call, so if you plan on consistently polling it, do so every 30s or longer. You can also follow along with `"{"action": "stats","type":"objects"}"`. There is a pending_confirmation_height size included (number of blocks which won an election (or dependent election) passed to conf height processor). | |
+	| CHM1 | :heavy_check_mark: Complete | Start upgrade and note start time, immediately publish a new block on a new account and poll account_info for it repeatedly until you see confirmation_height value appear - this is roughly the confirmation height upgrade time. CLI command `nano_node --debug_cemented_block_count` can also be used to see how far along the confirmed block count is vs. total block count | |
 
-**Dynamic PoW and Prioritization**
+??? success "**Dynamic PoW and Prioritization**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| DPT1 | Additional tests desired | Spam the network and attempt to saturate it | **5/12: Saturation has been achieved with ~50+ TPS multi-account spam, additional tests still desired** |
-| DPT2 | Needs testing in RC 3 | For low-powered nodes, try publishing some blocks and watch for work values increasing during saturation | **5/12: Tests have indicated active difficulty does increase, changes to the algorithm controlling this will be included in RC 3 for further testing** |
-| DPT3 | Additional tests desired in RC 3 | Create conditions that would cause blocks to fail confirmation in less than 5 seconds, trigger some sends (noting work values) and then watch for node to do rework and republish the block with new work value after ~ 5s. Conditions to slow confirmations could be created with saturating the network with spam or possibly setting a high `online_weight_quorum`/`online_weight_minimum` value in config.json | **5/27: Successful tests completed in RC3, additional testing desired** |
-| DPM1 | :heavy_check_mark: Complete | Capture average work values using the active_difficulty RPC | **5/12: Average work values have been captured and monitored, but behavior may be changed with RC 3 and if so, would make more tests desirable** |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| DPT1 | :heavy_check_mark: Complete | Spam the network and attempt to saturate it |  |
+	| DPT2 | :heavy_check_mark: Complete | For low-powered nodes, try publishing some blocks and watch for work values increasing during saturation |  |
+	| DPT3 | :heavy_check_mark: Complete | Create conditions that would cause blocks to fail confirmation in less than 5 seconds, trigger some sends (noting work values) and then watch for node to do rework and republish the block with new work value after ~ 5s. Conditions to slow confirmations could be created with saturating the network with spam or possibly setting a high `online_weight_quorum`/`online_weight_minimum` value in config.json |  |
+	| DPM1 | :heavy_check_mark: Complete | Capture average work values using the active_difficulty RPC |  |
 
-**Websocket support**
+??? success "**Websocket support**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| WST1 | :heavy_check_mark: Complete | Configure node to use the websocket callbacks and spam network with a known set of pre-calculated blocks | **5/12: Multiple cases of websocket setups completed and functioning** |
-| WST2 | :heavy_check_mark: Complete | Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. **NOTE:** This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network. | Not yet tested |
-| WST3 | Tests needed | Setup websocket with subscription confirmation including [various filters](/integration-guides/advanced/#optional-filters) for active, conf height, inactive as use cases need. | |
-| WST4 | Tests needed | Setup websocket with subscription [stopped elections](https://docs.nano.org/integration-guides/advanced/#stopped-elections) and verify blocks dropped out of active confirmations trigger notifications. | |
-| WSM1 | :heavy_check_mark: Complete | Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps | **5/12: Comparison of websocket to callback for validating full block capture has been attempted but so far is inconclusive, additional testing desired** |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| WST1 | :heavy_check_mark: Complete | Configure node to use the websocket callbacks and spam network with a known set of pre-calculated blocks |  |
+	| WST2 | :heavy_check_mark: Complete | Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. **NOTE:** This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network. |  |
+	| WST3 | :heavy_check_mark: Complete | Setup websocket with subscription confirmation including [various filters](/integration-guides/advanced/#optional-filters) for active, conf height, inactive as use cases need. | |
+	| WST4 | :heavy_check_mark: Complete | Setup websocket with subscription [stopped elections](https://docs.nano.org/integration-guides/advanced/#stopped-elections) and verify blocks dropped out of active confirmations trigger notifications. | |
+	| WSM1 | :heavy_check_mark: Complete | Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps |  |
 
 
-**Nano_ prefix**
+??? success "**Nano_ prefix**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| NPT1 | Continued testing | Any services integrating should verify they can properly handle nano_ prefix addresses | **5/12: All services continue to be encouraged to setup a beta node and test with their systems** |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| NPT1 | :heavy_check_mark: | Any services integrating should verify they can properly handle nano_ prefix addresses |  |
 
 ??? success "**New RPC process**"
 
@@ -152,20 +152,20 @@ Anyone attempting to upgrade to V19 from versions earlier than V18 will see a lo
 
 	| Item | Status | Details | Updates |
 	|------|--------|---------|---------|
-	| FBT1 | :heavy_check_mark: Complete | Attempt bootstrapping from scratch using `--fast_bootstrap` option and report times and final ledger file size (NOTE: using this option doesn't clear unchecked) | **5/12: Additional data for fast bootstrap times and resulting ledger file sizes is desired** |
+	| FBT1 | :heavy_check_mark: Complete | Attempt bootstrapping from scratch using `--fast_bootstrap` option and report times and final ledger file size (NOTE: using this option doesn't clear unchecked) |  |
 
-**Networking/TCP**
+??? success "**Networking/TCP**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| NET1 | Tests needed | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
-| NET2 | :heavy_check_mark: Complete | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3+, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. | **5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4** |
-| NET3 | Tests needed | Bandwidth limiting covers outbound vote traffic and defaults the limit to 1.5Mb/s. Configure the node to lower levels of bandwidth limiting (see `bandwidth_limit` option in [config.json](/running-a-node/configuration/#example-file)), especially during spam events, and report level of bandwidth seen vs. network volume. Using [stats](/commands/rpc-protocol/#stats) RPC with `type` = `counters` will show in the response `type` = `drop`, `detail` = message type, and `value` = number of messages dropped. Values seen here indicate the bandwidth limit is being hit. | |
-| NET4 | :heavy_check_mark: Complete | Launch node with optional flag [`--disable_udp`](/commands/command-line-interface/#-disable_udp) to communicate entirely over TCP (ensure enough voting weight on beta is upgraded to RC4 first). Similar tests to NET1 above with different network configurations desired. | |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| NET1 | :heavy_check_mark: Complete | With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols. | |
+	| NET2 | :heavy_check_mark: Complete | Track peering with other nodes via TCP by calling [`peers`](/commands/rpc-protocol/#peers) RPC command with `peer_details` = `true`. Expect to see connections via TCP to other nodes running V19RC3+, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded. |  |
+	| NET3 | :heavy_check_mark: Complete | Bandwidth limiting covers outbound vote traffic and defaults the limit to 1.5Mb/s. Configure the node to lower levels of bandwidth limiting (see `bandwidth_limit` option in [config.json](/running-a-node/configuration/#example-file)), especially during spam events, and report level of bandwidth seen vs. network volume. Using [stats](/commands/rpc-protocol/#stats) RPC with `type` = `counters` will show in the response `type` = `drop`, `detail` = message type, and `value` = number of messages dropped. Values seen here indicate the bandwidth limit is being hit. | |
+	| NET4 | :heavy_check_mark: Complete | Launch node with optional flag [`--disable_udp`](/commands/command-line-interface/#-disable_udp) to communicate entirely over TCP (ensure enough voting weight on beta is upgraded to RC4 first). Similar tests to NET1 above with different network configurations desired. | |
 
-**Other tests**
+??? success "**Other tests**"
 
-| Item | Status | Details | Updates |
-|------|--------|---------|---------|
-| OTT1 | Tests needed | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | Pending: Linux<br />Pending: Windows<br />:heavy_check_mark: Mac |
-| OTT2 | :heavy_check_mark: Complete | Update config setting for confirmation_history_size and use [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC to capture larger batches of confirmations. Test higher limits during heavy spam periods to verify active confirmations from the live network appear. Note that if the node does not have enough resources to keep up with live network traffic and confirmations, some blocks may be bootstrapped and confirmed dependently via confirmation height, and thus wouldn't be included in this call | |
+	| Item | Status | Details | Updates |
+	|------|--------|---------|---------|
+	| OTT1 | :heavy_check_mark: Complete | Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: https://github.com/nanocurrency/nano-node/pull/1973 | :heavy_check_mark: Linux<br />:heavy_check_mark: Windows<br />:heavy_check_mark: Mac |
+	| OTT2 | :heavy_check_mark: Complete | Update config setting for confirmation_history_size and use [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC to capture larger batches of confirmations. Test higher limits during heavy spam periods to verify active confirmations from the live network appear. Note that if the node does not have enough resources to keep up with live network traffic and confirmations, some blocks may be bootstrapped and confirmed dependently via confirmation height, and thus wouldn't be included in this call | |
