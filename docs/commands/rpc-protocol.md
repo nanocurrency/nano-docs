@@ -393,7 +393,7 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.
 
 ---
 

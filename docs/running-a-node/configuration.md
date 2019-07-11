@@ -116,12 +116,12 @@ This is the main configuration file for controlling node behavior. Below is an e
 	"confirmation_history_size": "2048", // Controls confirmation history size, default setting preserves existing behavior
     "bandwidth_limit": "5242880", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
     "vote_generator_delay": "50", // Delay in ms before votes are sent out to allow for better bundling of hashes in votes - better performing nodes may need slightly higher values to optimize vote bandwidth
-    "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allows is 250.
+    "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
         "enable_sign_hash": "true",
-        "max_work_generate_difficulty": "ffffffffc0000000", // Maximum difficulty allowed on work_generate RPC requests
+        "max_work_generate_difficulty": "ffffffffc0000000", // Maximum difficulty allowed on work_generate RPC requests, corresponds to 256x multiplier
         "version": "1",
         "child_process": {
             "enable": "false", // Whether the rpc server is run as a child process rather than in-process

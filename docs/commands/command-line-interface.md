@@ -72,7 +72,7 @@ Profile work verification
 Profile vote verification
 
 ### --debug_validate_blocks
-Validate blocks in the ledger, includes checks for confirmation height in version 19.0+
+_version 19.0+_ Validate blocks in the ledger, includes checks for confirmation height
 
 ### --debug_verify_profile
 Profile signature verification
