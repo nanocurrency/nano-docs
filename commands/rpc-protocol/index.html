@@ -3075,9 +3075,11 @@ Returning block hash for given <strong>block</strong> content   </p>
 Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.</p>
 <hr />
 <h3 id="block_info">block_info<a class="headerlink" href="#block_info" title="Permanent link">&para;</a></h3>
-<p>Retrieves a json representation of <strong>block</strong><br />
-<em>Returns block account, amount, balance, block height in account chain &amp; local timestamp since version 18.0</em><br />
-<em>Returns confirmation status &amp; subtype for state block since version 19.0</em>  </p>
+<p>Retrieves a json representation of the block in <code>contents</code> along with:</p>
+<ul>
+<li><em>since version 18.0</em>: <code>block_account</code>, transaction <code>amount</code>, block <code>balance</code>, block <code>height</code> in account chain, block local modification <code>timestamp</code></li>
+<li><em>since version 19.0</em>: Whether block was <code>confirmed</code>, <code>subtype</code> (<em>for state blocks</em>) of <code>send</code>, <code>receive</code>, <code>change</code> or <code>epoch</code></li>
+</ul>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;block_info&quot;</span><span class="p">,</span>  
@@ -3138,7 +3140,11 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 </pre></div></p>
 <hr />
 <h3 id="blocks_info">blocks_info<a class="headerlink" href="#blocks_info" title="Permanent link">&para;</a></h3>
-<p>Retrieves a json representations of <strong>blocks</strong> with block <strong>account</strong>, transaction <strong>amount</strong>, block <strong>balance</strong>, block <strong>height</strong> in account chain, block local modification <strong>timstamp</strong>, block <strong>confirmation status</strong> (since version 19.0), <strong>subtype</strong> (for state blocks since version 19.0)</p>
+<p>Retrieves a json representations of <code>blocks</code> in <code>contents</code> along with:</p>
+<ul>
+<li><em>since version 18.0</em>: <code>block_account</code>, transaction <code>amount</code>, block <code>balance</code>, block <code>height</code> in account chain, block local modification <code>timestamp</code></li>
+<li><em>since version 19.0</em>: Whether block was <code>confirmed</code>, <code>subtype</code> (<em>for state blocks</em>) of <code>send</code>, <code>receive</code>, <code>change</code> or <code>epoch</code></li>
+</ul>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;blocks_info&quot;</span><span class="p">,</span>  
@@ -3837,10 +3843,10 @@ Boolean, false by default. Returns a list of peers IPv6:port with its node proto
   <span class="nt">&quot;blocks&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F&quot;</span> <span class="p">]</span>  
 <span class="p">}</span>
 </pre></div>
-<strong>Optional "count"</strong>
+<strong>Optional "count"</strong><br />
 Number. Determines limit of number of blocks to return.</p>
-<p><strong>Optional "threshold"</strong></p>
-<p><em>version 8.0+</em> <br />
+<p><strong>Optional "threshold"</strong><br />
+<em>version 8.0+</em> <br />
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to <strong>threshold</strong>  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
@@ -4484,7 +4490,8 @@ Generates <strong>work</strong> for block. <strong>hash</strong> is the frontier
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
     <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;work_generate&quot;</span><span class="p">,</span>  
-    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2&quot;</span>  
+    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;difficulty&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffd21c3933f3&quot;</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
@@ -4553,7 +4560,8 @@ Clear work peers node list until restart   </p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
     <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;work_validate&quot;</span><span class="p">,</span>  
     <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;2bf29ef00786a6bc&quot;</span><span class="p">,</span>  
-    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2&quot;</span>  
+    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;difficulty&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffd21c3933f3&quot;</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
@@ -4968,7 +4976,8 @@ Number (128 bit, decimal). Returns wallet accounts balances more or equal to <st
 <hr />
 <h3 id="wallet_change_seed">wallet_change_seed<a class="headerlink" href="#wallet_change_seed" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required</em><br />
-Changes seed for <strong>wallet</strong> to <strong>seed</strong>.  <strong><em>Notes:</em></strong> Clear all deterministic accounts in wallet! To restore account from new seed use RPC <a href="#accounts_create">accounts_create</a>  </p>
+Changes seed for <strong>wallet</strong> to <strong>seed</strong>.  <strong><em>Notes:</em></strong> Clear all deterministic accounts in wallet! To restore account from new seed use RPC <a href="#accounts_create">accounts_create</a>.<br />
+<code>last_restored_account</code> and <code>restored_count</code> fields in response returned since <em>version 19.0+</em>  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;wallet_change_seed&quot;</span><span class="p">,</span>  
