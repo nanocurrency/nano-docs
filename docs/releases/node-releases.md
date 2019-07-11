@@ -5,7 +5,7 @@ The following release is the latest and only release actively supported by the N
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
-| 19.0         | 17               | 2019-07-11   | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0RC6) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
+| 19.0         | 17               | 2019-07-11   | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
 
 ---
 
