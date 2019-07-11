@@ -12,7 +12,7 @@ Get the public key for `<account>`
 Remove all send IDs from the database (dangerous: not intended for production use)
 
 ### --confirmation_height_clear
-_version 19.0+_ Sets the confirmation heights of all accounts to 0 (use --account to only reset a single account).
+_version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
 
 ### --daemon
 Start node daemon
@@ -88,6 +88,9 @@ Generates a adhoc random keypair and prints it to stdout
 
 ### --key_expand --key=`<key>`
 Derive public key and account number from `<key>`
+
+### --network
+Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
 
 ### --online_weight_clear
 Clear record history for long term online weight trending

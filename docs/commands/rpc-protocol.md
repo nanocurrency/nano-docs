@@ -650,9 +650,10 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 ---
 
 ### block_info  
-Retrieves a json representation of **block**  
-_Returns block account, amount, balance, block height in account chain & local timestamp since version 18.0_  
-_Returns confirmation status & subtype for state block since version 19.0_  
+Retrieves a json representation of the block in `contents` along with:
+
+* _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+* _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
 
 **Request:**
 ```json
@@ -726,7 +727,10 @@ Retrieves a json representations of **blocks**
 ---
 
 ### blocks_info   
-Retrieves a json representations of **blocks** with block **account**, transaction **amount**, block **balance**, block **height** in account chain, block local modification **timstamp**, block **confirmation status** (since version 19.0), **subtype** (for state blocks since version 19.0)
+Retrieves a json representations of `blocks` in `contents` along with:
+
+* _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+* _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
 
 **Request:**
 ```json
@@ -1585,11 +1589,10 @@ Returns a list of block hashes which have not yet been received by this account.
   "blocks" : [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]  
 }
 ```   
-**Optional "count"**
+**Optional "count"**  
 Number. Determines limit of number of blocks to return.
 
-**Optional "threshold"**
-
+**Optional "threshold"**  
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**  
 
@@ -2404,7 +2407,8 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 ```json
 {  
     "action": "work_generate",  
-    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
+    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
+    "difficulty": "ffffffd21c3933f3"
 }
 ```  
 **Response:**
@@ -2497,7 +2501,8 @@ Check whether **work** is valid for block
 {  
     "action": "work_validate",  
     "work": "2bf29ef00786a6bc",  
-    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"  
+    "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
+    "difficulty": "ffffffd21c3933f3"
 }
 ```  
 **Response:**
@@ -3043,7 +3048,8 @@ Number (128 bit, decimal). Returns wallet accounts balances more or equal to **t
 
 ### wallet_change_seed  
 _enable_control required_  
-Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create)  
+Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create).  
+`last_restored_account` and `restored_count` fields in response returned since _version 19.0+_  
 
 **Request:**
 ```json
