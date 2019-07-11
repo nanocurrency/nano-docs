@@ -126,11 +126,11 @@ Dump most recent votes from representatives
 ### --wallet_add_adhoc --wallet=`<wallet>` --key=`<key>`
 Insert `<key>` in to `<wallet>`
 
-### --wallet_create --key=`<key>` --password=`<password>`
-Creates a new wallet with optional `<key>` (seed) and optional `<password>`, and prints the ID
+### --wallet_create --seed=`<seed>` --password=`<password>`
+Creates a new wallet with optional `<seed>` and optional `<password>`, and prints the ID. Note the legacy `--key` option can still be used and will function the same as `--seed`.
 
-### --wallet_change_seed --wallet=`<wallet>` --key=`<key>`
-Changes seed for `<wallet>` to `<key>`
+### --wallet_change_seed --wallet=`<wallet>` --seed=`<seed>`
+Changes seed for `<wallet>` to `<seed>`.  Note the legacy `--key` option can still be used and will function the same as `--seed`.
 
 ### --wallet_decrypt_unsafe --wallet=`<wallet>` --password=`<password>`
 Decrypts `<wallet>` using `<password>`  
