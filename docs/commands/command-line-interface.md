@@ -60,7 +60,7 @@ Profile vote verification
 Profile kdf function
 
 ### --debug_validate_blocks
-Validate blocks in the ledger
+Validate blocks in the ledger, includes checks for confirmation height in version 19.0+
 
 ### --debug_verify_profile
 Profile signature verification
