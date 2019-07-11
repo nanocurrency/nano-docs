@@ -49,11 +49,21 @@ List representatives and weights
 ### --debug_mass_activity
 Generates fake debug activity
 
+### --debug_output_last_backtrace_dump
+Output the stacktrace stored after a node crash.
+
 ### --debug_profile_bootstrap
 Profile simulated bootstrap process
 
 ### --debug_profile_generate
-Profile work generation
+Profile work generation  
+Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.
+
+### --debug_profile_kdf
+Profile kdf function
+
+### --debug_profile_sign
+Profile signature generation
 
 ### --debug_profile_verify
 Profile work verification
@@ -61,17 +71,11 @@ Profile work verification
 ### --debug_profile_votes
 Profile vote verification
 
-### --debug_profile_kdf
-Profile kdf function
-
 ### --debug_validate_blocks
 Validate blocks in the ledger, includes checks for confirmation height in version 19.0+
 
 ### --debug_verify_profile
 Profile signature verification
-
-### --debug_profile_sign
-Profile signature generation
 
 ### --debug_xorshift_profile
 [Disabled] Profile xorshift algorithms
@@ -83,7 +87,7 @@ _[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<
 Delete the node ID in the database
 
 ### --diagnostics
-Run internal diagnostics
+Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
 ### --help
 Print out options
@@ -93,6 +97,9 @@ Generates a adhoc random keypair and prints it to stdout
 
 ### --key_expand --key=`<key>`
 Derive public key and account number from `<key>`
+
+### --network
+Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
 
 ### --online_weight_clear
 Clear record history for long term online weight trending
