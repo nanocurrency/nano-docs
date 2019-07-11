@@ -141,7 +141,7 @@ If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=`<wallet>`
 Destroys `<wallet>` and all keys it contains
 
 ### --wallet_import  --file=`<filepath>` --wallet=`<wallet>` --password=`<password>`
-Imports keys in `<filepath>` using `<password>` in to `<wallet>`
+Imports keys in `<filepath>` using `<password>` in to `<wallet>`. If the provided wallet id does not exist and `--force` is included, a new wallet will be created with the provided wallet id value, and the json file will be imported as is with existing seed and password (instead of a set of private keys without a change of seed).
 
 ### --wallet_list
 Dumps wallet IDs and public keys
