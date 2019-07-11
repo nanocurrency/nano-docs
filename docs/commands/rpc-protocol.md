@@ -1197,7 +1197,7 @@ Returns a list of open database transactions which are equal or greater than the
 ```json
 {
   "action": "database_txn_tracker",
-  "min_read_time" : "1000"
+  "min_read_time" : "1000",
   "min_write_time" : "0"
 }
 ```
