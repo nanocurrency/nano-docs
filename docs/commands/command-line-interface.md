@@ -48,7 +48,8 @@ Output the stacktrace stored after a node crash.
 Profile simulated bootstrap process
 
 ### --debug_profile_generate
-Profile work generation
+Profile work generation  
+Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.
 
 ### --debug_profile_kdf
 Profile kdf function
