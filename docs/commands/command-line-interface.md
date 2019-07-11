@@ -32,6 +32,9 @@ Generate bootstrap sequence of blocks
 ### --debug_cemented_block_count
 _version 19.0+_ Display the number of cemented blocks (blocks which are under the confirmation height of their accounts)
 
+### --debug_dump_frontier_unchecked_dependents
+_version 19.0+_ Dump frontiers which have matching unchecked keys
+
 ### --debug_dump_online_weight 
 List online weights table and current online_weights value
 
