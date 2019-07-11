@@ -683,7 +683,10 @@ ENCODING ::= u8(1)
 PAYLOAD  ::= <encoding specific>
 ```
 
-Only one encoding currently exists: 1 (legacy RPC)
+Two encodings currently exist:
+
+* 1: legacy RPC [_since v18.0_]
+* 2: legacy RPC allowing unsafe operations if node is configured so [_since v19.0_]
 
 The encoding is followed by two reserved zero-bytes. These allow for future extensions, such as versioning and extended headers.
 
