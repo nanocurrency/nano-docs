@@ -4,6 +4,9 @@ The node uses the `config.json` and `rpc_config.json` files found in the followi
 
 --8<-- "folder-locations.md"
 
+!!! success "Backups of config files on upgrade"
+    In versions 19.0+ when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same folder for easy recovery if needed.
+
 ---
 
 ## config.json
