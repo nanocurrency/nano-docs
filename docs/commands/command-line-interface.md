@@ -15,7 +15,12 @@ Remove all send IDs from the database (dangerous: not intended for production us
 _version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
 
 ### --daemon
-Start node daemon
+Start node daemon. Since version 19.0, network and path will be output, similar to:
+```
+./nano_node --daemon --network test
+Network: test, version: 19.0
+Path: /home/USER/NanoTest
+```
 
 ### --data_path=`<path>` 
 Use the supplied `<path>` as the data directory
