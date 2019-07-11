@@ -275,7 +275,7 @@ Current topics available for subscribing to include:
 
 #### Confirmations
 
-##### Subscribing
+**Subscribing**
 
 To subscribe to all confirmed blocks:
 
@@ -286,7 +286,7 @@ To subscribe to all confirmed blocks:
 }
 ```
 
-##### Filters
+**Filters**
 
 ###### Type filtering
 
@@ -336,7 +336,8 @@ Because account filtering needs block content to function, setting this flag to 
 
 Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
 
-**Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.**
+!!! warning "Legacy blocks never broadcasted"
+    Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.
 
 ```json
 {
@@ -355,7 +356,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
-##### Sample Results
+**Sample Results**
 
 !!! note "Differences from the HTTP callback"
     * The "block" contains JSON instead of an escaped string. This makes parsing easier.
@@ -394,7 +395,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 
 #### Votes
 
-##### Subscribing
+**Subscribing**
 
 To subscribe to all votes notifications:
 
@@ -405,7 +406,7 @@ To subscribe to all votes notifications:
 }
 ```
 
-##### Filters
+**Filters**
 
 Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
 
@@ -422,7 +423,7 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 }
 ```
 
-##### Sample Results
+**Sample Results**
 
 ```json
 {
@@ -444,7 +445,7 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 #### Stopped elections
 If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
 
-##### Subscribing
+**Subscribing**
 
 To subscribe to all stopped elections notifications:
 
@@ -455,11 +456,11 @@ To subscribe to all stopped elections notifications:
 }
 ```
 
-##### Filters
+**Filters**
 
 No filters are currently available for `stopped_election` topic.
 
-##### Sample Results
+**Sample Results**
 
 ```json
 {
@@ -475,7 +476,7 @@ No filters are currently available for `stopped_election` topic.
 
 #### Active difficulty
 
-##### Subscribing
+**Subscribing**
 
 To subscribe to all active difficulty notifications:
 
@@ -486,11 +487,11 @@ To subscribe to all active difficulty notifications:
 }
 ```
 
-##### Filters
+**Filters**
 
 No filters are currently available for `active_difficulty` topic.
 
-##### Sample Results
+**Sample Results**
 
 ```json
 {
@@ -682,7 +683,10 @@ ENCODING ::= u8(1)
 PAYLOAD  ::= <encoding specific>
 ```
 
-Only one encoding currently exists: 1 (legacy RPC)
+Two encodings currently exist:
+
+* 1: legacy RPC [_since v18.0_]
+* 2: legacy RPC allowing unsafe operations if node is configured so [_since v19.0_]
 
 The encoding is followed by two reserved zero-bytes. These allow for future extensions, such as versioning and extended headers.
 

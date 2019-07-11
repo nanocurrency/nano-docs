@@ -15,7 +15,12 @@ Remove all send IDs from the database (dangerous: not intended for production us
 _version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
 
 ### --daemon
-Start node daemon
+Start node daemon. Since version 19.0, network and path will be output, similar to:
+```
+./nano_node --daemon --network test
+Network: test, version: 19.0
+Path: /home/USER/NanoTest
+```
 
 ### --data_path=`<path>` 
 Use the supplied `<path>` as the data directory
@@ -31,6 +36,9 @@ Generate bootstrap sequence of blocks
 
 ### --debug_cemented_block_count
 _version 19.0+_ Display the number of cemented blocks (blocks which are under the confirmation height of their accounts)
+
+### --debug_dump_frontier_unchecked_dependents
+_version 19.0+_ Dump frontiers which have matching unchecked keys
 
 ### --debug_dump_online_weight 
 List online weights table and current online_weights value
@@ -64,7 +72,7 @@ Profile work verification
 Profile vote verification
 
 ### --debug_validate_blocks
-Validate blocks in the ledger
+_version 19.0+_ Validate blocks in the ledger, includes checks for confirmation height
 
 ### --debug_verify_profile
 Profile signature verification
@@ -118,11 +126,11 @@ Dump most recent votes from representatives
 ### --wallet_add_adhoc --wallet=`<wallet>` --key=`<key>`
 Insert `<key>` in to `<wallet>`
 
-### --wallet_create --key=`<key>` --password=`<password>`
-Creates a new wallet with optional `<key>` (seed) and optional `<password>`, and prints the ID
+### --wallet_create --seed=`<seed>` --password=`<password>`
+Creates a new wallet with optional `<seed>` and optional `<password>`, and prints the ID. Note the legacy `--key` option can still be used and will function the same as `--seed`.
 
-### --wallet_change_seed --wallet=`<wallet>` --key=`<key>`
-Changes seed for `<wallet>` to `<key>`
+### --wallet_change_seed --wallet=`<wallet>` --seed=`<seed>`
+Changes seed for `<wallet>` to `<seed>`.  Note the legacy `--key` option can still be used and will function the same as `--seed`.
 
 ### --wallet_decrypt_unsafe --wallet=`<wallet>` --password=`<password>`
 Decrypts `<wallet>` using `<password>`  
@@ -133,7 +141,7 @@ If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=`<wallet>`
 Destroys `<wallet>` and all keys it contains
 
 ### --wallet_import  --file=`<filepath>` --wallet=`<wallet>` --password=`<password>`
-Imports keys in `<filepath>` using `<password>` in to `<wallet>`
+Imports keys in `<filepath>` using `<password>` in to `<wallet>`. If the provided wallet id does not exist and `--force` is included, a new wallet will be created with the provided wallet id value, and the json file will be imported as is with existing seed and password (instead of a set of private keys without a change of seed).
 
 ### --wallet_list
 Dumps wallet IDs and public keys
@@ -151,6 +159,15 @@ Set `<account>` as default representative for `<wallet>`
 When initially starting the nano_node or nano_wallet as a service the following launch options are available.
 
 NOTE: These options are only for developer use so please understand the impacts before use.
+
+### --block_processor_batch_size
+Increase block processor transaction batch write size, default 0 (limited by config block_processor_batch_max_time), 256k for fast_bootstrap
+
+### --block_processor_full_size
+Increase block processor allowed blocks queue size before dropping live network packets and holding bootstrap download, default 65536, 1 million for fast_bootstrap
+
+### --block_processor_verification_size
+Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
 
 ### --disable_backup
 Turn off automatic wallet backup process

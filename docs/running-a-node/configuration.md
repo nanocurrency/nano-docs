@@ -4,6 +4,9 @@ The node uses the `config.json` and `rpc_config.json` files found in the followi
 
 --8<-- "folder-locations.md"
 
+!!! success "Backups of config files on upgrade"
+    In versions 19.0+ when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same folder for easy recovery if needed.
+
 ---
 
 ## config.json
@@ -111,14 +114,14 @@ This is the main configuration file for controlling node behavior. Below is an e
         },
 	"use_memory_pools": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
 	"confirmation_history_size": "2048", // Controls confirmation history size, default setting preserves existing behavior
-    "bandwidth_limit": "1572864", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
+    "bandwidth_limit": "5242880", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
     "vote_generator_delay": "50", // Delay in ms before votes are sent out to allow for better bundling of hashes in votes - better performing nodes may need slightly higher values to optimize vote bandwidth
-    "active_elections_size": "8000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allows is 250.
+    "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
         "enable_sign_hash": "true",
-        "max_work_generate_difficulty": "ffffffffc0000000",
+        "max_work_generate_difficulty": "ffffffffc0000000", // Maximum difficulty allowed on work_generate RPC requests, corresponds to 256x multiplier
         "version": "1",
         "child_process": {
             "enable": "false", // Whether the rpc server is run as a child process rather than in-process

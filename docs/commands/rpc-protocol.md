@@ -117,7 +117,8 @@ If the `count` limit results in stopping before the end of the account chain, th
 - `raw` (bool): if set to `true` instead of the default `false`, instead of outputting a simplified send or receive explanation of blocks (intended for wallets), output all parameters of the block itself as seen in block_create or other APIs returning blocks. It still includes the "account" and "amount" properties you'd see without this option.  State/universal blocks in the raw history will also have a `subtype` field indicating their equivalent "old" block. Unfortunately, the "account" parameter for open blocks is the account of the source block, not the account of the open block, to preserve similarity with the non-raw history.   
 - `head` (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   
 - `offset` (decimal integer): skips a number of blocks starting from `head` (if given). Not often used. _Available since version 11.0_    
-- `reverse` (bool): if set to `true` instead of the default `false`, the response starts from `head` (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). **Note**: the field `previous` in the response changes to `next`. _Available since version 19.0_   
+- `reverse` (bool): if set to `true` instead of the default `false`, the response starts from `head` (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). **Note**: the field `previous` in the response changes to `next`. _Available since version 19.0_  
+- `account_filter` (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s) _Available since version 19.0_  
 
 ---
 
@@ -391,15 +392,15 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 
 **Optional "include_only_confirmed"**
 
-_version 19.0+_
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+_version 19.0+_  
+Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.
 
 ---
 
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
 
 **Request:**
 ```json
@@ -1181,7 +1182,7 @@ Boolean, false by default. If true, add account/ip/rep weight for each peer cons
 
 _version 19.0+_
 
-The effective peer stake needed for quorum. Per v19, this field is computed as `max(quorum_delta, online_weight_minimum)`
+The effective stake needed from directly connected peers for quorum. Per v19, this field is computed as `max(quorum_delta, online_weight_minimum)`. If `peers_stake_total` is lower than this value, the node will not mark blocks as confirmed.
 
 ---
 
@@ -1196,7 +1197,7 @@ Returns a list of open database transactions which are equal or greater than the
 ```json
 {
   "action": "database_txn_tracker",
-  "min_read_time" : "1000"
+  "min_read_time" : "1000",
   "min_write_time" : "0"
 }
 ```
