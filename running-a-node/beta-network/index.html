@@ -1042,8 +1042,7 @@
 <p>V19 RC6 is the latest build available for the beta network. In addition to any general or integration specific testing, some of the helpful testing activities during the release candidate period have been included below for reference:</p>
 <p><strong>Upgrade from pre-V18</strong></p>
 <p>Anyone attempting to upgrade to V19 from versions earlier than V18 will see a long period where the node will not participate on the network and RPC will not be responsive. This is because the sideband upgrade has been changed from a background process to being on the main thread this version.  It is recommended that older nodes are upgraded to V18 before attempting the upgrade to V19 to avoid the service interruption.</p>
-<p><strong>Confirmation Height</strong></p>
-<table>
+<details class="success"><summary><strong>Confirmation Height</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1061,7 +1060,7 @@
 </tr>
 <tr>
 <td>CHT2</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Requests to RPC block_confirm with already confirmed blocks will still include that block in confirmation_history and through the callback</td>
 <td></td>
 </tr>
@@ -1079,7 +1078,7 @@
 </tr>
 <tr>
 <td>CHT5</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>During spam event, validate that blocks are efficiently cemented using the <code>include_cemented</code> option on <a href="/commands/rpc-protocol/#block_count">block_count</a> RPC call to track this over time. This is a computationally heavy call, so if you plan on consistently polling it, do so every 30s or longer. You can also follow along with <code>"{"action": "stats","type":"objects"}"</code>. There is a pending_confirmation_height size included (number of blocks which won an election (or dependent election) passed to conf height processor).</td>
 <td></td>
 </tr>
@@ -1091,8 +1090,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Dynamic PoW and Prioritization</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Dynamic PoW and Prioritization</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1104,32 +1103,32 @@
 <tbody>
 <tr>
 <td>DPT1</td>
-<td>Additional tests desired</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Spam the network and attempt to saturate it</td>
-<td><strong>5/12: Saturation has been achieved with ~50+ TPS multi-account spam, additional tests still desired</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DPT2</td>
-<td>Needs testing in RC 3</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>For low-powered nodes, try publishing some blocks and watch for work values increasing during saturation</td>
-<td><strong>5/12: Tests have indicated active difficulty does increase, changes to the algorithm controlling this will be included in RC 3 for further testing</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DPT3</td>
-<td>Additional tests desired in RC 3</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Create conditions that would cause blocks to fail confirmation in less than 5 seconds, trigger some sends (noting work values) and then watch for node to do rework and republish the block with new work value after ~ 5s. Conditions to slow confirmations could be created with saturating the network with spam or possibly setting a high <code>online_weight_quorum</code>/<code>online_weight_minimum</code> value in config.json</td>
-<td><strong>5/27: Successful tests completed in RC3, additional testing desired</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>DPM1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Capture average work values using the active_difficulty RPC</td>
-<td><strong>5/12: Average work values have been captured and monitored, but behavior may be changed with RC 3 and if so, would make more tests desirable</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Websocket support</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Websocket support</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1143,23 +1142,23 @@
 <td>WST1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Configure node to use the websocket callbacks and spam network with a known set of pre-calculated blocks</td>
-<td><strong>5/12: Multiple cases of websocket setups completed and functioning</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>WST2</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Setup websocket with confirmation of all blocks on a fresh node and allow syncing from scratch. <strong>NOTE:</strong> This will capture confirmations for all blocks in the ledger which will be a large amount of data. Validate confirmations seen is close to total block count when caught up with the network.</td>
-<td>Not yet tested</td>
+<td></td>
 </tr>
 <tr>
 <td>WST3</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Setup websocket with subscription confirmation including <a href="/integration-guides/advanced/#optional-filters">various filters</a> for active, conf height, inactive as use cases need.</td>
 <td></td>
 </tr>
 <tr>
 <td>WST4</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Setup websocket with subscription <a href="https://docs.nano.org/integration-guides/advanced/#stopped-elections">stopped elections</a> and verify blocks dropped out of active confirmations trigger notifications.</td>
 <td></td>
 </tr>
@@ -1167,12 +1166,12 @@
 <td>WSM1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Collect all callbacks from websocket to compare against known spam blocks sent out for any potential gaps</td>
-<td><strong>5/12: Comparison of websocket to callback for validating full block capture has been attempted but so far is inconclusive, additional testing desired</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Nano_ prefix</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Nano_ prefix</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1184,12 +1183,13 @@
 <tbody>
 <tr>
 <td>NPT1</td>
-<td>Continued testing</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /></td>
 <td>Any services integrating should verify they can properly handle nano_ prefix addresses</td>
-<td><strong>5/12: All services continue to be encouraged to setup a beta node and test with their systems</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
+</details>
 <details class="success"><summary><strong>New RPC process</strong></summary><table>
 <thead>
 <tr>
@@ -1272,13 +1272,12 @@
 <td>FBT1</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Attempt bootstrapping from scratch using <code>--fast_bootstrap</code> option and report times and final ledger file size (NOTE: using this option doesn't clear unchecked)</td>
-<td><strong>5/12: Additional data for fast bootstrap times and resulting ledger file sizes is desired</strong></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </details>
-<p><strong>Networking/TCP</strong></p>
-<table>
+<details class="success"><summary><strong>Networking/TCP</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1290,7 +1289,7 @@
 <tbody>
 <tr>
 <td>NET1</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>With UDP and TCP being supported, testing for configurations that have port forwarding and NATs without upnp enabled are desirable for both these protocols.</td>
 <td></td>
 </tr>
@@ -1298,11 +1297,11 @@
 <td>NET2</td>
 <td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Track peering with other nodes via TCP by calling <a href="/commands/rpc-protocol/#peers"><code>peers</code></a> RPC command with <code>peer_details</code> = <code>true</code>. Expect to see connections via TCP to other nodes running V19RC3+, via UDP for nodes running versions lower. Disable all UDP ports to force TCP-only peering, although this may not result in enough votes to reach quorum if few nodes on the network have upgraded.</td>
-<td><strong>5/28: TCP connection drops were seen with RC 3 and updates to resolve are pending for RC 4</strong></td>
+<td></td>
 </tr>
 <tr>
 <td>NET3</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Bandwidth limiting covers outbound vote traffic and defaults the limit to 1.5Mb/s. Configure the node to lower levels of bandwidth limiting (see <code>bandwidth_limit</code> option in <a href="/running-a-node/configuration/#example-file">config.json</a>), especially during spam events, and report level of bandwidth seen vs. network volume. Using <a href="/commands/rpc-protocol/#stats">stats</a> RPC with <code>type</code> = <code>counters</code> will show in the response <code>type</code> = <code>drop</code>, <code>detail</code> = message type, and <code>value</code> = number of messages dropped. Values seen here indicate the bandwidth limit is being hit.</td>
 <td></td>
 </tr>
@@ -1314,8 +1313,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Other tests</strong></p>
-<table>
+</details>
+<details class="success"><summary><strong>Other tests</strong></summary><table>
 <thead>
 <tr>
 <th>Item</th>
@@ -1327,9 +1326,9 @@
 <tbody>
 <tr>
 <td>OTT1</td>
-<td>Tests needed</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Complete</td>
 <td>Verify proper syslog output occurs by running CLI --debug_sys_logging. It should write either to syslog file or Windows event log (if you didn't use installer, then you should get a message instructing you to run as admin to construct the registry key). More details: <a href="https://github.com/nanocurrency/nano-node/pull/1973">https://github.com/nanocurrency/nano-node/pull/1973</a></td>
-<td>Pending: Linux<br />Pending: Windows<br /><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Mac</td>
+<td><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Linux<br /><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Windows<br /><img alt="✔" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/svg/2714.svg" title=":heavy_check_mark:" /> Mac</td>
 </tr>
 <tr>
 <td>OTT2</td>
@@ -1339,6 +1338,7 @@
 </tr>
 </tbody>
 </table>
+</details>
                 
                   
                 

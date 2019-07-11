@@ -710,8 +710,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recent-changes" title="Recent Changes" class="md-nav__link">
-    Recent Changes
+  <a href="#completed" title="Completed" class="md-nav__link">
+    Completed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-page-updates" title="Recent Page Updates" class="md-nav__link">
+    Recent Page Updates
   </a>
   
 </li>
@@ -796,8 +803,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recent-changes" title="Recent Changes" class="md-nav__link">
-    Recent Changes
+  <a href="#completed" title="Completed" class="md-nav__link">
+    Completed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recent-page-updates" title="Recent Page Updates" class="md-nav__link">
+    Recent Page Updates
   </a>
   
 </li>
@@ -848,123 +862,7 @@
 </tbody>
 </table>
 <h3 id="in-progress">In Progress<a class="headerlink" href="#in-progress" title="Permanent link">&para;</a></h3>
-<details class="tip"><summary>TCP network overlay</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V19 Solidus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Provide support for live traffic over TCP, keeping UDP as a fallback mechanism.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Decrease amount of traffic and connections nodes need to maintain and reduce resource usage and increase higher peak TPS capabilities</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/pull/1962">GitHub PR #1962</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Confirmation Height</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V19 Solidus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Track height of confirmed blocks per account and confirm dependent elections based on this height.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Provide simpler block confirmation procedures, reduce network voting and confirmation traffic, and provide easier implementation of various future features.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/pull/1770">GitHub PR #1770</a> - <a href="https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc">Looking up to Confirmation Height (Medium)</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Dynamic Proof-of-Work (PoW) and Prioritization</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V19 Solidus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Capture work difficulty levels on the network and adjust wallet work generation dynamically when delays in confirmation for locally published blocks are experienced. Also include dropping of active transactions failing to confirm quickly.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Reduce impacts to regular users during spam attacks and increase cost of spam attacks.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/pull/1990">GitHub PR #1990</a> - <a href="https://github.com/nanocurrency/nano-node/pull/1858">GitHub PR #1858</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Out of node process RPC</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V19 Solidus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Remove RPC operations out of node process.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Reduced node attack surface as signing keys no longer in the same memory space as network and ledger code.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/pull/1857">GitHub PR #1857</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Bandwidth throttling</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V19 Solidus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Provide configuration options for nodes to limit bandwidth resource usage.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>More control over resource consumption for node operators and to provide a metric for analyzing more objectively the TPS capabilities of the network.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-</details>
-<h3 id="planned">Planned<a class="headerlink" href="#planned" title="Permanent link">&para;</a></h3>
-<details class="abstract"><summary>Dual-phase voting</summary><table>
+<details class="tip"><summary>Dual-phase voting</summary><table>
 <thead>
 <tr>
 <th>Release</th>
@@ -987,7 +885,7 @@
 </tbody>
 </table>
 </details>
-<details class="abstract"><summary>Durable vote snapshots</summary><table>
+<details class="tip"><summary>Durable vote snapshots</summary><table>
 <thead>
 <tr>
 <th>Release</th>
@@ -1010,7 +908,7 @@
 </tbody>
 </table>
 </details>
-<details class="abstract"><summary>Local account priority bootstrapping</summary><table>
+<details class="tip"><summary>Local account priority bootstrapping</summary><table>
 <thead>
 <tr>
 <th>Release</th>
@@ -1033,7 +931,7 @@
 </tbody>
 </table>
 </details>
-<details class="abstract"><summary>Move wallet out of process</summary><table>
+<details class="tip"><summary>Move wallet out of process</summary><table>
 <thead>
 <tr>
 <th>Release</th>
@@ -1056,6 +954,7 @@
 </tbody>
 </table>
 </details>
+<h3 id="planned">Planned<a class="headerlink" href="#planned" title="Permanent link">&para;</a></h3>
 <details class="abstract"><summary>Protobuf based RPCs</summary><table>
 <thead>
 <tr>
@@ -1218,12 +1117,134 @@
 </tbody>
 </table>
 </details>
-<h3 id="recent-changes">Recent Changes<a class="headerlink" href="#recent-changes" title="Permanent link">&para;</a></h3>
-<p><strong>2019-07-05</strong></p>
+<h3 id="completed">Completed<a class="headerlink" href="#completed" title="Permanent link">&para;</a></h3>
+<details class="success"><summary>V19.0</summary><p><strong>TCP network overlay</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V19 Solidus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Provide support for live traffic over TCP, keeping UDP as a fallback mechanism.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Decrease amount of traffic and connections nodes need to maintain and reduce resource usage and increase higher peak TPS capabilities</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/1962">GitHub PR #1962</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Confirmation Height</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V19 Solidus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Track height of confirmed blocks per account and confirm dependent elections based on this height.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Provide simpler block confirmation procedures, reduce network voting and confirmation traffic, and provide easier implementation of various future features.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/1770">GitHub PR #1770</a> - <a href="https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc">Looking up to Confirmation Height (Medium)</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dynamic Proof-of-Work (PoW) and Prioritization</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V19 Solidus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Capture work difficulty levels on the network and adjust wallet work generation dynamically when delays in confirmation for locally published blocks are experienced. Also include dropping of active transactions failing to confirm quickly.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Reduce impacts to regular users during spam attacks and increase cost of spam attacks.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/1990">GitHub PR #1990</a> - <a href="https://github.com/nanocurrency/nano-node/pull/1858">GitHub PR #1858</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Out of node process RPC</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V19 Solidus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Remove RPC operations out of node process.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Reduced node attack surface as signing keys no longer in the same memory space as network and ledger code.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/1857">GitHub PR #1857</a> - <a href="https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c">V19 Solidus Feature Analysis (Medium)</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bandwidth throttling</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V19 Solidus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Provide configuration options for nodes to limit bandwidth resource usage.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>More control over resource consumption for node operators and to provide a metric for analyzing more objectively the TPS capabilities of the network.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="recent-page-updates">Recent Page Updates<a class="headerlink" href="#recent-page-updates" title="Permanent link">&para;</a></h3>
+<p><strong>2019-07-11</strong></p>
+<ul>
+<li>Moved V19 items into new Completed section</li>
+<li>Moved targeted V20 items into In Progress section</li>
+</ul>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-07-05</strong></p>
 <ul>
 <li>Confirmed-only bootstrapping removed from list - the complexity and effort level of this feature for the provided benefits didn't align to implement on its own at this time. Situations that may warrant such a change, including long strings of forked blocks, will be monitored on the network and if seen, this feature will be reevaluated for inclusion in the future.</li>
 </ul>
-<details class="info"><summary>Other past changes</summary><p><strong>2019-06-11</strong></p>
+<p><strong>2019-06-11</strong></p>
 <ul>
 <li>Protobuf based RPCs target moved from V20 to V21</li>
 <li>RPC 2.0 target moved from V20 to V21</li>
