@@ -108,6 +108,9 @@ By default the RPC server will run in the node process, but can be configured to
 
 #### RPC/CLI Updates
 
+!!! success "No Breaking Changes"
+	There were no breaking changes made in V19 for any RPC or CLI commands. It is recommended any integrations run tests against V19 before upgrading production nodes, and also explore the various changes below to improve their setups.
+
 * **NEW** [`unopened`](/commands/rpc-protocol/#unopened) RPC provides the total pending balance for unopened accounts
 * **NEW** [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC allows tracking of the difficulty levels seen on the network which can be used to target higher levels of PoW to prioritize transactions
 * Using [`--diagnostics`](/commands/command-line-interface/#-diagnostics) CLI option now validates config and generates default one if it doesn’t exist
