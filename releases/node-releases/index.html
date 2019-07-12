@@ -1190,7 +1190,7 @@ Upgrades from versions V17.1 and to V19 will involve a sequential database upgra
 <p>It is highly recommended that nodes are upgraded to V18.0 first or a V18.0 ledger is acquired and used when upgrading to V19.0.</p>
 </div>
 <p><strong>Confirmation tracking considerations</strong><br />
-The addition of confirmation height to the database requires the node to validate that blocks are confirmed before the cementing can occur. This process can take up to 24 hours or longer to complete but won’t impact participation on the network. For integrations watching confirmations, the existing <a href="/integration-guides/advanced/#http-callback">HTTP callback</a>, <a href="/commands/rpc-protocol/#block_confirm">block_confirm</a> RPC and <a href="/commands/rpc-protocol/#confirmation_history">confirmation_history</a> RPC methods will continue to function as before.</p>
+The addition of confirmation height to the database requires the node to validate that blocks are confirmed before the cementing can occur. This process can take up to 24 hours or longer to complete and will cause an increase in some resource usage, particularly network bandwidth increases, but won’t impact participation on the network. For integrations watching confirmations, the existing <a href="/integration-guides/advanced/#http-callback">HTTP callback</a>, <a href="/commands/rpc-protocol/#block_confirm">block_confirm</a> RPC and <a href="/commands/rpc-protocol/#confirmation_history">confirmation_history</a> RPC methods will continue to function as before.</p>
 <div class="admonition warning">
 <p class="admonition-title">Tracking confirmed block hashes required</p>
 <p>It is required that tracking of confirmed block hashes outside the node is done to avoid potential duplicate notifications from causing issues. This was a requirement in previous versions and remains the same with V19.</p>
@@ -1223,6 +1223,10 @@ With the ability to track work difficulty seen on the network and have the node 
 By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (including on a different computer), depending on your needs. See <a href="/integration-guides/advanced/#running-nano-as-a-service">Running Nano as a service</a> for more details.</p>
 <hr />
 <h4 id="rpccli-updates">RPC/CLI Updates<a class="headerlink" href="#rpccli-updates" title="Permanent link">&para;</a></h4>
+<div class="admonition success">
+<p class="admonition-title">No Breaking Changes</p>
+<p>There were no breaking changes made in V19 for any RPC or CLI commands. It is recommended any integrations run tests against V19 before upgrading production nodes, and also explore the various changes below to improve their setups.</p>
+</div>
 <ul>
 <li><strong>NEW</strong> <a href="/commands/rpc-protocol/#unopened"><code>unopened</code></a> RPC provides the total pending balance for unopened accounts</li>
 <li><strong>NEW</strong> <a href="/commands/rpc-protocol/#active_difficulty"><code>active_difficulty</code></a> RPC allows tracking of the difficulty levels seen on the network which can be used to target higher levels of PoW to prioritize transactions</li>
