@@ -700,6 +700,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#build-instructions-windows" title="Build Instructions - Windows" class="md-nav__link">
+    Build Instructions - Windows
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies_3" title="Dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" title="Setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" title="Build" class="md-nav__link">
+    Build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-up-binaries" title="Package up binaries" class="md-nav__link">
+    Package up binaries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -1154,6 +1195,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#build-instructions-windows" title="Build Instructions - Windows" class="md-nav__link">
+    Build Instructions - Windows
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencies_3" title="Dependencies" class="md-nav__link">
+    Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup" title="Setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" title="Build" class="md-nav__link">
+    Build
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-up-binaries" title="Package up binaries" class="md-nav__link">
+    Package up binaries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -1448,6 +1530,63 @@ git submodule update --init --recursive
 cmake -DBOOST_ROOT=../[boost]/ -G &quot;Unix Makefiles&quot;
 make
 ./nano_node/nano_node --daemon
+</pre></div>
+
+<h2 id="build-instructions-windows">Build Instructions - Windows<a class="headerlink" href="#build-instructions-windows" title="Permanent link">&para;</a></h2>
+<h3 id="dependencies_3">Dependencies<a class="headerlink" href="#dependencies_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://sourceforge.net/projects/boost/files/boost-binaries">Boost 1.67+ for your build env</a></li>
+<li><a href="https://www.qt.io/download">Qt 5.9.5+ 64-bit (open source version) appropriate for your build env</a> </li>
+<li><a href="https://git-scm.com/download/win">Git for Windows</a> <strong>git_bash</strong></li>
+<li><a href="https://cmake.org/download/">CMake</a></li>
+<li><a href="https://my.visualstudio.com/Downloads?q=visual%20studio%202017&amp;wt.mc_id=o~msft~vscom~older-downloads">Visual Studio 2017 Community</a> (or higher edition, if you have a valid license. eg. Professional or Enterprise) <ul>
+<li>Select <strong>Desktop development with C++</strong></li>
+<li>Select the latest Windows 10 SDK</li>
+</ul>
+</li>
+</ul>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<p><strong>Download Source</strong></p>
+<p>Using git_bash:
+<div class="codehilite"><pre><span></span>git clone --recursive https://github.com/nanocurrency/nano-node
+<span class="nb">cd</span> nano-node 
+</pre></div></p>
+<p><strong>Create a <code>build</code> folder inside nano-node (makes for easier cleaning of build)</strong></p>
+<p>Using git_bash:
+<div class="codehilite"><pre><span></span>mkdir build 
+<span class="nb">cd</span> build 
+</pre></div>
+* <strong>Note:</strong> all subsequent commands should be run within this "build" folder.</p>
+<p><strong>Get redistributables</strong> </p>
+<p>Using Powershell:
+<div class="codehilite"><pre><span></span>Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .<span class="se">\v</span>c_redist.x64.exe 
+</pre></div></p>
+<p><strong>Generate the build configuration.</strong></p>
+<p>Using 64 Native Tools Command Prompt:</p>
+<ul>
+<li>Replace <strong>%CONFIGURATION%</strong> with one of the following: <code>Release</code>, <code>RelWithDebInfo</code>, <code>Debug</code></li>
+<li>Replace <strong>%NETWORK%</strong> with one of the following: <code>nano_beta_network</code>, <code>nano_live_network</code>, <code>ano_test_network</code></li>
+<li>Ensure the Qt, Boost, and Windows SDK paths match your installation.</li>
+</ul>
+<div class="codehilite"><pre><span></span>cmake -DNANO_GUI<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>%CONFIGURATION% -DACTIVE_NETWORK<span class="o">=</span>%NETWORK% -DQt5_DIR<span class="o">=</span><span class="s2">&quot;C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5&quot;</span> -DNANO_SIMD_OPTIMIZATIONS<span class="o">=</span>TRUE -DBoost_COMPILER<span class="o">=</span><span class="s2">&quot;-vc141&quot;</span> -DBOOST_ROOT<span class="o">=</span><span class="s2">&quot;C:/local/boost_1_67_0&quot;</span> -DBOOST_LIBRARYDIR<span class="o">=</span><span class="s2">&quot;C:/local/boost_1_67_0/lib64-msvc-14.1&quot;</span> -G <span class="s2">&quot;Visual Studio 15 2017 Win64&quot;</span> -DIPHLPAPI_LIBRARY<span class="o">=</span><span class="s2">&quot;C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib&quot;</span> -DWINSOCK2_LIBRARY<span class="o">=</span><span class="s2">&quot;C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib&quot;</span> ..<span class="se">\.</span> 
+</pre></div>
+
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Open <code>nano-node.sln</code> in Visual Studio</li>
+<li>Build the configuration specified in the previous step</li>
+<li>Alternative using 64 Native Tools Command Prompt:</li>
+</ul>
+<div class="codehilite"><pre><span></span>cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PROCESSORS% 
+</pre></div>
+
+<h3 id="package-up-binaries">Package up binaries<a class="headerlink" href="#package-up-binaries" title="Permanent link">&para;</a></h3>
+<p>Using 64 Native Tools Command Prompt:</p>
+<ul>
+<li>Replace <strong>%CONFIGURATION%</strong> with the build configuration specified in previous step</li>
+<li>Replace <strong>%GENERATOR</strong> with NSIS (if installed) or zip</li>
+</ul>
+<div class="codehilite"><pre><span></span>cpack -G %GENERATOR% -C %CONFIGURATION% 
 </pre></div>
                 
                   
