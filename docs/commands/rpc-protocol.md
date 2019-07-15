@@ -23,7 +23,7 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json 
 {  
   "action": "account_balance",  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```
 
@@ -44,7 +44,7 @@ Get number of blocks for a specific **account**
 ```json
 {  
   "action": "account_block_count",  
-  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
 }
 ```
 
@@ -71,7 +71,7 @@ Get account number for the **public key**
 **Response:**
 ```json
 {  
-  "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
+  "account" : "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```
 
@@ -87,7 +87,7 @@ Reports send/receive information for an account. Returns only **send & receive**
 ```json
 {  
   "action": "account_history",  
-  "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+  "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
   "count": "1"
 }
 ```
@@ -95,11 +95,11 @@ Reports send/receive information for an account. Returns only **send & receive**
 **Response:**
 ```json
 {  
-    "account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",   
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",   
     "history": [   
         {   
             "type": "send",   
-            "account": "xrb_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
+            "account": "nano_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
             "amount": "80000000000000000000000000000000000",   
             "local_timestamp": "1551532723",   
             "height": "60",   
@@ -131,7 +131,7 @@ Returns frontier, open block, change representative block, balance, last modifie
 ```json
 {  
   "action": "account_info",  
-  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"  
 }
 ```
 
@@ -159,7 +159,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ```json
 {  
   "action": "account_info",  
-  "account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",    
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",    
   "representative": "true",  
   "weight": "true",  
   "pending": "true"  
@@ -175,7 +175,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
     "balance": "235580100176034320859259343606608761791",   
     "modified_timestamp": "1501793775",   
     "block_count": "33",   
-    "representative": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",   
+    "representative": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",   
     "weight": "1105577030935649664609129644855132177",   
     "pending": "2309370929000000000000000000000000"   
 }
@@ -190,7 +190,7 @@ Get the public key for **account**
 ```json
 {  
   "action": "account_key",  
-  "account" : "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
+  "account" : "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```  
 **Response:**
@@ -209,13 +209,13 @@ Returns the representative for **account**
 ```json
 {  
   "action": "account_representative",  
-  "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
+  "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
 **Response:**
 ```json
 {  
-  "representative" : "xrb_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
+  "representative" : "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
 ```
 
@@ -228,7 +228,7 @@ Returns the voting weight for **account**
 ```json
 {  
   "action": "account_weight",  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```  
 **Response:**
@@ -249,19 +249,19 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json
 {  
   "action": "accounts_balances",  
-  "accounts": ["xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
+  "accounts": ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
 ```  
 **Response:**
 ```json
 {  
   "balances" : {  
-    "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
+    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
     {  
       "balance": "10000",  
       "pending": "10000"  
     },  
-    "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":  
+    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":  
     {  
       "balance": "10000000",  
       "pending": "0"  
@@ -279,15 +279,15 @@ Returns a list of pairs of account and block hash representing the head block fo
 ```json
 {  
   "action": "accounts_frontiers",  
-  "accounts": ["xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
+  "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]  
 }
 ```  
 **Response:**
 ```json
 {  
   "frontiers" : {  
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A",  
-    "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": "6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F"  
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A",  
+    "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": "6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F"  
   }  
 }
 ```  
@@ -301,7 +301,7 @@ Returns a list of block hashes which have not yet been received by these **accou
 ```json
 {  
   "action": "accounts_pending",  
-  "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
+  "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": "1"
 }
 ```  
@@ -309,8 +309,8 @@ Returns a list of block hashes which have not yet been received by these **accou
 ```json
 {  
   "blocks" : {  
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]  
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]  
   }  
 }
 ```  
@@ -322,7 +322,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```json
 {  
   "action": "accounts_pending",  
-  "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
+  "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": "1",  
   "threshold": "1000000000000000000000000"   
 }
@@ -331,10 +331,10 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```json
 {  
   "blocks" : {
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": {    
         "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": "6000000000000000000000000000000"    
     },    
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
         "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": "106370018000000000000000000000000"    
     }  
 }
@@ -347,7 +347,7 @@ Boolean, false by default. Returns a list of pending block hashes with amount an
 ```json
 {  
   "action": "accounts_pending",  
-  "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
+  "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": "1",  
   "source": "true"   
 }
@@ -356,16 +356,16 @@ Boolean, false by default. Returns a list of pending block hashes with amount an
 ```json
 {  
   "blocks" : {
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": {    
         "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": {   
              "amount": "6000000000000000000000000000000",       
-             "source": "xrb_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
+             "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
         }
     },    
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
         "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": {   
              "amount": "106370018000000000000000000000000",       
-             "source": "xrb_13ezf4od79h1tgj9aiu4djzcmmguendtjfuhwfukhuucboua8cpoihmh8byo"
+             "source": "nano_13ezf4od79h1tgj9aiu4djzcmmguendtjfuhwfukhuucboua8cpoihmh8byo"
         }   
     }  
 }
@@ -379,7 +379,7 @@ Boolean, false by default. Include active (not confirmed) blocks
 ```json
 {  
   "action": "accounts_pending",  
-  "accounts": ["xrb_1111111111111111111111111111111111111111111111111117353trpda", "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
+  "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],  
   "count": "1",  
   "include_active": "true"   
 }
@@ -480,7 +480,7 @@ Returns the account containing block
 **Response:**
 ```json
 {  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```
 
@@ -565,7 +565,7 @@ Creates a json representations of new block based on input data & signed with **
   "type": "state",   
   "balance": "1000000000000000000000",   
   "key": "0000000000000000000000000000000000000000000000000000000000000002",   
-  "representative": "xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1",   
+  "representative": "nano_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1",   
   "link": "19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858",   
   "previous": "F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4"   
 }
@@ -574,7 +574,7 @@ Parameters for state block:
 
 * `balance`: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
 * `wallet` (optional): The wallet ID that the account the block is being created for is in.
-* `account` (optional): The account the block is being created for (xrb_youraccount).
+* `account` (optional): The account the block is being created for (nano_youraccount).
 * `key` (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
 * `source` (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
 * `destination` (optional): The account that the sent funds should be accessible to.
@@ -597,12 +597,12 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
    "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",   
    "block": "{\n    
       \"type\": \"state\",\n    
-      \"account\": \"xrb_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr\",\n    
+      \"account\": \"nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr\",\n    
       \"previous\": \"F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4\",\n    
-      \"representative\": \"xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1\",\n    
+      \"representative\": \"nano_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1\",\n    
       \"balance\": \"1000000000000000000000\",\n    
       \"link\": \"19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858\",\n    
-      \"link_as_account\": \"xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    
+      \"link_as_account\": \"nano_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    
       \"signature\": \"3BFBA64A775550E6D49DF1EB8EEC2136DCD74F090E2ED658FBD9E80F17CB1C9F9F7BDE2B93D95558EC2F277FFF15FD11E6E2162A1714731B743D1E941FA4560A\",\n    
       \"work\": \"cab7404f0b5449d0\"\n
    }\n"
@@ -625,12 +625,12 @@ Returning block hash for given **block** content
   "action": "block_hash",     
   "block": "{\n    
       \"type\": \"state\",\n    
-      \"account\": \"xrb_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr\",\n    
+      \"account\": \"nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr\",\n    
       \"previous\": \"F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4\",\n    
-      \"representative\": \"xrb_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1\",\n    
+      \"representative\": \"nano_1hza3f7wiiqa7ig3jczyxj5yo86yegcmqk3criaz838j91sxcckpfhbhhra1\",\n    
       \"balance\": \"1000000000000000000000\",\n    
       \"link\": \"19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858\",\n    
-      \"link_as_account\": \"xrb_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    
+      \"link_as_account\": \"nano_18gmu6engqhgtjnppqam181o5nfhj4sdtgyhy36dan3jr9spt84rzwmktafc\",\n    
       \"signature\": \"3BFBA64A775550E6D49DF1EB8EEC2136DCD74F090E2ED658FBD9E80F17CB1C9F9F7BDE2B93D95558EC2F277FFF15FD11E6E2162A1714731B743D1E941FA4560A\",\n    
       \"work\": \"cab7404f0b5449d0\"\n
    }\n"
@@ -666,7 +666,7 @@ Retrieves a json representation of the block in `contents` along with:
 **Response:**
 ```json
 {  
-  "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+  "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
   "amount": "30000000000000000000000000000000000",  
   "balance": "5606157000000000000000000000000000000",  
   "height": "58",  
@@ -674,12 +674,12 @@ Retrieves a json representation of the block in `contents` along with:
   "confirmed": "false",  
   "contents" : "{\n    
       \"type\": \"state\",\n
-      \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+      \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
       \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-      \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
       \"balance\": \"5606157000000000000000000000000000000\",\n    
       \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-      \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+      \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
       \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n    
       \"work\": \"8a142e07a10996d5\"\n    
    }\n",  
@@ -712,12 +712,12 @@ Retrieves a json representations of **blocks**
   "blocks" : {  
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": "{\n    
        \"type\": \"state\",\n
-       \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+       \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
        \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-       \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+       \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
        \"balance\": \"5606157000000000000000000000000000000\",\n    
        \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-       \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+       \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
        \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n    
        \"work\": \"8a142e07a10996d5\"\n    
     }\n"
@@ -745,7 +745,7 @@ Retrieves a json representations of `blocks` in `contents` along with:
 {  
   "blocks" : {   
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {   
-         "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
+         "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
          "amount": "30000000000000000000000000000000000",  
          "balance": "5606157000000000000000000000000000000",  
          "height": "58",  
@@ -753,12 +753,12 @@ Retrieves a json representations of `blocks` in `contents` along with:
          "confirmed": "false",  
        "contents": "{\n    
          \"type\": \"state\",\n
-         \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+         \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
          \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-         \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+         \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
          \"balance\": \"5606157000000000000000000000000000000\",\n    
          \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-         \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+         \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
          \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n    
          \"work\": \"8a142e07a10996d5\"\n    
       }\n",  
@@ -788,11 +788,11 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
 {  
   "blocks" : {   
     "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3": {   
-       "block_account": "xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",   
+       "block_account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",   
        "amount": "30000000000000000000000000000000000",   
        "contents": "{ ...skipped... }",
        "pending": "0",
-       "source_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+       "source_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
        "balance": "40200000001000000000000000000000000"
      }
   }
@@ -821,7 +821,7 @@ Default "false". If "true", an additional "blocks_not_found" is provided in the 
 {
   "blocks" : {
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {
-         "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+         "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
          "amount": "30000000000000000000000000000000000",
          "balance": "5606157000000000000000000000000000000",
          "height": "58",
@@ -1100,7 +1100,7 @@ Returns info about active election by **root**. Including announcements count, l
     "blocks": {   
         "36CC459675E9FB2DB960C330BAFECB50132DB0394E83C14C7D1359ACB17F5BD2": {   
             "tally": "66508449034656215696897986086066451444",   
-            "contents": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3mi58wc8p7uptp5gmt8k4wb5qbizm6chx9rzqi7cybbyxdh38cktw9o65883\",\n    \"previous\": \"F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44\",\n    \"representative\": \"xrb_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj\",\n    \"balance\": \"61202000000000000000000000000\",\n    \"link\": \"CA24AAAA4BEA37D611EC72ABD283113AC133E3DBF8A7A557CFCA4CF9B354932C\",\n    \"link_as_account\": \"xrb_3kj6oco6qtjqtrayrwodtc3j4gp38hjxqy79nodwzkkez8sob6sezmmct61s\",\n    \"signature\": \"744B338DBCDFC2C4849DA44C468EEF99338F1D2D6BADFF20C0F54CB2DE759B512AFE41010EB212CE67D98E10635C2C08AEA517940862EB7DC58E8DFA43B2B408\",\n    \"work\": \"e6d5a6ec29db25d6\"\n}\n"   
+            "contents": "{\n    \"type\": \"state\",\n    \"account\": \"nano_3mi58wc8p7uptp5gmt8k4wb5qbizm6chx9rzqi7cybbyxdh38cktw9o65883\",\n    \"previous\": \"F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44\",\n    \"representative\": \"nano_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj\",\n    \"balance\": \"61202000000000000000000000000\",\n    \"link\": \"CA24AAAA4BEA37D611EC72ABD283113AC133E3DBF8A7A557CFCA4CF9B354932C\",\n    \"link_as_account\": \"nano_3kj6oco6qtjqtrayrwodtc3j4gp38hjxqy79nodwzkkez8sob6sezmmct61s\",\n    \"signature\": \"744B338DBCDFC2C4849DA44C468EEF99338F1D2D6BADFF20C0F54CB2DE759B512AFE41010EB212CE67D98E10635C2C08AEA517940862EB7DC58E8DFA43B2B408\",\n    \"work\": \"e6d5a6ec29db25d6\"\n}\n"   
         }   
     }   
 }   
@@ -1136,12 +1136,12 @@ Boolean, false by default. Returns list of votes representatives & its weights f
     "blocks": {   
         "36CC459675E9FB2DB960C330BAFECB50132DB0394E83C14C7D1359ACB17F5BD2": {   
             "tally": "66508449034656215696897986086066451444",   
-            "contents": "{\n    \"type\": \"state\",\n    \"account\": \"xrb_3mi58wc8p7uptp5gmt8k4wb5qbizm6chx9rzqi7cybbyxdh38cktw9o65883\",\n    \"previous\": \"F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44\",\n    \"representative\": \"xrb_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj\",\n    \"balance\": \"61202000000000000000000000000\",\n    \"link\": \"CA24AAAA4BEA37D611EC72ABD283113AC133E3DBF8A7A557CFCA4CF9B354932C\",\n    \"link_as_account\": \"xrb_3kj6oco6qtjqtrayrwodtc3j4gp38hjxqy79nodwzkkez8sob6sezmmct61s\",\n    \"signature\": \"744B338DBCDFC2C4849DA44C468EEF99338F1D2D6BADFF20C0F54CB2DE759B512AFE41010EB212CE67D98E10635C2C08AEA517940862EB7DC58E8DFA43B2B408\",\n    \"work\": \"e6d5a6ec29db25d6\"\n}\n",   
+            "contents": "{\n    \"type\": \"state\",\n    \"account\": \"nano_3mi58wc8p7uptp5gmt8k4wb5qbizm6chx9rzqi7cybbyxdh38cktw9o65883\",\n    \"previous\": \"F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44\",\n    \"representative\": \"nano_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj\",\n    \"balance\": \"61202000000000000000000000000\",\n    \"link\": \"CA24AAAA4BEA37D611EC72ABD283113AC133E3DBF8A7A557CFCA4CF9B354932C\",\n    \"link_as_account\": \"nano_3kj6oco6qtjqtrayrwodtc3j4gp38hjxqy79nodwzkkez8sob6sezmmct61s\",\n    \"signature\": \"744B338DBCDFC2C4849DA44C468EEF99338F1D2D6BADFF20C0F54CB2DE759B512AFE41010EB212CE67D98E10635C2C08AEA517940862EB7DC58E8DFA43B2B408\",\n    \"work\": \"e6d5a6ec29db25d6\"\n}\n",   
             "representatives": {   
-                "xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh": "15542840930304007355829653636255997615",   
-                "xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou": "10262330414015196177405695154517720446",   
+                "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh": "15542840930304007355829653636255997615",   
+                "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou": "10262330414015196177405695154517720446",   
                 ...    
-                "xrb_151jp8kuecdqq3pudrucx4hk5a6nri1fr7r6sbie8zc1ygid1cc4387q9g45": "0"   
+                "nano_151jp8kuecdqq3pudrucx4hk5a6nri1fr7r6sbie8zc1ygid1cc4387q9g45": "0"   
             }   
         }   
     }   
@@ -1247,15 +1247,15 @@ Returns a list of pairs of delegator names given **account** a representative an
 ```json
 {  
   "action": "delegators",    
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"   
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"   
 }
 ```  
 **Response:**
 ```json
 {    
    "delegators": {   
-        "xrb_13bqhi1cdqq8yb9szneoc38qk899d58i5rcrgdk5mkdm86hekpoez3zxw5sd": "500000000000000000000000000000000000",   
-        "xrb_17k6ug685154an8gri9whhe5kb5z1mf5w6y39gokc1657sh95fegm8ht1zpn": "961647970820730000000000000000000000"   
+        "nano_13bqhi1cdqq8yb9szneoc38qk899d58i5rcrgdk5mkdm86hekpoez3zxw5sd": "500000000000000000000000000000000000",   
+        "nano_17k6ug685154an8gri9whhe5kb5z1mf5w6y39gokc1657sh95fegm8ht1zpn": "961647970820730000000000000000000000"   
    }
 }
 ```   
@@ -1270,7 +1270,7 @@ Get number of delegators for a specific representative **account**
 ```json
 {  
   "action": "delegators_count",    
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"   
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"   
 }
 ```  
 **Response:**
@@ -1298,7 +1298,7 @@ Derive deterministic keypair from **seed** based on **index**
 {  
   "private": "9F0E444C69F77A49BD0BE89DB92C38FE713E0963165CCA12FAF5712D7657120F",  
   "public": "C008B814A7D269A1FA3C6528B19201A24D797912DB9996FF02A1FF356E45552B",  
-  "account": "xrb_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"  
+  "account": "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"  
 }
 ```  
 
@@ -1329,7 +1329,7 @@ Returns a list of pairs of account and block hash representing the head block st
 ```json
 {  
   "action": "frontiers",
-  "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",  
+  "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",  
   "count": "1"    
 }
 ```  
@@ -1337,7 +1337,7 @@ Returns a list of pairs of account and block hash representing the head block st
 ```json
 {    
   "frontiers" : {  
-  "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
+  "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
   }  
 }
 ```
@@ -1378,7 +1378,7 @@ Generates an **adhoc random keypair**
 {  
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",  
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",  
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```  
 
@@ -1399,7 +1399,7 @@ Derive public key and account number from **private key**
 {  
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",  
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",  
-  "account": "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
+  "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"  
 }
 ```  
 
@@ -1415,7 +1415,7 @@ Returns frontier, open block, change representative block, balance, last modifie
 ```json
 {  
   "action": "ledger",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
+  "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",   
   "count": "1"    
 }
 ```  
@@ -1423,7 +1423,7 @@ Returns frontier, open block, change representative block, balance, last modifie
 ```json
 {  
   "accounts": {   
-    "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
+    "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
       "frontier": "E71AF3E9DD86BBD8B4620EFA63E065B34D358CFC091ACB4E103B965F95783321",   
       "open_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "representative_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
@@ -1441,7 +1441,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ```json
 {  
   "action": "ledger",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
+  "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",   
   "count": "1",   
   "representative": "true",  
   "weight": "true",  
@@ -1452,14 +1452,14 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ```json
 {  
   "accounts": {   
-    "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
+    "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
       "frontier": "E71AF3E9DD86BBD8B4620EFA63E065B34D358CFC091ACB4E103B965F95783321",  
       "open_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "representative_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "balance": "0",   
       "modified_timestamp": "1511476234",   
       "block_count": "2",   
-      "representative": "xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",   
+      "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",   
       "weight": "0",   
       "pending": "0"   
     }   
@@ -1498,7 +1498,7 @@ Derive private key, public key and account number from node ID
 {  
     "private": "2AD75C9DC20EA497E41722290C4DC966ECC4D6C75CAA4E447961F918FD73D8C7",  
     "public": "78B11E1777B8E7DF9090004376C3EDE008E84680A497C0805F68CA5928626E1C",  
-    "as_account": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
+    "as_account": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
 }
 ```  
 
@@ -1564,7 +1564,7 @@ Boolean, false by default. Returns a list of peers IPv6:port with its node proto
     "peers": {  
         "[::ffff:172.17.0.1]:32841": {  
            "protocol_version": "16",  
-           "node_id": "xrb_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
+           "node_id": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
            "type": "udp"
         }  
     }  
@@ -1580,7 +1580,7 @@ Returns a list of block hashes which have not yet been received by this account.
 ```json
 {  
   "action": "pending",
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",  
   "count": "1"    
 }
 ```  
@@ -1601,7 +1601,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```json
 {  
   "action": "pending",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",  
   "count": "1",  
   "threshold": "1000000000000000000000000"   
 }
@@ -1622,7 +1622,7 @@ Boolean, false by default. Returns a list of pending block hashes with amount an
 ```json
 {  
   "action": "pending",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",  
   "count": "1",  
   "source": "true"   
 }
@@ -1633,7 +1633,7 @@ Boolean, false by default. Returns a list of pending block hashes with amount an
   "blocks" : {    
         "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": {   
              "amount": "6000000000000000000000000000000",       
-             "source": "xrb_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"  
+             "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"  
         }   
     }  
 }
@@ -1647,7 +1647,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 ```json
 {  
   "action": "pending",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",  
   "count": "1",  
   "include_active": "true"   
 }
@@ -1712,12 +1712,12 @@ Publish **block** to the network
   "action": "process",  
   "block": "{   
     \"type\": \"state\",   
-    \"account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
+    \"account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
     \"previous\": \"6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\",   
-    \"representative\": \"xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
+    \"representative\": \"nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
     \"balance\": \"40200000001000000000000000000000000\",   
     \"link\": \"87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\",   
-    \"link_as_account\": \"xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
+    \"link_as_account\": \"nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
     \"signature\": \"A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\",   
     \"work\": \"000bc55b014e807d\"   
   }"   
@@ -1759,9 +1759,9 @@ Returns a list of pairs of representative and its voting weight
 ```json
 {    
   "representatives" : {  
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": "3822372327060170000000000000000000000",  
-    "xrb_1111111111111111111111111111111111111111111111111awsq94gtecn": "30999999999999999999999999000000",  
-    "xrb_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": "0"  
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": "3822372327060170000000000000000000000",  
+    "nano_1111111111111111111111111111111111111111111111111awsq94gtecn": "30999999999999999999999999000000",  
+    "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": "0"  
   }  
 }
 ```
@@ -1793,9 +1793,9 @@ Returns a list of online representative accounts that have voted recently
 ```json
 {    
   "representatives" : [  
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda",  
-    "xrb_1111111111111111111111111111111111111111111111111awsq94gtecn",  
-    "xrb_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi"  
+    "nano_1111111111111111111111111111111111111111111111111117353trpda",  
+    "nano_1111111111111111111111111111111111111111111111111awsq94gtecn",  
+    "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi"  
   ]  
 }
 ```
@@ -1805,9 +1805,9 @@ Returns a list of pairs of online representative accounts that have voted recent
 ```json
 {    
   "representatives" : {  
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": "",  
-    "xrb_1111111111111111111111111111111111111111111111111awsq94gtecn": "",  
-    "xrb_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": ""  
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": "",  
+    "nano_1111111111111111111111111111111111111111111111111awsq94gtecn": "",  
+    "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": ""  
   }  
 }
 ```
@@ -1819,7 +1819,7 @@ Boolean, false by default. Returns voting weight for each representative.
 ```json
 {    
   "representatives" : {  
-    "xrb_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": {
+    "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": {
             "weight": "150462654614686936429917024683496890"
         }  
   }  
@@ -1911,12 +1911,12 @@ Signing provided **block** with private **key** or key of **account** from **wal
   "key": "1D3759BB2CA187A66875D3B8497624159A576FD315E07F702B99B92BC59FC14A",  
   "block": "{   
     \"type\": \"state\",   
-    \"account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
+    \"account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
     \"previous\": \"6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\",   
-    \"representative\": \"xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
+    \"representative\": \"nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
     \"balance\": \"40200000001000000000000000000000000\",   
     \"link\": \"87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\",   
-    \"link_as_account\": \"xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
+    \"link_as_account\": \"nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
     \"signature\": \"A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\",   
     \"work\": \"000bc55b014e807d\"   
   }"   
@@ -1928,15 +1928,15 @@ Signing provided **block** with private **key** or key of **account** from **wal
 {
   "action": "sign",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "account": "xrb_18ky5chy5ws89oi46ki4zjy6x5ezpmj98zg6icwke9bmuy99nosieyqf8c1h",  
+  "account": "nano_18ky5chy5ws89oi46ki4zjy6x5ezpmj98zg6icwke9bmuy99nosieyqf8c1h",  
   "block": "{   
     \"type\": \"state\",   
-    \"account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
+    \"account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
     \"previous\": \"6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\",   
-    \"representative\": \"xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
+    \"representative\": \"nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
     \"balance\": \"40200000001000000000000000000000000\",   
     \"link\": \"87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\",   
-    \"link_as_account\": \"xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
+    \"link_as_account\": \"nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
     \"signature\": \"A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\",   
     \"work\": \"000bc55b014e807d\"   
   }"   
@@ -1948,12 +1948,12 @@ Signing provided **block** with private **key** or key of **account** from **wal
   "signature": "2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D",  
   "block": "{   
     \"type\": \"state\",   
-    \"account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
+    \"account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",   
     \"previous\": \"6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\",   
-    \"representative\": \"xrb_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
+    \"representative\": \"nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\",   
     \"balance\": \"40200000001000000000000000000000000\",   
     \"link\": \"87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\",   
-    \"link_as_account\": \"xrb_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
+    \"link_as_account\": \"nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\",   
     \"signature\": \"2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D\",   
     \"work\": \"000bc55b014e807d\"   
   }"   
@@ -2172,7 +2172,7 @@ Check whether **account** is a valid account number using checksum
 ```json
 {  
   "action": "validate_account_number",  
-  "account": "xrb_1111111111111111111111111111111111111111111111111117353trpda"  
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"  
 }
 ```  
 **Response:**
@@ -2223,12 +2223,12 @@ Returns a list of pairs of unchecked synchronizing block hash and its json repre
     "blocks": {  
        "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": "{\n    
          \"type\": \"state\",\n
-         \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+         \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
          \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-         \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+         \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
          \"balance\": \"5606157000000000000000000000000000000\",\n    
          \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-         \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+         \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
          \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n      
          \"work\": \"8a142e07a10996d5\"\n     
       }\n"
@@ -2273,12 +2273,12 @@ Retrieves a json representation of unchecked synchronizing block by **hash**
 {  
   "contents" : "{\n    
          \"type\": \"state\",\n
-         \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+         \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
          \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-         \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+         \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
          \"balance\": \"5606157000000000000000000000000000000\",\n    
          \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-         \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+         \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
          \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n    
         \"work\": \"8a142e07a10996d5\"\n    
   }\n"
@@ -2312,12 +2312,12 @@ Retrieves unchecked database keys, blocks hashes & a json representations of unc
           "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9",   
           "contents": "{\n    
              \"type\": \"state\",\n
-             \"account\": \"xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
+             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
              \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n    
-             \"representative\": \"xrb_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
+             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
              \"balance\": \"5606157000000000000000000000000000000\",\n    
              \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-             \"link_as_account\": \"xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
+             \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
              \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n    
             \"work\": \"8a142e07a10996d5\"\n    
          }\n"   
@@ -2343,7 +2343,7 @@ Returns the total pending balance for unopened accounts in the local database, s
 ```json
   {   
     "action": "unopened",   
-    "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",   
+    "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",   
     "count": "1"   
   }   
 ```   
@@ -2352,7 +2352,7 @@ Returns the total pending balance for unopened accounts in the local database, s
 ```json 
   {   
     "accounts": {   
-      "xrb_1111111111111111111111111111111111111111111111111111hifc8npp": "207034077034226183413773082289554618448"   
+      "nano_1111111111111111111111111111111111111111111111111111hifc8npp": "207034077034226183413773082289554618448"   
     }   
   }   
 ```   
@@ -2546,7 +2546,7 @@ Creates a new account, insert next deterministic key in **wallet**
 **Response:**
 ```json
 {  
-  "account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "account" : "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```
 **Optional "index"**
@@ -2593,7 +2593,7 @@ Lists all the accounts inside **wallet**
 ```json
 {  
   "accounts" : [
-  "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
   ]
 }
 ```
@@ -2611,7 +2611,7 @@ Moves **accounts** from **source** to **wallet**
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "source": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "accounts" : [  
-  "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+  "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
   ]  
 }
 ```  
@@ -2633,7 +2633,7 @@ Remove **account** from **wallet**
 {  
   "action": "account_remove",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
+  "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
 **Response:**
@@ -2654,8 +2654,8 @@ Sets the representative for **account** in **wallet**
 {  
   "action": "account_representative_set",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "account": "xrb_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi",  
-  "representative" : "xrb_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
+  "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi",  
+  "representative" : "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
 ```  
 **Response:**
@@ -2687,8 +2687,8 @@ Creates new accounts, insert next deterministic keys in **wallet** up to **count
 ```json
 {  
   "accounts": [    
-     "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",   
-     "xrb_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3s00000000"
+     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",   
+     "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3s00000000"
   ]   
 }
 ```
@@ -2783,7 +2783,7 @@ Receive pending **block** for **account** in **wallet**
 {  
   "action": "receive",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
   "block": "53EAA25CE28FA0E6D55EA9704B32604A736966255948594D55CBB05267CECD48"  
 }
 ```  
@@ -2888,8 +2888,8 @@ Send **amount** from **source** in **wallet** to **destination**
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "source": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
-  "destination": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+  "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "amount": "1000000"  
 }
 ```  
@@ -2919,8 +2919,8 @@ Using the same id for requests with different parameters (wallet, source, destin
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "source": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
-  "destination": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+  "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "amount": "1000000",
   "id": "7081e2b8fec9146e"
 }
@@ -2944,8 +2944,8 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 {  
   "action": "send",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
-  "source": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
-  "destination": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+  "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "amount": "1000000",   
   "work": "2bf29ef00786a6bc"   
 }
@@ -2973,7 +2973,7 @@ Add an adhoc private key **key** to **wallet**
 **Response:**
 ```json
 {  
-  "account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "account" : "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
 ```
 **Optional disabling work generation**
@@ -3003,8 +3003,8 @@ Add watch-only **accounts** to **wallet**
   "action": "wallet_add_watch",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",  
   "accounts": [
-    "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
-    "xrb_111111111111111111111111111111111111111111111111111000000000"
+    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+    "nano_111111111111111111111111111111111111111111111111111000000000"
   ]  
 }
 ```  
@@ -3033,7 +3033,7 @@ Returns how many raw is owned and how many have not yet been received by all acc
 ```json
 {  
   "balances" : {  
-    "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {  
+    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {  
       "balance": "10000",  
       "pending": "10000"  
     }
@@ -3064,7 +3064,7 @@ Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic a
 ```json
 {  
   "success" : "",  
-  "last_restored_account": "xrb_1mhdfre3zczr86mp44jd3xft1g1jg66jwkjtjqixmh6eajfexxti7nxcot9c",  
+  "last_restored_account": "nano_1mhdfre3zczr86mp44jd3xft1g1jg66jwkjtjqixmh6eajfexxti7nxcot9c",  
   "restored_count": "1"
 }
 ```
@@ -3084,7 +3084,7 @@ Check whether **wallet** contains **account**
 {  
   "action": "wallet_contains",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000" 
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000" 
 }
 ```  
 **Response:**
@@ -3172,7 +3172,7 @@ Returns a list of pairs of account and block hash representing the head block st
 ```json
 {    
   "frontiers" : {  
-  "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
+  "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"  
   }  
 }
 ```
@@ -3199,16 +3199,16 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
   [  
     {  
       "type": "send",   
-      "account": "xrb_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",   
+      "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",   
       "amount": "30000000000000000000000000000000000",   
-      "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
+      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
       "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"   
       "local_timestamp": "1527698508"   
     },  
       "type": "send",   
-      "account": "xrb_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
+      "account": "nano_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
       "amount": "40000000000000000000000000000000000",   
-      "block_account": "xrb_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
+      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
       "hash": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E"   
       "local_timestamp": "1527698492"   
     }
@@ -3265,7 +3265,7 @@ Returns frontier, open block, change representative block, balance, last modifie
 ```json
 {  
   "accounts": {   
-    "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
+    "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
       "frontier": "E71AF3E9DD86BBD8B4620EFA63E065B34D358CFC091ACB4E103B965F95783321",   
       "open_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "representative_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
@@ -3294,14 +3294,14 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ```json
 {  
   "accounts": {   
-    "xrb_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
+    "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {   
       "frontier": "E71AF3E9DD86BBD8B4620EFA63E065B34D358CFC091ACB4E103B965F95783321",  
       "open_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "representative_block": "643B77F1ECEFBDBE1CC909872964C1DBBE23A6149BD3CEF2B50B76044659B60F",   
       "balance": "0",   
       "modified_timestamp": "1511476234",   
       "block_count": "2",   
-      "representative": "xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",   
+      "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",   
       "weight": "0",   
       "pending": "0"   
     }   
@@ -3369,8 +3369,8 @@ Returns a list of block hashes which have not yet been received by accounts in t
 ```json
 {  
   "blocks" : {  
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]  
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],  
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]  
   }  
 }
 ```  
@@ -3391,10 +3391,10 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```json
 {  
   "blocks" : {
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": {    
         "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": "6000000000000000000000000000000"    
     },    
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
         "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": "106370018000000000000000000000000"    
     }  
 }
@@ -3417,16 +3417,16 @@ Boolean, false by default. Returns a list of pending block hashes with amount an
 ```json
 {  
   "blocks" : {
-    "xrb_1111111111111111111111111111111111111111111111111117353trpda": {    
+    "nano_1111111111111111111111111111111111111111111111111117353trpda": {    
         "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": {   
              "amount": "6000000000000000000000000000000",       
-             "source": "xrb_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
+             "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
         }
     },    
-    "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {    
         "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": {   
              "amount": "106370018000000000000000000000000",       
-             "source": "xrb_13ezf4od79h1tgj9aiu4djzcmmguendtjfuhwfukhuucboua8cpoihmh8byo"
+             "source": "nano_13ezf4od79h1tgj9aiu4djzcmmguendtjfuhwfukhuucboua8cpoihmh8byo"
         }   
     }  
 }
@@ -3466,7 +3466,7 @@ Returns the default representative for **wallet**
 **Response:**
 ```json
 {  
-  "representative" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "representative" : "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
 ```
 
@@ -3481,7 +3481,7 @@ Sets the default **representative** for **wallet** _(used only for new accounts,
 {  
   "action": "wallet_representative_set",  
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
-  "representative": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "representative": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
 ```  
 **Response:**
@@ -3538,7 +3538,7 @@ Returns a list of pairs of account and work from **wallet**
 ```json
 {  
    "works": {
-       "xrb_1111111111111111111111111111111111111111111111111111hifc8npp": "432e5cf728c90f4f"   
+       "nano_1111111111111111111111111111111111111111111111111111hifc8npp": "432e5cf728c90f4f"   
    }
 }
 ```  
@@ -3554,7 +3554,7 @@ Retrieves work for **account** in **wallet**
 {  
     "action": "work_get",  
     "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
-    "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp"  
+    "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp"  
 }
 ```  
 **Response:**
@@ -3575,7 +3575,7 @@ Set **work** for **account** in **wallet**
 {  
     "action": "work_set",  
     "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",   
-    "account": "xrb_1111111111111111111111111111111111111111111111111111hifc8npp",  
+    "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",  
     "work": "0000000000000000"  
 }
 ```  
@@ -3730,7 +3730,7 @@ Begin a new payment session. Searches wallet for an account that's marked as ava
 **Response:**
 ```json
 {  
-"account" : "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
+"account" : "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"  
 }
 ```  
 
@@ -3744,7 +3744,7 @@ End a payment session.  Marks the account as available for use in a payment sess
 ```json
 {  
   "action": "payment_end",  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
   "wallet": "FFFD1BAEC8EC20814BBB9059B393051AAA8380F9B5A2E6B2489A277D81789EEE"  
 }
 ```  
@@ -3783,7 +3783,7 @@ Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseco
 ```json
 {  
   "action": "payment_wait",  
-  "account": "xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
+  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",  
   "amount": "1",  
   "timeout": "1000"  
 }
