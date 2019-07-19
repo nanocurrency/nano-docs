@@ -197,6 +197,8 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 !!! note ""
     Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.
 
+--8<-- "multiple-confirmation-notifications.md"
+
 The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.
 
 The HTTP callback is still available and both mechanisms can be used at the same time.
@@ -274,6 +276,8 @@ Current topics available for subscribing to include:
 ---
 
 #### Confirmations
+
+--8<-- "multiple-confirmation-notifications.md"
 
 **Subscribing**
 
@@ -509,6 +513,8 @@ No filters are currently available for `active_difficulty` topic.
 
 ### HTTP callback
 Send JSON POST requests with every confirmed block to callback server configured for the node.
+
+--8<-- "multiple-confirmation-notifications.md"
 
 **Configuration**
 

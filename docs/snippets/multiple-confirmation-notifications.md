@@ -1,0 +1,2 @@
+!!! warning "Multiple notifications for blocks"
+    Depending on the node setup and sync status, multiple confirmation notifications for the same block hash may be sent by a single tracking mechanism. **In order to prevent potential issues, integrations must track these block hashes externally to the node and prevent any unwanted actions based on multiple notifications.**
