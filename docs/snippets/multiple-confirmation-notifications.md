@@ -1,0 +1,2 @@
+!!! warning "Multiple notifications for blocks"
+    Depending on the node setup and sync status, multiple confirmation notifications for the same block hash may occur through both the WebSocket and HTTP callback mechanisms. In order to prevent potential issues, integrations must track these hashes externally to the node and prevent any unwanted actions based on multiple notifications.
