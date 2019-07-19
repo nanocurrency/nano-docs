@@ -277,6 +277,8 @@ Current topics available for subscribing to include:
 
 #### Confirmations
 
+--8<-- "multiple-confirmation-notifications.md"
+
 **Subscribing**
 
 To subscribe to all confirmed blocks:
