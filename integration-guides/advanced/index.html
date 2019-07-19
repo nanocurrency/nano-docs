@@ -1270,6 +1270,10 @@
 <div class="admonition note">
 <p>Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Multiple notifications for blocks</p>
+<p>Depending on the node setup and sync status, multiple confirmation notifications for the same block hash may be sent by a single tracking mechanism. <strong>In order to prevent potential issues, integrations must track these block hashes externally to the node and prevent any unwanted actions based on multiple notifications.</strong></p>
+</div>
 <p>The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.</p>
 <p>The HTTP callback is still available and both mechanisms can be used at the same time.</p>
 <p><strong>Example</strong></p>
@@ -1326,6 +1330,10 @@
 </ul>
 <hr />
 <h4 id="confirmations">Confirmations<a class="headerlink" href="#confirmations" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Multiple notifications for blocks</p>
+<p>Depending on the node setup and sync status, multiple confirmation notifications for the same block hash may be sent by a single tracking mechanism. <strong>In order to prevent potential issues, integrations must track these block hashes externally to the node and prevent any unwanted actions based on multiple notifications.</strong></p>
+</div>
 <p><strong>Subscribing</strong></p>
 <p>To subscribe to all confirmed blocks:</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
@@ -1515,6 +1523,10 @@ Because account filtering needs block content to function, setting this flag to 
 <hr />
 <h3 id="http-callback">HTTP callback<a class="headerlink" href="#http-callback" title="Permanent link">&para;</a></h3>
 <p>Send JSON POST requests with every confirmed block to callback server configured for the node.</p>
+<div class="admonition warning">
+<p class="admonition-title">Multiple notifications for blocks</p>
+<p>Depending on the node setup and sync status, multiple confirmation notifications for the same block hash may be sent by a single tracking mechanism. <strong>In order to prevent potential issues, integrations must track these block hashes externally to the node and prevent any unwanted actions based on multiple notifications.</strong></p>
+</div>
 <p><strong>Configuration</strong></p>
 <p>For details on configuring the HTTP callback within a node, see the <a href="/running-a-node/configuration#http-callback">HTTP callback section of Running a Node Configuration</a>.</p>
 <p><strong>Example Callback</strong></p>
