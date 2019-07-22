@@ -839,7 +839,7 @@ Default "false". If "true", an additional "blocks_not_found" is provided in the 
 ---
 
 ### bootstrap  
-Initialize bootstrap to specific **IP address** and **port**   
+Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](/commands/command-line-interface/#-disable_legacy_bootstrap)   
 
 **Request:**
 ```json
@@ -859,7 +859,7 @@ Initialize bootstrap to specific **IP address** and **port**
 ---
 
 ### bootstrap_any  
-Initialize multi-connection bootstrap to random peers   
+Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](/commands/command-line-interface/#-disable_legacy_bootstrap)   
 
 **Request:**
 ```json
@@ -878,7 +878,7 @@ Initialize multi-connection bootstrap to random peers
 
 ### bootstrap_lazy  
 _version 17.0+_   
-Initialize lazy bootstrap with given block **hash**   
+Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap)   
 
 **Request:**
 ```json
