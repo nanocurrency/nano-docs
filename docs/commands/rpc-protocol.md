@@ -859,7 +859,7 @@ Initialize bootstrap to specific **IP address** and **port**
 ---
 
 ### bootstrap_any  
-Initialize multi-connection bootstrap to random 
+Initialize multi-connection bootstrap to random peers
 
 **Request:**
 ```json
