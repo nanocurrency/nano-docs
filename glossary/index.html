@@ -821,6 +821,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#online-voting-weight" title="online voting weight" class="md-nav__link">
+    online voting weight
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#peers" title="peers" class="md-nav__link">
     peers
   </a>
@@ -1074,6 +1081,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#online-voting-weight" title="online voting weight" class="md-nav__link">
+    online voting weight
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#peers" title="peers" class="md-nav__link">
     peers
   </a>
@@ -1236,11 +1250,13 @@
 <p>The most recent block added to the account chain. Also called the head block. Can be either confirmed or unconfirmed.</p>
 <h4 id="genesis">genesis<a class="headerlink" href="#genesis" title="Permanent link">&para;</a></h4>
 <h4 id="head-block">head block<a class="headerlink" href="#head-block" title="Permanent link">&para;</a></h4>
-<p>See <a href="#frontier">frontier</a></p>
+<p>See <a href="#frontier">frontier</a>.</p>
 <h4 id="inbound-send">inbound send<a class="headerlink" href="#inbound-send" title="Permanent link">&para;</a></h4>
-<p>A block with funds being transferred to an <a href="#account">account</a> owned by a <a href="#wallet">wallet</a> on your node</p>
+<p>A block with funds being transferred to an <a href="#account">account</a> owned by a <a href="#wallet">wallet</a> on your node.</p>
 <h4 id="live-network">live network<a class="headerlink" href="#live-network" title="Permanent link">&para;</a></h4>
 <p>A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).</p>
+<h4 id="online-voting-weight">online voting weight<a class="headerlink" href="#online-voting-weight" title="Permanent link">&para;</a></h4>
+<p>Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.</p>
 <h4 id="peers">peers<a class="headerlink" href="#peers" title="Permanent link">&para;</a></h4>
 <p>Nodes connected over the public internet to share Nano network data.</p>
 <h4 id="pending">pending<a class="headerlink" href="#pending" title="Permanent link">&para;</a></h4>
@@ -1250,11 +1266,11 @@
 <h4 id="proof-of-work-pow">Proof-of-Work (PoW)<a class="headerlink" href="#proof-of-work-pow" title="Permanent link">&para;</a></h4>
 <p>A Proof-of-Work is a piece of data which satisfies certain requirements and is difficult (costly, time-consuming) to produce, but easy for others to verify. In some systems this data is a central part of the security model used to protect against double-spends and other types of attacks, but with Nano it is only used to increase economic costs of spamming the network.</p>
 <h4 id="quorum">quorum<a class="headerlink" href="#quorum" title="Permanent link">&para;</a></h4>
-<p>When the delta between the two successive blocks of a root is &gt; 50% of the online voting weight</p>
+<p>When the delta between the two successive blocks of a root is &gt; 50% of the online voting weight.</p>
 <h4 id="principal-representative">Principal Representative<a class="headerlink" href="#principal-representative" title="Permanent link">&para;</a></h4>
-<p>A Nano account with &gt;= 0.1% (133,248.290903662 NANO) voting weight delegated to it. When configured on a node which is online, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.</p>
+<p>A Nano account with &gt;= 0.1% of the <a href="#online-voting-weight">online voting weight</a> delegated to it. When configured on a node which is voting, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.</p>
 <h4 id="representative">Representative<a class="headerlink" href="#representative" title="Permanent link">&para;</a></h4>
-<p>A Nano account with &gt; 0 voting weight, but &lt; 0.1% (133,248.290903662 NANO), delegated to it. Unlike <a href="#principal-representative">Principal Representatives</a>, when configured on a node which is online, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.</p>
+<p>A Nano account with &gt; 0 voting weight, but &lt; 0.1% of the <a href="#online-voting-weight">online voting weight</a>, delegated to it. Unlike <a href="#principal-representative">Principal Representatives</a>, when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.</p>
 <h4 id="root">root<a class="headerlink" href="#root" title="Permanent link">&para;</a></h4>
 <p>The <a href="#account">account</a> if the block is the first block on the account, otherwise it is the previous hash included in the block.</p>
 <h4 id="seed">seed<a class="headerlink" href="#seed" title="Permanent link">&para;</a></h4>
@@ -1263,7 +1279,7 @@
 <h4 id="unopened-account">unopened account<a class="headerlink" href="#unopened-account" title="Permanent link">&para;</a></h4>
 <p>An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).</p>
 <h4 id="unpocketed">unpocketed<a class="headerlink" href="#unpocketed" title="Permanent link">&para;</a></h4>
-<p>See <a href="#pending">pending</a> </p>
+<p>See <a href="#pending">pending</a>.</p>
 <h4 id="voting">voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h4>
 <p>Each node configured with a <a href="#representative">Representative</a> votes on every block by appending their Representative signature and a sequence number to the hash. These will be sent out to directly connected peers and if the vote originates from a <a href="#principal-representative">Principal Representative</a>, it will subsequently be rebroadcasted by nodes to their peers.</p>
 <h4 id="voting-weight">voting weight<a class="headerlink" href="#voting-weight" title="Permanent link">&para;</a></h4>
