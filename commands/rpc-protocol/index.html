@@ -3817,7 +3817,7 @@ Number (128 bit, decimal), default 0. Return only accounts with balance above <s
 </pre></div>
 <strong>Optional "peer_details"</strong></p>
 <p><em>version 18.0+</em> <br />
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. <code>type</code> returned in version 19.0+ as either <code>tcp</code> (preferred) or <code>udp</code> (fallback) used for peering with that node.</p>
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. <code>type</code> returned in version 19.0+ as either <code>tcp</code> (preferred) or <code>udp</code> (fallback) used for peering with that node.</p>
 <p><strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;peers&quot;</span><span class="p">:</span> <span class="p">{</span>  
