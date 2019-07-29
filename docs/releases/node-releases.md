@@ -102,7 +102,7 @@ Blocks being published and voted on live are now supported via TCP, with UDP rem
 With the ability to track work difficulty seen on the network and have the node wallet produce more difficult work for local blocks, this feature allows users to get their transactions prioritized for processing. More details about this feature can be found in the Medium article: https://medium.com/nanocurrency/dynamic-proof-of-work-prioritization-4618b78c5be9
 
 **RPC Process Options**  
-By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (including on a different computer), depending on your needs. See [Running Nano as a service](/integration-guides/advanced/#running-nano-as-a-service) for more details.
+By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (currently limited to running on the same computer), depending on your needs. See [Running Nano as a service](/integration-guides/advanced/#running-nano-as-a-service) for more details.
 
 ---
 

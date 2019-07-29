@@ -13,13 +13,13 @@ Regardless of the motivation for running a node, it will only benefit the networ
 ## Node types
 
 ### Principal Representative Nodes
-Currently, nodes configured with Representative accounts with at least 0.1% of voting weight (133,248.061999106 Nano) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast.
+Currently, nodes configured with Representative accounts with at least 0.1% of the [online voting weight](#online-voting-weight) delegated to them participate more broadly in network consensus because they send votes to their peers which are subsequently rebroadcast.
 
 !!! success "Becoming a Principal Representative"
 	With the ability for any user on the network to redelegate their voting weight, even an account with no weight today can become a Principal Representative over time.
 
 ### Representative Nodes
-Nodes with less than 0.1% of voting weight will validate and vote on transactions seen on the network; however, other peers on the network will not rebroadcast their votes.
+Nodes with less than 0.1% of [online voting weight](#online-voting-weight) will validate and vote on transactions seen on the network; however, other peers on the network will not rebroadcast their votes.
 
 ## Resources and ongoing maintenance
 Nodes consume CPU, RAM, disk IO and bandwidth IO resources, all of which come at a cost. In order to keep the node participating and in-sync, the recommended specifications for machines based on node type below should be followed.
