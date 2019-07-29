@@ -42,7 +42,7 @@ A block with funds being transferred to an [account](#account) owned by a [walle
 A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).
 
 #### online voting weight
-Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a 2 week period. The online voting weight value is the median of those samples.
+Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
 
 #### peers
 Nodes connected over the public internet to share Nano network data.
