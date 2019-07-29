@@ -33,13 +33,16 @@ The most recent block added to the account chain. Also called the head block. Ca
 #### genesis
 
 #### head block
-See [frontier](#frontier)
+See [frontier](#frontier).
 
 #### inbound send
-A block with funds being transferred to an [account](#account) owned by a [wallet](#wallet) on your node
+A block with funds being transferred to an [account](#account) owned by a [wallet](#wallet) on your node.
 
 #### live network
 A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).
+
+#### online voting weight
+Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
 
 #### peers
 Nodes connected over the public internet to share Nano network data.
@@ -54,13 +57,13 @@ A consensus mechanism unique to Nano which involves accounts delegating their ba
 A Proof-of-Work is a piece of data which satisfies certain requirements and is difficult (costly, time-consuming) to produce, but easy for others to verify. In some systems this data is a central part of the security model used to protect against double-spends and other types of attacks, but with Nano it is only used to increase economic costs of spamming the network.
 
 #### quorum
-When the delta between the two successive blocks of a root is > 50% of the online voting weight
+When the delta between the two successive blocks of a root is > 50% of the online voting weight.
 
 #### Principal Representative
-A Nano account with >= 0.1% (133,248.290903662 NANO) voting weight delegated to it. When configured on a node which is online, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
+A Nano account with >= 0.1% of the [online voting weight](#online-voting-weight) delegated to it. When configured on a node which is voting, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
 
 #### Representative
-A Nano account with > 0 voting weight, but < 0.1% (133,248.290903662 NANO), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is online, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
+A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
 
 #### root
 The [account](#account) if the block is the first block on the account, otherwise it is the previous hash included in the block.
@@ -74,7 +77,7 @@ A 256-bit random value usually represented to the user as a 64 character hexidec
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).
 
 #### unpocketed
-See [pending](#pending) 
+See [pending](#pending).
 
 #### voting
 Each node configured with a [Representative](#representative) votes on every block by appending their Representative signature and a sequence number to the hash. These will be sent out to directly connected peers and if the vote originates from a [Principal Representative](#principal-representative), it will subsequently be rebroadcasted by nodes to their peers.
