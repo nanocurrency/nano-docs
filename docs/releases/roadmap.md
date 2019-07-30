@@ -88,7 +88,7 @@ This document represents the current areas that are being pursued by the Nano Fo
 ??? info "Point of Sale"
 	**Status**
 
-	* Nano "Plug & Pay" Point-of-Sale Platform for vendor & mobile terminals enters alpha testing
+	* [Kappture](https://www.kappture.co.uk), a UK-based POS manufacturer, announces an exclusive integration of Nano into their ePOS systems and releases a [white paper](https://www.kappture.co.uk/files/accepting-cryptocurrency-at-the-point-of-sale.pdf) detailing the decision to only include Nano (June 2019)
 
 	---
 
