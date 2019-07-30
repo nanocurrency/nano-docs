@@ -112,9 +112,9 @@ Pull latest release of the Nano Node
 docker pull nanocurrency/nano
 ```
 
-Or pull the Nano Node tagged with "V18.0" from Dockerhub
+Or pull the Nano Node tagged with "V19.0" from Dockerhub
 ```bash
-docker pull nanocurrency/nano:V18.0
+docker pull nanocurrency/nano:V19.0
 ```
 
 Lastly, we [start up the docker container again](#starting) using the same command.
