@@ -26,14 +26,6 @@ Status                 | Details
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
 	Links    | 
 
-??? tip "Local account priority bootstrapping"
-
-	Release  | V20 (Targeted)
-	---------|----------------------- 
-	Goal     | Allow bootstrapping of local accounts first.
-	Benefits | Nodes can send/receive Nano before fully synced.
-	Links    | [GitHub Issue #1731](https://github.com/nanocurrency/nano-node/issues/1731)
-
 ??? tip "Move wallet out of process"
 
 	Release  | V20 (Targeted)
@@ -103,6 +95,15 @@ Status                 | Details
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
 	Links    | N/A
 
+??? info "Local account priority bootstrapping"
+
+	Release  | TBD
+	---------|----------------------- 
+	Goal     | Allow bootstrapping of local accounts first.
+	Benefits | Nodes can send/receive Nano before fully synced.
+	Links    | [GitHub Issue #1731](https://github.com/nanocurrency/nano-node/issues/1731)
+
+
 ### Completed
 
 ??? success "V19.0"
@@ -150,12 +151,17 @@ Status                 | Details
 
 ### Recent Page Updates
 
-**2019-07-11**
+**2019-07-30**
 
-* Moved V19 items into new Completed section
-* Moved targeted V20 items into In Progress section
+* Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release 
 
 ??? info "Other past changes"
+
+	**2019-07-11**
+
+	* Moved V19 items into new Completed section
+	* Moved targeted V20 items into In Progress section
+
 	**2019-07-05**
 
 	* Confirmed-only bootstrapping removed from list - the complexity and effort level of this feature for the provided benefits didn't align to implement on its own at this time. Situations that may warrant such a change, including long strings of forked blocks, will be monitored on the network and if seen, this feature will be reevaluated for inclusion in the future.
