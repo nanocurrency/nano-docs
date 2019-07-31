@@ -908,29 +908,6 @@
 </tbody>
 </table>
 </details>
-<details class="tip"><summary>Local account priority bootstrapping</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20 (Targeted)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Allow bootstrapping of local accounts first.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Nodes can send/receive Nano before fully synced.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/issues/1731">GitHub Issue #1731</a></td>
-</tr>
-</tbody>
-</table>
-</details>
 <details class="tip"><summary>Move wallet out of process</summary><table>
 <thead>
 <tr>
@@ -1117,6 +1094,29 @@
 </tbody>
 </table>
 </details>
+<details class="info"><summary>Local account priority bootstrapping</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>TBD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Allow bootstrapping of local accounts first.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Nodes can send/receive Nano before fully synced.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/issues/1731">GitHub Issue #1731</a></td>
+</tr>
+</tbody>
+</table>
+</details>
 <h3 id="completed">Completed<a class="headerlink" href="#completed" title="Permanent link">&para;</a></h3>
 <details class="success"><summary>V19.0</summary><p><strong>TCP network overlay</strong></p>
 <table>
@@ -1235,12 +1235,16 @@
 </table>
 </details>
 <h3 id="recent-page-updates">Recent Page Updates<a class="headerlink" href="#recent-page-updates" title="Permanent link">&para;</a></h3>
-<p><strong>2019-07-11</strong></p>
+<p><strong>2019-07-30</strong></p>
+<ul>
+<li>Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release </li>
+</ul>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-07-11</strong></p>
 <ul>
 <li>Moved V19 items into new Completed section</li>
 <li>Moved targeted V20 items into In Progress section</li>
 </ul>
-<details class="info"><summary>Other past changes</summary><p><strong>2019-07-05</strong></p>
+<p><strong>2019-07-05</strong></p>
 <ul>
 <li>Confirmed-only bootstrapping removed from list - the complexity and effort level of this feature for the provided benefits didn't align to implement on its own at this time. Situations that may warrant such a change, including long strings of forked blocks, will be monitored on the network and if seen, this feature will be reevaluated for inclusion in the future.</li>
 </ul>
