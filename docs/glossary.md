@@ -38,6 +38,9 @@ See [frontier](#frontier).
 #### inbound send
 A block with funds being transferred to an [account](#account) owned by a [wallet](#wallet) on your node.
 
+#### legacy blocks
+Blocks on an account chain before the first v1 block (which is often the v1 epoch block but can be other types). The first v1 block and all subsequent blocks are stateful blocks.
+
 #### live network
 A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).
 

@@ -341,7 +341,7 @@ Because account filtering needs block content to function, setting this flag to 
 Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
 
 !!! warning "Legacy blocks never broadcasted"
-    Note that legacy blocks are never broadcasted if filters are given, even if they match the accounts.
+    Note that [legacy blocks](/glossary#legacy-blocks) are never broadcasted if filters are given, even if they match the accounts.
 
 ```json
 {
