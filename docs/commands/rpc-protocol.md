@@ -2434,7 +2434,13 @@ Without this parameter, the node will only generate work locally.
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work.  
+
+**Optional "multiplier"**
+
+_version 20.0+_  
+Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to generate work.  
+***Note:*** overrides the `difficulty` parameter.  
 
 ---
 
@@ -2525,6 +2531,12 @@ Check whether **work** is valid for block
 
 _version 19.0+_  
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work  
+
+**Optional "multiplier"**
+
+_version 20.0+_  
+Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to validate work.  
+***Note:*** overrides the `difficulty` parameter.  
 
 ---
 
