@@ -4317,7 +4317,8 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 </pre></div></p>
 <hr />
 <h3 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
-<p>Returns version information for RPC, Store, Protocol (network) &amp; Node (Major &amp; Minor version)<br />
+<p>Returns version information for RPC, Store, Protocol (network), Node (Major &amp; Minor version).<br />
+Since <em>version 20.0</em> also returns the Network label and identifier (hash of the genesis open block), and Build Info.<br />
 <em>RPC Version always returns "1" as of 01/11/2018</em>  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
@@ -4325,11 +4326,14 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
-<div class="codehilite"><pre><span></span><span class="p">{</span>  
-  <span class="nt">&quot;rpc_version&quot;</span> <span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;store_version&quot;</span><span class="p">:</span> <span class="s2">&quot;11&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;protocol_version&quot;</span><span class="p">:</span> <span class="s2">&quot;15&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;node_vendor&quot;</span><span class="p">:</span> <span class="s2">&quot;RaiBlocks 17.0&quot;</span>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;rpc_version&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;store_version&quot;</span><span class="p">:</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;protocol_version&quot;</span><span class="p">:</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;node_vendor&quot;</span><span class="p">:</span> <span class="s2">&quot;Nano 20.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;network&quot;</span><span class="p">:</span> <span class="s2">&quot;live&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">v20.0</span>
+  <span class="nt">&quot;network_identifier&quot;</span><span class="p">:</span> <span class="s2">&quot;991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">v20.0</span>
+  <span class="nt">&quot;build_info&quot;</span><span class="p">:</span> <span class="s2">&quot;Build Info &lt;git hash&gt; \&quot;&lt;compiler&gt; version \&quot; \&quot;&lt;compiler version string&gt;\&quot; \&quot;BOOST &lt;boost version&gt;\&quot; BUILT \&quot;&lt;build date&gt;\&quot;&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">v</span><span class="mf">20.0</span>
 <span class="p">}</span>
 </pre></div></p>
 <hr />
