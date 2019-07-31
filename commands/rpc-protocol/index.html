@@ -4512,7 +4512,11 @@ Boolean, false by default. If the optional <code>use_peers</code> parameter is s
 Without this parameter, the node will only generate work locally.</p>
 <p><strong>Optional "difficulty"</strong></p>
 <p><em>version 19.0+</em><br />
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses <strong>difficulty</strong> value to generate work  </p>
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses <strong>difficulty</strong> value to generate work.  </p>
+<p><strong>Optional "multiplier"</strong></p>
+<p><em>version 20.0+</em><br />
+Multiplier from base difficulty (positive number). Uses equivalent difficulty as <strong>multiplier</strong> from base difficulty to generate work.<br />
+<strong><em>Note:</em></strong> overrides the <code>difficulty</code> parameter.  </p>
 <hr />
 <h3 id="work_peer_add">work_peer_add<a class="headerlink" href="#work_peer_add" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required, version 8.0+</em>   <br />
@@ -4580,6 +4584,10 @@ Clear work peers node list until restart   </p>
 <p><strong>Optional "difficulty"</strong></p>
 <p><em>version 19.0+</em><br />
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses <strong>difficulty</strong> value to validate work  </p>
+<p><strong>Optional "multiplier"</strong></p>
+<p><em>version 20.0+</em><br />
+Multiplier from base difficulty (positive number). Uses equivalent difficulty as <strong>multiplier</strong> from base difficulty to validate work.<br />
+<strong><em>Note:</em></strong> overrides the <code>difficulty</code> parameter.  </p>
 <hr />
 <h2 id="wallet-rpcs">Wallet RPCs<a class="headerlink" href="#wallet-rpcs" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
