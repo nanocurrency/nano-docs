@@ -52,10 +52,10 @@ $$
 blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
 $$
 
-Currently the mainnet's threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable).
+Currently the mainnet's base threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable). With the addition of Dynamic PoW and rework in V19.0, the threshold used to calculate work can vary under certain conditions.
 
 !!! info
-    Any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
+    At the base threshold, any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
 
 #### First Account Block
 
@@ -67,7 +67,7 @@ $$
 
 ### Difficulty Multiplier
 
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another, or the base threshold.
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for the Dynamic PoW feature introduced in V19.0.
 
 A multiplier can be obtained with the following expression.
 
