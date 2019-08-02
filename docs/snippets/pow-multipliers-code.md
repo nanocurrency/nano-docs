@@ -1,9 +1,3 @@
-## Proof-of-Work
-
-### Multiplier Space
-
-Recall `base_difficulty` is `0xffffffc000000000` for the mainnet.
-
 **Python**
 ```python
 def to_multiplier(difficulty: int, base_difficulty) -> float:
