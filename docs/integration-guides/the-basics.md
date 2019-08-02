@@ -49,7 +49,7 @@ In general, PoW is the solving of a simple math problem where a solution can onl
 The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) found using the blake2b hash function.  The nonce satisfies the equation.
 
 $$
-blake2b(nonce || prev\_block\_hash) >= threshold
+blake2b(\text{nonce} || \text{prev_block_hash}) >= \text{threshold}
 $$
 
 Currently the mainnet's threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable).
@@ -62,8 +62,26 @@ Currently the mainnet's threshold is `0xffffffc000000000`. When running a node t
 The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the `"work"` field:
 
 $$
-blake2b(nonce || public\_key) >= threshold
+blake2b(\text{nonce} || \text{public_key}) >= \text{threshold}
 $$
+
+### Difficulty Multiplier
+
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another, or the base threshold.
+
+A multiplier can be obtained with the following expression.
+
+$$
+\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
+$$
+
+In the inverse direction, in order to get the equivalent difficulty for a certain multiplier, the following expression can be used.
+
+$$
+2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
+$$
+
+See [code examples](/snippets/code-examples) for some examples of how to work with multipliers.
 
 ---
 
