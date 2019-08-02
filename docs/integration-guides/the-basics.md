@@ -49,7 +49,7 @@ In general, PoW is the solving of a simple math problem where a solution can onl
 The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) found using the blake2b hash function.  The nonce satisfies the equation.
 
 $$
-blake2b(\text{nonce} || \text{prev_block_hash}) >= \text{threshold}
+blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
 $$
 
 Currently the mainnet's threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable).
@@ -62,7 +62,7 @@ Currently the mainnet's threshold is `0xffffffc000000000`. When running a node t
 The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the `"work"` field:
 
 $$
-blake2b(\text{nonce} || \text{public_key}) >= \text{threshold}
+blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 $$
 
 ### Difficulty Multiplier
