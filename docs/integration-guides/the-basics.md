@@ -49,21 +49,69 @@ In general, PoW is the solving of a simple math problem where a solution can onl
 The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) found using the blake2b hash function.  The nonce satisfies the equation.
 
 $$
-blake2b(nonce || prev\_block\_hash) >= threshold
+blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
 $$
 
-Currently the mainnet's threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable).
+Currently the mainnet's base threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable). With the addition of Dynamic PoW and rework in V19.0, the threshold used to calculate work can vary under certain conditions.
 
 !!! info
-    Any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
+    At the base threshold, any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
 
 #### First Account Block
 
 The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the `"work"` field:
 
 $$
-blake2b(nonce || public\_key) >= threshold
+blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 $$
+
+### Difficulty Multiplier
+
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for the Dynamic PoW feature introduced in V19.0.
+
+A multiplier can be obtained with the following expression.
+
+$$
+\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
+$$
+
+In the inverse direction, in order to get the equivalent difficulty for a certain multiplier, the following expression can be used.
+
+$$
+2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
+$$
+
+??? example "Code Snippets"
+    **Python**
+    ```python
+    def to_multiplier(difficulty: int, base_difficulty) -> float:
+      return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
+
+    def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
+      return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
+    ```
+
+    **Rust**
+    ```rust
+    fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
+      (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
+    }
+
+    fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
+      (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
+    }
+    ```
+
+    **C++**
+    ```cpp
+    double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
+      return static_cast<double>(-base_difficulty) / (-difficulty);
+    }
+
+    uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
+      return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
+    }
+    ```
 
 ---
 
