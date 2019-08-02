@@ -81,7 +81,7 @@ $$
 2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
 $$
 
-??? info "Code Snippets"
+??? example "Code Snippets"
     **Python**
     ```python
     def to_multiplier(difficulty: int, base_difficulty) -> float:
