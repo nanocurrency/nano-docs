@@ -87,7 +87,7 @@ This is the main configuration file for controlling node behavior. Below is an e
         "external_port": "0",
         "websocket": {
             "enable": "false",
-            "address": "::1", // Default IPv6 address to listen on. If using Docker, change address to ::ffff:127.0.0.1 to listen on all interfaces within the container.
+            "address": "::1", // Default IPv6 address to listen on. If using Docker, change address to ::ffff:0.0.0.0 to listen on all interfaces within the container.
             "port": "7078"
         },
         "ipc": { // For more details about these options see the IPC section below
