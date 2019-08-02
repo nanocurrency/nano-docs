@@ -81,7 +81,7 @@ $$
 2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
 $$
 
-See [code examples](/snippets/code-examples) for some examples of how to work with multipliers.
+See [code examples](/snippets/code-examples#multiplier-space) for some examples of how to work with multipliers.
 
 ---
 
