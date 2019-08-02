@@ -514,6 +514,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#difficulty-multiplier" title="Difficulty Multiplier" class="md-nav__link">
+    Difficulty Multiplier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1006,6 +1013,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#difficulty-multiplier" title="Difficulty Multiplier" class="md-nav__link">
+    Difficulty Multiplier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1259,27 +1273,73 @@
 <p>The <code>"work"</code> field in transactions contains a 64-bit <a href="https://en.wikipedia.org/wiki/Cryptographic_nonce">nonce</a> found using the blake2b hash function.  The nonce satisfies the equation.</p>
 <div>
 <div class="MathJax_Preview">
-blake2b(nonce || prev\_block\_hash) &gt;= threshold
+blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
 </div>
 <script type="math/tex; mode=display">
-blake2b(nonce || prev\_block\_hash) >= threshold
+blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
 </script>
 </div>
-<p>Currently the mainnet's threshold is <code>0xffffffc000000000</code>. When running a node the work is automatically calculated for you, but options exist for delegating work generation to <a href="/running-a-node/configuration/#work_peers">work peers</a> and allowing GPU acceleration by <a href="/running-a-node/configuration/#opencl_enable">enabling OpenCL</a>.</p>
+<p>Currently the mainnet's base threshold is <code>0xffffffc000000000</code>. When running a node the work is automatically calculated for you, but options exist for delegating work generation to <a href="/running-a-node/configuration/#work_peers">work peers</a> and allowing GPU acceleration by <a href="/running-a-node/configuration/#opencl_enable">enabling OpenCL</a>. With the addition of Dynamic PoW and rework in V19.0, the threshold used to calculate work can vary under certain conditions.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Any random nonce has a <span><span class="MathJax_Preview">1.49 * 10^{-8}</span><script type="math/tex">1.49 * 10^{-8}</script></span> chance of being a correct solution. This results in an average of <span><span class="MathJax_Preview">67,108,864</span><script type="math/tex">67,108,864</script></span> guesses to generate a valid nonce that requires only a single blake2b hash to validate.</p>
+<p>At the base threshold, any random nonce has a <span><span class="MathJax_Preview">1.49 * 10^{-8}</span><script type="math/tex">1.49 * 10^{-8}</script></span> chance of being a correct solution. This results in an average of <span><span class="MathJax_Preview">67,108,864</span><script type="math/tex">67,108,864</script></span> guesses to generate a valid nonce that requires only a single blake2b hash to validate.</p>
 </div>
 <h4 id="first-account-block">First Account Block<a class="headerlink" href="#first-account-block" title="Permanent link">&para;</a></h4>
 <p>The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the <code>"work"</code> field:</p>
 <div>
 <div class="MathJax_Preview">
-blake2b(nonce || public\_key) &gt;= threshold
+blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 </div>
 <script type="math/tex; mode=display">
-blake2b(nonce || public\_key) >= threshold
+blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 </script>
 </div>
+<h3 id="difficulty-multiplier">Difficulty Multiplier<a class="headerlink" href="#difficulty-multiplier" title="Permanent link">&para;</a></h3>
+<p>Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for the Dynamic PoW feature introduced in V19.0.</p>
+<p>A multiplier can be obtained with the following expression.</p>
+<div>
+<div class="MathJax_Preview">
+\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
+</div>
+<script type="math/tex; mode=display">
+\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
+</script>
+</div>
+<p>In the inverse direction, in order to get the equivalent difficulty for a certain multiplier, the following expression can be used.</p>
+<div>
+<div class="MathJax_Preview">
+2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
+</div>
+<script type="math/tex; mode=display">
+2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
+</script>
+</div>
+<details class="example"><summary>Code Snippets</summary><p><strong>Python</strong>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">to_multiplier</span><span class="p">(</span><span class="n">difficulty</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">base_difficulty</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+  <span class="k">return</span> <span class="nb">float</span><span class="p">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-</span> <span class="n">base_difficulty</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-</span> <span class="n">difficulty</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">from_multiplier</span><span class="p">(</span><span class="n">multiplier</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">base_difficulty</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">NANO_DIFFICULTY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+  <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">64</span><span class="p">)</span> <span class="o">-</span> <span class="n">base_difficulty</span><span class="p">)</span> <span class="o">/</span> <span class="n">multiplier</span><span class="p">)</span>
+</pre></div></p>
+<p><strong>Rust</strong>
+<div class="codehilite"><pre><span></span><span class="k">fn</span> <span class="nf">to_multiplier</span><span class="p">(</span><span class="n">difficulty</span>: <span class="kt">u64</span><span class="p">,</span><span class="w"> </span><span class="n">base_difficulty</span>: <span class="kt">u64</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">f64</span> <span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">base_difficulty</span><span class="p">.</span><span class="n">wrapping_neg</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">f64</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">difficulty</span><span class="p">.</span><span class="n">wrapping_neg</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">f64</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">fn</span> <span class="nf">from_multiplier</span><span class="p">(</span><span class="n">multiplier</span>: <span class="kt">f64</span><span class="p">,</span><span class="w"> </span><span class="n">base_difficulty</span>: <span class="kt">u64</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u64</span> <span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(((</span><span class="n">base_difficulty</span><span class="p">.</span><span class="n">wrapping_neg</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">f64</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">multiplier</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u64</span><span class="p">).</span><span class="n">wrapping_neg</span><span class="p">()</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div></p>
+<p><strong>C++</strong>
+<div class="codehilite"><pre><span></span><span class="kt">double</span> <span class="nf">to_multiplier</span><span class="p">(</span><span class="kt">uint64_t</span> <span class="k">const</span> <span class="n">difficulty</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="k">const</span> <span class="n">base_difficulty</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="o">-</span><span class="n">base_difficulty</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">difficulty</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">uint64_t</span> <span class="nf">from_multiplier</span><span class="p">(</span><span class="kt">double</span> <span class="k">const</span> <span class="n">multiplier</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="k">const</span> <span class="n">base_difficulty</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">((</span><span class="o">-</span><span class="n">base_difficulty</span><span class="p">)</span> <span class="o">/</span> <span class="n">multiplier</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div></p>
+</details>
 <hr />
 <h2 id="account-key-seed-and-wallet-ids">Account, Key, Seed and Wallet IDs<a class="headerlink" href="#account-key-seed-and-wallet-ids" title="Permanent link">&para;</a></h2>
 <p>When dealing with the various IDs in the node it is important to understand the function and implication of each one.</p>
