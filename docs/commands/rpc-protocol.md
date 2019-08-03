@@ -1485,7 +1485,7 @@ _enable_control required, version 17.0+_
 
 --8<-- "debug-only-command.md"
  
-Derive private key, public key and account number from node ID
+Derive private key, public key and node ID number with checksum (similar to account representation). "ac_account" field is **deprecated**   
 
 **Request:**
 ```json
@@ -1498,7 +1498,8 @@ Derive private key, public key and account number from node ID
 {  
     "private": "2AD75C9DC20EA497E41722290C4DC966ECC4D6C75CAA4E447961F918FD73D8C7",  
     "public": "78B11E1777B8E7DF9090004376C3EDE008E84680A497C0805F68CA5928626E1C",  
-    "as_account": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
+    "as_account": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",  
+    "node_id": "node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"  
 }
 ```  
 
@@ -1564,7 +1565,7 @@ Boolean, false by default. Returns a list of peers IPv6:port with its node proto
     "peers": {  
         "[::ffff:172.17.0.1]:32841": {  
            "protocol_version": "16",  
-           "node_id": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
+           "node_id": "node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
            "type": "udp"
         }  
     }  
