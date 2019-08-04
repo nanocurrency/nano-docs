@@ -305,7 +305,7 @@ Details about the election leading to the confirmation can be obtained by settin
 Below is a full message which includes the following election info:
 
 * election duration in milliseconds
-* election timestamp as milliseconds since epoch
+* end of election as milliseconds since epoch
 * weight tally in raw unit
 
 ```json
