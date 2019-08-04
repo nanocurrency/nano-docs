@@ -1485,7 +1485,7 @@ _enable_control required, version 17.0+_
 
 --8<-- "debug-only-command.md"
  
-Derive private key, public key and node ID number with checksum (similar to account representation). "ac_account" field is **deprecated**   
+Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**   
 
 **Request:**
 ```json
