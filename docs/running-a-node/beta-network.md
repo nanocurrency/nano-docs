@@ -4,10 +4,19 @@ A few common reasons for joining the beta network include:
 
 * Learning node setup and management
 * Testing out integrations for services build on Nano before running on the main network
-* [Assisting testing new node releases and features](#node-release-testing)
+* [Assisting in testing new node releases and features](#node-release-testing)
 * Contributing to a network testing various behaviors and patterns with the protocol
 
 [Running a beta node](#running-a-beta-node) is a great way to join in and help the network grow stronger.
+
+## Differences from the main network
+
+Up to node *v19.0*, the main and beta networks had no functional differences. However, starting from *v20.0*, the following differences apply to the **beta network**.
+
+| Parameter | Main Network | Beta Network | Comment |
+|-----------|--------------|--------------|---------|
+| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffffc0000000000` | 16 times lower on the beta network |
+
 
 ## Node release testing
 The beta network is also used to coordinate the testing of Nano node releases. The Nano Foundation maintains a few beta nodes on the network and various community members also setup nodes to help provide an environment more similar to the main network. Ahead of each release builds are published as Release Candidates (RC). Starting with RC1 and incrementing with each published build (RC2, RC3, etc.), these are intended for use on the beta network to help identify issues not discovered earlier in the development process.
