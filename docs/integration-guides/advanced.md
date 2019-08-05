@@ -290,6 +290,79 @@ To subscribe to all confirmed blocks:
 }
 ```
 
+**Filtering options**
+
+###### Confirmation types
+
+The node classifies block confirmations into the following categories:
+
+* **Active quorum**: a block is confirmed through voting (including `block_confirm` RPC if block is previously unconfirmed)
+* **Active confirmation height**: a block which is confirmed as a dependent election from a successor through voting (or by `block_confirm` RPC if the block is already confirmed)
+* **Inactive**: a block that is not in active elections is implicitly confirmed by a successor.
+
+By default, the node emits **all** confirmations to WebSocket clients. However, the following filtering option is available:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "confirmation_type": "<type>"
+  }
+}
+```
+
+The most common values for `confirmation_type` are `all` (default), `active` and `inactive`.
+
+If more fine-grained filtering is needed, `active` can be replaced with `active_quorum` or `active_confirmation_height` per the definitions above.
+
+###### Accounts
+
+Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
+
+!!! warning "Legacy blocks never broadcasted"
+    Note that [legacy blocks](/glossary#legacy-blocks) are never broadcasted if filters are given, even if they match the accounts.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "all_local_accounts": true,
+    "accounts": [
+      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
+      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
+    ]
+  }
+}
+```
+
+* When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
+* `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
+
+**Response options**
+
+###### Type field
+
+Confirmations sent through WebSockets, whether filtering is used or not, contains a `confirmation_type` field with values `active_quorum`, `active_confirmation_height` or `inactive`.
+
+###### Block content inclusion
+
+By setting `include_block` to `false`, the block content will not be present. Default is `true`.
+Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "include_block": "false",
+  }
+}
+```
+
+###### Election info
+
 Details about the election leading to the confirmation can be obtained by setting the `include_election_info` option to true:
 
 ```json
@@ -302,11 +375,20 @@ Details about the election leading to the confirmation can be obtained by settin
 }
 ```
 
-Below is a full message which includes the following election info:
+Including the election info option results in the following fields being included:
 
-* election duration in milliseconds
-* end of election as milliseconds since epoch
-* weight tally in raw unit
+* election `duration` in milliseconds
+* end of election `time` as milliseconds since epoch
+* weight `tally` in raw unit
+
+**Sample Results**
+
+!!! note "Differences from the HTTP callback"
+    * The "block" contains JSON instead of an escaped string. This makes parsing easier.
+    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
+    * Subtype is part of block (if it's a state block)
+    * There is no "is_send" property since "subtype" signifies the intent for state blocks.
+    * A confirmation type is added, which can be filtered.
 
 ```json
 {
@@ -338,111 +420,6 @@ Below is a full message which includes the following election info:
 }
 ```
 
-**Filters**
-
-###### Type filtering
-
-The node classifies block confirmations into the following categories:
-
-* **Active quorum**: a block is confirmed through voting (including `block_confirm` RPC if block is previously unconfirmed)
-* **Active confirmation height**: a block which is confirmed as a dependent election from a successor through voting (or by `block_confirm` RPC if the block is already confirmed)
-* **Inactive**: a block that is not in active elections is implicitly confirmed by a successor.
-
-By default, the node emits **all** confirmations to WebSocket clients. However, the following filtering option is available:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "confirmation_type": "<type>"
-  }
-}
-```
-
-The most common values for `confirmation_type` are `all` (default), `active` and `inactive`.
-
-If more fine-grained filtering is needed, `active` can be replaced with `active_quorum` or `active_confirmation_height` per the definitions above.
-
-###### Type field
-
-Confirmations sent through WebSockets, whether filtering is used or not, contains a `confirmation_type` field with values `active_quorum`, `active_confirmation_height` or `inactive`.
-
-
-###### Block content inclusion
-
-By setting `include_block` to `false`, the block content will not be present. Default is `true`.
-Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "include_block": "false",
-  }
-}
-```
-
-###### Accounts
-
-Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
-
-!!! warning "Legacy blocks never broadcasted"
-    Note that [legacy blocks](/glossary#legacy-blocks) are never broadcasted if filters are given, even if they match the accounts.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "all_local_accounts": true,
-    "accounts": [
-      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
-    ]
-  }
-}
-```
-
-* When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
-* `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
-
-**Sample Results**
-
-!!! note "Differences from the HTTP callback"
-    * The "block" contains JSON instead of an escaped string. This makes parsing easier.
-    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
-    * Subtype is part of block (if it's a state block)
-    * There is no "is_send" property since "subtype" signifies the intent for state blocks.
-    * A confirmation type is added, which can be filtered.
-
-```json
-{
-  "topic": "confirmation",
-  "time": "1552766057328",
-  "message": {
-      "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-      "amount": "1000000000000000000000000",
-      "hash": "3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA",
-      "confirmation_type": "active_quorum",
-      "block": {
-          "type": "state",
-          "subtype": "send",
-          "account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-          "previous": "21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3",
-          "representative": "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c",
-          "balance": "135902000000000000000000000000",
-          "link": "1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725",
-          "link_as_account": "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-          "signature": "CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208",
-          "work": "466ac84fc9edd4b3"
-      }
-  }
-}
-```
-
-
 ---
 
 #### Votes
@@ -458,7 +435,7 @@ To subscribe to all votes notifications:
 }
 ```
 
-**Filters**
+**Filter options**
 
 Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
 
@@ -508,7 +485,7 @@ To subscribe to all stopped elections notifications:
 }
 ```
 
-**Filters**
+**Filter options**
 
 No filters are currently available for `stopped_election` topic.
 
@@ -539,7 +516,7 @@ To subscribe to all active difficulty notifications:
 }
 ```
 
-**Filters**
+**Filter options**
 
 No filters are currently available for `active_difficulty` topic.
 
