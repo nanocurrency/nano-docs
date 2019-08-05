@@ -171,7 +171,7 @@ curl -d '{
     |                    |       |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
-    | `"account"`        | `"address"` used in the `account_info` call above that the block will be created for |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will send 1 $nano$ ($10^{30} raw$) to address `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`. |
     | `"link"`           | destination address the funds will move between |
@@ -278,9 +278,9 @@ curl -d '{
     |                    |       |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
-    | `"account"`        | `"address"` used in the `account_info` call above that the block will be created for |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
-    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 $nano$ ($7 x 10^{30} raw$) based on the assumed details of the block the `"link"` hash refers to (block contents not shown in this example). |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 $nano$ ($7 \times 10^{30} raw$) based on the assumed details of the block the `"link"` hash refers to (block contents not shown in this example). |
     | `"link"`           | block hash of its paired send transaction, assumed to be a 7 $nano$ send from block hash `CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783` |
     | `"key"`            | account's private key |
 
@@ -329,16 +329,91 @@ curl -d '{
     As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 !!! info "Manually receiving first block"
-    The very first transaction on an account-chain, which is always a receive, is a bit special since it doesn't have a `"previous"` block. The process however, is very similar to a conventional receive transaction.
+    The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section [First Receive Transaction](#first-receive-transaction).
 
-    | Field          | Description |
-    |                |             |
-    | previous       | Value is 0 (32 0's) |
-    | account        | Same as normal receive. |
-    | representative | Choose a reliable, trustworthy representative. |
-    | balance        | Same as normal receive. This will be the transaction amount of the pairing send. |
-    | link           | Same as normal receive. |
-    | key            | Same as normal receive. |
+---
+
+#### First Receive Transaction
+
+The first transaction of every account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **pending** on the receiving account. If you already know the hash of the pending transaction, you can skip Step 1.
+
+!!! example "Step 1: Obtain the pending transaction block hash"
+
+    Start with obtaining a list of pending transactions in your unopened account. Limit the response to the highest value transaction by using a combination of `sorting` and `count`.
+
+##### Request Example
+
+```bash
+curl -d '{
+  "action": "pending",
+  "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+  "count": "1",
+  "sorting": "true",
+  "include_only_confirmed": "true"
+}' http://127.0.0.1:7076
+```
+
+##### Success Response
+
+```json
+{
+    "blocks": {
+        "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99": "100"
+    }
+}
+```
+
+!!! example "Step 2: Build `block_create` request"
+    Using the block hash and raw transaction amount from the `pending` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The only difference between the normal receive transactions is the `"previous"` field.
+
+    For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
+
+    | Field              | Value |
+    |                    |       |
+    | `"type"`           | always the constant `"state"` |
+    | `"previous"`       | `"frontier"` from `account_info` response |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
+    | `"representative"` | `"representative"` the account address to use as representative for your account. Choose a reliable, trustworthy representative. |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"pending"` response above. |
+    | `"link"`           | block hash of its paired send transaction, in this case assumed to be the block `5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99` |
+    | `"key"`            | account's private key |
+
+##### Request Example
+
+```bash
+curl -d '{
+  "action": "block_create",
+  "type": "state",
+  "previous": "0",
+  "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+  "balance": "100",
+  "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+  "key": "0ED82E6990A16E7AD2375AB5D54BEAABF6C676D09BEC74D9295FCAE35439F694"
+}' http://127.0.0.1:7076
+```
+
+##### Success Response
+
+```json
+{
+  "hash": "ED3BE5340CC9D62964B5A5F84375A06078CBEDC45FB5FA2926985D6E27D803BB",
+  "block": "{\n
+    \"type\": \"state\",\n
+    \"account\": \"nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11\",\n
+    \"previous\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n
+    \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
+    \"balance\": \"100\",\n
+    \"link\": \"5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99\",\n
+    \"link_as_account\": \"nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7\",\n
+    \"signature\": \"903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F\",\n
+    \"work\": \"08d09dc3405d9441\"\n
+  }\n"
+}
+```
+
+!!! example "Step 3: Broadcast the transaction"
+    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 ---
 
