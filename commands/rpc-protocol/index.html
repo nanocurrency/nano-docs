@@ -3762,7 +3762,8 @@ Number (128 bit, decimal), default 0. Return only accounts with balance above <s
 <p class="admonition-title">Debug purposes only</p>
 <p>This call is for internal diagnostics/debug purposes only. Do not rely on this interface being stable and do not use in a production system.</p>
 </div>
-<p>Derive private key, public key and account number from node ID</p>
+<p>Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is <strong>deprecated</strong><br />
+<em>version 20.0 will generate the node_id with <code>node_</code> prefix, earlier versions will generate with <code>nano_</code> prefix</em>  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
     <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;node_id&quot;</span>  
@@ -3772,7 +3773,8 @@ Number (128 bit, decimal), default 0. Return only accounts with balance above <s
 <div class="codehilite"><pre><span></span><span class="p">{</span>  
     <span class="nt">&quot;private&quot;</span><span class="p">:</span> <span class="s2">&quot;2AD75C9DC20EA497E41722290C4DC966ECC4D6C75CAA4E447961F918FD73D8C7&quot;</span><span class="p">,</span>  
     <span class="nt">&quot;public&quot;</span><span class="p">:</span> <span class="s2">&quot;78B11E1777B8E7DF9090004376C3EDE008E84680A497C0805F68CA5928626E1C&quot;</span><span class="p">,</span>  
-    <span class="nt">&quot;as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span>  
+    <span class="nt">&quot;as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span><span class="p">,</span>  
+    <span class="nt">&quot;node_id&quot;</span><span class="p">:</span> <span class="s2">&quot;node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span>  
 <span class="p">}</span>
 </pre></div></p>
 <hr />
@@ -3817,13 +3819,14 @@ Number (128 bit, decimal), default 0. Return only accounts with balance above <s
 </pre></div>
 <strong>Optional "peer_details"</strong></p>
 <p><em>version 18.0+</em> <br />
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. <code>type</code> returned in version 19.0+ as either <code>tcp</code> (preferred) or <code>udp</code> (fallback) used for peering with that node.</p>
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. <code>type</code> returned in version 19.0+ as either <code>tcp</code> (preferred) or <code>udp</code> (fallback) used for peering with that node.  </p>
+<p><em>version 20.0 will generate the node_id with <code>node_</code> prefix, earlier versions will generate with <code>nano_</code> prefix</em>  </p>
 <p><strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;peers&quot;</span><span class="p">:</span> <span class="p">{</span>  
         <span class="nt">&quot;[::ffff:172.17.0.1]:32841&quot;</span><span class="p">:</span> <span class="p">{</span>  
            <span class="nt">&quot;protocol_version&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>  
-           <span class="nt">&quot;node_id&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span><span class="p">,</span>
+           <span class="nt">&quot;node_id&quot;</span><span class="p">:</span> <span class="s2">&quot;node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3&quot;</span><span class="p">,</span>
            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;udp&quot;</span>
         <span class="p">}</span>  
     <span class="p">}</span>  
