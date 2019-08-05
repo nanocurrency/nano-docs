@@ -373,7 +373,7 @@ curl -d '{
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
-    | `"representative"` | `"representative"` the account address to use as representative for your account. Choose a reliable, trustworthy representative. |
+    | `"representative"` | `"representative"` the account address to use as [representative](/integration-guides/the-basics#representatives) for your account. Choose a reliable, trustworthy representative. |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"pending"` response above. |
     | `"link"`           | block hash of its paired send transaction, in this case assumed to be the block `5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99` |
     | `"key"`            | account's private key |
