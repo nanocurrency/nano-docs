@@ -1485,7 +1485,8 @@ _enable_control required, version 17.0+_
 
 --8<-- "debug-only-command.md"
  
-Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**   
+Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**  
+_version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
 **Request:**
 ```json
@@ -1557,7 +1558,9 @@ Returns a list of pairs of online peer IPv6:port and its node protocol network v
 **Optional "peer_details"**
 
 _version 18.0+_   
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. `type` returned in version 19.0+ as either `tcp` (preferred) or `udp` (fallback) used for peering with that node.
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. `type` returned in version 19.0+ as either `tcp` (preferred) or `udp` (fallback) used for peering with that node.  
+
+_version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
 **Response:**
 ```json
