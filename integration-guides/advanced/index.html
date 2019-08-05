@@ -1342,8 +1342,8 @@
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Filters</strong></p>
-<h6>Type filtering</h6>
+<p><strong>Filtering options</strong></p>
+<h6>Confirmation types</h6>
 <p>The node classifies block confirmations into the following categories:</p>
 <ul>
 <li><strong>Active quorum</strong>: a block is confirmed through voting (including <code>block_confirm</code> RPC if block is previously unconfirmed)</li>
@@ -1362,20 +1362,6 @@
 
 <p>The most common values for <code>confirmation_type</code> are <code>all</code> (default), <code>active</code> and <code>inactive</code>.</p>
 <p>If more fine-grained filtering is needed, <code>active</code> can be replaced with <code>active_quorum</code> or <code>active_confirmation_height</code> per the definitions above.</p>
-<h6>Type field</h6>
-<p>Confirmations sent through WebSockets, whether filtering is used or not, contains a <code>confirmation_type</code> field with values <code>active_quorum</code>, <code>active_confirmation_height</code> or <code>inactive</code>.</p>
-<h6>Block content inclusion</h6>
-<p>By setting <code>include_block</code> to <code>false</code>, the block content will not be present. Default is <code>true</code>.
-Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.</p>
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;include_block&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
 <h6>Accounts</h6>
 <p>Filters for <strong>confirmation</strong> can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.</p>
 <div class="admonition warning">
@@ -1399,6 +1385,38 @@ Because account filtering needs block content to function, setting this flag to 
 <li>When <code>all_local_accounts</code> is set to <strong><code>true</code></strong>, blocks that mention accounts in any wallet will be broadcasted.</li>
 <li><code>accounts</code> is a list of additional accounts to subscribe to. Both prefixes are supported.</li>
 </ul>
+<p><strong>Response options</strong></p>
+<h6>Type field</h6>
+<p>Confirmations sent through WebSockets, whether filtering is used or not, contains a <code>confirmation_type</code> field with values <code>active_quorum</code>, <code>active_confirmation_height</code> or <code>inactive</code>.</p>
+<h6>Block content inclusion</h6>
+<p>By setting <code>include_block</code> to <code>false</code>, the block content will not be present. Default is <code>true</code>.
+Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;include_block&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h6>Election info</h6>
+<p>Details about the election leading to the confirmation can be obtained by setting the <code>include_election_info</code> option to true:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;include_election_info&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Including the election info option results in the following fields being included:</p>
+<ul>
+<li>election <code>duration</code> in milliseconds</li>
+<li>end of election <code>time</code> as milliseconds since epoch</li>
+<li>weight <code>tally</code> in raw unit</li>
+</ul>
 <p><strong>Sample Results</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Differences from the HTTP callback</p>
@@ -1412,24 +1430,29 @@ Because account filtering needs block content to function, setting this flag to 
 </div>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1552766057328&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1564935350664&quot;</span><span class="p">,</span>
   <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;1000000000000000000000000&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;3E746498A3DBF5DF9CB498E00B8C9B20769112498E35EF23B3C0EF46DCF192EA&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;active_quorum&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;send&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;21EE146C2EAD2CA30D84C43A5EEF4BCEC90F103E45905F254336E8CF591330D3&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;135902000000000000000000000000&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;1942DE5E420129A193D51217C6E9CAFAFA38E1413E7C26F85D4825F37D029725&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;CD585FC15C50BC589B9C41C5D632B26E1C66744E97DCEDA878342E10D2C219CD7BCF5F49117F29E94B6B1C8D85794DACE2CAE14D6E6C944167E7F381368CD208&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;466ac84fc9edd4b3&quot;</span>
-      <span class="p">}</span>
+    <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1tgkjkq9r96zd3pkr7edj8e4qbu3wr3ps6ettzse8hmoa37nurua7faupjhc&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;15621963968634827029081574961&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;0E889F83E28152A70E87B92D846CA3D8966F3AEEC65E11B25F7B4E6760C57CA3&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;confirmation_type&quot;</span><span class="p">:</span> <span class="s2">&quot;active_quorum&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;election_info&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;546&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1564935348219&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;42535295865117307936387010521258262528&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1tgkjkq9r96zd3pkr7edj8e4qbu3wr3ps6ettzse8hmoa37nurua7faupjhc&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;4E9003ABD469D1F58A70518234016797FA654B494A2627B8583052629A91689E&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;3098F4C0D1D8BD889AF078CDFF81E982B8EFA6D6D8FAE954CF0CDC7A256C3F8B&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1e6rym1f5p7xj4fh1y8fzy1ym1orxymffp9tx7cey58whakprhwdzuk533th&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;D5C332587B1A4DEA35B6F03B0A9BEB45C5BBE582060B0252C313CF411F72478721F8E7DA83A779BA5006D571266F32BDE34C1447247F417F8F12101D3ADAF705&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;c950fc037d61e372&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;send&quot;</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1444,7 +1467,7 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Filters</strong></p>
+<p><strong>Filter options</strong></p>
 <p>Filters for <strong>votes</strong> can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;subscribe&quot;</span><span class="p">,</span>
@@ -1484,7 +1507,7 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Filters</strong></p>
+<p><strong>Filter options</strong></p>
 <p>No filters are currently available for <code>stopped_election</code> topic.</p>
 <p><strong>Sample Results</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
@@ -1506,7 +1529,7 @@ Because account filtering needs block content to function, setting this flag to 
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>Filters</strong></p>
+<p><strong>Filter options</strong></p>
 <p>No filters are currently available for <code>active_difficulty</code> topic.</p>
 <p><strong>Sample Results</strong></p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
