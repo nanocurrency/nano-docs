@@ -1377,6 +1377,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <li><code>CRYPTOPP_CUSTOM=ON</code> (more conservative building of Crypto++ for wider range of systems)</li>
 <li><code>NANO_SIMD_OPTIMIZATIONS=OFF</code> (Enable CPU-specific SIMD optimization: SSE/AVX or NEON, e.g.)</li>
 <li><code>NANO_SECURE_RPC=ON</code> (to build node with TLS)</li>
+<li><code>NANO_WARN_TO_ERR=ON</code> (<em>v20.0+</em> turn compiler warnings into errors on Linux/Mac) </li>
 </ul>
 <p><strong>Build Node</strong></p>
 <ul>
@@ -1384,6 +1385,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <li>Generate with cmake then build with your compiler</li>
 <li>(*nix) to build node without GUI execute: <code>make nano_node</code></li>
 <li>(*nix) to build wallet with GUI execute: <code>make nano_wallet</code></li>
+<li>(*nix) to build rpc for child/out of process execute: <code>make nano_rpc</code></li>
 </ul>
 <p><strong>Building a package</strong></p>
 <ul>
