@@ -1,5 +1,5 @@
 #### account
-Refers to an address (starts with `xrb_` or `nano_` which are interchangeable) that you control the private keys of. An address is a reinterpretation of the 256-bit public key using BASE32 encoding and a checksum.
+Refers to an address (starts with `xrb_` or `nano_` which are interchangeable) that you control the private keys of. An address is a reinterpretation of the 256-bit public key using BASE32 encoding and a checksum. Previously supported `xrb-` or `nano-` prefixes are deprecated.
 
 #### active transaction
 A newly downloaded block to the node which enters into the voting process.
