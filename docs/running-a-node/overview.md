@@ -28,7 +28,7 @@ Nodes consume CPU, RAM, disk IO and bandwidth IO resources, all of which come at
 
 And with any system, ongoing maintenance must be taken into account to avoid issues:
 
-- Performing OS-level udpates and security patches regularly applied
+- Performing OS-level updates and security patches regularly applied
 - Upgrading to the latest node versions they are available
 - Following best practices for securing passwords or other sensitive data related to the node
 
