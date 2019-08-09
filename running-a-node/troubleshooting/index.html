@@ -986,6 +986,10 @@
 <p>The "stats" RPC command can be used by external processes to query statistics, such as traffic counters. This is useful for diagnostics, monitoring and display in admin consoles. </p>
 <p>Statistics are optionally logged to separate text files.</p>
 <p>For implementations details, please see <a href="https://github.com/cryptocode/raiblocks/wiki/Statistics-API">Statistics API</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Duplicate observer stats</p>
+<p>Under certain conditions, confirmations seen through the observer type stat can be duplicates. In order to get accurate data, block hashes must be tracked and validated against previously seen hashes.</p>
+</div>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <p>All configuration nodes and values are optional, with the default values shown in comments below:</p>
 <div class="codehilite"><pre><span></span>&quot;node&quot;: {
