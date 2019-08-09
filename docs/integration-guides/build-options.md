@@ -324,7 +324,7 @@ Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .
 Using 64 Native Tools Command Prompt:
 
 * Replace **%CONFIGURATION%** with one of the following: `Release`, `RelWithDebInfo`, `Debug`
-* Replace **%NETWORK%** with one of the following: `nano_beta_network`, `nano_live_network`, `ano_test_network`
+* Replace **%NETWORK%** with one of the following: `nano_beta_network`, `nano_live_network`, `nano_test_network`
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
@@ -346,7 +346,7 @@ cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PRO
 Using 64 Native Tools Command Prompt:
 
 * Replace **%CONFIGURATION%** with the build configuration specified in previous step
-* Replace **%GENERATOR** with NSIS (if installed) or zip
+* Replace **%GENERATOR** with NSIS (if installed) or ZIP
 
 ```bash 
 cpack -G %GENERATOR% -C %CONFIGURATION% 
