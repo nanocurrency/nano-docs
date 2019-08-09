@@ -371,7 +371,7 @@ curl -d '{
     | Field              | Value |
     |                    |       |
     | `"type"`           | always the constant `"state"` |
-    | `"previous"`       | `"frontier"` from `account_info` response |
+    | `"previous"`       | always the constant "0" as this request is for the first block of the account |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` the account address to use as [representative](/integration-guides/the-basics#representatives) for your account. Choose a reliable, trustworthy representative. |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"pending"` response above. |
