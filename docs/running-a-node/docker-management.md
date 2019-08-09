@@ -145,9 +145,9 @@ Once modifications are complete, [start up the docker container again](#starting
 The docker entry script has migrated to a command with default arguments:
 ```
 Usage:
-   /entry.sh nano_node [daemon] [cli_options] [-l] [-v size]
-     daemon
-       start as daemon
+   /entry.sh nano_node [[--]daemon] [cli_options] [-l] [-v size]
+     [--]daemon
+       start as daemon either cli [--daemon] form or short form [daemon]
      cli_options
        nano_node cli options <see nano_node --help>
      -l
