@@ -1582,7 +1582,7 @@ make
 <p>Using 64 Native Tools Command Prompt:</p>
 <ul>
 <li>Replace <strong>%CONFIGURATION%</strong> with one of the following: <code>Release</code>, <code>RelWithDebInfo</code>, <code>Debug</code></li>
-<li>Replace <strong>%NETWORK%</strong> with one of the following: <code>nano_beta_network</code>, <code>nano_live_network</code>, <code>ano_test_network</code></li>
+<li>Replace <strong>%NETWORK%</strong> with one of the following: <code>nano_beta_network</code>, <code>nano_live_network</code>, <code>nano_test_network</code></li>
 <li>Ensure the Qt, Boost, and Windows SDK paths match your installation.</li>
 </ul>
 <div class="codehilite"><pre><span></span>cmake -DNANO_GUI<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>%CONFIGURATION% -DACTIVE_NETWORK<span class="o">=</span>%NETWORK% -DQt5_DIR<span class="o">=</span><span class="s2">&quot;C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5&quot;</span> -DNANO_SIMD_OPTIMIZATIONS<span class="o">=</span>TRUE -DBoost_COMPILER<span class="o">=</span><span class="s2">&quot;-vc141&quot;</span> -DBOOST_ROOT<span class="o">=</span><span class="s2">&quot;C:/local/boost_1_67_0&quot;</span> -DBOOST_LIBRARYDIR<span class="o">=</span><span class="s2">&quot;C:/local/boost_1_67_0/lib64-msvc-14.1&quot;</span> -G <span class="s2">&quot;Visual Studio 15 2017 Win64&quot;</span> -DIPHLPAPI_LIBRARY<span class="o">=</span><span class="s2">&quot;C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib&quot;</span> -DWINSOCK2_LIBRARY<span class="o">=</span><span class="s2">&quot;C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib&quot;</span> ..<span class="se">\.</span> 
@@ -1601,7 +1601,7 @@ make
 <p>Using 64 Native Tools Command Prompt:</p>
 <ul>
 <li>Replace <strong>%CONFIGURATION%</strong> with the build configuration specified in previous step</li>
-<li>Replace <strong>%GENERATOR</strong> with NSIS (if installed) or zip</li>
+<li>Replace <strong>%GENERATOR</strong> with NSIS (if installed) or ZIP</li>
 </ul>
 <div class="codehilite"><pre><span></span>cpack -G %GENERATOR% -C %CONFIGURATION% 
 </pre></div>
