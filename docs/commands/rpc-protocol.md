@@ -3221,15 +3221,15 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
       "type": "send",   
       "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",   
       "amount": "30000000000000000000000000000000000",   
-      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
-      "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"   
+      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+      "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9",   
       "local_timestamp": "1527698508"   
     },  
       "type": "send",   
       "account": "nano_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
       "amount": "40000000000000000000000000000000000",   
-      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est"
-      "hash": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E"   
+      "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+      "hash": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E", 
       "local_timestamp": "1527698492"   
     }
   ]  
