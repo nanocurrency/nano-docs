@@ -3224,7 +3224,8 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
       "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
       "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9",   
       "local_timestamp": "1527698508"   
-    },  
+    },
+    {
       "type": "send",   
       "account": "nano_38ztgpejb7yrm7rr586nenkn597s3a1sqiy3m3uyqjicht7kzuhnihdk6zpz",   
       "amount": "40000000000000000000000000000000000",   
