@@ -269,7 +269,7 @@ If the subscription succeeds, the following message will be sent back (note that
 Current topics available for subscribing to include:
 
 * `confirmation`
-* `vote`
+* `vote` (experimental, unfinished)
 * `stopped_election`
 * `active_difficulty`
 
@@ -423,6 +423,9 @@ Including the election info option results in the following fields being include
 ---
 
 #### Votes
+
+!!! warning "Experimental, unfinished"
+    This subscription is experimental and not all votes are broadcasted. The message format might change in the future.
 
 **Subscribing**
 
