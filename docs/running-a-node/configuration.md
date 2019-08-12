@@ -112,11 +112,12 @@ This is the main configuration file for controlling node behavior. Below is an e
                     "ignore_writes_below_block_processor_max_time": "true" // Ignore any block processor writes less than block_processor_max_time
                 }
         },
-	"use_memory_pools": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
-	"confirmation_history_size": "2048", // Controls confirmation history size, default setting preserves existing behavior
-    "bandwidth_limit": "5242880", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
-    "vote_generator_delay": "50", // Delay in ms before votes are sent out to allow for better bundling of hashes in votes - better performing nodes may need slightly higher values to optimize vote bandwidth
-    "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
+        "use_memory_pools": "true", // Improve performance by using memory pools (Note: Memory allocated will be reused but never reclaimed, if having memory issues then try turning this off)
+        "confirmation_history_size": "2048", // Controls confirmation history size, default setting preserves existing behavior
+        "bandwidth_limit": "5242880", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
+        "vote_generator_delay": "100", // Delay in ms before votes are sent out to allow for better bundling of hashes in votes
+        "vote_generator_threshold": "3", // Defines the point at which the node will delay sending votes for another vote_generator_delay. Allows for more hashes to be bundled under load
+        "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
@@ -125,7 +126,7 @@ This is the main configuration file for controlling node behavior. Below is an e
         "version": "1",
         "child_process": {
             "enable": "false", // Whether the rpc server is run as a child process rather than in-process
-            "rpc_path": "C:\\Users\\Wesley\\Documents\\raiblocks\\build\\Debug\\nano_rpc.exe", // The nano_rpc executable to run if enabled.
+            "rpc_path": "C:\\Users\\Wesley\\Documents\\raiblocks\\build\\Debug\\nano_rpc.exe", // The nano_rpc executable to run if enabled (Windows example).
         }
     },
     "opencl_enable": "false", // Enable GPU hashing
