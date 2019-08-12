@@ -466,6 +466,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-entrypoint-support" title="Docker entrypoint support" class="md-nav__link">
+    Docker entrypoint support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rpc-calls-to-the-node" title="RPC calls to the node" class="md-nav__link">
     RPC calls to the node
   </a>
@@ -900,6 +907,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-entrypoint-support" title="Docker entrypoint support" class="md-nav__link">
+    Docker entrypoint support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rpc-calls-to-the-node" title="RPC calls to the node" class="md-nav__link">
     RPC calls to the node
   </a>
@@ -1075,6 +1089,28 @@
 <p class="admonition-title">Enable Voting</p>
 <p>When setting up a new node, voting is disabled by default in the <code>config.json</code> file and must be manually enabled in order to participate in consensus. See <a href="/running-a-node/configuration/#enable_voting">enable_voting configuration option</a> for more details.</p>
 </div>
+<hr />
+<h3 id="docker-entrypoint-support">Docker entrypoint support<a class="headerlink" href="#docker-entrypoint-support" title="Permanent link">&para;</a></h3>
+<p>The docker entry script has migrated to a command with default arguments:
+<div class="codehilite"><pre><span></span>Usage:
+   /entry.sh nano_node [[--]daemon] [cli_options] [-l] [-v size]
+     [--]daemon
+       start as daemon either cli [--daemon] form or short form [daemon]
+     cli_options
+       nano_node cli options &lt;see nano_node --help&gt;
+     -l
+       log to console &lt;use docker logs {container}&gt;
+     -v&lt;size&gt;
+       vacuum database if over size GB on startup
+   /entry.sh bash [other]
+     other
+       bash pass through
+   /entry.sh [*]
+     *
+       usage
+ default:
+   /entry.sh nano_node daemon -l
+</pre></div></p>
 <hr />
 <h3 id="rpc-calls-to-the-node">RPC calls to the node<a class="headerlink" href="#rpc-calls-to-the-node" title="Permanent link">&para;</a></h3>
 <p>You can use the RPC interface on the local host via <code>curl</code> to interact with the node.</p>
