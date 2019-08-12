@@ -2449,8 +2449,9 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 ---
 
 ### work_peer_add  
-_enable_control required, version 8.0+_     
-Add specific **IP address** and **port** as work peer for node until restart   
+_enable_control required, version 8.0+_  
+Add specific **IP address** and **port** as work peer for node until restart.  
+Since *v20.0* also clears the exclusion status for the added work peer.
 
 **Request:**
 ```json
@@ -2470,7 +2471,8 @@ Add specific **IP address** and **port** as work peer for node until restart
 ---
 
 ### work_peers   
-_enable_control required, version 8.0+_     
+_enable_control required, version 8.0+_  
+Since _version 20.0_ also returns **excluded** work_peers, which were unreachable during an operation and will not be queried while they are in this list.
 
 **Request:**
 ```json
@@ -2480,31 +2482,53 @@ _enable_control required, version 8.0+_
 ```  
 **Response:**
 ```json
-{  
-    "work_peers": [   
-        "::ffff:172.17.0.1:7076"   
-    ]   
+{
+    "work_peers": [
+        "::ffff:172.17.0.1:7076"
+    ],
+    "excluded": [ // since v20.0
+        "::ffff:192.168.1.99:7076"
+    ]
 }
 ```  
 
 ---
 
 ### work_peers_clear  
-_enable_control required, version 8.0+_     
-Clear work peers node list until restart   
+_enable_control required, version 8.0+_  
+Clear work peers and excluded work peers (since _v20.0_) until restart.
 
 **Request:**
 ```json
-{  
-    "action": "work_peers_clear"   
+{
+    "action": "work_peers_clear"
 }
 ```  
 **Response:**
 ```json
-{  
-    "success": ""  
+{
+    "success": ""
 }
 ```  
+
+---
+
+### work_peers_reset  
+_enable_control required, version 20.0+_  
+Resets excluded work peers, allowing them to be used again.
+
+**Request:**
+```json
+{
+    "action": "work_peers_clear"
+}
+```  
+**Response:**
+```json
+{
+    "success": ""
+}
+```
 
 ---
 

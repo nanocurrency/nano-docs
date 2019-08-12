@@ -158,12 +158,14 @@ As of V18.0, nodes with weight delegated to them under this value in their confi
 ---
 
 #### work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). 
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate).
 ```json
 "work_peers": [
     "::ffff:127.0.0.1:7076"
 ],
 ```
+
+As of V20.0, unreachable peers are excluded until a node restart, adding them again with RPC [work_peer_add](/commands/rpc-protocol#work_peer_add), or resetting with RPC [work_peers_reset](/commands/rpc-protocol#work_peers_reset).
 
 ---
 
