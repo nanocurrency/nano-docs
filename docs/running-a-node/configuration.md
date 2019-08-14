@@ -49,7 +49,7 @@ This is the main configuration file for controlling node behavior. Below is an e
             "upnp_details": "false", // Determines if upnp discovery details are logged (default off to avoid sharing device info when shipping logs)
             "timing": "false", // Logs durations of key functions, such as batch verification, etc.
             "log_ipc": "true", // Logging of IPC related messages
-            "min_time_between_output": "5", // Time object in ms which denotes the minimum time that successive log calls can be made
+            "min_time_between_output": "5", // Minimum time between log calls, in ms
             "single_line_record": "false" // Log each record in single line (including block content & election results with votes)
         },
         "vote_minimum": "1000000000000000000000000000000000",// Prevents voting if delegated weight is under this threshold
