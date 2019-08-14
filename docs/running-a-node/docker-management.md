@@ -142,7 +142,7 @@ Once modifications are complete, [start up the docker container again](#starting
 
 ### Docker entrypoint support
 
-The docker entry script has migrated to a command with default arguments:
+As of v20.0, the docker entry script has migrated to a command with default arguments:
 ```
 Usage:
    /entry.sh nano_node [[--]daemon] [cli_options] [-l] [-v size]
