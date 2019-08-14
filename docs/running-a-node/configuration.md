@@ -30,6 +30,7 @@ This is the main configuration file for controlling node behavior. Below is an e
             "ledger": "false", // Track incoming blocks
             "ledger_duplicate": "false",
             "network": "true", // Track general network info like forks
+            "network_timeout": "false", // Track TCP socket disconnections due to timeout
             "network_message": "false",
             "network_publish": "false", // Track blocks you publish to
             "network_packet": "false", // Track packets origin
@@ -47,7 +48,9 @@ This is the main configuration file for controlling node behavior. Below is an e
             "flush": "true",  // Setting this to false gives better performance, but may lose entries on crashes.
             "upnp_details": "false", // Determines if upnp discovery details are logged (default off to avoid sharing device info when shipping logs)
             "timing": "false", // Logs durations of key functions, such as batch verification, etc.
-            "log_ipc": "true" // Logging of IPC related messages
+            "log_ipc": "true", // Logging of IPC related messages
+            "min_time_between_output": "5", // Minimum time between log calls, in ms
+            "single_line_record": "false" // Log each record in single line (including block content & election results with votes)
         },
         "vote_minimum": "1000000000000000000000000000000000",// Prevents voting if delegated weight is under this threshold
         "work_peers": "", // Delegate a node your hash work, you need to get RPC access to that node
@@ -81,10 +84,10 @@ This is the main configuration file for controlling node behavior. Below is an e
         "signature_checker_threads": "1", // Number of threads to use for verifying signatures
         "unchecked_cutoff_time": "14400", // Number of seconds unchecked entry survives before being cleaned
         "tcp_io_timeout": "15", // Timeout in seconds for TCP connect-, read- and write operations
-        "tcp_idle_timeout": "120", // Default idle disconnection timeout in seconds
         "pow_sleep_interval": "0", // The amount to sleep after each batch of POW calculations. Reduces max CPU usage at the expensive of a longer workgeneration time.
         "external_address": "::",
         "external_port": "0",
+        "tcp_incoming_connections_max": "1024", // Allowed incoming TCP connections count
         "websocket": {
             "enable": "false",
             "address": "::1", // Default IPv6 address to listen on. If using Docker, change address to ::ffff:0.0.0.0 to listen on all interfaces within the container.
@@ -117,7 +120,9 @@ This is the main configuration file for controlling node behavior. Below is an e
         "bandwidth_limit": "5242880", // Outbound voting traffic limit in bytes/sec after which messages will be dropped
         "vote_generator_delay": "100", // Delay in ms before votes are sent out to allow for better bundling of hashes in votes
         "vote_generator_threshold": "3", // Defines the point at which the node will delay sending votes for another vote_generator_delay. Allows for more hashes to be bundled under load
-        "active_elections_size": "50000" // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
+        "active_elections_size": "50000", // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
+        "conf_height_processor_batch_min_time": "50", // Amount of time in ms to batch setting confirmation heights for accounts during high tps to reduce write I/O bottlenecks.
+        "backup_before_upgrade": "false" // Backup ledger & wallet databases before each upgrade
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
