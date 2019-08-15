@@ -169,6 +169,7 @@ curl -d '{
 
     | Field              | Value |
     |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
@@ -182,6 +183,7 @@ curl -d '{
 ```bash
 curl -d '{
   "action": "block_create",
+  "json_block": "true",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
@@ -197,24 +199,23 @@ curl -d '{
 ```json
 {
   "hash": "8DB5C07E0E62E9DFE8558CB9BD654A115B02245B38CD369753CECE36DAD13C05",
-  "block": "{\n
-      \"type\": \"state\",\n
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-      \"balance\": \"3618869000000000000000000000000\",\n
-      \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n
-      \"link_as_account\": \"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
-      \"signature\": \"79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205\",\n
-      \"work\": \"fbffed7c73b61367\"\n
-    }\n"
+  "block": {
+    "type": "state",
+    "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+    "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "3618869000000000000000000000000",
+    "link": "5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF",
+    "link_as_account": "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
+    "signature": "79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205",
+    "work": "fbffed7c73b61367"
+  }
 }
 ```
 
 !!! info "Additional details"
-    * The newlines (`"\n"`) in the response are for display purposes only and are ignored.
-    * Always ensure that every quotation mark is properly escaped.
-    * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly escaped for the [`process`](/commands/rpc-protocol#process) RPC command.
+    * The option `json_block`, available since V19.0, makes the RPC call return a non-stringified version of the block, which is easier to parse and always recommended.
+    * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly formatted to include in the [`process`](/commands/rpc-protocol#process) RPC command.
     * The nano\_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano\_node knows is that it is creating a block whose previous block on the account chain has hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` results in the account having a balance of `3618869000000000000000000000000`.
     * If the account's balance at block hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` was actually `5618869000000000000000000000000`, then 2 $nano$ would have been sent to `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
 
@@ -276,6 +277,7 @@ curl -d '{
 
     | Field              | Value |
     |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
@@ -289,6 +291,7 @@ curl -d '{
 ```bash
 curl -d '{
   "action": "block_create",
+  "json_block": "true",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
@@ -304,17 +307,17 @@ curl -d '{
 ```json
 {
   "hash": "350D145570578A36D3D5ADE58DC7465F4CAAF257DD55BD93055FF826057E2CDD",
-  "block": "{\n
-      \"type\": \"state\",\n
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-      \"balance\": \"11618869000000000000000000000000\",\n
-      \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",\n
-      \"link_as_account\": \"nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8\",\n
-      \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",\n
-      \"work\": \"c5cf86de24b24419\"\n
-    }\n"
+  "block": {
+    "type": "state",
+    "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+    "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "11618869000000000000000000000000",
+    "link": "CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783",
+    "link_as_account": "nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8",
+    "signature": "EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001",
+    "work": "c5cf86de24b24419"
+  }
 }
 ```
 
@@ -370,6 +373,7 @@ curl -d '{
 
     | Field              | Value |
     |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | always the constant "0" as this request is for the first block of the account |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
@@ -383,6 +387,7 @@ curl -d '{
 ```bash
 curl -d '{
   "action": "block_create",
+  "json_block": "true",
   "type": "state",
   "previous": "0",
   "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
@@ -398,17 +403,17 @@ curl -d '{
 ```json
 {
   "hash": "ED3BE5340CC9D62964B5A5F84375A06078CBEDC45FB5FA2926985D6E27D803BB",
-  "block": "{\n
-    \"type\": \"state\",\n
-    \"account\": \"nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11\",\n
-    \"previous\": \"0000000000000000000000000000000000000000000000000000000000000000\",\n
-    \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-    \"balance\": \"100\",\n
-    \"link\": \"5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99\",\n
-    \"link_as_account\": \"nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7\",\n
-    \"signature\": \"903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F\",\n
-    \"work\": \"08d09dc3405d9441\"\n
-  }\n"
+  "block": {
+    "type": "state",
+    "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "100",
+    "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+    "link_as_account": "nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7",
+    "signature": "903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F",
+    "work": "08d09dc3405d9441"
+  }
 }
 ```
 
@@ -420,23 +425,26 @@ curl -d '{
 ### Broadcasting Transactions
 
 !!! example "Broadcast using [`process`](/commands/rpc-protocol/#process) RPC command"
-    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. A successful broadcast will return the broadcasted block's hash.
+    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
+    A successful broadcast will return the broadcasted block's hash.
 
 ##### Request Example
 ```bash
 curl -d '{
   "action": "process",
-  "block": "{
-      \"type\": \"state\",
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",
-      \"balance\": \"11618869000000000000000000000000\",
-      \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",
-      \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",
-      \"work\": \"c5cf86de24b24419\"
-    }"
-  }' http://127.0.0.1:7076
+  "json_block": "true",
+  "block": {
+    "type": "state",
+    "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "100",
+    "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+    "link_as_account": "nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7",
+    "signature": "903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F",
+    "work": "08d09dc3405d9441"
+  }
+}' http://127.0.0.1:7076
 ```
 
 ##### Success Response
