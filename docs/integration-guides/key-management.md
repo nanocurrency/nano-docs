@@ -83,9 +83,9 @@ External accounting systems that track balances arriving to the node must track 
 
 #### Transaction order and correctness
 
-Transactions do not directly specify the amount of funds that will be moved, only the remaining balance after the transaction. When creating and processing blocks, ensure that you are the only entity with access to the account's private key, and no two processes are attempting to create blocks for the same account simultaneously. Failing to ensure these conditions could result in the wrong amount being transacted.
+If you are creating a batch of transactions for a single account, which can be a mix of sending and receiving funds, there is no need to wait for the confirmation of blocks **in that account** to create the next transaction. As long as a transaction is valid, it will be confirmed by the network. The transactions that follow it can only be confirmed if the previous transactions are valid.
 
-If you are creating a batch of transactions for a single account, which can be a mix of sending and receiving funds, and the above conditions are ensured, there is no need to wait for the confirmation of the blocks **from that account** to create the next transaction. As long as a transaction is valid, it will be confirmed by the network. The transactions that follow it can only be confirmed if the previous transactions are valid. However, you must always wait for the confirmation of **pending blocks** before creating the corresponding receive transaction.
+However, you must always wait for the confirmation of **pending blocks** before creating the corresponding receive transaction, to ensure it will be confirmed. Always wait for confirmation of transactions that you did not create yourself.
 
 ---
 
