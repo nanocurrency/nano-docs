@@ -335,7 +335,7 @@ curl -d '{
 
 #### First Receive Transaction
 
-The first transaction of every account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **pending** on the receiving account. If you already know the hash of the pending transaction, you can skip Step 1.
+The first transaction of an account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **pending** on the receiving account. If you already know the hash of the pending transaction, you can skip Step 1.
 
 !!! example "Step 1: Obtain the pending transaction block hash"
 
