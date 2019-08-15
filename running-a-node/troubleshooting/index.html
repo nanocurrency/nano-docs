@@ -447,6 +447,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-to-do-if-the-node-crashes-linux" title="What to do if the node crashes (Linux)" class="md-nav__link">
+    What to do if the node crashes (Linux)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#statistics-from-rpc" title="Statistics from RPC" class="md-nav__link">
     Statistics from RPC
   </a>
@@ -857,6 +864,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-to-do-if-the-node-crashes-linux" title="What to do if the node crashes (Linux)" class="md-nav__link">
+    What to do if the node crashes (Linux)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#statistics-from-rpc" title="Statistics from RPC" class="md-nav__link">
     Statistics from RPC
   </a>
@@ -982,6 +996,86 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="what-to-do-if-the-node-crashes-linux">What to do if the node crashes (Linux)<a class="headerlink" href="#what-to-do-if-the-node-crashes-linux" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Do not restart the node</p>
+<p>If your node crashes, please follow this guide before attempting to run it again.</p>
+</div>
+<p>If the node crashes, the most commonly seen message is "Segmentation fault (core dumped)". When using docker, this message will only show up in the docker logs. In any case, this is often not enough to go on in terms of figuring out what went wrong. The next steps detail what you should do to provide us with as much information as possible about the problem.</p>
+<p>When you are done gathering all information, please <a href="https://github.com/nanocurrency/nano-node/issues/new">create a new Github issue</a>, or <a href="https://chat.nano.org">reach us on Discord</a> in the <em>#support</em> channel, detailing your issue as much as possible.</p>
+<div class="admonition example">
+<p class="admonition-title">Step 1: Getting version information</p>
+<p>This command prints the node build information.</p>
+<p><strong>Not using docker:</strong>
+<div class="codehilite"><pre><span></span>./nano_node --version
+</pre></div>
+<strong>Using docker:</strong>
+<div class="codehilite"><pre><span></span>docker <span class="nb">exec</span> <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> nano_node --version
+</pre></div></p>
+<p>Example output:
+<div class="codehilite"><pre><span></span>Version 20.0
+Build Info d5abc6ab &quot;GNU C++ version &quot; &quot;7.4.0&quot; &quot;BOOST 107000&quot; BUILT &quot;Aug  6 2019&quot;
+</pre></div></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 2: Getting dmesg information</p>
+<p>Depending on the error, it is possible you do not find any useful information in this step, in which case please move on to Step 3.
+Run the following command and look for <code>nano_node</code> at the end. If you see a relevant message, gather all messages with a similar timestamp - the number within brackets on the left.</p>
+<div class="codehilite"><pre><span></span>dmesg
+</pre></div>
+
+<p>Example output:
+<div class="codehilite"><pre><span></span>[    6.336071] IPv6: ADDRCONF(NETDEV_CHANGE): wlp2s0: link becomes ready
+[    6.375123] wlp2s0: Limiting TX power to 23 (23 - 0) dBm as advertised by **:**:**:**:**:**
+[ 6141.711993] show_signal_msg: 23 callbacks suppressed
+[ 6141.711995] I/O[14487]: segfault at 1 ip 000055c69d3a1634 sp 00007f6e9332df10 error 6 in nano_node[55c69d25f000+70b000]
+[ 6141.711999] Code: 24 70 48 83 c5 10 48 89 c3 48 39 ef 74 b6 e8 e3 b8 39 00 eb af 90 41 57 41 56 41 55 41 54 49 89 fc 55 53 48 81 ec a8 00 00 00 &lt;c6&gt; 04 25 01 00 00 00 31 64 48 8b 04 25 28 00 00 00 48 89 84 24 98
+</pre></div></p>
+<p>From this output, only the last 3 lines are relevant.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 3: Getting syslog information</p>
+<p>More information might be available in syslog. Run the following command and look for the time the crash ocurred.</p>
+<div class="codehilite"><pre><span></span>cat /var/log/syslog
+</pre></div>
+
+<p>Example output:
+<div class="codehilite"><pre><span></span>Aug 15 11:56:07 ubuntu-server kernel: [6141.711993] show_signal_msg: 23 callbacks suppressed
+Aug 15 11:56:07 ubuntu-server kernel: [6141.711995] I/O[25975]: segfault at 1 ip 000055b2960e2d24 sp 00007fcff50f6fc0 error 6 in nano_node[55b295f9b000+6d8000]
+Aug 15 11:56:07 ubuntu-server kernel: [6141.711999] Code: 24 70 48 83 c5 10 48 89 c3 48 39 ef 74 b6 e8 e3 b8 39 00 eb af 90 41 57 41 56 41 55 41 54 49 89 fc 55 53 48 81 ec a8 00 00 00 &lt;c6&gt; 04 25 01 00 00 00 31 64 48 8b 04 25 28 00 00 00 48 89 84 24 98
+</pre></div></p>
+<p>Include the relevant lines from the output. In this example, the log is similar to the one from Step 2.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 4: Getting the latest node log</p>
+<p>The following command will order the log files such that the first one in the output is the most recent. If you restarted the node since the crash, then the relevant log file is not the latest one. Please be careful to give us the relevant log file.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Nano -&gt; NanoBeta if debugging a beta node</span>
+ls -dlt ~/Nano/log/* <span class="p">|</span> head
+</pre></div>
+
+<p>Please provide the complete log file.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 5: Getting a backtrace dump</p>
+<p>This command will produce some basic information about the error.</p>
+<p><strong>Not using docker</strong>:
+<div class="codehilite"><pre><span></span>./nano_node --debug_output_last_backtrace_dump &gt; nano_node_backtrace_output.txt
+</pre></div></p>
+<p><strong>Using docker</strong>:
+<div class="codehilite"><pre><span></span>mkdir -p /tmp/nano_node_crash <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
+docker <span class="nb">exec</span> <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> nano_node --debug_output_last_backtrace_dump &gt; nano_node_backtrace_output.txt
+docker <span class="nb">exec</span> <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> sh -c <span class="s1">&#39;mkdir -p crash_files; mv nano_node_crash*.txt crash_files/&#39;</span>
+docker cp <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span>:/crash_files/ . <span class="o">&amp;&amp;</span> mv crash_files/* .
+</pre></div></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Step 6: Producing the archive file</p>
+<p>See the output of this command for the name of the file you should include in your report.
+<div class="codehilite"><pre><span></span><span class="nv">FILE</span><span class="o">=</span><span class="s2">&quot;nano_node_crash_</span><span class="k">$(</span>date +<span class="s2">&quot;%Y-%m-%d_%H-%M-%S.tar.gz&quot;</span><span class="k">)</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> tar czf <span class="nv">$FILE</span> --exclude<span class="o">=</span>*.tar.gz nano_node_* <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;Created archive </span><span class="nv">$FILE</span><span class="s2">&quot;</span>
+</pre></div></p>
+</div>
+<hr />
 <h2 id="statistics-from-rpc">Statistics from RPC<a class="headerlink" href="#statistics-from-rpc" title="Permanent link">&para;</a></h2>
 <p>The "stats" RPC command can be used by external processes to query statistics, such as traffic counters. This is useful for diagnostics, monitoring and display in admin consoles. </p>
 <p>Statistics are optionally logged to separate text files.</p>
