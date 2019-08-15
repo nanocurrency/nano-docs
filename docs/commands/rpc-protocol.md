@@ -2345,7 +2345,7 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 ### unchecked_keys   
 _version 8.0+_   
-Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**.Using the optional `json_block` is recommended since v19.0.   
+Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
 
 **Request:**
 ```json
