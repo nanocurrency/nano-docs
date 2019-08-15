@@ -1393,6 +1393,10 @@ blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 </tr>
 </tbody>
 </table>
+<div class="admonition question">
+<p class="admonition-title">Prefixes: nano_ vs. xrb_</p>
+<p>As of V19.0 <strong>the Nano node only returns <code>nano_</code> addresses in all actions</strong>, but prior versions returned <code>xrb_</code> addresses. These prefixes are interchangeable — everything after the <code>_</code> remains the same. If you have an issue using one or the other prefix with any exchange or service, you can safely switch between <code>nano_</code> and <code>xrb_</code> prefixes as needed — they both represent the same account owned by your private key or seed.</p>
+</div>
 <hr />
 <h2 id="units">Units<a class="headerlink" href="#units" title="Permanent link">&para;</a></h2>
 <p>Nano can be represented using more than one unit of measurement. While the most common unit is the <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, the smallest unit is the <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span>. Below is the formula for converting between <span><span class="MathJax_Preview">raw</span><script type="math/tex">raw</script></span> and <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>.</p>
