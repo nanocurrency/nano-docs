@@ -16,6 +16,9 @@ Statistics are optionally logged to separate text files.
 
 For implementations details, please see [Statistics API](https://github.com/cryptocode/raiblocks/wiki/Statistics-API)
 
+!!! warning "Duplicate observer stats"
+    Under certain conditions, confirmations seen through the observer type stat can be duplicates. In order to get accurate data, block hashes must be tracked and validated against previously seen hashes.
+
 ### Configuration
 
 All configuration nodes and values are optional, with the default values shown in comments below:

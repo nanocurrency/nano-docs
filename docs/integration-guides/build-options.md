@@ -112,6 +112,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `CRYPTOPP_CUSTOM=ON` (more conservative building of Crypto++ for wider range of systems)
 * `NANO_SIMD_OPTIMIZATIONS=OFF` (Enable CPU-specific SIMD optimization: SSE/AVX or NEON, e.g.)
 * `NANO_SECURE_RPC=ON` (to build node with TLS)
+* `NANO_WARN_TO_ERR=ON` (*v20.0+* turn compiler warnings into errors on Linux/Mac) 
 
 **Build Node**
 
@@ -119,6 +120,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * Generate with cmake then build with your compiler
 * (\*nix) to build node without GUI execute: `make nano_node`
 * (\*nix) to build wallet with GUI execute: `make nano_wallet`
+* (\*nix) to build rpc for child/out of process execute: `make nano_rpc`
 
 **Building a package**
 
@@ -322,7 +324,7 @@ Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .
 Using 64 Native Tools Command Prompt:
 
 * Replace **%CONFIGURATION%** with one of the following: `Release`, `RelWithDebInfo`, `Debug`
-* Replace **%NETWORK%** with one of the following: `nano_beta_network`, `nano_live_network`, `ano_test_network`
+* Replace **%NETWORK%** with one of the following: `nano_beta_network`, `nano_live_network`, `nano_test_network`
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
@@ -344,7 +346,7 @@ cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PRO
 Using 64 Native Tools Command Prompt:
 
 * Replace **%CONFIGURATION%** with the build configuration specified in previous step
-* Replace **%GENERATOR** with NSIS (if installed) or zip
+* Replace **%GENERATOR** with NSIS (if installed) or ZIP
 
 ```bash 
 cpack -G %GENERATOR% -C %CONFIGURATION% 

@@ -17,12 +17,10 @@ The recommended local setup is to use Docker with a pre-built image for MkDocs a
 
 `docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material`
 
-You can also install MkDocs to serve using the following:
+You can also install MkDocs with Python 3 to serve using the following:
 
 ``` 
-pip install mkdocs
-pip install pymdown-extensions
-pip install mkdocs-material
+pip install -r requirements.txt
 mkdocs serve
 ```
 

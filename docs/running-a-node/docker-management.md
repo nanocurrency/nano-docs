@@ -140,6 +140,31 @@ Once modifications are complete, [start up the docker container again](#starting
 
 ---
 
+### Docker entrypoint support
+
+As of v20.0, the docker entry script has migrated to a command with default arguments:
+```
+Usage:
+   /entry.sh nano_node [[--]daemon] [cli_options] [-l] [-v size]
+     [--]daemon
+       start as daemon either cli [--daemon] form or short form [daemon]
+     cli_options
+       nano_node cli options <see nano_node --help>
+     -l
+       log to console <use docker logs {container}>
+     -v<size>
+       vacuum database if over size GB on startup
+   /entry.sh bash [other]
+     other
+       bash pass through
+   /entry.sh [*]
+     *
+       usage
+ default:
+   /entry.sh nano_node daemon -l
+```
+---
+
 ### RPC calls to the node
 
 You can use the RPC interface on the local host via `curl` to interact with the node.
@@ -147,13 +172,13 @@ You can use the RPC interface on the local host via `curl` to interact with the 
 For example the version of the node:
 
 ```bash
-curl -d '{ "action" : "version" }' [::1]:7076
+curl -d '{ "action" : "version" }' 127.0.0.1:7076
 ```
 
 Or the blockcount:
 
 ```bash
-curl -d '{ "action" : "block_count" }' [::1]:7076
+curl -d '{ "action" : "block_count" }' 127.0.0.1:7076
 ```
 
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
