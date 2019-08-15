@@ -56,7 +56,23 @@ When you are done gathering all information, please [create a new Github issue](
 
     From this output, only the last 3 lines are relevant.
 
-!!! example "Step 3: Getting the latest log"
+!!! example "Step 3: Getting syslog information"
+    More information might be available in syslog. Run the following command and look for the time the crash ocurred.
+
+    ```bash
+    cat /var/log/syslog
+    ```
+
+    Example output:
+    ```
+    Aug 15 11:56:07 ubuntu-server kernel: [6141.711993] show_signal_msg: 23 callbacks suppressed
+    Aug 15 11:56:07 ubuntu-server kernel: [6141.711995] I/O[25975]: segfault at 1 ip 000055b2960e2d24 sp 00007fcff50f6fc0 error 6 in nano_node[55b295f9b000+6d8000]
+    Aug 15 11:56:07 ubuntu-server kernel: [6141.711999] Code: 24 70 48 83 c5 10 48 89 c3 48 39 ef 74 b6 e8 e3 b8 39 00 eb af 90 41 57 41 56 41 55 41 54 49 89 fc 55 53 48 81 ec a8 00 00 00 <c6> 04 25 01 00 00 00 31 64 48 8b 04 25 28 00 00 00 48 89 84 24 98
+    ```
+
+    Include the relevant lines from the output. In this example, the log is similar to the one from Step 2.
+
+!!! example "Step 4: Getting the latest node log"
     The following command will order the log files such that the first one in the output is the most recent. If you restarted the node since the crash, then the relevant log file is not the latest one. Please be careful to give us the relevant log file.
 
     ```bash
@@ -66,7 +82,7 @@ When you are done gathering all information, please [create a new Github issue](
 
     Please provide the complete log file.
 
-!!! example "Step 4: Getting a backtrace dump"
+!!! example "Step 5: Getting a backtrace dump"
     This command will produce some basic information about the error.
 
     **Not using docker**:
@@ -82,7 +98,7 @@ When you are done gathering all information, please [create a new Github issue](
     docker cp ${NANO_NAME}:/crash_files/ . && mv crash_files/* .
     ```
 
-!!! example "Step 5: Producing the archive file"
+!!! example "Step 6: Producing the archive file"
     See the output of this command for the name of the file you should include in your report.
     ```bash
     FILE="nano_node_crash_$(date +"%Y-%m-%d_%H-%M-%S.tar.gz")" && tar czf $FILE --exclude=*.tar.gz nano_node_* && echo "Created archive $FILE"
