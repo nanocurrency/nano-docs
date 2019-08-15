@@ -176,9 +176,10 @@ curl -d '{
 
     | Field              | Value |
     |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
-    | `"account"`        | `"address"` used in the `account_info` call above that the block will be created for |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will send 1 $nano$ ($10^{30} raw$) to address `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`. |
     | `"link"`           | destination address the funds will move between |
@@ -189,6 +190,7 @@ curl -d '{
 ```bash
 curl -d '{
   "action": "block_create",
+  "json_block": "true",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
@@ -204,24 +206,23 @@ curl -d '{
 ```json
 {
   "hash": "8DB5C07E0E62E9DFE8558CB9BD654A115B02245B38CD369753CECE36DAD13C05",
-  "block": "{\n
-      \"type\": \"state\",\n
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-      \"balance\": \"3618869000000000000000000000000\",\n
-      \"link\": \"5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF\",\n
-      \"link_as_account\": \"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p\",\n
-      \"signature\": \"79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205\",\n
-      \"work\": \"fbffed7c73b61367\"\n
-    }\n"
+  "block": {
+    "type": "state",
+    "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+    "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "3618869000000000000000000000000",
+    "link": "5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF",
+    "link_as_account": "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
+    "signature": "79240D56231EF1885F354473733AF158DC6DA50E53836179565A20C0BE89D473ED3FF8CD11545FF0ED162A0B2C4626FD6BF84518568F8BB965A4884C7C32C205",
+    "work": "fbffed7c73b61367"
+  }
 }
 ```
 
 !!! info "Additional details"
-    * The newlines (`"\n"`) in the response are for display purposes only and are ignored.
-    * Always ensure that every quotation mark is properly escaped.
-    * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly escaped for the [`process`](/commands/rpc-protocol#process) RPC command.
+    * The option `json_block`, available since V19.0, makes the RPC call return a non-stringified version of the block, which is easier to parse and always recommended.
+    * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly formatted to include in the [`process`](/commands/rpc-protocol#process) RPC command.
     * The nano\_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano\_node knows is that it is creating a block whose previous block on the account chain has hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` results in the account having a balance of `3618869000000000000000000000000`.
     * If the account's balance at block hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` was actually `5618869000000000000000000000000`, then 2 $nano$ would have been sent to `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
 
@@ -283,11 +284,12 @@ curl -d '{
 
     | Field              | Value |
     |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | `"frontier"` from `account_info` response |
-    | `"account"`        | `"address"` used in the `account_info` call above that the block will be created for |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
-    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 $nano$ ($7 x 10^{30} raw$) based on the assumed details of the block the `"link"` hash refers to (block contents not shown in this example). |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 $nano$ ($7 \times 10^{30} raw$) based on the assumed details of the block the `"link"` hash refers to (block contents not shown in this example). |
     | `"link"`           | block hash of its paired send transaction, assumed to be a 7 $nano$ send from block hash `CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783` |
     | `"key"`            | account's private key |
 
@@ -296,6 +298,7 @@ curl -d '{
 ```bash
 curl -d '{
   "action": "block_create",
+  "json_block": "true",
   "type": "state",
   "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
@@ -311,17 +314,17 @@ curl -d '{
 ```json
 {
   "hash": "350D145570578A36D3D5ADE58DC7465F4CAAF257DD55BD93055FF826057E2CDD",
-  "block": "{\n
-      \"type\": \"state\",\n
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",\n
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",\n
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-      \"balance\": \"11618869000000000000000000000000\",\n
-      \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",\n
-      \"link_as_account\": \"nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8\",\n
-      \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",\n
-      \"work\": \"c5cf86de24b24419\"\n
-    }\n"
+  "block": {
+    "type": "state",
+    "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx",
+    "previous": "92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "11618869000000000000000000000000",
+    "link": "CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783",
+    "link_as_account": "nano_3kyb49tqpt39ekc49kbej51ecsjqnimnzw1swxz4boix4ctm93w517umuiw8",
+    "signature": "EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001",
+    "work": "c5cf86de24b24419"
+  }
 }
 ```
 
@@ -336,39 +339,119 @@ curl -d '{
     As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 !!! info "Manually receiving first block"
-    The very first transaction on an account-chain, which is always a receive, is a bit special since it doesn't have a `"previous"` block. The process however, is very similar to a conventional receive transaction.
+    The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section [First Receive Transaction](#first-receive-transaction).
 
-    | Field          | Description |
-    |                |             |
-    | previous       | Value is 0 (32 0's) |
-    | account        | Same as normal receive. |
-    | representative | Choose a reliable, trustworthy representative. |
-    | balance        | Same as normal receive. This will be the transaction amount of the pairing send. |
-    | link           | Same as normal receive. |
-    | key            | Same as normal receive. |
+---
+
+#### First Receive Transaction
+
+The first transaction of an account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **pending** on the receiving account. If you already know the hash of the pending transaction, you can skip Step 1.
+
+!!! example "Step 1: Obtain the pending transaction block hash"
+
+    Start with obtaining a list of pending transactions in your unopened account. Limit the response to the highest value transaction by using a combination of `sorting` and `count`.
+
+##### Request Example
+
+```bash
+curl -d '{
+  "action": "pending",
+  "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+  "count": "1",
+  "sorting": "true",
+  "include_only_confirmed": "true"
+}' http://127.0.0.1:7076
+```
+
+##### Success Response
+
+```json
+{
+    "blocks": {
+        "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99": "100"
+    }
+}
+```
+
+!!! example "Step 2: Build `block_create` request"
+    Using the block hash and raw transaction amount from the `pending` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The only difference between the normal receive transactions is the `"previous"` field.
+
+    For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
+
+    | Field              | Value |
+    |                    |       |
+    | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
+    | `"type"`           | always the constant `"state"` |
+    | `"previous"`       | always the constant "0" as this request is for the first block of the account |
+    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
+    | `"representative"` | `"representative"` the account address to use as [representative](/integration-guides/the-basics#representatives) for your account. Choose a reliable, trustworthy representative. |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"pending"` response above. |
+    | `"link"`           | block hash of its paired send transaction, in this case assumed to be the block `5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99` |
+    | `"key"`            | account's private key |
+
+##### Request Example
+
+```bash
+curl -d '{
+  "action": "block_create",
+  "json_block": "true",
+  "type": "state",
+  "previous": "0",
+  "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+  "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+  "balance": "100",
+  "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+  "key": "0ED82E6990A16E7AD2375AB5D54BEAABF6C676D09BEC74D9295FCAE35439F694"
+}' http://127.0.0.1:7076
+```
+
+##### Success Response
+
+```json
+{
+  "hash": "ED3BE5340CC9D62964B5A5F84375A06078CBEDC45FB5FA2926985D6E27D803BB",
+  "block": {
+    "type": "state",
+    "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "100",
+    "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+    "link_as_account": "nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7",
+    "signature": "903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F",
+    "work": "08d09dc3405d9441"
+  }
+}
+```
+
+!!! example "Step 3: Broadcast the transaction"
+    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
 
 ---
 
 ### Broadcasting Transactions
 
 !!! example "Broadcast using [`process`](/commands/rpc-protocol/#process) RPC command"
-    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. A successful broadcast will return the broadcasted block's hash.
+    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
+    A successful broadcast will return the broadcasted block's hash.
 
 ##### Request Example
 ```bash
 curl -d '{
   "action": "process",
-  "block": "{
-      \"type\": \"state\",
-      \"account\": \"nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx\",
-      \"previous\": \"92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D\",
-      \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",
-      \"balance\": \"11618869000000000000000000000000\",
-      \"link\": \"CBC911F57B6827649423C92C88C0C56637A4274FF019E77E24D61D12B5338783\",
-      \"signature\": \"EEFFE1EFCCC8F2F6F2F1B79B80ABE855939DD9D6341323186494ADEE775DAADB3B6A6A07A85511F2185F6E739C4A54F1454436E22255A542ED879FD04FEED001\",
-      \"work\": \"c5cf86de24b24419\"
-    }"
-  }' http://127.0.0.1:7076
+  "json_block": "true",
+  "block": {
+    "type": "state",
+    "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
+    "previous": "0000000000000000000000000000000000000000000000000000000000000000",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "100",
+    "link": "5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99",
+    "link_as_account": "nano_1psfnkb71rssr34sisxc5piyhufcrit68iqtp44ayixnfnkas5nsiuy58za7",
+    "signature": "903991714A55954D15C91DB75CAE2FBF1DD1A2D6DA5524AA2870F76B50A8FE8B4E3FBB53E46B9E82638104AAB3CFA71CFC36B7D676B3D6CAE84725D04E4C360F",
+    "work": "08d09dc3405d9441"
+  }
+}' http://127.0.0.1:7076
 ```
 
 ##### Success Response
