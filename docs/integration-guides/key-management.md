@@ -227,11 +227,11 @@ curl -d '{
     When not following this guide closely, the following **inappropriate sequence of events could lead to erroneous amounts sent** to a recipient.
 
     1. An account's balance, say 5 $nano$, was obtained using the [`account_balance`](/commands/rpc-protocol#account_balance) RPC command (**never use this command for transaction related operations**). This balance is valid as of hypothetical **BLOCK_A**.
-    2. By another process you control, a receive (**BLOCK_B**) was signed and broadcasted into your account-chain (race-condition).
+    1. By another process you control, a receive (**BLOCK_B**) was signed and broadcasted into your account-chain (race-condition).
     * Lets say this `receive` increased the funds on the account chain by 10 $nano$, resulting in a final balance 15 $nano$.
-    3. The account's frontier block is obtained by the [`accounts_frontiers`](/commands/rpc-protocol#accounts_frontiers) RPC command, returning the hash of **BLOCK_B**. Other transaction metadata is obtained by other RPC commands.
-    4. With the collected data, if a send transaction was created for 3 $nano$, the final balance would be computed as $5 - 3$, or 2 $nano$.
-    5. When this is broadcasted, since it is referring to the current head block on the account, **BLOCK_B**, the network would accept it. But, because the balance as of **BLOCK_B** was actually 15 $nano$, this would result in 12 $nano$ being sent to the recipient.
+    1. The account's frontier block is obtained by the [`accounts_frontiers`](/commands/rpc-protocol#accounts_frontiers) RPC command, returning the hash of **BLOCK_B**. Other transaction metadata is obtained by other RPC commands.
+    1. With the collected data, if a send transaction was created for 3 $nano$, the final balance would be computed as $5 - 3$, or 2 $nano$.
+    1. When this is broadcasted, since it is referring to the current head block on the account, **BLOCK_B**, the network would accept it. But, because the balance as of **BLOCK_B** was actually 15 $nano$, this would result in 12 $nano$ being sent to the recipient.
 
     For this reason, **only populate transaction data source from a single [`account_info`](/commands/rpc-protocol#account_info) RPC call**.
 
@@ -541,8 +541,8 @@ Prv: 1F6FEB5D1E05C10B904E1112F430C3FA93ACC7067206B63AD155199501794E3E
     The nano\_node responds with three pieces of information:
     
     1. The seed of the wallet (back this up).
-    2. The pairing public address
-    3. The private key (deterministically derived from seed) of accounts within the wallet.
+    1. The pairing public address
+    1. The private key (deterministically derived from seed) of accounts within the wallet.
 
     Additional notes:
 
