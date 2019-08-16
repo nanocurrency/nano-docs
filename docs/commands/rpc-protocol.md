@@ -10,14 +10,15 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ## Node RPCs
 
 !!! warning "Unconfirmed blocks returned"
-    Unless otherwise specified, RPC calls can return unconfirmed blocks and related details. In the most important cases where balances or similar details may include unconfirmed amounts, additional warnings have been included.
+    Unless otherwise specified, RPC calls can return unconfirmed blocks and related details. In the most important cases where balances or similar details may include unconfirmed amounts, additional warnings have been included. Refer to [Block confirmation procedures](/integration-guides/key-management/#block-confirmation-procedures) for details.
 
 ---
 
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
---8<-- "includes-unconfirmed.md"
+--8<-- "unconfirmed-information.md"
+    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
 
 **Request:**
 ```json 
@@ -125,7 +126,8 @@ If the `count` limit results in stopping before the end of the account chain, th
 ### account_info
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  
 
---8<-- "includes-unconfirmed.md"
+--8<-- "unconfirmed-information.md"
+    The balance is obtained from the frontier, which may be unconfirmed. As long as you follow the [guidelines](/integration-guides/key-management/#transaction-order-and-correctness), you can rely on the **balance** for the purposes of creating transactions for this account. If the frontier is never confirmed, then the blocks that proceed it will also never be confirmed.
 
 **Request:**
 ```json
@@ -243,7 +245,8 @@ Returns the voting weight for **account**
 ### accounts_balances  
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
 
---8<-- "includes-unconfirmed.md"
+--8<-- "unconfirmed-information.md"
+    The pending balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
 
 **Request:**
 ```json
@@ -274,6 +277,8 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 
 ### accounts_frontiers  
 Returns a list of pairs of account and block hash representing the head block for **accounts list**  
+
+--8<-- "includes-unconfirmed.md"
 
 **Request:**
 ```json
