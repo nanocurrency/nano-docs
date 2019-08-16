@@ -81,7 +81,14 @@ If the need arises to manually trigger a block confirmation, either due to missi
 
 External accounting systems that track balances arriving to the node must track hashes of blocks that have been received in order to guarantee idempotency. Once confirmation of a block has been validated, the block hash should be recorded for the account along with any credits, debits or other related information. Any attempts to credit or debit accounts external to the node should check that no previous conflicting or duplicate activity was already recorded for that same block hash.
 
+#### Transaction order and correctness
+
+If you are creating a batch of transactions for a single account, which can be a mix of sending and receiving funds, there is no need to wait for the confirmation of blocks **in that account** to create the next transaction. As long as a transaction is valid, it will be confirmed by the network. The transactions that follow it can only be confirmed if the previous transactions are valid.
+
+However, you must always wait for the confirmation of **pending blocks** before creating the corresponding receive transaction, to ensure it will be confirmed. Always wait for confirmation of transactions that you did not create yourself.
+
 ---
+
 ### Expanding Private Keys
 
 A Nano private key is a 256-bit piece of data produced from a cryptographically secure random number generator.
@@ -227,7 +234,7 @@ curl -d '{
 
     When not following this guide closely, the following **inappropriate sequence of events could lead to erroneous amounts sent** to a recipient.
 
-    1. An account's balance, say 5 $nano$, was obtained using the [`account_balance`](/commands/rpc-protocol#account_balance) RPC command (**never use this command for transaction related operations**). This balance is valid as of hypothetical **BLOCK_A**.
+    1. An account's balance, say 5 $nano$, was obtained using the [`account_balance`](/commands/rpc-protocol#account_balance). This balance is valid as of hypothetical **BLOCK_A**.
     1. By another process you control, a receive (**BLOCK_B**) was signed and broadcasted into your account-chain (race-condition).
     * Lets say this `receive` increased the funds on the account chain by 10 $nano$, resulting in a final balance 15 $nano$.
     1. The account's frontier block is obtained by the [`accounts_frontiers`](/commands/rpc-protocol#accounts_frontiers) RPC command, returning the hash of **BLOCK_B**. Other transaction metadata is obtained by other RPC commands.
