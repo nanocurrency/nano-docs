@@ -576,6 +576,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#transaction-order-and-correctness" title="Transaction order and correctness" class="md-nav__link">
+    Transaction order and correctness
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1062,6 +1069,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#transaction-order-and-correctness" title="Transaction order and correctness" class="md-nav__link">
+    Transaction order and correctness
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1284,6 +1298,9 @@ Derived Address:
 <p>If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the <a href="/commands/rpc-protocol#block_confirm"><code>block_confirm</code></a> RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.</p>
 <h4 id="tracking-confirmed-balances">Tracking confirmed balances<a class="headerlink" href="#tracking-confirmed-balances" title="Permanent link">&para;</a></h4>
 <p>External accounting systems that track balances arriving to the node must track hashes of blocks that have been received in order to guarantee idempotency. Once confirmation of a block has been validated, the block hash should be recorded for the account along with any credits, debits or other related information. Any attempts to credit or debit accounts external to the node should check that no previous conflicting or duplicate activity was already recorded for that same block hash.</p>
+<h4 id="transaction-order-and-correctness">Transaction order and correctness<a class="headerlink" href="#transaction-order-and-correctness" title="Permanent link">&para;</a></h4>
+<p>If you are creating a batch of transactions for a single account, which can be a mix of sending and receiving funds, there is no need to wait for the confirmation of blocks <strong>in that account</strong> to create the next transaction. As long as a transaction is valid, it will be confirmed by the network. The transactions that follow it can only be confirmed if the previous transactions are valid.</p>
+<p>However, you must always wait for the confirmation of <strong>pending blocks</strong> before creating the corresponding receive transaction, to ensure it will be confirmed. Always wait for confirmation of transactions that you did not create yourself.</p>
 <hr />
 <h3 id="expanding-private-keys">Expanding Private Keys<a class="headerlink" href="#expanding-private-keys" title="Permanent link">&para;</a></h3>
 <p>A Nano private key is a 256-bit piece of data produced from a cryptographically secure random number generator.</p>
@@ -1449,7 +1466,7 @@ Derived Address:
 <p>Since only the resulting balance is recorded, the transaction amount is interpreted as the difference in balance from the previous block on the account-chain and the newly created block. For this reason, it is crucial that you obtain the current account balance and headblock in the same atomic <a href="/commands/rpc-protocol#account_info"><code>account_info</code></a> RPC command.</p>
 <p>When not following this guide closely, the following <strong>inappropriate sequence of events could lead to erroneous amounts sent</strong> to a recipient.</p>
 <ol>
-<li>An account's balance, say 5 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, was obtained using the <a href="/commands/rpc-protocol#account_balance"><code>account_balance</code></a> RPC command (<strong>never use this command for transaction related operations</strong>). This balance is valid as of hypothetical <strong>BLOCK_A</strong>.</li>
+<li>An account's balance, say 5 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, was obtained using the <a href="/commands/rpc-protocol#account_balance"><code>account_balance</code></a>. This balance is valid as of hypothetical <strong>BLOCK_A</strong>.</li>
 <li>By another process you control, a receive (<strong>BLOCK_B</strong>) was signed and broadcasted into your account-chain (race-condition).</li>
 <li>Lets say this <code>receive</code> increased the funds on the account chain by 10 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>, resulting in a final balance 15 <span><span class="MathJax_Preview">nano</span><script type="math/tex">nano</script></span>.</li>
 <li>The account's frontier block is obtained by the <a href="/commands/rpc-protocol#accounts_frontiers"><code>accounts_frontiers</code></a> RPC command, returning the hash of <strong>BLOCK_B</strong>. Other transaction metadata is obtained by other RPC commands.</li>
