@@ -18,7 +18,7 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
 --8<-- "unconfirmed-information.md"
-    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. Prefer using [account_info](#account_info) for the purposes of creating transactions.
+    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
 
 **Request:**
 ```json 
@@ -246,7 +246,7 @@ Returns the voting weight for **account**
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
 
 --8<-- "unconfirmed-information.md"
-    The pending balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. Prefer using [account_info](#account_info) for the purposes of creating transactions.
+    The pending balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
 
 **Request:**
 ```json
