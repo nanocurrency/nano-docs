@@ -3994,21 +3994,22 @@ Boolean, false by default. Include active blocks without finished confirmations 
 Boolean, false by default. Only returns hashes which have their confirmation height set or are undergoing confirmation height processing.</p>
 <hr />
 <h3 id="process">process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h3>
-<p>Publish <strong>block</strong> to the network  </p>
+<p>Publish <strong>block</strong> to the network. Using the optional <code>json_block</code> is recommended since v19.0.  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="s2">&quot;{</span>
-<span class="s2">    \&quot;type\&quot;: \&quot;state\&quot;,</span>
-<span class="s2">    \&quot;account\&quot;: \&quot;nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\&quot;,</span>
-<span class="s2">    \&quot;previous\&quot;: \&quot;6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766\&quot;,</span>
-<span class="s2">    \&quot;representative\&quot;: \&quot;nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh\&quot;,</span>
-<span class="s2">    \&quot;balance\&quot;: \&quot;40200000001000000000000000000000000\&quot;,</span>
-<span class="s2">    \&quot;link\&quot;: \&quot;87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9\&quot;,</span>
-<span class="s2">    \&quot;link_as_account\&quot;: \&quot;nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd\&quot;,</span>
-<span class="s2">    \&quot;signature\&quot;: \&quot;A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07\&quot;,</span>
-<span class="s2">    \&quot;work\&quot;: \&quot;000bc55b014e807d\&quot;</span>
-<span class="s2">  }&quot;</span>
+  <span class="nt">&quot;json_block&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;40200000001000000000000000000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;000bc55b014e807d&quot;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
