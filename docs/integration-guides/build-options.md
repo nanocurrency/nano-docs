@@ -5,6 +5,8 @@
 **OS Binaries**  
 Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases) as well as on [Nano.org](https://nano.org/en).
 
+--8<-- "known-issues-v19.md"
+
 **Other sources**  
 The node can be also be installed from other sources including [Docker](/running-a-node/node-setup#installing-docker) and RHEL/CentOS rpm:
 ```
