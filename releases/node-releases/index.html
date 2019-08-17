@@ -1011,6 +1011,16 @@
 </tr>
 </tbody>
 </table>
+<details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
+<ul>
+<li>
+<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
+</li>
+<li>
+<p><strong>Solution:</strong> For now a workaround is needed to increase the limit. The method depends on the specific macOS version, but some people had success with the recipe in <a href="https://superuser.com/a/1171028">https://superuser.com/a/1171028</a>.</p>
+</li>
+</ul>
+</details>
 <hr />
 <h2 id="next-planned-release">Next Planned Release<a class="headerlink" href="#next-planned-release" title="Permanent link">&para;</a></h2>
 <p>The following release is currently under development. Details about potential features to be included can be found on the <a href="/releases/upcoming-features">Upcoming Features page</a>.</p>

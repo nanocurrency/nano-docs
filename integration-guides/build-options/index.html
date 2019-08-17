@@ -1287,6 +1287,16 @@
 <h2 id="official-release-builds">Official release builds<a class="headerlink" href="#official-release-builds" title="Permanent link">&para;</a></h2>
 <p><strong>OS Binaries</strong><br />
 Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related <a href="https://github.com/nanocurrency/nano-node/releases">GitHub Release</a> as well as on <a href="https://nano.org/en">Nano.org</a>.</p>
+<details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
+<ul>
+<li>
+<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
+</li>
+<li>
+<p><strong>Solution:</strong> For now a workaround is needed to increase the limit. The method depends on the specific macOS version, but some people had success with the recipe in <a href="https://superuser.com/a/1171028">https://superuser.com/a/1171028</a>.</p>
+</li>
+</ul>
+</details>
 <p><strong>Other sources</strong><br />
 The node can be also be installed from other sources including <a href="/running-a-node/node-setup#installing-docker">Docker</a> and RHEL/CentOS rpm:
 <div class="codehilite"><pre><span></span>sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo
