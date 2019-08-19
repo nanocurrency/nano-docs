@@ -188,12 +188,12 @@ On startup, the node will generate configuration options for IPC, one entry for 
    "tcp": {
        "enable": "false",
        "port": "7077",
-       "io_timeout": "15000"
+       "io_timeout": "15" // seconds
    },
    "local": {
        "enable": "false",
        "path": "\/tmp\/nano",
-       "io_timeout": "15000"
+       "io_timeout": "15" // seconds
      }
 },
 ```
