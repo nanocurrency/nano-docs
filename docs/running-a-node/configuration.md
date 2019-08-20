@@ -122,7 +122,8 @@ This is the main configuration file for controlling node behavior. Below is an e
         "vote_generator_threshold": "3", // Defines the point at which the node will delay sending votes for another vote_generator_delay. Allows for more hashes to be bundled under load
         "active_elections_size": "50000", // Limits number of active elections in container before dropping will be considered (other conditions must also be satisfied), minimum value allowed is 250.
         "conf_height_processor_batch_min_time": "50", // Amount of time in ms to batch setting confirmation heights for accounts during high tps to reduce write I/O bottlenecks.
-        "backup_before_upgrade": "false" // Backup ledger & wallet databases before each upgrade
+        "backup_before_upgrade": "false", // Backup ledger & wallet databases before each upgrade
+        "work_watcher_period": "5" // Time between checks for confirmation and re-generating higher difficulty work if unconfirmed, for blocks in the work watcher
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
