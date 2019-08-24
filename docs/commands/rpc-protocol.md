@@ -119,7 +119,7 @@ If the `count` limit results in stopping before the end of the account chain, th
 - `head` (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   
 - `offset` (decimal integer): skips a number of blocks starting from `head` (if given). Not often used. _Available since version 11.0_    
 - `reverse` (bool): if set to `true` instead of the default `false`, the response starts from `head` (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). **Note**: the field `previous` in the response changes to `next`. _Available since version 19.0_  
-- `account_filter` (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s). _Available since version 19.0_  **Note:** In v19 account_filter only returns matching send blocks, will be fixed in v20 to include both send and receive matches.
+- `account_filter` (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s). _Available since version 19.0_. **Note:** In v19.0, this option does not handle receive blocks; fixed in v20.0.
 
 ---
 
