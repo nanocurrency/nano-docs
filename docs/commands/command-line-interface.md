@@ -83,9 +83,6 @@ Profile signature verification
 ### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
 _[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics
 
-### --delete_node_id
-Delete the node ID in the database
-
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
@@ -108,14 +105,14 @@ Clear record history for long term online weight trending
 Clear cached peers
 
 ### --snapshot
-Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--delete_node_id`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
+Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
 Optional `--confirmation_height_clear` in version 19.0+
 
 ### --unchecked_clear
 Clear unchecked blocks
 
 ### --vacuum
-Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--delete_node_id`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
+Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
 
 ### --version    
 Prints out version
