@@ -3994,7 +3994,7 @@ Boolean, false by default. Include active blocks without finished confirmations 
 Boolean, false by default. Only returns hashes which have their confirmation height set or are undergoing confirmation height processing.</p>
 <hr />
 <h3 id="process">process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h3>
-<p>Publish <strong>block</strong> to the network. Using the optional <code>json_block</code> is recommended since v19.0.  </p>
+<p>Publish <strong>block</strong> to the network. Using the optional <code>json_block</code> is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional <code>watch_work</code>).  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span>
@@ -4026,6 +4026,9 @@ String, empty by default. Additional check for state blocks subtype (send/receiv
 <p><strong>Optional "json_block"</strong></p>
 <p><em>version 19.0+</em><br />
 Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.</p>
+<p><strong>Optional "watch_work"</strong></p>
+<p><em>version 20.0+</em><br />
+Default "true". If "true", <strong>block</strong> will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using <a href="#send">send</a>, <a href="#receive">receive</a> and <a href="#account_representative_set">account_representative_set</a>, including republishing and rework if confirmation is delayed (default is 5 seconds, set by <code>work_watcher_period</code> config entry) and if <a href="#active_difficulty">active_difficulty</a> is higher than the block's PoW difficulty.</p>
 <hr />
 <h3 id="representatives">representatives<a class="headerlink" href="#representatives" title="Permanent link">&para;</a></h3>
 <p>Returns a list of pairs of representative and its voting weight  </p>
