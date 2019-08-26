@@ -348,7 +348,7 @@ cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PRO
 Using 64 Native Tools Command Prompt:
 
 * Replace **%CONFIGURATION%** with the build configuration specified in previous step
-* Replace **%GENERATOR** with NSIS (if installed) or ZIP
+* Replace **%GENERATOR%** with NSIS (if installed) or ZIP
 
 ```bash 
 cpack -G %GENERATOR% -C %CONFIGURATION% 
