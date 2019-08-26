@@ -99,8 +99,8 @@ docker run --restart=unless-stopped -d \
 ### Development Build 6 for V20.0 (V20.0DB6)
 V20.0DB6 is the latest build available for the beta network.
 
-**Read-only Test Cases**
-[Test Cases](/testcases/cases.html)  |  [TOML Config](/testcases/TOML%20Config.html)  |  [DB6 Results](/testcases/DB6%20results.html)
+**Read-only Test Cases**  
+[Test Cases](/testcases/Cases.html)  |  [TOML Config](/testcases/TOML%20Config.html)  |  [DB6 Results](/testcases/DB6%20results.html)  
 _Last updated: 2019-08-26_
 
 If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
