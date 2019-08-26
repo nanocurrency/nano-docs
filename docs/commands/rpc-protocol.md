@@ -1798,7 +1798,7 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 **Optional "watch_work"**
 
 _version 20.0+_  
-Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework after 5 seconds without confirmation (by default), if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
 
 ---
 
