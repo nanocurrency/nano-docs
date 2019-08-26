@@ -2669,7 +2669,7 @@ The pending balance is calculated from potentially unconfirmed blocks. The accou
 <li><code>head</code> (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   </li>
 <li><code>offset</code> (decimal integer): skips a number of blocks starting from <code>head</code> (if given). Not often used. <em>Available since version 11.0</em>    </li>
 <li><code>reverse</code> (bool): if set to <code>true</code> instead of the default <code>false</code>, the response starts from <code>head</code> (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). <strong>Note</strong>: the field <code>previous</code> in the response changes to <code>next</code>. <em>Available since version 19.0</em>  </li>
-<li><code>account_filter</code> (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s) <em>Available since version 19.0</em>  </li>
+<li><code>account_filter</code> (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s). <em>Available since version 19.0</em>. <strong>Note:</strong> In v19.0, this option does not handle receive blocks; fixed in v20.0.</li>
 </ul>
 <hr />
 <h3 id="account_info">account_info<a class="headerlink" href="#account_info" title="Permanent link">&para;</a></h3>
