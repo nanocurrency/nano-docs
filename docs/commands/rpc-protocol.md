@@ -1754,7 +1754,7 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ---
 
 ### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0.  
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
 
 **Request:**
 ```json
@@ -1794,6 +1794,11 @@ String, empty by default. Additional check for state blocks subtype (send/receiv
 
 _version 19.0+_  
 Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
+
+**Optional "watch_work"**
+
+_version 20.0+_  
+Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework after 5 seconds without confirmation (by default), if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
 
 ---
 
