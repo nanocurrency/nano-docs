@@ -993,7 +993,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation-info)  
+Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1046,6 +1046,9 @@ Returns the hash of the block which is having the confirmation height set for, e
 ---
 
 ### confirmation_history  
+
+--8<-- "debug-only-command.md"
+
 _version 12.0+  
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time   
