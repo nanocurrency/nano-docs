@@ -285,17 +285,14 @@ complex and unfamiliar confirmations metric in other cryptocurrencies.
 
 ### Creating an Account
 
-To create an account, you need to issue an *open* transaction
-(Figure [\[code:open\]](#code:open){reference-type="ref"
-reference="code:open"}). An open transaction is always the first
+To create an account, you need to issue an *open* transaction.
+An open transaction is always the first
 transaction of every account-chain and can be created upon the first
 receipt of funds. The *account* field stores the public-key (address)
 derived from the private-key that is used for signing. The *source*
 field contains the hash of the transaction that sent the funds. On
 account creation, a representative must be chosen to vote on your
-behalf; this can be changed later
-(Section [4.6](#sec:change){reference-type="ref"
-reference="sec:change"}). The account can declare itself as its own
+behalf; this can be changed later. The account can declare itself as its own
 representative.
 
 ```
@@ -312,9 +309,7 @@ open {
 ### Account Balance
 
 The account balance is recorded within the ledger itself. Rather than
-recording the amount of a transaction, verification
-(Section [4.9](#sec:transaction_verification){reference-type="ref"
-reference="sec:transaction_verification"}) requires checking the
+recording the amount of a transaction, verification requires checking the
 difference between the balance at the send block and the balance of the
 preceding block. The receiving account may then increment the previous
 balance as measured into the final balance given in the new receive
@@ -325,9 +320,7 @@ given.
 ### Sending From an Account
 
 To send from an address, the address must already have an existing open
-block, and therefore a balance
-(Figure [\[code:send\]](#code:send){reference-type="ref"
-reference="code:send"}). The *previous* field contains the hash of the
+block, and therefore a balance. The *previous* field contains the hash of the
 previous block in the account-chain. The *destination* field contains
 the account for funds to be sent to. A send block is immutable once
 confirmed. Once broadcasted to the network, funds are immediately
@@ -351,9 +344,7 @@ send {
 ### Receiving a Transaction
 
 To complete a transaction, the recipient of sent funds must create a
-receive block on their own account-chain
-(Figure [\[code:receive\]](#code:receive){reference-type="ref"
-reference="code:receive"}). The source field references the hash of the
+receive block on their own account-chain. The source field references the hash of the
 associated send transaction. Once this block is created and broadcasted,
 the account's balance is updated and the funds have officially moved
 into their account.
@@ -379,9 +370,7 @@ giving a representative the power to vote on an account's behalf relaxes
 this requirement. Account holders have the ability to reassign consensus
 to any account at any time. A *change* transaction changes the
 representative of an account by subtracting the vote weight from the old
-representative and adding the weight to the new representative
-(Figure [\[code:change\]](#code:change){reference-type="ref"
-reference="code:change"}). No funds are moved in this transaction, and
+representative and adding the weight to the new representative. No funds are moved in this transaction, and
 the representative does not have spending power of the account's funds.
 
 ```
@@ -425,9 +414,7 @@ $$\begin{aligned}
    b^* &= \mathop{\mathrm{arg\,max}}_{b_j} v(b_j) \label{eq:most_votes}\end{aligned}$$
 
 The most popular block $b^*$ will have the majority of the votes and
-will be retained in the node's ledger
-(Equation [\[eq:most\_votes\]](#eq:most_votes){reference-type="ref"
-reference="eq:most_votes"}). The block(s) that lose the vote are
+will be retained in the node's ledger. The block(s) that lose the vote are
 discarded. If a representative replaces a block in its ledger, it will
 create a new vote with a higher sequence number and broadcast the new
 vote to the network. This is the **only** scenario where representatives
@@ -486,8 +473,7 @@ such an attack, and how RaiBlock's protocol takes preventative measures.
 
 ### Block Gap Synchronization
 
-In Section [4.7](#sec:forks){reference-type="ref"
-reference="sec:forks"}, we discussed the scenario where a block may not
+In a previous section, we discussed the scenario where a block may not
 be properly broadcasted, causing the network to ignore subsequent
 blocks. If a node observes a block that does not have the referenced
 previous block, it has two options:
@@ -555,12 +541,9 @@ extended period of time. At a certain point, the attacker performs a
 Denial of Service (DoS) by flooding the network with lots of valid
 transactions, which other nodes will process and echo as quickly as
 possible. This is an advanced version of the transaction flooding
-described in
-Section [5.2](#sec:transaction_flooding){reference-type="ref"
-reference="sec:transaction_flooding"}. Such an attack would only work
+described in the [Transaction flooding section](#transaction-flooding). Such an attack would only work
 briefly, but could be used in conjunction with other attacks, such as a
-\>50% Attack (Section [5.6](#sec:attack_50){reference-type="ref"
-reference="sec:attack_50"}) to increase effectiveness. Transaction
+\>50% Attack to increase effectiveness. Transaction
 rate-limiting and other techniques are currently being investigated to
 mitigate attacks.
 
@@ -612,9 +595,7 @@ RaiBlocks takes the following measures to prevent such an attack:
     period of time. The network is sufficiently secured through focusing
     on fast settling time to prevent ambiguous forks.
 
-A more sophisticated version of a $>50\%$ attack is detailed in Figure
-[\[fig:attack\_dist\]](#fig:attack_dist){reference-type="ref"
-reference="fig:attack_dist"}. "Offline" is the percentage of
+A more sophisticated version of a $>50\%$ attack is detailed below. "Offline" is the percentage of
 representatives who have been named but are not online to vote. "Stake"
 is the amount of investment the attacker is voting with. "Active" is
 representatives that are online and voting according to the protocol. An
@@ -625,8 +606,6 @@ and this is demonstrated by "Unsync." Finally, an attacker can gain a
 short burst in relative voting strength by switching their Denial of
 Service attack to a new set of representatives while the old set is
 re-synchronizing their ledger, this is demonstrated by "Attack."
-
-[\[fig:attack\_dist\]]{#fig:attack_dist label="fig:attack_dist"}
 
 If an attacker is able to cause Stake \>Active by a combination of these
 circumstances, they would be able to successfully flip votes on the
@@ -793,9 +772,7 @@ optionally create new transactions with private keys it holds.
 
 A node interested in creating new transactions must produce a Proof of
 Work nonce in order to pass RaiBlock's throttling mechanism. Computation
-of various hardware is benchmarked in Appendix
-[9](#sec:pow_hardware_benchmarks){reference-type="ref"
-reference="sec:pow_hardware_benchmarks"}.
+of various hardware is benchmarked in Appendix A.
 
 **Representative**
 
