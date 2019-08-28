@@ -57,25 +57,18 @@ For larger, more robust systems, external private key management is recommended.
 ---
 ### External accounting systems
 
-In order to properly implement accounting systems external to the Nano node the following best practices should be put into place which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.
+In order to properly implement accounting systems external to the Nano node the following best practices should be put into place, which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.
+
+!!! tip "Confirmation and idempotency"
+    The details below expand on this, but the two most important pieces of any integration are:
+
+    1. **Always confirm blocks** - make sure to follow the block confirmation tracking recommendations so you are always taking action from confirmed blocks
+    1. **Guarantee idempotency** - whenever you take action from a block confirmation, it must be idempotent so you don't take the action again if the same block hash is seen through confirmation tracking
 
 #### Block confirmation procedures
 
-Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. To validate confirmation on a block the following methods can be used:
+Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. Details of the recommended verification process can be found in the [block confirmation tracking guide](/integration-guides/block-confirmation-tracking).
 
-##### Block callback
-
-Setup the config file with the necessary information to receive [HTTP callbacks](/running-a-node/configuration/#http-callback) for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are `callback_address`, `callback_port` and `callback_target` in the [config.json](/running-a-node/configuration#configjson) file.
-
-To provide redundancy around callback function it is recommended to also use confirmation history polling outlined below.
-
-##### Confirmation history polling
-
-Calls to [`confirmation_history`](/commands/rpc-protocol#confirmation_history) RPC command will return a list of up to 2048 recently confirmed blocks which can be searched for the necessary hashes you wish to verify confirmation for. Consistent polling of `confirmation_history` is recommended to capture confirmations on all blocks on the network.
-
-##### Block confirmation request
-
-If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the [`block_confirm`](/commands/rpc-protocol#block_confirm) RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.
 
 #### Tracking confirmed balances
 

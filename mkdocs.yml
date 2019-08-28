@@ -28,6 +28,7 @@ nav:
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
+    - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
     - Build Options: integration-guides/build-options.md
     - Advanced: integration-guides/advanced.md
   - Commands:
