@@ -8,7 +8,7 @@ A primary function of any integration is to track confirmation of blocks on the 
 
 ### Receiving notifications of confirmation
 
-The recommended method for receiving notifications is via WebSockets through the confirmation topic. This method involves sending a subscribe command to start receiving notifications every time a block is confirmed by the network. The Type filtering options on this topic allow subscribing to only a subset of confirmations, but due to uncertainty about how confirmation of a block will occur (through direct voting or as a dependent for example) it is recommended that the default subscription be used to accept notifications for all confirmation types.
+The recommended method for receiving notifications is via WebSockets through the confirmation `topic`. This method involves sending a subscribe command to start receiving notifications every time a block is confirmed by the network. It is recommended that the `confirmation_type` filtering options are not used for this purpose, to make it less likely to miss a notification.
 
 **Setup process**
 
