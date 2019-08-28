@@ -747,6 +747,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../block-confirmation-tracking/" title="Block Confirmation Tracking" class="md-nav__link">
+      Block Confirmation Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../build-options/" title="Build Options" class="md-nav__link">
       Build Options
     </a>
@@ -1286,16 +1298,17 @@ Derived Address:
 </div>
 <hr />
 <h3 id="external-accounting-systems">External accounting systems<a class="headerlink" href="#external-accounting-systems" title="Permanent link">&para;</a></h3>
-<p>In order to properly implement accounting systems external to the Nano node the following best practices should be put into place which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.</p>
+<p>In order to properly implement accounting systems external to the Nano node the following best practices should be put into place, which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.</p>
+<div class="admonition tip">
+<p class="admonition-title">Confirmation and idempotency</p>
+<p>The details below expand on this, but the two most important pieces of any integration are:</p>
+<ol>
+<li><strong>Always confirm blocks</strong> - make sure to follow the block confirmation tracking recommendations so you are always taking action from confirmed blocks</li>
+<li><strong>Guarantee idempotency</strong> - whenever you take action from a block confirmation, it must be idempotent so you don't take the action again if the same block hash is seen through confirmation tracking</li>
+</ol>
+</div>
 <h4 id="block-confirmation-procedures">Block confirmation procedures<a class="headerlink" href="#block-confirmation-procedures" title="Permanent link">&para;</a></h4>
-<p>Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. To validate confirmation on a block the following methods can be used:</p>
-<h5>Block callback</h5>
-<p>Setup the config file with the necessary information to receive <a href="/running-a-node/configuration/#http-callback">HTTP callbacks</a> for all blocks that have reached quorum on the network and are thus confirmed. The config values requiring update to configure this are <code>callback_address</code>, <code>callback_port</code> and <code>callback_target</code> in the <a href="/running-a-node/configuration#configjson">config.json</a> file.</p>
-<p>To provide redundancy around callback function it is recommended to also use confirmation history polling outlined below.</p>
-<h5>Confirmation history polling</h5>
-<p>Calls to <a href="/commands/rpc-protocol#confirmation_history"><code>confirmation_history</code></a> RPC command will return a list of up to 2048 recently confirmed blocks which can be searched for the necessary hashes you wish to verify confirmation for. Consistent polling of <code>confirmation_history</code> is recommended to capture confirmations on all blocks on the network.</p>
-<h5>Block confirmation request</h5>
-<p>If the need arises to manually trigger a block confirmation, either due to missing a confirmation notification or node restart, the <a href="/commands/rpc-protocol#block_confirm"><code>block_confirm</code></a> RPC command can be called. This will start the confirmation process on the network and results can be discovered through the resulting callbacks and confirmation history polling mentioned above.</p>
+<p>Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. Details of the recommended verification process can be found in the <a href="/integration-guides/block-confirmation-tracking">block confirmation tracking guide</a>.</p>
 <h4 id="tracking-confirmed-balances">Tracking confirmed balances<a class="headerlink" href="#tracking-confirmed-balances" title="Permanent link">&para;</a></h4>
 <p>External accounting systems that track balances arriving to the node must track hashes of blocks that have been received in order to guarantee idempotency. Once confirmation of a block has been validated, the block hash should be recorded for the account along with any credits, debits or other related information. Any attempts to credit or debit accounts external to the node should check that no previous conflicting or duplicate activity was already recorded for that same block hash.</p>
 <h4 id="transaction-order-and-correctness">Transaction order and correctness<a class="headerlink" href="#transaction-order-and-correctness" title="Permanent link">&para;</a></h4>
@@ -2088,13 +2101,13 @@ On success, the nano_node returns the hashes of all republished blocks.</p>
           </a>
         
         
-          <a href="../build-options/" title="Build Options" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../block-confirmation-tracking/" title="Block Confirmation Tracking" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Build Options
+                Block Confirmation Tracking
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

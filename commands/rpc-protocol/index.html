@@ -487,6 +487,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../integration-guides/block-confirmation-tracking/" title="Block Confirmation Tracking" class="md-nav__link">
+      Block Confirmation Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../integration-guides/build-options/" title="Build Options" class="md-nav__link">
       Build Options
     </a>
@@ -3377,7 +3389,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 <hr />
 <h3 id="confirmation_active">confirmation_active<a class="headerlink" href="#confirmation_active" title="Permanent link">&para;</a></h3>
 <p><em>version 16.0+</em> <br />
-Returns list of active elections roots (excluding stopped &amp; aborted elections). Find info about specific root with <a href="#confirmation-info">confirmation_info</a>  </p>
+Returns list of active elections roots (excluding stopped &amp; aborted elections). Find info about specific root with <a href="#confirmation_info">confirmation_info</a>  </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The roots provided are two parts and differ between the first account block and subsequent blocks:</p>
@@ -3420,6 +3432,10 @@ Returns list of active elections roots (excluding stopped &amp; aborted election
 </pre></div></p>
 <hr />
 <h3 id="confirmation_history">confirmation_history<a class="headerlink" href="#confirmation_history" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Debug purposes only</p>
+<p>This call is for internal diagnostics/debug purposes only. Do not rely on this interface being stable and do not use in a production system.</p>
+</div>
 <p><em>version 12.0+<br />
 duration, time, confirmation_stats: version 17.0+</em> <br />
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time   </p>
