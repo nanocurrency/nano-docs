@@ -1342,17 +1342,14 @@ receive blocks. Unsettled transactions have not yet been incorporated in
 to the receiver's cumulative balance. This is a replacement for the more
 complex and unfamiliar confirmations metric in other cryptocurrencies.</p>
 <h3 id="creating-an-account">Creating an Account<a class="headerlink" href="#creating-an-account" title="Permanent link">&para;</a></h3>
-<p>To create an account, you need to issue an <em>open</em> transaction
-(Figure <a href="#code:open">[code:open]</a>{reference-type="ref"
-reference="code:open"}). An open transaction is always the first
+<p>To create an account, you need to issue an <em>open</em> transaction.
+An open transaction is always the first
 transaction of every account-chain and can be created upon the first
 receipt of funds. The <em>account</em> field stores the public-key (address)
 derived from the private-key that is used for signing. The <em>source</em>
 field contains the hash of the transaction that sent the funds. On
 account creation, a representative must be chosen to vote on your
-behalf; this can be changed later
-(Section <a href="#sec:change">4.6</a>{reference-type="ref"
-reference="sec:change"}). The account can declare itself as its own
+behalf; this can be changed later. The account can declare itself as its own
 representative.</p>
 <div class="codehilite"><pre><span></span>open {
    account: DC04354B1...AE8FA2661B2,
@@ -1366,9 +1363,7 @@ representative.</p>
 
 <h3 id="account-balance">Account Balance<a class="headerlink" href="#account-balance" title="Permanent link">&para;</a></h3>
 <p>The account balance is recorded within the ledger itself. Rather than
-recording the amount of a transaction, verification
-(Section <a href="#sec:transaction_verification">4.9</a>{reference-type="ref"
-reference="sec:transaction_verification"}) requires checking the
+recording the amount of a transaction, verification requires checking the
 difference between the balance at the send block and the balance of the
 preceding block. The receiving account may then increment the previous
 balance as measured into the final balance given in the new receive
@@ -1377,9 +1372,7 @@ volumes of blocks. When requesting account history, amounts are already
 given.</p>
 <h3 id="sending-from-an-account">Sending From an Account<a class="headerlink" href="#sending-from-an-account" title="Permanent link">&para;</a></h3>
 <p>To send from an address, the address must already have an existing open
-block, and therefore a balance
-(Figure <a href="#code:send">[code:send]</a>{reference-type="ref"
-reference="code:send"}). The <em>previous</em> field contains the hash of the
+block, and therefore a balance. The <em>previous</em> field contains the hash of the
 previous block in the account-chain. The <em>destination</em> field contains
 the account for funds to be sent to. A send block is immutable once
 confirmed. Once broadcasted to the network, funds are immediately
@@ -1400,9 +1393,7 @@ transaction.</p>
 
 <h3 id="receiving-a-transaction">Receiving a Transaction<a class="headerlink" href="#receiving-a-transaction" title="Permanent link">&para;</a></h3>
 <p>To complete a transaction, the recipient of sent funds must create a
-receive block on their own account-chain
-(Figure <a href="#code:receive">[code:receive]</a>{reference-type="ref"
-reference="code:receive"}). The source field references the hash of the
+receive block on their own account-chain. The source field references the hash of the
 associated send transaction. Once this block is created and broadcasted,
 the account's balance is updated and the funds have officially moved
 into their account.</p>
@@ -1425,9 +1416,7 @@ giving a representative the power to vote on an account's behalf relaxes
 this requirement. Account holders have the ability to reassign consensus
 to any account at any time. A <em>change</em> transaction changes the
 representative of an account by subtracting the vote weight from the old
-representative and adding the weight to the new representative
-(Figure <a href="#code:change">[code:change]</a>{reference-type="ref"
-reference="code:change"}). No funds are moved in this transaction, and
+representative and adding the weight to the new representative. No funds are moved in this transaction, and
 the representative does not have spending power of the account's funds.</p>
 <div class="codehilite"><pre><span></span>change {
    previous: DC04354B1...AE8FA2661B2,
@@ -1468,9 +1457,7 @@ winning block.</p>
    b^* &= \mathop{\mathrm{arg\,max}}_{b_j} v(b_j) \label{eq:most_votes}\end{aligned}</script>
 </div>
 <p>The most popular block <span><span class="MathJax_Preview">b^*</span><script type="math/tex">b^*</script></span> will have the majority of the votes and
-will be retained in the node's ledger
-(Equation <a href="#eq:most_votes">[eq:most_votes]</a>{reference-type="ref"
-reference="eq:most_votes"}). The block(s) that lose the vote are
+will be retained in the node's ledger. The block(s) that lose the vote are
 discarded. If a representative replaces a block in its ledger, it will
 create a new vote with a higher sequence number and broadcast the new
 vote to the network. This is the <strong>only</strong> scenario where representatives
@@ -1526,8 +1513,7 @@ malicious parties for attempted financial gain or system demise. In this
 section we outline a few possible attack scenarios, the consequences of
 such an attack, and how RaiBlock's protocol takes preventative measures.</p>
 <h3 id="block-gap-synchronization">Block Gap Synchronization<a class="headerlink" href="#block-gap-synchronization" title="Permanent link">&para;</a></h3>
-<p>In Section <a href="#sec:forks">4.7</a>{reference-type="ref"
-reference="sec:forks"}, we discussed the scenario where a block may not
+<p>In a previous section, we discussed the scenario where a block may not
 be properly broadcasted, causing the network to ignore subsequent
 blocks. If a node observes a block that does not have the referenced
 previous block, it has two options:</p>
@@ -1589,12 +1575,9 @@ extended period of time. At a certain point, the attacker performs a
 Denial of Service (DoS) by flooding the network with lots of valid
 transactions, which other nodes will process and echo as quickly as
 possible. This is an advanced version of the transaction flooding
-described in
-Section <a href="#sec:transaction_flooding">5.2</a>{reference-type="ref"
-reference="sec:transaction_flooding"}. Such an attack would only work
+described in the <a href="#transaction-flooding">Transaction flooding section</a>. Such an attack would only work
 briefly, but could be used in conjunction with other attacks, such as a
->50% Attack (Section <a href="#sec:attack_50">5.6</a>{reference-type="ref"
-reference="sec:attack_50"}) to increase effectiveness. Transaction
+>50% Attack to increase effectiveness. Transaction
 rate-limiting and other techniques are currently being investigated to
 mitigate attacks.</p>
 <h3 id="6250-attack">>50% Attack<a class="headerlink" href="#6250-attack" title="Permanent link">&para;</a></h3>
@@ -1650,9 +1633,7 @@ RaiBlocks takes the following measures to prevent such an attack:</p>
     on fast settling time to prevent ambiguous forks.</p>
 </li>
 </ol>
-<p>A more sophisticated version of a <span><span class="MathJax_Preview">&gt;50\%</span><script type="math/tex">>50\%</script></span> attack is detailed in Figure
-<a href="#fig:attack_dist">[fig:attack_dist]</a>{reference-type="ref"
-reference="fig:attack_dist"}. "Offline" is the percentage of
+<p>A more sophisticated version of a <span><span class="MathJax_Preview">&gt;50\%</span><script type="math/tex">>50\%</script></span> attack is detailed below. "Offline" is the percentage of
 representatives who have been named but are not online to vote. "Stake"
 is the amount of investment the attacker is voting with. "Active" is
 representatives that are online and voting according to the protocol. An
@@ -1663,7 +1644,6 @@ and this is demonstrated by "Unsync." Finally, an attacker can gain a
 short burst in relative voting strength by switching their Denial of
 Service attack to a new set of representatives while the old set is
 re-synchronizing their ledger, this is demonstrated by "Attack."</p>
-<p>[[fig:attack_dist]]{#fig:attack_dist label="fig:attack_dist"}</p>
 <p>If an attacker is able to cause Stake >Active by a combination of these
 circumstances, they would be able to successfully flip votes on the
 ledger at the expense of their stake. We can estimate how much this type
@@ -1783,9 +1763,7 @@ optionally create new transactions with private keys it holds.</p>
 <p><strong>Transaction Generating</strong></p>
 <p>A node interested in creating new transactions must produce a Proof of
 Work nonce in order to pass RaiBlock's throttling mechanism. Computation
-of various hardware is benchmarked in Appendix
-<a href="#sec:pow_hardware_benchmarks">9</a>{reference-type="ref"
-reference="sec:pow_hardware_benchmarks"}.</p>
+of various hardware is benchmarked in Appendix A.</p>
 <p><strong>Representative</strong></p>
 <p>A representative must verify signatures for blocks, votes, and also
 produce its own signatures to participate in consensus. The amount of
