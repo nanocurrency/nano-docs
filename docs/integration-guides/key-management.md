@@ -59,6 +59,12 @@ For larger, more robust systems, external private key management is recommended.
 
 In order to properly implement accounting systems external to the Nano node the following best practices should be put into place, which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.
 
+!!! tip "Confirmation and idempotency"
+    The details below expand on this, but the two most important pieces of any integration are:
+
+    1. **Always confirm blocks** - make sure to follow the block confirmation tracking recommendations so you are always taking action from confirmed blocks
+    1. **Guarantee idempotency** - whenever you take action from a block confirmation, it must be idempotent so you don't take the action again if the same block hash is seen through confirmation tracking
+
 #### Block confirmation procedures
 
 Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. Details of the recommended verification process can be found in the [block confirmation tracking guide](/integration-guides/block-confirmation-tracking).
