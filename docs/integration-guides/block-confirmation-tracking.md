@@ -21,7 +21,7 @@ As confirmations are received they can be parsed and handled as necessary. All o
 
 --8<-- "multiple-confirmation-notifications.md"
 
-#### Requesting block confirmation status
+### Requesting block confirmation status
 
 In the event confirmation notifications are not received from the WebSocket in an expected timeframe, the [block_info](/commands/rpc-protocol#block_info) RPC can be called on a specific block hash. The `confirmed` field will indicate whether the block has been confirmed. Typical confirmation times on the main network during low-traffic periods are within a few seconds, so a delay of 5 seconds before requesting block information is recommended.
 
@@ -32,3 +32,13 @@ If confirmation has still not been seen on the block, the [block_confirm](/comma
 * If the block is already in active elections, it will not have an effect and confirmation should eventually occur along with related notifications.
 
 Once [block_confirm](/commands/rpc-protocol#block_confirm) is called, a notification of confirmation through the WebSocket should be expected and if not received, then calling [block_info](/commands/rpc-protocol#block_info) RPC to check for confirmation again can be done. Escalation of potential delays in confirmation can be done after this point in external systems as necessary.
+
+### Account-based block confirmation status
+
+For some systems the starting point for checking block status may be the account, such as when a user views their account. The following process is recommended when the account is known and the confirmation status of the frontier block is desired.
+
+1. If you already have what is an expected frontier hash, call [account_info](/commands/rpc-protocol/#account_info) RPC to get current frontier hash and compare. If matching skip the next step.
+1. Call [account_history](/commands/rpc-protocol/#account_history) to get the current frontier block
+1. Call [block_info](/commands/rpc-protocol#block_info) and check if `confirmed` = `true`
+
+If the block is not confirmed, you can follow a similar process outlined in the [Requesting block confirmation status](#requesting-block-confirmation-status) section above for requesting block confirmation and re-checking status before escalating in external systems.
