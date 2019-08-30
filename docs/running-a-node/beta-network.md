@@ -100,7 +100,9 @@ docker run --restart=unless-stopped -d \
 No Release Candidate (RC) builds are available for the beta network at this time.
 
 ### Development Builds
-V20.0DB7 is the latest build available for the beta network.
+Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
+
+**V20.0DB7** is the latest build available for the beta network.
 
 **Read-only Test Cases**  
 [Test Cases](/testcases/Cases.html)  |  [TOML Config](/testcases/TOML%20Config.html)  |  [DB Results](/testcases/DB%20results.html)  | [Generic Results](/testcases/Generic%20results.html)  
