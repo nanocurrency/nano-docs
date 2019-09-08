@@ -1419,6 +1419,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <li><code>NANO_SIMD_OPTIMIZATIONS=OFF</code> (Enable CPU-specific SIMD optimization: SSE/AVX or NEON, e.g.)</li>
 <li><code>NANO_SECURE_RPC=ON</code> (to build node with TLS)</li>
 <li><code>NANO_WARN_TO_ERR=ON</code> (<em>v20.0+</em> turn compiler warnings into errors on Linux/Mac) </li>
+<li><code>NANO_TIMED_LOCKS=50</code> (<em>v20.0+</em> when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables. If enabled requires the boost <code>context</code> &amp; <code>fiber</code> libraries)</li>
 </ul>
 <p><strong>Build Node</strong></p>
 <ul>
