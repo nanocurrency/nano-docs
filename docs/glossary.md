@@ -96,7 +96,7 @@ The [account](#account) if the block is the first block on the account, otherwis
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
 
 #### Transactions Per Second (TPS)
-Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was used as a synonym for BPS, but it is now used to refer to ([Confirmations Per Second](#confirmations-per-second-cps))/2 which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Note that send transactions do not require a corresponding receive to be considered [confirmed](#confirmation).
+Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was used as a synonym for BPS, but it is now used to refer to ([Confirmations Per Second](#confirmations-per-second-cps))/2 which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Note that send transactions do not require a corresponding receive to be considered [confirmed](#confirmation) (see [pending](#pending)).
 
 #### unchecked (blocks)
 
