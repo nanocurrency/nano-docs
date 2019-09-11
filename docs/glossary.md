@@ -10,11 +10,20 @@ Accounts not derived from a private seed which can be held in the node wallet th
 #### announcement rounds
 A repeating 16 second cycle on the node during which votes are collected for active transactions in attempt to reach quorum.
 
+#### Block
+A single Nano transaction. Includes sends and receives.
+
 #### block hash
 A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.
 
+#### Block height
+A local integer value that represents the order of a block in an account chain. For example, the 15th block in an account would have a block height of 15. Related to (but different from) [confirmation height](#confirmation height).
+
 #### Block Lattice
 The Block Lattice is a data-structure in which individual accounts control their own blockchain. This allows transactions to be added quickly without conflict and sent to the network for confirmation.
+
+#### Blocks Per Second (BPS)
+The transmission rate of blocks (transactions) on the network. 
 
 #### bootstrap network
 A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main, beta and test networks).
@@ -24,6 +33,18 @@ During initial sync, the nano\_node requests old transactions to independently v
 
 #### circulating supply
 133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after burns were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
+
+#### Cementing
+When a specific node marks a [confirmed](#confirmation) transaction as locally irreversible in its node database by setting the [account's](#account) [confirmation height](#confirmation height) to the now higher [block height](#block height) of the confirmed transaction. Cementing is a node-level decision.
+
+#### Confirmation
+When a block (transaction) gathers enough votes from the network to pass [quorum](#quorum). Confirmation is a network-level decision.
+
+#### Confirmation Height
+A number stored in the node database that represents the highest (most recent) [confirmed](#confirmation) block in an account chain. Related to (but different from) [block height](#block height).
+
+#### Confirmations Per Second (CPS)
+The rate of checked blocks (send or receive) gathering enough votes on the network to be confirmed.
 
 #### election
 
@@ -73,6 +94,9 @@ The [account](#account) if the block is the first block on the account, otherwis
 
 #### seed
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
+
+#### Transactions Per Second (TPS)
+Often used to refer to the rate of complete transactions (i.e. one send and another receive) between two parties. (Confirmations Per Second)/2
 
 #### unchecked (blocks)
 
