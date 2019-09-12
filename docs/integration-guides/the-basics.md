@@ -425,6 +425,8 @@ curl -d '{
 
 Note: `amount` values should always be in RAW.
 
+Note: Please use `nano://` for deep links 
+
 ### Send to an address
 
     nano:nano_<encoded address>[?][amount=<raw amount>][&][label=<label>][&][message=<message>]
