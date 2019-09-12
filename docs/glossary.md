@@ -11,7 +11,7 @@ Accounts not derived from a private seed which can be held in the node wallet th
 A repeating 16 second cycle on the node during which votes are collected for active transactions in attempt to reach quorum.
 
 #### Block
-A single Nano transaction. All new transactions on the Nano Protocol are communicated via blocks (e.g. sends, receives, representative changes, etc). The account's entire state, including the balance after each transaction, is recorded in every block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. All blocks are universal blocks (type "state") since node V11.
+A single Nano transaction. All new transactions (e.g. sends, receives, representative changes, etc) on the Nano Protocol are communicated via state blocks (since node V11). The account's entire state, including the balance after each transaction, is recorded in each block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. Before V11, each transaction type (open, send, receive, change) had its own legacy block type.
 
 #### block hash
 A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.
