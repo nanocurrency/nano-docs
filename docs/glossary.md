@@ -10,11 +10,20 @@ Accounts not derived from a private seed which can be held in the node wallet th
 #### announcement rounds
 A repeating 16 second cycle on the node during which votes are collected for active transactions in attempt to reach quorum.
 
+#### Block
+A single Nano transaction. All new transactions (e.g. sends, receives, representative changes, etc) on the Nano Protocol are communicated via state blocks (since node V11). The account's entire state, including the balance after each transaction, is recorded in each block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. Before V11, each transaction type (open, send, receive, change) had its own legacy block type.
+
 #### block hash
 A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.
 
+#### Block height
+A local integer value that represents the order of a block in an account chain. For example, the 15th block in an account would have a block height of 15. Related to (but different from) [confirmation height](#confirmation-height).
+
 #### Block Lattice
 The Block Lattice is a data-structure in which individual accounts control their own blockchain. This allows transactions to be added quickly without conflict and sent to the network for confirmation.
+
+#### Blocks Per Second (BPS)
+The transmission rate of [unconfirmed](#confirmation) blocks (transactions) on the network. 
 
 #### bootstrap network
 A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main, beta and test networks).
@@ -24,6 +33,18 @@ During initial sync, the nano\_node requests old transactions to independently v
 
 #### circulating supply
 133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after burns were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
+
+#### Cementing
+When a specific node marks a [confirmed](#confirmation) transaction as locally irreversible by setting the [account's](#account) [confirmation height](#confirmation-height) (in the node database) to the now higher [block height](#block-height) of the confirmed transaction. Cementing is a node-level operation.
+
+#### Confirmation
+When a block (transaction) gathers enough votes from the network to pass [quorum](#quorum). Note that confirmed sends are irreversible (i.e. fully-settled), but the receiver must publish a corresponding receive block before they will be able to spend the [pending](#pending) funds. Confirmation is a network-level decision.
+
+#### Confirmation Height
+A number stored in the local node database that represents the highest (most recent) [confirmed](#confirmation) block in an account chain. Related to (but different from) [block height](#block-height).
+
+#### Confirmations Per Second (CPS)
+The rate of [confirmed](#confirmation) [blocks](#blocks) (send or receive).
 
 #### election
 
@@ -73,6 +94,9 @@ The [account](#account) if the block is the first block on the account, otherwis
 
 #### seed
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
+
+#### Transactions Per Second (TPS)
+Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was used as a synonym for [BPS](#blocks-per-second-bps), but it is now used to refer to ([Confirmations Per Second](#confirmations-per-second-cps))/2 which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Note that send transactions do not require a corresponding receive to be considered [confirmed](#confirmation) (see [pending](#pending)).
 
 #### unchecked (blocks)
 
