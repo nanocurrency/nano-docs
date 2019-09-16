@@ -771,6 +771,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#block" title="Block" class="md-nav__link">
+    Block
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#block-hash" title="block hash" class="md-nav__link">
     block hash
   </a>
@@ -778,8 +785,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#block-height" title="Block height" class="md-nav__link">
+    Block height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#block-lattice" title="Block Lattice" class="md-nav__link">
     Block Lattice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks-per-second-bps" title="Blocks Per Second (BPS)" class="md-nav__link">
+    Blocks Per Second (BPS)
   </a>
   
 </li>
@@ -801,6 +822,34 @@
         <li class="md-nav__item">
   <a href="#circulating-supply" title="circulating supply" class="md-nav__link">
     circulating supply
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cementing" title="Cementing" class="md-nav__link">
+    Cementing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmation" title="Confirmation" class="md-nav__link">
+    Confirmation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmation-height" title="Confirmation Height" class="md-nav__link">
+    Confirmation Height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmations-per-second-cps" title="Confirmations Per Second (CPS)" class="md-nav__link">
+    Confirmations Per Second (CPS)
   </a>
   
 </li>
@@ -920,6 +969,13 @@
         <li class="md-nav__item">
   <a href="#seed" title="seed" class="md-nav__link">
     seed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transactions-per-second-tps" title="Transactions Per Second (TPS)" class="md-nav__link">
+    Transactions Per Second (TPS)
   </a>
   
 </li>
@@ -1038,6 +1094,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#block" title="Block" class="md-nav__link">
+    Block
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#block-hash" title="block hash" class="md-nav__link">
     block hash
   </a>
@@ -1045,8 +1108,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#block-height" title="Block height" class="md-nav__link">
+    Block height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#block-lattice" title="Block Lattice" class="md-nav__link">
     Block Lattice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocks-per-second-bps" title="Blocks Per Second (BPS)" class="md-nav__link">
+    Blocks Per Second (BPS)
   </a>
   
 </li>
@@ -1068,6 +1145,34 @@
         <li class="md-nav__item">
   <a href="#circulating-supply" title="circulating supply" class="md-nav__link">
     circulating supply
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cementing" title="Cementing" class="md-nav__link">
+    Cementing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmation" title="Confirmation" class="md-nav__link">
+    Confirmation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmation-height" title="Confirmation Height" class="md-nav__link">
+    Confirmation Height
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confirmations-per-second-cps" title="Confirmations Per Second (CPS)" class="md-nav__link">
+    Confirmations Per Second (CPS)
   </a>
   
 </li>
@@ -1192,6 +1297,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#transactions-per-second-tps" title="Transactions Per Second (TPS)" class="md-nav__link">
+    Transactions Per Second (TPS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#unchecked-blocks" title="unchecked (blocks)" class="md-nav__link">
     unchecked (blocks)
   </a>
@@ -1276,16 +1388,30 @@
 <p>Accounts not derived from a private seed which can be held in the node wallet through the wallet ID. These accounts are only recommended for use with advanced systems.</p>
 <h4 id="announcement-rounds">announcement rounds<a class="headerlink" href="#announcement-rounds" title="Permanent link">&para;</a></h4>
 <p>A repeating 16 second cycle on the node during which votes are collected for active transactions in attempt to reach quorum.</p>
+<h4 id="block">Block<a class="headerlink" href="#block" title="Permanent link">&para;</a></h4>
+<p>A single Nano transaction. All new transactions (e.g. sends, receives, representative changes, etc) on the Nano Protocol are communicated via state blocks (since node V11). The account's entire state, including the balance after each transaction, is recorded in each block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. Before V11, each transaction type (open, send, receive, change) had its own legacy block type.</p>
 <h4 id="block-hash">block hash<a class="headerlink" href="#block-hash" title="Permanent link">&para;</a></h4>
 <p>A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.</p>
+<h4 id="block-height">Block height<a class="headerlink" href="#block-height" title="Permanent link">&para;</a></h4>
+<p>A local integer value that represents the order of a block in an account chain. For example, the 15<sup>th</sup> block in an account would have a block height of 15. Related to (but different from) <a href="#confirmation-height">confirmation height</a>.</p>
 <h4 id="block-lattice">Block Lattice<a class="headerlink" href="#block-lattice" title="Permanent link">&para;</a></h4>
 <p>The Block Lattice is a data-structure in which individual accounts control their own blockchain. This allows transactions to be added quickly without conflict and sent to the network for confirmation.</p>
+<h4 id="blocks-per-second-bps">Blocks Per Second (BPS)<a class="headerlink" href="#blocks-per-second-bps" title="Permanent link">&para;</a></h4>
+<p>The transmission rate of <a href="#confirmation">unconfirmed</a> blocks (transactions) on the network. </p>
 <h4 id="bootstrap-network">bootstrap network<a class="headerlink" href="#bootstrap-network" title="Permanent link">&para;</a></h4>
 <p>A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main, beta and test networks).</p>
 <h4 id="bootstrapping">bootstrapping<a class="headerlink" href="#bootstrapping" title="Permanent link">&para;</a></h4>
 <p>During initial sync, the nano_node requests old transactions to independently verify and populate its local ledger database. Bootstrapping will also occur when the nano_node becomes out of sync with the network.</p>
 <h4 id="circulating-supply">circulating supply<a class="headerlink" href="#circulating-supply" title="Permanent link">&para;</a></h4>
 <p>133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after burns were made from the <a href="#genesis">genesis</a> account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the <a href="/commands/rpc-protocol/#available_supply">available_supply</a> RPC.</p>
+<h4 id="cementing">Cementing<a class="headerlink" href="#cementing" title="Permanent link">&para;</a></h4>
+<p>When a specific node marks a <a href="#confirmation">confirmed</a> transaction as locally irreversible by setting the <a href="#account">account's</a> <a href="#confirmation-height">confirmation height</a> (in the node database) to the now higher <a href="#block-height">block height</a> of the confirmed transaction. Cementing is a node-level operation.</p>
+<h4 id="confirmation">Confirmation<a class="headerlink" href="#confirmation" title="Permanent link">&para;</a></h4>
+<p>When a block (transaction) gathers enough votes from the network to pass <a href="#quorum">quorum</a>. Note that confirmed sends are irreversible (i.e. fully-settled), but the receiver must publish a corresponding receive block before they will be able to spend the <a href="#pending">pending</a> funds. Confirmation is a network-level decision.</p>
+<h4 id="confirmation-height">Confirmation Height<a class="headerlink" href="#confirmation-height" title="Permanent link">&para;</a></h4>
+<p>A number stored in the local node database that represents the highest (most recent) <a href="#confirmation">confirmed</a> block in an account chain. Related to (but different from) <a href="#block-height">block height</a>.</p>
+<h4 id="confirmations-per-second-cps">Confirmations Per Second (CPS)<a class="headerlink" href="#confirmations-per-second-cps" title="Permanent link">&para;</a></h4>
+<p>The rate of <a href="#confirmation">confirmed</a> <a href="#blocks">blocks</a> (send or receive).</p>
 <h4 id="election">election<a class="headerlink" href="#election" title="Permanent link">&para;</a></h4>
 <h4 id="frontier">frontier<a class="headerlink" href="#frontier" title="Permanent link">&para;</a></h4>
 <p>The most recent block added to the account chain. Also called the head block. Can be either confirmed or unconfirmed.</p>
@@ -1318,6 +1444,8 @@
 <p>The <a href="#account">account</a> if the block is the first block on the account, otherwise it is the previous hash included in the block.</p>
 <h4 id="seed">seed<a class="headerlink" href="#seed" title="Permanent link">&para;</a></h4>
 <p>A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.</p>
+<h4 id="transactions-per-second-tps">Transactions Per Second (TPS)<a class="headerlink" href="#transactions-per-second-tps" title="Permanent link">&para;</a></h4>
+<p>Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was used as a synonym for <a href="#blocks-per-second-bps">BPS</a>, but it is now used to refer to (<a href="#confirmations-per-second-cps">Confirmations Per Second</a>)/2 which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Note that send transactions do not require a corresponding receive to be considered <a href="#confirmation">confirmed</a> (see <a href="#pending">pending</a>).</p>
 <h4 id="unchecked-blocks">unchecked (blocks)<a class="headerlink" href="#unchecked-blocks" title="Permanent link">&para;</a></h4>
 <h4 id="unopened-account">unopened account<a class="headerlink" href="#unopened-account" title="Permanent link">&para;</a></h4>
 <p>An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).</p>
