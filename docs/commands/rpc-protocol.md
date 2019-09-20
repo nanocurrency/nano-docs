@@ -124,7 +124,7 @@ If the `count` limit results in stopping before the end of the account chain, th
 ---
 
 ### account_info
-Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  
+Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have received their first transaction and have an entry on the ledger, will return "Account not found" otherwise. To open an account, use [receive](#receive).  
 
 --8<-- "unconfirmed-information.md"
     The balance is obtained from the frontier, which may be unconfirmed. As long as you follow the [guidelines](/integration-guides/key-management/#transaction-order-and-correctness), you can rely on the **balance** for the purposes of creating transactions for this account. If the frontier is never confirmed, then the blocks that proceed it will also never be confirmed.
