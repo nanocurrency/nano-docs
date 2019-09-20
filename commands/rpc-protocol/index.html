@@ -2685,7 +2685,7 @@ The pending balance is calculated from potentially unconfirmed blocks. The accou
 </ul>
 <hr />
 <h3 id="account_info">account_info<a class="headerlink" href="#account_info" title="Permanent link">&para;</a></h3>
-<p>Returns frontier, open block, change representative block, balance, last modified timestamp from local database &amp; block count for <strong>account</strong>. Only works for accounts that have an entry on the ledger, will return "Account not found" otherwise.  </p>
+<p>Returns frontier, open block, change representative block, balance, last modified timestamp from local database &amp; block count for <strong>account</strong>. Only works for accounts that have received their first transaction and have an entry on the ledger, will return "Account not found" otherwise. To open an account, use <a href="#receive">receive</a>.  </p>
 <div class="admonition info">
 <p class="admonition-title">Unconfirmed information</p>
 <p>This call returns information that may be based on unconfirmed blocks. These details should not be relied on for any process or integration that requires confirmed blocks.<br />
