@@ -723,8 +723,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planned" title="Planned" class="md-nav__link">
-    Planned
+  <a href="#planning" title="Planning" class="md-nav__link">
+    Planning
   </a>
   
 </li>
@@ -816,8 +816,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#planned" title="Planned" class="md-nav__link">
-    Planned
+  <a href="#planning" title="Planning" class="md-nav__link">
+    Planning
   </a>
   
 </li>
@@ -865,7 +865,7 @@
                   <h1>Upcoming Features</h1>
                 
                 <p>Below are the more notable features the protocol development team is considering for implementation. In addition to these items there are always other updates, optimizations and new features added in. We encourage participation on <a href="https://github.com/nanocurrency">GitHub</a> for anyone capable of <a href="/protocol-design/overview/#contributing-code-to-the-nano-node">contributing to the code base</a>.</p>
-<p>Changes made to this document are tracked at the bottom in the <a href="#recent-changes">Recent changes</a> section.</p>
+<p>Changes made to this document are tracked at the bottom in the <a href="#recent-page-updates">Recent changes</a> section.</p>
 <table>
 <thead>
 <tr>
@@ -879,21 +879,91 @@
 <td>In active development to be included in upcoming releases</td>
 </tr>
 <tr>
-<td><strong>Planned</strong></td>
-<td>Planned for development with known scope/solution</td>
+<td><strong>Planning</strong></td>
+<td>Planning for development with solution design and further scope evaluation</td>
 </tr>
 <tr>
 <td><strong>Researching</strong></td>
-<td>Under research to identify scope and potential development plans</td>
+<td>Under research to identify potential benefits and likely effort levels</td>
 </tr>
 </tbody>
 </table>
 <h3 id="in-progress">In Progress<a class="headerlink" href="#in-progress" title="Permanent link">&para;</a></h3>
-<details class="tip"><summary>Dual-phase voting</summary><table>
+<details class="tip"><summary>New PoW algorithm</summary><table>
 <thead>
 <tr>
 <th>Release</th>
-<th>V20 (Targeted)</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Design a new Proof-of-Work (PoW) algorithm to be more memory bound.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Increase Quality of Service on network through increased spam cost.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="tip"><summary>Initial support for RocksDB</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Add support for a new database backend using RocksDB (experimental).</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Lower disk I/O operations and increase disk I/O speeds on average.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/2197">https://github.com/nanocurrency/nano-node/pull/2197</a></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="tip"><summary>Migrate to TOML config files</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Migrate existing config files to be TOML format, split into read-only and override files.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/issues/1878">https://github.com/nanocurrency/nano-node/issues/1878</a></td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="planning">Planning<a class="headerlink" href="#planning" title="Permanent link">&para;</a></h3>
+<details class="abstract"><summary>Dual-phase voting</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V21 (Targeted)</th>
 </tr>
 </thead>
 <tbody>
@@ -912,34 +982,11 @@
 </tbody>
 </table>
 </details>
-<details class="tip"><summary>Durable vote snapshots</summary><table>
+<details class="abstract"><summary>Move wallet out of process</summary><table>
 <thead>
 <tr>
 <th>Release</th>
-<th>V20 (Targeted)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Provide methods for export and importing snapshots of durable votes between nodes.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Easier bootstrap verification through dependence on durable votes plus frontier elections only.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Move wallet out of process</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20 (Targeted)</th>
+<th>V21 (Targeted)</th>
 </tr>
 </thead>
 <tbody>
@@ -950,53 +997,6 @@
 <tr>
 <td>Benefits</td>
 <td>Reduced node attack surface.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</details>
-<h3 id="planned">Planned<a class="headerlink" href="#planned" title="Permanent link">&para;</a></h3>
-<details class="abstract"><summary>Protobuf based RPCs</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V21 (Targeted)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Add support for protocol buffer based RPCs.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="abstract"><summary>RPC 2.0</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V21 (Targeted)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Better RPC performance, more consistent input and output handling and expanded functionality.</td>
 </tr>
 <tr>
 <td>Links</td>
@@ -1028,11 +1028,57 @@
 </tbody>
 </table>
 </details>
+<details class="abstract"><summary>Protobuf based RPCs</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V22 (Targeted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Add support for protocol buffer based RPCs.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="abstract"><summary>RPC 2.0</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V22 (Targeted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Better RPC performance, more consistent input and output handling and expanded functionality.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
 <details class="abstract"><summary>Ledger pruning</summary><table>
 <thead>
 <tr>
 <th>Release</th>
-<th>V21 (Targeted)</th>
+<th>V23 (Targeted)</th>
 </tr>
 </thead>
 <tbody>
@@ -1052,52 +1098,6 @@
 </table>
 </details>
 <h3 id="researching">Researching<a class="headerlink" href="#researching" title="Permanent link">&para;</a></h3>
-<details class="info"><summary>Alternative PoW algorithm</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>TBD</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Update Proof-of-Work (PoW) algorithm to be more memory bound, likely Cuckoo variant.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Increase cost of spam attacks.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="info"><summary>QUIC protocol</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V22+</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Determine if QUIC protocol is a viable alternative to UDP and TCP for live network activity</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>More efficient traffic handling for live network.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
-</details>
 <details class="info"><summary>Network overlay (DHT-based)</summary><table>
 <thead>
 <tr>
@@ -1113,6 +1113,52 @@
 <tr>
 <td>Benefits</td>
 <td>Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info"><summary>Durable vote snapshots</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V23+ (Targeted)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Provide methods for export and importing snapshots of durable votes between nodes.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Easier bootstrap verification through dependence on durable votes plus frontier elections only.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info"><summary>QUIC protocol</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>TBD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Determine if QUIC protocol is a viable alternative to UDP and TCP for live network activity</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>More efficient traffic handling for live network.</td>
 </tr>
 <tr>
 <td>Links</td>
@@ -1262,11 +1308,84 @@
 </table>
 </details>
 <h3 id="recent-page-updates">Recent Page Updates<a class="headerlink" href="#recent-page-updates" title="Permanent link">&para;</a></h3>
-<p><strong>2019-07-30</strong></p>
+<p><strong>2019-09-20</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Prev</th>
+<th>New</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New PoW algorithm</td>
+<td>Researching</td>
+<td>V20</td>
+<td>Recently prioritized</td>
+</tr>
+<tr>
+<td>Initial support for RocksDB</td>
+<td>-</td>
+<td>V20</td>
+<td>Recently prioritized</td>
+</tr>
+<tr>
+<td>Migrate to TOML config files</td>
+<td>-</td>
+<td>V20</td>
+<td>Recently prioritized</td>
+</tr>
+<tr>
+<td>Dual-phase voting target</td>
+<td>V20</td>
+<td>V21</td>
+<td>Moved in favor of New PoW Algorithm for V20</td>
+</tr>
+<tr>
+<td>Move wallet out of process</td>
+<td>V20</td>
+<td>V21</td>
+<td>Moved in favor of New PoW Algorithm for V20</td>
+</tr>
+<tr>
+<td>Durable vote snapshots</td>
+<td>V20</td>
+<td>V22+</td>
+<td>Lower anticipated ROI vs. other features</td>
+</tr>
+<tr>
+<td>Protobuf based RPCs</td>
+<td>V21</td>
+<td>V22</td>
+<td>Reduce previous version scope</td>
+</tr>
+<tr>
+<td>RPC 2.0</td>
+<td>V21</td>
+<td>V22</td>
+<td>Reduce previous version scope</td>
+</tr>
+<tr>
+<td>Ledger Pruning</td>
+<td>V21</td>
+<td>V23</td>
+<td>Reduce previous version scope and allow further evaluation</td>
+</tr>
+<tr>
+<td>QUIC Protocol</td>
+<td>V22+</td>
+<td>TBD</td>
+<td>Allow further evaluation</td>
+</tr>
+</tbody>
+</table>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-07-30</strong></p>
 <ul>
 <li>Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release </li>
 </ul>
-<details class="info"><summary>Other past changes</summary><p><strong>2019-07-11</strong></p>
+<p><strong>2019-07-11</strong></p>
 <ul>
 <li>Moved V19 items into new Completed section</li>
 <li>Moved targeted V20 items into In Progress section</li>
