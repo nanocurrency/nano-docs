@@ -16,7 +16,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
 	Benefits | Increase Quality of Service on network through increased spam cost.
-	Links    | N/A
+	Links    | https://github.com/nanocurrency/nano-node/issues/506
 
 ??? tip "Initial support for RocksDB"
 
