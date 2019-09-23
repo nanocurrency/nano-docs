@@ -606,7 +606,7 @@ Notes:
 
 ### Keepalive
 
-This subscription is available since _v20.0_
+This action is available since _v20.0_
 
 Keepalive allows checking the liveliness of the websocket without refreshing it or changing a subscription. Use the format:
 
