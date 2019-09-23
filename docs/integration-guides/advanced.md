@@ -190,9 +190,7 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 
 ---
 
-## Notifications
-
-### WebSocket Support
+## WebSocket Support
 
 !!! note ""
     Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.
@@ -213,7 +211,31 @@ For details on configuring websockets within a node, see the [websocket section 
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`
 
-**Subscribing and unsubscribing**
+### Acknowledgement
+
+All WebSocket actions can optionally request an acknowledgement. The following is an example for the *subscribe* action.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "ack": true,
+  "id": "<optional unique id>"
+}
+```
+
+If the action succeeds, the following message will be sent back (note that no message ordering is guaranteed):
+
+```json
+{
+  "ack": "subscribe",
+  "time": "<milliseconds since epoch>",
+  "id": "<optional unique id>"
+}
+```
+
+
+### Subscribe/Unsubscribe
 
 To receive notifications through the websocket you must subscribe to the specific topic and a standard subscription without filters looks like this:
 
@@ -241,29 +263,6 @@ Some topics support filters as well. Details of the subscription filter options 
 !!! note
     Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
 
-**Optional acknowledgement**
-
-All WebSocket actions can request an acknowledgement.
-
-```json
-{
-  "action": "subscribe", 
-  "topic": "confirmation", 
-  "ack": true,
-  "id": "<optional unique id>"
-}
-```
-
-If the subscription succeeds, the following message will be sent back (note that no message ordering is guaranteed):
-
-```json
-{
-  "ack": "subscribe",
-  "time": "1552766057328",
-  "id": "<optional unique id>"
-}
-```
-
 **Available Topics**
 
 Current topics available for subscribing to include:
@@ -279,7 +278,7 @@ Current topics available for subscribing to include:
 
 --8<-- "multiple-confirmation-notifications.md"
 
-**Subscribing**
+##### Subscribing
 
 To subscribe to all confirmed blocks:
 
@@ -290,7 +289,7 @@ To subscribe to all confirmed blocks:
 }
 ```
 
-**Filtering options**
+##### Filtering options
 
 ###### Confirmation types
 
@@ -340,7 +339,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
-**Response options**
+##### Response Options
 
 ###### Type field
 
@@ -381,7 +380,7 @@ Including the election info option results in the following fields being include
 * end of election `time` as milliseconds since epoch
 * weight `tally` in raw unit
 
-**Sample Results**
+##### Sample Results
 
 !!! note "Differences from the HTTP callback"
     * The "block" contains JSON instead of an escaped string. This makes parsing easier.
@@ -427,7 +426,7 @@ Including the election info option results in the following fields being include
 !!! warning "Experimental, unfinished"
     This subscription is experimental and not all votes are broadcasted. The message format might change in the future.
 
-**Subscribing**
+##### Subscribing
 
 To subscribe to all votes notifications:
 
@@ -438,7 +437,7 @@ To subscribe to all votes notifications:
 }
 ```
 
-**Filter options**
+##### Filtering options
 
 Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
 
@@ -455,7 +454,7 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 }
 ```
 
-**Sample Results**
+##### Sample Results
 
 ```json
 {
@@ -475,9 +474,10 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
 ---
 
 #### Stopped elections
+
 If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
 
-**Subscribing**
+##### Subscribing
 
 To subscribe to all stopped elections notifications:
 
@@ -488,18 +488,18 @@ To subscribe to all stopped elections notifications:
 }
 ```
 
-**Filter options**
+##### Filtering options
 
-No filters are currently available for `stopped_election` topic.
+No filters are currently available for the `stopped_election` topic.
 
-**Sample Results**
+##### Sample Results
 
 ```json
 {
   "topic": "stopped_election",
   "time": "1560437195533",
   "message": {
-      "hash": "FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3"
+    "hash": "FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3"
   }
 }
 ```
@@ -508,7 +508,7 @@ No filters are currently available for `stopped_election` topic.
 
 #### Active difficulty
 
-**Subscribing**
+##### Subscribing
 
 To subscribe to all active difficulty notifications:
 
@@ -519,27 +519,115 @@ To subscribe to all active difficulty notifications:
 }
 ```
 
-**Filter options**
+##### Filtering options
 
-No filters are currently available for `active_difficulty` topic.
+No filters are currently available for the `active_difficulty` topic.
 
-**Sample Results**
+##### Sample Results
 
 ```json
 {
-    "topic": "active_difficulty",
-    "time": "1561661736065",
-    "message": {
-        "network_minimum": "ffffffc000000000",
-        "network_current": "ffffffc81644d01f",
-        "multiplier": "1.144635159892734"
-    }
+  "topic": "active_difficulty",
+  "time": "1561661736065",
+  "message": {
+    "network_minimum": "ffffffc000000000",
+    "network_current": "ffffffc81644d01f",
+    "multiplier": "1.144635159892734"
+  }
+}
+```
+
+#### Proof of work
+
+This subscription is available since _v20.0_
+
+##### Subscribing
+
+To subscribe to PoW generation notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "work"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `work` topic.
+
+##### Sample Results
+
+Successful work generation:
+
+```json
+{
+  "success": "true",
+  "reason": "",
+  "duration": "306",
+  "request": {
+    "hash": "3ECE2684044C0EAF2CA6B1C72F11AFC5B5A75C00CFF993FB17B6E75F78ABF175",
+    "difficulty": "ffffff999999999a",
+    "multiplier": "10.000000000009095"
+  },
+  "result": {
+    "source": "192.168.1.101:7000",
+    "work": "4352c6e222703c57",
+    "difficulty": "ffffffd2ca03b921",
+    "multiplier": "22.649415016750655"
+  },
+  "bad_peers": ""
+}
+```
+
+Work generation cancelled with one bad peer (unresponsive or provided invalid work):
+
+```json
+{
+  "success": "false",
+  "reason": "cancelled",
+  "duration": "539",
+  "request": {
+    "hash": "3ECE2684044C0EAF2CA6B1C72F11AFC5B5A75C00CFF993FB17B6E75F78ABF175",
+    "difficulty": "ffffff999999999a",
+    "multiplier": "10.000000000009095"
+  },
+  "bad_peers": [
+    "192.168.1.101:7000"
+  ]
+}
+```
+
+Notes:
+
+- The duration is in milliseconds
+- If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
+- When work generation is done locally it will show `"source": "local"`
+
+### Keepalive
+
+This subscription is available since _v20.0_
+
+Keepalive allows checking the liveliness of the websocket without refreshing it or changing a subscription. Use the format:
+
+```json
+{
+  "action": "ping"
+}
+```
+
+The expected response is:
+
+```json
+{
+  "ack": "pong",
+  "time": "<milliseconds since epoch>"
 }
 ```
 
 ---
 
-### HTTP callback
+## HTTP callback
 Send JSON POST requests with every confirmed block to callback server configured for the node.
 
 --8<-- "multiple-confirmation-notifications.md"
