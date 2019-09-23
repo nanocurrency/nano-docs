@@ -2485,7 +2485,8 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 {
   "work": "2bf29ef00786a6bc",
   "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647"
+  "multiplier": "1.394647",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
 ```  
 
@@ -2505,6 +2506,11 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to generate work.  
 ***Note:*** overrides the `difficulty` parameter.  
+
+**Optional "account"**
+
+_version 20.0+_  
+A valid Nano account. If provided and `use_peers` is set to `true`, this information will be relayed to work peers.
 
 ---
 
