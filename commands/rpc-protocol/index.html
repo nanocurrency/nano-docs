@@ -4591,7 +4591,8 @@ Generates <strong>work</strong> for block. <strong>hash</strong> is the frontier
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;2bf29ef00786a6bc&quot;</span><span class="p">,</span>
   <span class="nt">&quot;difficulty&quot;</span><span class="p">:</span> <span class="s2">&quot;ffffffd21c3933f4&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;multiplier&quot;</span><span class="p">:</span> <span class="s2">&quot;1.394647&quot;</span>
+  <span class="nt">&quot;multiplier&quot;</span><span class="p">:</span> <span class="s2">&quot;1.394647&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">v</span><span class="mf">20.0</span>
 <span class="p">}</span>
 </pre></div></p>
 <p><strong>Optional "use_peers"</strong></p>
@@ -4605,6 +4606,9 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses <strong>difficulty
 <p><em>version 20.0+</em><br />
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as <strong>multiplier</strong> from base difficulty to generate work.<br />
 <strong><em>Note:</em></strong> overrides the <code>difficulty</code> parameter.  </p>
+<p><strong>Optional "account"</strong></p>
+<p><em>version 20.0+</em><br />
+A valid Nano account. If provided and <code>use_peers</code> is set to <code>true</code>, this information will be relayed to work peers.</p>
 <hr />
 <h3 id="work_peer_add">work_peer_add<a class="headerlink" href="#work_peer_add" title="Permanent link">&para;</a></h3>
 <p><em>enable_control required, version 8.0+</em>   <br />
