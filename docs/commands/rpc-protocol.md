@@ -1705,6 +1705,12 @@ Boolean, false by default. Include active blocks without finished confirmations
   "include_active": "true"
 }
 ```  
+
+**Optional "min_version"**
+
+_version 15.0+_   
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
+
 **Optional "sorting"**
 
 _version 19.0+_   
@@ -3533,6 +3539,11 @@ Boolean, false by default. Include active blocks without finished confirmations
   "include_active": "true"
 }
 ```  
+
+**Optional "min_version"**
+
+_version 15.0+_   
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
 
 **Optional "include_only_confirmed"**
 
