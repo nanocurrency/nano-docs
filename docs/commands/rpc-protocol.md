@@ -1711,15 +1711,6 @@ Boolean, false by default. Include active blocks without finished confirmations
 _version 15.0+_   
 Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
 
-**Request:**
-```json
-{
-  "action": "pending",
-  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
-  "min_version": "true"
-}
-```  
-
 **Optional "sorting"**
 
 _version 19.0+_   
@@ -3547,16 +3538,6 @@ Boolean, false by default. Include active blocks without finished confirmations
 
 _version 15.0+_   
 Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
-
-**Request:**
-```json
-{
-  "action": "wallet_pending",
-  "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
-  "count": "1",  
-  "min_version": "true"
-}
-```  
 
 **Optional "include_only_confirmed"**
 
