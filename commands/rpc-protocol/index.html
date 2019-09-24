@@ -3973,8 +3973,11 @@ Boolean, false by default. Include active blocks without finished confirmations 
   <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
   <span class="nt">&quot;include_active&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
 <span class="p">}</span>
-</pre></div>
-<strong>Optional "sorting"</strong></p>
+</pre></div></p>
+<p><strong>Optional "min_version"</strong></p>
+<p><em>version 15.0+</em> <br />
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.</p>
+<p><strong>Optional "sorting"</strong></p>
 <p><em>version 19.0+</em> <br />
 Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   </p>
 <p><strong>Optional "include_only_confirmed"</strong></p>
@@ -5407,6 +5410,9 @@ Boolean, false by default. Include active blocks without finished confirmations 
   <span class="nt">&quot;include_active&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
 <span class="p">}</span>
 </pre></div></p>
+<p><strong>Optional "min_version"</strong></p>
+<p><em>version 15.0+</em> <br />
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.</p>
 <p><strong>Optional "include_only_confirmed"</strong></p>
 <p><em>version 19.0+</em>
 Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.</p>
