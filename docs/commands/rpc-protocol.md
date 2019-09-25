@@ -2071,14 +2071,14 @@ For configuration and other details, please see [Statistics from RPC](/running-a
   "entries": [
     {
       "time": "01:46:36",
-      "type": "traffic",
+      "type": "traffic_tcp",
       "detail": "all",
       "dir": "in",
       "value": "3122792"
     },
     {
       "time": "01:46:36",
-      "type": "traffic",
+      "type": "traffic_tcp",
       "detail": "all",
       "dir": "out",
       "value": "203184"
@@ -2106,14 +2106,14 @@ _version 18.0+ also returns "stat_duration_seconds": the number of seconds since
   "entries": [
     {
       "time": "01:47:04",
-      "type": "traffic",
+      "type": "traffic_tcp",
       "detail": "all",
       "dir": "in",
       "value": "59480"
     },
     {
       "time": "01:47:05",
-      "type": "traffic",
+      "type": "traffic_tcp",
       "detail": "all",
       "dir": "in",
       "value": "44496"
