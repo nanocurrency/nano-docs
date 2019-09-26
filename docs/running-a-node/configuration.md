@@ -124,7 +124,8 @@ This is the main configuration file for controlling node behavior. Below is an e
         "conf_height_processor_batch_min_time": "50", // Amount of time in ms to batch setting confirmation heights for accounts during high tps to reduce write I/O bottlenecks.
         "backup_before_upgrade": "false", // Backup ledger & wallet databases before each upgrade
         "work_watcher_period": "5", // Time between checks for confirmation and re-generating higher difficulty work if unconfirmed, for blocks in the work watcher
-        "max_work_generate_multiplier": "256.0" // Maximum allowed difficulty multiplier for work generation (double). Used for work_generate RPC requests & internal wallet work watcher
+        "max_work_generate_multiplier": "256.0", // Maximum allowed difficulty multiplier for work generation (double). Used for work_generate RPC requests & internal wallet work watcher
+        "frontiers_confirmation": "auto" // Mode for force frontiers confirmation. "auto" mode (default): If not Principal Representative, start frontier confirmation process every 15 minutes; if Principal Representative, start frontier confirmation process every 3 minutes. "always": Start frontier confirmation process every 3 minutes. "disabled": Do not start frontier confirmation process
     },
     "rpc_enable": "true", // Enable (in-process or child process) or disable RPC. Out of process rpc servers can still be used if launched manually.
     "rpc": {
