@@ -454,17 +454,24 @@ curl -d '{
 }
 ```
 
-!!! info
-    Below are a few helpful pieces of information to consider:
+!!! tip "Block watching and re-work"
+    Since V20.0, blocks processed using [`process`](/commands/rpc-protocol/#process) are placed under observation by the node. If you wish to disable this feature, add `"watch_work": "false"` to the process RPC command.
 
-    * It may take a few seconds for the transaction to appear. If the transaction fails to appear, you may call the same [`process`](/commands/rpc-protocol#process) RPC command with the same block data with no risk. Account-chains must be **continuous and unbroken**.
-    * If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the `"previous"` field in the transaction data refers to a non-existant block.
+    * If a block is not confirmed within a certain amount of time (configuration option `work_watcher_period`, default 5 seconds), an **automatic re-generation of the block's proof-of-work** may take place.
+    * Re-generation only taskes place when the network is saturated, and the proof-of-work is used to prioritize blocks.
+    * Configuration option `max_work_generate_multiplier` can be used to limit how much effort should be spent in generating the re-generation.
+    * With a new, [higher difficulty](/integration-guides/the-basics/#difficulty-multiplier) proof-of-work, the block will get prioritized for confirmation across the network.
+
+
+!!! info "When a transaction does not confirm"
+    * If a transaction is taking too long to confirm, you may call the [`process`](/commands/rpc-protocol#process) RPC command with the same block data with no risk. Account-chains must be **continuous and unbroken**.
+    * If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the `"previous"` field in the transaction data refers to a non-existent block.
     * If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.
 
 ---
 
 !!! example "Rebroadcasting blocks for an account-chain"
-    The following command rebroadcasts all hashes on an account-chain starting at block hash provided:
+    The following command rebroadcasts all hashes on an account-chain **starting** at block hash provided:
 
 ##### Request Example
 
