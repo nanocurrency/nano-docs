@@ -243,6 +243,9 @@ curl -d '{
 
 #### Receive Transaction
 
+!!! info "Manually receiving first block"
+    The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section [First Receive Transaction](#first-receive-transaction).
+
 !!! example "Step 1: Get Account Info"
     Receiving funds is very similar to sending funds outlined in the previous section, starting with calling `account_info` to get block details for the account frontier. The scenario below pretends that our previous example of a send transaction was **not** broadcast and confirmed on the network because the starting `account_info` details are identical.
 
@@ -330,9 +333,6 @@ curl -d '{
 
 !!! example "Step 3: Broadcast the transaction"
     As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
-
-!!! info "Manually receiving first block"
-    The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section [First Receive Transaction](#first-receive-transaction).
 
 ---
 
