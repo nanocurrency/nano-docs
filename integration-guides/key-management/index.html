@@ -1494,6 +1494,10 @@ Derived Address:
 </div>
 <hr />
 <h4 id="receive-transaction">Receive Transaction<a class="headerlink" href="#receive-transaction" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Manually receiving first block</p>
+<p>The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section <a href="#first-receive-transaction">First Receive Transaction</a>.</p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Step 1: Get Account Info</p>
 <p>Receiving funds is very similar to sending funds outlined in the previous section, starting with calling <code>account_info</code> to get block details for the account frontier. The scenario below pretends that our previous example of a send transaction was <strong>not</strong> broadcast and confirmed on the network because the starting <code>account_info</code> details are identical.</p>
@@ -1608,10 +1612,6 @@ Derived Address:
 <div class="admonition example">
 <p class="admonition-title">Step 3: Broadcast the transaction</p>
 <p>As a result of the command above, the nano_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the <a href="#broadcasting-transactions">Broadcasting Transactions</a> section.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Manually receiving first block</p>
-<p>The very first transaction on an account-chain, which is always a receive, is slightly special and deserves its own section <a href="#first-receive-transaction">First Receive Transaction</a>.</p>
 </div>
 <hr />
 <h4 id="first-receive-transaction">First Receive Transaction<a class="headerlink" href="#first-receive-transaction" title="Permanent link">&para;</a></h4>
