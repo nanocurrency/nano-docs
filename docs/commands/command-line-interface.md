@@ -71,8 +71,13 @@ Profile work verification
 ### --debug_profile_votes
 Profile vote verification
 
+### --debug_stacktrace
+_version 20.0+_
+Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
+
 ### --debug_validate_blocks
-_version 19.0+_ Validate blocks in the ledger, includes checks for confirmation height
+_version 19.0+_
+Validate blocks in the ledger, includes checks for confirmation height
 
 ### --debug_verify_profile
 Profile signature verification
