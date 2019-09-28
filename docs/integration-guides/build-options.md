@@ -116,6 +116,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_SECURE_RPC=ON` (to build node with TLS)
 * `NANO_WARN_TO_ERR=ON` (*v20.0+* turn compiler warnings into errors on Linux/Mac) 
 * `NANO_TIMED_LOCKS=50` (*v20.0+* when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables. If enabled requires the boost `context` & `fiber` libraries)
+* `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
 
 **Build Node**
 
