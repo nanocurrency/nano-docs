@@ -184,19 +184,19 @@ If an account balance decreases, the transaction that caused the decrease is con
     Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid sending erroneous amounts.
 
 ### Block Format
-Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following field examples include data types used within RPC calls for building blocks:
+Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following table presents the anatomy of a block, along with the format used within RPC calls for building blocks:
 
-| Key            | Type                  | Description |
-|                |                       |             |
-| type           | Constant              | "state" |
-| previous       | 32-Byte HEX           | Previous head block on account; 0 if *open* block |
-| link           | 32-Byte HEX           | Multipurpose Field - See Link Table below |
-| representative | String                | Representative nano_ address |
-| account        | String                | This account's nano_ address |
-| balance        | Decimal String in raw | Resulting balance |
-| work           | 8-Byte HEX            | [Proof of Work](#proof-of-work) Nonce |
-| signature      | 64-Byte HEX           | ED25519+Blake2b 512-bit signature |
-
+| Key            | Format         | Serialized Size | Description |
+|                |                |                 |             |
+| type           | Constant       | 32 bytes        | "state" (`0x6`) |
+| account        | String         | 32 bytes        | This account's nano_ address |
+| previous       | 32-byte HEX    | 32 bytes        | Previous head block on account; 0 if *open* block |
+| representative | String         | 32 bytes        | Representative nano_ address |
+| balance        | Decimal String | 16 bytes        | Resulting balance (in [raw](#units)) |
+| link           | -              | 32 bytes        | Multipurpose field - see link table below |
+| signature      | 64-byte HEX    | 64 bytes        | ED25519+Blake2b 512-bit signature |
+| work           | 8-byte HEX     | 8 bytes         | [Proof of Work](#proof-of-work) Nonce |
+| -              | -              | 248 bytes       | Total block size |
 
 Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/commands/rpc-protocol#block_create) RPC command:
 
