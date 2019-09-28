@@ -1345,10 +1345,14 @@
 <p>The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.</p>
 <p>The HTTP callback is still available and both mechanisms can be used at the same time.</p>
 <p><strong>Example</strong></p>
-<p>A sample client is available at <a href="https://github.com/cryptocode/nano-websocket-sample-nodejs/blob/master/index.js">https://github.com/cryptocode/nano-websocket-sample-nodejs/blob/master/index.js</a></p>
+<p>Sample clients are available:</p>
+<ul>
+<li>Node.js: <a href="https://github.com/cryptocode/nano-websocket-sample-nodejs">https://github.com/cryptocode/nano-websocket-sample-nodejs</a></li>
+<li>Python: <a href="https://github.com/guilhermelawless/nano-websocket-sample-py">https://github.com/guilhermelawless/nano-websocket-sample-py</a></li>
+</ul>
 <p><strong>Configuration</strong></p>
 <p>For details on configuring websockets within a node, see the <a href="/running-a-node/configuration#websocket">websocket section of Running a Node Configuration</a>.</p>
-<p>With the above configuration, localhost clients should connect to <code>ws://[::1]:7078</code></p>
+<p>With the default configuration, localhost clients should connect to <code>ws://[::1]:7078</code>.</p>
 <h3 id="acknowledgement">Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permanent link">&para;</a></h3>
 <p>All WebSocket actions can optionally request an acknowledgement. The following is an example for the <em>subscribe</em> action.</p>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
