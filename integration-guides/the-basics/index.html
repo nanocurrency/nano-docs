@@ -1439,55 +1439,64 @@ blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 <p>Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid sending erroneous amounts.</p>
 </div>
 <h3 id="block-format">Block Format<a class="headerlink" href="#block-format" title="Permanent link">&para;</a></h3>
-<p>Because each block contains the current state of the account, the <code>"type"</code> of the block is always <code>"state"</code>. The following field examples include data types used within RPC calls for building blocks:</p>
+<p>Because each block contains the current state of the account, the <code>"type"</code> of the block is always <code>"state"</code>. The following table presents the anatomy of a block, along with the format used within RPC calls for building blocks, and the serialized, binary representation:</p>
 <table>
 <thead>
 <tr>
 <th>Key</th>
-<th>Type</th>
+<th>RPC Format</th>
+<th>Serialized</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>type</td>
-<td>Constant</td>
+<td>string</td>
+<td>-</td>
 <td>"state"</td>
 </tr>
 <tr>
-<td>previous</td>
-<td>32-Byte HEX</td>
-<td>Previous head block on account; 0 if <em>open</em> block</td>
-</tr>
-<tr>
-<td>link</td>
-<td>32-Byte HEX</td>
-<td>Multipurpose Field - See Link Table below</td>
-</tr>
-<tr>
-<td>representative</td>
-<td>String</td>
-<td>Representative nano_ address</td>
-</tr>
-<tr>
 <td>account</td>
-<td>String</td>
+<td>string</td>
+<td>32 bytes</td>
 <td>This account's nano_ address</td>
 </tr>
 <tr>
-<td>balance</td>
-<td>Decimal String in raw</td>
-<td>Resulting balance</td>
+<td>previous</td>
+<td>64 hex-char string</td>
+<td>32 bytes</td>
+<td>Previous head block on account; 0 if <em>open</em> block</td>
 </tr>
 <tr>
-<td>work</td>
-<td>8-Byte HEX</td>
-<td><a href="#proof-of-work">Proof of Work</a> Nonce</td>
+<td>representative</td>
+<td>string</td>
+<td>32 bytes</td>
+<td>Representative nano_ address</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>decimal string</td>
+<td>16 bytes</td>
+<td>Resulting balance (in <a href="#units">raw</a>)</td>
+</tr>
+<tr>
+<td>link</td>
+<td>-</td>
+<td>32 bytes</td>
+<td>Multipurpose field - see link table below</td>
 </tr>
 <tr>
 <td>signature</td>
-<td>64-Byte HEX</td>
+<td>128 hex-char string</td>
+<td>64 bytes</td>
 <td>ED25519+Blake2b 512-bit signature</td>
+</tr>
+<tr>
+<td>work</td>
+<td>16 hex-char string</td>
+<td>8 bytes</td>
+<td><a href="#proof-of-work">Proof of Work</a> Nonce</td>
 </tr>
 </tbody>
 </table>
@@ -1496,29 +1505,25 @@ blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
 <thead>
 <tr>
 <th>Action</th>
-<th>Type</th>
+<th>RPC Format</th>
 <th>Description</th>
-<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Change</td>
-<td>HEX</td>
-<td>Must be 0</td>
-<td><code>0000000000000000000000000000000000000000000000000000000000000000</code></td>
+<td>string</td>
+<td>Must be "0"</td>
 </tr>
 <tr>
 <td>Send</td>
-<td>STR</td>
+<td>string</td>
 <td>Destination "nano_" address</td>
-<td><code>nano_1utx843j4hgac1ixbtdygpayqcqho35oy3ufkfp19pj4rdb3sezqt975f8ae</code></td>
 </tr>
 <tr>
 <td>Receive</td>
-<td>HEX</td>
+<td>64 hex-char string</td>
 <td>Pairing block's hash (block sending funds)</td>
-<td><code>F076D8F6254F089A8E66D0C934FA63D927F4458FC1D96815066D83B3658ABA26</code></td>
 </tr>
 </tbody>
 </table>
