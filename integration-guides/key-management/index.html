@@ -1751,11 +1751,21 @@ A successful broadcast will return the broadcasted block's hash.</p>
 <span class="p">}</span>
 </pre></div>
 
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Below are a few helpful pieces of information to consider:</p>
+<div class="admonition tip">
+<p class="admonition-title">Block watching and re-work</p>
+<p>Since V20.0, blocks processed using <a href="/commands/rpc-protocol/#process"><code>process</code></a> are placed under observation by the node for re-broadcasting and re-generation of work under certain conditions. If you wish to disable this feature, add <code>"watch_work": "false"</code> to the process RPC command.</p>
 <ul>
-<li>It may take a few seconds for the transaction to appear. If the transaction fails to appear, you may call the same <a href="/commands/rpc-protocol#process"><code>process</code></a> RPC command with the same block data with no risk. Account-chains must be <strong>continuous and unbroken</strong>.</li>
+<li>If a block is not confirmed within a certain amount of time (configuration option <code>work_watcher_period</code>, default 5 seconds), an <strong>automatic re-generation of a higher difficulty proof-of-work</strong> may take place.</li>
+<li>Re-generation only takes place when the network is unable to confirm transactions quickly (commonly referred as the network being <em>saturated</em>) and the higher difficulty proof-of-work is used to help prioritize the block higher in the processing queue of other nodes.</li>
+<li>Configuration option <code>max_work_generate_multiplier</code> can be used to limit how much effort should be spent in re-generating the proof-of-work.</li>
+<li>The target proof-of-work difficulty threshold is obtained internally as the minimum between <a href="/commands/rpc-protocol/#active_difficulty"><code>active_difficulty</code></a> and <code>max_work_generate_multiplier</code> (converted to difficulty).</li>
+<li>With a new, <a href="/integration-guides/the-basics/#difficulty-multiplier">higher difficulty</a> proof-of-work, the block will get higher confirmation priority across the network.</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">When a transaction does not confirm</p>
+<ul>
+<li>If a transaction is taking too long to confirm, you may call the <a href="/commands/rpc-protocol#process"><code>process</code></a> RPC command with the same block data with no risk.</li>
 <li>If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the <code>"previous"</code> field in the transaction data refers to a non-existant block.</li>
 <li>If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.</li>
 </ul>
@@ -1763,7 +1773,7 @@ A successful broadcast will return the broadcasted block's hash.</p>
 <hr />
 <div class="admonition example">
 <p class="admonition-title">Rebroadcasting blocks for an account-chain</p>
-<p>The following command rebroadcasts all hashes on an account-chain starting at block hash provided:</p>
+<p>The following command rebroadcasts all hashes on an account-chain <strong>starting</strong> at block hash provided:</p>
 </div>
 <h5>Request Example</h5>
 <div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{</span>
