@@ -184,27 +184,26 @@ If an account balance decreases, the transaction that caused the decrease is con
     Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid sending erroneous amounts.
 
 ### Block Format
-Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following table presents the anatomy of a block, along with the format used within RPC calls for building blocks:
+Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following table presents the anatomy of a block, along with the format used within RPC calls for building blocks, and the serialized, binary representation:
 
-| Key            | Format         | Serialized Size | Description |
-|                |                |                 |             |
-| type           | Constant       | 32 bytes        | "state" (`0x6`) |
-| account        | String         | 32 bytes        | This account's nano_ address |
-| previous       | 32-byte HEX    | 32 bytes        | Previous head block on account; 0 if *open* block |
-| representative | String         | 32 bytes        | Representative nano_ address |
-| balance        | Decimal String | 16 bytes        | Resulting balance (in [raw](#units)) |
-| link           | -              | 32 bytes        | Multipurpose field - see link table below |
-| signature      | 64-byte HEX    | 64 bytes        | ED25519+Blake2b 512-bit signature |
-| work           | 8-byte HEX     | 8 bytes         | [Proof of Work](#proof-of-work) Nonce |
-| -              | -              | 248 bytes       | Total block size |
+| Key            | RPC Format     | Serialized | Description |
+|                |                |            |             |
+| type           | string         | -          | "state" (`0x6`) |
+| account        | string         | 32 bytes   | This account's nano_ address |
+| previous       | 32 hex string  | 32 bytes   | Previous head block on account; 0 if *open* block |
+| representative | string         | 32 bytes   | Representative nano_ address |
+| balance        | decimal string | 16 bytes   | Resulting balance (in [raw](#units)) |
+| link           | -              | 32 bytes   | Multipurpose field - see link table below |
+| signature      | 128 hex string | 64 bytes   | ED25519+Blake2b 512-bit signature |
+| work           | 8 hex string   | 8 bytes    | [Proof of Work](#proof-of-work) Nonce |
 
 Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/commands/rpc-protocol#block_create) RPC command:
 
-| Action  | Type | Description                                | Example |
-|         |      |                                            |         |
-| Change  | HEX  | Must be 0                                  | `0000000000000000000000000000000000000000000000000000000000000000` |
-| Send    | STR  | Destination "nano_" address                | `nano_1utx843j4hgac1ixbtdygpayqcqho35oy3ufkfp19pj4rdb3sezqt975f8ae` |
-| Receive | HEX  | Pairing block's hash (block sending funds) | `F076D8F6254F089A8E66D0C934FA63D927F4458FC1D96815066D83B3658ABA26` |
+| Action  | Type               | Description                                |
+|         |                    |                                            |
+| Change  | 32 hex-char string | Must be "0"                                |
+| Send    | string             | Destination "nano_" address                |
+| Receive | 32 hex-char string | Pairing block's hash (block sending funds) |
 
 !!! note
     * Any transaction may also simultaneously change the representative. The above description of the "Change" action is for creating a block with an explicit representative change where no funds are transferred (balance is not changed).
