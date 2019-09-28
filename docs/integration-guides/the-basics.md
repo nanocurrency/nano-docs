@@ -203,7 +203,7 @@ Depending on the action each transaction intends to perform, the `"link"` field 
 |         |                    |                                            |
 | Change  | string             | Must be "0"                                |
 | Send    | string             | Destination "nano_" address                |
-| Receive | 64 hex-char string | Pairing block's hash (block sending funds) |
+| Receive | 64 hex string      | Pairing block's hash (block sending funds) |
 
 !!! note
     * Any transaction may also simultaneously change the representative. The above description of the "Change" action is for creating a block with an explicit representative change where no funds are transferred (balance is not changed).
