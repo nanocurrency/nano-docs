@@ -188,7 +188,7 @@ Because each block contains the current state of the account, the `"type"` of th
 
 | Key            | RPC Format     | Serialized | Description |
 |                |                |            |             |
-| type           | string         | -          | "state" (`0x6`) |
+| type           | string         | -          | "state" |
 | account        | string         | 32 bytes   | This account's nano_ address |
 | previous       | 32 hex string  | 32 bytes   | Previous head block on account; 0 if *open* block |
 | representative | string         | 32 bytes   | Representative nano_ address |
