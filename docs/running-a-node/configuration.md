@@ -225,6 +225,8 @@ For details about using the IPC setup, see the [IPC Integration Guide](/integrat
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
 
+!!! tip "Configuration for docker nodes"
+    Docker nodes have the default `address` set to `"::ffff:0.0.0.0"`. To allow a connection between the host and the node, include `-p 127.0.0.1:7078:7078` (or another port if changed) in the `docker run` command or equivalent.
 ---
 
 #### HTTP callback
