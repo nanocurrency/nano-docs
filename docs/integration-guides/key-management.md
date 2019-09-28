@@ -460,6 +460,7 @@ curl -d '{
     * If a block is not confirmed within a certain amount of time (configuration option `work_watcher_period`, default 5 seconds), an **automatic re-generation of a higher difficulty proof-of-work** may take place.
     * Re-generation only takes place when the network is unable to confirm transactions quickly (commonly referred as the network being *saturated*, and the higher difficulty proof-of-work is used to help prioritize the block higher in the processing queue of other nodes.
     * Configuration option `max_work_generate_multiplier` can be used to limit how much effort should be spent in re-generating the proof-of-work.
+    * The target proof-of-work difficulty threshold is obtained internally as the minimum between [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) and `max_work_generate_multiplier` (converted to difficulty).
     * With a new, [higher difficulty](/integration-guides/the-basics/#difficulty-multiplier) proof-of-work, the block will get higher confirmation priority across the network.
 
 
