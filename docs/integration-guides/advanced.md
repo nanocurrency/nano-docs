@@ -382,6 +382,7 @@ Including the election info option results in the following fields being include
 * election `duration` in milliseconds
 * end of election `time` as milliseconds since epoch
 * weight `tally` in raw unit
+* the confirmation `request_count` (_version 20.0+_)
 
 ##### Sample Results
 
@@ -404,7 +405,8 @@ Including the election info option results in the following fields being include
     "election_info": {
       "duration": "546",
       "time": "1564935348219",
-      "tally": "42535295865117307936387010521258262528"
+      "tally": "42535295865117307936387010521258262528",
+      "request_count": "1" // since V20.0
     },
     "block": {
       "type": "state",
