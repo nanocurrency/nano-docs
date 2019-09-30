@@ -3489,6 +3489,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
     },
     "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
       "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": "106370018000000000000000000000000"
+    }
   }
 }
 ```  
