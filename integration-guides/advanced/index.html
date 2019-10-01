@@ -1488,6 +1488,7 @@ Because account filtering needs block content to function, setting this flag to 
 <li>election <code>duration</code> in milliseconds</li>
 <li>end of election <code>time</code> as milliseconds since epoch</li>
 <li>weight <code>tally</code> in raw unit</li>
+<li>the confirmation <code>request_count</code> (<em>version 20.0+</em>)</li>
 </ul>
 <h5>Sample Results</h5>
 <div class="admonition note">
@@ -1511,7 +1512,8 @@ Because account filtering needs block content to function, setting this flag to 
     <span class="nt">&quot;election_info&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;546&quot;</span><span class="p">,</span>
       <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1564935348219&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;42535295865117307936387010521258262528&quot;</span>
+      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;42535295865117307936387010521258262528&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;request_count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V</span><span class="mf">20.0</span>
     <span class="p">},</span>
     <span class="nt">&quot;block&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>

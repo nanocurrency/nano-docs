@@ -3438,8 +3438,8 @@ Returns list of active elections roots (excluding stopped &amp; aborted election
 </div>
 <p><em>version 12.0+<br />
 duration, time, confirmation_stats: version 17.0+</em> <br />
-Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time   </p>
-<p>With version 19.0+ <code>confirmation_history_size</code> can be managed in <a href="/running-a-node/configuration/#example-file">config.json</a> to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
+Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time.</p>
+<p>With version 19.0+ <code>confirmation_history_size</code> can be managed in the <a href="/running-a-node/configuration/#example-file">configuration file</a> to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation_history&quot;</span>
@@ -3456,13 +3456,15 @@ Returns hash, tally weight, election duration (in milliseconds), election confir
       <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;EA70B32C55C193345D625F766EEA2FCA52D3F2CCE0B3A30838CC543026BB0FEA&quot;</span><span class="p">,</span>
       <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;4000&quot;</span><span class="p">,</span>
       <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1544819986&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;80394786589602980996311817874549318248&quot;</span>
+      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;80394786589602980996311817874549318248&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;request_count&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V</span><span class="mf">20.0</span>
     <span class="p">},</span>
     <span class="p">{</span>
       <span class="nt">&quot;hash&quot;</span><span class="p">:</span> <span class="s2">&quot;F2F8DA6D2CA0A4D78EB043A7A29E12BDE5B4CE7DE1B99A93A5210428EE5B8667&quot;</span><span class="p">,</span>
       <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;6000&quot;</span><span class="p">,</span>
       <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1544819988&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;68921714529890443063672782079965877749&quot;</span>
+      <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;68921714529890443063672782079965877749&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;request_count&quot;</span><span class="p">:</span> <span class="s2">&quot;7&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V</span><span class="mf">20.0</span>
     <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
