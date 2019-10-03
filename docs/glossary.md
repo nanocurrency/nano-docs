@@ -106,6 +106,9 @@ An account address that does not have a first block on it (which must be a block
 #### unpocketed
 See [pending](#pending).
 
+#### vote-by-hash
+Allows representatives to only include the hash of a block in each vote to save bandwidth. Before vote-by-hash was activated the entire vote contents were required.
+
 #### voting
 Each node configured with a [Representative](#representative) votes on every block by appending their Representative signature and a sequence number to the hash. These will be sent out to directly connected peers and if the vote originates from a [Principal Representative](#principal-representative), it will subsequently be rebroadcasted by nodes to their peers.
 
