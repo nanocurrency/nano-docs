@@ -1002,6 +1002,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vote-by-hash" title="vote-by-hash" class="md-nav__link">
+    vote-by-hash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#voting" title="voting" class="md-nav__link">
     voting
   </a>
@@ -1325,6 +1332,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vote-by-hash" title="vote-by-hash" class="md-nav__link">
+    vote-by-hash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#voting" title="voting" class="md-nav__link">
     voting
   </a>
@@ -1451,6 +1465,8 @@
 <p>An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).</p>
 <h4 id="unpocketed">unpocketed<a class="headerlink" href="#unpocketed" title="Permanent link">&para;</a></h4>
 <p>See <a href="#pending">pending</a>.</p>
+<h4 id="vote-by-hash">vote-by-hash<a class="headerlink" href="#vote-by-hash" title="Permanent link">&para;</a></h4>
+<p>Allows representatives to only include the hash of a block in each vote to save bandwidth. Before vote-by-hash was activated the entire block contents were required.</p>
 <h4 id="voting">voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h4>
 <p>Each node configured with a <a href="#representative">Representative</a> votes on every block by appending their Representative signature and a sequence number to the hash. These will be sent out to directly connected peers and if the vote originates from a <a href="#principal-representative">Principal Representative</a>, it will subsequently be rebroadcasted by nodes to their peers.</p>
 <h4 id="voting-weight">voting weight<a class="headerlink" href="#voting-weight" title="Permanent link">&para;</a></h4>
