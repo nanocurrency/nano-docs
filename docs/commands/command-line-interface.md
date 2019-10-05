@@ -28,6 +28,9 @@ Use the supplied `<path>` as the data directory
 ### --debug_account_count	
 Display the number of accounts
 
+### --debug_account_versions	
+_version 20.0+_ Display the total counts of each version for all accounts (including unpocketed)
+
 ### --debug_block_count
 Display the number of blocks
 
