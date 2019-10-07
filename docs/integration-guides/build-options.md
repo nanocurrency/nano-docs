@@ -240,13 +240,12 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone https://github.com/nanocurrency/nano-node.git
-cd nano-node
+git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+cd nano_build
 sh util/build_prep/bootstrap_boost.sh -m
-git submodule update --init --recursive
 cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
-make
-./nano_node/nano_node --daemon
+make nano_node
+cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
 
 ## Build Instructions - Windows
