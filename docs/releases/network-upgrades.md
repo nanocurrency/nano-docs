@@ -107,7 +107,7 @@ The hash of a block is hardcoded in the node such that once that hash is seen by
 | Node upgrade + distribution of one block per transition phase | Yes | <ul><li>Can be used for multi-phase upgrades, including in combination with other options</li><li>Timing flexible</li></ul> | <ul><li>Requires manual intervention</li><li>Adds additional code complexity</li><li>Can cause unchecked table to fill during transition</li></ul> |
 
 ### Epoch blocks
-A special block type that can only be generated using the genesis key will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. See [State block upgrade](#state-blocks) details for an example.
+A special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. See [State block upgrade](#state-blocks) details for an example.
 
 | Trigger | Uses blocks | Benefits | Drawbacks |
 |---------|-------------|----------|-----------|
