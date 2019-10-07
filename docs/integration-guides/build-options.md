@@ -9,7 +9,7 @@ Each release cycle official builds of the node for Linux, MacOS and Windows are 
 
 **Other sources**  
 The node can be also be installed from other sources including [Docker](/running-a-node/node-setup#installing-docker) and RHEL/CentOS rpm:
-```
+```bash
 sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo
 sudo yum install nanocurrency
 ```
@@ -23,7 +23,7 @@ Each beta release cycle official beta builds of the node for Linux, MacOS and Wi
 
 **Other sources**  
 The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-network#pulling-the-docker-image) and RHEL/CentOS rpm:
-```
+```bash
 sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
 sudo yum install nanocurrency-beta
 ```
@@ -49,7 +49,7 @@ This installs `nano_node-beta` to bin.
 
 ---
 
-## Build Instructions - General
+## General Build Instructions
 
 --8<-- "unsupported-configuration.md"
 
@@ -84,7 +84,7 @@ This will build the required Boost libraries at `/usr/local/boost/`.
 
 Inside [boost.src] run:
 ```bash
-./bootstrap.sh --with-libraries=filesystem,log,program_options,thread
+./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
 ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
 ```
 If on Windows: an additional b2 option `address-model=64` for x64 builds should be included.
@@ -132,11 +132,11 @@ Format: `cmake -D VARNAME=VARVALUE`
 * (Windows) `cpack -G "NSIS"`
 * (\*nix) `cpack -G "TBZ2"`
 
-**Testing Nano**
+**Testing the Node**
 
 * In order to run the tests, the corresponding CMake variable must be set: `-D NANO_TEST=ON`.
-* With this variable set, make will also build test files, and will produce `core_test` and `slow_test` binaries, which can be executed like `./core_test`.
-* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
+* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test` and `slow_test` binaries, which can be executed such as `./core_test`.
+* See more details in [Testing](#testing)
 
 **Beta Network Participation**
 
@@ -145,139 +145,103 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 ---
 
-## Build Instructions - Unix
+## Unix Dependencies
 
-These instructions are for creating a build on the following systems:
+These instructions are for the following systems:
 
 * Ubuntu 16.04 LTS Server
 * Ubuntu 16.10+
 * Debian 8 Jessie (Debian 8 requires Cmake 3.4+)
 * Debian 9 Stretch
 
-See further below for [CentOS 7](#build-instructions-centos-7) and [OSX](#build-instructions-osx).
-
-
---8<-- "unsupported-configuration.md"
-
-### Dependencies 
+**Install dependencies**
 
 ```bash
-sudo apt-get update && sudo apt-get upgrade   
+sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install git cmake g++ curl wget
-```   
-### Static Boost
-```bash
-wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz   
-tar xzvf boost_1_67_0.tar.gz   
-cd boost_1_67_0   
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread   
-./b2 --prefix=../[boost] link=static install   
-cd ..
-```
-### Node
-
-```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build   
-cd nano_build   
-cmake -DBOOST_ROOT=../[boost]/ -G "Unix Makefiles"   
-make nano_node   
-cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
 
-## Build Instructions - CentOS 7
+Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
 
-!!! success "Requirements"
-    * GCC compiler version 4.9+ or other compiler with C++14 language support (default Centos 7 compilers are outdated)
-    * Cmake 3.4+
+## CentOS 7 Dependencies
 
-### Dependencies 
+**Requirements**
+
+* GCC compiler version 4.9+ or other compiler with C++14 language support (default Centos 7 compilers are outdated)
+* Cmake 3.4+
+
+**Install dependencies**
 
 ```bash
-sudo yum check-update   
-sudo yum install git libstdc++-static curl wget   
+sudo yum check-update
+sudo yum install git libstdc++-static curl wget
 ```
 
-### Configure repository with modern GCC
+**Configure repository with modern GCC**
 ```bash
-sudo yum install centos-release-scl   
-sudo yum install devtoolset-7-gcc*   
-scl enable devtoolset-7 bash   
+sudo yum install centos-release-scl
+sudo yum install devtoolset-7-gcc*
+scl enable devtoolset-7 bash
 ```
 
-### Modern Cmake
+**Modern Cmake**
 ```bash
-wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz   
-tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1    
-./bootstrap --prefix=/usr/local   
-make -j$(nproc)   
-sudo make install   
-cd ..    
-```
-
-### Static Boost
-
-```bash
-wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz   
-tar xzvf boost_1_67_0.tar.gz && cd boost_1_67_0   
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread   
-./b2 --prefix=../[boost] link=static install   
+wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
+tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
+./bootstrap --prefix=/usr/local
+make -j$(nproc)
+sudo make install
 cd ..
 ```
 
-### Node
+Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+
+## Arch Linux Dependencies
+
+**Install dependencies**
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build   
-cd nano_build   
-cmake -DBOOST_ROOT=../[boost]/ -G "Unix Makefiles"   
-make nano_node   
-cp nano_node .. && cd .. && ./nano_node --diagnostics
-```
-
----
-
-## Build Instructions - Arch Linux
-
-These instructions are for creating an Arch Linux 64bit build.
-
---8<-- "unsupported-configuration.md"
-
-
-### Dependencies
-
-```bash
-pacman -Syu  
+pacman -Syu
 pacman -S base-devel git gcc cmake curl wget
 ```
 
-### Static Boost
+Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
 
+---
+
+## Build Instructions - Unix, CentOS, Arch Linux
+
+--8<-- "unsupported-configuration.md"
+
+### Static Boost
 ```bash
-wget -O boost_1_67_0.tar.gz http://sourceforge.net/projects/boost/files/boost/1.67.0/boost_1_67_0.tar.gz/download   
-tar xzvf boost_1_67_0.tar.gz   
-cd boost_1_67_0   
-./bootstrap.sh   
-./b2 --prefix=../[boost] link=static install   
+wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz
+tar xzvf boost_1_67_0.tar.gz
+cd boost_1_67_0
+./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
+./b2 --prefix=../[boost] link=static install
 cd ..
 ```
 
 ### Node
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build   
-cd nano_build   
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"   
-make nano_node   
-cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics   
+git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+cd nano_build
+cmake -DBOOST_ROOT=../[boost]/ -G "Unix Makefiles"
+make nano_node
+cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
 
 ---
 
 ## Build Instructions - OSX
 
-```
+--8<-- "unsupported-configuration.md"
+
+```bash
 git clone https://github.com/nanocurrency/nano-node.git
-cd nano-node 
+cd nano-node
 sh util/build_prep/bootstrap_boost.sh -m
 git submodule update --init --recursive
 cmake -DBOOST_ROOT=../[boost]/ -G "Unix Makefiles"
@@ -287,16 +251,18 @@ make
 
 ## Build Instructions - Windows
 
+--8<-- "unsupported-configuration.md"
+
 ### Dependencies
 
 * [Boost 1.67+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
-* [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download) 
+* [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
 * [Git for Windows](https://git-scm.com/download/win) **git_bash**
 * [CMake](https://cmake.org/download/)
-* [Visual Studio 2017 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise) 
+* [Visual Studio 2017 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise)
 	* Select **Desktop development with C++**
 	* Select the latest Windows 10 SDK
-	
+
 ### Setup
 
 **Download Source**
@@ -304,15 +270,15 @@ make
 Using git_bash:
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node
-cd nano-node 
+cd nano-node
 ```
 
 **Create a `build` folder inside nano-node (makes for easier cleaning of build)**
 
 Using git_bash:
 ```bash
-mkdir build 
-cd build 
+mkdir build
+cd build
 ``` 
 * **Note:** all subsequent commands should be run within this "build" folder.
 
@@ -320,7 +286,7 @@ cd build
 
 Using Powershell:
 ```bash
-Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe 
+Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
 ```
 
 **Generate the build configuration.**
@@ -332,7 +298,7 @@ Using 64 Native Tools Command Prompt:
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_67_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_67_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\. 
+cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_67_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_67_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
 ```
 
 ### Build
@@ -342,7 +308,7 @@ cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK
 * Alternative using 64 Native Tools Command Prompt:
 
 ```bash 
-cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PROCESSORS% 
+cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PROCESSORS%
 ```
 
 ### Package up binaries
@@ -353,5 +319,58 @@ Using 64 Native Tools Command Prompt:
 * Replace **%GENERATOR%** with NSIS (if installed) or ZIP
 
 ```bash 
-cpack -G %GENERATOR% -C %CONFIGURATION% 
+cpack -G %GENERATOR% -C %CONFIGURATION%
+```
+
+---
+
+## Testing
+
+A number of tests binaries can be built when the `-DNANO_TEST` CMake variable is set to `ON`.
+
+* `core_test` - Tests the majority of protocol, node and network functionality.
+* `slow_test` - Tests which operate on a large amount of data and may take a while. Not currently tested by CI.
+* `rpc_test` - Tests all RPC commands
+* `load_test` - Launches many nodes and RPC servers, checking sending/receiving blocks with simultaneous calls. Use `./load_test --help` to see the available options
+
+### Running Tests
+
+To run all tests in a binary just launch it:
+```bash
+./core_test
+```
+
+To check a specific subset of tests, gtest filtering can be used (with optional wildcards):
+```bash
+./core_test --gtest_filter=confirmation_height.single
+./rpc_test --gtest_filter=rpc.*
+```
+
+To run tests multiple times:
+```bash
+./core_test --gtest_repeat=10
+```
+
+If running on a debugger, add the argument `--gtest_break_on_failure` break at the moment a test fails.
+
+### Sanitizers
+
+3 different CMake sanitizer options are supported: `NANO_ASAN_INT`, `NANO_TSAN` and `NANO_ASAN`. They cannot be used in conjunction with each other.
+
+#### Thread Sanitizer
+Use `-DNANO_TSAN=ON` as an extra CMake option. When using the clang compiler this should be all that is necessary. When using gcc however the following environment variable should be set:
+
+`export TSAN_OPTIONS="suppressions=../tsan_suppressions"`
+
+`tsan_suppressions` should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb library. The reason it is not needed with clang is that it supports `-fsanitize-blacklist` compiler option which is used with `tsan_clang_blacklist` via CMake.
+
+#### Address Sanitizer
+Use the CMake variable `-DNANO_ASAN=ON` or `-DNANO_ASAN_INT=ON` before running an executable.
+
+### Valgrind
+
+Valgrind can be used to find other issues such as memory leaks. A valgrind suppressions file is provided to remove some warnings. Valgrind can be run as follows (there are many options available):
+
+```bash
+valgrind --leak-check=full --track-origins=yes --suppressions=../valgrind.supp ./core_test
 ```
