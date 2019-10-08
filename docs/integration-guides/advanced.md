@@ -203,13 +203,16 @@ The HTTP callback is still available and both mechanisms can be used at the same
 
 **Example**
 
-A sample client is available at https://github.com/cryptocode/nano-websocket-sample-nodejs/blob/master/index.js
+Sample clients are available:
+
+* Node.js: https://github.com/cryptocode/nano-websocket-sample-nodejs
+* Python: https://github.com/guilhermelawless/nano-websocket-sample-py
 
 **Configuration**
 
 For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#websocket).
 
-With the above configuration, localhost clients should connect to `ws://[::1]:7078`
+With the default configuration, localhost clients should connect to `ws://[::1]:7078`.
 
 ### Acknowledgement
 
@@ -379,6 +382,7 @@ Including the election info option results in the following fields being include
 * election `duration` in milliseconds
 * end of election `time` as milliseconds since epoch
 * weight `tally` in raw unit
+* the confirmation `request_count` (_version 20.0+_)
 
 ##### Sample Results
 
@@ -401,7 +405,8 @@ Including the election info option results in the following fields being include
     "election_info": {
       "duration": "546",
       "time": "1564935348219",
-      "tally": "42535295865117307936387010521258262528"
+      "tally": "42535295865117307936387010521258262528",
+      "request_count": "1" // since V20.0
     },
     "block": {
       "type": "state",

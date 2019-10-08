@@ -1051,9 +1051,9 @@ Returns the hash of the block which is having the confirmation height set for, e
 
 _version 12.0+  
 duration, time, confirmation_stats: version 17.0+_   
-Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time   
+Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in [config.json](/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the [configuration file](/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
 
 **Request:**
 ```json
@@ -1073,13 +1073,15 @@ With version 19.0+ `confirmation_history_size` can be managed in [config.json](/
       "hash": "EA70B32C55C193345D625F766EEA2FCA52D3F2CCE0B3A30838CC543026BB0FEA",
       "duration": "4000",
       "time": "1544819986",
-      "tally": "80394786589602980996311817874549318248"
+      "tally": "80394786589602980996311817874549318248",
+      "request_count": "2" // since V20.0
     },
     {
       "hash": "F2F8DA6D2CA0A4D78EB043A7A29E12BDE5B4CE7DE1B99A93A5210428EE5B8667",
       "duration": "6000",
       "time": "1544819988",
-      "tally": "68921714529890443063672782079965877749"
+      "tally": "68921714529890443063672782079965877749",
+      "request_count": "7" // since V20.0
     }
   ]
 }
@@ -3489,6 +3491,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
     },
     "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
       "4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74": "106370018000000000000000000000000"
+    }
   }
 }
 ```  
