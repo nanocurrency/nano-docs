@@ -89,7 +89,6 @@ IPC is disabled by default. For details about using the IPC setup, see the [IPC 
 address = "::1"
 enable = true
 port = 7078
-}
 ```
 
 With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
@@ -105,7 +104,6 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 address = "::ffff:127.0.0.1"
 port = 17076
 target = "/"
-}
 ```
 
 JSON POST requests with every confirmed block are sent to the callback server as defined in the config values above: `http://callback_address:callback_port<callback_target>`. Callback target should include a leading slash.
