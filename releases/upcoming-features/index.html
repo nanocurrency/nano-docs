@@ -901,7 +901,7 @@
 </tbody>
 </table>
 <h3 id="in-progress">In Progress<a class="headerlink" href="#in-progress" title="Permanent link">&para;</a></h3>
-<details class="tip"><summary>New PoW algorithm</summary><table>
+<details class="tip"><summary>New PoW infrastructure</summary><table>
 <thead>
 <tr>
 <th>Release</th>
@@ -911,15 +911,15 @@
 <tbody>
 <tr>
 <td>Goal</td>
-<td>Design a new Proof-of-Work (PoW) algorithm to be more memory bound.</td>
+<td>Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.</td>
 </tr>
 <tr>
 <td>Benefits</td>
-<td>Increase Quality of Service on network through increased spam cost.</td>
+<td>Increased security, faster PoW algorithm updates in future release and better resource management options.</td>
 </tr>
 <tr>
 <td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/issues/506">https://github.com/nanocurrency/nano-node/issues/506</a></td>
+<td><a href="https://github.com/nanocurrency/nano-pow-server">https://github.com/nanocurrency/nano-pow-server</a>, <a href="https://github.com/nanocurrency/nano-node/pull/2331">https://github.com/nanocurrency/nano-node/pull/2331</a></td>
 </tr>
 </tbody>
 </table>
@@ -1110,6 +1110,29 @@
 </table>
 </details>
 <h3 id="researching">Researching<a class="headerlink" href="#researching" title="Permanent link">&para;</a></h3>
+<details class="info"><summary>New PoW algorithm</summary><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>TBD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Design a new Proof-of-Work (PoW) algorithm to be more memory bound.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Increase Quality of Service on network through increased spam cost.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/issues/506">https://github.com/nanocurrency/nano-node/issues/506</a></td>
+</tr>
+</tbody>
+</table>
+</details>
 <details class="info"><summary>Network overlay (DHT-based)</summary><table>
 <thead>
 <tr>
@@ -1320,12 +1343,37 @@
 </table>
 </details>
 <h3 id="recent-page-updates">Recent Page Updates<a class="headerlink" href="#recent-page-updates" title="Permanent link">&para;</a></h3>
-<p><strong>2019-09-20</strong></p>
+<p><strong>2019-10-09</strong></p>
 <table>
 <thead>
 <tr>
 <th>Feature</th>
-<th>Prev</th>
+<th>Previous</th>
+<th>New</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New PoW algorithm</td>
+<td>In Progress</td>
+<td>Researching</td>
+<td>Continuing research into algorithm design</td>
+</tr>
+<tr>
+<td>New PoW infrastructure</td>
+<td>-</td>
+<td>In Progress</td>
+<td>Recently split from algorithm into separate scope</td>
+</tr>
+</tbody>
+</table>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-09-20</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Previous</th>
 <th>New</th>
 <th>Reason</th>
 </tr>
@@ -1393,7 +1441,7 @@
 </tr>
 </tbody>
 </table>
-<details class="info"><summary>Other past changes</summary><p><strong>2019-07-30</strong></p>
+<p><strong>2019-07-30</strong></p>
 <ul>
 <li>Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release </li>
 </ul>
