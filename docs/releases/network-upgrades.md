@@ -20,7 +20,7 @@ To help ensure Quality of Service on the network by providing the ability to gen
 | TBD | Epoch blocks end | Distribution of epoch blocks ends after all accounts are upgraded. |
 
 !!! warning "Nodes de-peered with epoch blocks"
-	Due to the nature of the state block changes to be included in the 2nd node release of this transition, any nodes not updated to the latest version at the time of epoch block distribution will be de-peered as part of this process. This behavior was also part of the [Vote-by-Hash upgrade](#vote-by-hash).
+	Due to the nature of the state block changes to be included in the 2nd node release of this transition, any nodes not updated to the latest version at the time of epoch block distribution will be de-peered as part of this process.
 
 **Transition Explanation**
 
