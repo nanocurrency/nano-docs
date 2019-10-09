@@ -10,13 +10,13 @@ Status                 | Details
 
 ### In Progress
 
-??? tip "New PoW algorithm"
+??? tip "New PoW infrastructure"
 
 	Release  | V20
 	---------|----------------------- 
-	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
-	Benefits | Increase Quality of Service on network through increased spam cost.
-	Links    | https://github.com/nanocurrency/nano-node/issues/506
+	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
+	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
+	Links    | https://github.com/nanocurrency/nano-pow-server, https://github.com/nanocurrency/nano-node/pull/2331
 
 ??? tip "Initial support for RocksDB"
 
@@ -86,6 +86,14 @@ Status                 | Details
 	Links    | [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
 
 ### Researching
+
+??? info "New PoW algorithm"
+
+	Release  | TBD
+	---------|----------------------- 
+	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
+	Benefits | Increase Quality of Service on network through increased spam cost.
+	Links    | https://github.com/nanocurrency/nano-node/issues/506
 
 ??? info "Network overlay (DHT-based)"
 
@@ -166,23 +174,29 @@ Status                 | Details
 
 ### Recent Page Updates
 
-**2019-09-20**
+**2019-10-09**
 
-| Feature | Prev | New | Reason |
-|---------|---------|-----|--------|
-| New PoW algorithm            | Researching | V20  | Recently prioritized |
-| Initial support for RocksDB  | -           | V20  | Recently prioritized |
-| Migrate to TOML config files | -           | V20  | Recently prioritized |
-| Dual-phase voting target     | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
-| Move wallet out of process   | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
-| Durable vote snapshots       | V20         | V22+ | Lower anticipated ROI vs. other features |
-| Protobuf based RPCs          | V21         | V22  | Reduce previous version scope |
-| RPC 2.0                      | V21         | V22  | Reduce previous version scope |
-| Ledger Pruning               | V21         | V23  | Reduce previous version scope and allow further evaluation |
-| QUIC Protocol                | V22+        | TBD  | Allow further evaluation |
-
+| Feature | Previous | New | Reason |
+|---------|--------- |-----|--------|
+| New PoW algorithm | In Progress | Researching | Continuing research into algorithm design |
+| New PoW infrastructure | - | In Progress | Recently split from algorithm into separate scope |
 
 ??? info "Other past changes"
+
+	**2019-09-20**
+
+	| Feature | Previous | New | Reason |
+	|---------|----------|-----|--------|
+	| New PoW algorithm            | Researching | V20  | Recently prioritized |
+	| Initial support for RocksDB  | -           | V20  | Recently prioritized |
+	| Migrate to TOML config files | -           | V20  | Recently prioritized |
+	| Dual-phase voting target     | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
+	| Move wallet out of process   | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
+	| Durable vote snapshots       | V20         | V22+ | Lower anticipated ROI vs. other features |
+	| Protobuf based RPCs          | V21         | V22  | Reduce previous version scope |
+	| RPC 2.0                      | V21         | V22  | Reduce previous version scope |
+	| Ledger Pruning               | V21         | V23  | Reduce previous version scope and allow further evaluation |
+	| QUIC Protocol                | V22+        | TBD  | Allow further evaluation |
 
 	**2019-07-30**
 
