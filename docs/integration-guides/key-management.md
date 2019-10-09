@@ -454,6 +454,9 @@ curl -d '{
 }
 ```
 
+!!! tip "Use block subtype as a sanity check"
+    Since V18.0, [`process`](/commands/rpc-protocol/#process) has an optional string `"subtype"`, which takes the value of send/receive/open/change. This field can be used to prevent performing an unintended operation with a block.
+
 !!! tip "Block watching and re-work"
     Since V20.0, blocks processed using [`process`](/commands/rpc-protocol/#process) are placed under observation by the node for re-broadcasting and re-generation of work under certain conditions. If you wish to disable this feature, add `"watch_work": "false"` to the process RPC command.
 
