@@ -1764,6 +1764,10 @@ A successful broadcast will return the broadcasted block's hash.</p>
 </pre></div>
 
 <div class="admonition tip">
+<p class="admonition-title">Use block subtype as a sanity check</p>
+<p>Since V18.0, <a href="/commands/rpc-protocol/#process"><code>process</code></a> has an optional string <code>"subtype"</code>, which takes the value of send/receive/open/change. This field can be used to prevent performing an unintended operation with a block, as the request will return an error if the block details don't match the provided <code>"subtype"</code>.</p>
+</div>
+<div class="admonition tip">
 <p class="admonition-title">Block watching and re-work</p>
 <p>Since V20.0, blocks processed using <a href="/commands/rpc-protocol/#process"><code>process</code></a> are placed under observation by the node for re-broadcasting and re-generation of work under certain conditions. If you wish to disable this feature, add <code>"watch_work": "false"</code> to the process RPC command.</p>
 <ul>
