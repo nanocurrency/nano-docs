@@ -427,7 +427,7 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 
 **Optional "include_trend"**
 
-Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. 
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.
 
 **Request:**
 ```json
