@@ -45,7 +45,7 @@ enable_voting = true
 ```
 
 #### node.enable_voting
-As of V18.0, newly setup nodes will have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
+As of V18.0, newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
 
 
 ---

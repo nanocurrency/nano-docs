@@ -778,7 +778,7 @@ Then restart session & nano_node service. Check changes with `ulimit -n`
 
 ## IPC Integration
 
-As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available. Because the only IPC encoding is currently "legacy RPC", RPC config options like "enable_control" still applies.
+As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available. Because the only IPC encoding is currently "legacy RPC", RPC config options like "enable_control" still apply.
 
 ### Transports 
 TCP and unix domain sockets are supported. Named pipes and shared memory may be supported in future releases.
