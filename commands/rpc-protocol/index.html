@@ -832,6 +832,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#epoch-upgrade" title="epoch upgrade" class="md-nav__link">
+    epoch upgrade
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#frontier_count" title="frontier_count" class="md-nav__link">
     frontier_count
   </a>
@@ -1926,6 +1933,13 @@
           <li class="md-nav__item">
   <a href="#deterministic_key" title="deterministic_key" class="md-nav__link">
     deterministic_key
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epoch-upgrade" title="epoch upgrade" class="md-nav__link">
+    epoch upgrade
   </a>
   
 </li>
@@ -3451,7 +3465,7 @@ Returns list of active elections roots (excluding stopped &amp; aborted election
 <p><em>version 12.0+<br />
 duration, time, confirmation_stats: version 17.0+</em> <br />
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time.</p>
-<p>With version 19.0+ <code>confirmation_history_size</code> can be managed in the <a href="/running-a-node/configuration/#example-file">configuration file</a> to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
+<p>With version 19.0+ <code>confirmation_history_size</code> can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;confirmation_history&quot;</span>
@@ -3701,6 +3715,28 @@ Get number of delegators for a specific representative <strong>account</strong> 
   <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7&quot;</span>
 <span class="p">}</span>
 </pre></div></p>
+<hr />
+<h3 id="epoch-upgrade">epoch upgrade<a class="headerlink" href="#epoch-upgrade" title="Permanent link">&para;</a></h3>
+<p><em>enable_control required, version 20.0+</em> </p>
+<div class="admonition warning">
+<p class="admonition-title">Debug purposes only</p>
+<p>This call is for internal diagnostics/debug purposes only. Do not rely on this interface being stable and do not use in a production system.</p>
+</div>
+<p>Upgrade network to new <strong>epoch</strong> with epoch signer private <strong>key</strong>  </p>
+<p><strong>Request:</strong>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;epoch_upgrade&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;epoch&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;0000000000000000000000000000000000000000000000000000000000000000&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<strong>Response:</strong>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;started&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<strong>Optional "count"</strong><br />
+Number. Determines limit of number of accounts to upgrade.</p>
 <hr />
 <h3 id="frontier_count">frontier_count<a class="headerlink" href="#frontier_count" title="Permanent link">&para;</a></h3>
 <p>Reports the number of accounts in the ledger  </p>
@@ -4245,7 +4281,7 @@ Signing provided <strong>block</strong> with private <strong>key</strong> or key
 <p><em>version 19.0+</em><br />
 Default "false". If "true", the input "block" must contain a JSON subtree instead of a JSON string. In addition, the response block will be a JSON subtree.</p>
 <p><strong>Optional sign block hash</strong><br />
-<em>Requires config.json modification. Set "enable_sign_hash" to "true"</em>  </p>
+<em>Requires configuration changes. Set "rpc.enable_sign_hash" to "true"</em>  </p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;sign&quot;</span><span class="p">,</span>

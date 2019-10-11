@@ -982,7 +982,7 @@
 </ul>
 </div>
 <h3 id="nano-folder">Nano Folder<a class="headerlink" href="#nano-folder" title="Permanent link">&para;</a></h3>
-<p>The Nano folder contains: wallets file (wallets.ldb), <a href="/running-a-node/troubleshooting/#log-files">log files</a>, ledger file (data.ldb), config file (<a href="/running-a-node/configuration/#configjson">config.json</a>) and related lock files.</p>
+<p>The Nano folder contains: wallets file (wallets.ldb), <a href="/running-a-node/troubleshooting/#log-files">log files</a>, optional config files, ledger file (data.ldb) and related lock files.</p>
 <p>For Docker setups, the <code>${NANO_HOST_FOLDER}</code> indicated in the steps below will be the location of these files on your host machine.</p>
 <h3 id="managing-the-container">Managing the Container<a class="headerlink" href="#managing-the-container" title="Permanent link">&para;</a></h3>
 <h4 id="starting">Starting<a class="headerlink" href="#starting" title="Permanent link">&para;</a></h4>
@@ -996,7 +996,7 @@
 <p><code>${NANO_TAG}</code> - The version of docker image you will be running. For consumers, <code>latest</code> is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.</p>
 </li>
 <li>
-<p><code>${NANO_HOST_FOLDER}</code> - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as <a href="/running-a-node/configuration/#configjson">config.json</a> and <code>data.ldb</code> into this directory.</p>
+<p><code>${NANO_HOST_FOLDER}</code> - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as <a href="/running-a-node/configuration">config-node.toml</a> and <code>data.ldb</code> into this directory.</p>
 </li>
 </ul>
 <hr />
@@ -1047,7 +1047,7 @@
 </tr>
 </tbody>
 </table>
-<p>If you wish to use different ports, change the host ports in the <code>docker run</code> command; do not change the ports in the <a href="/running-a-node/configuration/#configjson">config.json</a> file.</p>
+<p>If you wish to use different ports, change the host ports in the <code>docker run</code> command; do not change the ports in the <a href="/running-a-node/configuration">config-node.toml</a> file.</p>
 <p>This will start the docker container using host ports 7075 and 7076 and put the data in a permanent location in your hosts's home directory, outside the docker container. Upon successful startup, Docker will return the container's full ID. A typical ID will look something like the value below.</p>
 <div class="codehilite"><pre><span></span>0118ad5b48489303aa9d195f8a45ddc74a90e8a7209fc67d5483aabf3170d619
 </pre></div>
@@ -1105,13 +1105,13 @@
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Modifications made to <code>config.json</code> while the Docker container is running may not properly save and cause unwanted side-effects. Always stop the container before modifying configuration files.</p>
+<p>Modifications made to configuration files while the Docker container is running have no effect until the container is restarted.</p>
 </div>
-<p>You may now edit the <a href="/running-a-node/configuration/#configjson">config.json file</a> located in <code>${NANO_HOST_FOLDER}</code> using your preferred text editor.</p>
+<p>You may now edit the <a href="/running-a-node/configuration">configuration files</a> located in <code>${NANO_HOST_FOLDER}</code> using your preferred text editor.</p>
 <p>Once modifications are complete, <a href="#starting">start up the docker container again</a> using the same command.</p>
 <div class="admonition tip">
 <p class="admonition-title">Enable Voting</p>
-<p>When setting up a new node, voting is disabled by default in the <code>config.json</code> file and must be manually enabled in order to participate in consensus. See <a href="/running-a-node/configuration/#enable_voting">enable_voting configuration option</a> for more details.</p>
+<p>When setting up a new node, voting is disabled by default in the configuration file and must be manually enabled in order to participate in consensus. See <a href="/running-a-node/configuration/#nodeenable_voting">enable_voting configuration option</a> for more details.</p>
 </div>
 <hr />
 <h3 id="docker-entrypoint-support">Docker entrypoint support<a class="headerlink" href="#docker-entrypoint-support" title="Permanent link">&para;</a></h3>

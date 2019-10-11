@@ -799,19 +799,19 @@
 <td>7075</td>
 <td>UDP</td>
 <td>Enabled</td>
-<td><ul><li>Primary node activity port</li><li>Port configurable in <code>config.json:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol datagrams</li><li>All standard ledger activity goes through this port</li><li>If blocked the node will not function</li></ul></td>
+<td><ul><li>Primary node activity port</li><li>Port configurable in <code>config-node.toml:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol datagrams</li><li>All standard ledger activity goes through this port</li><li>If blocked the node will not function</li></ul></td>
 </tr>
 <tr>
 <td>7075</td>
 <td>TCP</td>
 <td>Enabled</td>
-<td><ul><li>Node bootstrapping server</li><li>Share port configuration in <code>config.json:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol stream</li><li>Transmits the ledger to new nodes in bulk</li><li>If blocked other nodes will not be able retrieve the ledger from this node</li></ul></td>
+<td><ul><li>Node bootstrapping server</li><li>Share port configuration in <code>config-node.toml:node/peering_port</code></li><li>Binds to all adapters, unicast</li><li>Contents: Raw nano protocol stream</li><li>Transmits the ledger to new nodes in bulk</li><li>If blocked other nodes will not be able retrieve the ledger from this node</li></ul></td>
 </tr>
 <tr>
 <td>7076</td>
 <td>TCP</td>
 <td>Disabled</td>
-<td><ul><li>RPC server</li><li>Port configurable in <code>rpc_config.json:rpc/port</code></li><li>Enable in <code>config.json:rpc_enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>rpc_config.json:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li></ul></td>
+<td><ul><li>RPC server</li><li>Port configurable in <code>config-rpc.toml:rpc/port</code></li><li>Enable in <code>config-node.toml:rpc/enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>config-rpc.toml:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li></ul></td>
 </tr>
 </tbody>
 </table>

@@ -1760,33 +1760,27 @@ Because account filtering needs block content to function, setting this flag to 
 <p>There are 3 different ways to enable RPC for the node:</p>
 <p><strong>In process</strong></p>
 <ul>
-<li><code>rpc_enable</code> = <strong>true</strong></li>
-<li><code>child_process.enable</code> = <strong>false</strong> (default, V19.0+)</li>
+<li><code>rpc.enable</code> = <strong>true</strong></li>
+<li><code>rpc.child_process.enable</code> = <strong>false</strong> (default, V19.0+)</li>
 </ul>
 <p><strong>Child process</strong><br />
 <em>V19.0+ only</em></p>
 <ul>
-<li><code>rpc_enable</code> = <strong>true</strong></li>
-<li><code>child_process.enable</code> = <strong>true</strong></li>
-<li><code>child_process.rpc_path</code> = [path to nano_rpc]</li>
-<li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
-<li><code>ipc</code>.<code>tcp</code>.<code>port</code> = <code>process.ipc_port</code> of <code>rpc_config.json</code></li>
+<li><code>rpc.enable</code> = <strong>true</strong></li>
+<li><code>rpc.child_process.enable</code> = <strong>true</strong></li>
+<li><code>rpc.child_process.rpc_path</code> = [path to nano_rpc]</li>
+<li><code>ipc.tcp.enable</code> = <strong>true</strong></li>
+<li><code>ipc.tcp.port</code> = <code>process.ipc_port</code> of <code>config-rpc.toml</code></li>
 </ul>
 <p><strong>Out of node process</strong><br />
 <em>V19.0+ only</em></p>
 <ul>
-<li><code>rpc_enable</code> = <strong>false</strong></li>
-<li><code>child_process.enable</code> = <strong>false</strong></li>
-<li><code>ipc</code>.<code>tcp</code>.<code>enable</code> = <strong>true</strong></li>
-<li><code>ipc</code>.<code>tcp</code>.<code>port</code> == <code>process.ipc_port</code> of <code>rpc_config.json</code></li>
+<li><code>rpc.enable</code> = <strong>false</strong></li>
+<li><code>rpc.child_process.enable</code> = <strong>false</strong></li>
+<li><code>node.ipc.tcp.enable</code> = <strong>true</strong></li>
+<li><code>node.ipc.tcp.port</code> == <code>process.ipc_port</code> of <code>config-rpc.toml</code></li>
 </ul>
-<p>The choice depends on the setup and security that you want. The easiest way is to use <em>in_process</em>: edit <a href="/running-a-node/configuration/#configjson">config.json</a>  &amp; <a href="/running-a-node/configuration/#rpc_configjson">rpc_config.json</a> (V19.0+) after first launch.</p>
-<div class="codehilite"><pre><span></span>./nano_node --daemon  
-sed -i &#39;s/&quot;rpc_enable&quot;: &quot;false&quot;/&quot;rpc_enable&quot;: &quot;true&quot;/g&#39; ~/Nano/config.json   
-sed -i &#39;s/&quot;enable_control&quot;: &quot;false&quot;/&quot;enable_control&quot;: &quot;true&quot;/g&#39; ~/Nano/rpc_config.json
-</pre></div>
-
-
+<p>The choice depends on the setup and security that you want. The easiest way is to use RPC <em>in_process</em> according to <a href="/running-a-node/configuration">configuration</a></p>
 <p><strong>Launch nano_node in test mode</strong>   </p>
 <div class="codehilite"><pre><span></span>./nano_node --daemon --network=test
 </pre></div>
@@ -1849,7 +1843,7 @@ WantedBy=multi-user.target
 </pre></div>
 Then restart session &amp; nano_node service. Check changes with <code>ulimit -n</code></p>
 <h2 id="ipc-integration">IPC Integration<a class="headerlink" href="#ipc-integration" title="Permanent link">&para;</a></h2>
-<p>As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available.</p>
+<p>As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available. Because the only IPC encoding is currently "legacy RPC", RPC config options like "enable_control" still apply.</p>
 <h3 id="transports">Transports<a class="headerlink" href="#transports" title="Permanent link">&para;</a></h3>
 <p>TCP and unix domain sockets are supported. Named pipes and shared memory may be supported in future releases.</p>
 <h3 id="ipc-clients">IPC clients<a class="headerlink" href="#ipc-clients" title="Permanent link">&para;</a></h3>
@@ -1857,7 +1851,7 @@ Then restart session &amp; nano_node service. Check changes with <code>ulimit -n
 <p>A NodeJS client is available at <a href="https://github.com/meltingice/nano-ipc-js">https://github.com/meltingice/nano-ipc-js</a></p>
 <p>A Python client is being developed at <a href="https://github.com/guilhermelawless/nano-ipc-py">https://github.com/guilhermelawless/nano-ipc-py</a></p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
-<p>For details on configuring IPC within a node, see the <a href="/running-a-node/configuration/#ipc">IPC section of Running a Node Configuration</a>.</p>
+<p>IPC is configured in the <code>node.ipc.tcp</code> and <code>node.ipc.local</code> sections of the node configuration file. A documented configuration file can be generated by following the instructions in <a href="/running-a-node/configuration/#ipc">Configuration</a>.</p>
 <h3 id="ipc-requestresponse-format">IPC request/response format<a class="headerlink" href="#ipc-requestresponse-format" title="Permanent link">&para;</a></h3>
 <p>A client must make requests using the following framing format:</p>
 <div class="codehilite"><pre><span></span>REQUEST  ::= HEADER PAYLOAD
