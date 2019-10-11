@@ -104,6 +104,6 @@ Links for beta testing builds are shared in the #beta_announcements channel on o
 
 **Read-only Test Cases**  
 [Test Cases](/testcases/Cases.html)  |  [TOML Config](/testcases/TOML%20Config.html)  |  [DB Results](/testcases/DB%20results.html)  | [Generic Results](/testcases/Generic%20results.html)  
-_Last updated: 2019-09-20_
+_Last updated: 2019-10-11_
 
 If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
