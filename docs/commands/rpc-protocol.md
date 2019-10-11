@@ -1355,6 +1355,31 @@ Derive deterministic keypair from **seed** based on **index**
 
 ---
 
+### epoch upgrade  
+_enable_control required, version 20.0+_ 
+
+--8<-- "debug-only-command.md"
+Upgrade network to new **epoch** with epoch signer private **key**  
+
+**Request:**
+```json
+{
+  "action": "epoch_upgrade",
+  "epoch": "1",
+  "key": "0000000000000000000000000000000000000000000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{
+  "started": "1"
+}
+```  
+**Optional "count"**  
+Number. Determines limit of number of accounts to upgrade.
+
+---
+
 ### frontier_count  
 Reports the number of accounts in the ledger  
 
