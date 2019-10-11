@@ -1053,7 +1053,7 @@ _version 12.0+
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the [configuration file](/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
 
 **Request:**
 ```json
@@ -2060,7 +2060,7 @@ Default "false". If "true", the input "block" must contain a JSON subtree instea
 
 
 **Optional sign block hash**  
-_Requires config.json modification. Set "enable_sign_hash" to "true"_  
+_Requires configuration changes. Set "rpc.enable_sign_hash" to "true"_  
 
 **Request:**
 ```json
