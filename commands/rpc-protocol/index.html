@@ -4476,27 +4476,28 @@ Since <em>version 20.0</em> also returns the Network label and identifier (hash 
 <hr />
 <h3 id="unchecked">unchecked<a class="headerlink" href="#unchecked" title="Permanent link">&para;</a></h3>
 <p><em>version 8.0+</em> <br />
-Returns a list of pairs of unchecked block hashes and their json representation up to <strong>count</strong>.</p>
+Returns a list of pairs of unchecked block hashes and their json representation up to <strong>count</strong>. Using the optional <code>json_block</code> is recommended since v20.0.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;unchecked&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+  <span class="nt">&quot;json_block&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 <strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="p">{</span>
-     <span class="nt">&quot;87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9&quot;</span><span class="p">:</span> <span class="s2">&quot;{\n</span>
-<span class="s2">       \&quot;type\&quot;: \&quot;state\&quot;,\n</span>
-<span class="s2">       \&quot;account\&quot;: \&quot;nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\&quot;,\n</span>
-<span class="s2">       \&quot;previous\&quot;: \&quot;CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\&quot;,\n</span>
-<span class="s2">       \&quot;representative\&quot;: \&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\&quot;,\n</span>
-<span class="s2">       \&quot;balance\&quot;: \&quot;5606157000000000000000000000000000000\&quot;,\n</span>
-<span class="s2">       \&quot;link\&quot;: \&quot;5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\&quot;,\n</span>
-<span class="s2">       \&quot;link_as_account\&quot;: \&quot;nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\&quot;,\n</span>
-<span class="s2">       \&quot;signature\&quot;: \&quot;82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\&quot;,\n</span>
-<span class="s2">       \&quot;work\&quot;: \&quot;8a142e07a10996d5\&quot;\n</span>
-<span class="s2">    }\n&quot;</span>
+    <span class="nt">&quot;87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;representative&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;5606157000000000000000000000000000000&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;link_as_account&quot;</span><span class="p">:</span> <span class="s2">&quot;nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;work&quot;</span><span class="p">:</span> <span class="s2">&quot;8a142e07a10996d5&quot;</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div></p>
