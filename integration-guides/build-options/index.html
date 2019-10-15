@@ -1405,6 +1405,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <li><code>NANO_WARN_TO_ERR=ON</code> (<em>v20.0+</em> turn compiler warnings into errors on Linux/Mac) </li>
 <li><code>NANO_TIMED_LOCKS=50</code> (<em>v20.0+</em> when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables. If enabled requires the boost <code>context</code> &amp; <code>fiber</code> libraries)</li>
 <li><code>NANO_STACKTRACE_BACKTRACE=ON</code> (<em>v20.0+</em> use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs <code>libbacktrace</code> to be installed. Some <a href="https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3">workarounds</a> may be necessary depending on system and configuration. Use CLI <a href="/commands/command-line-interface#-debug_stacktrace"><code>--debug_stacktrace</code></a> to get an example output.)</li>
+<li><code>CI_BUILD=TRUE</code> (<em>v20.0+</em> if enabled, uses environment variable <code>TRAVIS_TAG</code> (required) to modify the locally reported node version; example <code>TRAVIS_TAG="My Nano Node v20"</code>)</li>
 </ul>
 <p><strong>Build Node</strong></p>
 <ul>
