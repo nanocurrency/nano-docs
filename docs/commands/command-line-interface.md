@@ -62,14 +62,14 @@ Profile simulated bootstrap process
 Profile work generation  
 Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.
 
+### --debug_profile_validate
+Profile work validation
+
 ### --debug_profile_kdf
 Profile kdf function
 
 ### --debug_profile_sign
 Profile signature generation
-
-### --debug_profile_verify
-Profile work verification
 
 ### --debug_profile_votes
 Profile vote verification

@@ -20,7 +20,7 @@ The following command will start the node container. Either set the specified en
 
 * `${NANO_TAG}` - The version of docker image you will be running. For consumers, `latest` is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.
 
-* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config.json](/running-a-node/configuration/#configjson) and `data.ldb` into this directory.
+* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
 
 ---
 
@@ -44,7 +44,7 @@ docker run --restart=unless-stopped -d \
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
 | `-p 127.0.0.1:7076:7076`<br />or `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. Without this, anyone with access to your system's IP address can control your nano\_node. |
 
-If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config.json](/running-a-node/configuration/#configjson) file.
+If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
 This will start the docker container using host ports 7075 and 7076 and put the data in a permanent location in your hosts's home directory, outside the docker container. Upon successful startup, Docker will return the container's full ID. A typical ID will look something like the value below.
 
@@ -130,9 +130,9 @@ docker stop ${NANO_NAME}
 ```
 
 !!! warning
-	Modifications made to `config.json` while the Docker container is running may not properly save and cause unwanted side-effects. Always stop the container before modifying configuration files.
+	Modifications made to configuration files while the Docker container is running have no effect until the container is restarted.
 
-You may now edit the [config.json file](/running-a-node/configuration/#configjson) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
+You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
 

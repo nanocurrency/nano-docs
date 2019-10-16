@@ -1053,7 +1053,7 @@ _version 12.0+
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the [configuration file](/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
 
 **Request:**
 ```json
@@ -1352,6 +1352,31 @@ Derive deterministic keypair from **seed** based on **index**
   "account": "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"
 }
 ```  
+
+---
+
+### epoch upgrade  
+_enable_control required, version 20.0+_ 
+
+--8<-- "debug-only-command.md"
+Upgrade network to new **epoch** with epoch signer private **key**  
+
+**Request:**
+```json
+{
+  "action": "epoch_upgrade",
+  "epoch": "1",
+  "key": "0000000000000000000000000000000000000000000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{
+  "started": "1"
+}
+```  
+**Optional "count"**  
+Number. Determines limit of number of accounts to upgrade.
 
 ---
 
@@ -2035,7 +2060,7 @@ Default "false". If "true", the input "block" must contain a JSON subtree instea
 
 
 **Optional sign block hash**  
-_Requires config.json modification. Set "enable_sign_hash" to "true"_  
+_Requires configuration changes. Set "rpc.enable_sign_hash" to "true"_  
 
 **Request:**
 ```json
@@ -2280,30 +2305,31 @@ _RPC Version always returns "1" as of 01/11/2018_
 
 ### unchecked  
 _version 8.0+_   
-Returns a list of pairs of unchecked block hashes and their json representation up to **count**.
+Returns a list of pairs of unchecked block hashes and their json representation up to **count**. Using the optional `json_block` is recommended since v20.0.
 
 **Request:**
 ```json
 {
   "action": "unchecked",
-  "count": "1"
+  "json_block": "true",
+  "count": "1",
 }
 ```  
 **Response:**
 ```json
 {
   "blocks": {
-     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": "{\n
-       \"type\": \"state\",\n
-       \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n
-       \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",\n
-       \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
-       \"balance\": \"5606157000000000000000000000000000000\",\n
-       \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n
-       \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n
-       \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",\n
-       \"work\": \"8a142e07a10996d5\"\n
-    }\n"
+    "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {
+      "type": "state",
+      "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+      "previous": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E",
+      "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+      "balance": "5606157000000000000000000000000000000",
+      "link": "5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5",
+      "link_as_account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+      "signature": "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501",
+      "work": "8a142e07a10996d5"
+    }
   }
 }
 ```
