@@ -358,11 +358,11 @@ If running on a debugger, add the argument `--gtest_break_on_failure` break at t
 3 different CMake sanitizer options are supported: `NANO_ASAN_INT`, `NANO_TSAN` and `NANO_ASAN`. They cannot be used in conjunction with each other.
 
 #### Thread Sanitizer
-Use `-DNANO_TSAN=ON` as an extra CMake option. When using the clang compiler this should be all that is necessary. When using gcc however the following environment variable should be set:
+Use `-DNANO_TSAN=ON` as an extra CMake option. The following environment variable should also be set:
 
 `export TSAN_OPTIONS="suppressions=../tsan_suppressions"`
 
-`tsan_suppressions` should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb library. The reason it is not needed with clang is that it supports `-fsanitize-blacklist` compiler option which is used with `tsan_clang_blacklist` via CMake.
+`tsan_suppressions` should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb and rocksdb libraries.
 
 #### Address Sanitizer
 Use the CMake variable `-DNANO_ASAN=ON` or `-DNANO_ASAN_INT=ON` before running an executable.
