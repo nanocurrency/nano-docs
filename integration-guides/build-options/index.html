@@ -1406,6 +1406,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <li><code>NANO_TIMED_LOCKS=50</code> (<em>v20.0+</em> when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables. If enabled requires the boost <code>context</code> &amp; <code>fiber</code> libraries)</li>
 <li><code>NANO_STACKTRACE_BACKTRACE=ON</code> (<em>v20.0+</em> use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs <code>libbacktrace</code> to be installed. Some <a href="https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3">workarounds</a> may be necessary depending on system and configuration. Use CLI <a href="/commands/command-line-interface#-debug_stacktrace"><code>--debug_stacktrace</code></a> to get an example output.)</li>
 <li><code>CI_BUILD=TRUE</code> (<em>v20.0+</em> if enabled, uses environment variable <code>TRAVIS_TAG</code> (required) to modify the locally reported node version; example <code>TRAVIS_TAG="My Nano Node v20"</code>)</li>
+<li><code>NANO_ROCKSDB=ON</code> (NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB <a href="/running-a-node/rocksdb-ledger-backend/">click here</a> for more details)</li>
 </ul>
 <p><strong>Build Node</strong></p>
 <ul>
@@ -1616,9 +1617,9 @@ cp nano_node ../nano_node <span class="o">&amp;&amp;</span> <span class="nb">cd<
 <h3 id="sanitizers">Sanitizers<a class="headerlink" href="#sanitizers" title="Permanent link">&para;</a></h3>
 <p>3 different CMake sanitizer options are supported: <code>NANO_ASAN_INT</code>, <code>NANO_TSAN</code> and <code>NANO_ASAN</code>. They cannot be used in conjunction with each other.</p>
 <h4 id="thread-sanitizer">Thread Sanitizer<a class="headerlink" href="#thread-sanitizer" title="Permanent link">&para;</a></h4>
-<p>Use <code>-DNANO_TSAN=ON</code> as an extra CMake option. When using the clang compiler this should be all that is necessary. When using gcc however the following environment variable should be set:</p>
+<p>Use <code>-DNANO_TSAN=ON</code> as an extra CMake option. The following environment variable should also be set:</p>
 <p><code>export TSAN_OPTIONS="suppressions=../tsan_suppressions"</code></p>
-<p><code>tsan_suppressions</code> should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb library. The reason it is not needed with clang is that it supports <code>-fsanitize-blacklist</code> compiler option which is used with <code>tsan_clang_blacklist</code> via CMake.</p>
+<p><code>tsan_suppressions</code> should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb and rocksdb libraries.</p>
 <h4 id="address-sanitizer">Address Sanitizer<a class="headerlink" href="#address-sanitizer" title="Permanent link">&para;</a></h4>
 <p>Use the CMake variable <code>-DNANO_ASAN=ON</code> or <code>-DNANO_ASAN_INT=ON</code> before running an executable.</p>
 <h3 id="valgrind">Valgrind<a class="headerlink" href="#valgrind" title="Permanent link">&para;</a></h3>
