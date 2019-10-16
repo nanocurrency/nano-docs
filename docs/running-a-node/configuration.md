@@ -281,5 +281,5 @@ More details about the RPC setup can be found in the [Running Nano as a service 
 
 --8<-- "network-details.md"
 
-### Ledger backends
+## Ledger backends
 LMDB is used by default, in _v20.0+_ [RocksDB](/running-a-node/rocksdb-ledger-backend) can be used instead
