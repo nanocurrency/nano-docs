@@ -97,13 +97,13 @@ We have updated the documentation for external integrations with recommended set
 A new websocket subscription - work - is included in version 20. Using this setup can help to find issues with the node and quickly verify if the problem is with work generation or otherwise.
 
 - If you do not have a websocket configuration yet, read [Websocket Support](https://docs.nano.org/integration-guides/advanced/#websocket-support)
-For the new subscription see [Websocket - Proof of Work](https://docs.nano.org/integration-guides/advanced/#proof-of-work)
+- For the new subscription see [Websocket - Proof of Work](https://docs.nano.org/integration-guides/advanced/#proof-of-work)
 
 **Automatic PoW rework for external integrations**  
 In V19 we introduced PoW reworking for the node internal wallets. Rework is used with RPCs such as send. With V20, we’re extending support to RPC process, which affects external integrations. Using this setup, the network quickly confirms and guarantees blocks even under saturation.
 
 - Read the updates for [RPC process](https://docs.nano.org/commands/rpc-protocol/#process)
-- If you do not want to use this feature, make sure to set the optional field watch_work to false
+- **If you do not want to use this feature, make sure to set the optional field `watch_work` to false**
 
 
 ### V19.0
