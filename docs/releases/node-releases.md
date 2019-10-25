@@ -18,6 +18,9 @@ The following release is currently under development. Details about potential fe
 |              |                  |              |               | 				|
 | 20.0         | TBD              | TBD          | TBD			 | Release - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - Changelog | 
 
+**Beta Testing V20**  
+For services wishing to test V20 on the beta network, see the [V20 Migration and Beta Testing section](#migration-and-beta-testing) below which explains notable changes with this version and details on how to test 
+
 ---
 
 ## Active Releases
@@ -55,6 +58,53 @@ The following versions are no longer peered with by nodes running the active ver
 | 10.0 | 6  | 2018-02-15   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V10.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V9.0...V10.0) |
 
 ## Release Notes
+
+### V20.0
+
+#### Migration and Beta Testing
+
+Below are details the changes that V20 brings for services and integrations. It does not include test cases for internal node functionality improvements.
+
+Extended test items are [available](https://docs.nano.org/running-a-node/beta-network/#development-builds) for those wanting to go even deeper in their tests. Development Builds released during V20 development, tackled many of those items.
+
+- [Joining the beta network](https://docs.nano.org/running-a-node/beta-network/)
+- [Discussion and support](https://chat.nano.org)
+- [Full changelog](https://github.com/nanocurrency/nano-node/releases)
+
+##### Selected test cases for services
+The following test cases outline the possible impact on existing services’ setups. In general, no action should be necessary to have a working setup when migrating.
+
+**Configuration file - TOML**  
+V20 migrates existing configuration files to the new TOML format. A backup of the existing JSON files is kept in the node data directory (default `~/Nano`) when migrating.
+
+- See the [configuration documentation](https://docs.nano.org/running-a-node/configuration/)
+- Consider setting up a V19 node, populating your desired changes, performing a migration then verify configuration changes.
+
+**Network setup changes - UPnP**  
+V20 improves default network setups to require less setup from node operators, namely when it comes to port forwarding.
+
+- Run V20.0RC1 and verify that it is compatible with your network setup
+- Use [RPC peers](https://docs.nano.org/commands/rpc-protocol/#peers) to detect connections to other peers are being made
+- Please report any difficulties encountered
+
+**External integration recommendations**  
+We have updated the documentation for external integrations with recommended setups when it comes to block confirmation tracking. We recommend reading at least the following pages to ensure your setup is compatible with the outlined recommendations:
+
+- [External Management](https://docs.nano.org/integration-guides/key-management/#external-management)
+- [Block Confirmation and Tracking](https://docs.nano.org/integration-guides/block-confirmation-tracking/)
+
+**Proof of work websocket subscription**  
+A new websocket subscription - work - is included in version 20. Using this setup can help to find issues with the node and quickly verify if the problem is with work generation or otherwise.
+
+- If you do not have a websocket configuration yet, read [Websocket Support](https://docs.nano.org/integration-guides/advanced/#websocket-support)
+For the new subscription see [Websocket - Proof of Work](https://docs.nano.org/integration-guides/advanced/#proof-of-work)
+
+**Automatic PoW rework for external integrations**  
+In V19 we introduced PoW reworking for the node internal wallets. Rework is used with RPCs such as send. With V20, we’re extending support to RPC process, which affects external integrations. Using this setup, the network quickly confirms and guarantees blocks even under saturation.
+
+- Read the updates for [RPC process](https://docs.nano.org/commands/rpc-protocol/#process)
+- If you do not want to use this feature, make sure to set the optional field watch_work to false
+
 
 ### V19.0
 
@@ -138,7 +188,7 @@ By default the RPC server will run in the node process, but can be configured to
 
 * New `active_elections_size` will limit the number of active elections allowed before dropping occurs. Default is 50,000 but higher settings are recommended for nodes provisioned with 8GB RAM or more
 * New `bandwidth_limit` will limit the outbound voting traffic to 5MB/s by default
-* New `confirmation_history_size` provides an adjustable limit on the batching of confirmations return in the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC. Default 2048 which will support up to ~56 confirmations/sec before confirmations may be missed. **The new [websocket setup](/integration-guides/advanced/#websocket-support) with confirmation subscription is recommended over use of the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC.**
+* New `confirmation_history_size` provides an adjustable limit on the batching of confirmations return in the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC. Default 2048 which will support up to \~56 confirmations/sec before confirmations may be missed. **The new [websocket setup](/integration-guides/advanced/#websocket-support) with confirmation subscription is recommended over use of the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC.**
 
 !!! tip "Advanced Configuration"
 	New `vote_generator_delay` allows for tuning performance of bundling votes by hash before sending.
