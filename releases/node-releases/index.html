@@ -740,6 +740,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#v200" title="V20.0" class="md-nav__link">
+    V20.0
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-and-beta-testing" title="Migration and Beta Testing" class="md-nav__link">
+    Migration and Beta Testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#v190" title="V19.0" class="md-nav__link">
     V19.0
   </a>
@@ -925,6 +945,26 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#v200" title="V20.0" class="md-nav__link">
+    V20.0
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-and-beta-testing" title="Migration and Beta Testing" class="md-nav__link">
+    Migration and Beta Testing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#v190" title="V19.0" class="md-nav__link">
     V19.0
   </a>
@@ -1068,6 +1108,8 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Beta Testing V20</strong><br />
+For services wishing to test V20 on the beta network, see the <a href="#migration-and-beta-testing">V20 Migration and Beta Testing section</a> below which explains notable changes with this version and details on how to test </p>
 <hr />
 <h2 id="active-releases">Active Releases<a class="headerlink" href="#active-releases" title="Permanent link">&para;</a></h2>
 <p>The following older releases can still actively participate on the network with other nodes of the same and newer versions.</p>
@@ -1230,6 +1272,48 @@
 </tbody>
 </table>
 <h2 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h2>
+<h3 id="v200">V20.0<a class="headerlink" href="#v200" title="Permanent link">&para;</a></h3>
+<h4 id="migration-and-beta-testing">Migration and Beta Testing<a class="headerlink" href="#migration-and-beta-testing" title="Permanent link">&para;</a></h4>
+<p>Below are details the changes that V20 brings for services and integrations. It does not include test cases for internal node functionality improvements.</p>
+<p>Extended test items are <a href="https://docs.nano.org/running-a-node/beta-network/#development-builds">available</a> for those wanting to go even deeper in their tests. Development Builds released during V20 development, tackled many of those items.</p>
+<ul>
+<li><a href="https://docs.nano.org/running-a-node/beta-network/">Joining the beta network</a></li>
+<li><a href="https://chat.nano.org">Discussion and support</a></li>
+<li><a href="https://github.com/nanocurrency/nano-node/releases">Full changelog</a></li>
+</ul>
+<h5>Selected test cases for services</h5>
+<p>The following test cases outline the possible impact on existing services’ setups. In general, no action should be necessary to have a working setup when migrating.</p>
+<p><strong>Configuration file - TOML</strong><br />
+V20 migrates existing configuration files to the new TOML format. A backup of the existing JSON files is kept in the node data directory (default <code>~/Nano</code>) when migrating.</p>
+<ul>
+<li>See the <a href="https://docs.nano.org/running-a-node/configuration/">configuration documentation</a></li>
+<li>Consider setting up a V19 node, populating your desired changes, performing a migration then verify configuration changes.</li>
+</ul>
+<p><strong>Network setup changes - UPnP</strong><br />
+V20 improves default network setups to require less setup from node operators, namely when it comes to port forwarding.</p>
+<ul>
+<li>Run V20.0RC1 and verify that it is compatible with your network setup</li>
+<li>Use <a href="https://docs.nano.org/commands/rpc-protocol/#peers">RPC peers</a> to detect connections to other peers are being made</li>
+<li>Please report any difficulties encountered</li>
+</ul>
+<p><strong>External integration recommendations</strong><br />
+We have updated the documentation for external integrations with recommended setups when it comes to block confirmation tracking. We recommend reading at least the following pages to ensure your setup is compatible with the outlined recommendations:</p>
+<ul>
+<li><a href="https://docs.nano.org/integration-guides/key-management/#external-management">External Management</a></li>
+<li><a href="https://docs.nano.org/integration-guides/block-confirmation-tracking/">Block Confirmation and Tracking</a></li>
+</ul>
+<p><strong>Proof of work websocket subscription</strong><br />
+A new websocket subscription - work - is included in version 20. Using this setup can help to find issues with the node and quickly verify if the problem is with work generation or otherwise.</p>
+<ul>
+<li>If you do not have a websocket configuration yet, read <a href="https://docs.nano.org/integration-guides/advanced/#websocket-support">Websocket Support</a></li>
+<li>For the new subscription see <a href="https://docs.nano.org/integration-guides/advanced/#proof-of-work">Websocket - Proof of Work</a></li>
+</ul>
+<p><strong>Automatic PoW rework for external integrations</strong><br />
+In V19 we introduced PoW reworking for the node internal wallets. Rework is used with RPCs such as send. With V20, we’re extending support to RPC process, which affects external integrations. Using this setup, the network quickly confirms and guarantees blocks even under saturation.</p>
+<ul>
+<li>Read the updates for <a href="https://docs.nano.org/commands/rpc-protocol/#process">RPC process</a></li>
+<li><strong>If you do not want to use this feature, make sure to set the optional field <code>watch_work</code> to false</strong></li>
+</ul>
 <h3 id="v190">V19.0<a class="headerlink" href="#v190" title="Permanent link">&para;</a></h3>
 <h4 id="upgrade-notices">Upgrade Notices<a class="headerlink" href="#upgrade-notices" title="Permanent link">&para;</a></h4>
 <p><strong>Version Limits</strong><br />
