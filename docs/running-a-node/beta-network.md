@@ -97,7 +97,7 @@ docker run --restart=unless-stopped -d \
 ## Testing Builds
 
 ### Release Candidate Builds
-No Release Candidate (RC) builds are available for the beta network at this time.
+During Release Candidate periods the latest build on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) will be tagged with an `RC` number. Various binaries are available below the changelog there for download (Windows, Linux, macOS, etc.). If building on your own, use the [latest tags](https://github.com/nanocurrency/nano-node/tags) containing `RC`.
 
 ### Development Builds
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
