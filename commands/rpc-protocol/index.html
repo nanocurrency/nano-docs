@@ -2958,7 +2958,8 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 <span class="p">}</span>
 </pre></div></p>
 <p><strong>Optional "include_trend"</strong></p>
-<p>Boolean, false by default. Also returns the trend of difficulty seen on the network as a <strong>list of multipliers</strong>. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. </p>
+<p>Boolean, false by default. Also returns the trend of difficulty seen on the network as a <strong>list of multipliers</strong>. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.<br />
+Note: Before v20, the sampling period was between 16 and 36 seconds.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;active_difficulty&quot;</span><span class="p">,</span>
