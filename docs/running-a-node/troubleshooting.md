@@ -43,8 +43,8 @@ Check the begginning of the logs for UPNP_* messages
 !!! error "Port Mapping Conflict"
     Check for static routes
     ```bash
-    [2019-Oct-29 11:06:56.641389]: UPNP_GetSpecificPortMappingEntry failed 718: ConflictInMappingEntry
-    [2019-Oct-29 11:06:56.644387]: UPNP_GetSpecificPortMappingEntry failed 718: ConflictInMappingEntry
+    [2019-Oct-29 11:06:56.641389]: UPnP failed 718: ConflictInMappingEntry
+    [2019-Oct-29 11:06:56.644387]: UPnP failed 718: ConflictInMappingEntry
     ```
     
 ---
