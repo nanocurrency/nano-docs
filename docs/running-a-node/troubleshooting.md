@@ -10,6 +10,45 @@ The default location of standard node log files for various systems:
 
 ---
 
+## Troubleshooting UPnP
+
+### Ensure UPnP is enabled
+UPnP will be enabled unless the external port is set in either the config
+```bash
+[node]
+...
+# The external address of this node (NAT). If not set, the node will request this information via UPnP.
+# type:string,ip
+external_address = "::ffff:<some_public_ipv4>"
+```
+or via cli flag
+```bash
+--config node.external_address="::ffff:<some_public_ipv4>"
+```
+
+### Enable UPnP logging
+Appending this to your launch command will enable upnp logging.
+```bash
+--config node.logging.upnp_details=true
+```
+### Check Logs for responses
+Check the begginning of the logs for UPNP_* messages
+
+!!! warning "Standard message indcating no existing mapping"
+    ```bash
+    [2019-Oct-29 11:06:56.641389]: UPNP_GetSpecificPortMappingEntry failed 714: NoSuchEntryInArray
+    [2019-Oct-29 11:06:56.644387]: UPNP_GetSpecificPortMappingEntry failed 714: NoSuchEntryInArray
+    ```
+
+!!! error "Port Mapping Conflict"
+    Check for static routes
+    ```bash
+    [2019-Oct-29 11:06:56.641389]: UPNP_GetSpecificPortMappingEntry failed 718: ConflictInMappingEntry
+    [2019-Oct-29 11:06:56.644387]: UPNP_GetSpecificPortMappingEntry failed 718: ConflictInMappingEntry
+    ```
+    
+---
+
 ## What to do if the node crashes (Linux)
 
 !!! warning "Do not restart the node"
