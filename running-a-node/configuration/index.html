@@ -1238,6 +1238,10 @@ work_peers = [
 <hr />
 <h4 id="openclenable">opencl.enable<a class="headerlink" href="#openclenable" title="Permanent link">&para;</a></h4>
 <p>To enable GPU acceleration for PoW, set this option to <code>true</code>. Other OpenCL parameters may need to be adjusted depending on the desired setup.</p>
+<div class="admonition tip">
+<p class="admonition-title">Using OpenCL and CPU for work generation</p>
+<p>Since V20.0, if OpenCL is enabled, both the GPU and CPU are used for work generation. The number of CPU threads is set with <code>node.work_threads</code>. To disable CPU work generation, set that value to "0".</p>
+</div>
 <hr />
 <h4 id="nodeipc">node.ipc<a class="headerlink" href="#nodeipc" title="Permanent link">&para;</a></h4>
 <p>IPC is disabled by default. For details about using the IPC setup, see the <a href="/integration-guides/advanced#ipc-integration">IPC Integration Guide</a>.</p>
