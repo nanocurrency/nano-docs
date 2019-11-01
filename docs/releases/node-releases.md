@@ -61,6 +61,17 @@ The following versions are no longer peered with by nodes running the active ver
 
 ### V20.0
 
+#### Upgrade Notices
+
+**Node inactivity during upgrade**   
+During the upgrade from v19, the node will not be participating in network activity. This is not expected to exceed 1 hour and the log file will provide incremental updates during this upgrade process.
+
+**Ledger file size increase**  
+After the upgrade the ledger file `data.ldb` will have temporarily bloated, this is due to the various database updates which cannot  reclaim disk space during the upgrade. They can however be vacuumed afterwards which is done automatically if there is enough (approximately 30GB) free disk space available on your system . It is not a requirement to vacuum the ledger, but it can be done manually after acquiring additional free disk space and calling the `--vacuum` CLI command.
+
+!!! warning "Upgrading from V17.1 and earlier to V20.0 not recommended"
+	It is highly recommended that nodes are upgraded to V18.0 first or a V18.0 or V19.0 ledger is acquired and used when upgrading to V20.0.
+
 #### Migration and Beta Testing
 
 Below are details the changes that V20 brings for services and integrations. It does not include test cases for internal node functionality improvements.
