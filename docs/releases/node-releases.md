@@ -105,10 +105,54 @@ In V19 we introduced PoW reworking for the node internal wallets. Rework is used
 - Read the updates for [RPC process](https://docs.nano.org/commands/rpc-protocol/#process)
 - **If you do not want to use this feature, make sure to set the optional field `watch_work` to false**
 
+---
+
+#### Upgrade Notices
+
+---
+
+#### Major Updates
+ 
+
+
+---
+
+#### RPC/CLI Updates
+
+* **NEW**
+* **BEHAVIOR CHANGE**
+
+---
+
+#### Node Configuration Updates
+
+* 
+
+---
+
+#### Developer/Debug Options
+
+* 
+
+---
+
+#### Deprecations
+
+The following RPC calls are being deprecated and will be removed in a future release:
+
+* Addresses containing a dash (ex. `nano-` or `xrb-`) are being deprecated and will not longer be compatible with the node in a future release. Addresses using underscores will only be supported.
+
+---
+
+#### Other Notices
+
+* 
+
+---
 
 ### V19.0
 
-#### Upgrade Notices
+<span class="h4-no-toc">Upgrade Notices</span>
 
 **Version Limits**  
 Upgrades from versions V17.1 and to V19 will involve a sequential database upgrade and impact participation of the node on the network. RPC calls will be unavailable for a long period of time amongst other impacts.
@@ -142,7 +186,7 @@ curl -sd '{"action": "peers", "peer_details":"true"}' [::1]:7076 | grep "\"type\
 
 ---
 
-#### Major Updates
+<span class="h4-no-toc">Major Updates</span>
 
 **Confirmation Height**  
 This provides cementing of blocks by marking on an account the highest block height that has been confirmed for the account. A more detailed look at this feature can be found in the relatd Medium article: https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc
@@ -158,7 +202,7 @@ By default the RPC server will run in the node process, but can be configured to
 
 ---
 
-#### RPC/CLI Updates
+<span class="h4-no-toc">RPC/CLI Updates</span>
 
 !!! success "No Breaking Changes"
 	There were no breaking changes made in V19 for any RPC or CLI commands. It is recommended any integrations run tests against V19 before upgrading production nodes, and also explore the various changes below to improve their setups.
@@ -182,7 +226,7 @@ By default the RPC server will run in the node process, but can be configured to
 
 ---
 
-#### Node Configuration Updates
+<span class="h4-no-toc">Node Configuration Updates</span>
 
 **[Config.json](/running-a-node/configuration/#configjson)**  
 
@@ -201,7 +245,7 @@ Backups of config files will be made prior to upgrades. During upgrades from V18
 
 ---
 
-#### Developer/Debug Options
+<span class="h4-no-toc">Developer/Debug Options</span>
 
 * New launch flag for tuning block processor: [`--block_processor_batch_size`](/commands/command-line-interface/#-block_processor_batch_size), [`--block_processor_full_size`](/commands/command-line-interface/#-block_processor_full_size) and [`--block_processor_verification_size`](/commands/command-line-interface/#-block_processor_verification_size)
 * New [launch flags](/commands/command-line-interface/#launch-options) for disabling TCP real-time network and UDP for debugging connectivity
@@ -209,7 +253,7 @@ Backups of config files will be made prior to upgrades. During upgrades from V18
 
 ---
 
-#### Deprecations
+<span class="h4-no-toc">Deprecations</span>
 
 The following RPC calls are being deprecated and will be removed in a future release:
 
@@ -221,7 +265,7 @@ The following RPC calls are being deprecated and will be removed in a future rel
 
 ---
 
-#### Other Notices
+<span class="h4-no-toc">Other Notices</span>
 
 **New nanorep QR code standard**  
 A new nanorep [QR code standard](/integration-guides/the-basics/#uri-and-qr-code-standards) for easier management of representative changes was added for wallets and other services to consider supporting.
