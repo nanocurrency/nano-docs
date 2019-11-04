@@ -98,6 +98,8 @@ The following versions are no longer peered with by nodes running the active ver
 #### Developer/Debug Options
 
 * New RPC [`epoch_upgrade`](/commands/rpc-protocol/#epoch_upgrade) allowing easier epoch distribution (**Note** - this epoch requires a special private key to be used, see the [Network Upgrades](/releases/network-upgrades/#epoch-blocks) page for information)
+* RPC [`bootstrap`](/commands/rpc-protocol/#bootstrap) has a new optional "bypass_frontier_confirmation"
+* RPC [`bootstrap_status`](/commands/rpc-protocol/#bootstrap_status) now displays more data about the current bootstrap attempt
 * New CLI `debug_stacktrace` displays an example stacktrace, simulating an unexpected program crash
 * New CLI `debug_account_versions` displays the total number of accounts separated by version and opened/unopened
 * CLI `debug_validate_blocks` updated to cover more cases
