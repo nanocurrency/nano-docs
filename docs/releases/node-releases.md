@@ -159,7 +159,7 @@ In V19 we introduced PoW reworking for the node internal wallets. Rework is used
 
 #### Deprecations
 
-The following RPC calls are being deprecated and will be removed in a future release:
+The following functionality is now deprecated and will be removed in a future release:
 
 * Addresses containing a dash (ex. `nano-` or `xrb-`) are being deprecated and will not longer be compatible with the node in a future release. Addresses using underscores will only be supported.
 
