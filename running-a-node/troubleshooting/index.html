@@ -534,6 +534,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#troubleshooting-upnp" title="Troubleshooting UPnP" class="md-nav__link">
+    Troubleshooting UPnP
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ensure-upnp-is-enabled" title="Ensure UPnP is enabled" class="md-nav__link">
+    Ensure UPnP is enabled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-upnp-logging" title="Enable UPnP logging" class="md-nav__link">
+    Enable UPnP logging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-upnp-messages" title="Error UPnP Messages" class="md-nav__link">
+    Error UPnP Messages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-upnp-messages" title="Normal UPnP Messages" class="md-nav__link">
+    Normal UPnP Messages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -966,6 +1007,47 @@
           <li class="md-nav__item">
   <a href="#log-file-example" title="Log file example" class="md-nav__link">
     Log file example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-upnp" title="Troubleshooting UPnP" class="md-nav__link">
+    Troubleshooting UPnP
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ensure-upnp-is-enabled" title="Ensure UPnP is enabled" class="md-nav__link">
+    Ensure UPnP is enabled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-upnp-logging" title="Enable UPnP logging" class="md-nav__link">
+    Enable UPnP logging
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-upnp-messages" title="Error UPnP Messages" class="md-nav__link">
+    Error UPnP Messages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-upnp-messages" title="Normal UPnP Messages" class="md-nav__link">
+    Normal UPnP Messages
   </a>
   
 </li>
@@ -1433,6 +1515,39 @@ samples,2018.03.29 01:45:41
 01:45:41,bootstrap,initiate,out,1
 </pre></div>
 
+<hr />
+<h2 id="troubleshooting-upnp">Troubleshooting UPnP<a class="headerlink" href="#troubleshooting-upnp" title="Permanent link">&para;</a></h2>
+<h3 id="ensure-upnp-is-enabled">Ensure UPnP is enabled<a class="headerlink" href="#ensure-upnp-is-enabled" title="Permanent link">&para;</a></h3>
+<p>UPnP will be enabled unless the external port is set in either the config
+<div class="codehilite"><pre><span></span>[node]
+...
+# The external address of this node (NAT). If not set, the node will request this information via UPnP.
+# type:string,ip
+external_address = &quot;::ffff:&lt;some_public_ipv4&gt;&quot;
+</pre></div>
+or via cli flag
+<div class="codehilite"><pre><span></span>--config node.external_address<span class="o">=</span><span class="s2">&quot;::ffff:&lt;some_public_ipv4&gt;&quot;</span>
+</pre></div></p>
+<h3 id="enable-upnp-logging">Enable UPnP logging<a class="headerlink" href="#enable-upnp-logging" title="Permanent link">&para;</a></h3>
+<p>Appending this to your launch command will enable upnp logging.
+<div class="codehilite"><pre><span></span>--config node.logging.upnp_details<span class="o">=</span><span class="nb">true</span>
+</pre></div></p>
+<h3 id="error-upnp-messages">Error UPnP Messages<a class="headerlink" href="#error-upnp-messages" title="Permanent link">&para;</a></h3>
+<p>Check the beginning of the logs for UPNP_* messages</p>
+<div class="admonition error">
+<p class="admonition-title">Port Mapping Conflict</p>
+<p>Check for static routes
+<div class="codehilite"><pre><span></span><span class="o">[</span><span class="m">2019</span>-Oct-29 <span class="m">11</span>:06:56.641389<span class="o">]</span>: UPnP failed <span class="m">718</span>: ConflictInMappingEntry
+<span class="o">[</span><span class="m">2019</span>-Oct-29 <span class="m">11</span>:06:56.644387<span class="o">]</span>: UPnP failed <span class="m">718</span>: ConflictInMappingEntry
+</pre></div></p>
+</div>
+<h3 id="normal-upnp-messages">Normal UPnP Messages<a class="headerlink" href="#normal-upnp-messages" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p><div class="codehilite"><pre><span></span><span class="o">[</span><span class="m">2019</span>-Oct-29 <span class="m">11</span>:06:56.641389<span class="o">]</span>: UPNP_GetSpecificPortMappingEntry failed <span class="m">714</span>: NoSuchEntryInArray
+<span class="o">[</span><span class="m">2019</span>-Oct-29 <span class="m">11</span>:06:56.644387<span class="o">]</span>: UPNP_GetSpecificPortMappingEntry failed <span class="m">714</span>: NoSuchEntryInArray
+</pre></div>
+This message is expected when starting the node and will go away after the UPnP has mappeded the port</p>
+</div>
 <hr />
                 
                   

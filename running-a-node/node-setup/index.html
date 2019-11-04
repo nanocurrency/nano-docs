@@ -967,7 +967,7 @@
 </div>
 <hr />
 <h3 id="network-ports">Network Ports<a class="headerlink" href="#network-ports" title="Permanent link">&para;</a></h3>
-<p>The nano_node will use two configurable ports throughout its lifecycle.  The default values suggested by the <a href="/running-a-node/configuration/#network-details">network details</a> are below:</p>
+<p>The nano_node will use two configurable ports throughout its lifecycle. The default values suggested by the <a href="/running-a-node/configuration/#network-details">network details</a> are below:</p>
 <div class="admonition info">
 <p class="admonition-title">Network Ports Overview</p>
 <ul>
@@ -975,6 +975,9 @@
 <li><strong>7075 TCP:</strong> For <a href="/glossary#live-network">live network</a> activity (since V19.0) and <a href="/glossary#bootstrap-network">bootstrap network</a> activity</li>
 <li><strong>7076 TCP:</strong> For communication with RPC server. Do not expose this outside of your production environment. Anyone with access to this port can control your node's RPC.</li>
 </ul>
+</div>
+<div class="admonition note">
+<p>By default nano_node will attempt to use UPnP. <a href="/running-a-node/troubleshooting/#troubleshooting-upnp">Troubleshooting information can be found here</a></p>
 </div>
 <hr />
 <h3 id="installing-docker">Installing Docker<a class="headerlink" href="#installing-docker" title="Permanent link">&para;</a></h3>
