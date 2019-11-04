@@ -91,7 +91,9 @@ The following versions are no longer peered with by nodes running the active ver
 
 #### Node Configuration Updates
 
-* 
+* `backup_before_upgrade` (default `false`) enables automatic backup of the ledger and wallet databases when updating to a new node version
+* `work_watcher_period` (default `5` seconds) controls how frequently the node should check the confirmation status of block in the work watcher, and re-generate higher difficulty work if unconfirmed
+* `max_work_generate_multiplier` (default `64.0`) previously `max_work_generate_difficulty`, now a multiplier for easier management, specifies the absolute maximum difficulty multiplier to be used for work generation
 
 ---
 
