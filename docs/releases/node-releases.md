@@ -84,7 +84,7 @@ The following versions are no longer peered with by nodes running the active ver
 
 #### CLI Updates
 * **NEW** `generate_config [node|rpc]` prints sample configuration files to *stdout*
-  * `use_defaults` additional argument to generate uncommented entries (not recommended)
+    * `use_defaults` additional argument to generate uncommented entries (not recommended)
 * **NEW** `config` passes configuration arguments, alternative to setting in the config file
 
 ---
