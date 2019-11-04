@@ -3328,6 +3328,9 @@ Default "false". If "true", an additional "blocks_not_found" is provided in the 
   <span class="nt">&quot;success&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
 <span class="p">}</span>
 </pre></div></p>
+<p><strong>Optional "bypass_frontier_confirmation"</strong><br />
+<em>version 20.0+</em><br />
+Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.</p>
 <hr />
 <h3 id="bootstrap_any">bootstrap_any<a class="headerlink" href="#bootstrap_any" title="Permanent link">&para;</a></h3>
 <p>Initialize multi-connection bootstrap to random peers. Not compatible with launch flag <a href="/commands/command-line-interface/#-disable_legacy_bootstrap">--disable_legacy_bootstrap</a>   </p>
@@ -3373,21 +3376,27 @@ Initialize lazy bootstrap with given block <strong>hash</strong>. Not compatible
 </pre></div>
 <strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;clients&quot;</span><span class="p">:</span> <span class="s2">&quot;5790&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;pulls&quot;</span><span class="p">:</span> <span class="s2">&quot;141065&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;pulling&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;connections&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;idle&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;target_connections&quot;</span><span class="p">:</span> <span class="s2">&quot;64&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;total_blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;536820&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;423388&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_state_unknown&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;clients&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;pulls&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;pulling&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;connections&quot;</span><span class="p">:</span> <span class="s2">&quot;31&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;idle&quot;</span><span class="p">:</span> <span class="s2">&quot;31&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;target_connections&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;total_blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;13558&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;runs_count&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;requeued_pulls&quot;</span><span class="p">:</span> <span class="s2">&quot;31&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;frontiers_received&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;frontiers_confirmed&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;legacy&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_state_backlog&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
   <span class="nt">&quot;lazy_balances&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_pulls&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_stopped&quot;</span><span class="p">:</span> <span class="s2">&quot;644&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_keys&quot;</span><span class="p">:</span> <span class="s2">&quot;449&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;lazy_key_1&quot;</span><span class="p">:</span> <span class="s2">&quot;A86EB2B479AAF3CD531C8356A1FBE3CB500DFBF5BF292E5E6B8D1048DE199C32&quot;</span>
+  <span class="nt">&quot;lazy_destinations&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_undefined_links&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_pulls&quot;</span><span class="p">:</span> <span class="s2">&quot;32&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_keys&quot;</span><span class="p">:</span> <span class="s2">&quot;32&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;lazy_key_1&quot;</span><span class="p">:</span> <span class="s2">&quot;36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;29&quot;</span>
 <span class="p">}</span>
 </pre></div></p>
 <hr />
