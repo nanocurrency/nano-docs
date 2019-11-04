@@ -882,6 +882,10 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 }
 ```
 
+**Optional "bypass_frontier_confirmation"**  
+_version 20.0+_  
+Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
+
 ---
 
 ### bootstrap_any  
@@ -941,21 +945,27 @@ Returning status of current bootstrap attempt
 **Response:**
 ```json
 {
-  "clients": "5790",
-  "pulls": "141065",
-  "pulling": "3",
-  "connections": "16",
-  "idle": "0",
-  "target_connections": "64",
-  "total_blocks": "536820",
-  "lazy_mode": "true",
-  "lazy_blocks": "423388",
-  "lazy_state_unknown": "2",
+  "clients": "0",
+  "pulls": "0",
+  "pulling": "0",
+  "connections": "31",
+  "idle": "31",
+  "target_connections": "16",
+  "total_blocks": "13558",
+  "runs_count": "0",
+  "requeued_pulls": "31",
+  "frontiers_received": "true",
+  "frontiers_confirmed": "false",
+  "mode": "legacy",
+  "lazy_blocks": "0",
+  "lazy_state_backlog": "0",
   "lazy_balances": "0",
-  "lazy_pulls": "0",
-  "lazy_stopped": "644",
-  "lazy_keys": "449",
-  "lazy_key_1": "A86EB2B479AAF3CD531C8356A1FBE3CB500DFBF5BF292E5E6B8D1048DE199C32"
+  "lazy_destinations": "0",
+  "lazy_undefined_links": "0",
+  "lazy_pulls": "32",
+  "lazy_keys": "32",
+  "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
+  "duration": "29"
 }
 ```
 
