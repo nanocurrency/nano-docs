@@ -5,9 +5,11 @@ The following release is the latest and only release actively supported by the N
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
-| 19.0         | 17               | 2019-07-11   | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
+| 20.0         | 17               | TBD          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
 
---8<-- "known-issues-v19.md"
+**Builds and Commands**
+
+--8<-- "current-release-build-links.md"
 
 ---
 
@@ -16,10 +18,7 @@ The following release is currently under development. Details about potential fe
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 				|
-| 20.0         | TBD              | TBD          | TBD			 | Release - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - Changelog | 
-
-**Beta Testing V20**  
-For services wishing to test V20 on the beta network, see the [V20 Migration and Beta Testing section](#migration-and-beta-testing) below which explains notable changes with this version and details on how to test 
+| 21.0         | TBD              | TBD          | TBD			 | Release - [Milestone](https://github.com/nanocurrency/nano-node/milestone/18) - Changelog | 
 
 ---
 
@@ -28,45 +27,110 @@ The following older releases can still actively participate on the network with 
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
+| 19.0 | 17 | 2019-07-11 | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
 | 18.0 | 16 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
-| 17.1 | 15 | 2018-12-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/17) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.0...V17.1) |
-| 17.0 | 15 | 2018-12-18 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/6) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.3...V17.0) |
-| 16.3 | 14 | 2018-11-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.3) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/14) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.2...V16.3) |
-| 16.2 | 14 | 2018-10-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.2) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/13) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.1...V16.2) |
-| 16.1 | 14 | 2018-09-29 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/11) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.0...V16.1) |
-| 16.0 | 14 | 2018-09-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.2...V16.0) |
-| 15.2 | 13 | 2018-08-22 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.2) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/8) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.1...V15.2) |
-| 15.1 | 13 | 2018-08-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/5) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.0...V15.1) |
-| 15.0 | 13 | 2018-08-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.2...V15.0) |
+
+--8<-- "known-issues-v19.md"
 
 ---
 
 ## Inactive Releases
 The following versions are no longer peered with by nodes running the active versions above and will not work properly communicate if run on the network. The details below are for historical purposes only.
 
-| Node Version | Protocol Version | Release Date | GitHub Links |
-|              |                  |              |                  |
-| 14.2 | 11 | 2018-06-21   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.1...V14.2) |
-| 14.1 | 10 | 2018-06-11   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.0...V14.1) |
-| 14.0 | 10 | 2018-06-11   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V13.0...V14.0) |
-| 13.0 | 9  | 2018-05-10   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V13.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V12.1...V13.0) |
-| 12.1 | 8  | 2018-04-21   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V12.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V12.0...V12.1) |
-| 12.0 | 8  | 2018-04-18   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V12.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.2...V12.0) |
-| 11.2 | 7  | 2018-04-04   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.1...V11.2) |
-| 11.1 | 7  | 2018-03-29   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.0...V11.1) |
-| 11.0 | 7  | 2018-03-23   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V10.0...V11.0) |
-| 10.0 | 6  | 2018-02-15   | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V10.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V9.0...V10.0) |
+??? info "Inactive Releases"
+
+	| Node Version | Protocol Version | Release Date | Release Notes | GitHub Links |
+	|              |                  |              |               |              |
+	| 17.1 | 15 | 2018-12-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/17) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.0...V17.1) |
+	| 17.0 | 15 | 2018-12-18 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/6) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.3...V17.0) |
+	| 16.3 | 14 | 2018-11-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.3) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/14) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.2...V16.3) |
+	| 16.2 | 14 | 2018-10-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.2) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/13) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.1...V16.2) |
+	| 16.1 | 14 | 2018-09-29 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/11) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.0...V16.1) |
+	| 16.0 | 14 | 2018-09-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.2...V16.0) |
+	| 15.2 | 13 | 2018-08-22 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.2) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/8) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.1...V15.2) |
+	| 15.1 | 13 | 2018-08-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/5) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V15.0...V15.1) |
+	| 15.0 | 13 | 2018-08-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V15.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.2...V15.0) |
+	| 14.2 | 11 | 2018-06-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.1...V14.2) |
+	| 14.1 | 10 | 2018-06-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V14.0...V14.1) |
+	| 14.0 | 10 | 2018-06-11 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V14.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V13.0...V14.0) |
+	| 13.0 | 9  | 2018-05-10 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V13.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V12.1...V13.0) |
+	| 12.1 | 8  | 2018-04-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V12.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V12.0...V12.1) |
+	| 12.0 | 8  | 2018-04-18 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V12.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.2...V12.0) |
+	| 11.2 | 7  | 2018-04-04 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.2) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.1...V11.2) |
+	| 11.1 | 7  | 2018-03-29 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.1) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V11.0...V11.1) |
+	| 11.0 | 7  | 2018-03-23 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V11.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V10.0...V11.0) |
+	| 10.0 | 6  | 2018-02-15 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V10.0) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V9.0...V10.0) |
+	| All Previous | | | | |
 
 ## Release Notes
 
 ### V20.0
 
+!!! info "Nano Forum available"
+	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
+
 #### Upgrade Notices
+
+!!! warning "Only node V18.0 and higher supported"
+	With V20.0 only nodes V18.0 and higher will be peered with on the network (see [Active Releases](/releases/node-releases/#active-releases) above). This means any nodes running versions earlier than 18.0 will begin to lose peers and fall out of sync over time once upgrades to V20.0 begin.
+
+	**If you are running a node version earlier than V18.0, please update as soon as possible to avoid disruption.**
+
+**Database upgrades**  
+
+!!! danger "Upgrade requires downtime, read carefully"
+	Please review the following details carefully as the automatic database upgrade process will cause downtime for the node.
+This version brings some new optimizations to the ledger which require database upgrades to be performed. Due to the nature of upgrades, the following impacts will occur:
+
+* Upgrade times depend on specs of the node host but are expected to be between 5 and 15 minutes for most cases.
+* Upgrade activities are synchronous which means the node will not be participating on the network and RPC requests won’t be available during the upgrade process - **services requiring uptime should plan to swap out their ledger for one upgraded by a separate node or download from a trusted source.**
+* Ledger size will grow by up to 50% during this process - **please ensure you have free disk space of 3x the current ledger before starting the upgrade (currently ~16GB on the main network).**
+* A database vacuum will be automatically performed after the upgrade to reclaim disk space, which can be verified complete in the logs.
+* Setting config option `"backup_before_upgrade": "true"` in config.json before upgrading will perform an automated ledger/wallet backup before upgrading. **Ensure you have enough disk space to allow for a full ledger backup plus the additional disk space required for the database upgrade mentioned above.** Note also that this config change will be maintained in the new .toml file migration occurring in this release.
+
+**New .toml config files**  
+A new setup in V20.0 uses internal default config values, so config files are only needed for non-default settings. During upgrade new .toml format files will be created for the config.json and rpc_config.json files if they contain non-default values. The following commands can be used to generated commented out, complete config files for review:
+
+!!! warning "Only set non-default values in .toml files"
+	It is not recommended to uncomment all values in the .toml file output from commands below. Instead, only uncomment or insert non-default values to ensure any default value changes in future release are only overridden when needed.
+
+--8<-- "toml-config-commands.md"
+
+More details on the new configuration setup can be found in the node [Configuration documentation](https://docs.nano.org/running-a-node/configuration/).
+
+**Networking changes**  
+Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing setups that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the [Troubleshooting UPnP documentation](/running-a-node/troubleshooting/#troubleshooting-upnp) for assistance. Additional help can be sought in the [Node and Representative Management forum category](https://forum.nano.org/c/node-and-rep). 
+
+**Proof-of-Work management**  
+A couple changes to PoW management that services should be aware of:
+
+* With OpenCL enabled, nodes will still use the local CPU for work generation by default. Setting `node.work_threads` to `0` will turn this off if required.
+* Regenerating PoW for delayed transactions during high network load will now happen by default through the [process RPC](https://docs.nano.org/commands/rpc-protocol/#process). If you wish to turn this off, setting `watch_work` to `false` is required.
+
+**Other updates to review**  
+Improvements to the [External Management](https://docs.nano.org/integration-guides/key-management/#external-management) and [Block Confirmation and Tracking](https://docs.nano.org/integration-guides/block-confirmation-tracking/) documentation should help clarify the recommended approaches to building integrations.
+
 
 ---
 
 #### Major Updates
  
+**Migration to .toml config files**  
+Better legibility, support for comments, and no more having the node write to your config files are some of the benefits of this upgrade. Any non-default values captured in your existing .json files will be migrated and you can export a full list of configuration options for use with simple commands. See additional callouts in [Upgrade Notices](#upgrade-notices) above and in the node [Configuration documentation](https://docs.nano.org/running-a-node/configuration/).
+
+**Proof-of-Work regeneration outside development wallet**  
+Any requests to the [process RPC](https://docs.nano.org/commands/rpc-protocol/#process) will have the new `watch_work` option turned on by default, allowing the node to regenerate Proof-of-Work for blocks even if they are outside of the node’s development wallet. This makes Dynamic PoW and prioritization function more consistently across the network. If you have an external migration utilizing this RPC call, you will automatically start taking advantage of rework during confirmation delays on the network.
+
+**RocksDB experimental support**  
+With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout [how to install RocksDB](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) and try it out on development and test systems. We also have a [related discussion in our forum](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) for those interested.
+
+**Active elections and other optimizations**  
+Thanks to our excellent community testers putting effort into collecting and analyzing block, voting and conirmation data from the beta network, we’ve found various optimizations with the active elections process, confirmation request attempts and bootstrapping behaviors. Various changes have been implemented to help reduce resource usage on nodes in various areas and increase the available throughput on the network. This feature also enhances the effectiveness of prioritization and rework of PoW. No action is needed to take advantage of these great updates. 
+
+**Infrastructure for PoW transition**  
+Back in September we [announced a new PoW algorithm design](https://medium.com/nanocurrency/v20-a-look-at-lydia-62bf6e1b24b) we had been working on which aimed to be memory hard. After open sourcing an implementation of the algorithm, an efficient low-memory solution was found and we subsequently [removed the algorithm implementation from V20](https://medium.com/nanocurrency/nano-pow-v20-update-e2197ff52941).
+
+As part of the original implementation work we were able to setup infrastructure for moving PoW out of the node process in the future, and also added support for version 2 of epoch blocks, which will allow the [network upgrade](https://docs.nano.org/releases/network-upgrades/) later when a new PoW algorithm is ready. These updates will be included in Lydia but not be utilized until a future version. To follow along with node releases going forward, check out the [Upcoming Features](https://docs.nano.org/releases/upcoming-features/) page.
 
 
 ---
@@ -90,6 +154,14 @@ The following versions are no longer peered with by nodes running the active ver
 ---
 
 #### Node Configuration Updates
+
+!!! info "Support in Nano Forum"
+	For node operators looking to upgrade to V20.0 or tune their configurations, the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) of the forum is a great resource to use.
+
+!!! tip "Generate .toml config to see options"
+	As noted in the [Upgrade Notices](#upgrade-notices) above, this version will migrate your existing .json files over to .toml files. Only non-default values for these fields will be added to the new .toml file. If you wish to adjust other options, use the [config generation commands](/running-a-node/configuration/#configuration-file-locations) to see all available options.
+
+The following options are notable node configuration updates. Additional configuration changes have been included in this release and can be found when generating the config files.
 
 * `backup_before_upgrade` (default `false`) enables automatic backup of the ledger and wallet databases when updating to a new node version
 * `work_watcher_period` (default `5` seconds) controls how frequently the node should check the confirmation status of block in the work watcher, and re-generate higher difficulty work if unconfirmed
@@ -120,12 +192,6 @@ The following versions are no longer peered with by nodes running the active ver
 The following functionality is now deprecated and will be removed in a future release:
 
 * Addresses containing a dash (ex. `nano-` or `xrb-`) are being deprecated and will not longer be compatible with the node in a future release. Addresses using underscores will only be supported.
-
----
-
-#### Other Notices
-
-* 
 
 ---
 
