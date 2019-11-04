@@ -206,6 +206,9 @@ work_peers = [
 
 To enable GPU acceleration for PoW, set this option to `true`. Other OpenCL parameters may need to be adjusted depending on the desired setup.
 
+!!! tip "Using OpenCL and CPU for work generation"
+	Since V20.0, if OpenCL is enabled, both the GPU and CPU are used for work generation. The number of CPU threads is set with `node.work_threads`. To disable CPU work generation, set that value to "0".
+
 ---
 
 #### node.ipc

@@ -21,9 +21,12 @@ While you can run a Nano node by downloading a binary or building from source, i
 
 ### Network Ports
 
-The nano\_node will use two configurable ports throughout its lifecycle.  The default values suggested by the [network details](/running-a-node/configuration/#network-details) are below:
+The nano\_node will use two configurable ports throughout its lifecycle. The default values suggested by the [network details](/running-a-node/configuration/#network-details) are below:
 
 --8<-- "network-details-simple.md"
+
+!!! note ""
+	By default nano\_node will attempt to use UPnP. [Troubleshooting information can be found here](/running-a-node/troubleshooting/#troubleshooting-upnp)
 
 ---
 
