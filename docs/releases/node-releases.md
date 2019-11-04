@@ -122,7 +122,6 @@ In V19 we introduced PoW reworking for the node internal wallets. Rework is used
 * **BEHAVIOR CHANGE** [`process`](/commands/rpc-protocol/#process) now takes an optional flag `watch_work` (default `true`). Unless set to `false`, processed blocks can be subject to PoW rework
 * **BEHAVIOR CHANGE** [`bootstrap`](/commands/rpc-protocol/#bootstrap), [`bootstrap_any`](/commands/rpc-protocol/#bootstrap_any) and [`boostrap_lazy`](/commands/rpc-protocol/#bootstrap_lazy) will now throw errors when certain launch flags are used to disabled bootstrap methods - see each RPC page for details
 * **BEHAVIOR CHANGE** RPCs requiring work generation will now throw errors when work generation is disabled (no [work peers](/running-a-node/configuration/#nodework_peers), no [OpenCL](/running-a-node/configuration/#openclenable) and no work threads configured)
-* **NEW** [`epoch_upgrade`](/commands/rpc-protocol/#epoch_upgrade) allows easier epoch distribution (**Note** - this epoch requires a special private key to be used, see the [Network Upgrades](/releases/network-upgrades/#epoch-blocks) page for information)
 * [`block_count`](/commands/rpc-protocol/#block_count) no longer requires config option `enable_control` to get the cemented block count
 * [`unchecked`](/commands/rpc-protocol/#unchecked) now takes an optional flag `json_block` to return blocks in JSON-format
 * [`version`](/commands/rpc-protocol/#version) now includes more fields - network label, identifier (hash of the genesis open block) and build information
@@ -133,10 +132,6 @@ In V19 we introduced PoW reworking for the node internal wallets. Rework is used
 * **NEW** `generate_config [node|rpc]` prints sample configuration files to *stdout*
   * `use_defaults` additional argument to generate uncommented entries (not recommended)
 * **NEW** `config` passes configuration arguments, alternative to setting in the config file
-* **NEW** `debug_stacktrace` displays an example stacktrace, simulating an unexpected program crash
-* **NEW** `debug_account_versions` displays the total number of accounts separated by version and opened/unopened
-* `debug_validate_blocks` updated to cover more cases
-* `debug_profile_verify` renamed to `debug_profile_validate` and now provides simplified work validation profiling
 
 ---
 
@@ -148,6 +143,11 @@ In V19 we introduced PoW reworking for the node internal wallets. Rework is used
 
 #### Developer/Debug Options
 
+* New RPC [`epoch_upgrade`](/commands/rpc-protocol/#epoch_upgrade) allowing easier epoch distribution (**Note** - this epoch requires a special private key to be used, see the [Network Upgrades](/releases/network-upgrades/#epoch-blocks) page for information)
+* New CLI `debug_stacktrace` displays an example stacktrace, simulating an unexpected program crash
+* New CLI `debug_account_versions` displays the total number of accounts separated by version and opened/unopened
+* CLI `debug_validate_blocks` updated to cover more cases
+* CLI `debug_profile_verify` renamed to `debug_profile_validate` and now provides simplified work validation profiling
 * New CMake build options:
   * `NANO_ROCKSDB` enables use of the RocksDB database backend, experimental
   * `NANO_WARN_TO_ERR` turns compiler warnings into errors on Linux/Mac
