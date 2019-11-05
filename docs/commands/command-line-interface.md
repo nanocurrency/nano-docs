@@ -94,6 +94,12 @@ _[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
+### --generate_config node|rpc
+Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
+If `--use_defaults` is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.
+
+The output can be piped to a file, using the locations defined in [configuration](/running-a-node/configuration#configuration-file-locations).
+
 ### --help
 Print out options
 
