@@ -2,18 +2,6 @@ Title: Nano Protocol Design - Blocks
 
 # Protocol Design - Blocks
 
-Structure:
-
-* Stateful Blocks
-    * Account balance
-    * Block vs. transaction
-* Creating transactions
-    * Open
-    * Send
-    * Receive
-    * Change rep
-* Epoch blocks
-
 Existing whitepaper sections: [Nano Components](/whitepaper/english/#raiblocks-components), [System Overview](/whitepaper/english/#system-overview)
 
 Existing content:
@@ -26,3 +14,27 @@ Existing content:
 The word *transaction* should be used in the context of a fully completed, 2-part protocol-level transaction, otherwise *block* should be used.
 
 Details on legacy blocks are not necessary as they will only lead to confusion.
+
+---
+
+## Stateful Blocks
+
+### Account balance
+
+### Block vs. transaction
+
+---
+
+## Creating transactions
+
+### Open
+
+### Send
+
+### Receive
+
+### Change rep
+
+---
+
+## Epoch blocks

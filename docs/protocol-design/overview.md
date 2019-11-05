@@ -2,12 +2,6 @@ Title: Nano Protocol Design - Overview
 
 # Protocol Design - Overview
 
-Structure:
-
-* Problem statement and introducing a solution
-* Expansion of the problem areas, previous attempts to solve them, and competing designs
-* Incentives for participating in consensus
-
 Existing whitepaper sections: [Introduction](/whitepaper/english/#introduction), [Background](/whitepaper/english/#background)
 
 Existing content:
@@ -16,7 +10,19 @@ Existing content:
 * [Representatives and Voting](/what-is-nano/overview/#representatives-and-voting)
 * [Incentives to run a node](https://medium.com/nanocurrency/the-incentives-to-run-a-node-ccc3510c2562)
 
-(see code for original content)
+(see code for original content of this page, now commented)
+
+---
+
+## Problem statement and introducing a solution
+
+---
+
+## Expansion of the problem areas, previous attempts to solve them, and competing designs
+
+---
+
+## Incentives for participating in consensus
 
 <!--
 # Protocol Design Overview
