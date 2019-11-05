@@ -171,7 +171,7 @@ As of v20.0, the docker containers support the [--user=](https://docs.docker.com
 
 To maintain existing compatibility the Docker containers are being built with `USER ROOT` and `WORK_DIR /root`
 
-The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilage escalation we can instead create a user and run under that context instead.
+The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilege escalation we can create a user and run under that context instead.
 
 In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`
 
