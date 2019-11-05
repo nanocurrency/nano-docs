@@ -11,6 +11,9 @@ Get the public key for `<account>`
 ### --clear_send_ids   
 Remove all send IDs from the database (dangerous: not intended for production use)
 
+### --config key=value
+Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
+
 ### --confirmation_height_clear
 _version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
 
