@@ -716,6 +716,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#environment-variables-to-customize-tests" title="Environment variables to customize tests" class="md-nav__link">
+    Environment variables to customize tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sanitizers" title="Sanitizers" class="md-nav__link">
     Sanitizers
   </a>
@@ -1209,6 +1216,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#environment-variables-to-customize-tests" title="Environment variables to customize tests" class="md-nav__link">
+    Environment variables to customize tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sanitizers" title="Sanitizers" class="md-nav__link">
     Sanitizers
   </a>
@@ -1429,7 +1443,7 @@ If on Windows: use <code>nmake</code> instead of <code>make</code>.</p>
 <p><strong>Testing the Node</strong></p>
 <ul>
 <li>In order to run the tests, the corresponding CMake variable must be set: <code>-D NANO_TEST=ON</code>.</li>
-<li>With this variable set, <code>make</code> will also build test files, and will produce <code>core_test</code>, <code>rpc_test</code> and <code>slow_test</code> binaries, which can be executed such as <code>./core_test</code>.</li>
+<li>With this variable set, <code>make</code> will also build test files, and will produce <code>core_test</code>, <code>rpc_test</code>, <code>load_test</code> and <code>slow_test</code> binaries, which can be executed such as <code>./core_test</code>.</li>
 <li>See more details in <a href="#testing">Testing</a></li>
 </ul>
 <p><strong>Beta Network Participation</strong></p>
@@ -1618,6 +1632,12 @@ cp nano_node ../nano_node <span class="o">&amp;&amp;</span> <span class="nb">cd<
 <div class="codehilite"><pre><span></span>./core_test --gtest_repeat<span class="o">=</span><span class="m">10</span>
 </pre></div></p>
 <p>If running on a debugger, add the argument <code>--gtest_break_on_failure</code> break at the moment a test fails.</p>
+<h3 id="environment-variables-to-customize-tests">Environment variables to customize tests<a class="headerlink" href="#environment-variables-to-customize-tests" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TEST_KEEP_TMPDIRS=1</code> - Setting this to anything will prevent the tests deleting any files it creates, useful for debugging log files. </li>
+<li><code>TEST_USE_ROCKSDB=1</code> - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with <a href="/running-a-node/rocksdb-ledger-backend/">RocksDB</a> support.</li>
+<li><code>TEST_BASE_PORT=26000</code> - The base port used in tests, the range of ports used in this case would be 26000 - 26199. This is useful if wanting to run multiple tests at once without port conflicts, the default base port used is 24000. </li>
+</ul>
 <h3 id="sanitizers">Sanitizers<a class="headerlink" href="#sanitizers" title="Permanent link">&para;</a></h3>
 <p>3 different CMake sanitizer options are supported: <code>NANO_ASAN_INT</code>, <code>NANO_TSAN</code> and <code>NANO_ASAN</code>. They cannot be used in conjunction with each other.</p>
 <h4 id="thread-sanitizer">Thread Sanitizer<a class="headerlink" href="#thread-sanitizer" title="Permanent link">&para;</a></h4>
