@@ -903,6 +903,9 @@ Initialize multi-connection bootstrap to random peers. Not compatible with launc
   "success": ""
 }
 ```
+**Optional "force"**  
+_version 20.0+_  
+Boolean, false by default. Manually force closing of all current bootstraps  
 
 ---
 
