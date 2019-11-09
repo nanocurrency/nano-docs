@@ -11,6 +11,7 @@ theme:
   feature:
     tabs: false
   favicon: 'images/favicon.png'
+  custom_dir: 'theme'
 nav:
   - Home: index.md
   - What is Nano?:
