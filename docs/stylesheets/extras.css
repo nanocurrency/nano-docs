@@ -108,6 +108,7 @@
     max-width: 100%;
     float:none;
     border-top: 1px solid hsla(0,0%,100%,.3);
+    padding: 0.6rem 0;
 }
 
 .md-grid-disclaimer {
