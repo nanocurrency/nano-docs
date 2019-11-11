@@ -182,11 +182,24 @@ enable_voting = true
 #### node.enable_voting
 As of V18.0, newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
 
-
 ---
 
 #### node.vote_minimum
 As of V18.0, nodes with weight delegated to them under this value in their config will not vote, regardless of the `enable_voting` flag setting. In order for a node to vote, this value must be lower than the weight delegated to the representative account setup on the node.
+
+---
+
+#### node.enable_control
+
+Due to their sensitive or dangerous nature, certain RPC calls/options require this setting to be enabled before they can be used. Examples of RPC calls that require this include:
+
+* [stop](/commands/rpc-protocol#stop): allows you to completely stop the node from running
+* [work_generate](/commands/rpc-protocol#work_generate): allows potential consumption of CPU or GPU resources on the node or attached work peers to generate PoW
+* [send](/commands/rpc-protocol#send): can be used to transfer available funds in the wallet to another account
+* Various other wallet and resource-heavy operations
+
+!!! danger "Dangerous RPC calls controlled by `enable_control`"
+	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the ndoe to limit RPC access to dangerous calls. For more details see the [Node Security page](/running-a-node/security).
 
 ---
 
