@@ -1,3 +1,6 @@
+title: Node Releases | Nano Documentation
+description: Explore details of the current, next and past releases of the Nano node, including protocol versions, release dates and supporting resources.
+
 Updates to the Nano protocol are done through major node releases, occurring approximately every 1 to 4 months, and necessary patch releases in between. As changes are made to the protocol over time, newer node versions will stop peering with older versions. Details on which versions are actively peering, supported and being developed are included below.
 
 ## Current Release
