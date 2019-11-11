@@ -42,7 +42,7 @@ docker run --restart=unless-stopped -d \
 | `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p 127.0.0.1:7076:7076`<br />or `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. Without this, anyone with access to your system's IP address can control your nano\_node. |
+| `-p 127.0.0.1:7076:7076`<br />or `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
