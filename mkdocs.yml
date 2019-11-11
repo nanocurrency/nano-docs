@@ -1,5 +1,5 @@
 site_name: Documentation
-site_url: https://docs.nano.org
+site_url: https://docs.nano.org/
 theme:
   name: 'material'
   palette:
