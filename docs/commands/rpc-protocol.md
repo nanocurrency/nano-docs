@@ -535,6 +535,8 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
 _version 19.0+ (enable_control required in version 19.0, not required in version 20.0+)_  
 Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.
 
+--8<-- "enable-control-warning.md"
+
 ---
 
 ### block_count_type  
@@ -564,6 +566,8 @@ Reports the number of blocks in the ledger by type (send, receive, open, change,
 ### block_create
 _enable_control required, version 9.0+_  
 Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. Using the optional `json_block` is recommended since v19.0.  
+
+--8<-- "enable-control-warning.md"
 
 
 **Request sample for state block:**  
@@ -1060,10 +1064,10 @@ Returns the hash of the block which is having the confirmation height set for, e
 ---
 
 ### confirmation_history  
+_version 12.0+_
 
 --8<-- "debug-only-command.md"
-
-_version 12.0+  
+ 
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
@@ -1373,7 +1377,10 @@ Derive deterministic keypair from **seed** based on **index**
 _enable_control required, version 20.0+_ 
 
 --8<-- "debug-only-command.md"
+
 Upgrade network to new **epoch** with epoch signer private **key**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -1438,6 +1445,8 @@ Returns a list of pairs of account and block hash representing the head block st
 _enable_control required_  
 Tells the node to send a keepalive packet to **address**:**port**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -1498,6 +1507,8 @@ Derive public key and account number from **private key**
 ### ledger
 _enable_control required, version 9.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at **account** up to **count**   
+
+--8<-- "enable-control-warning.md"
 
 --8<-- "includes-unconfirmed.md"
 
@@ -1578,6 +1589,8 @@ _enable_control required, version 17.0+_
 Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**  
 _version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -1602,6 +1615,8 @@ _enable_control required, version 17.0+_
 --8<-- "debug-only-command.md"
 
 Removing node ID (restart required to take effect)
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2226,6 +2241,8 @@ Clears all collected statistics. The "stat_duration_seconds" value in the "stats
 _enable_control required_  
 Method to safely shutdown node  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2354,6 +2371,8 @@ Returns a list of pairs of unchecked block hashes and their json representation 
 _enable_control required, version 8.0+_     
 Clear unchecked synchronizing blocks   
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2455,6 +2474,8 @@ _enable_control required, version 19.0+_
 
 Returns the total pending balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2501,6 +2522,8 @@ Return node uptime in seconds
 _enable_control required_  
 Stop generating **work** for block  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2519,6 +2542,8 @@ Stop generating **work** for block
 ### work_generate
 _enable_control required_  
 Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2566,6 +2591,8 @@ A valid Nano account. If provided and `use_peers` is set to `true`, this informa
 _enable_control required, version 8.0+_     
 Add specific **IP address** and **port** as work peer for node until restart   
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2585,6 +2612,8 @@ Add specific **IP address** and **port** as work peer for node until restart
 
 ### work_peers   
 _enable_control required, version 8.0+_     
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2606,6 +2635,8 @@ _enable_control required, version 8.0+_
 ### work_peers_clear  
 _enable_control required, version 8.0+_     
 Clear work peers node list until restart   
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2668,6 +2699,8 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 ### account_create  
 _enable_control required_  
 Creates a new account, insert next deterministic key in **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2738,6 +2771,8 @@ Lists all the accounts inside **wallet**
 _enable_control required_  
 Moves **accounts** from **source** to **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2762,6 +2797,8 @@ Moves **accounts** from **source** to **wallet**
 _enable_control required_  
 Remove **account** from **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2782,6 +2819,8 @@ Remove **account** from **wallet**
 ### account_representative_set  
 _enable_control required_  
 Sets the representative for **account** in **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2808,6 +2847,8 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 ### accounts_create  
 _enable_control required, version 9.0+_  
 Creates new accounts, insert next deterministic keys in **wallet** up to **count**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2851,6 +2892,8 @@ See [block_create](#block_create) Node RPC command above
 ### password_change  
 _enable_control required_  
 Changes the password for **wallet** to **password**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2912,6 +2955,8 @@ Checks whether the password entered for **wallet** is valid
 _enable_control required_  
 Receive pending **block** for **account** in **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2938,6 +2983,8 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 _enable_control required, version 8.0+_   
 Returns receive minimum for node wallet  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -2956,6 +3003,8 @@ Returns receive minimum for node wallet
 ### receive_minimum_set  
 _enable_control required, version 8.0+_   
 Set **amount** as new receive minimum for node wallet until restart  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2976,6 +3025,8 @@ Set **amount** as new receive minimum for node wallet until restart
 ### search_pending  
 _enable_control required_  
 Tells the node to look for pending blocks for any account in **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -2998,6 +3049,8 @@ Tells the node to look for pending blocks for any account in **wallet**
 _enable_control required, version 8.0+_  
 Tells the node to look for pending blocks for any account in all available wallets  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3016,6 +3069,8 @@ Tells the node to look for pending blocks for any account in all available walle
 ### send  
 _enable_control required_  
 Send **amount** from **source** in **wallet** to **destination**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -3096,6 +3151,8 @@ See [sign](#sign) Node RPC command above
 _enable_control required_  
 Add an adhoc private key **key** to **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3130,6 +3187,8 @@ Boolean, false by default. Disables work generation after adding account
 ### wallet_add_watch  
 _enable_control required, version 11.0+_  
 Add watch-only **accounts** to **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -3186,6 +3245,8 @@ _enable_control required_
 Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create).  
 `last_restored_account` and `restored_count` fields in response returned since _version 19.0+_  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3234,6 +3295,8 @@ Check whether **wallet** contains **account**
 _enable_control required_  
 Creates a new random wallet id  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3256,6 +3319,8 @@ Seed value (64 hexadecimal digits string, 256 bit). Changes seed for a new walle
 ### wallet_destroy  
 _enable_control required_  
 Destroys **wallet** and all contained accounts  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -3389,6 +3454,8 @@ Returns frontier, open block, change representative block, balance, last modifie
 
 --8<-- "includes-unconfirmed.md"
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3453,6 +3520,8 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 _enable_control required, version 9.0+_  
 Locks **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3491,6 +3560,8 @@ Checks whether **wallet** is locked
 ### wallet_pending  
 _enable_control required, version 8.0+_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
@@ -3618,6 +3689,8 @@ Returns the default representative for **wallet**
 _enable_control required_  
 Sets the default **representative** for **wallet** _(used only for new accounts, already existing accounts use already set representatives)_  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3644,6 +3717,8 @@ Boolean, false by default. Change representative for existing accounts in wallet
 _enable_control required, version 8.0+_   
 Rebroadcast blocks for accounts from **wallet** starting at frontier down to **count** to the network     
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3669,6 +3744,8 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
 _enable_control required, version 8.0+_     
 Returns a list of pairs of account and work from **wallet**   
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3691,6 +3768,8 @@ Returns a list of pairs of account and work from **wallet**
 _enable_control required, version 8.0+_     
 Retrieves work for **account** in **wallet**  
 
+--8<-- "enable-control-warning.md"
+
 **Request:**
 ```json
 {
@@ -3711,6 +3790,8 @@ Retrieves work for **account** in **wallet**
 ### work_set
 _enable_control required, version 8.0+_     
 Set **work** for **account** in **wallet**  
+
+--8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
