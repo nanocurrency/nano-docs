@@ -22,6 +22,7 @@ nav:
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Node Setup: running-a-node/node-setup.md
+    - Security: running-a-node/security.md
     - Docker Management: running-a-node/docker-management.md
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
