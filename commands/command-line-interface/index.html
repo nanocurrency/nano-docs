@@ -642,6 +642,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-config-keyvalue" title="--config key=value" class="md-nav__link">
+    --config key=value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-confirmation_height_clear" title="--confirmation_height_clear" class="md-nav__link">
     --confirmation_height_clear
   </a>
@@ -812,6 +819,13 @@
         <li class="md-nav__item">
   <a href="#-diagnostics" title="--diagnostics" class="md-nav__link">
     --diagnostics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-generate_config-noderpc" title="--generate_config node|rpc" class="md-nav__link">
+    --generate_config node|rpc
   </a>
   
 </li>
@@ -1298,6 +1312,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-config-keyvalue" title="--config key=value" class="md-nav__link">
+    --config key=value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-confirmation_height_clear" title="--confirmation_height_clear" class="md-nav__link">
     --confirmation_height_clear
   </a>
@@ -1468,6 +1489,13 @@
         <li class="md-nav__item">
   <a href="#-diagnostics" title="--diagnostics" class="md-nav__link">
     --diagnostics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-generate_config-noderpc" title="--generate_config node|rpc" class="md-nav__link">
+    --generate_config node|rpc
   </a>
   
 </li>
@@ -1752,6 +1780,8 @@
 <p>Get the public key for <code>&lt;account&gt;</code></p>
 <h3 id="-clear_send_ids">--clear_send_ids<a class="headerlink" href="#-clear_send_ids" title="Permanent link">&para;</a></h3>
 <p>Remove all send IDs from the database (dangerous: not intended for production use)</p>
+<h3 id="-config-keyvalue">--config key=value<a class="headerlink" href="#-config-keyvalue" title="Permanent link">&para;</a></h3>
+<p>Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.</p>
 <h3 id="-confirmation_height_clear">--confirmation_height_clear<a class="headerlink" href="#-confirmation_height_clear" title="Permanent link">&para;</a></h3>
 <p><em>version 19.0+</em> Sets the confirmation heights of all accounts to 0. Optional <code>--account</code> to only reset a single account.</p>
 <h3 id="-daemon">--daemon<a class="headerlink" href="#-daemon" title="Permanent link">&para;</a></h3>
@@ -1809,6 +1839,10 @@ Validate blocks in the ledger, includes checks for confirmation height</p>
 <p><em>[Draft]</em> Profile OpenCL work generation for <code>&lt;device&gt;</code> on <code>&lt;platform&gt;</code> using <code>&lt;threads&gt;</code> count. To retrieve available platforms &amp; devices run --diagnostics</p>
 <h3 id="-diagnostics">--diagnostics<a class="headerlink" href="#-diagnostics" title="Permanent link">&para;</a></h3>
 <p>Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)</p>
+<h3 id="-generate_config-noderpc">--generate_config node|rpc<a class="headerlink" href="#-generate_config-noderpc" title="Permanent link">&para;</a></h3>
+<p>Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, <code>node</code> or <code>rpc</code>.
+If <code>--use_defaults</code> is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.</p>
+<p>The output can be piped to a file, using the locations defined in <a href="/running-a-node/configuration#configuration-file-locations">configuration</a>.</p>
 <h3 id="-help">--help<a class="headerlink" href="#-help" title="Permanent link">&para;</a></h3>
 <p>Print out options</p>
 <h3 id="-key_create">--key_create<a class="headerlink" href="#-key_create" title="Permanent link">&para;</a></h3>

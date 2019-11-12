@@ -780,26 +780,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#migration-and-beta-testing" title="Migration and Beta Testing" class="md-nav__link">
-    Migration and Beta Testing
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#v190" title="V19.0" class="md-nav__link">
-    V19.0
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#upgrade-notices" title="Upgrade Notices" class="md-nav__link">
     Upgrade Notices
   </a>
@@ -814,8 +794,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rpccli-updates" title="RPC/CLI Updates" class="md-nav__link">
-    RPC/CLI Updates
+  <a href="#rpc-updates" title="RPC Updates" class="md-nav__link">
+    RPC Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-updates" title="CLI Updates" class="md-nav__link">
+    CLI Updates
   </a>
   
 </li>
@@ -841,15 +828,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#other-notices" title="Other Notices" class="md-nav__link">
-    Other Notices
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#v190" title="V19.0" class="md-nav__link">
+    V19.0
+  </a>
   
 </li>
         
@@ -985,26 +972,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#migration-and-beta-testing" title="Migration and Beta Testing" class="md-nav__link">
-    Migration and Beta Testing
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#v190" title="V19.0" class="md-nav__link">
-    V19.0
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#upgrade-notices" title="Upgrade Notices" class="md-nav__link">
     Upgrade Notices
   </a>
@@ -1019,8 +986,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rpccli-updates" title="RPC/CLI Updates" class="md-nav__link">
-    RPC/CLI Updates
+  <a href="#rpc-updates" title="RPC Updates" class="md-nav__link">
+    RPC Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-updates" title="CLI Updates" class="md-nav__link">
+    CLI Updates
   </a>
   
 </li>
@@ -1046,15 +1020,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#other-notices" title="Other Notices" class="md-nav__link">
-    Other Notices
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#v190" title="V19.0" class="md-nav__link">
+    V19.0
+  </a>
   
 </li>
         
@@ -1099,24 +1073,45 @@
 </thead>
 <tbody>
 <tr>
-<td>19.0</td>
+<td>20.0</td>
 <td>17</td>
-<td>2019-07-11</td>
-<td><a href="/releases/node-releases/#v190">V19.0</a></td>
-<td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V19.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/milestone/9">Milestone</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0">Changelog</a></td>
+<td>2019-11-12</td>
+<td><a href="/releases/node-releases/#v200">V20.0</a></td>
+<td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V20.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/milestone/10">Milestone</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0">Changelog</a></td>
 </tr>
 </tbody>
 </table>
-<details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
-<ul>
-<li>
-<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
-</li>
-<li>
-<p><strong>Solution:</strong> For now a workaround is needed to increase the limit. The method depends on the specific macOS version, but some people had success with the recipe in <a href="https://superuser.com/a/1171028">https://superuser.com/a/1171028</a>.</p>
-</li>
-</ul>
-</details>
+<p><strong>Builds and Commands</strong></p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Download link/command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-Linux.tar.bz2">https://repo.nano.org/live/binaries/nano-node-V20.0-Linux.tar.bz2</a></td>
+</tr>
+<tr>
+<td>macOS</td>
+<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-Darwin.dmg">https://repo.nano.org/live/binaries/nano-node-V20.0-Darwin.dmg</a></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-win64.exe">https://repo.nano.org/live/binaries/nano-node-V20.0-win64.exe</a></td>
+</tr>
+<tr>
+<td>Docker</td>
+<td><code>docker pull nanocurrency/nano:V20.0</code> or <code>docker pull nanocurrency/nano:latest</code><br />See <a href="/running-a-node/node-setup/#pulling-the-docker-image">Pulling the Docker Image</a> for more details.</td>
+</tr>
+<tr>
+<td>RHEL/CentOS rpm</td>
+<td><code>sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo</code><br /><code>sudo yum install nanocurrency</code><br />This installs <code>nano_node</code> to bin.</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="next-planned-release">Next Planned Release<a class="headerlink" href="#next-planned-release" title="Permanent link">&para;</a></h2>
 <p>The following release is currently under development. Details about potential features to be included can be found on the <a href="/releases/upcoming-features">Upcoming Features page</a>.</p>
@@ -1132,16 +1127,14 @@
 </thead>
 <tbody>
 <tr>
-<td>20.0</td>
+<td>21.0</td>
 <td>TBD</td>
 <td>TBD</td>
 <td>TBD</td>
-<td>Release - <a href="https://github.com/nanocurrency/nano-node/milestone/10">Milestone</a> - Changelog</td>
+<td>Release - <a href="https://github.com/nanocurrency/nano-node/milestone/18">Milestone</a> - Changelog</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Beta Testing V20</strong><br />
-For services wishing to test V20 on the beta network, see the <a href="#migration-and-beta-testing">V20 Migration and Beta Testing section</a> below which explains notable changes with this version and details on how to test </p>
 <hr />
 <h2 id="active-releases">Active Releases<a class="headerlink" href="#active-releases" title="Permanent link">&para;</a></h2>
 <p>The following older releases can still actively participate on the network with other nodes of the same and newer versions.</p>
@@ -1157,12 +1150,45 @@ For services wishing to test V20 on the beta network, see the <a href="#migratio
 </thead>
 <tbody>
 <tr>
+<td>19.0</td>
+<td>17</td>
+<td>2019-07-11</td>
+<td><a href="/releases/node-releases/#v190">V19.0</a></td>
+<td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V19.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/milestone/9">Milestone</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0">Changelog</a></td>
+</tr>
+<tr>
 <td>18.0</td>
 <td>16</td>
 <td>2019-02-21</td>
 <td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V18.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/milestone/7">Milestone</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0">Changelog</a></td>
 </tr>
+</tbody>
+</table>
+<details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
+<ul>
+<li>
+<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
+</li>
+<li>
+<p><strong>Solution:</strong> For now a workaround is needed to increase the limit. The method depends on the specific macOS version, but some people had success with the recipe in <a href="https://superuser.com/a/1171028">https://superuser.com/a/1171028</a>.</p>
+</li>
+</ul>
+</details>
+<hr />
+<h2 id="inactive-releases">Inactive Releases<a class="headerlink" href="#inactive-releases" title="Permanent link">&para;</a></h2>
+<p>The following versions are no longer peered with by nodes running the active versions above and will not work properly communicate if run on the network. The details below are for historical purposes only.</p>
+<details class="info"><summary>Inactive Releases</summary><table>
+<thead>
+<tr>
+<th>Node Version</th>
+<th>Protocol Version</th>
+<th>Release Date</th>
+<th>Release Notes</th>
+<th>GitHub Links</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>17.1</td>
 <td>15</td>
@@ -1226,128 +1252,235 @@ For services wishing to test V20 on the beta network, see the <a href="#migratio
 <td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V15.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/milestone/1">Milestone</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V14.2...V15.0">Changelog</a></td>
 </tr>
-</tbody>
-</table>
-<hr />
-<h2 id="inactive-releases">Inactive Releases<a class="headerlink" href="#inactive-releases" title="Permanent link">&para;</a></h2>
-<p>The following versions are no longer peered with by nodes running the active versions above and will not work properly communicate if run on the network. The details below are for historical purposes only.</p>
-<table>
-<thead>
-<tr>
-<th>Node Version</th>
-<th>Protocol Version</th>
-<th>Release Date</th>
-<th>GitHub Links</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td>14.2</td>
 <td>11</td>
 <td>2018-06-21</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V14.2">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V14.1...V14.2">Changelog</a></td>
 </tr>
 <tr>
 <td>14.1</td>
 <td>10</td>
 <td>2018-06-11</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V14.1">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V14.0...V14.1">Changelog</a></td>
 </tr>
 <tr>
 <td>14.0</td>
 <td>10</td>
 <td>2018-06-11</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V14.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V13.0...V14.0">Changelog</a></td>
 </tr>
 <tr>
 <td>13.0</td>
 <td>9</td>
 <td>2018-05-10</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V13.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V12.1...V13.0">Changelog</a></td>
 </tr>
 <tr>
 <td>12.1</td>
 <td>8</td>
 <td>2018-04-21</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V12.1">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V12.0...V12.1">Changelog</a></td>
 </tr>
 <tr>
 <td>12.0</td>
 <td>8</td>
 <td>2018-04-18</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V12.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V11.2...V12.0">Changelog</a></td>
 </tr>
 <tr>
 <td>11.2</td>
 <td>7</td>
 <td>2018-04-04</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V11.2">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V11.1...V11.2">Changelog</a></td>
 </tr>
 <tr>
 <td>11.1</td>
 <td>7</td>
 <td>2018-03-29</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V11.1">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V11.0...V11.1">Changelog</a></td>
 </tr>
 <tr>
 <td>11.0</td>
 <td>7</td>
 <td>2018-03-23</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V11.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V10.0...V11.0">Changelog</a></td>
 </tr>
 <tr>
 <td>10.0</td>
 <td>6</td>
 <td>2018-02-15</td>
+<td></td>
 <td><a href="https://github.com/nanocurrency/nano-node/releases/tag/V10.0">Release</a> - <a href="https://github.com/nanocurrency/nano-node/compare/V9.0...V10.0">Changelog</a></td>
+</tr>
+<tr>
+<td>All Previous</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
+</details>
 <h2 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h2>
 <h3 id="v200">V20.0<a class="headerlink" href="#v200" title="Permanent link">&para;</a></h3>
-<h4 id="migration-and-beta-testing">Migration and Beta Testing<a class="headerlink" href="#migration-and-beta-testing" title="Permanent link">&para;</a></h4>
-<p>Below are details the changes that V20 brings for services and integrations. It does not include test cases for internal node functionality improvements.</p>
-<p>Extended test items are <a href="https://docs.nano.org/running-a-node/beta-network/#development-builds">available</a> for those wanting to go even deeper in their tests. Development Builds released during V20 development, tackled many of those items.</p>
-<ul>
-<li><a href="https://docs.nano.org/running-a-node/beta-network/">Joining the beta network</a></li>
-<li><a href="https://chat.nano.org">Discussion and support</a></li>
-<li><a href="https://github.com/nanocurrency/nano-node/releases">Full changelog</a></li>
-</ul>
-<h5>Selected test cases for services</h5>
-<p>The following test cases outline the possible impact on existing services’ setups. In general, no action should be necessary to have a working setup when migrating.</p>
-<p><strong>Configuration file - TOML</strong><br />
-V20 migrates existing configuration files to the new TOML format. A backup of the existing JSON files is kept in the node data directory (default <code>~/Nano</code>) when migrating.</p>
-<ul>
-<li>See the <a href="https://docs.nano.org/running-a-node/configuration/">configuration documentation</a></li>
-<li>Consider setting up a V19 node, populating your desired changes, performing a migration then verify configuration changes.</li>
-</ul>
-<p><strong>Network setup changes - UPnP</strong><br />
-V20 improves default network setups to require less setup from node operators, namely when it comes to port forwarding.</p>
-<ul>
-<li>Run V20.0RC1 and verify that it is compatible with your network setup</li>
-<li>Use <a href="https://docs.nano.org/commands/rpc-protocol/#peers">RPC peers</a> to detect connections to other peers are being made</li>
-<li>Please report any difficulties encountered</li>
-</ul>
-<p><strong>External integration recommendations</strong><br />
-We have updated the documentation for external integrations with recommended setups when it comes to block confirmation tracking. We recommend reading at least the following pages to ensure your setup is compatible with the outlined recommendations:</p>
-<ul>
-<li><a href="https://docs.nano.org/integration-guides/key-management/#external-management">External Management</a></li>
-<li><a href="https://docs.nano.org/integration-guides/block-confirmation-tracking/">Block Confirmation and Tracking</a></li>
-</ul>
-<p><strong>Proof of work websocket subscription</strong><br />
-A new websocket subscription - work - is included in version 20. Using this setup can help to find issues with the node and quickly verify if the problem is with work generation or otherwise.</p>
-<ul>
-<li>If you do not have a websocket configuration yet, read <a href="https://docs.nano.org/integration-guides/advanced/#websocket-support">Websocket Support</a></li>
-<li>For the new subscription see <a href="https://docs.nano.org/integration-guides/advanced/#proof-of-work">Websocket - Proof of Work</a></li>
-</ul>
-<p><strong>Automatic PoW rework for external integrations</strong><br />
-In V19 we introduced PoW reworking for the node internal wallets. Rework is used with RPCs such as send. With V20, we’re extending support to RPC process, which affects external integrations. Using this setup, the network quickly confirms and guarantees blocks even under saturation.</p>
-<ul>
-<li>Read the updates for <a href="https://docs.nano.org/commands/rpc-protocol/#process">RPC process</a></li>
-<li><strong>If you do not want to use this feature, make sure to set the optional field <code>watch_work</code> to false</strong></li>
-</ul>
-<h3 id="v190">V19.0<a class="headerlink" href="#v190" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Nano Forum available</p>
+<p>The Nano Forum is available at <a href="https://forum.nano.org/">https://forum.nano.org/</a> as a resource to ask questions and get support when participating on the network. The <a href="https://forum.nano.org/c/node-and-rep">Node and Representative Management category</a> is a great place to ask node upgrade related questions. </p>
+</div>
 <h4 id="upgrade-notices">Upgrade Notices<a class="headerlink" href="#upgrade-notices" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Only node V18.0 and higher supported</p>
+<p>With V20.0 only nodes V18.0 and higher will be peered with on the network (see <a href="/releases/node-releases/#active-releases">Active Releases</a> above). This means any nodes running versions earlier than 18.0 will begin to lose peers and fall out of sync over time once upgrades to V20.0 begin.</p>
+<p><strong>If you are running a node version earlier than V18.0, please update as soon as possible to avoid disruption.</strong></p>
+</div>
+<p><strong>Database upgrades</strong>  </p>
+<div class="admonition danger">
+<p class="admonition-title">Upgrade requires downtime, read carefully</p>
+<p>Please review the following details carefully as the automatic database upgrade process will cause downtime for the node.</p>
+</div>
+<p>This version brings some new optimizations to the ledger which require database upgrades to be performed. Due to the nature of upgrades, the following impacts will occur:</p>
+<ul>
+<li>Upgrade times depend on specs of the node host but are expected to be between 5 and 15 minutes for most cases.</li>
+<li>Upgrade activities are synchronous which means the node will not be participating on the network and RPC requests won’t be available during the upgrade process - <strong>services requiring uptime should plan to swap out their ledger for one upgraded by a separate node or download from a trusted source.</strong></li>
+<li>Ledger size will grow by up to 50% during this process - <strong>please ensure you have free disk space of 3x the current ledger before starting the upgrade (currently ~16GB on the main network).</strong></li>
+<li>A database vacuum will be automatically performed after the upgrade to reclaim disk space, which can be verified complete in the logs.</li>
+<li>Doing proper ledger backups is recommended before starting this process. <strong>Ensure you have enough disk space to allow for any ledger backups plus the additional disk space required for the database upgrade mentioned above.</strong> A new config option in V20, <code>node.backup_before_upgrade</code>, will allow for automated ledger backups between future versions.</li>
+</ul>
+<p><strong>New .toml config files</strong><br />
+A new setup in V20.0 uses internal default config values, so config files are only needed for non-default settings. During upgrade new .toml format files will be created for the config.json and rpc_config.json files if they contain non-default values. Before migration <code>config_backup_toml_migration.json</code> and <code>rpc_config_backup_toml_migration.json</code> files will be created for backup.</p>
+<p>The following commands can be used to generated commented out, complete config files for review:</p>
+<div class="admonition warning">
+<p class="admonition-title">Only set non-default values in .toml files</p>
+<p>It is not recommended to uncomment all values in the .toml file output from commands below. Instead, only uncomment or insert non-default values to ensure any default value changes in future release are only overridden when needed.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Generated with</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config-node.toml</code></td>
+<td>Node configuration</td>
+<td><code>nano_node --generate_config node</code></td>
+</tr>
+<tr>
+<td><code>config-rpc.toml</code></td>
+<td>RPC configuration</td>
+<td><code>nano_node --generate_config rpc</code></td>
+</tr>
+<tr>
+<td><code>config-nano-pow-server.toml</code></td>
+<td>Proof of work server configuration</td>
+<td><code>nano_pow_server --generate_config</code></td>
+</tr>
+<tr>
+<td><code>config-qtwallet.toml</code></td>
+<td>Qt developer wallet configuration</td>
+<td>This file is maintained by the Qt wallet</td>
+</tr>
+</tbody>
+</table>
+<p>More details on the new configuration setup can be found in the node <a href="https://docs.nano.org/running-a-node/configuration/">Configuration documentation</a>.</p>
+<p><strong>Networking changes</strong><br />
+Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing systems that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the <a href="/running-a-node/troubleshooting/#troubleshooting-upnp">Troubleshooting UPnP documentation</a> for assistance. Additional help can be sought in the <a href="https://forum.nano.org/c/node-and-rep">Node and Representative Management forum category</a>. </p>
+<p><strong>Proof-of-Work management</strong><br />
+A couple changes to PoW management that services should be aware of:</p>
+<ul>
+<li>With OpenCL enabled, nodes will still use the local CPU for work generation by default. Setting <code>node.work_threads</code> to <code>0</code> will turn this off if required.</li>
+<li>Regenerating PoW for delayed transactions during high network load will now happen by default through the <a href="https://docs.nano.org/commands/rpc-protocol/#process">process RPC</a>. If you wish to turn this off, setting <code>watch_work</code> to <code>false</code> is required.</li>
+</ul>
+<p><strong>Other updates to review</strong><br />
+Improvements to the <a href="https://docs.nano.org/integration-guides/key-management/#external-management">External Management</a> and <a href="https://docs.nano.org/integration-guides/block-confirmation-tracking/">Block Confirmation and Tracking</a> documentation should help clarify the recommended approaches to building integrations.</p>
+<hr />
+<h4 id="major-updates">Major Updates<a class="headerlink" href="#major-updates" title="Permanent link">&para;</a></h4>
+<p><strong>Migration to .toml config files</strong><br />
+Better legibility, support for comments, and no more having the node write to your config files are some of the benefits of this upgrade. Any non-default values captured in your existing .json files will be migrated and you can export a full list of configuration options for use with simple commands. See additional callouts in <a href="#upgrade-notices">Upgrade Notices</a> above and in the node <a href="https://docs.nano.org/running-a-node/configuration/">Configuration documentation</a>.</p>
+<p><strong>Proof-of-Work regeneration outside development wallet</strong><br />
+Any requests to the <a href="https://docs.nano.org/commands/rpc-protocol/#process">process RPC</a> will have the new <code>watch_work</code> option turned on by default, allowing the node to regenerate Proof-of-Work for blocks even if they are outside of the node’s development wallet. This makes Dynamic PoW and prioritization function more consistently across the network. If you have an external integration utilizing this RPC call, you will automatically start taking advantage of rework during confirmation delays on the network.</p>
+<p><strong>RocksDB experimental support</strong><br />
+With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout <a href="https://docs.nano.org/running-a-node/rocksdb-ledger-backend/">how to install RocksDB</a> and try it out on development and test systems. We also have a <a href="https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4">related discussion in our forum</a> for those interested.</p>
+<p><strong>Active elections and other optimizations</strong><br />
+Thanks to our excellent community testers putting effort into collecting and analyzing block, voting and confirmation data from the beta network, we’ve found various optimizations with the active elections process, confirmation request attempts and bootstrapping behaviors. Various changes have been implemented to help reduce resource usage on nodes in various areas and increase the available throughput on the network. This feature also enhances the effectiveness of prioritization and rework of PoW. No action is needed to take advantage of these great updates. </p>
+<p><strong>Infrastructure for PoW transition</strong><br />
+Back in September we <a href="https://medium.com/nanocurrency/v20-a-look-at-lydia-62bf6e1b24b">announced a new PoW algorithm design</a> we had been working on which aimed to be memory hard. After open sourcing an implementation of the algorithm, an efficient low-memory solution was found and we subsequently <a href="https://medium.com/nanocurrency/nano-pow-v20-update-e2197ff52941">removed the algorithm implementation from V20</a>.</p>
+<p>As part of the original implementation work we were able to setup infrastructure for moving PoW out of the node process in the future, and also added support for version 2 of epoch blocks, which will allow the <a href="https://docs.nano.org/releases/network-upgrades/">network upgrade</a> later when a new PoW algorithm is ready. These updates will be included in Lydia but not be utilized until a future version. To follow along with node releases going forward, check out the <a href="https://docs.nano.org/releases/upcoming-features/">Upcoming Features</a> page.</p>
+<hr />
+<h4 id="rpc-updates">RPC Updates<a class="headerlink" href="#rpc-updates" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>BEHAVIOR CHANGE</strong> <a href="/commands/rpc-protocol/#process"><code>process</code></a> now takes an optional flag <code>watch_work</code> (default <code>true</code>). Unless set to <code>false</code>, processed blocks can be subject to PoW rework</li>
+<li><strong>BEHAVIOR CHANGE</strong> <a href="/commands/rpc-protocol/#bootstrap"><code>bootstrap</code></a>, <a href="/commands/rpc-protocol/#bootstrap_any"><code>bootstrap_any</code></a> and <a href="/commands/rpc-protocol/#bootstrap_lazy"><code>boostrap_lazy</code></a> will now throw errors when certain launch flags are used to disabled bootstrap methods - see each RPC page for details</li>
+<li><strong>BEHAVIOR CHANGE</strong> RPCs requiring work generation will now throw errors when work generation is disabled (no <a href="/running-a-node/configuration/#nodework_peers">work peers</a>, no <a href="/running-a-node/configuration/#openclenable">OpenCL</a> and no work threads configured)</li>
+<li><a href="/commands/rpc-protocol/#block_count"><code>block_count</code></a> no longer requires config option <code>enable_control</code> to get the cemented block count</li>
+<li><a href="/commands/rpc-protocol/#unchecked"><code>unchecked</code></a> now takes an optional flag <code>json_block</code> to return blocks in JSON-format</li>
+<li><a href="/commands/rpc-protocol/#version"><code>version</code></a> now includes more fields - network label, identifier (hash of the genesis open block) and build information</li>
+<li><a href="/commands/rpc-protocol/#peers"><code>peers</code></a> and <a href="/commands/rpc-protocol/#node_id"><code>node_id</code></a> now return node IDs with a <code>node_</code> prefix</li>
+<li><a href="/commands/rpc-protocol/#work_generate">work_generate</a> and <a href="/commands/rpc-protocol/#work_validate">work_validate</a> can now take a multiplier (against base difficulty) to set a different difficulty threshold</li>
+</ul>
+<h4 id="cli-updates">CLI Updates<a class="headerlink" href="#cli-updates" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>NEW</strong> <a href="/commands/command-line-interface/#-generate_config-noderpc"><code>generate_config [node|rpc]</code></a> prints sample configuration files to <em>stdout</em><ul>
+<li><code>use_defaults</code> additional argument to generate uncommented entries (not recommended)</li>
+</ul>
+</li>
+<li><strong>NEW</strong> <a href="/commands/command-line-interface/#-config-keyvalue"><code>config</code></a> passes configuration arguments, alternative to setting in the config file</li>
+</ul>
+<hr />
+<h4 id="node-configuration-updates">Node Configuration Updates<a class="headerlink" href="#node-configuration-updates" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">Support in Nano Forum</p>
+<p>For node operators looking to upgrade to V20.0 or tune their configurations, the <a href="https://forum.nano.org/c/node-and-rep">Node and Representative Management category</a> of the forum is a great resource to use.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Generate .toml config to see options</p>
+<p>As noted in the <a href="#upgrade-notices">Upgrade Notices</a> above, this version will migrate your existing .json files over to .toml files. Only non-default values for these fields will be added to the new .toml file. If you wish to adjust other options, use the <a href="/running-a-node/configuration/#configuration-file-locations">config generation commands</a> to see all available options.</p>
+</div>
+<p>The following options are notable node configuration updates. Additional configuration changes have been included in this release and can be found when generating the config files.</p>
+<ul>
+<li><code>backup_before_upgrade</code> (default <code>false</code>) enables automatic backup of the ledger and wallet databases when updating to a new node version</li>
+<li><code>work_watcher_period</code> (default <code>5</code> seconds) controls how frequently the node should check the confirmation status of block in the work watcher, and re-generate higher difficulty work if unconfirmed</li>
+<li><code>max_work_generate_multiplier</code> (default <code>64.0</code>) previously <code>max_work_generate_difficulty</code>, now a multiplier for easier management, specifies the absolute maximum difficulty multiplier to be used for work generation</li>
+</ul>
+<hr />
+<h4 id="developerdebug-options">Developer/Debug Options<a class="headerlink" href="#developerdebug-options" title="Permanent link">&para;</a></h4>
+<ul>
+<li>New RPC <a href="/commands/rpc-protocol/#epoch_upgrade"><code>epoch_upgrade</code></a> allowing easier epoch distribution (<strong>Note</strong> - this epoch requires a special private key to be used, see the <a href="/releases/network-upgrades/#epoch-blocks">Network Upgrades</a> page for information)</li>
+<li>RPC <a href="/commands/rpc-protocol/#bootstrap"><code>bootstrap</code></a> has a new optional "bypass_frontier_confirmation"</li>
+<li>RPC <a href="/commands/rpc-protocol/#bootstrap_status"><code>bootstrap_status</code></a> now displays more data about the current bootstrap attempt</li>
+<li>New CLI <a href="/commands/command-line-interface/#-debug_stacktrace"><code>debug_stacktrace</code></a> displays an example stacktrace, simulating an unexpected program crash</li>
+<li>New CLI <a href="/commands/command-line-interface/#-debug_account_versions"><code>debug_account_versions</code></a> displays the total number of accounts separated by version and opened/unopened</li>
+<li>CLI <a href="/commands/command-line-interface/#-debug_validate_blocks"><code>debug_validate_blocks</code></a> updated to cover more cases</li>
+<li>CLI <code>debug_profile_verify</code> renamed to <a href="/commands/command-line-interface/#-debug_profile_validate"><code>debug_profile_validate</code></a> and now provides simplified work validation profiling</li>
+<li>New CMake build options:</li>
+<li><code>NANO_ROCKSDB</code> enables use of the RocksDB database backend, experimental</li>
+<li><code>NANO_WARN_TO_ERR</code> turns compiler warnings into errors on Linux/Mac</li>
+<li><code>NANO_TIMED_LOCKS</code> provides information on mutexes held for a long time</li>
+<li><code>NANO_STACKTRACE_BACKTRACE</code> uses <code>libbacktrace</code> to provide stacktraces</li>
+<li><code>CI_BUILD</code> if set, uses the <code>TRAVIS_TAG</code> environment variable to modify the locally reported node version, to help with support tickets</li>
+</ul>
+<hr />
+<h4 id="deprecations">Deprecations<a class="headerlink" href="#deprecations" title="Permanent link">&para;</a></h4>
+<p>The following functionality is now deprecated and will be removed in a future release:</p>
+<ul>
+<li>Addresses containing a dash (ex. <code>nano-</code> or <code>xrb-</code>) are being deprecated and will not longer be compatible with the node in a future release. Addresses using underscores will only be supported.</li>
+</ul>
+<hr />
+<h3 id="v190">V19.0<a class="headerlink" href="#v190" title="Permanent link">&para;</a></h3>
+<p><span class="h4-no-toc">Upgrade Notices</span></p>
 <p><strong>Version Limits</strong><br />
 Upgrades from versions V17.1 and to V19 will involve a sequential database upgrade and impact participation of the node on the network. RPC calls will be unavailable for a long period of time amongst other impacts.</p>
 <div class="admonition warning">
@@ -1377,7 +1510,7 @@ Live network traffic over TCP is now available and operates on the same port (70
 </pre></div>
 
 <hr />
-<h4 id="major-updates">Major Updates<a class="headerlink" href="#major-updates" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">Major Updates</span></p>
 <p><strong>Confirmation Height</strong><br />
 This provides cementing of blocks by marking on an account the highest block height that has been confirmed for the account. A more detailed look at this feature can be found in the relatd Medium article: <a href="https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc">https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc</a></p>
 <p><strong>TCP Network</strong><br />
@@ -1387,7 +1520,7 @@ With the ability to track work difficulty seen on the network and have the node 
 <p><strong>RPC Process Options</strong><br />
 By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (currently limited to running on the same computer), depending on your needs. See <a href="/integration-guides/advanced/#running-nano-as-a-service">Running Nano as a service</a> for more details.</p>
 <hr />
-<h4 id="rpccli-updates">RPC/CLI Updates<a class="headerlink" href="#rpccli-updates" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">RPC/CLI Updates</span></p>
 <div class="admonition success">
 <p class="admonition-title">No Breaking Changes</p>
 <p>There were no breaking changes made in V19 for any RPC or CLI commands. It is recommended any integrations run tests against V19 before upgrading production nodes, and also explore the various changes below to improve their setups.</p>
@@ -1413,7 +1546,7 @@ By default the RPC server will run in the node process, but can be configured to
 <li>A new <code>include_cemented</code> option in <a href="/commands/rpc-protocol/#block_count"><code>block_count</code></a> RPC adds return of the cemented blocks in the ledger - cemented blocks are ones that have been confirmed and are at or below the confirmation height set on the account</li>
 </ul>
 <hr />
-<h4 id="node-configuration-updates">Node Configuration Updates<a class="headerlink" href="#node-configuration-updates" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">Node Configuration Updates</span></p>
 <p><strong><a href="/running-a-node/configuration/#configjson">Config.json</a></strong>  </p>
 <ul>
 <li>New <code>active_elections_size</code> will limit the number of active elections allowed before dropping occurs. Default is 50,000 but higher settings are recommended for nodes provisioned with 8GB RAM or more</li>
@@ -1429,14 +1562,14 @@ This new file was split out from the <a href="/running-a-node/configuration/#con
 <p><strong>Automated config backups</strong><br />
 Backups of config files will be made prior to upgrades. During upgrades from V18 to V19 you will see a backup created even for the new <a href="/running-a-node/configuration/#rpc_configjson">rpc_config.json</a> - this is expected behavior given the upgrade process.</p>
 <hr />
-<h4 id="developerdebug-options">Developer/Debug Options<a class="headerlink" href="#developerdebug-options" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">Developer/Debug Options</span></p>
 <ul>
 <li>New launch flag for tuning block processor: <a href="/commands/command-line-interface/#-block_processor_batch_size"><code>--block_processor_batch_size</code></a>, <a href="/commands/command-line-interface/#-block_processor_full_size"><code>--block_processor_full_size</code></a> and <a href="/commands/command-line-interface/#-block_processor_verification_size"><code>--block_processor_verification_size</code></a></li>
 <li>New <a href="/commands/command-line-interface/#launch-options">launch flags</a> for disabling TCP real-time network and UDP for debugging connectivity</li>
 <li>Expanded <a href="/commands/rpc-protocol/#stats"><code>stats</code></a> RPC contains additional values related to confirmation height</li>
 </ul>
 <hr />
-<h4 id="deprecations">Deprecations<a class="headerlink" href="#deprecations" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">Deprecations</span></p>
 <p>The following RPC calls are being deprecated and will be removed in a future release:</p>
 <ul>
 <li><a href="/commands/rpc-protocol/#history">history</a></li>
@@ -1446,7 +1579,7 @@ Backups of config files will be made prior to upgrades. During upgrades from V18
 <li><a href="/commands/rpc-protocol/#payment_wait">payment_wait</a></li>
 </ul>
 <hr />
-<h4 id="other-notices">Other Notices<a class="headerlink" href="#other-notices" title="Permanent link">&para;</a></h4>
+<p><span class="h4-no-toc">Other Notices</span></p>
 <p><strong>New nanorep QR code standard</strong><br />
 A new nanorep <a href="/integration-guides/the-basics/#uri-and-qr-code-standards">QR code standard</a> for easier management of representative changes was added for wallets and other services to consider supporting.</p>
 <p><strong>New recommended block explorer</strong><br />

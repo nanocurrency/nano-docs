@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://docs.nano.org/releases/network-upgrades/">
+        <link rel="canonical" href="https://docs.nano.org/snippets/toml-config-commands/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>Network Upgrades - Documentation</title>
+        <title>Toml config commands - Documentation</title>
       
     
     
@@ -106,7 +106,7 @@
   <!-- Open Graph data -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="" />
-  <meta property="og:url" content="https://docs.nano.org/releases/network-upgrades/" />
+  <meta property="og:url" content="https://docs.nano.org/snippets/toml-config-commands/" />
   <meta property="og:image" content="https://docs.nano.org/images/nano-docs-open-graph.png" />
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Nano Docs" />
@@ -147,10 +147,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#upcoming-upgrades" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -172,7 +168,7 @@
               Documentation
             </span>
             <span class="md-header-nav__topic">
-              Network Upgrades
+              Toml config commands
             </span>
           
         </div>
@@ -688,12 +684,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
       Releases
@@ -711,7 +705,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../node-releases/" title="Node Releases" class="md-nav__link">
+    <a href="../../releases/node-releases/" title="Node Releases" class="md-nav__link">
       Node Releases
     </a>
   </li>
@@ -721,133 +715,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Network Upgrades
-      </label>
-    
-    <a href="./" title="Network Upgrades" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../releases/network-upgrades/" title="Network Upgrades" class="md-nav__link">
       Network Upgrades
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#upcoming-upgrades" title="Upcoming upgrades" class="md-nav__link">
-    Upcoming upgrades
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#new-pow-algorithm" title="New PoW algorithm" class="md-nav__link">
-    New PoW algorithm
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#past-upgrades" title="Past upgrades" class="md-nav__link">
-    Past upgrades
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#state-blocks" title="State blocks" class="md-nav__link">
-    State blocks
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vote-by-hash" title="Vote-by-Hash" class="md-nav__link">
-    Vote-by-Hash
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrades-overview" title="Upgrades overview" class="md-nav__link">
-    Upgrades overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-methods" title="Upgrade methods" class="md-nav__link">
-    Upgrade methods
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#phased-node-upgrades" title="Phased node upgrades" class="md-nav__link">
-    Phased node upgrades
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hardcoded-date" title="Hardcoded date" class="md-nav__link">
-    Hardcoded date
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#canary-blocks" title="Canary block(s)" class="md-nav__link">
-    Canary block(s)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#epoch-blocks" title="Epoch blocks" class="md-nav__link">
-    Epoch blocks
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -857,7 +729,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../upcoming-features/" title="Upcoming Features" class="md-nav__link">
+    <a href="../../releases/upcoming-features/" title="Upcoming Features" class="md-nav__link">
       Upcoming Features
     </a>
   </li>
@@ -869,7 +741,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../roadmap/" title="Roadmap" class="md-nav__link">
+    <a href="../../releases/roadmap/" title="Roadmap" class="md-nav__link">
       Roadmap
     </a>
   </li>
@@ -899,337 +771,44 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#upcoming-upgrades" title="Upcoming upgrades" class="md-nav__link">
-    Upcoming upgrades
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#new-pow-algorithm" title="New PoW algorithm" class="md-nav__link">
-    New PoW algorithm
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#past-upgrades" title="Past upgrades" class="md-nav__link">
-    Past upgrades
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#state-blocks" title="State blocks" class="md-nav__link">
-    State blocks
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vote-by-hash" title="Vote-by-Hash" class="md-nav__link">
-    Vote-by-Hash
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrades-overview" title="Upgrades overview" class="md-nav__link">
-    Upgrades overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-methods" title="Upgrade methods" class="md-nav__link">
-    Upgrade methods
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#phased-node-upgrades" title="Phased node upgrades" class="md-nav__link">
-    Phased node upgrades
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hardcoded-date" title="Hardcoded date" class="md-nav__link">
-    Hardcoded date
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#canary-blocks" title="Canary block(s)" class="md-nav__link">
-    Canary block(s)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#epoch-blocks" title="Epoch blocks" class="md-nav__link">
-    Epoch blocks
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/releases/network-upgrades.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/snippets/toml-config-commands.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Network Upgrades</h1>
+                  <h1>Toml config commands</h1>
                 
-                <p>For details on why and how network upgrades happen, along with explanations of the various types, please see the <a href="#upgrades-overview">Upgrades overview</a> and <a href="#upgrade-methods">Upgrade methods</a> sections further down.</p>
-<hr />
-<h2 id="upcoming-upgrades">Upcoming upgrades<a class="headerlink" href="#upcoming-upgrades" title="Permanent link">&para;</a></h2>
-<h3 id="new-pow-algorithm">New PoW algorithm<a class="headerlink" href="#new-pow-algorithm" title="Permanent link">&para;</a></h3>
-<p><strong>Purpose</strong></p>
-<p>To help ensure Quality of Service on the network by providing the ability to generate and validate PoW using a new algorithm. This algorithm will be more memory-hard causing the resources required for generating transactions to shift accordingly.</p>
-<p><strong>Transition details</strong></p>
-<table>
+                <table>
 <thead>
 <tr>
-<th>Date</th>
-<th>Type</th>
-<th>Description</th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Generated with</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TBD</td>
-<td>Node release</td>
-<td>Nano node V20.0 released to include a new PoW server and epoch block support. These are only foundational updates and will not be configured for activation in this release.</td>
+<td><code>config-node.toml</code></td>
+<td>Node configuration</td>
+<td><code>nano_node --generate_config node</code></td>
 </tr>
 <tr>
-<td>TBD</td>
-<td>Node release</td>
-<td>Nano node VXX.X released to include new PoW algorithm in PoW server, addition of a new state block version (v2) with support for the new work values and final changes allowing transition via epoch blocks.</td>
+<td><code>config-rpc.toml</code></td>
+<td>RPC configuration</td>
+<td><code>nano_node --generate_config rpc</code></td>
 </tr>
 <tr>
-<td>TBD</td>
-<td><span class="no-break">Epoch blocks start</span></td>
-<td>Distribution of epoch blocks to each account which upgrades them to use the new state block version (v2).  Once an account is upgraded nodes will only validate work made using the new PoW algorithm for that account.</td>
+<td><code>config-nano-pow-server.toml</code></td>
+<td>Proof of work server configuration</td>
+<td><code>nano_pow_server --generate_config</code></td>
 </tr>
 <tr>
-<td>TBD</td>
-<td>Epoch blocks end</td>
-<td>Distribution of epoch blocks ends after all accounts are upgraded.</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Nodes de-peered with epoch blocks</p>
-<p>Due to the nature of the state block changes to be included in the 2<sup>nd</sup> node release of this transition, any nodes not updated to the latest version at the time of epoch block distribution will be de-peered as part of this process.</p>
-</div>
-<p><strong>Transition Explanation</strong></p>
-<p>In the above transition plan a phased node upgrade was used to provide support for some foundational elements of the new PoW algorithm while further details of the design are worked out. The epoch block distribution in this transition represents a clean switch from one PoW algorithm to the other - no block in the ledger is allowed to have work generated by either PoW, instead older block versions must use the existing PoW and new block versions must use the newer PoW.</p>
-<p>This clean switch comes with benefits including reduction in code complexity related to handling two types of PoW generation and validation for the same block versions, and the setting of a clear point in the ledger for each account where work values changed - potentially useful for future snapshoting.</p>
-<p>To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network to ensure proper conditions exist to finalize the transition.</p>
-<hr />
-<h2 id="past-upgrades">Past upgrades<a class="headerlink" href="#past-upgrades" title="Permanent link">&para;</a></h2>
-<h3 id="state-blocks">State blocks<a class="headerlink" href="#state-blocks" title="Permanent link">&para;</a></h3>
-<p><strong>Purpose</strong></p>
-<p>The upgrade to <a href="/integration-guides/the-basics/#blocks-specifications">state blocks</a> involved multiple node releases and three different actions on the network including distribution of two canary blocks and the first epoch blocks.</p>
-<p><strong>Transition Details</strong></p>
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="no-break">2018-03-23</span></td>
-<td>Node release</td>
-<td>Nano node V11.0 released with support for state blocks built-in but not yet activated.</td>
-</tr>
-<tr>
-<td>2018-04-11</td>
-<td>Canary block</td>
-<td>Parse canary block distributed which enabled parsing of state blocks by nodes so manual generation of that block type would be accepted on the network going forward. This action was performed after a majority of the network upgraded to the required V11.0 to allow confirmations to occur on this new block type.</td>
-</tr>
-<tr>
-<td>2018-05-20</td>
-<td>Canary block</td>
-<td>Generation canary block distributed which forced the generation of state blocks by nodes going forward. At this point both state and legacy type (open, send, receive, change) blocks remain valid on the network.</td>
-</tr>
-<tr>
-<td>2018-08-20</td>
-<td>Node release</td>
-<td>Nano node V15.0 released with support for epoch blocks built-in and away distribution.</td>
-</tr>
-<tr>
-<td>2018-10-25</td>
-<td><span class="no-break">Epoch blocks start</span></td>
-<td>Distribution of epoch blocks begins.</td>
-</tr>
-<tr>
-<td>2019-05-24</td>
-<td>Epoch blocks end</td>
-<td>Distribution of epoch blocks is finished. All accounts, opened and unopened, are now capped and can no longer attempt inserting legacy style blocks.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="vote-by-hash">Vote-by-Hash<a class="headerlink" href="#vote-by-hash" title="Permanent link">&para;</a></h3>
-<p><strong>Purpose</strong></p>
-<p>The upgrade to include the <a href="/glossary/#active-transaction">vote-by-hash</a> feature was based on a hardcoded timestamp in the node. After this time nodes began voting using this new feature.</p>
-<p><strong>Transition Details</strong></p>
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2018-08-22</td>
-<td>Node release</td>
-<td>Nano node V15.2 release with support for vote-by-hash but not yet activated.</td>
-</tr>
-<tr>
-<td>2018-09-01<br /><span class="no-break">00:00:00 UTC</span></td>
-<td>Hardcoded date</td>
-<td>Nodes upgraded to V15.2 began voting using the vote-by-hash method. Nodes not yet upgraded would fail to properly interpret votes so were no longer compatible with the network.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="upgrades-overview">Upgrades overview<a class="headerlink" href="#upgrades-overview" title="Permanent link">&para;</a></h2>
-<p>Nano is a protocol, an agreed upon standard that allows computers to communicate with each other and agree on data. Because of these communication standards, having mechanisms that force all nodes to upgrade certain behaviors at the same time is critical to the consensus and consistency in the network.</p>
-<p>In most blockchain networks these upgrades can be scheduled to take effect once a particular block height is hit because all nodes operate off a single, synchronous chain. Due to the Nano network being asynchronous this method doesn’t work, so instead we need methods for upgrading accounts asynchronously.</p>
-<p>There are a couple different options for handling these upgrades and the process is currently managed primarily by the Nano Foundation. The upgrades are tested on the beta network to ensure all components are behaving as expecting before being considered for updating on the main network. If the behavior being changed involves consensus, any manual upgrade actions are triggered once a large majority of nodes and major services have upgraded. </p>
-<p>Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in <a href="https://github.com/nanocurrency/nano-node/issues/1308">this GitHub issue</a>.</p>
-<hr />
-<h2 id="upgrade-methods">Upgrade methods<a class="headerlink" href="#upgrade-methods" title="Permanent link">&para;</a></h2>
-<p>There are various methods used to upgrade and a brief overview of each, along with benefits and drawbacks, are included below. Upgrades for behaviors contained and activated with a single node release are not included as they are the foundation on top of which these other methods are made capable.</p>
-<h3 id="phased-node-upgrades">Phased node upgrades<a class="headerlink" href="#phased-node-upgrades" title="Permanent link">&para;</a></h3>
-<p>A feature is introduced in a node release but not activated for use across the network until a subsequent node release. See <a href="#state-blocks">State block upgrade</a> details for an example.</p>
-<table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Uses blocks</th>
-<th>Benefits</th>
-<th>Drawbacks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Multiple node upgrades</td>
-<td>No</td>
-<td><ul><li>No manual intervention or automated process needed</li><li>Uses already established upgrade process node operators are used to</li></ul></td>
-<td><ul><li>Longer time period to get feature activated</li><li>Cannot be used to perform upgrades needed simultaneously across the network</li></ul></td>
-</tr>
-</tbody>
-</table>
-<h3 id="hardcoded-date">Hardcoded date<a class="headerlink" href="#hardcoded-date" title="Permanent link">&para;</a></h3>
-<p>A date is hardcoded into the node release to activate a feature or behavior at a specific time in the future. See <a href="#vote-by-hash">Vote-by-Hash upgrade</a> details for an example.</p>
-<table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Uses blocks</th>
-<th>Benefits</th>
-<th>Drawbacks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Node upgrade + specific date</td>
-<td>No</td>
-<td><ul><li><span class="no-break">Simple to implement</span></li><li>No manual activity required</li></ul></td>
-<td><ul><li>Inability to adjust timing without rushing new release out</li></ul></td>
-</tr>
-</tbody>
-</table>
-<h3 id="canary-blocks">Canary block(s)<a class="headerlink" href="#canary-blocks" title="Permanent link">&para;</a></h3>
-<p>The hash of a block is hardcoded in the node such that once that hash is seen by the node, it will activate a feature or behavior. Multiple block hashes can be used to perform different phases of a transition. See <a href="#state-blocks">State blocks upgrade</a> details for an example. </p>
-<table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Uses blocks</th>
-<th>Benefits</th>
-<th>Drawbacks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Node upgrade + distribution of one block per transition phase</td>
-<td>Yes</td>
-<td><ul><li>Can be used for multi-phase upgrades, including in combination with other options</li><li>Timing flexible</li></ul></td>
-<td><ul><li>Requires manual intervention</li><li>Adds additional code complexity</li><li>Can cause unchecked table to fill during transition</li></ul></td>
-</tr>
-</tbody>
-</table>
-<h3 id="epoch-blocks">Epoch blocks<a class="headerlink" href="#epoch-blocks" title="Permanent link">&para;</a></h3>
-<p>A special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. See <a href="#state-blocks">State block upgrade</a> details for an example.</p>
-<table>
-<thead>
-<tr>
-<th>Trigger</th>
-<th>Uses blocks</th>
-<th>Benefits</th>
-<th>Drawbacks</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Node upgrade + distribution of epoch blocks</td>
-<td>Yes</td>
-<td><ul><li>Provides clean upgrade markers directly within the ledger on every account-chain</li><li>Timing flexible</li><li>Ability to asynchronously upgrade block versions even for inactive/unopened account chains</li></ul></td>
-<td><ul><li>Requires manual intervention</li><li>Introduces ability for non-account owner to write to account chain in a highly restricted way</li><li>Adds additional code complexity</li><li>Requires large volume of blocks</li></ul></td>
+<td><code>config-qtwallet.toml</code></td>
+<td>Qt developer wallet configuration</td>
+<td>This file is maintained by the Qt wallet</td>
 </tr>
 </tbody>
 </table>
@@ -1251,55 +830,6 @@
 <footer class="md-footer">
 
   <!-- Link to previous and/or next page -->
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-
-        <!-- Link to previous page -->
-        
-          <a href="../node-releases/"
-              title="Node Releases"
-              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
-              rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back
-                    md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch
-                  md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Node Releases
-              </span>
-            </div>
-          </a>
-        
-
-        <!-- Link to next page -->
-        
-          <a href="../upcoming-features/"
-              title="Upcoming Features"
-              class="md-flex md-footer-nav__link md-footer-nav__link--next"
-              rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch
-                  md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Upcoming Features
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward
-                    md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
 
   <!-- Further information -->

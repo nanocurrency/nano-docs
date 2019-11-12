@@ -503,6 +503,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-user-support" title="Docker USER Support" class="md-nav__link">
+    Docker USER Support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rpc-calls-to-the-node" title="RPC calls to the node" class="md-nav__link">
     RPC calls to the node
   </a>
@@ -968,6 +975,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker-user-support" title="Docker USER Support" class="md-nav__link">
+    Docker USER Support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rpc-calls-to-the-node" title="RPC calls to the node" class="md-nav__link">
     RPC calls to the node
   </a>
@@ -1007,8 +1021,8 @@
 <p class="admonition-title">Docker Limitations</p>
 <p>Although Docker is a great choice for many setups, there are some limitations to be aware of:</p>
 <ul>
-<li>Due to the startup script built into the Docker containers, <a href="/commands/command-line-interface/#launch-options">Launch Options</a> for the <code>nano_node</code> service run inside the container cannot be easily used. This may change in future versions, but is currently a limitation as of V18.</li>
 <li>It is not recommended to run a *nix container, such as the officially provided one, on a Windows host - there are known issues with handling ports which prevent proper communication with peers.</li>
+<li>V19 and lower: Due to the startup script built into the Docker containers, <a href="/commands/command-line-interface/#launch-options">Launch Options</a> for the <code>nano_node</code> service run inside the container cannot be easily used. These options are available as of V20.</li>
 </ul>
 </div>
 <h3 id="nano-folder">Nano Folder<a class="headerlink" href="#nano-folder" title="Permanent link">&para;</a></h3>
@@ -1169,6 +1183,13 @@
  default:
    /entry.sh nano_node daemon -l
 </pre></div></p>
+<hr />
+<h3 id="docker-user-support">Docker USER Support<a class="headerlink" href="#docker-user-support" title="Permanent link">&para;</a></h3>
+<p>As of v20.0, the docker containers support the <a href="https://docs.docker.com/engine/reference/run/#user">--user=</a> and <a href="https://docs.docker.com/engine/reference/run/#workdir">-w=</a> flags.</p>
+<p>To maintain existing compatibility the Docker containers are being built with <code>USER ROOT</code> and <code>WORK_DIR /root</code></p>
+<p>The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilege escalation we can create a user and run under that context instead.</p>
+<p>In the event you wish to use the <code>--user=nanocurrency -w=/home/nanocurrency</code> flags the directory you mount should have permissions changed for uid:guid 1000:1000 using <code>sudo chown -R 1000:1000 &lt;local_path&gt;</code> and your mount flag will become <code>-v &lt;local_path&gt;:/home/nanocurrency</code></p>
+<p>This will be changed to default to <code>USER nanocurrency</code> and <code>WORK_DIR /home/nanocurrency</code> in a future release</p>
 <hr />
 <h3 id="rpc-calls-to-the-node">RPC calls to the node<a class="headerlink" href="#rpc-calls-to-the-node" title="Permanent link">&para;</a></h3>
 <p>You can use the RPC interface on the local host via <code>curl</code> to interact with the node.</p>

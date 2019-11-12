@@ -99,6 +99,20 @@
 	display: none;
 }
 
+
+.h4-no-toc {
+    margin: .8rem 0;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    font-size: .8rem;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 1.8;
+}
+
 .md-footer-copyright {
     padding: 0.6rem 0 0 0;
 }
