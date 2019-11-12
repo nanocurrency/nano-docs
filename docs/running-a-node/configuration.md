@@ -199,7 +199,7 @@ Due to their sensitive or dangerous nature, certain RPC calls/options require th
 * Various other wallet and resource-heavy operations
 
 !!! danger "Dangerous RPC calls controlled by `enable_control`"
-	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the ndoe to limit RPC access to dangerous calls. For more details see the [Node Security page](/running-a-node/security).
+	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the node to limit RPC access to dangerous calls. For more details see the [Node Security page](/running-a-node/security).
 
 ---
 
