@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://docs.nano.org/snippets/current-release-build-links/">
+        <link rel="canonical" href="https://docs.nano.org/snippets/known-issues-v20/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>Current release build links - Documentation</title>
+        <title>Known issues v20 - Documentation</title>
       
     
     
@@ -106,7 +106,7 @@
   <!-- Open Graph data -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="" />
-  <meta property="og:url" content="https://docs.nano.org/snippets/current-release-build-links/" />
+  <meta property="og:url" content="https://docs.nano.org/snippets/known-issues-v20/" />
   <meta property="og:image" content="https://docs.nano.org/images/nano-docs-open-graph.png" />
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Nano Docs" />
@@ -168,7 +168,7 @@
               Documentation
             </span>
             <span class="md-header-nav__topic">
-              Current release build links
+              Known issues v20
             </span>
           
         </div>
@@ -776,41 +776,23 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/snippets/current-release-build-links.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/snippets/known-issues-v20.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Current release build links</h1>
+                  <h1>Known issues v20</h1>
                 
-                <table>
-<thead>
-<tr>
-<th>OS</th>
-<th>Download link/command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Linux</td>
-<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-Linux.tar.bz2">https://repo.nano.org/live/binaries/nano-node-V20.0-Linux.tar.bz2</a></td>
-</tr>
-<tr>
-<td>macOS</td>
-<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-Darwin.dmg">https://repo.nano.org/live/binaries/nano-node-V20.0-Darwin.dmg</a></td>
-</tr>
-<tr>
-<td>Windows</td>
-<td><a href="https://repo.nano.org/live/binaries/nano-node-V20.0-win64.exe">https://repo.nano.org/live/binaries/nano-node-V20.0-win64.exe</a><br /><strong>Known issue with Windows build - see details below</strong></td>
-</tr>
-<tr>
-<td>Docker</td>
-<td><code>docker pull nanocurrency/nano:V20.0</code> or <code>docker pull nanocurrency/nano:latest</code><br />See <a href="/running-a-node/node-setup/#pulling-the-docker-image">Pulling the Docker Image</a> for more details.</td>
-</tr>
-<tr>
-<td>RHEL/CentOS rpm</td>
-<td><code>sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo</code><br /><code>sudo yum install nanocurrency</code><br />This installs <code>nano_node</code> to bin.</td>
-</tr>
-</tbody>
-</table>
+                <div class="admonition warning">
+<p class="admonition-title">Known issues with V20.0</p>
+<p><strong>Windows missing <code>zlib1.dll</code></strong></p>
+<ul>
+<li>
+<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on Windows: "The code execution cannot proceed because zlib1.dll was not found.". This is due to a missing file with the generated Windows binary.</p>
+</li>
+<li>
+<p><strong>Solution:</strong> If you see this error, download <code>zlib1.dll</code> from <a href="https://github.com/nanocurrency/nano-node/releases/download/V20.0/zlib1.dll">https://github.com/nanocurrency/nano-node/releases/download/V20.0/zlib1.dll</a> and add it to your install folder. The node should run properly after that. If you continue to have issues, join the <a href="https://chat.nano.org">Discord</a> or <a href="https://forum.nano.org/c/node-and-rep">Node and Representative Management area of our forum</a> for assistance.</p>
+</li>
+</ul>
+</div>
                 
                   
                 
