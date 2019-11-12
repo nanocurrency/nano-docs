@@ -14,6 +14,8 @@ The following release is the latest and only release actively supported by the N
 
 --8<-- "current-release-build-links.md"
 
+--8<-- "known-issues-v20.md"
+
 ---
 
 ## Next Planned Release
@@ -68,6 +70,8 @@ The following versions are no longer peered with by nodes running the active ver
 ## Release Notes
 
 ### V20.0
+
+--8<-- "known-issues-v20.md"
 
 !!! info "Nano Forum available"
 	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
