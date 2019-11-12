@@ -14,6 +14,8 @@ The following release is the latest and only release actively supported by the N
 
 --8<-- "current-release-build-links.md"
 
+--8<-- "known-issues-v20.md"
+
 ---
 
 ## Next Planned Release
