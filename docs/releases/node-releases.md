@@ -5,7 +5,7 @@ The following release is the latest and only release actively supported by the N
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
-| 20.0         | 17               | TBD          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
+| 20.0         | 17               | 2019-11-12          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
 
 **Builds and Commands**
 
@@ -101,7 +101,7 @@ The following commands can be used to generated commented out, complete config f
 More details on the new configuration setup can be found in the node [Configuration documentation](https://docs.nano.org/running-a-node/configuration/).
 
 **Networking changes**  
-Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing setups that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the [Troubleshooting UPnP documentation](/running-a-node/troubleshooting/#troubleshooting-upnp) for assistance. Additional help can be sought in the [Node and Representative Management forum category](https://forum.nano.org/c/node-and-rep). 
+Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing systems that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the [Troubleshooting UPnP documentation](/running-a-node/troubleshooting/#troubleshooting-upnp) for assistance. Additional help can be sought in the [Node and Representative Management forum category](https://forum.nano.org/c/node-and-rep). 
 
 **Proof-of-Work management**  
 A couple changes to PoW management that services should be aware of:
@@ -124,7 +124,7 @@ Better legibility, support for comments, and no more having the node write to yo
 Any requests to the [process RPC](https://docs.nano.org/commands/rpc-protocol/#process) will have the new `watch_work` option turned on by default, allowing the node to regenerate Proof-of-Work for blocks even if they are outside of the node’s development wallet. This makes Dynamic PoW and prioritization function more consistently across the network. If you have an external integration utilizing this RPC call, you will automatically start taking advantage of rework during confirmation delays on the network.
 
 **RocksDB experimental support**  
-With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout [how to install RocksDB](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) and try it out on development and test systems. We also have a [related discussion in our forum](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) for those interested.
+With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout [how to install RocksDB](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) and try it out on development and test systems. We also have a [related discussion in our forum](https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4) for those interested.
 
 **Active elections and other optimizations**  
 Thanks to our excellent community testers putting effort into collecting and analyzing block, voting and confirmation data from the beta network, we’ve found various optimizations with the active elections process, confirmation request attempts and bootstrapping behaviors. Various changes have been implemented to help reduce resource usage on nodes in various areas and increase the available throughput on the network. This feature also enhances the effectiveness of prioritization and rework of PoW. No action is needed to take advantage of these great updates. 
@@ -149,9 +149,9 @@ As part of the original implementation work we were able to setup infrastructure
 * [work_generate](/commands/rpc-protocol/#work_generate) and [work_validate](/commands/rpc-protocol/#work_validate) can now take a multiplier (against base difficulty) to set a different difficulty threshold
 
 #### CLI Updates
-* **NEW** `generate_config [node|rpc]` prints sample configuration files to *stdout*
+* **NEW** [`generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*
     * `use_defaults` additional argument to generate uncommented entries (not recommended)
-* **NEW** `config` passes configuration arguments, alternative to setting in the config file
+* **NEW** [`config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file
 
 ---
 
@@ -176,10 +176,10 @@ The following options are notable node configuration updates. Additional configu
 * New RPC [`epoch_upgrade`](/commands/rpc-protocol/#epoch_upgrade) allowing easier epoch distribution (**Note** - this epoch requires a special private key to be used, see the [Network Upgrades](/releases/network-upgrades/#epoch-blocks) page for information)
 * RPC [`bootstrap`](/commands/rpc-protocol/#bootstrap) has a new optional "bypass_frontier_confirmation"
 * RPC [`bootstrap_status`](/commands/rpc-protocol/#bootstrap_status) now displays more data about the current bootstrap attempt
-* New CLI `debug_stacktrace` displays an example stacktrace, simulating an unexpected program crash
-* New CLI `debug_account_versions` displays the total number of accounts separated by version and opened/unopened
-* CLI `debug_validate_blocks` updated to cover more cases
-* CLI `debug_profile_verify` renamed to `debug_profile_validate` and now provides simplified work validation profiling
+* New CLI [`debug_stacktrace`](/commands/command-line-interface/#-debug_stacktrace) displays an example stacktrace, simulating an unexpected program crash
+* New CLI [`debug_account_versions`](/commands/command-line-interface/#-debug_account_versions) displays the total number of accounts separated by version and opened/unopened
+* CLI [`debug_validate_blocks`](/commands/command-line-interface/#-debug_validate_blocks) updated to cover more cases
+* CLI `debug_profile_verify` renamed to [`debug_profile_validate`](/commands/command-line-interface/#-debug_profile_validate) and now provides simplified work validation profiling
 * New CMake build options:
   * `NANO_ROCKSDB` enables use of the RocksDB database backend, experimental
   * `NANO_WARN_TO_ERR` turns compiler warnings into errors on Linux/Mac
