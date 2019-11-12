@@ -397,6 +397,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../running-a-node/security/" title="Security" class="md-nav__link">
+      Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../running-a-node/docker-management/" title="Docker Management" class="md-nav__link">
       Docker Management
     </a>
@@ -907,7 +919,7 @@
 <td>7076</td>
 <td>TCP</td>
 <td>Disabled</td>
-<td><ul><li>RPC server</li><li>Port configurable in <code>config-rpc.toml:rpc/port</code></li><li>Enable in <code>config-node.toml:rpc/enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>config-rpc.toml:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li></ul></td>
+<td><ul><li>RPC server</li><li>Port configurable in <code>config-rpc.toml:rpc/port</code></li><li>Enable in <code>config-node.toml:rpc/enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>config-rpc.toml:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li><li><strong>WARNING: Exposing this port externally while setting <code>enable_control</code> option to <code>true</code> in configs could expose your wallet, allow the node to be stopped remotely and open your node up to other dangerous activity.</strong> See the <a href="/running-a-node/security">Node Security page</a> for more details.</li></ul></td>
 </tr>
 </tbody>
 </table>

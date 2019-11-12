@@ -399,6 +399,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../security/" title="Security" class="md-nav__link">
+      Security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../docker-management/" title="Docker Management" class="md-nav__link">
       Docker Management
     </a>
@@ -457,12 +469,19 @@
     Passing config values on the command line
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notable-configuration-options" title="Notable configuration options" class="md-nav__link">
+    Notable configuration options
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#notable-configuration-options" title="Notable configuration options" class="md-nav__link">
-    Notable configuration options
+  <a href="#config-nodetoml" title="config-node.toml" class="md-nav__link">
+    config-node.toml
   </a>
   
     <nav class="md-nav">
@@ -506,6 +525,26 @@
           <li class="md-nav__item">
   <a href="#nodewebsocket" title="node.websocket" class="md-nav__link">
     node.websocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-rpctoml" title="config-rpc.toml" class="md-nav__link">
+    config-rpc.toml
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable_control" title="enable_control" class="md-nav__link">
+    enable_control
   </a>
   
 </li>
@@ -918,12 +957,19 @@
     Passing config values on the command line
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notable-configuration-options" title="Notable configuration options" class="md-nav__link">
+    Notable configuration options
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#notable-configuration-options" title="Notable configuration options" class="md-nav__link">
-    Notable configuration options
+  <a href="#config-nodetoml" title="config-node.toml" class="md-nav__link">
+    config-node.toml
   </a>
   
     <nav class="md-nav">
@@ -967,6 +1013,26 @@
           <li class="md-nav__item">
   <a href="#nodewebsocket" title="node.websocket" class="md-nav__link">
     node.websocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-rpctoml" title="config-rpc.toml" class="md-nav__link">
+    config-rpc.toml
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable_control" title="enable_control" class="md-nav__link">
+    enable_control
   </a>
   
 </li>
@@ -1232,13 +1298,14 @@
 <p class="admonition-title">Mixing config options on the command line and TOML files</p>
 <p>If a config file exists, config values passed in via the command line will take precedence.</p>
 </div>
-<h3 id="notable-configuration-options">Notable configuration options<a class="headerlink" href="#notable-configuration-options" title="Permanent link">&para;</a></h3>
+<h2 id="notable-configuration-options">Notable configuration options<a class="headerlink" href="#notable-configuration-options" title="Permanent link">&para;</a></h2>
 <p>This section details some of the most important configuration options. </p>
 <p>Config options are referred to below using the format <code>section.setting</code>. This format can be used directly on the command line, such as <code>--config node.enable_voting=true</code>. The corresponding entry in the TOML file would be:</p>
 <div class="codehilite"><pre><span></span>[node]
 enable_voting = true
 </pre></div>
 
+<h3 id="config-nodetoml">config-node.toml<a class="headerlink" href="#config-nodetoml" title="Permanent link">&para;</a></h3>
 <h4 id="nodeenable_voting">node.enable_voting<a class="headerlink" href="#nodeenable_voting" title="Permanent link">&para;</a></h4>
 <p>As of V18.0, newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.</p>
 <hr />
@@ -1278,6 +1345,20 @@ port = 7078
 <div class="admonition tip">
 <p class="admonition-title">Configuration for docker nodes</p>
 <p>Docker nodes have the default <code>address</code> set to <code>"::ffff:0.0.0.0"</code>. To allow a connection between the host and the node, include <code>-p 127.0.0.1:7078:7078</code> (or another port if changed) in the <code>docker run</code> command or equivalent.</p>
+</div>
+<hr />
+<h3 id="config-rpctoml">config-rpc.toml<a class="headerlink" href="#config-rpctoml" title="Permanent link">&para;</a></h3>
+<h4 id="enable_control">enable_control<a class="headerlink" href="#enable_control" title="Permanent link">&para;</a></h4>
+<p>Due to their sensitive or dangerous nature, certain RPC calls/options require this setting to be enabled before they can be used. Examples of RPC calls that require this include:</p>
+<ul>
+<li><a href="/commands/rpc-protocol#stop">stop</a>: allows you to completely stop the node from running</li>
+<li><a href="/commands/rpc-protocol#work_generate">work_generate</a>: allows potential consumption of CPU or GPU resources on the node or attached work peers to generate PoW</li>
+<li><a href="/commands/rpc-protocol#send">send</a>: can be used to transfer available funds in the wallet to another account</li>
+<li>Various other wallet and resource-heavy operations</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Dangerous RPC calls controlled by <code>enable_control</code></p>
+<p>Due to the sensitive or dangerous nature of these calls, <strong>caution should be used when considering setting <code>enable_control</code> to <code>true</code></strong> in your config file. It is highly recommended to <strong>only enable this when RPC ports are listening exclusively to local or loopback IP addresses</strong> or other measure are put in place outside the node to limit RPC access to dangerous calls. For more details see the <a href="/running-a-node/security">Node Security page</a>.</p>
 </div>
 <hr />
 <h4 id="http-callback">HTTP callback<a class="headerlink" href="#http-callback" title="Permanent link">&para;</a></h4>
@@ -1334,7 +1415,7 @@ target = &quot;/&quot;
 <td>7076</td>
 <td>TCP</td>
 <td>Disabled</td>
-<td><ul><li>RPC server</li><li>Port configurable in <code>config-rpc.toml:rpc/port</code></li><li>Enable in <code>config-node.toml:rpc/enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>config-rpc.toml:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li></ul></td>
+<td><ul><li>RPC server</li><li>Port configurable in <code>config-rpc.toml:rpc/port</code></li><li>Enable in <code>config-node.toml:rpc/enable</code> or by starting <code>nano_rpc</code> manually</li><li> Binds to localhost by default for security reasons, configurable in <code>config-rpc.toml:rpc/address</code>, unicast</li><li>Contents: Unencrypted HTTP requests containing JSON object bodies</li><li>Allows the node to be queried or controlled through HTTP requests</li><li>If blocked the node will not be able to be queried or controlled by HTTP</li><li><strong>WARNING: Exposing this port externally while setting <code>enable_control</code> option to <code>true</code> in configs could expose your wallet, allow the node to be stopped remotely and open your node up to other dangerous activity.</strong> See the <a href="/running-a-node/security">Node Security page</a> for more details.</li></ul></td>
 </tr>
 </tbody>
 </table>
