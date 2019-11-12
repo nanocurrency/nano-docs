@@ -1373,7 +1373,7 @@ Derive deterministic keypair from **seed** based on **index**
 
 ---
 
-### epoch upgrade  
+### epoch_upgrade  
 _enable_control required, version 20.0+_ 
 
 --8<-- "debug-only-command.md"

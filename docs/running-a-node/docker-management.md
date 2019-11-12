@@ -165,6 +165,20 @@ Usage:
 ```
 ---
 
+### Docker USER Support
+
+As of v20.0, the docker containers support the [--user=](https://docs.docker.com/engine/reference/run/#user) and [-w=](https://docs.docker.com/engine/reference/run/#workdir) flags.
+
+To maintain existing compatibility the Docker containers are being built with `USER ROOT` and `WORK_DIR /root`
+
+The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilege escalation we can create a user and run under that context instead.
+
+In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`
+
+This will be changed to default to `USER nanocurrency` and `WORK_DIR /home/nanocurrency` in a future release
+
+---
+
 ### RPC calls to the node
 
 You can use the RPC interface on the local host via `curl` to interact with the node.

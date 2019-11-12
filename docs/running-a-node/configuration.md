@@ -145,12 +145,7 @@ The Nano node software is designed to run with little or no configuration. All c
 
 The node and its related processes will look for the files listed below, either in their default location or the location specified with `--data_path`. These files are *optional*. The table includes a command which can be used to generate a documented TOML file with defaults suitable for the system.
 
-| **Name**  | **Description** | **Generated with** |
-|---------|--------------|--------------|
-| `config-node.toml` | Node configuration | `nano_node --generate_config node` |
-| `config-rpc.toml` | RPC configuration | `nano_node --generate_config rpc` |
-| `config-nano-pow-server.toml` | Proof of work server configuration | `nano_pow_server --generate_config` |
-| `config-qtwallet.toml` | Qt developer wallet configuration | This file is maintained by the Qt wallet |
+--8<-- "toml-config-commands.md"
 
 The default locations of the config files are listed in the table below.
 
@@ -271,7 +266,7 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 
 ---
 
-### RPC
+## RPC
 
 More details about the RPC setup can be found in the [Running Nano as a service guide](/integration-guides/advanced/#running-nano-as-a-service).
 

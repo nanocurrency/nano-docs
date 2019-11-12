@@ -38,7 +38,7 @@ To mitigate the impacts of this approach the Nano Foundation will be communicati
 
 **Purpose**
 
-The upgrade to [state blocks](https://docs.nano.org/integration-guides/the-basics/#blocks-specifications) involved multiple node releases and three different actions on the network including distribution of two canary blocks and the first epoch blocks.
+The upgrade to [state blocks](/integration-guides/the-basics/#blocks-specifications) involved multiple node releases and three different actions on the network including distribution of two canary blocks and the first epoch blocks.
 
 **Transition Details**
 
