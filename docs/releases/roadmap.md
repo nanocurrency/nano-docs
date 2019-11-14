@@ -1,7 +1,11 @@
+title: Roadmap | Nano Documentation
+description: The Nano roadmap which is aimed at achieving the mission of allowing Nano to become a global currency.
+
+# Roadmap
 
 Nano's mission is to become a global currency built on a secure, decentralized network.
 
-This document represents the current areas that are being pursued by the Nano Foundation in the interest of achieving this vision.
+This roadmap document represents the current areas that are being pursued by the Nano Foundation in the interest of achieving this vision.
 
 ## Adoption
 

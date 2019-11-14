@@ -27,6 +27,7 @@ nav:
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
     - Troubleshooting: running-a-node/troubleshooting.md
+    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
@@ -43,6 +44,7 @@ nav:
     - Networking: protocol-design/networking.md
     - Network Attacks: protocol-design/network-attacks.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+    - Original whitepaper: whitepaper/english.md
   - Releases:
     - Node Releases: releases/node-releases.md
     - Network Upgrades: releases/network-upgrades.md
@@ -94,6 +96,8 @@ extra_javascript:
 extra_css:
   - 'stylesheets/extras.css'
 extra:
+  search:
+  - tokenizer: '[\s\-\.]+'
   social:
   - type: 'github'
     link: 'https://github.com/nanocurrency'

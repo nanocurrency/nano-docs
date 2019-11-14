@@ -1,3 +1,5 @@
+# Upcoming Features
+
 Below are the more notable features the protocol development team is considering for implementation. In addition to these items there are always other updates, optimizations and new features added in. We encourage participation on [GitHub](https://github.com/nanocurrency) for anyone capable of [contributing to the code base](/protocol-design/overview/#contributing-code-to-the-nano-node).
 
 Changes made to this document are tracked at the bottom in the [Recent changes](#recent-page-updates) section.

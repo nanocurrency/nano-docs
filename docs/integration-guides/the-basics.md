@@ -1,3 +1,5 @@
+# The Basics
+
 ## Block Lattice Design
 
 Nano's ledger is built on a data-structure called a "Block Lattice." Every account (private/public key pair) has their own blockchain (account-chain). Only the holder of the private key may sign and publish blocks to their own account-chain.  Each block represents a transaction.
