@@ -149,7 +149,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#node-configuration" tabindex="1" class="md-skip">
+      <a href="#node-security" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -406,6 +406,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Security
@@ -418,6 +420,8 @@
       
 <nav class="md-nav md-nav--secondary">
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -526,6 +530,18 @@
   <li class="md-nav__item">
     <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
       Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rocksdb-ledger-backend/" title="RocksDB Ledger Backend" class="md-nav__link">
+      RocksDB Ledger Backend
     </a>
   </li>
 
@@ -758,6 +774,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../whitepaper/english/" title="Original whitepaper" class="md-nav__link">
+      Original whitepaper
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -861,6 +889,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -932,9 +962,8 @@
                   <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/running-a-node/security.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Security</h1>
-                
-                <p>There are <a href="/running-a-node/overview/#why-run-a-node">many reasons to run a Nano node</a> on the network. Nodes are the participants that help vote on transaction validity, assist other nodes with bootstrapping blocks in the ledger and providing an access point to all accounts. But those who choose to run them should be making a long-term commitment to <a href="/running-a-node/node-setup/#hardware-recommendations">run them on proper hardware</a>, keep them updated with the <a href="/releases/node-releases/">latest release</a> and, most importantly, keep their setup as secure as possible.</p>
+                <h1 id="node-security">Node Security<a class="headerlink" href="#node-security" title="Permanent link">&para;</a></h1>
+<p>There are <a href="/running-a-node/overview/#why-run-a-node">many reasons to run a Nano node</a> on the network. Nodes are the participants that help vote on transaction validity, assist other nodes with bootstrapping blocks in the ledger and providing an access point to all accounts. But those who choose to run them should be making a long-term commitment to <a href="/running-a-node/node-setup/#hardware-recommendations">run them on proper hardware</a>, keep them updated with the <a href="/releases/node-releases/">latest release</a> and, most importantly, keep their setup as secure as possible.</p>
 <p>The details below are guidelines on things to watch out for when setting up and securing your Nano node. As the node can be run on many different operating systems, some of these guidelines have been kept more general. There are plenty of resources online for learning how to apply these guidelines to more specific setups and additional details will be included in the docs here as they are appropriate.</p>
 <h2 id="node-configuration">Node configuration<a class="headerlink" href="#node-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="enabling-control">Enabling control<a class="headerlink" href="#enabling-control" title="Permanent link">&para;</a></h3>

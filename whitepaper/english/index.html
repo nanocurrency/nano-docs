@@ -172,7 +172,7 @@
               Documentation
             </span>
             <span class="md-header-nav__topic">
-              Original RaiBlocks/Nano Whitepaper
+              Original whitepaper
             </span>
           
         </div>
@@ -457,6 +457,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../running-a-node/rocksdb-ledger-backend/" title="RocksDB Ledger Backend" class="md-nav__link">
+      RocksDB Ledger Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
       Beyond the Node
     </a>
@@ -604,10 +616,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       Protocol Design
@@ -676,6 +690,373 @@
     <a href="../../protocol-design/signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
       Signing, Hashing and Key Derivation
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Original whitepaper
+      </label>
+    
+    <a href="./" title="Original whitepaper" class="md-nav__link md-nav__link--active">
+      Original whitepaper
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background" title="Background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raiblocks-components" title="RaiBlocks Components" class="md-nav__link">
+    RaiBlocks Components
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account" title="Account" class="md-nav__link">
+    Account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blocktransaction" title="Block/Transaction" class="md-nav__link">
+    Block/Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ledger" title="Ledger" class="md-nav__link">
+    Ledger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" title="Node" class="md-nav__link">
+    Node
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-overview" title="System Overview" class="md-nav__link">
+    System Overview
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions" title="Transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-account" title="Creating an Account" class="md-nav__link">
+    Creating an Account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#account-balance" title="Account Balance" class="md-nav__link">
+    Account Balance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sending-from-an-account" title="Sending From an Account" class="md-nav__link">
+    Sending From an Account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receiving-a-transaction" title="Receiving a Transaction" class="md-nav__link">
+    Receiving a Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assigning-a-representative" title="Assigning a Representative" class="md-nav__link">
+    Assigning a Representative
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forks-and-voting" title="Forks and Voting" class="md-nav__link">
+    Forks and Voting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proof-of-work" title="Proof of Work" class="md-nav__link">
+    Proof of Work
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-verification" title="Transaction Verification" class="md-nav__link">
+    Transaction Verification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attack-vectors" title="Attack Vectors" class="md-nav__link">
+    Attack Vectors
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#block-gap-synchronization" title="Block Gap Synchronization" class="md-nav__link">
+    Block Gap Synchronization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-flooding" title="Transaction Flooding" class="md-nav__link">
+    Transaction Flooding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sybil-attack" title="Sybil Attack" class="md-nav__link">
+    Sybil Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#penny-spend-attack" title="Penny-Spend Attack" class="md-nav__link">
+    Penny-Spend Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precomputed-pow-attack" title="Precomputed PoW Attack" class="md-nav__link">
+    Precomputed PoW Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6250-attack" title=">50% Attack" class="md-nav__link">
+    >50% Attack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap-poisoning" title="Bootstrap Poisoning" class="md-nav__link">
+    Bootstrap Poisoning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation" title="Implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-features" title="Design Features" class="md-nav__link">
+    Design Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signing-algorithm" title="Signing Algorithm" class="md-nav__link">
+    Signing Algorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hashing-algorithm" title="Hashing Algorithm" class="md-nav__link">
+    Hashing Algorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-derivation-function" title="Key Derivation Function" class="md-nav__link">
+    Key Derivation Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block-interval" title="Block Interval" class="md-nav__link">
+    Block Interval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udp-message-protocol" title="UDP Message Protocol" class="md-nav__link">
+    UDP Message Protocol
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-and-multicast" title="IPv6 and Multicast" class="md-nav__link">
+    IPv6 and Multicast
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" title="Performance" class="md-nav__link">
+    Performance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource-usage" title="Resource Usage" class="md-nav__link">
+    Resource Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network" title="Network" class="md-nav__link">
+    Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-capacity" title="Disk Capacity" class="md-nav__link">
+    Disk Capacity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" title="CPU" class="md-nav__link">
+    CPU
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" title="Conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-pow-hardware-benchmarks" title="Appendix A: PoW Hardware benchmarks" class="md-nav__link">
+    Appendix A: PoW Hardware benchmarks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgment" title="Acknowledgment" class="md-nav__link">
+    Acknowledgment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" title="References" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1948,6 +2329,55 @@ formatting this paper.</p>
 <footer class="md-footer">
 
   <!-- Link to previous and/or next page -->
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+
+        <!-- Link to previous page -->
+        
+          <a href="../../protocol-design/signing-hashing-and-key-derivation/"
+              title="Signing, Hashing and Key Derivation"
+              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+              rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Signing, Hashing and Key Derivation
+              </span>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          <a href="../../releases/node-releases/"
+              title="Node Releases"
+              class="md-flex md-footer-nav__link md-footer-nav__link--next"
+              rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Node Releases
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
 
   <!-- Further information -->

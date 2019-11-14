@@ -147,7 +147,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#configuration-file-locations" tabindex="1" class="md-skip">
+      <a href="#node-configuration" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -440,6 +440,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Configuration
@@ -452,6 +454,8 @@
       
 <nav class="md-nav md-nav--secondary">
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -606,6 +610,18 @@
   <li class="md-nav__item">
     <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
       Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rocksdb-ledger-backend/" title="RocksDB Ledger Backend" class="md-nav__link">
+      RocksDB Ledger Backend
     </a>
   </li>
 
@@ -838,6 +854,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../whitepaper/english/" title="Original whitepaper" class="md-nav__link">
+      Original whitepaper
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -940,6 +968,8 @@
                     
 <nav class="md-nav md-nav--secondary">
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -1094,9 +1124,8 @@
                   <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/running-a-node/configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Configuration</h1>
-                
-                <p>The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing config values via the command line, or a combination of the two methods.</p>
+                <h1 id="node-configuration">Node Configuration<a class="headerlink" href="#node-configuration" title="Permanent link">&para;</a></h1>
+<p>The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing config values via the command line, or a combination of the two methods.</p>
 <div class="admonition success">
 <p class="admonition-title">Automatic migration and backups of JSON files</p>
 <p>Versions prior to 20 use JSON as the configuration file format, and these will be automatically migrated to TOML files on startup. Note that only non-default values are migrated.</p>

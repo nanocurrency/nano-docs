@@ -38,7 +38,7 @@
     
     
       
-        <title>Rocksdb ledger backend - Documentation</title>
+        <title>RocksDB Ledger Backend - Documentation</title>
       
     
     
@@ -147,7 +147,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#1-install-rocksdb" tabindex="1" class="md-skip">
+      <a href="#rocksdb-ledger-backend" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -172,7 +172,7 @@
               Documentation
             </span>
             <span class="md-header-nav__topic">
-              Rocksdb ledger backend
+              RocksDB Ledger Backend
             </span>
           
         </div>
@@ -352,10 +352,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Running a Node
@@ -448,6 +450,97 @@
     <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
       Troubleshooting
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RocksDB Ledger Backend
+      </label>
+    
+    <a href="./" title="RocksDB Ledger Backend" class="md-nav__link md-nav__link--active">
+      RocksDB Ledger Backend
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-rocksdb" title="1. Install RocksDB" class="md-nav__link">
+    1. Install RocksDB
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" title="Linux" class="md-nav__link">
+    Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" title="MacOS" class="md-nav__link">
+    MacOS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" title="Windows" class="md-nav__link">
+    Windows
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-node-with-rocksdb-support" title="2. Build node with RocksDB support" class="md-nav__link">
+    2. Build node with RocksDB support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enable-rocksdb" title="3. Enable RocksDB" class="md-nav__link">
+    3. Enable RocksDB
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -679,6 +772,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../whitepaper/english/" title="Original whitepaper" class="md-nav__link">
+      Original whitepaper
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -782,6 +887,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -853,9 +960,8 @@
                   <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/running-a-node/rocksdb-ledger-backend.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Rocksdb ledger backend</h1>
-                
-                <div class="admonition warning">
+                <h1 id="rocksdb-ledger-backend">RocksDB Ledger Backend<a class="headerlink" href="#rocksdb-ledger-backend" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
 <p class="admonition-title">RocksDB is experimental, do not use in production</p>
 <p>RocksDB is being included in <em>V20.0</em> as experimental only. Future versions of the node may allow for production use of RocksDB, however old experimental RocksDB ledgers are not guarenteed to be compatible and may require resyncing from scratch.</p>
 </div>
@@ -983,6 +1089,55 @@ Comparision:</p>
 <footer class="md-footer">
 
   <!-- Link to previous and/or next page -->
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+
+        <!-- Link to previous page -->
+        
+          <a href="../troubleshooting/"
+              title="Troubleshooting"
+              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+              rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Troubleshooting
+              </span>
+            </div>
+          </a>
+        
+
+        <!-- Link to next page -->
+        
+          <a href="../beyond-the-node/"
+              title="Beyond the Node"
+              class="md-flex md-footer-nav__link md-footer-nav__link--next"
+              rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Beyond the Node
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward
+                    md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
 
   <!-- Further information -->

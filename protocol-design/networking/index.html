@@ -147,7 +147,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#udp-and-tcp-messages" tabindex="1" class="md-skip">
+      <a href="#networking" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -457,6 +457,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../running-a-node/rocksdb-ledger-backend/" title="RocksDB Ledger Backend" class="md-nav__link">
+      RocksDB Ledger Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
       Beyond the Node
     </a>
@@ -656,6 +668,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Networking
@@ -668,6 +682,8 @@
       
 <nav class="md-nav md-nav--secondary">
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
@@ -685,18 +701,12 @@
     Network Details
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ipv4ipv6-addressing" title="IPV4/IPV6 addressing" class="md-nav__link">
     IPV4/IPV6 addressing
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -731,6 +741,18 @@
   <li class="md-nav__item">
     <a href="../signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
       Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../whitepaper/english/" title="Original whitepaper" class="md-nav__link">
+      Original whitepaper
     </a>
   </li>
 
@@ -838,6 +860,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -854,18 +878,12 @@
     Network Details
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ipv4ipv6-addressing" title="IPV4/IPV6 addressing" class="md-nav__link">
     IPV4/IPV6 addressing
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -888,9 +906,8 @@
                   <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/protocol-design/networking.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Networking</h1>
-                
-                <h3 id="udp-and-tcp-messages">UDP and TCP messages<a class="headerlink" href="#udp-and-tcp-messages" title="Permanent link">&para;</a></h3>
+                <h1 id="networking">Networking<a class="headerlink" href="#networking" title="Permanent link">&para;</a></h1>
+<h2 id="udp-and-tcp-messages">UDP and TCP messages<a class="headerlink" href="#udp-and-tcp-messages" title="Permanent link">&para;</a></h2>
 <p>Nano is designed to use the minimum amount of computing resources possible by communicating via stateless messages that fit within a single UDP packet.  UDP is used for traffic on the <a href="/glossary#live-network">live network</a> while connections via TCP are leveraged for bulk data transfer on the <a href="/glossary#bootstrap-network">bootstrap network</a>.</p>
 <h2 id="network-details">Network Details<a class="headerlink" href="#network-details" title="Permanent link">&para;</a></h2>
 <table>
@@ -923,7 +940,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="ipv4ipv6-addressing">IPV4/IPV6 addressing<a class="headerlink" href="#ipv4ipv6-addressing" title="Permanent link">&para;</a></h3>
+<h2 id="ipv4ipv6-addressing">IPV4/IPV6 addressing<a class="headerlink" href="#ipv4ipv6-addressing" title="Permanent link">&para;</a></h2>
 <p>The system is built to only operate on IPv6 and uses IPv4-mapped IPv6 addresses to connect to IPv4 hosts.</p>
                 
                   

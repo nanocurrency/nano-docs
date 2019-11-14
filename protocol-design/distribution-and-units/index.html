@@ -457,6 +457,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../running-a-node/rocksdb-ledger-backend/" title="RocksDB Ledger Backend" class="md-nav__link">
+      RocksDB Ledger Backend
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../running-a-node/beyond-the-node/" title="Beyond the Node" class="md-nav__link">
       Beyond the Node
     </a>
@@ -644,6 +656,8 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Distribution and Units
@@ -657,41 +671,30 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#distribution-and-units" title="Distribution and Units" class="md-nav__link">
-    Distribution and Units
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#divisibility" title="Divisibility" class="md-nav__link">
     Divisibility
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#distribution" title="Distribution" class="md-nav__link">
     Distribution
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#unit-dividers" title="Unit Dividers" class="md-nav__link">
     Unit Dividers
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -738,6 +741,18 @@
   <li class="md-nav__item">
     <a href="../signing-hashing-and-key-derivation/" title="Signing, Hashing and Key Derivation" class="md-nav__link">
       Signing, Hashing and Key Derivation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../whitepaper/english/" title="Original whitepaper" class="md-nav__link">
+      Original whitepaper
     </a>
   </li>
 
@@ -845,41 +860,30 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#distribution-and-units" title="Distribution and Units" class="md-nav__link">
-    Distribution and Units
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#divisibility" title="Divisibility" class="md-nav__link">
     Divisibility
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#distribution" title="Distribution" class="md-nav__link">
     Distribution
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#unit-dividers" title="Unit Dividers" class="md-nav__link">
     Unit Dividers
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -902,17 +906,15 @@
                   <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/protocol-design/distribution-and-units.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Distribution and Units</h1>
-                
-                <h2 id="distribution-and-units">Distribution and Units<a class="headerlink" href="#distribution-and-units" title="Permanent link">&para;</a></h2>
-<h3 id="divisibility">Divisibility<a class="headerlink" href="#divisibility" title="Permanent link">&para;</a></h3>
+                <h1 id="distribution-and-units">Distribution and Units<a class="headerlink" href="#distribution-and-units" title="Permanent link">&para;</a></h1>
+<h2 id="divisibility">Divisibility<a class="headerlink" href="#divisibility" title="Permanent link">&para;</a></h2>
 <p>There are three important aspects of divisibility of the supply which are satisfied by the final distributed amount:</p>
 <ul>
 <li>The supply needs to be able to be divided up amongst a large number of users with users possibly wanting several accounts.</li>
 <li>Each account needs to be able to represent an adequate dynamic range of value.</li>
 <li>The supply should be able to deal with deflation over time as accounts are abandoned.</li>
 </ul>
-<h3 id="distribution">Distribution<a class="headerlink" href="#distribution" title="Permanent link">&para;</a></h3>
+<h2 id="distribution">Distribution<a class="headerlink" href="#distribution" title="Permanent link">&para;</a></h2>
 <p>The distribution of Nano (formerly RaiBlocks) was performed through solving manual captchas starting in late 2015 and ending in October 2017. Distribution stopped after ~39% of the <a href="/glossary#genesis">Genesis</a> amount was distributed and the rest of the supply was burnt.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <div class="admonition info">
 <p class="admonition-title">Distribution Accounts</p>
@@ -928,7 +930,7 @@
 <p class="admonition-title">Total Supply</p>
 <p>With 2^128 - 1 Nano in the original Genesis account, upon closing of the faucet and burning of the remaining funds, the total supply which is 100% in circulation ended at <strong>~133,248,297 Nano</strong> (or more precisely 133248297920938463463374607431768211455 raw). Since then, additional funds have been sent to the known burn address slightly lowering the amount in circulation as a result. This amount can be found using the <a href="/commands/rpc-protocol/#available_supply">available_supply</a> RPC.</p>
 </div>
-<h3 id="unit-dividers">Unit Dividers<a class="headerlink" href="#unit-dividers" title="Permanent link">&para;</a></h3>
+<h2 id="unit-dividers">Unit Dividers<a class="headerlink" href="#unit-dividers" title="Permanent link">&para;</a></h2>
 <p>A 128 bit integer is used to represent account balances.  A set of SI prefixes was used to make the numbers more accessible and avoid confusion.  The reference wallet uses Mnano (or NANO/Nano) as a divider.  </p>
 <table>
 <thead>
