@@ -1,6 +1,8 @@
 title: Node Security | Nano Documentation
 description: Information about how to properly secure your Nano node when getting setup on the network.
 
+# Node Security
+
 There are [many reasons to run a Nano node](/running-a-node/overview/#why-run-a-node) on the network. Nodes are the participants that help vote on transaction validity, assist other nodes with bootstrapping blocks in the ledger and providing an access point to all accounts. But those who choose to run them should be making a long-term commitment to [run them on proper hardware](/running-a-node/node-setup/#hardware-recommendations), keep them updated with the [latest release](/releases/node-releases/) and, most importantly, keep their setup as secure as possible.
 
 The details below are guidelines on things to watch out for when setting up and securing your Nano node. As the node can be run on many different operating systems, some of these guidelines have been kept more general. There are plenty of resources online for learning how to apply these guidelines to more specific setups and additional details will be included in the docs here as they are appropriate.

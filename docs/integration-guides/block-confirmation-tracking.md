@@ -1,3 +1,5 @@
+# Block Confirmation Tracking
+
 !!! tip "Guide based on node V19.0"
 	The recommendations below are based on node V19.0 and node versions earlier may not have all these options available. All integrations should upgrade their nodes to make use of easier block confirmation procedures detailed here.
 

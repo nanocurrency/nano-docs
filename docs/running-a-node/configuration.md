@@ -1,3 +1,5 @@
+# Node Configuration
+
 The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing config values via the command line, or a combination of the two methods.
 
 !!! success "Automatic migration and backups of JSON files"

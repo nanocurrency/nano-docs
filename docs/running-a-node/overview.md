@@ -1,3 +1,5 @@
+# Running a Node Overview
+
 Running a node is a key way to help decentralize the network and provide a network access point for systems built on top of Nano. Before setting up a node we recommend reviewing the following details in order to understand more about the motivations for running, required upkeep, types and recommended specifications for nodes.
 
 ## Why run a node?

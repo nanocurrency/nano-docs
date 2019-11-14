@@ -1,3 +1,5 @@
+# Network Attacks
+
 Nano has a number of mechanisms built in to protect from a range of possible attacks on the system.  Here we go over all attacks there could be on the system and what safeguards are in place.  
 
 ## Block gap synchronization

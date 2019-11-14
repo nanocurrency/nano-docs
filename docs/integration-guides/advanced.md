@@ -1,3 +1,5 @@
+# Integration Guides - Advanced
+
 ## Cold Wallets
 
 When security of funds is critical, it is a best practice to split your balance between multiple wallets:
