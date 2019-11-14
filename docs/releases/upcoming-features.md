@@ -12,30 +12,7 @@ Status                 | Details
 
 ### In Progress
 
-??? tip "New PoW infrastructure"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
-	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
-	Links    | https://github.com/nanocurrency/nano-pow-server, https://github.com/nanocurrency/nano-node/pull/2331
-
-??? tip "Initial support for RocksDB"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Add support for a new database backend using RocksDB (experimental).
-	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
-	Links    | https://github.com/nanocurrency/nano-node/pull/2197
-
-??? tip "Migrate to TOML config files"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
-	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
-	Links    | https://github.com/nanocurrency/nano-node/issues/1878
-
+Details coming soon
 
 ### Planning
 
@@ -131,6 +108,32 @@ Status                 | Details
 
 ### Completed
 
+??? success "V20.0"
+	**New PoW infrastructure**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
+	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
+	Links    | https://github.com/nanocurrency/nano-pow-server, https://github.com/nanocurrency/nano-node/pull/2331
+
+	**Initial support for RocksDB**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Add support for a new database backend using RocksDB (experimental).
+	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
+	Links    | https://github.com/nanocurrency/nano-node/pull/2197
+
+	**Migrate to TOML config files**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
+	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
+	Links    | https://github.com/nanocurrency/nano-node/issues/1878
+
+
 ??? success "V19.0"
 	**TCP network overlay**
 
@@ -176,14 +179,22 @@ Status                 | Details
 
 ### Recent Page Updates
 
-**2019-10-09**
+**2019-11-14**
 
 | Feature | Previous | New | Reason |
 |---------|--------- |-----|--------|
-| New PoW algorithm | In Progress | Researching | Continuing research into algorithm design |
-| New PoW infrastructure | - | In Progress | Recently split from algorithm into separate scope |
+| New PoW algorithm | In Progress | Completed | V20.0 release |
+| Initial support for RocksDB | In Progress | Completed | V20.0 release |
+| Migrate to TOML config files | In Progress | Completed | V20.0 release |
 
 ??? info "Other past changes"
+
+	**2019-10-09**
+
+	| Feature | Previous | New | Reason |
+	|---------|--------- |-----|--------|
+	| New PoW algorithm | In Progress | Researching | Continuing research into algorithm design |
+	| Initial support for RocksDB | - | In Progress | Recently split from algorithm into separate scope |
 
 	**2019-09-20**
 
