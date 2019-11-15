@@ -50,6 +50,7 @@ nav:
     - Distribution and Units: protocol-design/distribution-and-units.md
     - Networking: protocol-design/networking.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+    - Contributing: node-implementation/contributing.md
     - Original whitepaper: whitepaper/english.md
   - Node Implementation:
     - Overview: node-implementation/overview.md
@@ -58,6 +59,7 @@ nav:
     - Voting: node-implementation/voting.md
     - Work: node-implementation/work.md
     - Signing, Hashing and Key Derivation: node-implementation/signing-hashing.md
+    - Contributing: node-implementation/contributing.md
   - Releases:
     - Node Releases: releases/node-releases.md
     - Network Upgrades: releases/network-upgrades.md
