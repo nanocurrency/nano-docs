@@ -1,3 +1,5 @@
+# Troubleshooting
+
 ## Log Files
 
 The default location of standard node log files for various systems:

@@ -1,13 +1,13 @@
-## Distribution and Units
+# Distribution and Units
 
-### Divisibility
+## Divisibility
 There are three important aspects of divisibility of the supply which are satisfied by the final distributed amount:
 
 - The supply needs to be able to be divided up amongst a large number of users with users possibly wanting several accounts.
 - Each account needs to be able to represent an adequate dynamic range of value.
 - The supply should be able to deal with deflation over time as accounts are abandoned.
 
-### Distribution
+## Distribution
 The distribution of Nano (formerly RaiBlocks) was performed through solving manual captchas starting in late 2015 and ending in October 2017. Distribution stopped after \~39% of the [Genesis](/glossary#genesis) amount was distributed and the rest of the supply was burnt.[^1]
 
 !!! info "Distribution Accounts"
@@ -21,7 +21,7 @@ During distribution the Genesis seed was kept in cold storage and funds were mov
 !!! info "Total Supply"
 	With 2^128 - 1 Nano in the original Genesis account, upon closing of the faucet and burning of the remaining funds, the total supply which is 100% in circulation ended at **~133,248,297 Nano** (or more precisely 133248297920938463463374607431768211455 raw). Since then, additional funds have been sent to the known burn address slightly lowering the amount in circulation as a result. This amount can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
 
-### Unit Dividers
+## Unit Dividers
 A 128 bit integer is used to represent account balances.  A set of SI prefixes was used to make the numbers more accessible and avoid confusion.  The reference wallet uses Mnano (or NANO/Nano) as a divider.  
 
 | Name          | SI Prefix | Integer                            | Power

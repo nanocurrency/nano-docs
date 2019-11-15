@@ -1,20 +1,14 @@
+# Build Options
+
 --8<-- "only-official-builds-supported.md"
 
 ## Official release builds
+ 
+Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases):
 
-**OS Binaries**  
-Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases) as well as on [Nano.org](https://nano.org/en).
+--8<-- "current-release-build-links.md"
 
 --8<-- "known-issues-v19.md"
-
-**Other sources**  
-The node can be also be installed from other sources including [Docker](/running-a-node/node-setup#installing-docker) and RHEL/CentOS rpm:
-```bash
-sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency.repo
-sudo yum install nanocurrency
-```
-
-This installs `nano_node` to bin.
 
 ### Beta builds
 
@@ -137,7 +131,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 **Testing the Node**
 
 * In order to run the tests, the corresponding CMake variable must be set: `-D NANO_TEST=ON`.
-* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test` and `slow_test` binaries, which can be executed such as `./core_test`.
+* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test`, `load_test` and `slow_test` binaries, which can be executed such as `./core_test`.
 * See more details in [Testing](#testing)
 
 **Beta Network Participation**
@@ -353,6 +347,12 @@ To run tests multiple times:
 ```
 
 If running on a debugger, add the argument `--gtest_break_on_failure` break at the moment a test fails.
+
+### Environment variables to customize tests
+
+* `TEST_KEEP_TMPDIRS=1` - Setting this to anything will prevent the tests deleting any files it creates, useful for debugging log files. 
+* `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/) support.
+* `TEST_BASE_PORT=26000` - The base port used in tests, the range of ports used in this case would be 26000 - 26199. This is useful if wanting to run multiple tests at once without port conflicts, the default base port used is 24000. 
 
 ### Sanitizers
 

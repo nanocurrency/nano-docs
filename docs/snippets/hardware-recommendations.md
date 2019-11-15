@@ -11,7 +11,7 @@ The following are minimum recommended specifications for nodes with more than 0.
 #### Representative Node
 The following are minimum recommended specifications for nodes with less than 0.1% of the online voting weight (regular [Representatives](/glossary#representative)):
 
-* 2GB RAM
+* 2GB RAM (additional RAM or swap space may be needed if bootstrapping a new node from scratch)
 * Dual-Core CPU
 * 100 MB/s bandwidth (1TB of available monthly bandwidth)
 * SSD-based hard drive

@@ -1,3 +1,5 @@
+# Node Configuration
+
 The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing config values via the command line, or a combination of the two methods.
 
 !!! success "Automatic migration and backups of JSON files"
@@ -145,12 +147,7 @@ The Nano node software is designed to run with little or no configuration. All c
 
 The node and its related processes will look for the files listed below, either in their default location or the location specified with `--data_path`. These files are *optional*. The table includes a command which can be used to generate a documented TOML file with defaults suitable for the system.
 
-| **Name**  | **Description** | **Generated with** |
-|---------|--------------|--------------|
-| `config-node.toml` | Node configuration | `nano_node --generate_config node` |
-| `config-rpc.toml` | RPC configuration | `nano_node --generate_config rpc` |
-| `config-nano-pow-server.toml` | Proof of work server configuration | `nano_pow_server --generate_config` |
-| `config-qtwallet.toml` | Qt developer wallet configuration | This file is maintained by the Qt wallet |
+--8<-- "toml-config-commands.md"
 
 The default locations of the config files are listed in the table below.
 
@@ -168,7 +165,7 @@ Example that enables the RPC and WebSocket servers:
 !!! info "Mixing config options on the command line and TOML files"
     If a config file exists, config values passed in via the command line will take precedence.
 
-### Notable configuration options
+## Notable configuration options
 
 This section details some of the most important configuration options. 
 
@@ -179,9 +176,10 @@ Config options are referred to below using the format `section.setting`. This fo
 enable_voting = true
 ```
 
+### config-node.toml
+
 #### node.enable_voting
 As of V18.0, newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
-
 
 ---
 
@@ -233,6 +231,23 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 
 !!! tip "Configuration for docker nodes"
     Docker nodes have the default `address` set to `"::ffff:0.0.0.0"`. To allow a connection between the host and the node, include `-p 127.0.0.1:7078:7078` (or another port if changed) in the `docker run` command or equivalent.
+
+---
+
+### config-rpc.toml
+
+#### enable_control
+
+Due to their sensitive or dangerous nature, certain RPC calls/options require this setting to be enabled before they can be used. Examples of RPC calls that require this include:
+
+* [stop](/commands/rpc-protocol#stop): allows you to completely stop the node from running
+* [work_generate](/commands/rpc-protocol#work_generate): allows potential consumption of CPU or GPU resources on the node or attached work peers to generate PoW
+* [send](/commands/rpc-protocol#send): can be used to transfer available funds in the wallet to another account
+* Various other wallet and resource-heavy operations
+
+!!! danger "Dangerous RPC calls controlled by `enable_control`"
+	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the node to limit RPC access to dangerous calls. For more details see the [Node Security page](/running-a-node/security).
+
 ---
 
 #### HTTP callback
@@ -253,7 +268,7 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 
 ---
 
-### RPC
+## RPC
 
 More details about the RPC setup can be found in the [Running Nano as a service guide](/integration-guides/advanced/#running-nano-as-a-service).
 

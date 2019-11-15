@@ -1,3 +1,4 @@
+# Command Line Interface
 
 ### --account_create --wallet=`<wallet>`
 Insert next deterministic key in to `<wallet>`
@@ -10,6 +11,9 @@ Get the public key for `<account>`
 
 ### --clear_send_ids   
 Remove all send IDs from the database (dangerous: not intended for production use)
+
+### --config key=value
+Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --confirmation_height_clear
 _version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account.
@@ -93,6 +97,12 @@ _[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<
 
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
+
+### --generate_config node|rpc
+Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
+If `--use_defaults` is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.
+
+The output can be piped to a file, using the locations defined in [configuration](/running-a-node/configuration#configuration-file-locations).
 
 ### --help
 Print out options

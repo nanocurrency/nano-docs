@@ -1,4 +1,4 @@
-Title: Nano Protocol Design - Overview
+Title: Protocol Design Overview | Nano Documentation
 
 # Protocol Design - Overview
 
@@ -24,8 +24,9 @@ Existing content:
 
 ## Incentives for participating in consensus
 
-<!--
-# Protocol Design Overview
+---
+
+Previous content
 
 The Nano protocol is a complex piece of software aiming at a simple, singular goal: transfer value as efficiently as possible. Doing so on a network that is decentralized for the long-term involves many moving parts. Below are some detailed explanations of various pieces of the protocol intended for advanced developers and those with deep knowledge of the network.
 
@@ -210,4 +211,3 @@ Your code will be reviewed with security in mind, but please do your part before
 [^3]: https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/
 [^4]: https://github.com/todotxt/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
 [^5]: https://dmitryfrank.com/articles/indent_with_tabs_align_with_spaces
--->
