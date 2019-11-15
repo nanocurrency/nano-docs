@@ -960,75 +960,7 @@
 </tbody>
 </table>
 <h3 id="in-progress">In Progress<a class="headerlink" href="#in-progress" title="Permanent link">&para;</a></h3>
-<details class="tip"><summary>New PoW infrastructure</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Increased security, faster PoW algorithm updates in future release and better resource management options.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-pow-server">https://github.com/nanocurrency/nano-pow-server</a>, <a href="https://github.com/nanocurrency/nano-node/pull/2331">https://github.com/nanocurrency/nano-node/pull/2331</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Initial support for RocksDB</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Add support for a new database backend using RocksDB (experimental).</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Lower disk I/O operations and increase disk I/O speeds on average.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/pull/2197">https://github.com/nanocurrency/nano-node/pull/2197</a></td>
-</tr>
-</tbody>
-</table>
-</details>
-<details class="tip"><summary>Migrate to TOML config files</summary><table>
-<thead>
-<tr>
-<th>Release</th>
-<th>V20</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Goal</td>
-<td>Migrate existing config files to be TOML format, split into read-only and override files.</td>
-</tr>
-<tr>
-<td>Benefits</td>
-<td>Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.</td>
-</tr>
-<tr>
-<td>Links</td>
-<td><a href="https://github.com/nanocurrency/nano-node/issues/1878">https://github.com/nanocurrency/nano-node/issues/1878</a></td>
-</tr>
-</tbody>
-</table>
-</details>
+<p>Details coming soon</p>
 <h3 id="planning">Planning<a class="headerlink" href="#planning" title="Permanent link">&para;</a></h3>
 <details class="abstract"><summary>Dual-phase voting</summary><table>
 <thead>
@@ -1285,6 +1217,76 @@
 </table>
 </details>
 <h3 id="completed">Completed<a class="headerlink" href="#completed" title="Permanent link">&para;</a></h3>
+<details class="success"><summary>V20.0</summary><p><strong>New PoW infrastructure</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Increased security, faster PoW algorithm updates in future release and better resource management options.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-pow-server">https://github.com/nanocurrency/nano-pow-server</a>, <a href="https://github.com/nanocurrency/nano-node/pull/2331">https://github.com/nanocurrency/nano-node/pull/2331</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Initial support for RocksDB</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Add support for a new database backend using RocksDB (experimental).</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Lower disk I/O operations and increase disk I/O speeds on average.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/pull/2197">https://github.com/nanocurrency/nano-node/pull/2197</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Migrate to TOML config files</strong></p>
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>V20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goal</td>
+<td>Migrate existing config files to be TOML format, split into read-only and override files.</td>
+</tr>
+<tr>
+<td>Benefits</td>
+<td>Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.</td>
+</tr>
+<tr>
+<td>Links</td>
+<td><a href="https://github.com/nanocurrency/nano-node/issues/1878">https://github.com/nanocurrency/nano-node/issues/1878</a></td>
+</tr>
+</tbody>
+</table>
+</details>
 <details class="success"><summary>V19.0</summary><p><strong>TCP network overlay</strong></p>
 <table>
 <thead>
@@ -1402,7 +1404,38 @@
 </table>
 </details>
 <h3 id="recent-page-updates">Recent Page Updates<a class="headerlink" href="#recent-page-updates" title="Permanent link">&para;</a></h3>
-<p><strong>2019-10-09</strong></p>
+<p><strong>2019-11-14</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Previous</th>
+<th>New</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New PoW algorithm</td>
+<td>In Progress</td>
+<td>Completed</td>
+<td>V20.0 release</td>
+</tr>
+<tr>
+<td>Initial support for RocksDB</td>
+<td>In Progress</td>
+<td>Completed</td>
+<td>V20.0 release</td>
+</tr>
+<tr>
+<td>Migrate to TOML config files</td>
+<td>In Progress</td>
+<td>Completed</td>
+<td>V20.0 release</td>
+</tr>
+</tbody>
+</table>
+<details class="info"><summary>Other past changes</summary><p><strong>2019-10-09</strong></p>
 <table>
 <thead>
 <tr>
@@ -1420,14 +1453,14 @@
 <td>Continuing research into algorithm design</td>
 </tr>
 <tr>
-<td>New PoW infrastructure</td>
+<td>Initial support for RocksDB</td>
 <td>-</td>
 <td>In Progress</td>
 <td>Recently split from algorithm into separate scope</td>
 </tr>
 </tbody>
 </table>
-<details class="info"><summary>Other past changes</summary><p><strong>2019-09-20</strong></p>
+<p><strong>2019-09-20</strong></p>
 <table>
 <thead>
 <tr>
