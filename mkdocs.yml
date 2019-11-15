@@ -45,7 +45,7 @@ nav:
     - Work: protocol-design/work.md
     - Network: protocol-design/network.md
     - ORV Consensus: protocol-design/orv-consensus.md
-    - Network Attacks: protocol-design/attack-vectors.md
+    - Attack Vectors: protocol-design/attack-vectors.md
     - Resource Usage: protocol-design/resource-usage.md
     - Distribution and Units: protocol-design/distribution-and-units.md
     - Networking: protocol-design/networking.md
