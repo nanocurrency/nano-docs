@@ -1,7 +1,7 @@
 !!! warning "Known issues with V20.0"
     
-    **Windows missing `zlib1.dll`**
+    **Windows, peers stake reporting inaccurate**
 
-    * **Issue:** The following error can be seen when attempting to run a full node on Windows: "The code execution cannot proceed because zlib1.dll was not found.". This is due to a missing file with the generated Windows binary.
+    * **Issue:** For Windows builds only, when calling [confirmation_quorum RPC](/commands/rpc-protocol/#confirmation_quorum) the `peers_stake_total` amount returned may be inaccurate, returning a range from the correct full peer stake amount down to 0.
     
-    * **Solution:** If you see this error, download `zlib1.dll` from [https://github.com/nanocurrency/nano-node/releases/download/V20.0/zlib1.dll](https://github.com/nanocurrency/nano-node/releases/download/V20.0/zlib1.dll) and add it to your install folder. The node should run properly after that. If you continue to have issues, join the [Discord](https://chat.nano.org) or [Node and Representative Management area of our forum](https://forum.nano.org/c/node-and-rep) for assistance.
+    * **Solution:** A solution to the issue has been found and as this is a reporting issue only, the fix will be included in the next released version. For those manually building the node, patching the [fix pull request](https://github.com/nanocurrency/nano-node/pull/2405) onto the [V20.0 tag](https://github.com/nanocurrency/nano-node/tree/V20.0) can resolve the issue now.
