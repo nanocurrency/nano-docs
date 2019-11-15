@@ -1,5 +1,8 @@
 # Networking
 
+!!! warning "Page may be migrating"
+	This page may be migrated into another page or section - TBD.
+
 --8<-- "wip-living-whitepaper.md"
 
 ## UDP and TCP messages
