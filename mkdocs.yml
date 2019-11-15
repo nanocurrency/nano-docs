@@ -63,7 +63,6 @@ nav:
     - Network Upgrades: releases/network-upgrades.md
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
-  - Whitepaper: whitepaper/living-whitepaper.md
   - Glossary: glossary.md
 google_analytics:
   - 'UA-140489311-1'
