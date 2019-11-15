@@ -3098,7 +3098,7 @@ Request confirmation for <strong>block</strong> from known online representative
 </pre></div>
 <strong>Optional "include_cemented"</strong></p>
 <p><em>version 19.0+ (enable_control required in version 19.0, not required in version 20.0+)</em><br />
-Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.</p>
+Default "true". If "true", "cemented" in the response will contain the number of cemented blocks. (In V19.0 default was "false")</p>
 <div class="admonition danger">
 <p class="admonition-title">Dangerous RPC calls controlled by <code>enable_control</code></p>
 <p>This RPC command/option requires <code>enable_control</code> to be enabled within the RPC config file. Enabling this means that anyone with access to the RPC port could potentially <a href="/commands/rpc-protocol#send">access wallet funds</a>, <a href="/commands/rpc-protocol#stop">stop</a> the node from running and take other dangerous actions. <strong>Use caution when enabling this option, especially with external RPC access available.</strong> For more details see the <a href="/running-a-node/security">Node Security page</a>.</p>
