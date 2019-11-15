@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Proof of Work
 
 # Protocol Design - Proof of Work
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [System Overview](/whitepaper/english/#system-overview)
 
 Existing content:

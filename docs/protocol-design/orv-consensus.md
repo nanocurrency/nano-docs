@@ -2,6 +2,8 @@ Title: Nano Protocol Design - ORV Consensus
 
 # Protocol Design - ORV Consensus
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [System Overview](/whitepaper/english/#system-overview), [Implementation](/whitepaper/english/#implementation)
 
 Existing content:

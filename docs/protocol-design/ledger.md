@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Ledger
 
 # Protocol Design - Ledger
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Nano Components](/whitepaper/english/#raiblocks-components)
 
 Existing content:

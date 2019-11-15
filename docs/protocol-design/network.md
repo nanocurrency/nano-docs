@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Network
 
 # Protocol Design - Network
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: -
 
 Existing content:

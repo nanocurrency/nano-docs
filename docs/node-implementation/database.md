@@ -2,6 +2,8 @@ Title: Nano Node Implementation - Database
 
 # Node Implementation - Database
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
 
 Existing content: -

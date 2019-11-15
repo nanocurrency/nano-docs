@@ -1,5 +1,7 @@
 # Distribution and Units
 
+--8<-- "wip-living-whitepaper.md"
+
 ## Divisibility
 There are three important aspects of divisibility of the supply which are satisfied by the final distributed amount:
 

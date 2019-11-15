@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Resource Usage
 
 # Protocol Design - Resource Usage
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Resource Usage](/whitepaper/english/#resource-usage)
 
 Existing content:

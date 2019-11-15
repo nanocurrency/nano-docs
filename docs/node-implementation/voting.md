@@ -2,6 +2,8 @@ Title: Nano Node Implementation - Voting
 
 # Node Implementation - Voting
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
 
 Existing content: -

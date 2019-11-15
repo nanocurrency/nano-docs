@@ -2,6 +2,8 @@ Title: Protocol Design Overview | Nano Documentation
 
 # Protocol Design - Overview
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Introduction](/whitepaper/english/#introduction), [Background](/whitepaper/english/#background)
 
 Existing content:

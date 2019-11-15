@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Attack Vectors
 
 # Protocol Design - Attack Vectors
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Attack Vectors](/whitepaper/english/#attack-vectors)
 
 Existing content:

@@ -1,0 +1,2 @@
+!!! info "Part of work in progress Living Whitepaper"
+	This page is part of the Living Whitepaper revisions currently underway to replace the original static whitepaper. These efforts include the [Protocol Design](/protocol-design/overview) and [Node Implementation](/node-implementation/overview) sections of the docs, which will cover and expand on details and topics covered in the [original whitepaper](/whitepaper/english).

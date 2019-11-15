@@ -2,6 +2,8 @@ Title: Nano Node Implementation - Signing, Hashing & Key Derivation
 
 # Node Implementation - Signing, Hashing & Key Derivation
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
 
 Existing content:

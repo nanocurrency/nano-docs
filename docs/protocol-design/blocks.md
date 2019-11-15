@@ -2,6 +2,8 @@ Title: Nano Protocol Design - Blocks
 
 # Protocol Design - Blocks
 
+--8<-- "wip-living-whitepaper.md"
+
 Existing whitepaper sections: [Nano Components](/whitepaper/english/#raiblocks-components), [System Overview](/whitepaper/english/#system-overview)
 
 Existing content:
