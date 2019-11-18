@@ -1,4 +1,4 @@
-!!! warning "Known Issue: Peers stake reporting inaccurate (Windows only)"
+??? warning "Known Issue: Peers stake reporting inaccurate (Windows only)"
 
     * **Issue:** For Windows builds only, when calling [confirmation_quorum RPC](/commands/rpc-protocol/#confirmation_quorum) the `peers_stake_total` amount returned may be inaccurate, returning a range from the correct full peer stake amount down to 0.
 
