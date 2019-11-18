@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://docs.nano.org/snippets/known-issues-v19/">
+        <link rel="canonical" href="https://docs.nano.org/snippets/known-issue-macos-too-many-open-files/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>Known issues v19 - Documentation</title>
+        <title>Known issue macos too many open files - Documentation</title>
       
     
     
@@ -106,7 +106,7 @@
   <!-- Open Graph data -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="" />
-  <meta property="og:url" content="https://docs.nano.org/snippets/known-issues-v19/" />
+  <meta property="og:url" content="https://docs.nano.org/snippets/known-issue-macos-too-many-open-files/" />
   <meta property="og:image" content="https://docs.nano.org/images/nano-docs-open-graph.png" />
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="Nano Docs" />
@@ -168,7 +168,7 @@
               Documentation
             </span>
             <span class="md-header-nav__topic">
-              Known issues v19
+              Known issue macos too many open files
             </span>
           
         </div>
@@ -800,13 +800,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/snippets/known-issues-v19.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/nanocurrency/nano-docs/edit/master/docs/snippets/known-issue-macos-too-many-open-files.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Known issues v19</h1>
+                  <h1>Known issue macos too many open files</h1>
                 
-                <details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
-<ul>
+                <details class="warning"><summary>Known Issue: macOS 'Too many open files'</summary><ul>
 <li>
 <p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
 </li>

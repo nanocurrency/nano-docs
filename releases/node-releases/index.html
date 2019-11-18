@@ -1111,10 +1111,7 @@
 </tbody>
 </table>
 <p><strong>Builds and Commands</strong></p>
-<div class="admonition warning">
-<p class="admonition-title">Known issues with V20.0</p>
-<p><strong>Windows, peers stake reporting inaccurate</strong></p>
-<ul>
+<details class="warning"><summary>Known Issue: Peers stake reporting inaccurate (Windows only)</summary><ul>
 <li>
 <p><strong>Issue:</strong> For Windows builds only, when calling <a href="/commands/rpc-protocol/#confirmation_quorum">confirmation_quorum RPC</a> the <code>peers_stake_total</code> amount returned may be inaccurate, returning a range from the correct full peer stake amount down to 0.</p>
 </li>
@@ -1122,7 +1119,16 @@
 <p><strong>Solution:</strong> A solution to the issue has been found and as this is a reporting issue only, the fix will be included in the next released version. For those manually building the node, patching the <a href="https://github.com/nanocurrency/nano-node/pull/2405">fix pull request</a> onto the <a href="https://github.com/nanocurrency/nano-node/tree/V20.0">V20.0 tag</a> can resolve the issue now. Or alternatively, building on the V20.0 tag with <code>RelWithDebInfo</code> option, see <a href="/integration-guides/build-options/#setup">Build Instructions for Windows</a>.</p>
 </li>
 </ul>
-</div>
+</details>
+<details class="warning"><summary>Known Issue: macOS 'Too many open files'</summary><ul>
+<li>
+<p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
+</li>
+<li>
+<p><strong>Solution:</strong> For now a workaround is needed to increase the limit. The method depends on the specific macOS version, but some people had success with the recipe in <a href="https://superuser.com/a/1171028">https://superuser.com/a/1171028</a>.</p>
+</li>
+</ul>
+</details>
 <table>
 <thead>
 <tr>
@@ -1206,8 +1212,7 @@
 </tr>
 </tbody>
 </table>
-<details class="warning"><summary>Known issues with V19.0</summary><p><strong>macOS "Too many open files"</strong></p>
-<ul>
+<details class="warning"><summary>Known Issue: macOS 'Too many open files'</summary><ul>
 <li>
 <p><strong>Issue:</strong> The following error can be seen when attempting to run a full node on macOS using the built-in Qt wallet or other GUI-based wallets: "Exception while running wallet: open: Too many open files". This is due to macOS having a very low default file descriptor limit and V19.0 uses more of them after the move to TCP.</p>
 </li>
