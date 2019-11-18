@@ -21,6 +21,7 @@ Existing content:
 ## Protocol Design vs. Node Implementation
 
 **NEEDS REVISION**
+
 The Nano protocol is a complex piece of software aiming at a simple, singular goal: transfer value as efficiently as possible. Doing so on a network that is decentralized for the long-term involves many moving parts. Below are some detailed explanations of various pieces of the protocol intended for advanced developers and those with deep knowledge of the network.
 
 ---
@@ -39,7 +40,8 @@ The Nano protocol is a complex piece of software aiming at a simple, singular go
 
 ## Section details
 
-**NEEDS REVISION**
+**NEEDS REVISION - OUTDATED**
+
 | Section | Description |
 |---------|-------------|
 | [Distribution and Units](/protocol-design/distribution-and-units/) | Original distribution details and Nano unit breakdowns |
