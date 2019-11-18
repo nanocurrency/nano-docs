@@ -8,7 +8,9 @@ Each release cycle official builds of the node for Linux, MacOS and Windows are 
 
 --8<-- "current-release-build-links.md"
 
---8<-- "known-issues-v19.md"
+--8<-- "known-issue-peers-stake-reporting.md"
+
+--8<-- "known-issue-macos-too-many-open-files.md"
 
 ### Beta builds
 

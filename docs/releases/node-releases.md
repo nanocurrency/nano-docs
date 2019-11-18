@@ -14,7 +14,9 @@ The following release is the latest and only release actively supported by the N
 
 **Builds and Commands**
 
---8<-- "known-issues-v20.md"
+--8<-- "known-issue-peers-stake-reporting.md"
+
+--8<-- "known-issue-macos-too-many-open-files.md"
 
 --8<-- "current-release-build-links.md"
 
@@ -37,7 +39,7 @@ The following older releases can still actively participate on the network with 
 | 19.0 | 17 | 2019-07-11 | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
 | 18.0 | 16 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
 
---8<-- "known-issues-v19.md"
+--8<-- "known-issue-macos-too-many-open-files.md"
 
 ---
 
