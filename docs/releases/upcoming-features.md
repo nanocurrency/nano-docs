@@ -183,7 +183,7 @@ Details coming soon
 
 | Feature | Previous | New | Reason |
 |---------|--------- |-----|--------|
-| New PoW algorithm | In Progress | Completed | V20.0 release |
+| New PoW algorithm | In Progress | Researching | Researching alternatives |
 | Initial support for RocksDB | In Progress | Completed | V20.0 release |
 | Migrate to TOML config files | In Progress | Completed | V20.0 release |
 
