@@ -57,8 +57,12 @@ While the specific algorithm used is an implementation decision, there is a mini
 1. Amortization-free. The cost of obtaining multiple proofs should scale linearly with the number of proofs. This ensures fairness for all participants.
 1. Progress-free. Any attempt at obtaining a proof should follow a stochastic process, with no dependence on previous attempts.
 
-Additional requirements of parameter flexibility, constrained parallelism, and being optimization-free, are desired but not required.
+Additional requirements of parameter flexibility, constrained parallelism, and being optimization-free, are desired but not required [^1].
 
 ---
 
 ## Hardware benchmarks
+
+---
+
+[^1]: For more details on these requirements, refer to https://doi.org/10.5195/ledger.2017.48
