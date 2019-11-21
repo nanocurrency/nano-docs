@@ -48,7 +48,7 @@ The work field is not used when signing a block. This design has two consequence
 
 ---
 
-## PoW algorithm
+## Choosing an algorithm
 
 While the specific algorithm used is an implementation decision, there is a minimal set of requirements that must be met for an algorithm to be used within the Nano protocol.
 
@@ -58,10 +58,6 @@ While the specific algorithm used is an implementation decision, there is a mini
 1. Progress-free. Any attempt at obtaining a proof should follow a stochastic process, with no dependence on previous attempts.
 
 Additional requirements of parameter flexibility, constrained parallelism, and being optimization-free, are desired but not required [^1].
-
----
-
-## Hardware benchmarks
 
 ---
 
