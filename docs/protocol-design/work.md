@@ -21,6 +21,8 @@ Existing content:
 
 A spam transaction is a block broadcasted with the intention of saturating the network, reducing its available throughput for other network participants, or increasing the size of the ledger. Participants can compute the required work in the order of seconds. The cost of spamming the network increases linearly with the number of spam transactions, thus reducing the impact of spam transactions from theoretically infinite to a manageable amount.
 
+With this design, there is an added step of verifying a block's work. As one could spam invalid blocks (in this context, blocks with invalid work), one key requirement is that the cost of verifying work is negligible.
+
 ---
 
 ## PoW in state blocks
