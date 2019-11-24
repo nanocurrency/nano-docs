@@ -55,7 +55,7 @@ The work field is not used when signing a block. This design has two consequence
 While the specific algorithm used is an implementation decision, there is a minimal set of requirements that must be met for an algorithm to be used within the Nano protocol.
 
 1. Asymmetry. Verifying work should take the least amount of resources (including time) as possible.
-1. Small size. With small [blocks](./blocks), work should not take a large percentage of a block's size, in order to reduce overhead and maximize throughput.
+1. Small proof size. Work should take a minimal amount of a block's size compared to the resources required to generate it, in order to reduce overhead and maximize throughput.
 1. Amortization-free. The cost of obtaining work for multiple blocks should scale linearly with the number of blocks. This ensures fairness for all participants.
 1. Progress-free. Any attempt at obtaining work should follow a stochastic process, with no dependence on previous attempts.
 
