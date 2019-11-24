@@ -16,10 +16,10 @@ Existing content:
 
 ## Spam resistance
 
-!!! quote ""
-	Proof-of-Work is used as a method to deter spam transactions on the network. It is not used in the consensus mechanism. Motivated by this key difference, the simplified term **work** is used instead.
+!!! note ""
+	Proof-of-Work is used in Nano as an anti-spam tool, to deter spam transactions on the network. It is not used in the consensus mechanism. Motivated by this key difference, the simplified term **work** is used instead.
 
-A spam transaction is a block broadcasted with the intention of saturating the network, reducing its available throughput for other network participants, or increasing the size of the ledger. Participants can compute the required work in the order of seconds. The cost of spamming the network increases linearly with the number of spam transactions, thus reducing the impact of spam transactions from theoretically infinite to a manageable amount.
+A spam transaction is defined as a block broadcasted with the intention of saturating the network, reducing its available throughput for other network participants, or increasing the size of the ledger. Participants can compute the required work in the order of seconds. The cost of spamming the network increases linearly with the number of spam transactions, thus reducing the impact of spam transactions from theoretically infinite to a manageable amount.
 
 With this design, there is an added step of verifying a block's work. As one could spam invalid blocks (in this context, blocks with invalid work), one key requirement is that the cost of verifying work is negligible.
 
@@ -52,7 +52,7 @@ The work field is not used when signing a block. This design has two consequence
 
 ## Choosing an algorithm
 
-While the specific algorithm used is an implementation decision, there is a minimal set of requirements that must be met for an algorithm to be used within the Nano protocol.
+While the specific algorithm used is an implementation decision, there is a minimal set of requirements that must be met for compatibility with the Nano protocol.
 
 1. Asymmetry. Verifying work should take the least amount of resources (including time) as possible.
 1. Small proof size. Work should take a minimal amount of a block's size compared to the resources required to generate it, in order to reduce overhead and maximize throughput.
@@ -63,4 +63,5 @@ Additional requirements of parameter flexibility, constrained parallelism, and b
 
 ---
 
-[^1]: For more details on these requirements, refer to https://doi.org/10.5195/ledger.2017.48
+[^1]: A. Back, “Hashcash - a denial of service counter-measure,” 2002. [Online]. Available: http://www.hashcash.org/papers/hashcash.pdf
+[^2]: For more details on these requirements, refer to A. Biryukov, "Equihash: Asymmetric Proof-of-Work Based on the Generalized Birthday Problem" 2017. [Online]. Available: https://doi.org/10.5195/ledger.2017.48
