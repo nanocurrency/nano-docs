@@ -25,7 +25,7 @@ A spam transaction is a block broadcasted with the intention of saturating the n
 
 ## PoW in state blocks
 
-Every [state block](./blocks) includes a work field that must be correctly populated. Valid work is obtained by randomly guessing a nonce such that:
+Every [state block](../blocks) includes a work field that must be correctly populated. Valid work is obtained by randomly guessing a nonce such that:
 
 $$
 H(\text{nonce} || \text{x}) \ge \text{threshold}
@@ -33,10 +33,10 @@ $$
 
 where $H$ is an algorithm, usually in the form of a hash function, $||$ is the concatenation operator, $threshold$ is a parameter of the network that relates to the resources spent to obtain a valid work, and $x$ is either:
 
-- The account's public key, in the case of the first block
-- The previous block's hash, otherwise
+- The account's public key, in the case of the first block on the account, or
+- The previous block's hash
 
-The following image illustrates the process by which valid work is obtained.
+The following image illustrates the process by which valid work is obtained for **Block 2**.
 
 ![generate-work](/images/whitepaper/generate-work.png)
 
