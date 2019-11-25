@@ -30,7 +30,8 @@ The following command will start the node container. Either set the specified en
 docker run --restart=unless-stopped -d \
   -p 7075:7075/udp \
   -p 7075:7075 \
-  -p 127.0.0.1:7076:7076 \
+  -p [::1]:7076:7076 \
+  -p [::1]:7078:7078 \
   -v ${NANO_HOST_FOLDER}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
@@ -44,7 +45,8 @@ docker run --restart=unless-stopped -d \
 | `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p 127.0.0.1:7076:7076`<br />or `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p [::1]:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
