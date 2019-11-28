@@ -2955,7 +2955,7 @@ Checks whether the password entered for **wallet** is valid
 
 ### receive  
 _enable_control required_  
-Receive pending **block** for **account** in **wallet**  
+Receive pending **block** for **account** in **wallet**. If receiving the block opens the account, sets the account representative to a [wallet representative](#wallet_representative). Before v21, the representative is set to the account itself.  
 
 --8<-- "enable-control-warning.md"
 
