@@ -74,6 +74,7 @@ docker run --restart=unless-stopped -d \
   -p 54000:54000/udp \
   -p 54000:54000 \
   -p [::1]:55000:55000 \
+  -p [::1]:57000:57000 \
   -v ${NANO_HOST_FOLDER_BETA}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano-beta:latest-including-rc
