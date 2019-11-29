@@ -1120,11 +1120,11 @@
 <td>Specifies the container to execute with tag</td>
 </tr>
 <tr>
-<td><code>-p [::1]:7076:7076</code></td>
+<td><code>-p [::1]:7076:7076</code><br />or <code>-p 127.0.0.1:7076:7076</code></td>
 <td>Indicates that only RPC commands originating from the host will be accepted. <strong>WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano_node.</strong></td>
 </tr>
 <tr>
-<td><code>-p [::1]:7078:7078</code></td>
+<td><code>-p [::1]:7078:7078</code><br />or <code>-p 127.0.0.1:7078:7078</code></td>
 <td>Indicates that only the host can create a connection to the <a href="/integration-guides/advanced/#websocket-support">websocket server</a>. Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.</td>
 </tr>
 </tbody>
@@ -1228,11 +1228,11 @@
 <h3 id="rpc-calls-to-the-node">RPC calls to the node<a class="headerlink" href="#rpc-calls-to-the-node" title="Permanent link">&para;</a></h3>
 <p>You can use the RPC interface on the local host via <code>curl</code> to interact with the node.</p>
 <p>For example the version of the node:</p>
-<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{ &quot;action&quot; : &quot;version&quot; }&#39;</span> <span class="m">127</span>.0.0.1:7076
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{ &quot;action&quot; : &quot;version&quot; }&#39;</span> <span class="o">[</span>::1<span class="o">]</span>:7076
 </pre></div>
 
 <p>Or the blockcount:</p>
-<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{ &quot;action&quot; : &quot;block_count&quot; }&#39;</span> <span class="m">127</span>.0.0.1:7076
+<div class="codehilite"><pre><span></span>curl -d <span class="s1">&#39;{ &quot;action&quot; : &quot;block_count&quot; }&#39;</span> <span class="o">[</span>::1<span class="o">]</span>:7076
 </pre></div>
 
 <p>For other commands, review the <a href="/commands/rpc-protocol">RPC Protocol</a> details.</p>
