@@ -45,8 +45,8 @@ docker run --restart=unless-stopped -d \
 | `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
-| `-p [::1]:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
+| `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
@@ -190,13 +190,13 @@ You can use the RPC interface on the local host via `curl` to interact with the 
 For example the version of the node:
 
 ```bash
-curl -d '{ "action" : "version" }' 127.0.0.1:7076
+curl -d '{ "action" : "version" }' [::1]:7076
 ```
 
 Or the blockcount:
 
 ```bash
-curl -d '{ "action" : "block_count" }' 127.0.0.1:7076
+curl -d '{ "action" : "block_count" }' [::1]:7076
 ```
 
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
