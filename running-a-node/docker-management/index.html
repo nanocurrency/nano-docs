@@ -1080,7 +1080,8 @@
 <div class="codehilite"><pre><span></span>docker run --restart<span class="o">=</span>unless-stopped -d <span class="se">\</span>
   -p <span class="m">7075</span>:7075/udp <span class="se">\</span>
   -p <span class="m">7075</span>:7075 <span class="se">\</span>
-  -p <span class="m">127</span>.0.0.1:7076:7076 <span class="se">\</span>
+  -p <span class="o">[</span>::1<span class="o">]</span>:7076:7076 <span class="se">\</span>
+  -p <span class="o">[</span>::1<span class="o">]</span>:7078:7078 <span class="se">\</span>
   -v <span class="si">${</span><span class="nv">NANO_HOST_FOLDER</span><span class="si">}</span>:/root <span class="se">\</span>
   --name <span class="si">${</span><span class="nv">NANO_NAME</span><span class="si">}</span> <span class="se">\</span>
   nanocurrency/nano:<span class="si">${</span><span class="nv">NANO_TAG</span><span class="si">}</span>
@@ -1119,8 +1120,12 @@
 <td>Specifies the container to execute with tag</td>
 </tr>
 <tr>
-<td><code>-p 127.0.0.1:7076:7076</code><br />or <code>-p [::1]:7076:7076</code></td>
+<td><code>-p [::1]:7076:7076</code></td>
 <td>Indicates that only RPC commands originating from the host will be accepted. <strong>WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano_node.</strong></td>
+</tr>
+<tr>
+<td><code>-p [::1]:7078:7078</code></td>
+<td>Indicates that only the host can create a connection to the <a href="/integration-guides/advanced/#websocket-support">websocket server</a>. Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.</td>
 </tr>
 </tbody>
 </table>

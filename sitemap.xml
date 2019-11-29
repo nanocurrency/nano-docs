@@ -2,157 +2,157 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://docs.nano.org/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/what-is-nano/overview/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/what-is-nano/contributing/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/what-is-nano/exploring-more/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/overview/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/node-setup/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/security/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/docker-management/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/beta-network/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/configuration/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/troubleshooting/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/rocksdb-ledger-backend/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/running-a-node/beyond-the-node/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/integration-guides/the-basics/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/integration-guides/key-management/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/integration-guides/block-confirmation-tracking/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/integration-guides/build-options/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/integration-guides/advanced/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/commands/rpc-protocol/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/commands/command-line-interface/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/protocol-design/overview/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/protocol-design/distribution-and-units/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/protocol-design/networking/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/protocol-design/network-attacks/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/protocol-design/signing-hashing-and-key-derivation/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/whitepaper/english/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/releases/node-releases/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/releases/network-upgrades/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/releases/upcoming-features/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/releases/roadmap/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.nano.org/glossary/</loc>
-     <lastmod>2019-11-20</lastmod>
+     <lastmod>2019-11-29</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
