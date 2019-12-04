@@ -2312,7 +2312,7 @@ Check whether **account** is a valid account number using checksum
 
 ### version 
 Returns version information for RPC, Store, Protocol (network), Node (Major & Minor version).  
-Since _version 20.0_ also returns the Network label and identifier (hash of the genesis open block), and Build Info.  
+Since _version 20.0_ also returns the Network label and identifier (hash of the genesis open block), and Build Info. Since _version 21.0_ also returns Database backend information.  
 _RPC Version always returns "1" as of 01/11/2018_  
 
 **Request:**
@@ -2328,6 +2328,7 @@ _RPC Version always returns "1" as of 01/11/2018_
   "store_version": "14",
   "protocol_version": "17",
   "node_vendor": "Nano 20.0",
+  "store_vendor": "LMDB 0.9.23", // since V21.0
   "network": "live", // since v20.0
   "network_identifier": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948", // since v20.0
   "build_info": "Build Info <git hash> \"<compiler> version \" \"<compiler version string>\" \"BOOST <boost version>\" BUILT \"<build date>\"" // since v20.0
