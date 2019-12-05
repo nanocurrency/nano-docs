@@ -1071,7 +1071,7 @@ _version 12.0+_
 --8<-- "debug-only-command.md"
  
 duration, time, confirmation_stats: version 17.0+_   
-Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) & average duration time.
+Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
 With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
 
@@ -1094,6 +1094,8 @@ With version 19.0+ `confirmation_history_size` can be managed in the configurati
       "duration": "4000",
       "time": "1544819986",
       "tally": "80394786589602980996311817874549318248",
+      "blocks": "1", // since V21.0
+      "voters": "37", // since V21.0
       "request_count": "2" // since V20.0
     },
     {
@@ -1101,6 +1103,8 @@ With version 19.0+ `confirmation_history_size` can be managed in the configurati
       "duration": "6000",
       "time": "1544819988",
       "tally": "68921714529890443063672782079965877749",
+      "blocks": "1", // since V21.0
+      "voters": "64", // since V21.0
       "request_count": "7" // since V20.0
     }
   ]
@@ -1146,6 +1150,7 @@ Returns info about active election by **root**. Including announcements count, l
 ```json
 {
   "announcements": "2",
+  "voters": "29",
   "last_winner": "B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F",
   "total_tally": "51145880360832646375807054724596663794",
   "blocks": {
