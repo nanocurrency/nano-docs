@@ -3544,7 +3544,7 @@ Returns list of active elections roots (excluding stopped &amp; aborted election
 <p>This call is for internal diagnostics/debug purposes only. Do not rely on this interface being stable and do not use in a production system.</p>
 </div>
 <p>duration, time, confirmation_stats: version 17.0+_ <br />
-Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners and, since V20.0, the confirmation request count. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time.</p>
+Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time.</p>
 <p>With version 19.0+ <code>confirmation_history_size</code> can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the <a href="/integration-guides/advanced/#websocket-support">websocket</a> instead.</p>
 <p><strong>Request:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
@@ -3563,6 +3563,8 @@ Returns hash, tally weight, election duration (in milliseconds), election confir
       <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;4000&quot;</span><span class="p">,</span>
       <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1544819986&quot;</span><span class="p">,</span>
       <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;80394786589602980996311817874549318248&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V21.0</span>
+      <span class="nt">&quot;voters&quot;</span><span class="p">:</span> <span class="s2">&quot;37&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V21.0</span>
       <span class="nt">&quot;request_count&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V</span><span class="mf">20.0</span>
     <span class="p">},</span>
     <span class="p">{</span>
@@ -3570,6 +3572,8 @@ Returns hash, tally weight, election duration (in milliseconds), election confir
       <span class="nt">&quot;duration&quot;</span><span class="p">:</span> <span class="s2">&quot;6000&quot;</span><span class="p">,</span>
       <span class="nt">&quot;time&quot;</span><span class="p">:</span> <span class="s2">&quot;1544819988&quot;</span><span class="p">,</span>
       <span class="nt">&quot;tally&quot;</span><span class="p">:</span> <span class="s2">&quot;68921714529890443063672782079965877749&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V21.0</span>
+      <span class="nt">&quot;voters&quot;</span><span class="p">:</span> <span class="s2">&quot;64&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V21.0</span>
       <span class="nt">&quot;request_count&quot;</span><span class="p">:</span> <span class="s2">&quot;7&quot;</span> <span class="err">//</span> <span class="err">since</span> <span class="err">V</span><span class="mf">20.0</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -3608,6 +3612,7 @@ Returns info about active election by <strong>root</strong>. Including announcem
 <strong>Response:</strong>
 <div class="codehilite"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;announcements&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;voters&quot;</span><span class="p">:</span> <span class="s2">&quot;29&quot;</span><span class="p">,</span>
   <span class="nt">&quot;last_winner&quot;</span><span class="p">:</span> <span class="s2">&quot;B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F&quot;</span><span class="p">,</span>
   <span class="nt">&quot;total_tally&quot;</span><span class="p">:</span> <span class="s2">&quot;51145880360832646375807054724596663794&quot;</span><span class="p">,</span>
   <span class="nt">&quot;blocks&quot;</span><span class="p">:</span> <span class="p">{</span>
