@@ -17,7 +17,6 @@ nav:
   - Home: index.md
   - What is Nano?:
     - Overview: what-is-nano/overview.md
-    - Contributing: what-is-nano/contributing.md
     - Exploring More: what-is-nano/exploring-more.md
   - Running a Node:
     - Overview: running-a-node/overview.md
