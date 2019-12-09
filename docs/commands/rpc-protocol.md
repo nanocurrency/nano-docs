@@ -2848,7 +2848,7 @@ Sets the representative for **account** in **wallet**
 **Optional "work"**
 
 _version 9.0+_  
-Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source and disables work precaching for this account. Not using this optional re-enables work precaching.  
 
 ---
 
@@ -2983,7 +2983,7 @@ Receive pending **block** for **account** in **wallet**. If receiving the block 
 **Optional "work"**
 
 _version 9.0+_  
-Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source and disables work precaching for this account. Not using this optional re-enables work precaching.  
 
 ---
 
@@ -3134,7 +3134,7 @@ Sending the request again will yield the same block, and will not affect the led
 **Optional "work"**
 
 _version 9.0+_  
-Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source and disables work precaching for this account. Not using this optional re-enables work precaching.  
 
 **Request:**
 ```json
