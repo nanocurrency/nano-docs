@@ -38,7 +38,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Provide methods for nodes to report block height, bandwidth caps, version numbers, node vendor versions and more.
 	Benefits | Better monitoring of network status and upgrades progress.
-	Links    | 
+	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
 
 ??? abstract "Protobuf based RPCs"
 
@@ -46,7 +46,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Add support for protocol buffer based RPCs.
 	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
-	Links    | 
+	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
 
 ??? abstract "RPC 2.0"
 
@@ -54,7 +54,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
 	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
-	Links    | 
+	Links    | [Forum Discussion](https://forum.nano.org/t/rpc-2-0-refactor/110)
 
 ??? abstract "Ledger pruning"
 
@@ -62,7 +62,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Allow optional pruning of ledger blocks down to frontier, frontier predecessor and pending blocks.
 	Benefits | Reduce ledger size on disk and lower requirements for nodes joining the network.
-	Links    | [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
+	Links    | [Forum Discussion](https://forum.nano.org/t/ledger-pruning/114) - [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
 
 ### Researching
 
@@ -72,7 +72,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
 	Benefits | Increase Quality of Service on network through increased spam cost.
-	Links    | https://github.com/nanocurrency/nano-node/issues/506
+	Links    | [Forum Discussion](https://forum.nano.org/t/minimum-memory-requirement-in-a-new-pow-algorithm/439) - [GitHub Issue #506](https://github.com/nanocurrency/nano-node/issues/506)
 
 ??? info "Network overlay (DHT-based)"
 
@@ -80,7 +80,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Provide a structured network overlay of nodes on the network through a distributed hash table.
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
-	Links    | N/A
+	Links    | [Forum Discussion](https://forum.nano.org/t/consider-adding-a-network-overlay/106)
 
 ??? info "Durable vote snapshots"
 
@@ -88,7 +88,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Provide methods for export and importing snapshots of durable votes between nodes.
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
-	Links    | 
+	Links    | N/A
 
 ??? info "QUIC protocol"
 
