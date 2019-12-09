@@ -76,7 +76,7 @@ In most blockchain networks these upgrades can be scheduled to take effect once 
 
 There are a couple different options for handling these upgrades and the process is currently managed primarily by the Nano Foundation. The upgrades are tested on the beta network to ensure all components are behaving as expecting before being considered for updating on the main network. If the behavior being changed involves consensus, any manual upgrade actions are triggered once a large majority of nodes and major services have upgraded. 
 
-Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in [this GitHub issue](https://github.com/nanocurrency/nano-node/issues/1308).
+Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in [this GitHub issue](https://github.com/nanocurrency/nano-node/issues/1308). There is also a discussion around how to potentially automate network upgrade processes in this forum topic: https://forum.nano.org/t/automated-network-upgrades/113.
 
 ---
 
