@@ -26,7 +26,7 @@ This guide extends the concepts covered in [External Private Key Management](/in
 	1. Transfer this data using an offline method (e.g. via USB stick) to the `(COLD)` secure offline computer.
 	1. `(COLD)` Verify Head Block hash.
 	1. `(COLD)` Generate and Sign new transaction data.
-	1. Tranfer the signed transaction back to the `(HOT)` insecure online-computer.
+	1. Transfer the signed transaction back to the `(HOT)` insecure online-computer.
 	1. `(HOT)` Publish the signed transaction to the Nano Network.
 
 
