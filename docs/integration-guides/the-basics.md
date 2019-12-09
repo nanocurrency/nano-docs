@@ -153,6 +153,8 @@ So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposr
 |         |                                                        |            |
 | `nano_` | `1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjt` | `wnqposrs` |
 
+For basic address validation, the following regular expression can be used: `^(xrb|nano)_(['13456789abcdefghijkmnopqrstuwxyz']{60})$`. Validation of the checksum is also recommended, depending on the integration.
+
 !!! question "Prefixes: nano_ vs. xrb_"
     As of V19.0 **the Nano node only returns `nano_` addresses in all actions**, but prior versions returned `xrb_` addresses. These prefixes are interchangeable — everything after the `_` remains the same. If you have an issue using one or the other prefix with any exchange or service, you can safely switch between `nano_` and `xrb_` prefixes as needed — they both represent the same account owned by your private key or seed.
 
