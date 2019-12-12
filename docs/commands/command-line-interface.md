@@ -122,6 +122,9 @@ Clear record history for long term online weight trending
 ### --peer_clear
 Clear cached peers
 
+### --rebuild_database
+Rebuild LMDB database with `--vacuum` for best compaction. Requieres approximately `data.ldb size * 2` free space on disk
+
 ### --snapshot
 Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
 Optional `--confirmation_height_clear` in version 19.0+
@@ -131,6 +134,7 @@ Clear unchecked blocks
 
 ### --vacuum
 Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
+Optional `--rebuild_database` in version 21.0+
 
 ### --version    
 Prints out version
