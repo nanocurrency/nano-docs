@@ -12,26 +12,6 @@ Status                 | Details
 
 ### In Progress
 
-Details coming soon
-
-### Planning
-
-??? abstract "Dual-phase voting"
-
-	Release  | V21 (Targeted)
-	---------|----------------------- 
-	Goal     | Use a dual-phased voting approach: first is a negotiation phase to gather network consensus, and then second is issuing a final, durable vote that cannot be re-negotiated.
-	Benefits | Blocks cemented after durable vote and allowing durable vote snapshots.
-	Links    | 
-
-??? abstract "Move wallet out of process"
-
-	Release  | V21 (Targeted)
-	---------|----------------------- 
-	Goal     | Remove wallet operations out of node process.
-	Benefits | Reduced node attack surface.
-	Links    | 
-
 ??? abstract "Node Telemetry"
 
 	Release  | V21 (Targeted)
@@ -40,13 +20,56 @@ Details coming soon
 	Benefits | Better monitoring of network status and upgrades progress.
 	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
 
-??? abstract "Protobuf based RPCs"
+??? abstract "IPC Flatbuffers API"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Add new internal and external APIs for the node using Flatbuffers over IPC.
+	Benefits | Faster performance and lower memory usage, allows streaming.
+	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
+
+??? abstract "RocksDB Improvements"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Optimizations, fixes and adjustments to the RocksDB implementation.
+	Benefits | Better disk performance and early work leading up to potential production release in V22+.
+	Links    | [Forum Discussion](https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4)
+
+??? abstract "Lazy Bootstrap Optimizations"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Optimizations, fixes and adjustments to Lazy Bootstrapping.
+	Benefits | Reduced bandwidth and reliance on legacy bootstrapping.
+	Links    | N/A
+
+??? abstract "Better election alignment"
+
+	Release  | V21 (Targeted)
+	---------|----------------------- 
+	Goal     | Adjust elections process for better alignment of active elections across the network.
+	Benefits | Better performance during heavy load with reduced bandwidth.
+	Links    | N/A
+
+
+### Planning
+
+??? abstract "Dual-phase voting"
+
+	Release  | V22+ (Targeted)
+	---------|----------------------- 
+	Goal     | Use a dual-phased voting approach: first is a negotiation phase to gather network consensus, and then second is issuing a final, durable vote that cannot be re-negotiated.
+	Benefits | Blocks cemented after durable vote and allowing durable vote snapshots.
+	Links    | 
+
+??? abstract "Move wallet out of process"
 
 	Release  | V22 (Targeted)
 	---------|----------------------- 
-	Goal     | Add support for protocol buffer based RPCs.
-	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
-	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
+	Goal     | Remove wallet operations out of node process.
+	Benefits | Reduced node attack surface.
+	Links    | 
 
 ??? abstract "RPC 2.0"
 
@@ -179,15 +202,28 @@ Details coming soon
 
 ### Recent Page Updates
 
-**2019-11-14**
+**2019-12-13**
 
 | Feature | Previous | New | Reason |
 |---------|--------- |-----|--------|
-| New PoW algorithm | In Progress | Researching | Researching alternatives |
-| Initial support for RocksDB | In Progress | Completed | V20.0 release |
-| Migrate to TOML config files | In Progress | Completed | V20.0 release |
+| Dual-phase voting | V21 | V22+ | Aligning with network overlay |
+| Move wallet out of process | V21 | V22 | Other higher priority items needed |
+| Node Telemetry | Planning | In Progress | Including in V21 release |
+| Protobuf based RPCs | Planning | Removed | Replaced with IPC Flatbuffers API |
+| IPC Flatbuffers API | - | In Progress (V21 Targeted) | Get foundation ready for RPC 2.0 in V22 |
+| RocksDB Improvements | - | In Progress | Additional updates ahead of potential production release in V22+ |
+| Lazy Bootstrap Optimizations | - | In Progress | Reduced reliance on less efficient legacy bootstrapping |
+| Better election alignment | - | In Progress | Based on optimization opportunities found during V20 beta testing |
 
 ??? info "Other past changes"
+
+	**2019-11-14**
+
+	| Feature | Previous | New | Reason |
+	|---------|--------- |-----|--------|
+	| New PoW algorithm | In Progress | Researching | Researching alternatives |
+	| Initial support for RocksDB | In Progress | Completed | V20.0 release |
+	| Migrate to TOML config files | In Progress | Completed | V20.0 release |
 
 	**2019-10-09**
 
