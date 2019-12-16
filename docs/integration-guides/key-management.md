@@ -14,6 +14,8 @@ The BIP39 seed modifier "ed25519 seed" is used which makes wallets compatible wi
 
 #### Demo Examples
 
+--8<-- "external-libraries-warning.md"
+
 https://github.com/roosmaa/nano-bip39-demo
 
 https://github.com/joltwallet/bip-mnemonic
