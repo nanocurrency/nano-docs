@@ -1,3 +1,5 @@
+# Docker Management
+
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
 --8<-- "docker-limitations.md"
@@ -20,7 +22,7 @@ The following command will start the node container. Either set the specified en
 
 * `${NANO_TAG}` - The version of docker image you will be running. For consumers, `latest` is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.
 
-* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config.json](/running-a-node/configuration/#configjson) and `data.ldb` into this directory.
+* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
 
 ---
 
@@ -28,7 +30,8 @@ The following command will start the node container. Either set the specified en
 docker run --restart=unless-stopped -d \
   -p 7075:7075/udp \
   -p 7075:7075 \
-  -p 127.0.0.1:7076:7076 \
+  -p [::1]:7076:7076 \
+  -p [::1]:7078:7078 \
   -v ${NANO_HOST_FOLDER}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
@@ -42,9 +45,10 @@ docker run --restart=unless-stopped -d \
 | `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p 127.0.0.1:7076:7076`<br />or `-p [::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. Without this, anyone with access to your system's IP address can control your nano\_node. |
+| `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
-If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config.json](/running-a-node/configuration/#configjson) file.
+If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
 This will start the docker container using host ports 7075 and 7076 and put the data in a permanent location in your hosts's home directory, outside the docker container. Upon successful startup, Docker will return the container's full ID. A typical ID will look something like the value below.
 
@@ -130,9 +134,9 @@ docker stop ${NANO_NAME}
 ```
 
 !!! warning
-	Modifications made to `config.json` while the Docker container is running may not properly save and cause unwanted side-effects. Always stop the container before modifying configuration files.
+	Modifications made to configuration files while the Docker container is running have no effect until the container is restarted.
 
-You may now edit the [config.json file](/running-a-node/configuration/#configjson) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
+You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
 
@@ -165,6 +169,20 @@ Usage:
 ```
 ---
 
+### Docker USER Support
+
+As of v20.0, the docker containers support the [--user=](https://docs.docker.com/engine/reference/run/#user) and [-w=](https://docs.docker.com/engine/reference/run/#workdir) flags.
+
+To maintain existing compatibility the Docker containers are being built with `USER ROOT` and `WORK_DIR /root`
+
+The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilege escalation we can create a user and run under that context instead.
+
+In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`
+
+This will be changed to default to `USER nanocurrency` and `WORK_DIR /home/nanocurrency` in a future release
+
+---
+
 ### RPC calls to the node
 
 You can use the RPC interface on the local host via `curl` to interact with the node.
@@ -172,13 +190,13 @@ You can use the RPC interface on the local host via `curl` to interact with the 
 For example the version of the node:
 
 ```bash
-curl -d '{ "action" : "version" }' 127.0.0.1:7076
+curl -d '{ "action" : "version" }' [::1]:7076
 ```
 
 Or the blockcount:
 
 ```bash
-curl -d '{ "action" : "block_count" }' 127.0.0.1:7076
+curl -d '{ "action" : "block_count" }' [::1]:7076
 ```
 
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.

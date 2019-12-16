@@ -1,3 +1,5 @@
+# Exploring More
+
 ## The Nano Foundation
 The Nano Foundation is a non-profit organization dedicated to helping develop the Nano protocol. If you're looking for more information about the Nano Foundation operations and other non-technical details, head over to [Nano.org](https://nano.org).
 

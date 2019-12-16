@@ -1,4 +1,4 @@
-Title: Protocol Design Overview
+Title: Protocol Design Overview | Nano Documentation
 
 # Protocol Design Overview
 

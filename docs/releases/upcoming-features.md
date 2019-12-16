@@ -1,3 +1,5 @@
+# Upcoming Features
+
 Below are the more notable features the protocol development team is considering for implementation. In addition to these items there are always other updates, optimizations and new features added in. We encourage participation on [GitHub](https://github.com/nanocurrency) for anyone capable of [contributing to the code base](/protocol-design/overview/#contributing-code-to-the-nano-node).
 
 Changes made to this document are tracked at the bottom in the [Recent changes](#recent-page-updates) section.
@@ -10,30 +12,7 @@ Status                 | Details
 
 ### In Progress
 
-??? tip "New PoW algorithm"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
-	Benefits | Increase Quality of Service on network through increased spam cost.
-	Links    | https://github.com/nanocurrency/nano-node/issues/506
-
-??? tip "Initial support for RocksDB"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Add support for a new database backend using RocksDB (experimental).
-	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
-	Links    | https://github.com/nanocurrency/nano-node/pull/2197
-
-??? tip "Migrate to TOML config files"
-
-	Release  | V20
-	---------|----------------------- 
-	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
-	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
-	Links    | https://github.com/nanocurrency/nano-node/issues/1878
-
+Details coming soon
 
 ### Planning
 
@@ -59,7 +38,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Provide methods for nodes to report block height, bandwidth caps, version numbers, node vendor versions and more.
 	Benefits | Better monitoring of network status and upgrades progress.
-	Links    | 
+	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
 
 ??? abstract "Protobuf based RPCs"
 
@@ -67,7 +46,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Add support for protocol buffer based RPCs.
 	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
-	Links    | 
+	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
 
 ??? abstract "RPC 2.0"
 
@@ -75,7 +54,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
 	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
-	Links    | 
+	Links    | [Forum Discussion](https://forum.nano.org/t/rpc-2-0-refactor/110)
 
 ??? abstract "Ledger pruning"
 
@@ -83,9 +62,17 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Allow optional pruning of ledger blocks down to frontier, frontier predecessor and pending blocks.
 	Benefits | Reduce ledger size on disk and lower requirements for nodes joining the network.
-	Links    | [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
+	Links    | [Forum Discussion](https://forum.nano.org/t/ledger-pruning/114) - [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
 
 ### Researching
+
+??? info "New PoW algorithm"
+
+	Release  | TBD
+	---------|----------------------- 
+	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
+	Benefits | Increase Quality of Service on network through increased spam cost.
+	Links    | [Forum Discussion](https://forum.nano.org/t/minimum-memory-requirement-in-a-new-pow-algorithm/439) - [GitHub Issue #506](https://github.com/nanocurrency/nano-node/issues/506)
 
 ??? info "Network overlay (DHT-based)"
 
@@ -93,7 +80,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Provide a structured network overlay of nodes on the network through a distributed hash table.
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
-	Links    | N/A
+	Links    | [Forum Discussion](https://forum.nano.org/t/consider-adding-a-network-overlay/106)
 
 ??? info "Durable vote snapshots"
 
@@ -101,7 +88,7 @@ Status                 | Details
 	---------|----------------------- 
 	Goal     | Provide methods for export and importing snapshots of durable votes between nodes.
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
-	Links    | 
+	Links    | N/A
 
 ??? info "QUIC protocol"
 
@@ -120,6 +107,32 @@ Status                 | Details
 	Links    | [GitHub Issue #1731](https://github.com/nanocurrency/nano-node/issues/1731)
 
 ### Completed
+
+??? success "V20.0"
+	**New PoW infrastructure**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
+	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
+	Links    | https://github.com/nanocurrency/nano-pow-server, https://github.com/nanocurrency/nano-node/pull/2331
+
+	**Initial support for RocksDB**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Add support for a new database backend using RocksDB (experimental).
+	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
+	Links    | https://github.com/nanocurrency/nano-node/pull/2197
+
+	**Migrate to TOML config files**
+
+	Release  | V20
+	---------|----------------------- 
+	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
+	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
+	Links    | https://github.com/nanocurrency/nano-node/issues/1878
+
 
 ??? success "V19.0"
 	**TCP network overlay**
@@ -166,23 +179,37 @@ Status                 | Details
 
 ### Recent Page Updates
 
-**2019-09-20**
+**2019-11-14**
 
-| Feature | Prev | New | Reason |
-|---------|---------|-----|--------|
-| New PoW algorithm            | Researching | V20  | Recently prioritized |
-| Initial support for RocksDB  | -           | V20  | Recently prioritized |
-| Migrate to TOML config files | -           | V20  | Recently prioritized |
-| Dual-phase voting target     | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
-| Move wallet out of process   | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
-| Durable vote snapshots       | V20         | V22+ | Lower anticipated ROI vs. other features |
-| Protobuf based RPCs          | V21         | V22  | Reduce previous version scope |
-| RPC 2.0                      | V21         | V22  | Reduce previous version scope |
-| Ledger Pruning               | V21         | V23  | Reduce previous version scope and allow further evaluation |
-| QUIC Protocol                | V22+        | TBD  | Allow further evaluation |
-
+| Feature | Previous | New | Reason |
+|---------|--------- |-----|--------|
+| New PoW algorithm | In Progress | Researching | Researching alternatives |
+| Initial support for RocksDB | In Progress | Completed | V20.0 release |
+| Migrate to TOML config files | In Progress | Completed | V20.0 release |
 
 ??? info "Other past changes"
+
+	**2019-10-09**
+
+	| Feature | Previous | New | Reason |
+	|---------|--------- |-----|--------|
+	| New PoW algorithm | In Progress | Researching | Continuing research into algorithm design |
+	| Initial support for RocksDB | - | In Progress | Recently split from algorithm into separate scope |
+
+	**2019-09-20**
+
+	| Feature | Previous | New | Reason |
+	|---------|----------|-----|--------|
+	| New PoW algorithm            | Researching | V20  | Recently prioritized |
+	| Initial support for RocksDB  | -           | V20  | Recently prioritized |
+	| Migrate to TOML config files | -           | V20  | Recently prioritized |
+	| Dual-phase voting target     | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
+	| Move wallet out of process   | V20         | V21  | Moved in favor of New PoW Algorithm for V20 |
+	| Durable vote snapshots       | V20         | V22+ | Lower anticipated ROI vs. other features |
+	| Protobuf based RPCs          | V21         | V22  | Reduce previous version scope |
+	| RPC 2.0                      | V21         | V22  | Reduce previous version scope |
+	| Ledger Pruning               | V21         | V23  | Reduce previous version scope and allow further evaluation |
+	| QUIC Protocol                | V22+        | TBD  | Allow further evaluation |
 
 	**2019-07-30**
 

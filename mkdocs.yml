@@ -1,4 +1,5 @@
 site_name: Documentation
+site_url: https://docs.nano.org/
 theme:
   name: 'material'
   palette:
@@ -11,6 +12,7 @@ theme:
   feature:
     tabs: false
   favicon: 'images/favicon.png'
+  custom_dir: 'theme'
 nav:
   - Home: index.md
   - What is Nano?:
@@ -20,10 +22,12 @@ nav:
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Node Setup: running-a-node/node-setup.md
+    - Security: running-a-node/security.md
     - Docker Management: running-a-node/docker-management.md
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
     - Troubleshooting: running-a-node/troubleshooting.md
+    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
@@ -40,8 +44,10 @@ nav:
     - Networking: protocol-design/networking.md
     - Network Attacks: protocol-design/network-attacks.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+    - Original whitepaper: whitepaper/english.md
   - Releases:
     - Node Releases: releases/node-releases.md
+    - Network Upgrades: releases/network-upgrades.md
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
@@ -83,12 +89,15 @@ markdown_extensions:
   - pymdownx.striphtml:
       strip_comments: true
       strip_attributes: ''
+  - meta
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'
 extra_css:
   - 'stylesheets/extras.css'
 extra:
+  search:
+  - tokenizer: '[\s\-\.]+'
   social:
   - type: 'github'
     link: 'https://github.com/nanocurrency'

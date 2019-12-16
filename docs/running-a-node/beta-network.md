@@ -74,6 +74,7 @@ docker run --restart=unless-stopped -d \
   -p 54000:54000/udp \
   -p 54000:54000 \
   -p [::1]:55000:55000 \
+  -p [::1]:57000:57000 \
   -v ${NANO_HOST_FOLDER_BETA}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano-beta:latest-including-rc
@@ -97,13 +98,13 @@ docker run --restart=unless-stopped -d \
 ## Testing Builds
 
 ### Release Candidate Builds
-No Release Candidate (RC) builds are available for the beta network at this time.
+During Release Candidate periods the latest build on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) will be tagged with an `RC` number. Various binaries are available below the changelog there for download (Windows, Linux, macOS, etc.). If building on your own, use the [latest tags](https://github.com/nanocurrency/nano-node/tags) containing `RC`.
+
+Additional details for services who wish to test their integrations on the beta network for proper migration between releases can be found in the [Release Notes area](/releases/node-releases/#release-notes).
 
 ### Development Builds
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
 
-**Read-only Test Cases**  
-[Test Cases](/testcases/Cases.html)  |  [TOML Config](/testcases/TOML%20Config.html)  |  [DB Results](/testcases/DB%20results.html)  | [Generic Results](/testcases/Generic%20results.html)  
-_Last updated: 2019-09-20_
+**Beta test cases are not currently available**
 
 If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
