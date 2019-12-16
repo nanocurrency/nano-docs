@@ -20,6 +20,9 @@ https://github.com/roosmaa/nano-bip39-demo
 
 https://github.com/joltwallet/bip-mnemonic
 
+#### Implementations
+
+https://github.com/numsu/nanocurrency-web-js
 
 #### Test Vectors
 Given 24-Word Mnemonic:
