@@ -16,7 +16,7 @@ Status                 | Details
 
 	Release  | V21 (Targeted)
 	---------|----------------------- 
-	Goal     | Provide methods for nodes to report block height, bandwidth caps, version numbers, node vendor versions and more.
+	Goal     | Provide methods for nodes to report block count, bandwidth caps, version numbers, node vendor versions and more.
 	Benefits | Better monitoring of network status and upgrades progress.
 	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
 
