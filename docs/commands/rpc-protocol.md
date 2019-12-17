@@ -529,7 +529,8 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
 ```json
 {
   "count": "1000",
-  "unchecked": "10"
+  "unchecked": "10",
+  "cemented": "25"
 }
 ```
 **Optional "include_cemented"**
@@ -1465,6 +1466,7 @@ Tells the node to send a keepalive packet to **address**:**port**
 **Response:**
 ```json
 {
+  "started": "1"
 }
 ```
 
@@ -1634,7 +1636,7 @@ Removing node ID (restart required to take effect)
 **Response:**
 ```json
 {
-  "deleted": "1"
+  "deprecated": "1"
 }
 ```  
 
@@ -1968,6 +1970,7 @@ Rebroadcast blocks starting at **hash** to the network
 **Response:**
 ```json
 {
+  "success": "",
   "blocks": [
     "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
     "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293"
@@ -4023,6 +4026,7 @@ Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseco
 **Response:**
 ```json
 {
+  "deprecated": "1",
   "status" : "success"
 }
 ```  
