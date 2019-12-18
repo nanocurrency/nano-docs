@@ -1,5 +1,8 @@
 # Joining the beta network
 
+!!! tip "Testing is currently ongoing on the beta network for Version 21"
+	Read through this page if you would like to participate, and find the currently selected test cases at the end.
+
 A few common reasons for joining the beta network include:
 
 * Learning node setup and management
@@ -105,6 +108,7 @@ Additional details for services who wish to test their integrations on the beta 
 ### Development Builds
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
 
-**Beta test cases are not currently available**
+### Ongoing Test Cases
+Beta testing is currently ongoing for V21. See the [test cases](/testcases/Cases.html) and summarized [results](/testcases/Results.html) submitted by developers and community testers.
 
 If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
