@@ -449,7 +449,11 @@ To subscribe to all votes notifications:
 
 ##### Filtering options
 
-Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
+The following filtering options can be combined.
+
+###### Representatives
+
+Used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted. If the result is an empty filter (for example, all given accounts are invalid), then the filter is not used. A message is logged in the node logs when this happens.
 
 ```json
 {
@@ -460,6 +464,27 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
       "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
       "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
     ]
+  }
+}
+```
+
+###### Vote type
+
+Votes are one of three types:
+
+- `replay` , if this exact vote had been seen before
+- `vote`, if it is the first time the vote has been seen
+- `indeterminate`, when it cannot be determined due to a lack of an associated election
+
+By default only `vote` type votes are broadcasted, and the others are filtered. To disable these filters set `include_replays` to `true` and/or `include_indeterminate` to `true`.
+
+```json
+{
+  "action": "subscribe",
+  "topic": "vote",
+  "options": {
+    "include_replays": "true",
+    "include_indeterminate": "true"
   }
 }
 ```
@@ -476,7 +501,8 @@ Filters for **votes** can be used to subscribe only to votes from selected repre
     "sequence": "855471574",
     "blocks": [
       "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
-    ]
+    ],
+    "type": "replay" // since V21.0, can be vote/replay/indeterminate
   }
 }
 ```
