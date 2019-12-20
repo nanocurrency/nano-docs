@@ -409,7 +409,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second moving average of adjusted difficulty seen on active transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
 
 **Request:**
 ```json
@@ -429,7 +429,7 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 
 **Optional "include_trend"**
 
-Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.
 Note: Before v20, the sampling period was between 16 and 36 seconds.
 
 **Request:**
@@ -1150,6 +1150,7 @@ Returns info about active election by **root**. Including announcements count, l
 **Response:**
 ```json
 {
+  "active": "true", // since V21.0
   "announcements": "2",
   "voters": "29",
   "last_winner": "B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F",

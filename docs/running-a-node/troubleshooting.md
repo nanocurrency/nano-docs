@@ -169,7 +169,8 @@ type:
 	udp
 	observer
 	confirmation_height
-	drop	
+	drop
+	active_transactions
 
 details:
         all
@@ -254,6 +255,11 @@ details:
 	// confirmation height
 	blocks_confirmed
 	invalid_block
+
+	// active transactions
+	active
+	passive
+	drop
 
 dir (direction) :
 	in
