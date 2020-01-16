@@ -272,6 +272,8 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 
 More details about the RPC setup can be found in the [Running Nano as a service guide](/integration-guides/advanced/#running-nano-as-a-service).
 
+To add HTTPS support to the RPC server, please see [HTTPS Support](configuration-https.md).
+
 --8<-- "multiple-node-setups-warning.md"
 
 ---
