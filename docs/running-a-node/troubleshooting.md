@@ -258,9 +258,9 @@ details:
     invalid_block
 
     // requests
-    requests_cached
-    requests_generated
-    requests_ignored
+    requests_votes_cached
+    requests_votes_generated
+    requests_votes_ignored
 
 dir (direction) :
     in
