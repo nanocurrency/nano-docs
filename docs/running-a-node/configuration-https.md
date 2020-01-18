@@ -6,7 +6,7 @@ OpenSSL must be installed. When running cmake initially, you may need to set `-D
 ## Configuration
 The following section in `config-rpc.toml` enables TLS:
 
-```
+```toml
 [secure]
 enable=true
 verbose_logging=true
@@ -44,7 +44,7 @@ We also need to generate a Diffie-Hellman params file:
 ## Test call
 
 Create a POST request to `https://www.example.com:7076` with the following body:
-```
+```json
 {
     "action": "block_count"
 }
