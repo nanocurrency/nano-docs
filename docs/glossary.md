@@ -15,9 +15,6 @@ A repeating half-second cycle on the node during which votes are collected for a
 #### Block
 A single Nano transaction. All new transactions (e.g. sends, receives, representative changes, etc) on the Nano Protocol are communicated via state blocks (since node V11). The account's entire state, including the balance after each transaction, is recorded in each block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. Before V11, each transaction type (open, send, receive, change) had its own legacy block type.
 
-#### Block
-A single Nano transaction. All new transactions (e.g. sends, receives, representative changes, etc) on the Nano Protocol are communicated via state blocks (since node V11). The account's entire state, including the balance after each transaction, is recorded in each block. Transaction amounts are interpreted as the difference in balance between consecutive blocks. Before V11, each transaction type (open, send, receive, change) had its own legacy block type.
-
 #### block hash
 A 64 character, uppercase hexadecimal string (0-9A-F) value representing a unique block on an account.
 
