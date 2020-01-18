@@ -123,7 +123,7 @@ For implementations details, please see [Statistics API](https://github.com/cryp
 
 All configuration nodes and values are optional, with the default values shown in comments below:
 
-```
+```json
 "node": {
     ...
     "statistics": {
@@ -153,118 +153,125 @@ All configuration nodes and values are optional, with the default values shown i
 
 ```
 type:
-	traffic
-	traffic_tcp
-	error
-	message
-	block
-	ledger
-	rollback
-	bootstrap
-	vote
-	http_callback
-	peering
-	ipc
-	tcp
-	udp
-	observer
-	confirmation_height
-	drop	
+    traffic
+    traffic_tcp
+    error
+    message
+    block
+    ledger
+    rollback
+    bootstrap
+    vote
+    http_callback
+    peering
+    ipc
+    tcp
+    udp
+    observer
+    confirmation_height
+    drop
+    requests
 
 details:
-        all
-	// error specific
-	bad_sender
-	insufficient_work
-	http_callback
-	unreachable_host
+    all
 
-	// observer specific
-	observer_confirmation_active_quorum
-	observer_confirmation_active_conf_height
-	observer_confirmation_inactive
-	
-	// ledger, block, bootstrap
-	send
-	receive
-	open
-	change
-	state_block
-	epoch_block
-	fork
+    // error specific
+    bad_sender
+    insufficient_work
+    http_callback
+    unreachable_host
 
-	// Message specific
-	keepalive
-	publish
-	republish_vote
-	confirm_req
-	confirm_ack
-	node_id_handshake
+    // observer specific
+    observer_confirmation_active_quorum
+    observer_confirmation_active_conf_height
+    observer_confirmation_inactive
+    
+    // ledger, block, bootstrap
+    send
+    receive
+    open
+    change
+    state_block
+    epoch_block
+    fork
 
-	// bootstrap, callback
-	initiate
-	initiate_lazy
-	initiate_wallet_lazy
+    // Message specific
+    keepalive
+    publish
+    republish_vote
+    confirm_req
+    confirm_ack
+    node_id_handshake
 
-	// Bootstrap specific
-	bulk_pull
-	bulk_pull_account
-	bulk_pull_deserialize_receive_block
-	bulk_pull_error_starting_request
-	bulk_pull_failed_account
-	bulk_pull_receive_block_failure
-	bulk_pull_request_failure
-	bulk_push
-	frontier_req
-	error_socket_close
+    // bootstrap, callback
+    initiate
+    initiate_lazy
+    initiate_wallet_lazy
 
-	// Vote specific
-	vote_valid
-	vote_replay
-	vote_invalid
-	vote_overflow
-	vote_new
-	vote_cached
+    // Bootstrap specific
+    bulk_pull
+    bulk_pull_account
+    bulk_pull_deserialize_receive_block
+    bulk_pull_error_starting_request
+    bulk_pull_failed_account
+    bulk_pull_receive_block_failure
+    bulk_pull_request_failure
+    bulk_push
+    frontier_req
+    error_socket_close
 
-	// udp
-	blocking
-	overflow
-	invalid_magic
-	invalid_network
-	invalid_header
-	invalid_message_type
-	invalid_keepalive_message
-	invalid_publish_message
-	invalid_confirm_req_message
-	invalid_confirm_ack_message
-	invalid_node_id_handshake_message
-	outdated_version
+    // Vote specific
+    vote_valid
+    vote_replay
+    vote_invalid
+    vote_overflow
+    vote_new
+    vote_cached
 
-	// tcp
-	tcp_accept_success
-	tcp_accept_failure
-	tcp_write_drop
+    // udp
+    blocking
+    overflow
+    invalid_magic
+    invalid_network
+    invalid_header
+    invalid_message_type
+    invalid_keepalive_message
+    invalid_publish_message
+    invalid_confirm_req_message
+    invalid_confirm_ack_message
+    invalid_node_id_handshake_message
+    outdated_version
 
-	// ipc
-	invocations
+    // tcp
+    tcp_accept_success
+    tcp_accept_failure
+    tcp_write_drop
 
-	// peering
-	handshake
+    // ipc
+    invocations
 
-	// confirmation height
-	blocks_confirmed
-	invalid_block
+    // peering
+    handshake
+
+    // confirmation height
+    blocks_confirmed
+    invalid_block
+
+    // requests
+    requests_cached
+    requests_generated
+    requests_ignored
 
 dir (direction) :
-	in
-	out
+    in
+    out
 ```
 
 ### RPC Command
 
 #### Counters query:
 
-```
+```json
 {
     "action": "stats",
     "type": "counters"
@@ -273,7 +280,7 @@ dir (direction) :
 
 #### Counters response
 
-```
+```json
 {
     "type": "counters",
     "created": "2018.03.29 01:46:36",
@@ -320,7 +327,7 @@ dir (direction) :
 
 #### Samples query:
 
-```
+```json
 {
     "action": "stats",
     "type": "samples"
@@ -328,7 +335,7 @@ dir (direction) :
 ```
 #### Samples response
 
-```
+```json
 {
     "type": "samples",
     "created": "2018.03.29 01:47:08",
