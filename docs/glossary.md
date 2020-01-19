@@ -98,9 +98,10 @@ The [account](#account) if the block is the first block on the account, otherwis
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
 
 #### Transactions Per Second (TPS)
-Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was a per-node measurement that represented the perceived network-level transmission rate ([BPS](#blocks-per-second-bps)), but this measurement was found to be somewhat inaccurate due to peering and propagation differences between nodes. TPS is now used to refer to ([Confirmations Per Second](#confirmations-per-second-cps)/2) which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Nano sends do not require a corresponding receive to be [confirmed](#confirmation), but receive blocks do need to be confirmed before received funds can be sent again (see [pending](#pending)).
+Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [pending](#pending)).
 
 #### unchecked (blocks)
+Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all bocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
 
 #### unopened account
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).
