@@ -276,6 +276,7 @@ Current topics available for subscribing to include:
 * `vote` (experimental, unfinished)
 * `stopped_election`
 * `active_difficulty`
+* `bootstrap`
 
 ---
 
@@ -639,6 +640,56 @@ Notes:
 - The duration is in milliseconds
 - If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
 - When work generation is done locally it will show `"source": "local"`
+
+
+#### Bootstrap
+
+##### Subscribing
+
+To subscribe to bootstrap attempts start/exit notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "bootstrap"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `bootstrap` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "bootstrap",
+  "time": "1561661740065",
+  "message": {
+    "reason": "started",
+    "id": "C9FF2347C4DF512A7F6B514CC4A0F79A",
+    "mode": "legacy"
+  }
+}
+```
+
+```json
+{
+  "topic": "bootstrap",
+  "time": "1561661740565",
+  "message": {
+    "reason": "exited",
+    "id": "C9FF2347C4DF512A7F6B514CC4A0F79A",
+    "mode": "legacy",
+    "total_blocks": "1000000",
+    "duration": "500"
+  }
+}
+```
+
+Notes:
+
+- The duration is in seconds
 
 ### Keepalive
 

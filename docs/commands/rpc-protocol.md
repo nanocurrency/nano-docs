@@ -893,6 +893,10 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 _version 20.0+_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
 ---
 
 ### bootstrap_any  
@@ -913,6 +917,10 @@ Initialize multi-connection bootstrap to random peers. Not compatible with launc
 **Optional "force"**  
 _version 20.0+_  
 Boolean, false by default. Manually force closing of all current bootstraps  
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
@@ -936,6 +944,10 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 **Optional "force"**
 
 Boolean, false by default. Manually force closing of all current bootstraps  
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
