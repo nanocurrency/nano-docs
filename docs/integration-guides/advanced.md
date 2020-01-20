@@ -644,6 +644,8 @@ Notes:
 
 #### Bootstrap
 
+This subscription is available since _v21.0_
+
 ##### Subscribing
 
 To subscribe to bootstrap attempts start/exit notifications:
