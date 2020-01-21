@@ -261,6 +261,7 @@ details:
     requests_votes_cached
     requests_votes_generated
     requests_votes_ignored
+    requests_dropped
 
 dir (direction) :
     in
