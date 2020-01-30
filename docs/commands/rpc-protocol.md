@@ -953,6 +953,55 @@ Returning status of current bootstrap attempt
 }
 ```  
 **Response:**
+_versions 21.0+_
+```json
+{
+  "bootstrap_threads": "2",
+  "running_attempts_count": "2",
+  "total_attempts_count": "6",
+  "connections": {
+    "clients": "31",
+    "connections": "45",
+    "idle": "0",
+    "target_connections": "64",
+    "pulls": "1158514"
+  },
+  "attempts": [
+    {
+      "id": "EE778222D6407F94A666B8A9E03D242D",
+      "mode": "legacy",
+      "started": "true",
+      "pulling": "1158544",
+      "total_blocks": "4311",
+      "requeued_pulls": "7",
+      "frontier_pulls": "0",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "frontiers_confirmation_pending": "false",
+      "duration": "133"
+    },
+    {
+      "id": "291D2CC32F44E004896C4215A6CDEDAFEF317F6AC802C244E8F4B4F2456175CB",
+      "mode": "lazy",
+      "started": "true",
+      "pulling": "1",
+      "total_blocks": "1878",
+      "requeued_pulls": "4",
+      "lazy_blocks": "1878",
+      "lazy_state_backlog": "1",
+      "lazy_balances": "4",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "13",
+      "lazy_keys": "2",
+      "lazy_key_1": "E6D0B5BD5EBDB3CEC7DBC32EDC3C2DBD5ABA17C54E34485A358BF8948039ED6A",
+      "duration": "17"
+    }
+  ]
+}
+```
+**Response:**
+_versions 17.0-20.0_
 ```json
 {
   "clients": "0",
