@@ -109,6 +109,4 @@ Additional details for services who wish to test their integrations on the beta 
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
 
 ### Ongoing Test Cases
-Beta testing is currently ongoing for V21. See the [test cases](/testcases/Cases.html) and summarized [results](/testcases/Results.html) submitted by developers and community testers.
-
 If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
