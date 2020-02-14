@@ -1691,6 +1691,85 @@ Removing node ID (restart required to take effect)
 
 ---
 
+### node_telemetry
+_version 21.0+_  
+Return metrics from nodes. Values may be cached for 16 seconds on beta and 60 seconds on the live network
+
+**Request:**
+```json
+{
+  "action": "node_telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "4",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1581679654"
+}
+```
+This contains a summarized view of the network. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **timestamp** is measured in seconds.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "node_telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "block_count": "11375266",
+      "cemented_count": "11375266",
+      ...
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "block_count": "11275266",
+      "cemented_count": "11175268",
+      ...    
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "node_telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+---
+
 ### peers  
 Returns a list of pairs of online peer IPv6:port and its node protocol network version    
 
