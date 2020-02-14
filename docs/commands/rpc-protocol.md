@@ -149,11 +149,13 @@ Returns frontier, open block, change representative block, balance, last modifie
   "modified_timestamp": "1501793775",
   "block_count": "33",
   "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "account_version": "1"
 }
 ```
 
-In response `confirmation_height` only available for _version 19.0+_ 
+In response `confirmation_height` only available for _version 19.0+_  
+In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
