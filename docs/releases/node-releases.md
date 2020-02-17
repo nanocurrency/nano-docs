@@ -32,10 +32,11 @@ The following release is currently under development. Details about potential fe
 ---
 
 ## Active Releases
-The following older releases can still actively participate on the network with other nodes of the same and newer versions.
+The following releases can still actively participate on the network by peering with other nodes of the same versions. Any nodes running versions earlier than these will no longer peer with the latest and fall out of sync with the network.
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
+| 20.0         | 17               | 2019-11-12          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
 | 19.0 | 17 | 2019-07-11 | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
 | 18.0 | 16 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
 
