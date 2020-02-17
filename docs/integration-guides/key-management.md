@@ -289,7 +289,7 @@ curl -d '{
     |                    |       |
     | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
-    | `"previous"`       | `"frontier"` from `account_info` response |
+    | `"previous"`       | `"frontier"` from `account_info` response, or `0` if first block on new account |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` address returned in the `account_info` call |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed (decreased if sending, increased if receiving). In this example, we will receive 7 $nano$ ($7 \times 10^{30} raw$) based on the assumed details of the block the `"link"` hash refers to (block contents not shown in this example). |
