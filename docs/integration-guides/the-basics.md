@@ -261,7 +261,7 @@ curl -d '{
   "action":"block_create",
   "json_block": "true",
   "type":"state",
-  "previous":"FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
+  "previous":"0",
   "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
   "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
   "balance":"5000000000000000000000000000000",
@@ -276,7 +276,7 @@ curl -d '{
   "block": {
     "type": "state",
     "account": "nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-    "previous": "FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
+    "previous": "0",
     "representative": "nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
     "balance": "5000000000000000000000000000001",
     "link": "B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F",
