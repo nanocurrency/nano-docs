@@ -239,6 +239,21 @@ If the action succeeds, the following message will be sent back (note that no me
 }
 ```
 
+### Update
+
+Some subscriptions can be updated without requiring unsubscribing and re-subscribing to the same topic. A typical message is the following:
+
+```json
+{
+  "action": "update",
+  "topic": "confirmation",
+  "options": {
+    ...
+  }
+}
+```
+
+Updatable filter options are mentioned in the examples below.
 
 ### Subscribe/Unsubscribe
 
@@ -343,6 +358,25 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 
 * When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
+
+??? tip "Updating the list of accounts"
+    _version 21.0+_  
+    The list of `accounts` for which blocks are broadcasted can be updated (see [Update](#update)):
+    ```json
+    {
+      "action": "update",
+      "topic": "confirmation",
+      "options": {
+        "accounts_add": [
+          ... // additional accounts to track
+        ],
+        "accounts_del": [
+          ... // accounts to remove from tracking
+        ]
+      }
+    }
+    ```
+    Note that this can result in an empty filter.
 
 ##### Response Options
 
