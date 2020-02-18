@@ -14,11 +14,9 @@ A few common reasons for joining the beta network include:
 
 ## Differences from the main network
 
-Up to node *v19.0*, the main and beta networks had no functional differences. However, starting from *v20.0*, the following differences apply to the **beta network**.
-
 | Parameter | Main Network | Beta Network | Comment |
 |-----------|--------------|--------------|---------|
-| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffffc0000000000` | 16 times lower on the beta network |
+| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffff00000000000` | 64 times lower on the beta network |
 
 
 ## Node release testing
