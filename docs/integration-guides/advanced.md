@@ -638,7 +638,8 @@ Successful work generation:
   "request": {
     "hash": "3ECE2684044C0EAF2CA6B1C72F11AFC5B5A75C00CFF993FB17B6E75F78ABF175",
     "difficulty": "ffffff999999999a",
-    "multiplier": "10.000000000009095"
+    "multiplier": "10.000000000009095",
+    "version": "work_1" // since V21.0
   },
   "result": {
     "source": "192.168.1.101:7000",

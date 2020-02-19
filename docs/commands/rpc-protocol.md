@@ -631,6 +631,11 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 
 Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
 
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
+
 ---
 
 ### block_hash  
@@ -2647,6 +2652,11 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 _version 20.0+_  
 A valid Nano account. If provided and `use_peers` is set to `true`, this information will be relayed to work peers.
 
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
+
 ---
 
 ### work_peer_add  
@@ -2748,6 +2758,11 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to validate work.  
 ***Note:*** overrides the `difficulty` parameter.  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
 
 ---
 
