@@ -124,13 +124,16 @@ Clear cached peers
 
 ### --snapshot
 Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
-Optional `--confirmation_height_clear` in version 19.0+
+Optional `--confirmation_height_clear` in version _19.0+_  
+Optional `--rebuild_database` in version _21.0+_ for a more aggresive compaction. Will increase time taken and require 2x more available space on disk than the ledger size.  
 
 ### --unchecked_clear
 Clear unchecked blocks
 
 ### --vacuum
 Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
+Optional `--confirmation_height_clear` in version _19.0+_  
+Optional `--rebuild_database` in version _21.0+_ for a more aggresive compaction. Will increase time taken and require 2x more available space on disk than the ledger size.  
 
 ### --version    
 Prints out version
