@@ -1,3 +1,7 @@
+.md-container {
+    background-color: white;
+}
+
 .md-header-nav__button.md-logo img {
     display: block;
     height: 48px;
