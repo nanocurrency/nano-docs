@@ -225,7 +225,7 @@ The addition of confirmation height to the database requires the node to validat
 
 For those looking to utilize the new WebSocket confirmation subscription or new `confirmed` field in [`block_info`](/commands/rpc-protocol/#block_info) RPC responses, special considerations should be taken if implementing before confirmation height updates are complete:
 
-* If the [websocket confirmation subscription](/integration-guides/advanced/#confirmations) is hooked up to receive all confirmations (default) then notifications for confirmations will come through during the cementing process on a new or upgrading ledger as the confirmation process will occur (it also fires for dependent confirmations)
+* If the [websocket confirmation subscription](/integration-guides/websockets) is hooked up to receive all confirmations (default) then notifications for confirmations will come through during the cementing process on a new or upgrading ledger as the confirmation process will occur (it also fires for dependent confirmations)
 * Calls to [`block_info`](/commands/rpc-protocol/#block_info) for blocks in the ledger before the confirmation height upgrade process began may indicate `confirmed` as `false` despite their having been confirmed on the network before. This is expected behavior.
 * To validate that confirmation height upgrade is complete, note the `count` value from the [`block_count`](/commands/rpc-protocol/#block_count) RPC when the upgrade is started and once the `cemented` amount returned by this call (include the `include_cemented` option) is higher than that previous count, cementing is in sync.
 
@@ -289,7 +289,7 @@ By default the RPC server will run in the node process, but can be configured to
 
 * New `active_elections_size` will limit the number of active elections allowed before dropping occurs. Default is 50,000 but higher settings are recommended for nodes provisioned with 8GB RAM or more
 * New `bandwidth_limit` will limit the outbound voting traffic to 5MB/s by default
-* New `confirmation_history_size` provides an adjustable limit on the batching of confirmations return in the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC. Default 2048 which will support up to \~56 confirmations/sec before confirmations may be missed. **The new [websocket setup](/integration-guides/advanced/#websocket-support) with confirmation subscription is recommended over use of the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC.**
+* New `confirmation_history_size` provides an adjustable limit on the batching of confirmations return in the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC. Default 2048 which will support up to \~56 confirmations/sec before confirmations may be missed. **The new [websocket setup](/integration-guides/websockets) with confirmation subscription is recommended over use of the [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC.**
 
 !!! tip "Advanced Configuration"
 	New `vote_generator_delay` allows for tuning performance of bundling votes by hash before sending.

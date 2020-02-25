@@ -46,7 +46,7 @@ docker run --restart=unless-stopped -d \
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
 | `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
-| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
+| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/websockets). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 

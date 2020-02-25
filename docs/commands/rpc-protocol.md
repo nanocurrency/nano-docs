@@ -1130,7 +1130,7 @@ _version 12.0+_
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/websockets) instead.
 
 **Request:**
 ```json

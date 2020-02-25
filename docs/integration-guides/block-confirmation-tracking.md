@@ -16,7 +16,7 @@ The recommended method for receiving notifications is via WebSockets through the
 
 1. Update your [WebSocket configuration](/running-a-node/configuration/#websocket)
 1. Connect to the WebSocket at the configured endpoint
-1. Send a [subscription request for all confirmations](/integration-guides/advanced/#confirmations) including the ack option and validate the subscription request was successful
+1. Send a [subscription request for all confirmations](/integration-guides/websockets#confirmations) including the ack option and validate the subscription request was successful
 1. Listen for block confirmation notifications from the WebSocket
 
 As confirmations are received they can be parsed and handled as necessary. All operations handling notifications from the node on block confirmation should be idempotent as multiple notifications for the same block hash can occur.
