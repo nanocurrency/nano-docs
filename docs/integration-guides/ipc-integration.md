@@ -259,8 +259,6 @@ TCP and unix domain sockets are supported. Named pipes and shared memory may be 
 
 **IPC clients**
 
-A demo web server written in Go is available at https://github.com/nanocurrency/rpc-go. This allows HTTP clients to make JSON requests via IPC, which is compatible with the existing format. The web server can communicate with a node over domain sockets or TCP.
-
 A NodeJS client is available at https://github.com/meltingice/nano-ipc-js
 
 A Python client is being developed at https://github.com/guilhermelawless/nano-ipc-py
