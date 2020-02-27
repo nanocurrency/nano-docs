@@ -148,7 +148,7 @@ Any problems with the JSON request will be reported with error details:
 ## IPC Authorization
 
 !!! warning "Work in progress"
-	Permission settings is a work in progress, and their exact definition and defaults will be part of RPC 2.0 in a future node release.
+    Permission settings is a work in progress, and their exact definition and defaults will be part of RPC 2.0 in a future node release.
 
 With IPC 2.0, the Nano node offers an authorization system.
 
@@ -199,43 +199,38 @@ allow = "unrestricted"
 
 A more elaborate sample:
 
+!!! warning "Work in progress"
+    Permission settings is a work in progress, and their exact definition and defaults will be part of RPC 2.0 in a future node release.
+
 ```toml
 [[role]]
-id = "process_admin"
-allow = "api_service_stop"
-
-[[role]]
-id = "walletadmin"
-allow = "wallet_read, wallet_write"
-
-# Add some additional permissions to the default user
-# This is used when no credentials are given
-[[user]]
-allow = "wallet_seed_change, epoch_upgrade, wallet_read"
-
-# The default user can also be set to bare (no default permissions). 
-# That way, a node can be exposed with a limited set of default permissions.
-#bare = true
+id = "service_admin"
+allow = "api_service_register, api_service_stop"
 
 [[user]]
-id = "mywalletuser"
+# User id's are typically randomly generated strings which
+# matches the credentials in API requests.
+id = "user-2bb818ee-6424-4750-8bdb-db23bab7bc57"
+
 # Inherit all the permissions from these roles
-roles = "process_admin, walletadmin"
+roles = "service_admin"
 
 # Add additional permissions for this specific user
-allow = "wallet_seed_change, epoch_upgrade"
+allow = "wallet_seed_change, api_topic_confirmation"
 
-# Default and inherited permissions can be denied
-deny = "wallet_read"
+# A list of specific permissions can be denied as well
+deny = "api_account_weight"
 
 [[user]]
-id = "epoch-user"
+id = "history-viewer-e3cf8a09-bd74-4ef2-9b84-e14f3db2bb4b"
 
 # Add specific permission for this user
-allow = "epoch_upgrade"
+allow = "api_account_info, api_account_history"
 
 # Do not inherit any default permissions. This is useful
-# for making users with an explicit set of minimum permissions.
+# for making users with a explicit set of minimum permissions.
+# The default user can also be set to bare. That way, a node can be
+# exposed with a limited set of default permissions.
 bare = true
 ```
 
