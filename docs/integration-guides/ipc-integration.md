@@ -86,7 +86,7 @@ The `time` property is milliseconds since unix epoch when the message was produc
 
 **Relation to the WebSocket response structure**
 
-The `message` and `time` properties of the response envelope is exactly the same as in WebSockets (https://docs.nano.org/integration-guides/advanced/#websocket-support) Instead of `message_type`, WebSockets use `topic`. This structure should help simplify clients using both HTTP and WebSockets.
+The `message` and `time` properties of the response envelope is exactly the same as in [WebSockets](/integration-guides/websockets). Instead of `message_type`, WebSockets use `topic`. This structure should help simplify clients using both HTTP and WebSockets.
 
 **Headers**
 
