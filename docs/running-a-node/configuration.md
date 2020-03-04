@@ -201,6 +201,14 @@ work_peers = [
 
 ---
 
+#### node.work_threads
+
+--8<-- "alternative-work-generation-setup-preferred.md"
+
+Determines the number of local CPU threads to used for work generation. To turn off local CPU work generation set to `0`. See [opencl.enable](#opencl-enable) below for details on setting the node up for GPU-based work generation (preferred).
+
+---
+
 #### opencl.enable
 
 To enable GPU acceleration for PoW, set this option to `true`. Other OpenCL parameters may need to be adjusted depending on the desired setup.
