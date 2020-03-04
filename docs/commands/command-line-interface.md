@@ -184,6 +184,14 @@ Increase block processor allowed blocks queue size before dropping live network 
 ### --block_processor_verification_size
 Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
 
+### --inactive_votes_cache_size
+_version 21.0+_
+Increase cached votes without active elections size, default 16384
+
+### --vote_processor_capacity
+_version 21.0+_
+Vote processor queue size before dropping votes, default 144k
+
 ### --disable_backup
 Turn off automatic wallet backup process
 
@@ -218,6 +226,10 @@ Prevent drop of all unchecked entries at node/wallet start
 ### --enable_udp
 _version 21.0+_
 Turn on use of the UDP live network.
+
+### --allow_bootstrap_peers_duplicates
+_version 21.0+_
+Allow multiple connections to the same peer in bootstrap attempts
 
 ### --fast_bootstrap
 Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
