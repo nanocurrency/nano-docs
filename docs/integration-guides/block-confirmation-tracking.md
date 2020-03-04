@@ -10,11 +10,11 @@ A primary function of any integration is to track confirmation of blocks on the 
 
 ### Receiving notifications of confirmation
 
-The recommended method for receiving notifications is via WebSockets through the confirmation `topic`. This method involves sending a subscribe command to start receiving notifications every time a block is confirmed by the network. It is recommended that the `confirmation_type` filtering options are not used for this purpose, to make it less likely to miss a notification.
+The recommended method for receiving notifications is via [WebSockets](/integration-guides/websockets) through the confirmation `topic`. This method involves sending a subscribe command to start receiving notifications every time a block is confirmed by the network. It is recommended that the `confirmation_type` filtering options are not used for this purpose, to make it less likely to miss a notification.
 
 **Setup process**
 
-1. Update your [WebSocket configuration](/running-a-node/configuration/#websocket)
+1. Update your [WebSocket configuration](/running-a-node/configuration/#nodewebsocket)
 1. Connect to the WebSocket at the configured endpoint
 1. Send a [subscription request for all confirmations](/integration-guides/websockets#confirmations) including the ack option and validate the subscription request was successful
 1. Listen for block confirmation notifications from the WebSocket
