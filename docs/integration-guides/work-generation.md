@@ -34,7 +34,7 @@ Below are common, recommended configurations for planning work generation needs.
 
 - GPU-based work generation is recommended wherever reasonable
 - Running the [Nano Work Server](https://github.com/nanocurrency/nano-work-server) is preferred, regardless of machine or CPU/GPU decisions
-- CPU-based work generation on the same machine as the node is running is not recommended
+- CPU-based work generation on the same machine the node is running is not recommended
 
 ### Heavy RPC, regular work generation
 
@@ -64,7 +64,7 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ### Representatives
 
-Supporting the network by running a representative is recommended for many services, however it is not recommended that voting nodes are used for heavy RPC or work generation activities. Wherever possible, integration should utilize separate machines for their integration nodes and consensus-producing, voting nodes.
+Supporting the network by running a representative is recommended for many services, however it is not recommended that voting nodes are used for heavy RPC or work generation activities. Wherever possible, integrations should utilize separate machines for their integration nodes and consensus-producing, voting nodes.
 
 ---
 
@@ -76,7 +76,7 @@ To benchmark a specific device you want to know the performance for, the node CL
 
 **Using the Nano node**
 
-1. Install an configure the Nano node on the machine
+1. Install and configure the Nano node on the machine
 1. Run a CLI command:
 	* CPU: `nano_node --debug_profile_generate`
 	* GPU: `nano_node --debug_opencl --platform=0 --device=0` (updating `platform` and `device` as necessary)
@@ -132,11 +132,11 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold currently `0xffffffc000000000` for all blocks. To be valid the work field must contain a nonce above this value, but the nodes also prioritize the order in which they process transactions based on how far above this threshold the work value is. Due to the prioritization it may be desirable to generate work further above the threshold to guarantee faster processing by network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on blocks being processed and make that available via the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC.
+The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC.
 
 **Development node wallet behavior**
 
-The developer wallet included with the node is configured to pre-cache work as the base threshold and monitor any blocks it publishes to the network for confirmation. If they are not confirmed within 5 seconds, the difficulty on that block will be compared against the active difficulty seen on the network. If the block has a lower work value than the network then new work generation is requested at the higher level.
+The developer wallet included with the node is configured to pre-cache work at the base threshold and monitor any blocks it publishes to the network for confirmation. If they are not confirmed within 5 seconds, the difficulty on that block will be compared against the active difficulty seen on the network. If the block has a lower work value than the network, then new work generation is requested at the higher level.
 
 **Difficulty management for external integrations**
 
