@@ -1,2 +1,2 @@
 !!! warning "Alternative work generation setup preferred"
-	This option is not recommended for work generation for nodes due to the potential for performance impacts to the node participating on the network (voting, staying in sync, etc.). Please see the [Work Generation guide](/integration-guides/work-generation) for best practices.
+	Due to potential performance impacts to nodes participating on the network (voting, staying in sync, etc.), when possible this option should be updated to a value of `0` to turn off local work generation. Please see the [Work Generation guide](/integration-guides/work-generation) for best practices.

@@ -9,6 +9,9 @@ This work value is not used in concensus, but instead is one of the first pieces
 
 The following configuration options should be taken into careful consideration when planning work generation resources for services integrating with Nano. These options should be combined to provide the best separation of resources between node participation on network vs. work generation needs.
 
+!!! warning "Representatives should avoid heavy RPC use and work generation"
+    Supporting the network by running a representative is recommended for many services, however it is not recommended that voting nodes are used for heavy RPC or work generation activities. Wherever possible, integrations should utilize separate machines for their integration nodes and consensus-producing, voting nodes.
+
 ### CPU vs. GPU
 
 As GPUs provide faster and more energy efficient work generation than CPUs, and reduce RPC delays during heavy usage periods, they are preferred for any setups able to utilize them. In cases where the node is running on the same machine where work generation is done, GPUs are highly recommended to avoid performance impacts to the node that relying CPU cores can cause.
@@ -17,7 +20,7 @@ As GPUs provide faster and more energy efficient work generation than CPUs, and 
 
 Using a separate machine to manage work generation is recommended where possible. The machine running the node should have a minimum of dedicated resources to keep in sync with the network and any potential interruption due to work generation activities should be avoided.
 
-### Application for work calculation
+### Software for work generation
 
 Although the node can be configured to generate work directly, there are plans to separate work generation from the node into its own application and process. To help prepare for this future architecturs the preferred setup today is to use the [Nano Work Server](https://github.com/nanocurrency/nano-work-server) for work generation.
 
@@ -42,7 +45,7 @@ Services with heavy RPC calls and work generation can benefit from ensuring dedi
 
 1. Setup a machine separate from the node with GPU attached
 1. Install the [Nano Work Server](https://github.com/nanocurrency/nano-work-server/blob/master/README.md#installation)
-1. Setup a service to start and monitor the work server process using the GPU option `--gpu <PLATFORM:DEVICE:THREADS>` and run `nano-work-server --help` for additional options and details
+1. Setup a service to start and monitor the work server process using the GPU option `--gpu <PLATFORM:DEVICE>` and run `nano-work-server --help` for additional options and details
 1. Configure the machine running the node to allow traffic over TCP from the work generation machine's IP address
 1. Add the work machine IP address as a [work peer](/running-a-node/configuration/#nodework_peers) in the node's `config-node.toml` file
 
@@ -60,11 +63,7 @@ Services where RPC usage is lighter but regular work generation is needed could 
 1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](/running-a-node/configuration/#nodework_threads) = `0`
 
 !!! info "Node work generation option"
-	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](/running-a-node/configuration/#openclenable) = `true` and adusting `opencl.device`, `opencl.platform` and `opencl.threads` to match your setup.
-
-### Representatives
-
-Supporting the network by running a representative is recommended for many services, however it is not recommended that voting nodes are used for heavy RPC or work generation activities. Wherever possible, integrations should utilize separate machines for their integration nodes and consensus-producing, voting nodes.
+	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](/running-a-node/configuration/#openclenable) = `true` and adusting `opencl.device` and `opencl.platform` to match your setup.
 
 ---
 
