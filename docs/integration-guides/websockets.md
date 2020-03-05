@@ -10,20 +10,20 @@ The Nano node offers notification of confirmed blocks over WebSockets. This offe
 
 The HTTP callback is still available and both mechanisms can be used at the same time.
 
-**Example**
+## Example clients
 
 Sample clients are available:
 
 * Node.js: https://github.com/cryptocode/nano-websocket-sample-nodejs
 * Python: https://github.com/guilhermelawless/nano-websocket-sample-py
 
-**Configuration**
+## Configuration
 
 For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#websocket).
 
 With the default configuration, localhost clients should connect to `ws://[::1]:7078`.
 
-### Acknowledgement
+## Acknowledgement
 
 All WebSocket actions can optionally request an acknowledgement. The following is an example for the *subscribe* action.
 
@@ -46,7 +46,7 @@ If the action succeeds, the following message will be sent back (note that no me
 }
 ```
 
-### Update
+## Update
 
 Some subscriptions can be updated without requiring unsubscribing and re-subscribing to the same topic. A typical message is the following:
 
@@ -62,7 +62,28 @@ Some subscriptions can be updated without requiring unsubscribing and re-subscri
 
 Updatable filter options are mentioned in the examples below.
 
-### Subscribe/Unsubscribe
+## Keepalive
+
+This action is available since _v20.0_
+
+Keepalive allows checking the liveliness of the websocket without refreshing it or changing a subscription. Use the format:
+
+```json
+{
+  "action": "ping"
+}
+```
+
+The expected response is:
+
+```json
+{
+  "ack": "pong",
+  "time": "<milliseconds since epoch>"
+}
+```
+
+## Subscribe/Unsubscribe
 
 To receive notifications through the websocket you must subscribe to the specific topic and a standard subscription without filters looks like this:
 
@@ -101,7 +122,9 @@ Current topics available for subscribing to include:
 
 ---
 
-#### Confirmations
+## Subscription Options
+
+### Confirmations
 
 --8<-- "multiple-confirmation-notifications.md"
 
@@ -166,7 +189,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
-??? tip "Updating the list of accounts"
+!!! tip "Updating the list of accounts"
     _version 21.0+_  
     The list of `accounts` for which blocks are broadcasted can be updated (see [Update](#update)):
     ```json
@@ -272,7 +295,7 @@ Including the election info option results in the following fields being include
 
 ---
 
-#### Votes
+### Votes
 
 !!! warning "Experimental, unfinished"
     This subscription is experimental and not all votes are broadcasted. The message format might change in the future.
@@ -350,7 +373,7 @@ By default only `vote` type votes are broadcasted, and the others are filtered. 
 
 ---
 
-#### Stopped elections
+### Stopped elections
 
 If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
 
@@ -383,7 +406,7 @@ No filters are currently available for the `stopped_election` topic.
 
 ---
 
-#### Active difficulty
+### Active difficulty
 
 ##### Subscribing
 
@@ -414,7 +437,7 @@ No filters are currently available for the `active_difficulty` topic.
 }
 ```
 
-#### Proof of work
+### Proof of work
 
 This subscription is available since _v20.0_
 
@@ -481,24 +504,3 @@ Notes:
 - The duration is in milliseconds
 - If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
 - When work generation is done locally it will show `"source": "local"`
-
-### Keepalive
-
-This action is available since _v20.0_
-
-Keepalive allows checking the liveliness of the websocket without refreshing it or changing a subscription. Use the format:
-
-```json
-{
-  "action": "ping"
-}
-```
-
-The expected response is:
-
-```json
-{
-  "ack": "pong",
-  "time": "<milliseconds since epoch>"
-}
-```
