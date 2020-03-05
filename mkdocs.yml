@@ -34,6 +34,7 @@ nav:
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
     - Build Options: integration-guides/build-options.md
+    - WebSockets: integration-guides/websockets.md
     - IPC Integration: integration-guides/ipc-integration.md
     - Advanced: integration-guides/advanced.md
   - Commands:
