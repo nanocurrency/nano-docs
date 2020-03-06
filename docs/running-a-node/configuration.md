@@ -194,7 +194,6 @@ Used when offloading work generation to another node or service. Format must be 
 ```toml
 [node]
 work_peers = [
-    "::ffff:127.0.0.1:7076",
     "example.work-peer.org:7000"
 ]
 ```
