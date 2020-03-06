@@ -18,7 +18,7 @@ As GPUs provide faster and more energy efficient work generation than CPUs, and 
 
 ### Choosing a machine
 
-Using a separate machine to manage work generation is recommended where possible. The machine running the node should have a minimum of dedicated resources to keep in sync with the network and any potential interruption due to work generation activities should be avoided.
+Using a separate machine to manage work generation is recommended where possible. The machine running the node should have a minimum of dedicated resources to keep in sync with the network and any potential interruption due to work generation activities should be avoided. Note that this separation introduces latency, so efforts should be done to keep that to a minimum including running machines in the same region or cluster, avoiding routing work requests through external edge networks, etc.
 
 ### Software for work generation
 
