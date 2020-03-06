@@ -208,6 +208,12 @@ Determines the number of local CPU threads to used for work generation. To turn 
 
 ---
 
+#### node.max_work_generate_multiplier
+
+Sets a limit on the multiplier above the base difficulty threshold that the node will generate. If the node is setup as a work peer itself, no requests for work higher than this limit will be accepted. Default value is `64.000000000000000`.
+
+---
+
 #### opencl.enable
 
 To enable GPU acceleration for PoW, set this option to `true`. Other OpenCL parameters may need to be adjusted depending on the desired setup.
