@@ -137,14 +137,15 @@ The mainnet's base difficulty threshold is currently `0xffffffc000000000` for al
 
 The developer wallet included with the node is configured to pre-cache work at the base threshold and monitor any blocks it publishes to the network for confirmation. If they are not confirmed within 5 seconds, the difficulty on that block will be compared against the active difficulty seen on the network. If the block has a lower work value than the network, then new work generation is requested at the higher level.
 
-Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](/running-a-node/configuration/#nodework_threads) can be used to limit how high a work value will be requested at. All setups should implement an appropriate limit, which defaults to 64x in V20.
-
 **Difficulty management for external integrations**
 
 For services aiming to ensure the highest priority on their transactions, the confirmation of published blocks should be monitored by their integration and work levels compared against active difficulty in a similar fashion to the development wallet mentioned above. If work is left at base difficulty there could be delays in the transactions being processed during heavy network usage times.
 
+!!! tip "Configure max work generate multiplier"
+    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](/running-a-node/configuration/#nodework_threads) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
+
 !!! warning "Upcoming threshold changes and variations by block type"
-	Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
+	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
 
 ### Pre-caching
 
