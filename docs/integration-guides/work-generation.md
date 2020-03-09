@@ -89,21 +89,19 @@ If using work server, head over to the README at https://github.com/guilhermelaw
 
 ### Example benchmarks
 
-Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs updated as of March 2020.
+Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs updated in late 2017.
 
-**!!!! UPDATES REQUIRED !!!!**
-
-| Device | Epoch v1<br /># PoW/sec |  Epoch v2<br /># PoW/sec |
-|--------|-|-|
-| Nvidia Tesla V100 (AWS) | 6.4 | |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 | |
-| Nvidia Tesla K80 (Google,Cloud) | 1.64 | |
-| AMD RX 470 OC | 1.59 | |
-| Nvidia GTX 1060 3GB | 1.25 | |
-| Intel Core i7 4790K AVX2 | 0.33 | |
-| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 | |
-| Google Cloud 4 vCores 0.14-0.16 | 0.14-0.16 | |
-| ARM64 server 4 cores (Scaleway) | 0.05-0.07 | |
+| Device | Epoch v1<br /># PoW/sec |
+|--------|-|
+| Nvidia Tesla V100 (AWS) | 6.4 |
+| Nvidia Tesla P100 (Google,Cloud) | 4.9 |
+| Nvidia Tesla K80 (Google,Cloud) | 1.64 |
+| AMD RX 470 OC | 1.59 |
+| Nvidia GTX 1060 3GB | 1.25 |
+| Intel Core i7 4790K AVX2 | 0.33 |
+| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 |
+| Google Cloud 4 vCores 0.14-0.16 | 0.14-0.16 |
+| ARM64 server 4 cores (Scaleway) | 0.05-0.07 |
 
 ---
 
