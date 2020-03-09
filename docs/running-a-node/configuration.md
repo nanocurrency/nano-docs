@@ -194,10 +194,23 @@ Used when offloading work generation to another node or service. Format must be 
 ```toml
 [node]
 work_peers = [
-    "::ffff:127.0.0.1:7076",
     "example.work-peer.org:7000"
 ]
 ```
+
+---
+
+#### node.work_threads
+
+--8<-- "alternative-work-generation-setup-preferred.md"
+
+Determines the number of local CPU threads to used for work generation. To turn off local CPU work generation set to `0`. See [opencl.enable](#opencl-enable) below for details on setting the node up for GPU-based work generation (preferred).
+
+---
+
+#### node.max_work_generate_multiplier
+
+Sets a limit on the multiplier above the base difficulty threshold that the node will generate. If the node is setup as a work peer itself, no requests for work higher than this limit will be accepted. Default value is `64.000000000000000`.
 
 ---
 
