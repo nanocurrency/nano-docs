@@ -42,7 +42,7 @@ sequenceDiagram
   COLD-->>COLD: Generate & Sign
   COLD-->>HOT: Return Signed
   HOT->>Network: Publish Signed
-  Note over COLD,HOT: Cold/Hot Wallet transfers are done offline using USB Stick or similar.
+  Note over COLD,HOT: Cold/Hot Wallet transfers are done <br />offline using USB Stick or similar.
 ```
 
 ---
