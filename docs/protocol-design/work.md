@@ -59,7 +59,7 @@ While the specific algorithm used is an implementation decision, there is a mini
 1. Amortization-free. The cost of obtaining work for multiple blocks should scale linearly with the number of blocks. This ensures fairness for all participants.
 1. Progress-free. Any attempt at obtaining work should follow a stochastic process, with no dependence on previous attempts.
 
-Additional requirements of parameter flexibility, constrained parallelism, and being optimization-free, are desired but not required [^1].
+Additional requirements of parameter flexibility, constrained parallelism, and being optimization-free, are desired but not required [^2].
 
 ---
 
