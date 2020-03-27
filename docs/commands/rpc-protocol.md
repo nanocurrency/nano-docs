@@ -1070,7 +1070,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation_info)  
+Returns list of active elections roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1090,7 +1090,9 @@ Returns list of active elections roots (excluding stopped & aborted elections). 
 {
  "confirmations": [
    "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"
- ]
+ ],
+ "unconfirmed": "133", // since V21.0
+ "confirmed": "5" // since V21.0
 }
 ```   
    
@@ -1186,7 +1188,7 @@ If the block is unknown on the node, the following error will be returned:
 
 ### confirmation_info 
 _version 16.0+_   
-Returns info about active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
