@@ -435,11 +435,14 @@ curl -d '{
     Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
     A successful broadcast will return the broadcasted block's hash.
 
+--8<-- "process-sub-type-recommended.md"
+
 ##### Request Example
 ```bash
 curl -d '{
   "action": "process",
   "json_block": "true",
+  "subtype": "send",
   "block": {
     "type": "state",
     "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
@@ -460,9 +463,6 @@ curl -d '{
   "hash": "42A723D2B60462BF7C9A003FE9A70057D3A6355CA5F1D0A57581000000000000"
 }
 ```
-
-!!! tip "Use block subtype as a sanity check"
-    Since V18.0, [`process`](/commands/rpc-protocol/#process) has an optional string `"subtype"`, which takes the value of send/receive/open/change. This field can be used to prevent performing an unintended operation with a block, as the request will return an error if the block details don't match the provided `"subtype"`.
 
 !!! tip "Block watching and re-work"
     Since V20.0, blocks processed using [`process`](/commands/rpc-protocol/#process) are placed under observation by the node for re-broadcasting and re-generation of work under certain conditions. If you wish to disable this feature, add `"watch_work": "false"` to the process RPC command.

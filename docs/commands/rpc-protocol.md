@@ -1886,11 +1886,14 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
 
+--8<-- "process-sub-type-recommended.md"
+
 **Request:**
 ```json
 {
   "action": "process",
   "json_block": "true",
+  "subtype": "send",
   "block": {
     "type": "state",
     "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
