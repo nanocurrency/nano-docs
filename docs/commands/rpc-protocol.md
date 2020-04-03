@@ -1921,7 +1921,13 @@ Boolean, false by default. Manually forcing fork resolution if processed block i
 **Optional "subtype"**
 
 _version 18.0+_  
-String, empty by default. Additional check for state blocks subtype (send/receive/open/change/epoch). I.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks   
+String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
+
+* `send` - account balance is reduced
+* `receive` - account balance is increased
+* `open` - first block on account with account balance initially set higher than 0
+* `change` - account balance is unchanged, representative field value changed to valid public address
+* `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
 
 **Optional "json_block"**
 
