@@ -1,7 +1,7 @@
 # Command Line Interface
 
 ### --account_create --wallet=`<wallet>`
-Insert next deterministic key in to `<wallet>`
+Insert next deterministic key into `<wallet>`
 
 ### --account_get --key=`<key>`
 Get account number for the `<key>`
