@@ -636,6 +636,11 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 _version 21.0+_
 Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
 
+**Optional "difficulty"**
+_version 21.0+_
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
+
 ---
 
 ### block_hash  
