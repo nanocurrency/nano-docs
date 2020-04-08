@@ -49,7 +49,7 @@ The reason this is necessary is because we want to store information about each 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
 ### Seed
-This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatentation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
+This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatenation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
 Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to 2^32 - 1 (because the index value is a unsigned 32 bit integer).
 
