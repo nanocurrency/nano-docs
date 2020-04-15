@@ -10,13 +10,11 @@ The following release is the latest and only release actively supported by the N
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 					|
-| 20.0         | 17               | 2019-11-12          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
-
-**Builds and Commands**
-
---8<-- "known-issue-peers-stake-reporting.md"
+| 21.0         | 18               | TBD          | [V21.0](/releases/node-releases/#v210) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V21.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/18) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V20.0...V21.0) | 
 
 --8<-- "known-issue-macos-too-many-open-files.md"
+
+**Builds and Commands**
 
 --8<-- "current-release-build-links.md"
 
@@ -27,7 +25,7 @@ The following release is currently under development. Details about potential fe
 
 | Node Version | Protocol Version | Release Date | Release Notes | GitHub Links | 
 |              |                  |              |               | 				|
-| 21.0         | TBD              | TBD          | TBD			 | Release - [Milestone](https://github.com/nanocurrency/nano-node/milestone/18) - Changelog | 
+| 22.0         | TBD              | TBD          | TBD			 | Release - [Milestone](https://github.com/nanocurrency/nano-node/milestone/19) - Changelog | 
 
 ---
 
@@ -38,7 +36,8 @@ The following releases can still actively participate on the network by peering 
 |              |                  |              |               | 					|
 | 20.0         | 17               | 2019-11-12          | [V20.0](/releases/node-releases/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
 | 19.0 | 17 | 2019-07-11 | [V19.0](/releases/node-releases/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
-| 18.0 | 16 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
+
+--8<-- "known-issue-peers-stake-reporting.md"
 
 --8<-- "known-issue-macos-too-many-open-files.md"
 
@@ -51,6 +50,7 @@ The following versions are no longer peered with by nodes running the active ver
 
 	| Node Version | Protocol Version | Release Date | Release Notes | GitHub Links |
 	|              |                  |              |               |              |
+	| 18.0 | 16 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
 	| 17.1 | 15 | 2018-12-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/17) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.0...V17.1) |
 	| 17.0 | 15 | 2018-12-18 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/6) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.3...V17.0) |
 	| 16.3 | 14 | 2018-11-20 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V16.3) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/14) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.2...V16.3) |
@@ -74,12 +74,112 @@ The following versions are no longer peered with by nodes running the active ver
 
 ## Release Notes
 
+### V21.0
+
+!!! info "Nano Forum available"
+	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
+
+!!! info "Join the protocol/node releases and updates mailing list"
+	Follow this link to sign up for email updates on the latest protocol/node releases and other details. This will include network upgrades such as the upcoming epoch distribution: [tbd]
+
+#### Upgrade Notices
+
+The following key upgrade details should be reviewed by all node operators to determine how they will impact plans for upgrading:
+
+**Upcoming v2 epoch upgrade**  
+As outlined in the [February Development Update: V21 PoW Difficulty Increases](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e), an epoch block distribution must be done to complete the upgrade to the new work difficulty thresholds. **All integrations generating work are encouraged to the details on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) ahead of the epoch V2 distribution.**
+
+!!! note "Considerations when using [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC"
+	For external integrations that utilize the difficulty values from the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC, if you track the `network_minimum` value returned you will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty).
+
+	Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
+
+!!! danger "Only node V21.0 will be active after epoch distribution"
+	Nodes upgrading to V21.0 will remain peered with nodes V19.0 and V20.0 on the network until the epoch v2 block distribution begins. **After the first epoch v2 block is distributed, all nodes not running V21.0 will no longer be able to participate on the network.** This distribution will occur once 90% of voting weight and key services on the network have upgraded. Communications around the progress towards this goal will be sent following the release.
+
+	More details about this network upgrade can be found on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty)
+
+	**All network participants are encouraged to upgrade to V21.0 as soon as possible to avoid disruption.**
+
+**Database upgrades**  
+An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 20-30GB free disk space to accommodate the upgrade.
+
+TODO: Recommend setting up staging environment to upgrade database or downloading the existing ledger if uptime is an issue as the upgrade process may take 1 hour or longer.
+
+If not enough space is available, the `data.ldb` file can be swapped out for an upgraded version of the ledger. Join the [Nano Discord server](https://chat.nano.org) and go to the `#ledger` channel for a ledger download option.
+
+**UDP disabled by default**  
+With all active peers capable of communicating via TCP, the UDP connections will be disabled by default in this version. To avoid disruptions, all nodes should allow traffic on 7075 TCP (see [Network Ports](/running-a-node/node-setup/#network-ports) details) and once upgraded, the [`peers`](/commands/rpc-protocol/#peers) RPC call should return at least dozens of peers and the [`confirmation_quorum`](/commands/rpc-protocol/#confirmation_quorum) RPC call should have a `peers_stake_total` value in the high tens of millions of Nano.
+
+Although not recommended, if necessary temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
+
+---
+
+#### Major Updates
+ 
+**Work difficulty increase**  
+As mentioned in the [Upgrade Notices](#upgrade-notices) section above, work difficulty changes were implemented in V21, but will not be activated until epoch v2 blocks are distributed at a future date. Please review the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) for details.
+
+Updates on the progress towards 90% voting weight and key service upgrades will be posted in our many social channels as well as sent through our mailing lists which can be joined here: [tbd].
+
+TODO: Note breaking RPC changes
+
+**Node Telemetry**
+
+**IPC Flatbuffers API**
+
+**RocksDB Improvements**
+
+**Better election alignment and performance**
+
+
+---
+
+#### RPC Updates
+
+* **BREAKING CHANGE** ['work_validate'](/commands/rpc-protocol/#work_validate)
+* **BREAKING CHANGE AFTER EPOCH UPGRADE** ['active_difficulty'](/commands/rpc-protocol/#work_validate)
+
+--8<-- "process-sub-type-recommended.md"
+
+#### CLI Updates
+* **NEW** [`generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*
+    * `use_defaults` additional argument to generate uncommented entries (not recommended)
+* **NEW** [`config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file
+
+---
+
+#### Node Configuration Updates
+
+!!! info "Support in Nano Forum"
+	For node operators looking to upgrade their node or tune their configurations, the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) of the forum is a great resource to use.
+
+The following options are notable node configuration updates. Additional configuration changes have been included in this release and can be found when generating the config files.
+
+* 
+
+---
+
+#### Developer/Debug Options
+
+* 
+
+---
+
+#### Deprecations
+
+The following functionality is now deprecated and will be removed in a future release:
+
+* UDP is disabled by default in this version and will be removed in a future release. Launch flag [`--disable_udp`](/commands/command-line-interface/#-disable_udp-deprecated) is deprecated and temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
+
+---
+
 ### V20.0
 
 !!! info "Nano Forum available"
 	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
 
-#### Upgrade Notices
+<span class="h4-no-toc">Upgrade Notices</span>
 
 !!! warning "Only node V18.0 and higher supported"
 	With V20.0 only nodes V18.0 and higher will be peered with on the network (see [Active Releases](/releases/node-releases/#active-releases) above). This means any nodes running versions earlier than 18.0 will begin to lose peers and fall out of sync over time once upgrades to V20.0 begin.
@@ -125,7 +225,7 @@ Improvements to the [External Management](https://docs.nano.org/integration-guid
 
 ---
 
-#### Major Updates
+<span class="h4-no-toc">Major Updates</span>
  
 **Migration to .toml config files**  
 Better legibility, support for comments, and no more having the node write to your config files are some of the benefits of this upgrade. Any non-default values captured in your existing .json files will be migrated and you can export a full list of configuration options for use with simple commands. See additional callouts in [Upgrade Notices](#upgrade-notices) above and in the node [Configuration documentation](https://docs.nano.org/running-a-node/configuration/).
@@ -147,7 +247,7 @@ As part of the original implementation work we were able to setup infrastructure
 
 ---
 
-#### RPC Updates
+<span class="h4-no-toc">RPC Updates</span>
 
 * **BEHAVIOR CHANGE** [`process`](/commands/rpc-protocol/#process) now takes an optional flag `watch_work` (default `true`). Unless set to `false`, processed blocks can be subject to PoW rework
 * **BEHAVIOR CHANGE** [`bootstrap`](/commands/rpc-protocol/#bootstrap), [`bootstrap_any`](/commands/rpc-protocol/#bootstrap_any) and [`boostrap_lazy`](/commands/rpc-protocol/#bootstrap_lazy) will now throw errors when certain launch flags are used to disabled bootstrap methods - see each RPC page for details
@@ -158,14 +258,14 @@ As part of the original implementation work we were able to setup infrastructure
 * [`peers`](/commands/rpc-protocol/#peers) and [`node_id`](/commands/rpc-protocol/#node_id) now return node IDs with a `node_` prefix
 * [work_generate](/commands/rpc-protocol/#work_generate) and [work_validate](/commands/rpc-protocol/#work_validate) can now take a multiplier (against base difficulty) to set a different difficulty threshold
 
-#### CLI Updates
+<span class="h4-no-toc">CLI Updates
 * **NEW** [`generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*
     * `use_defaults` additional argument to generate uncommented entries (not recommended)
 * **NEW** [`config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file
 
 ---
 
-#### Node Configuration Updates
+<span class="h4-no-toc">Node Configuration Updates</span>
 
 !!! info "Support in Nano Forum"
 	For node operators looking to upgrade to V20.0 or tune their configurations, the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) of the forum is a great resource to use.
@@ -181,7 +281,7 @@ The following options are notable node configuration updates. Additional configu
 
 ---
 
-#### Developer/Debug Options
+<span class="h4-no-toc">Developer/Debug Options</span>
 
 * New RPC [`epoch_upgrade`](/commands/rpc-protocol/#epoch_upgrade) allowing easier epoch distribution (**Note** - this epoch requires a special private key to be used, see the [Network Upgrades](/releases/network-upgrades/#epoch-blocks) page for information)
 * RPC [`bootstrap`](/commands/rpc-protocol/#bootstrap) has a new optional "bypass_frontier_confirmation"
@@ -199,7 +299,7 @@ The following options are notable node configuration updates. Additional configu
 
 ---
 
-#### Deprecations
+<span class="h4-no-toc">Deprecations</span>
 
 The following functionality is now deprecated and will be removed in a future release:
 

@@ -6,6 +6,33 @@ For details on why and how network upgrades happen, along with explanations of t
 
 ## Upcoming upgrades
 
+### Increased work difficulty
+
+**Purpose**
+
+To help ensure Quality of Service on the network by increasing the difficulty required for send and change blocks to be considered valid by the network (8x compared to current). To help offset the difficulty increase and add incentive to receive blocks so ledger pruning can be done more broadly in the future, the difficulty for receive blocks will simultaneously be reduced (1/8 compared to current).
+
+**Transition details**
+
+| Date | Type | Description |
+|------|------|-------------|
+| TBD  | Node release | Nano node V21.0 released which includes changes necessary for supporting new difficulty validation and generation |
+| TBD | <span class="no-break">v2 epoch blocks distribution start</span> | Distribution of v2 epoch blocks to all accounts to mark in the ledger the point at which the new work difficulty levels will be required. The start of this distribution process will occur once key services and over 90% of voting weight on the network has upraded. |
+| TBD | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
+
+!!! warning "Nodes de-peered with epoch blocks"
+	Due to the nature of the work difficulty changes, any nodes not updated to V21.0 at the time of epoch block distribution will be de-peered from the network.
+
+**Transition Explanation**
+
+When changing the work difficulty requirements it is necessary to mark a point in each account where the difficulty requirements change so bootstrapping and other behaviors can accurately validate historical blocks. For this reason the epoch blocks are being distributed to act as the marker in the ledger.
+
+Once epoch block distribution is started the ability to validate the new work difficulty levels is required. Since node versions before V21.0 do not have the ability to do this, they will be immediately de-peered from the network and cannot participate with the current network until upgraded.
+
+To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network. Once acceptable conditions exist to finalize the transition the distribution will begin. The current plan is to start once over 90% of voting weight has been upgraded, along with all the key services on the network.
+
+## Future upgrades
+
 ### New PoW algorithm
 
 **Purpose**
