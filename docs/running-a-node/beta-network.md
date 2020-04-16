@@ -14,11 +14,9 @@ A few common reasons for joining the beta network include:
 
 ## Differences from the main network
 
-Up to node *v19.0*, the main and beta networks had no functional differences. However, starting from *v20.0*, the following differences apply to the **beta network**.
-
 | Parameter | Main Network | Beta Network | Comment |
 |-----------|--------------|--------------|---------|
-| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffffc0000000000` | 16 times lower on the beta network |
+| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffff00000000000` | 64 times lower on the beta network |
 
 
 ## Node release testing
@@ -109,6 +107,4 @@ Additional details for services who wish to test their integrations on the beta 
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
 
 ### Ongoing Test Cases
-Beta testing is currently ongoing for V21. See the [test cases](/testcases/Cases.html) and summarized [results](/testcases/Results.html) submitted by developers and community testers.
-
-If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
+A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).

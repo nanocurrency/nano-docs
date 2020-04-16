@@ -149,11 +149,13 @@ Returns frontier, open block, change representative block, balance, last modifie
   "modified_timestamp": "1501793775",
   "block_count": "33",
   "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "account_version": "1"
 }
 ```
 
-In response `confirmation_height` only available for _version 19.0+_ 
+In response `confirmation_height` only available for _version 19.0+_  
+In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
@@ -409,7 +411,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
 
 **Request:**
 ```json
@@ -628,6 +630,11 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 **Optional "work"**
 
 Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
 
 ---
 
@@ -1063,7 +1070,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation_info)  
+Returns list of active elections roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1083,7 +1090,9 @@ Returns list of active elections roots (excluding stopped & aborted elections). 
 {
  "confirmations": [
    "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"
- ]
+ ],
+ "unconfirmed": "133", // since V21.0
+ "confirmed": "5" // since V21.0
 }
 ```   
    
@@ -1123,7 +1132,7 @@ _version 12.0+_
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/websockets) instead.
 
 **Request:**
 ```json
@@ -1179,7 +1188,7 @@ If the block is unknown on the node, the following error will be returned:
 
 ### confirmation_info 
 _version 16.0+_   
-Returns info about active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1958,11 +1967,14 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
 
+--8<-- "process-sub-type-recommended.md"
+
 **Request:**
 ```json
 {
   "action": "process",
   "json_block": "true",
+  "subtype": "send",
   "block": {
     "type": "state",
     "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
@@ -1990,7 +2002,13 @@ Boolean, false by default. Manually forcing fork resolution if processed block i
 **Optional "subtype"**
 
 _version 18.0+_  
-String, empty by default. Additional check for state blocks subtype (send/receive/open/change/epoch). I.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks   
+String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
+
+* `send` - account balance is reduced
+* `receive` - account balance is increased
+* `open` - first block on account with account balance initially set higher than 0
+* `change` - account balance is unchanged, representative field value changed to valid public address
+* `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
 
 **Optional "json_block"**
 
@@ -2724,6 +2742,11 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 _version 20.0+_  
 A valid Nano account. If provided and `use_peers` is set to `true`, this information will be relayed to work peers.
 
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
+
 ---
 
 ### work_peer_add  
@@ -2825,6 +2848,11 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to validate work.  
 ***Note:*** overrides the `difficulty` parameter.  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
 
 ---
 

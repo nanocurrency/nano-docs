@@ -33,7 +33,10 @@ nav:
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
+    - Work Generation: integration-guides/work-generation.md
     - Build Options: integration-guides/build-options.md
+    - WebSockets: integration-guides/websockets.md
+    - IPC Integration: integration-guides/ipc-integration.md
     - Advanced: integration-guides/advanced.md
   - Commands:
     - RPC Protocol: commands/rpc-protocol.md
@@ -89,7 +92,8 @@ markdown_extensions:
   - meta
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'
+  - 'https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'
+  - 'javascript/mermaid-loose-security.js'
 extra_css:
   - 'stylesheets/extras.css'
 extra:
