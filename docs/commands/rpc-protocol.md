@@ -1702,8 +1702,7 @@ Removing node ID (restart required to take effect)
 
 ### node_telemetry
 _version 21.0+_  
-Return metrics from nodes. Values may be cached for 16 seconds on beta and 60 seconds on the live network
-
+Return metrics from nodes.   
 **Request:**
 ```json
 {
@@ -1720,20 +1719,22 @@ Return metrics from nodes. Values may be cached for 16 seconds on beta and 60 se
     "bandwidth_cap": "1572864",
     "peer_count": "32",
     "protocol_version": "18",
-    "uptime": "4",
+    "uptime": "556896",
     "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
     "major_version": "21",
     "minor_version": "0",
     "patch_version": "0",
     "pre_release_version": "0",
     "maker": "0",
-    "timestamp": "1581679654"
+    "timestamp": "1587055945990"
 }
 ```
-This contains a summarized view of the network. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **timestamp** is measured in seconds.
+This contains a summarized view of the network. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **uptime** is measure in seconds and **timestamp** is the number of milliseconds since the UTC epoch at the point where the repsonse is sent from the peer.
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 15 seconds on beta and 60 seconds on the main network; there is also an additional few seconds added on for response delays.
 
 **Optional "raw"**  
-When setting raw to true metrics from all nodes are displayed. It additionally contains **address** and **port** from each peer.
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
 
 **Request:**
 ```json
@@ -1748,15 +1749,15 @@ When setting raw to true metrics from all nodes are displayed. It additionally c
 {
   "metrics": [
     {
-      "block_count": "11375266",
-      "cemented_count": "11375266",
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C"
       ...
       "address": "::ffff:152.89.106.89",
       "port": "54000"
     },
     {
-      "block_count": "11275266",
-      "cemented_count": "11175268",
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B"
       ...    
       "address": "::ffff:95.216.205.215",
       "port": "54006"
