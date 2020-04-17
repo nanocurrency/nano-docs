@@ -189,14 +189,28 @@ As of V18.0, nodes with weight delegated to them under this value in their confi
 ---
 
 #### node.work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
 
 ```toml
 [node]
 work_peers = [
-    "::ffff:127.0.0.1:7076"
+    "example.work-peer.org:7000"
 ]
 ```
+
+---
+
+#### node.work_threads
+
+--8<-- "alternative-work-generation-setup-preferred.md"
+
+Determines the number of local CPU threads to used for work generation. To turn off local CPU work generation set to `0`. See [opencl.enable](#opencl-enable) below for details on setting the node up for GPU-based work generation (preferred).
+
+---
+
+#### node.max_work_generate_multiplier
+
+Sets a limit on the multiplier above the base difficulty threshold that the node will generate. If the node is setup as a work peer itself, no requests for work higher than this limit will be accepted. Default value is `64.000000000000000`.
 
 ---
 
@@ -227,7 +241,7 @@ enable = true
 port = 7078
 ```
 
-With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/websockets).
 
 !!! tip "Configuration for docker nodes"
     Docker nodes have the default `address` set to `"::ffff:0.0.0.0"`. To allow a connection between the host and the node, include `-p 127.0.0.1:7078:7078` (or another port if changed) in the `docker run` command or equivalent.

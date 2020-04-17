@@ -170,6 +170,7 @@ type:
     observer
     confirmation_height
     drop
+    aggregator
     requests
 
 details:
@@ -246,6 +247,7 @@ details:
     tcp_accept_success
     tcp_accept_failure
     tcp_write_drop
+    tcp_excluded
 
     // ipc
     invocations
@@ -257,10 +259,16 @@ details:
     blocks_confirmed
     invalid_block
 
+    // [request] aggregator
+    aggregator_accepted
+    aggregator_dropped
+
     // requests
-    requests_votes_cached
-    requests_votes_generated
-    requests_votes_ignored
+    requests_cached_hashes,
+    requests_generated_hashes,
+    requests_cached_votes,
+    requests_generated_votes,
+    requests_unknown
 
 dir (direction) :
     in
