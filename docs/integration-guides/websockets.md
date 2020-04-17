@@ -504,3 +504,55 @@ Notes:
 - The duration is in milliseconds
 - If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
 - When work generation is done locally it will show `"source": "local"`
+
+
+### Node telemetry
+
+This subscription is available since _v21.0_
+
+##### Subscribing
+
+To subscribe to node telemetry response notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "telemetry"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `telemetry` topic.
+
+##### Sample Results
+
+```json
+{
+    "topic": "telemetry",
+    "time": "1587109495082",
+    "message": {
+        "signature": "A133AD584C3C1F44BB7FDA1F53B80DA83EBF5E3D9DCB55D74F0B6899151331C1FB11E4E29CE54F3B4C315FEAEECAD4AF383BDB175ECA76C1744DE51AEB097709",
+        "node_id": "59A442B93C43623EB250330A31B158D7DF97EFB9365ABACC1A9416968FDCE4CB",
+        "block_count": "23173713",
+        "cemented_count": "23173713",
+        "unchecked_count": "0",
+        "account_count": "1502809",
+        "bandwidth_cap": "5242880",
+        "peer_count": "36",
+        "protocol_version": "18",
+        "uptime": "636056",
+        "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+        "major_version": "21",
+        "minor_version": "0",
+        "patch_version": "0",
+        "pre_release_version": "0",
+        "maker": "0",
+        "timestamp": "1587109484086",
+        "address": "::ffff:165.22.133.254",
+        "port": "54000"
+    }
+}
+```
+See the [node_telemetry](/commands/rpc-protocol/#node_telemetry) RPC command which gives more information about the message response  
+
