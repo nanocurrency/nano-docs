@@ -1465,6 +1465,10 @@ Upgrade network to new **epoch** with epoch signer private **key**
 **Optional "count"**  
 Number. Determines limit of number of accounts to upgrade.
 
+**Optional "threads"**  
+_version 21.0+_  
+Number. Determines limit of work threads to use for concurrent upgrade processes (useful with multiple work peers or high work peer latency).
+
 ---
 
 ### frontier_count  
