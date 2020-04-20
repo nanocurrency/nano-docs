@@ -44,7 +44,7 @@ Please follow the steps below for the corresponding node version you are using. 
     `dnf install addr2line`
 
 !!! example "(Optional) Step 2: Save crash dump files"
-    The next step will clean up the dump files generated during the crash, if you wish to keep these then save **nano_node_backtrace.dump**, and all **nano_node_crash_load_address_dump_*.txt** files.
+    The next step will clean up the dump files generated during the crash, if you wish to keep these then save `nano_node_backtrace.dump`, and all `nano_node_crash_load_address_dump_*.txt` files.
 
 !!! example "Step 3: Generate crash report"
     Run:
