@@ -7,7 +7,7 @@ The node automatically manages the full Nano ledger in the `data.ldb` file which
 This file will grow in size as the ledger does. As of April 2020 there are over 49 million blocks in the ledger which requires at least 26GB of free space. See [hardware recommendations](/running-a-node/node-setup/#hardware-recommendations) for more preferred node specs.
 
 !!! warning "RocksDB uses many files"
-	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should followed from the [RocksDB Ledger Backend](#rocksDB-ledger-backend) section below.
+	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should be followed from the [RocksDB Ledger Backend](#rocksDB-ledger-backend) section below.
 
 !!! tip "Updating the node may require a lengthy ledger upgrade"
 	Read the [guide](#updating-the-node) further down this page for some tips on how to minimize downtime during an update.
@@ -16,9 +16,17 @@ This file will grow in size as the ledger does. As of April 2020 there are over 
 
 When starting a new node the ledger must be downloaded and kept updated in order to participate on the network properly. This is done automatically via bootstrapping - the node downloads and verifies blocks from other nodes across the network. This process can take hours to days to complete depending on network conditions and [hardware specifications](/running-a-node/node-setup/#hardware-recommendations).
 
+!!! warning "Restarting node during bootstrapping not recommended"
+	It is **highly recommended to avoid restarting the node during bootstrapping** as this can cause extra delays in the syncing process. An exception can be made when it is very clear from calls to the [`block_count`](/commands/rpc-protocol/#block_count) RPC that block counts are stuck for multiple hours.
+
 ### Tuning options
 
-**TODO**: Consider adding notes about tuning here and link to related config entries that need to be updated on configuration page: `bootstrap_connections_max` and `bootstrap_initiator_threads`? Maybe: "Depending on machine and networking resources, the bootstrap performance can be improved by updating X and X configuration values. The additional resource usage these options cause should be considered, especially if left during normal operation (after initial bootstrap is complete)."
+Depending on machine and networking resources, the bootstrap performance can be improved by updating the following [configuration](/running-a-node/configuration/) values:
+
+* `node.bootstrap_connections_max`: up to max of `64`
+* `node.bootstrap_initiator_threads`: up to max of `4`
+
+The additional resource usage these options cause should be considered, especially if left during normal operation (after initial bootstrap is complete).
 
 ## Ledger Fast Sync
 
@@ -32,10 +40,10 @@ Before using this method there are a few considerations to ensure it is done saf
 ### Data source
 Make sure you trust the source providing the data to you. If you are unfamiliar with the individual or organization providing the ledger, consider other options for the data or fallback to the default of [bootstrapping](#bootstrapping) from the network.
 
-### Voting weights
+### Representative voting weights
 Blocks are confirmed using the voting weight of representatives and these weights are determined by the account balances assigned to those representatives. In addition, the node releases contain a hard-coded set of representative weights captured at the time of release.
 
-If a new ledger is downloaded it is recommended to compare the voting weights it contains against the hard-coded values in the node. To do this, the [--compare_rep_weights](/commands/command-line-interface/#-compare_rep_weights) CLI (_available in V21+ only_) can be run to get an output of the variance.
+If a new ledger is downloaded it is recommended to compare the voting weights it contains against the hard-coded values in the node. To do this, the [--compare_rep_weights](/commands/command-line-interface/#-compare_rep_weights) CLI (_available in V21+ only_) can be run to get an output of the mismatched weight, mean and standard deviation.
 
 Although the variance threshold considered to be safe will depend on freshness of the ledger file and network weight variations since the node release date, in general more than a 10% difference should be scrutinized further. If you need support in evaluating join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
 
