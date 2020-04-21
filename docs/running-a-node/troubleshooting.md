@@ -241,6 +241,8 @@ details:
     invalid_confirm_req_message
     invalid_confirm_ack_message
     invalid_node_id_handshake_message
+    invalid_telemetry_req_message
+    invalid_telemetry_ack_message
     outdated_version
 
     // tcp
@@ -269,6 +271,15 @@ details:
     requests_cached_votes,
     requests_generated_votes,
     requests_unknown
+
+    // telemetry
+    different_genesis_hash
+    invalid_signature
+    node_id_mismatch
+    request_within_protection_cache_zone
+    no_response_received
+    unsolicited_telemetry_ack
+    failed_send_telemetry_req
 
 dir (direction) :
     in
