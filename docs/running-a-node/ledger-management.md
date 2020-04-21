@@ -9,6 +9,9 @@ This file will grow in size as the ledger does. As of April 2020 there are over 
 !!! warning "RocksDB uses many files"
 	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should followed from the [RocksDB Ledger Backend](#rocksDB-ledger-backend) section below.
 
+!!! tip "Updating the node may require a lengthy ledger upgrade"
+	Read the [guide](#updating-the-node) further down this page for some tips on how to minimize downtime during an update.
+
 ## Bootstrapping
 
 When starting a new node the ledger must be downloaded and kept updated in order to participate on the network properly. This is done automatically via bootstrapping - the node downloads and verifies blocks from other nodes across the network. This process can take hours to days to complete depending on network conditions and [hardware specifications](/running-a-node/node-setup/#hardware-recommendations).
@@ -40,6 +43,33 @@ Although the variance threshold considered to be safe will depend on freshness o
 Within each account on the ledger a confirmation height is set. This indicates the height of the last block on that chain where quorum was observed on the network. This is set locally by the node and a new ledger file may include this information with it. If the ledger is from a trusted source this confirmation data can be kept, which will save bandwidth and resources on the network by not querying for votes to verify these confirmations.
 
 If confirmation data for the ledger is not trusted the [--confirmation_height_clear](/commands/command-line-interface/#-confirmation_height_clear) CLI can be used to clear these out.
+
+---
+
+## Updating the node
+
+Occasionally, updating to the [latest node version](/releases/node-releases/#current-release) requires upgrading the existing ledger which can have the following effects:
+
+- Significant downtime, from a few minutes to several hours, during which the node RPC is not accessible and no voting occurs. The upgrade is especially slower if the ledger is not on an SSD.
+- Temporary increased disk space usage - up to 3x the current ledger size in total (e.g. 60GB for a 20GB ledger)
+
+In order to minimize downtime, consider performing the update in a different machine, and replacing the [ledger file](#ledger-management) once complete. Note the following instructions, where **Machine A** has the node and ledger, and **Machine B** will be updating it.
+
+1. Create a directory `/home/<user>/Nano_Update` on Machine B.
+1. Stop the node on Machine A.
+1. Copy the `data.ldb` [file](#ledger-management) from Machine A to `/home/<user>/Nano_Update/data.ldb` on Machine B.
+1. Start the node again on Machine A.
+1. Download the [latest node version](https://github.com/nanocurrency/nano-node/releases/latest). For the purposes of this guide, using a binary is easier.
+1. Launch the node as follows (varies based on your operating system): `./nano_node --daemon --data_path /home/<user>/Nano_Update --config node.logging.log_to_cerr=true`
+1. The message *"Upgrade in progress..."* will be displayed if a ledger upgrade is required.
+1. The upgrade is finished when new messages start appearing on the screen. At that point, press Ctrl+C to stop the node.
+1. Copy `/home/<user>/Nano_Update/data.ldb` from Machine B to a temporary location on Machine A. **do not overwrite data.ldb on Machine A while the node is running**.
+1. Stop and **upgrade** to the latest node version on Machine A as you would do normally.
+1. Stop the node on Machine A in case upgrading restarted it.
+1. Replace `/home/<user>/Nano/data.ldb` with the transferred file.
+1. Restart the node.
+
+In the event that you are unable to upgrade the ledger on another machine but would still like to minimize downtime, consider [obtaining the ledger from another source](#ledger-fast-sync) as a last resource.
 
 ---
 
