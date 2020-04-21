@@ -1702,7 +1702,7 @@ Removing node ID (restart required to take effect)
 
 ### node_telemetry
 _version 21.0+_  
-Return metrics from nodes.   
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node_telemetry) for more information.    
 **Request:**
 ```json
 {
@@ -1726,10 +1726,12 @@ Return metrics from nodes.
     "patch_version": "0",
     "pre_release_version": "0",
     "maker": "0",
-    "timestamp": "1587055945990"
+    "timestamp": "1587055945990",
+    "active_difficulty": "ffffffcdbf40aa45"
 }
 ```
-This contains a summarized view of the network, 10% of lower/upper bound results are removed to reduce the effect of outliers. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **uptime** is measure in seconds and **timestamp** is the number of milliseconds since the UTC epoch at the point where the response is sent from the peer.
+
+This contains a summarized view of the network, 10% of lower/upper bound results are removed to reduce the effect of outliers. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **uptime** is measure in seconds and **timestamp** is the number of milliseconds since the UTC epoch at the point where the response is sent from the peer. **active_difficulty** is the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current".
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the live network and 15 seconds on beta; there is also an additional few seconds added on for response delays.
 
