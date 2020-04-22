@@ -9,7 +9,11 @@ Nano is designed to use the minimum amount of computing resources possible by co
 The system is built to only operate on IPv6 and uses IPv4-mapped IPv6 addresses to connect to IPv4 hosts.
 
 ## Node telemetry
-In _v21_ node telemetry was added to node. This allows peers to communicate telemetry metrics to each other. For specific details on the message format see `telemetry_ack` in the [protocol specification](https://github.com/nanocurrency/protocol/tree/master/reference). The nodes are designed to not respond to `telemetry_req` messages which are sent within a specific time period from the last message; on live this is every 60 seconds and on beta every 15 secoonds. This is done to reduce bandwidth, the messages are also marked as non-droppable so that services monitoring the network can still do so during high TPS where they might otherwise be dropped by the bandwidth limiter. Sending `telemetry_req` frequently within this exclusion zone could see your ip blacklisted by other peers. The node safely handles this for you by doing ongoing requests periodically and only sent when valid to do so.
+In _v21_ node telemetry was added to node. This allows peers to communicate telemetry metrics to each other. For specific details on the message format see `telemetry_ack` in the [protocol specification](https://github.com/nanocurrency/protocol/tree/master/reference).
+
+The nodes are designed to reply to `telemetry_req` messages. They avoid replying if messages are received from the same peer in quick succession; the minimum time until another reply is 60 seconds on the main network, 15 seconds on beta. This is done to reduce bandwidth.
+
+Telemetry messsages bypass the node's bandwidth limiter so that services monitoring the network can still do so during when the network is heavily used. Sending `telemetry_req` frequently within this exclusion zone could see your ip blacklisted by other peers. The node safely handles this for you by doing ongoing requests periodically and only sent when valid to do so.
 
 ### Signing
 `Telemetry_ack` messages are signed using [ED25519](/protocol-design/signing-hashing-and-key-derivation/#signing-algorithm-ed25519) as follows:
