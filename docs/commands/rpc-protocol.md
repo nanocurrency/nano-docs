@@ -1702,7 +1702,7 @@ Removing node ID (restart required to take effect)
 
 ### node_telemetry
 _version 21.0+_  
-Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node_telemetry) for more information.    
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
 **Request:**
 ```json
 {
