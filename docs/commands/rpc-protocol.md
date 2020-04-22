@@ -1704,6 +1704,103 @@ Removing node ID (restart required to take effect)
 
 ---
 
+### node_telemetry
+_version 21.0+_  
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+**Request:**
+```json
+{
+  "action": "node_telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "556896",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587055945990",
+    "active_difficulty": "ffffffcdbf40aa45"
+}
+```
+
+This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
+
+| Field Name | Response details |
+|------------|------------------------------------|
+| **block_count**       | average count of blocks in ledger (including unconfirmed) |
+| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
+| **unchecked_count**   | average count of unchecked blocks |
+| **account_count**     | average count of accounts in ledger |
+| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
+| **peer_count**        | average count of peers nodes are connected to |
+| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
+| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **genesis_block**     | mode (most common) of genesis block hashes |
+| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
+| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "node_telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C"
+      ...
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B"
+      ...    
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "node_telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+---
+
 ### peers  
 Returns a list of pairs of online peer IPv6:port and its node protocol network version    
 

@@ -226,6 +226,10 @@ Prevent periodic cleaning of unchecked table
 ### --disable_unchecked_drop
 Prevent drop of all unchecked entries at node/wallet start
 
+### --disable_providing_telemetry_metrics 
+_version 21.0+_
+Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
+
 ### --enable_udp
 _version 21.0+_
 Turn on use of the UDP live network.
