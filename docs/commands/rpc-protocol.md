@@ -1733,7 +1733,7 @@ Return metrics from nodes. See [networking node telemetry](/protocol-design/netw
 
 This contains a summarized view of the network, 10% of lower/upper bound results are removed to reduce the effect of outliers. Most values returned are averages, in some cases the mode (most common) is returned such as the **genesis_block** & **\*_version/maker** fields. **bandwidth_cap** can return either, 0 has a special meaning of unlimited, so the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding 0). **maker** is meant for third party node software so that it can be distinguished, **0** represents the Nano Foundation. **uptime** is measure in seconds and **timestamp** is the number of milliseconds since the UTC epoch at the point where the response is sent from the peer. **active_difficulty** is the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current".
 
-This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the live network and 15 seconds on beta; there is also an additional few seconds added on for response delays.
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
 **Optional "raw"**  
 When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
