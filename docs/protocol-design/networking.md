@@ -22,4 +22,4 @@ The node id used in the initial handshake is used for signing. The genesis block
 The data is signed so that it cannot be forged by a Man In The Middle (MITM) attack.
 
 !!! warning "Peer disconnections"
-    Sending incorrectly telemetry data to peers will result in being blacklisted as it is seen as malicious, make sure the signing is correct! Verify signatures against known signing done by node by testing [local telemetry](/commands/rpc-protocol#node_telemetry). Nodes with a different genesis block hash will also be disconnected.
+    Sending incorrectly signed telemetry data to peers will result in being blacklisted as it is seen as malicious, make sure the signing is correct! Verify signatures against known signing done by node by testing [local telemetry](/commands/rpc-protocol#node_telemetry). Nodes with a different genesis block hash will also be disconnected.
