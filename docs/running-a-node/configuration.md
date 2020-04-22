@@ -161,6 +161,9 @@ Example that enables the RPC and WebSocket servers:
 
 `nano_node --config rpc.enable=true --config node.websocket.enable=true`
 
+Strings are passed with escaped quotes (`\"`), such as:
+
+`nano_node --config node.httpcallback.target=\"api/callback\"`
 
 !!! info "Mixing config options on the command line and TOML files"
     If a config file exists, config values passed in via the command line will take precedence.
