@@ -8,6 +8,8 @@ For details on why and how network upgrades happen, along with explanations of t
 
 ### Increased work difficulty
 
+--8<-- "join-technical-mailing-list.md"
+
 **Purpose**
 
 To help ensure Quality of Service on the network by increasing the difficulty required for send and change blocks to be considered valid by the network (8x compared to current). To help offset the difficulty increase and add incentive to receive blocks so ledger pruning can be done more broadly in the future, the difficulty for receive blocks will simultaneously be reduced (1/8 compared to current).
@@ -23,6 +25,21 @@ To help ensure Quality of Service on the network by increasing the difficulty re
 !!! warning "Nodes de-peered with epoch blocks"
 	Due to the nature of the work difficulty changes, any nodes not updated to V21.0 at the time of epoch block distribution will be de-peered from the network.
 
+In order to best prepare for the transition to new thresholds, the following items should be considered:
+
+* `active_difficulty` [RPC](/commands/rpc-protocol/#work_validate) and [WebSocket topic](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins
+* [`work_validate`](/commands/rpc-protocol/#work_validate) has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
+    * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
+    * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
+    * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after epoch upgrade)
+    * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
+* Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](/integration-guides/work-generation/#benchmarks).
+
+!!! warning "Calling for frontiers recommended for integrations"
+	Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
+
+	See [Step 1: Get Account Info](/integration-guides/key-management/#send-transaction) for the [`account_info`](/commands/rpc-protocol#account_info) RPC recommendation when creating transactions.
+
 **Transition Explanation**
 
 When changing the work difficulty requirements it is necessary to mark a point in each account where the difficulty requirements change so bootstrapping and other behaviors can accurately validate historical blocks. For this reason the epoch blocks are being distributed to act as the marker in the ledger.
@@ -30,6 +47,8 @@ When changing the work difficulty requirements it is necessary to mark a point i
 Once epoch block distribution is started the ability to validate the new work difficulty levels is required. Since node versions before V21.0 do not have the ability to do this, they will be immediately de-peered from the network and cannot participate with the current network until upgraded.
 
 To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network. Once acceptable conditions exist to finalize the transition the distribution will begin. The current plan is to start once over 90% of voting weight has been upgraded, along with all the key services on the network.
+
+---
 
 ## Future upgrades
 
