@@ -2720,7 +2720,7 @@ Stop generating **work** for block
 
 ### work_generate
 _enable_control required_  
-Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
+Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key).  
 
 --8<-- "enable-control-warning.md"
 
@@ -2728,16 +2728,15 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 ```json
 {
   "action": "work_generate",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
 **Response:**
 ```json
 {
-  "work": "2bf29ef00786a6bc",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647",
+  "work": "2b3d689bbcb21dca",
+  "difficulty": "fffffff93c41ec94", // of the resulting work
+  "multiplier": "1.182623871097636", // since v19.0, calculated from default base difficulty
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
 ```  
@@ -2751,7 +2750,7 @@ Without this parameter, the node will only generate work locally.
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work.  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
 
@@ -2840,30 +2839,61 @@ Clear work peers node list until restart
 ### work_validate 
 Check whether **work** is valid for block  
 
+!!! warning "Semantics change in V21.0"
+    In V21.0, when the optional **difficulty** is *not* given, **valid** is not included in the response.
+
+    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value.
+
 **Request:**
 ```json
 {
   "action": "work_validate",
   "work": "2bf29ef00786a6bc",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
-**Response:**
+**Response since v21.0:**
 ```json
 {
-  "valid": "1",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647"
+  "valid_all": "1",
+  "valid_receive": "1",
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636" // calculated from the default base difficulty
 }
 ```
 
-*Since version 19.0+:* The response also includes the work `value` in hexadecimal format, and a `multiplier` from the base difficulty (not from the optionally given difficulty).
+??? abstract "Response up to v20.0"
+    ```json
+    {
+      "valid": "1",
+      "difficulty": "fffffff93c41ec94", // since v19.0
+      "multiplier": "9.4609" // since v19.0
+    }
+    ```
 
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty.  
+
+**Request with given "difficulty"**  
+```json
+{
+  "action": "work_validate",
+  "work": "2bf29ef00786a6bc",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
+}
+```
+**Response with given "difficulty:**
+```json
+{
+  "valid": "1",
+  "valid_all": "1", // since v21.0
+  "valid_receive": "1", // since v21.0
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636"
+}
+```
 
 **Optional "multiplier"**
 
