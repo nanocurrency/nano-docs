@@ -12,6 +12,12 @@ Get the public key for `<account>`
 ### --clear_send_ids
 Remove all send IDs from the database (dangerous: not intended for production use)
 
+### --compare_rep_weights
+_version 21.0+_  
+Displays a summarized comparison between the hardcoded bootstrap weights and representative weights from the ledger. Full comparison is output to logs. Optional [`--data_path`](#-data_pathpath).
+
+Amounts are displayed in $Mnano = 10^{30} raw$. Differences in total weight are due to unreceived (pending) blocks. Mismatched samples are obtained as the absolute difference between hardcoded and ledger weights. From the samples, a distribution $N(\mu, \sigma)$ is obtained. Values above $\mu + \sigma$ are displayed as outliers. Representatives found in the ledger but not hardcoded, with a large voting weight, are displayed as newcomers.
+
 ### --config key=value
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
