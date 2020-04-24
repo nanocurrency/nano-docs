@@ -12,6 +12,8 @@ This file will grow in size as the ledger does. As of April 2020 there are over 
 !!! tip "Updating the node may require a lengthy ledger upgrade"
 	Read the [guide](#updating-the-node) further down this page for some tips on how to minimize downtime during an update.
 
+---
+
 ## Bootstrapping
 
 When starting a new node the ledger must be downloaded and kept updated in order to participate on the network properly. This is done automatically via bootstrapping - the node downloads and verifies blocks from other nodes across the network. This process can take hours to days to complete depending on network conditions and [hardware specifications](/running-a-node/node-setup/#hardware-recommendations).
@@ -28,12 +30,14 @@ Depending on machine and networking resources, the bootstrap performance can be 
 
 The additional resource usage these options cause should be considered, especially if left during normal operation (after initial bootstrap is complete).
 
-## Ledger Fast Sync
+---
+
+## Downloaded ledger files
 
 !!! tip "Always backup your ledgers file"
 	Whenever you are attempting to change the ledger, it is highly recommended you create backups of the existing `data.ldb` file to ensure you have a rollback point if issues are encountered.
 
-To avoid bootstrapping times, a ledger file (`data.ldb`) can be downloaded off-chain and added to the data file used by the node. The Nano Foundation provides a daily ledger file download in the #ledger channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
+To avoid bootstrapping times, a ledger file (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the #ledger channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
 
 Before using this method there are a few considerations to ensure it is done safely:
 
@@ -41,11 +45,14 @@ Before using this method there are a few considerations to ensure it is done saf
 Make sure you trust the source providing the data to you. If you are unfamiliar with the individual or organization providing the ledger, consider other options for the data or fallback to the default of [bootstrapping](#bootstrapping) from the network.
 
 ### Representative voting weights
-Blocks are confirmed using the voting weight of representatives and these weights are determined by the account balances assigned to those representatives. In addition, the node releases contain a hard-coded set of representative weights captured at the time of release.
+Blocks are confirmed using the voting weight of representatives and these weights are determined by the account balances assigned to those representatives. In addition, the node releases contain a hard-coded set of representative weights captured at the time of the node release to help this process during bootstrapping.
 
-If a new ledger is downloaded it is recommended to compare the voting weights it contains against the hard-coded values in the node. To do this, the [--compare_rep_weights](/commands/command-line-interface/#-compare_rep_weights) CLI (_available in V21+ only_) can be run to get an output of the mismatched weight, mean and standard deviation.
+If looking to use a downloaded ledger there is a risk of it providing inaccurate representative voting weights. Although the potential impacts of this are minimal, below are some recommended steps to take which can help provide additional confidence the ledger can be used.
 
-Although the variance threshold considered to be safe will depend on freshness of the ledger file and network weight variations since the node release date, in general more than a 10% difference should be scrutinized further. If you need support in evaluating join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
+1. **Scan the ledger for integrity using the [`--debug_validate_blocks`](/commands/command-line-interface/#-debug_validate_blocks) CLI command**. If issues are found they should be inspected carefully and alternative sources of a ledger may need to be considered as failures with this command have a high chance of indicating potentially malicious behavior.
+1. With the new ledger in the data folder (don't forget to backup the previous ledger!), **review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command**. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the CLI command for details on the output, but special attention should be paid to entries in the `outliers` section, which indicates large differences between the hard coded and new ledger rep weights, and the `newcomers` section, which highlights large voting weights showing up for new representatives. By inspecting the output addresses in public explorers such as [Nanocrawler.cc](https://nanocrawler.cc), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
+
+If you need support with this process or need help in evaluating some of the CLI command results, join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
 
 ### Confirmation data
 Within each account on the ledger a confirmation height is set. This indicates the height of the last block on that chain where quorum was observed on the network. This is set locally by the node and a new ledger file may include this information with it. If the ledger is from a trusted source this confirmation data can be kept, which will save bandwidth and resources on the network by not querying for votes to verify these confirmations.
