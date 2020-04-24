@@ -158,7 +158,7 @@ All configuration nodes and values are optional, with the default values shown i
 
 ```
 type:
-    traffic
+    traffic_udp
     traffic_tcp
     error
     message
@@ -167,16 +167,19 @@ type:
     rollback
     bootstrap
     vote
+    election
     http_callback
     peering
     ipc
     tcp
     udp
-    observer
     confirmation_height
+    confirmation_observer
     drop
     aggregator
     requests
+    filter
+    telemetry
 
 details:
     all
@@ -187,12 +190,12 @@ details:
     http_callback
     unreachable_host
 
-    // observer specific
-    observer_confirmation_active_quorum
-    observer_confirmation_active_conf_height
-    observer_confirmation_inactive
-    
-    // ledger, block, bootstrap
+    // confirmation_observer specific
+    active_quorum
+    active_conf_height
+    inactive_conf_height
+
+    // ledger block bootstrap
     send
     receive
     open
@@ -204,20 +207,22 @@ details:
     gap_previous
     gap_source
 
-    // Message specific
+    // message specific
     keepalive
     publish
     republish_vote
     confirm_req
     confirm_ack
     node_id_handshake
+    telemetry_req
+    telemetry_ack
 
-    // bootstrap, callback
+    // bootstrap callback
     initiate
     initiate_lazy
     initiate_wallet_lazy
 
-    // Bootstrap specific
+    // bootstrap specific
     bulk_pull
     bulk_pull_account
     bulk_pull_deserialize_receive_block
@@ -227,15 +232,28 @@ details:
     bulk_pull_request_failure
     bulk_push
     frontier_req
+    frontier_confirmation_failed
+    frontier_confirmation_successful
     error_socket_close
 
-    // Vote specific
+    // vote specific
     vote_valid
     vote_replay
+    vote_indeterminate
     vote_invalid
     vote_overflow
+
+    // election specific
     vote_new
     vote_cached
+    late_block
+    late_block_seconds
+    election_non_priority
+    election_priority
+    election_block_conflict
+    election_difficulty_update
+    election_drop
+    election_restart
 
     // udp
     blocking
@@ -257,6 +275,7 @@ details:
     tcp_accept_success
     tcp_accept_failure
     tcp_write_drop
+    tcp_write_no_socket_drop
     tcp_excluded
 
     // ipc
@@ -267,6 +286,8 @@ details:
 
     // confirmation height
     blocks_confirmed
+    blocks_confirmed_unbounded
+    blocks_confirmed_bounded
     invalid_block
 
     // [request] aggregator
@@ -274,15 +295,18 @@ details:
     aggregator_dropped
 
     // requests
-    requests_cached_hashes,
-    requests_generated_hashes,
-    requests_cached_votes,
-    requests_generated_votes,
+    requests_cached_hashes
+    requests_generated_hashes
+    requests_cached_votes
+    requests_generated_votes
     requests_unknown
 
+    // duplicate
+    duplicate_publish
+
     // telemetry
-    different_genesis_hash
     invalid_signature
+    different_genesis_hash
     node_id_mismatch
     request_within_protection_cache_zone
     no_response_received
