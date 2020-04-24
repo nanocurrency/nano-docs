@@ -2837,12 +2837,17 @@ Clear work peers node list until restart
 ---
 
 ### work_validate 
-Check whether **work** is valid for block  
+Check whether **work** is valid for block. Provides two values: **valid_all** is `true` if the work is valid at the current network difficulty (work can be used for any block). **valid_receive** is `true` if the work is valid for use in a receive block.
+
+**Read the details below when using this RPC in V21**.
 
 !!! warning "Semantics change in V21.0"
-    In V21.0, when the optional **difficulty** is *not* given, **valid** is not included in the response.
+    In V21.0, when the optional **difficulty** is *not* given, **valid** is no longer included in the response.
 
-    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value.
+    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value:
+
+    - **valid_all** validates at the current network difficulty. As soon as the node processes the first [epoch_2 block](/releases/network-upgrades#increased-work-difficulty), this difficulty is increased.
+    - **valid_receive** is completely accurate **only once the [epoch_2 upgrade](/releases/network-upgrades#increased-work-difficulty) is finished.** Until the upgrade is finished, it is only accurate if the account where this work will be used is already upgraded. The upgrade status of an account can be obtained from [account_info](#account_info). The account is upgraded if "account_version" is `"2"`.
 
 **Request:**
 ```json
@@ -2874,12 +2879,13 @@ Check whether **work** is valid for block
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty.  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty. Response includes extra field **valid** signifying validity at the given difficulty.  
 
 **Request with given "difficulty"**  
 ```json
 {
   "action": "work_validate",
+  "difficulty": "ffffffffffffffff",
   "work": "2bf29ef00786a6bc",
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
@@ -2887,7 +2893,7 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 **Response with given "difficulty:**
 ```json
 {
-  "valid": "1",
+  "valid": "0",
   "valid_all": "1", // since v21.0
   "valid_receive": "1", // since v21.0
   "difficulty": "fffffff93c41ec94",
