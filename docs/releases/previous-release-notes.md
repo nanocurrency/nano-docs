@@ -3,6 +3,8 @@ description: A collection of release notes for older Nano node releases includin
 
 ## V20.0
 
+--8<-- "release-details-v20-0.md"
+
 ### Upgrade Notices
 
 !!! warning "Only node V18.0 and higher supported"
@@ -135,6 +137,8 @@ The following functionality is now deprecated and will be removed in a future re
 ---
 
 ## V19.0
+
+--8<-- "release-details-v19-0.md"
 
 ### Upgrade Notices
 
