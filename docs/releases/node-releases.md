@@ -128,7 +128,7 @@ Updates on the progress toward the epoch upgrade will be posted in our many soci
 To allow better communication between nodes about various performance and other details, telemetry was added between peers. Details of what is shared and option to request them can be found within the [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them. For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
 
 !!! warning "Telemetry can be forged"
-	Although the telemetry messages are signed by nodes, the values the responses provided can be forged by malicious nodes so they cannot be guaranteed as accurate. All details in these messages should be used as rough indicators of peer and broad network situations, but not exclusively relied on for any key integration or network activities.
+	Although the telemetry messages are signed by nodes, the data provided by other peers can be forged by malicious nodes so they cannot be guaranteed as accurate. All details in these messages should be used as rough indicators of peer and broad network situations, but not exclusively relied on for any key integration or network activities.
 
 Continued conversation around telemetry is happening through the [related forum discussion](https://forum.nano.org/t/node-telemetry-metrics/112/8).
 
