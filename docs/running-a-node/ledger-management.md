@@ -25,8 +25,8 @@ When starting a new node the ledger must be downloaded and kept updated in order
 
 Depending on machine and networking resources, the bootstrap performance can be improved by updating the following [configuration](/running-a-node/configuration/) values:
 
-* `node.bootstrap_connections_max`: up to max of `64`
-* `node.bootstrap_initiator_threads`: up to max of `4`
+* `node.bootstrap_connections_max`: up to max of `128`
+* `node.bootstrap_connections`: up to max of `16`
 
 The additional resource usage these options cause should be considered, especially if left during normal operation (after initial bootstrap is complete).
 
