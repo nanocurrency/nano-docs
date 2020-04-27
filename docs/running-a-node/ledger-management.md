@@ -9,7 +9,7 @@ The node automatically manages the full Nano ledger in the `data.ldb` file which
 This file will grow in size as the ledger does. As of April 2020 there are over 49 million blocks in the ledger which requires at least 26GB of free space. See [hardware recommendations](/running-a-node/node-setup/#hardware-recommendations) for more preferred node specs.
 
 !!! warning "RocksDB uses many files"
-	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should be followed from the [RocksDB Ledger Backend](#rocksDB-ledger-backend) section below.
+	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should be followed from the [RocksDB Ledger Backend](#rocksdb-ledger-backend) section below.
 
 !!! tip "Updating the node may require a lengthy ledger upgrade"
 	Read the [guide](#updating-the-node) further down this page for some tips on how to minimize downtime during an update.
