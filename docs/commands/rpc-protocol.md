@@ -636,6 +636,11 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 _version 21.0+_
 Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
 
+**Optional "difficulty"**
+_version 21.0+_
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
+
 ---
 
 ### block_hash  
@@ -1465,6 +1470,10 @@ Upgrade network to new **epoch** with epoch signer private **key**
 **Optional "count"**  
 Number. Determines limit of number of accounts to upgrade.
 
+**Optional "threads"**  
+_version 21.0+_  
+Number. Determines limit of work threads to use for concurrent upgrade processes (useful with multiple work peers or high work peer latency).
+
 ---
 
 ### frontier_count  
@@ -1697,6 +1706,103 @@ Removing node ID (restart required to take effect)
   "deprecated": "1"
 }
 ```  
+
+---
+
+### node_telemetry
+_version 21.0+_  
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+**Request:**
+```json
+{
+  "action": "node_telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "556896",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587055945990",
+    "active_difficulty": "ffffffcdbf40aa45"
+}
+```
+
+This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
+
+| Field Name | Response details |
+|------------|------------------------------------|
+| **block_count**       | average count of blocks in ledger (including unconfirmed) |
+| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
+| **unchecked_count**   | average count of unchecked blocks |
+| **account_count**     | average count of accounts in ledger |
+| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
+| **peer_count**        | average count of peers nodes are connected to |
+| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
+| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **genesis_block**     | mode (most common) of genesis block hashes |
+| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
+| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "node_telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C"
+      ...
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B"
+      ...    
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "node_telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 
@@ -2619,7 +2725,7 @@ Stop generating **work** for block
 
 ### work_generate
 _enable_control required_  
-Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
+Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key).  
 
 --8<-- "enable-control-warning.md"
 
@@ -2627,16 +2733,15 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 ```json
 {
   "action": "work_generate",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
 **Response:**
 ```json
 {
-  "work": "2bf29ef00786a6bc",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647",
+  "work": "2b3d689bbcb21dca",
+  "difficulty": "fffffff93c41ec94", // of the resulting work
+  "multiplier": "1.182623871097636", // since v19.0, calculated from default base difficulty
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
 ```  
@@ -2650,7 +2755,7 @@ Without this parameter, the node will only generate work locally.
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work.  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
 
@@ -2737,32 +2842,69 @@ Clear work peers node list until restart
 ---
 
 ### work_validate 
-Check whether **work** is valid for block  
+Check whether **work** is valid for block. Provides two values: **valid_all** is `true` if the work is valid at the current network difficulty (work can be used for any block). **valid_receive** is `true` if the work is valid for use in a receive block.
+
+**Read the details below when using this RPC in V21**.
+
+!!! warning "Semantics change in V21.0"
+    In V21.0, when the optional **difficulty** is *not* given, **valid** is no longer included in the response.
+
+    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value:
+
+    - **valid_all** validates at the current network difficulty. As soon as the node processes the first [epoch_2 block](/releases/network-upgrades#increased-work-difficulty), this difficulty is increased.
+    - **valid_receive** is completely accurate **only once the [epoch_2 upgrade](/releases/network-upgrades#increased-work-difficulty) is finished.** Until the upgrade is finished, it is only accurate if the account where this work will be used is already upgraded. The upgrade status of an account can be obtained from [account_info](#account_info). The account is upgraded if "account_version" is `"2"`.
 
 **Request:**
 ```json
 {
   "action": "work_validate",
   "work": "2bf29ef00786a6bc",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
-**Response:**
+**Response since v21.0:**
 ```json
 {
-  "valid": "1",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647"
+  "valid_all": "1",
+  "valid_receive": "1",
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636" // calculated from the default base difficulty
 }
 ```
 
-*Since version 19.0+:* The response also includes the work `value` in hexadecimal format, and a `multiplier` from the base difficulty (not from the optionally given difficulty).
+??? abstract "Response up to v20.0"
+    ```json
+    {
+      "valid": "1",
+      "difficulty": "fffffff93c41ec94", // since v19.0
+      "multiplier": "9.4609" // since v19.0
+    }
+    ```
 
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty. Response includes extra field **valid** signifying validity at the given difficulty.  
+
+**Request with given "difficulty"**  
+```json
+{
+  "action": "work_validate",
+  "difficulty": "ffffffffffffffff",
+  "work": "2bf29ef00786a6bc",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
+}
+```
+**Response with given "difficulty:**
+```json
+{
+  "valid": "0",
+  "valid_all": "1", // since v21.0
+  "valid_receive": "1", // since v21.0
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636"
+}
+```
 
 **Optional "multiplier"**
 

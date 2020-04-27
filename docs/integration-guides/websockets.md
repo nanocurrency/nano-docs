@@ -111,18 +111,9 @@ Some topics support filters as well. Details of the subscription filter options 
 !!! note
     Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
 
-**Available Topics**
-
-Current topics available for subscribing to include:
-
-* `confirmation`
-* `vote` (experimental, unfinished)
-* `stopped_election`
-* `active_difficulty`
-
 ---
 
-## Subscription Options
+## Available Topics
 
 ### Confirmations
 
@@ -504,3 +495,98 @@ Notes:
 - The duration is in milliseconds
 - If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
 - When work generation is done locally it will show `"source": "local"`
+
+
+### Node telemetry
+
+This subscription is available since _v21.0_
+
+##### Subscribing
+
+To subscribe to node telemetry response notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "telemetry"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `telemetry` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "telemetry",
+  "time": "1587109495082",
+  "message": {
+    "signature": "A133AD584C3C1F44BB7FDA1F53B80DA83EBF5E3D9DCB55D74F0B6899151331C1FB11E4E29CE54F3B4C315FEAEECAD4AF383BDB175ECA76C1744DE51AEB097709",
+    "node_id": "59A442B93C43623EB250330A31B158D7DF97EFB9365ABACC1A9416968FDCE4CB",
+    "block_count": "23173713",
+    "cemented_count": "23173713",
+    "unchecked_count": "0",
+    "account_count": "1502809",
+    "bandwidth_cap": "5242880",
+    "peer_count": "36",
+    "protocol_version": "18",
+    "uptime": "636056",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587109484086",
+    "address": "::ffff:165.22.133.254",
+    "port": "54000"
+  }
+}
+```
+See the [node_telemetry](/commands/rpc-protocol/#node_telemetry) RPC command which gives more information about the message response  
+
+
+### New unconfirmed blocks
+
+This subscription is available since _v21.0_
+
+!!! danger "These blocks are not confirmed"
+    Blocks received through this websocket should **not** be used for tracking confirmations, as they are unconfirmed and could be replaced by a conflicting block. Read the [confirmation tracking guide](/integration-guides/block-confirmation-tracking/) for more details.
+
+##### Subscribing
+
+To subscribe to node telemetry response notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "new_unconfirmed_block"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `new_unconfirmed_block` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "new_unconfirmed_block",
+  "time": "1587109495082",
+  "message": {
+    "type": "state",
+    "account": "nano_1unw379kgu1iub1caswn5khfk4b6tzinku8ww7uds9z7nwubj3dgt6yzjpiw",
+    "previous": "A01B96AFE86DC82FECD13F8C3A4F1AC779DCDAF60166F94F1A2CD3987F4609F0",
+    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+    "balance": "2345399869764044123018481994",
+    "link": "E0049F6D5D5661A714D8928D287285A0105B07720661F8C8B1FC8EE5B15FC067",
+    "link_as_account": "nano_3r16mxpotom3nwcfj6nf73sada1ide5q63m3z56d5z6gwprozi59ocyuoxc1",
+    "signature": "7BDD77BE14552263F9AF5130229A3BBB9038EE4B9C29E66D3D58280EF43B7FAF2DBC7070BD9CA39C844B7068E3AF40B04CE1D5CEEEA142C8FE20EE091A3C320E",
+    "work": "8ebdd4aa0bf1263e",
+    "subtype": "receive"
+  }
+}
+```

@@ -21,25 +21,40 @@ If the node crashes, the most commonly seen message is "Segmentation fault (core
 
 When you are done gathering all information, please [create a new Github issue](https://github.com/nanocurrency/nano-node/issues/new), or [reach us on Discord](https://chat.nano.org) in the *#support* channel, detailing your issue as much as possible.
 
-!!! example "Step 1: Getting version information"
-    This command prints the node build information.
 
-    **Not using docker:**
+!!! note "Getting the latest node log"
+    The following command will order the log files such that the first one in the output is the most recent. If you restarted the node since the crash, then the relevant log file is not the latest one. Please be careful to give us the relevant log file.
+
     ```bash
-    ./nano_node --version
-    ```
-    **Using docker:**
-    ```bash
-    docker exec ${NANO_NAME} nano_node --version
+    # Nano -> NanoBeta if debugging a beta node
+    ls -dlt ~/Nano/log/* | head
     ```
 
-    Example output:
-    ```
-    Version 20.0
-    Build Info d5abc6ab "GNU C++ version " "7.4.0" "BOOST 107000" BUILT "Aug  6 2019"
-    ```
+    Please provide the complete log file.
 
-!!! example "Step 2: Getting dmesg information"
+Please follow the steps below for the corresponding node version you are using. Should there be an error obtaining the information in a newer version, the older version steps should then be attempted.
+#### _v21_+ nodes
+
+!!! example "Step 1: Make sure addr2line is installed"
+    It is likely installed already, consult documentation for your linux distribution if it is not mentioned below:  
+    **Ubuntu**  
+    `apt-get install addr2line`  
+  
+    **Fedora 22+**  
+    `dnf install addr2line`
+
+!!! example "(Optional) Step 2: Save crash dump files"
+    The next step will clean up the dump files generated during the crash, if you wish to keep these then save `nano_node_backtrace.dump`, and all `nano_node_crash_load_address_dump_*.txt` files.
+
+!!! example "Step 3: Generate crash report"
+    Run:
+    `./nano_node --debug_generate_crash_report`
+
+    This will generate a text file `nano_node_crash_report.txt` please send us the contents of this file.
+
+#### _v20_ nodes
+
+!!! example "Step 1: Getting dmesg information"
     Depending on the error, it is possible you do not find any useful information in this step, in which case please move on to Step 3.
     Run the following command and look for `nano_node` at the end. If you see a relevant message, gather all messages with a similar timestamp - the number within brackets on the left.
 
@@ -58,7 +73,7 @@ When you are done gathering all information, please [create a new Github issue](
 
     From this output, only the last 3 lines are relevant.
 
-!!! example "Step 3: Getting syslog information"
+!!! example "Step 2: Getting syslog information"
     More information might be available in syslog. Run the following command and look for the time the crash ocurred.
 
     ```bash
@@ -74,17 +89,7 @@ When you are done gathering all information, please [create a new Github issue](
 
     Include the relevant lines from the output. In this example, the log is similar to the one from Step 2.
 
-!!! example "Step 4: Getting the latest node log"
-    The following command will order the log files such that the first one in the output is the most recent. If you restarted the node since the crash, then the relevant log file is not the latest one. Please be careful to give us the relevant log file.
-
-    ```bash
-    # Nano -> NanoBeta if debugging a beta node
-    ls -dlt ~/Nano/log/* | head
-    ```
-
-    Please provide the complete log file.
-
-!!! example "Step 5: Getting a backtrace dump"
+!!! example "Step 3: Getting a backtrace dump"
     This command will produce some basic information about the error.
 
     **Not using docker**:
@@ -100,7 +105,7 @@ When you are done gathering all information, please [create a new Github issue](
     docker cp ${NANO_NAME}:/crash_files/ . && mv crash_files/* .
     ```
 
-!!! example "Step 6: Producing the archive file"
+!!! example "Step 4: Producing the archive file"
     See the output of this command for the name of the file you should include in your report.
     ```bash
     FILE="nano_node_crash_$(date +"%Y-%m-%d_%H-%M-%S.tar.gz")" && tar czf $FILE --exclude=*.tar.gz nano_node_* && echo "Created archive $FILE"
@@ -153,7 +158,7 @@ All configuration nodes and values are optional, with the default values shown i
 
 ```
 type:
-    traffic
+    traffic_udp
     traffic_tcp
     error
     message
@@ -162,16 +167,19 @@ type:
     rollback
     bootstrap
     vote
+    election
     http_callback
     peering
     ipc
     tcp
     udp
-    observer
     confirmation_height
+    confirmation_observer
     drop
     aggregator
     requests
+    filter
+    telemetry
 
 details:
     all
@@ -182,12 +190,12 @@ details:
     http_callback
     unreachable_host
 
-    // observer specific
-    observer_confirmation_active_quorum
-    observer_confirmation_active_conf_height
-    observer_confirmation_inactive
-    
-    // ledger, block, bootstrap
+    // confirmation_observer specific
+    active_quorum
+    active_conf_height
+    inactive_conf_height
+
+    // ledger block bootstrap
     send
     receive
     open
@@ -195,21 +203,26 @@ details:
     state_block
     epoch_block
     fork
+    old
+    gap_previous
+    gap_source
 
-    // Message specific
+    // message specific
     keepalive
     publish
     republish_vote
     confirm_req
     confirm_ack
     node_id_handshake
+    telemetry_req
+    telemetry_ack
 
-    // bootstrap, callback
+    // bootstrap callback
     initiate
     initiate_lazy
     initiate_wallet_lazy
 
-    // Bootstrap specific
+    // bootstrap specific
     bulk_pull
     bulk_pull_account
     bulk_pull_deserialize_receive_block
@@ -219,15 +232,28 @@ details:
     bulk_pull_request_failure
     bulk_push
     frontier_req
+    frontier_confirmation_failed
+    frontier_confirmation_successful
     error_socket_close
 
-    // Vote specific
+    // vote specific
     vote_valid
     vote_replay
+    vote_indeterminate
     vote_invalid
     vote_overflow
+
+    // election specific
     vote_new
     vote_cached
+    late_block
+    late_block_seconds
+    election_non_priority
+    election_priority
+    election_block_conflict
+    election_difficulty_update
+    election_drop
+    election_restart
 
     // udp
     blocking
@@ -241,12 +267,15 @@ details:
     invalid_confirm_req_message
     invalid_confirm_ack_message
     invalid_node_id_handshake_message
+    invalid_telemetry_req_message
+    invalid_telemetry_ack_message
     outdated_version
 
     // tcp
     tcp_accept_success
     tcp_accept_failure
     tcp_write_drop
+    tcp_write_no_socket_drop
     tcp_excluded
 
     // ipc
@@ -257,6 +286,8 @@ details:
 
     // confirmation height
     blocks_confirmed
+    blocks_confirmed_unbounded
+    blocks_confirmed_bounded
     invalid_block
 
     // [request] aggregator
@@ -264,11 +295,23 @@ details:
     aggregator_dropped
 
     // requests
-    requests_cached_hashes,
-    requests_generated_hashes,
-    requests_cached_votes,
-    requests_generated_votes,
+    requests_cached_hashes
+    requests_generated_hashes
+    requests_cached_votes
+    requests_generated_votes
     requests_unknown
+
+    // duplicate
+    duplicate_publish
+
+    // telemetry
+    invalid_signature
+    different_genesis_hash
+    node_id_mismatch
+    request_within_protection_cache_zone
+    no_response_received
+    unsolicited_telemetry_ack
+    failed_send_telemetry_req
 
 dir (direction) :
     in
