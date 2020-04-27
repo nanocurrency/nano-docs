@@ -10,11 +10,11 @@ For details on why and how network upgrades happen, along with explanations of t
 
 --8<-- "join-technical-mailing-list.md"
 
-**Purpose**
-
 To help ensure Quality of Service on the network by increasing the difficulty required for send and change blocks to be considered valid by the network (8x compared to current). To help offset the difficulty increase and add incentive to receive blocks so ledger pruning can be done more broadly in the future, the difficulty for receive blocks will simultaneously be reduced (1/8 compared to current).
 
-**Transition details**
+#### Transition details
+
+This upgrade is sometimes referenced as the epoch v2 upgrade and the relate events to complete are as follows:
 
 | Date | Type | Description |
 |------|------|-------------|
@@ -25,22 +25,36 @@ To help ensure Quality of Service on the network by increasing the difficulty re
 !!! warning "Nodes de-peered with epoch blocks"
 	Due to the nature of the work difficulty changes, any nodes not updated to V21.0 at the time of epoch block distribution will be de-peered from the network.
 
+#### Recommended preparations
+
 In order to best prepare for the transition to new thresholds, the following items should be considered:
 
-* `active_difficulty` [RPC](/commands/rpc-protocol/#work_validate) and [WebSocket topic](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins
-* [`work_validate`](/commands/rpc-protocol/#work_validate) has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
-    * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
-    * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
-    * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after epoch upgrade)
-    * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
-* Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](/integration-guides/work-generation/#benchmarks).
+**Active difficulty**
 
-!!! warning "Calling for frontiers recommended for integrations"
-	Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
+To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC and [WebSocket topic](/integration-guides/websockets/#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
 
-	See [Step 1: Get Account Info](/integration-guides/key-management/#send-transaction) for the [`account_info`](/commands/rpc-protocol#account_info) RPC recommendation when creating transactions.
+Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
 
-**Transition Explanation**
+**Work validation**
+
+The [`work_validate`](/commands/rpc-protocol/#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
+
+* If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
+* `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
+* `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after epoch upgrade)
+* **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
+
+**Work generation performance**
+
+Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](/integration-guides/work-generation/#benchmarks).
+
+**Other integration considerations**
+
+Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
+
+See [Step 1: Get Account Info](/integration-guides/key-management/#send-transaction) for the [`account_info`](/commands/rpc-protocol#account_info) RPC recommendation when creating transactions.
+
+#### Transition Explanation
 
 When changing the work difficulty requirements it is necessary to mark a point in each account where the difficulty requirements change so bootstrapping and other behaviors can accurately validate historical blocks. For this reason the epoch blocks are being distributed to act as the marker in the ledger.
 

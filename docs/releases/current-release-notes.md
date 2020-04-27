@@ -27,11 +27,6 @@ Although breaking changes were kept to a minimum in this release, there are two 
 ### Upcoming v2 epoch upgrade
 As outlined in the [February Development Update: V21 PoW Difficulty Increases](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e), an epoch block distribution must be done to complete the upgrade to the new work difficulty thresholds. **All integrations generating work are encouraged to review the details on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) ahead of the epoch V2 distribution.**
 
-!!! note "Retrieving current difficulty using [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC"
-	To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC, will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
-
-	Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
-
 !!! danger "Only node V21.0 will be active after epoch distribution"
 	Nodes upgrading to V21.0 will remain peered with nodes V19.0 and V20.0 on the network until the epoch v2 block distribution begins. **After the first epoch v2 block is distributed, all nodes not running V21.0 will no longer be able to participate on the network.** This distribution will occur once 90% of voting weight and key services on the network have upgraded. Communications around the progress towards this goal will be sent following the release.
 
