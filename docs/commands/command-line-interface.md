@@ -230,8 +230,9 @@ After a node crash on linux, this command consumes the dump files generated from
 Profile simulated bootstrap process
 
 ### --debug_profile_generate
-Profile work generation.  
-Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.
+Profile work generation  
+Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.  
+Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
 
 ### --debug_profile_validate
 Profile work validation
@@ -260,4 +261,5 @@ Profile signature verification
 [Disabled] Profile xorshift algorithms
 
 ### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
-_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics
+_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
+Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
