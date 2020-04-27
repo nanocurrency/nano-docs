@@ -41,7 +41,7 @@ The [`work_validate`](/commands/rpc-protocol/#work_validate) RPC has multiple ch
 
 * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
 * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
-* `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after epoch upgrade)
+* `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
 * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
 
 **Work generation performance**
@@ -60,7 +60,7 @@ When changing the work difficulty requirements it is necessary to mark a point i
 
 Once epoch block distribution is started the ability to validate the new work difficulty levels is required. Since node versions before V21.0 do not have the ability to do this, they will be immediately de-peered from the network and cannot participate with the current network until upgraded.
 
-To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network. Once acceptable conditions exist to finalize the transition the distribution will begin. The current plan is to start once over 90% of voting weight has been upgraded, along with all the key services on the network.
+To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network. Once acceptable conditions exist to finalize the transition, the distribution will begin. The current plan is to start once over 90% of voting weight has been upgraded, along with all the key services on the network.
 
 ---
 

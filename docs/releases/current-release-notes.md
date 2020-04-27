@@ -83,7 +83,7 @@ The following options are notable node configuration updates. Additional configu
 * **BREAKING CHANGE** [`work_validate`](/commands/rpc-protocol/#work_validate) has multiple changes to the response, one which will break most existing integrations:
     * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
     * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
-    * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after epoch upgrade)
+    * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
     * **To best understand how these and other epoch related changes will impact your integration, it is highly recommended that the [Upcoming upgrades > Increased work difficulty section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades is carefully reviewed**
 * `active_difficulty` [RPC](/commands/rpc-protocol/#work_validate) and [WebSocket](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins, otherwise the response formats will remain the same
 * **BREAKING CHANGE** [`bootstrap_status`](/commands/rpc-protocol/#bootstrap_status) responses now have `connections` field as an array of connection-related fields and adds an `attempts` field with an area of individual bootstrap attempt details, each including information such as a unique id, type of bootstrap (legacy, lazy) and various other granular information.
@@ -104,7 +104,7 @@ The following options are notable node configuration updates. Additional configu
 
 ## WebSockets
 
-* Updates to WebSocket subscriptions are now allowed on the [`confirmation`](/integration-guides/websockets/#confirmations) topic. With `options` of `accounts_add` and `accounts_del` an existing subscription can now be more easily managed to avoid cancelling and resubscribing or managing multiple subscriptions.
+* Updates to WebSocket subscriptions are now allowed on the [`confirmation`](/integration-guides/websockets/#confirmations) topic. With `options` of `accounts_add` and `accounts_del` an existing subscription can now be more easily managed to avoid resubscribing with a large list of accounts or managing multiple subscriptions.
 * **NEW** [`bootstrap`](/integration-guides/websockets/#bootstrap) topic provides notifications about the starting and exiting of bootstrap attempts.
 * **NEW** [`new_unconfirmed_block`](/integration-guides/websockets/#new_unconfirmed_block) topic provides notifications about blocks which were just processed and are being seen by the node for the first time. This is useful for integrations that want to watch for blocks they didn't create themselves, but for which they want to update with new work (external work watcher).
 
