@@ -16,7 +16,14 @@ Remove all send IDs from the database (dangerous: not intended for production us
 _version 21.0+_  
 Displays a summarized comparison between the hardcoded bootstrap weights and representative weights from the ledger. Full comparison is output to logs. Optional [`--data_path`](#-data_pathpath).
 
-Amounts are displayed in $Mnano = 10^{30} raw$. Differences in total weight are due to unreceived (pending) blocks. Mismatched samples are obtained as the absolute difference between hardcoded and ledger weights. From the samples, a distribution $N(\mu, \sigma)$ is obtained. Values above $\mu + \sigma$ are displayed as outliers. Representatives found in the ledger but not hardcoded, with a large voting weight, are displayed as newcomers.
+* Differences between total weights (`hardcoded weight` and `ledger weight`) are due to unreceived (pending) blocks
+* `mismatched`:
+    * `samples`: the number of mismatched samples is equal to the number of hardcoded weights, even those with zero mismatch
+    * `total`: sum of the absolute difference between individual samples from hardcoded and ledger weights
+    * `mean`: `total` divided by `samples`
+    * `sigma`: from the samples, a distribution $N(\mu, \sigma)$ is obtained
+* `outliers`: mismatch samples above $\mu + \sigma$, for potential inspection
+* `newcomers`: large voting weights found in the ledger but not hardcoded, for potential inspection
 
 ### --config key=value
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
