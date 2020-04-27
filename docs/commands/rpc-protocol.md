@@ -1712,6 +1712,9 @@ Removing node ID (restart required to take effect)
 ### node_telemetry
 _version 21.0+_  
 Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+
+--8<-- "telemetry-can-be-forged.md"
+
 **Request:**
 ```json
 {
