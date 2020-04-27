@@ -101,7 +101,7 @@ The node ledger currently uses LMDB (Lightning memory-mapped database) by defaul
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
 It is anticipated that bootstrapping will be slower using RocksDB during the initial version at least, but live traffic should be faster due to singluar writes being cached in memory and flushed to disk in bulk.
 
-Using RocksDB requires a few extra steps as it is an externally required dependency which requires a recent version of RocksDB, so older repositories may not be sufficient, it also requires `zlib`. If using the docker node, can skip to [Enable RocksDB](#enable-rocksdb):  
+Using RocksDB requires a few extra steps as it is an externally required dependency which requires a recent version of RocksDB, so older repositories may not be sufficient, it also requires `zlib`. If using the docker node, skip to [Enable RocksDB](#enable-rocksdb).
 
 ### Installation  
 
