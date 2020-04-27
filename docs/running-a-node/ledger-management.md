@@ -86,7 +86,7 @@ In order to minimize downtime, consider performing the update in a different mac
 1. Replace `/home/<user>/Nano/data.ldb` with the transferred file.
 1. Restart the node.
 
-In the event that you are unable to upgrade the ledger on another machine but would still like to minimize downtime, consider [obtaining the ledger from another source](#ledger-fast-sync) as a last resource.
+In the event that you are unable to upgrade the ledger on another machine but would still like to minimize downtime, consider [obtaining the ledger from another source](#downloaded-ledger-files) as a last resource.
 
 ---
 
