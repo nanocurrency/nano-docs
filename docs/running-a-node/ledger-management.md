@@ -1,5 +1,7 @@
 # Ledger Management
 
+## Ledger file
+
 The node automatically manages the full Nano ledger in the `data.ldb` file which can be found in the data folder at these locations:
 
 --8<-- "folder-locations.md"
@@ -37,7 +39,7 @@ The additional resource usage these options cause should be considered, especial
 !!! tip "Always backup your ledgers file"
 	Whenever you are attempting to change the ledger, it is highly recommended you create backups of the existing `data.ldb` file to ensure you have a rollback point if issues are encountered.
 
-To avoid bootstrapping times, a ledger file (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the #ledger channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
+To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the #ledger channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
 
 Before using this method there are a few considerations to ensure it is done safely:
 
@@ -68,7 +70,7 @@ Occasionally, updating to the [latest node version](/releases/node-releases/#cur
 - Significant downtime, from a few minutes to several hours, during which the node RPC is not accessible and no voting occurs. The upgrade is especially slower if the ledger is not on an SSD.
 - Temporary increased disk space usage - up to 3x the current ledger size in total (e.g. 60GB for a 20GB ledger)
 
-In order to minimize downtime, consider performing the update in a different machine, and replacing the [ledger file](#ledger-management) once complete. Note the following instructions, where **Machine A** has the node and ledger, and **Machine B** will be updating it.
+In order to minimize downtime, consider performing the update in a different machine, and replacing the [ledger file](#ledger-file) once complete. Note the following instructions, where **Machine A** has the node and ledger, and **Machine B** will be updating it.
 
 1. Create a directory `/home/<user>/Nano_Update` on Machine B.
 1. Stop the node on Machine A.
