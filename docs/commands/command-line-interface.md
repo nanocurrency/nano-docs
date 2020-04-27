@@ -9,8 +9,21 @@ Get account number for the `<key>`
 ### --account_key --account=`<account>`
 Get the public key for `<account>`
 
-### --clear_send_ids   
+### --clear_send_ids
 Remove all send IDs from the database (dangerous: not intended for production use)
+
+### --compare_rep_weights
+_version 21.0+_  
+Displays a summarized comparison between the hardcoded bootstrap weights and representative weights from the ledger. Full comparison is output to logs. Optional [`--data_path`](#-data_pathpath).
+
+* Differences between total weights (`hardcoded weight` and `ledger weight`) are due to unreceived (pending) blocks
+* `mismatched`:
+    * `samples`: the number of mismatched samples is equal to the number of hardcoded weights, even those with zero mismatch
+    * `total`: sum of the absolute difference between individual samples from hardcoded and ledger weights
+    * `mean`: `total` divided by `samples`
+    * `sigma`: from the samples, a distribution $N(\mu, \sigma)$ is obtained
+* `outliers`: mismatch samples above $\mu + \sigma$, for potential inspection
+* `newcomers`: large voting weights found in the ledger but not hardcoded, for potential inspection
 
 ### --config key=value
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
@@ -27,79 +40,7 @@ Path: /home/USER/NanoTest
 ```
 
 ### --data_path=`<path>` 
-Use the supplied `<path>` as the data directory
-
-### --debug_account_count	
-Display the number of accounts
-
-### --debug_account_versions	
-_version 20.0+_ Display the total counts of each version for all accounts (including unpocketed)
-
-### --debug_block_count
-Display the number of blocks
-
-### --debug_bootstrap_generate
-Generate bootstrap sequence of blocks
-
-### --debug_cemented_block_count
-_version 19.0+_ Display the number of cemented blocks (blocks which are under the confirmation height of their accounts)
-
-### --debug_dump_frontier_unchecked_dependents
-_version 19.0+_ Dump frontiers which have matching unchecked keys
-
-### --debug_dump_online_weight 
-List online weights table and current online_weights value
-
-### --debug_dump_representatives
-List representatives and weights
-
-### --debug_mass_activity
-Generates fake debug activity
-
-### --debug_output_last_backtrace_dump
-Output the stacktrace stored after a node crash.
-
-### --debug_generate_crash_report
-After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
-
-### --debug_profile_bootstrap
-Profile simulated bootstrap process
-
-### --debug_profile_generate
-Profile work generation  
-Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.  
-Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
-
-### --debug_profile_validate
-Profile work validation
-
-### --debug_profile_kdf
-Profile kdf function
-
-### --debug_profile_sign
-Profile signature generation
-
-### --debug_profile_votes
-Profile vote verification
-
-### --debug_stacktrace
-_version 20.0+_
-Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
-
-### --debug_validate_blocks
-_version 19.0+_
-Validate blocks in the ledger, includes checks for confirmation height
-
-### --debug_verify_profile
-Profile signature verification
-
-### --debug_xorshift_profile
-[Disabled] Profile xorshift algorithms
-
-### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
-_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
-Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
-
+Use the supplied `<path>` as the data directory.
 
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
@@ -176,6 +117,7 @@ Prints default representative for `<wallet>`
 ### --wallet_representative_set --wallet=`<wallet>` --account=`<account>`
 Set `<account>` as default representative for `<wallet>`
 
+
 ## Launch options
 When initially starting the nano_node or nano_wallet as a service the following launch options are available.
 
@@ -191,11 +133,11 @@ Increase block processor allowed blocks queue size before dropping live network 
 Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
 
 ### --inactive_votes_cache_size
-_version 21.0+_
+_version 21.0+_  
 Increase cached votes without active elections size, default 16384
 
 ### --vote_processor_capacity
-_version 21.0+_
+_version 21.0+_  
 Vote processor queue size before dropping votes, default 144k
 
 ### --disable_backup
@@ -218,9 +160,10 @@ _version 19.0+_
 Turn off use of TCP live network (TCP for bootstrap will remain available)
 
 ### --disable_udp (Deprecated)
-_version 21.0+_
+_version 21.0+_  
 This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
-_version 19.0+_
+
+_version 19.0+_  
 Turn off use of UDP live network
 
 ### --disable_unchecked_cleanup
@@ -229,17 +172,94 @@ Prevent periodic cleaning of unchecked table
 ### --disable_unchecked_drop
 Prevent drop of all unchecked entries at node/wallet start
 
-### --disable_providing_telemetry_metrics 
-_version 21.0+_
+### --disable_providing_telemetry_metrics
+_version 21.0+_  
 Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
 
 ### --enable_udp
-_version 21.0+_
+_version 21.0+_  
 Turn on use of the UDP live network.
 
 ### --allow_bootstrap_peers_duplicates
-_version 21.0+_
+_version 21.0+_  
 Allow multiple connections to the same peer in bootstrap attempts
 
 ### --fast_bootstrap
 Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
+
+
+## Debug commands
+
+### --debug_account_count
+Display the number of accounts
+
+### --debug_account_versions
+_version 20.0+_  
+Display the total counts of each version for all accounts (including unpocketed)
+
+### --debug_block_count
+Display the number of blocks
+
+### --debug_bootstrap_generate
+Generate bootstrap sequence of blocks
+
+### --debug_cemented_block_count
+_version 19.0+_  
+Display the number of cemented blocks (blocks which are under the confirmation height of their accounts)
+
+### --debug_dump_frontier_unchecked_dependents
+_version 19.0+_  
+Dump frontiers which have matching unchecked keys
+
+### --debug_dump_online_weight
+List online weights table and current online_weights value
+
+### --debug_dump_representatives
+List representatives and weights
+
+### --debug_mass_activity
+Generates fake debug activity
+
+### --debug_output_last_backtrace_dump
+Output the stacktrace stored after a node crash.
+
+### --debug_generate_crash_report
+After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
+
+### --debug_profile_bootstrap
+Profile simulated bootstrap process
+
+### --debug_profile_generate
+Profile work generation  
+Optional `--pow_sleep_interval` in version 19.0+ which sets an amount to sleep (in nanoseconds) between batches of POW calculations when using the CPU.  
+Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
+
+### --debug_profile_validate
+Profile work validation
+
+### --debug_profile_kdf
+Profile kdf function
+
+### --debug_profile_sign
+Profile signature generation
+
+### --debug_profile_votes
+Profile vote verification
+
+### --debug_stacktrace
+_version 20.0+_  
+Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
+
+### --debug_validate_blocks
+_version 19.0+_  
+Validate blocks in the ledger, includes checks for confirmation height
+
+### --debug_verify_profile
+Profile signature verification
+
+### --debug_xorshift_profile
+[Disabled] Profile xorshift algorithms
+
+### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
+_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
+Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
