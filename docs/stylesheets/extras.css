@@ -1,6 +1,10 @@
+.md-container {
+    background-color: white;
+}
+
 .md-header-nav__button.md-logo img {
     display: block;
-    height: 50px;
+    height: 48px;
     width: 120px;
 }
 
@@ -134,5 +138,11 @@
 @media only screen and (min-width: 45em) {
     .md-footer-social {
         padding: 0;
+    }
+}
+
+@media (min-width: 1600px) {
+    .md-header-nav__button.md-logo img {
+    height: 52px;
     }
 }

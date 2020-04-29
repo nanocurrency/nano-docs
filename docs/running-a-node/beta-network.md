@@ -1,5 +1,8 @@
 # Joining the beta network
 
+!!! tip "Testing is currently ongoing on the beta network for Version 21"
+	Read through this page if you would like to participate, and find the currently selected test cases at the end.
+
 A few common reasons for joining the beta network include:
 
 * Learning node setup and management
@@ -11,11 +14,9 @@ A few common reasons for joining the beta network include:
 
 ## Differences from the main network
 
-Up to node *v19.0*, the main and beta networks had no functional differences. However, starting from *v20.0*, the following differences apply to the **beta network**.
-
 | Parameter | Main Network | Beta Network | Comment |
 |-----------|--------------|--------------|---------|
-| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffffc0000000000` | 16 times lower on the beta network |
+| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffff00000000000` | 64 times lower on the beta network |
 
 
 ## Node release testing
@@ -105,6 +106,5 @@ Additional details for services who wish to test their integrations on the beta 
 ### Development Builds
 Links for beta testing builds are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org). Docker tags are also available on https://hub.docker.com/r/nanocurrency/nano-beta/tags.
 
-**Beta test cases are not currently available**
-
-If you are interested in helping test on beta and want to collaborate directly with the test cases spreadsheet, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
+### Ongoing Test Cases
+A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).

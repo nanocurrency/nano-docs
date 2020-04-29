@@ -220,7 +220,8 @@ graph LR;
   Observe-->Quorum;
   Quorum-->Confirm;
 ```
-<p style="text-align: center; margin-top:-30px;font-weight:bold;">(a) When no conflict is detected, no further overhead is required.</p>
+
+<p style="text-align: center; font-weight:bold;">(a) When no conflict is detected, no further overhead is required.</p>
 
 ```mermaid
 graph LR;
@@ -230,7 +231,8 @@ graph LR;
   Conflict-->Vote;
   Vote-->Confirm;
 ```
-<p style="text-align: center; margin-top:-30px;font-weight:bold;">(b) In the event of a conflicting transaction, nodes vote for the valid transaction.</p>
+
+<p style="text-align: center; font-weight:bold;">(b) In the event of a conflicting transaction, nodes vote for the valid transaction.</p>
 
 Transferring funds from one account to another requires two
 transactions: a *send* deducting the amount from the sender's balance

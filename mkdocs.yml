@@ -27,13 +27,16 @@ nav:
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
     - Troubleshooting: running-a-node/troubleshooting.md
-    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
+    - Ledger Management: running-a-node/ledger-management.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
+    - Work Generation: integration-guides/work-generation.md
     - Build Options: integration-guides/build-options.md
+    - WebSockets: integration-guides/websockets.md
+    - IPC Integration: integration-guides/ipc-integration.md
     - Advanced: integration-guides/advanced.md
   - Commands:
     - RPC Protocol: commands/rpc-protocol.md
@@ -51,9 +54,6 @@ nav:
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
-google_analytics:
-  - 'UA-140489311-1'
-  - 'auto'
 markdown_extensions:
   - admonition
   - codehilite:
@@ -92,7 +92,8 @@ markdown_extensions:
   - meta
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'
+  - 'https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'
+  - 'javascript/mermaid-loose-security.js'
 extra_css:
   - 'stylesheets/extras.css'
 extra:
@@ -119,3 +120,7 @@ extra:
     link: 'https://www.instagram.com/nanocurrency/'
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
+plugins:
+    - redirects:
+        redirect_maps:
+            'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
