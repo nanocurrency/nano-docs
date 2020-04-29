@@ -11,6 +11,7 @@ before_script:
   - pip install pymdown-extensions
   - pip install mkdocs-material
   - pip install MarkdownHighlight
+  - pip install mkdocs-redirects
 script:
   - |
     if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then

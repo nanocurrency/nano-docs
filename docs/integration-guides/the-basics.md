@@ -34,89 +34,6 @@ The Nano Network achieves consensus using the unique [Open Representative Voting
 
 ---
 
-## Proof-of-Work
-
-Every Nano transaction contains a small Proof-of-Work (PoW) which is only used as an anti-spam measure.  It is not used in the consensus mechanism.
-
-!!! quote ""
-    **Within the Nano Protocol, Proof-of-Work is used only as an anti-spam measure.**
-
-In general, PoW is the solving of a simple math problem where a solution can only be found by repeatedly guessing and checking. The harder the problem, the more guesses it takes on average to find an answer. Once found, the non-unique solution can then be verified with a single check. This allows computers to prove (on average) that they spent a certain amount of computation power.
-
-!!! info
-    Nano's Proof of Work uses the [blake2b cryptographic hash function](https://blake2.net/)
-
-### Calculating Work
-
-The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) found using the blake2b hash function.  The nonce satisfies the equation.
-
-$$
-blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
-$$
-
-Currently the mainnet's base threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable). With the addition of Dynamic PoW and rework in V19.0, the threshold used to calculate work can vary under certain conditions.
-
-!!! info
-    At the base threshold, any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
-
-#### First Account Block
-
-The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the `"work"` field:
-
-$$
-blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
-$$
-
-### Difficulty Multiplier
-
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for the Dynamic PoW feature introduced in V19.0.
-
-A multiplier can be obtained with the following expression.
-
-$$
-\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
-$$
-
-In the inverse direction, in order to get the equivalent difficulty for a certain multiplier, the following expression can be used.
-
-$$
-2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
-$$
-
-??? example "Code Snippets"
-    **Python**
-    ```python
-    def to_multiplier(difficulty: int, base_difficulty) -> float:
-      return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
-
-    def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
-      return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
-    ```
-
-    **Rust**
-    ```rust
-    fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
-      (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
-    }
-
-    fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
-      (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
-    }
-    ```
-
-    **C++**
-    ```cpp
-    double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
-      return static_cast<double>(-base_difficulty) / (-difficulty);
-    }
-
-    uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
-      return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
-    }
-    ```
-
----
-
 ## Account, Key, Seed and Wallet IDs
 
 When dealing with the various IDs in the node it is important to understand the function and implication of each one.
@@ -132,7 +49,7 @@ The reason this is necessary is because we want to store information about each 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
 ### Seed
-This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatentation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
+This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatenation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
 Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to 2^32 - 1 (because the index value is a unsigned 32 bit integer).
 
