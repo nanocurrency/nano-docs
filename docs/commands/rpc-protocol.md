@@ -613,6 +613,7 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",
+  "difficulty": "ffffffe1278b3dc6", // since V21.0
   "block": {
     "type": "state",
     "account": "nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr",
