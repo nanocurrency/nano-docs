@@ -27,7 +27,7 @@ nav:
     - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
     - Troubleshooting: running-a-node/troubleshooting.md
-    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
+    - Ledger Management: running-a-node/ledger-management.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md
@@ -122,3 +122,7 @@ extra:
     link: 'https://www.instagram.com/nanocurrency/'
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
+plugins:
+    - redirects:
+        redirect_maps:
+            'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
