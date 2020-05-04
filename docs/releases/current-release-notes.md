@@ -17,9 +17,9 @@ description: Details of the most current Nano node release including upgrade not
 The following key upgrade details should be reviewed by all node operators to determine how they will impact plans for upgrading:
 
 ### Database upgrades
-An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 20-30GB free disk space to accommodate the upgrade.
+An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 20-30GB free disk space to accommodate the upgrade. During the upgrade process, which may take multiple hours to complete depending on the machine specs, the node will not participate on the network or respond to RPC calls.
 
-**--------TODO:** Link to details in Ledger Management guide about managing an upgrade: setting up staging environment for upgrading, getting ledger, etc.
+As a result, **the recommended approach is to upgrade the ledger in a separate environment before replacing on production**. For detailed steps on this approach and other options, see the [Updating the node section](/running-a-node/ledger-management/#updating-the-node) of the Ledger Management page.
 
 ### Minor RPC breaking changes
 Although breaking changes were kept to a minimum in this release, there are two RPC calls with such changes: `work_validate` and `bootstrap_status`. For integrations using them, carefully review the additional details on these changes included in the [RPC Updates](#rpc-updates) section below.
