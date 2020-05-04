@@ -85,9 +85,11 @@ The following options are notable node configuration updates. Additional configu
     * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
     * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
     * **To best understand how these and other epoch related changes will impact your integration, it is highly recommended that the [Upcoming upgrades > Increased work difficulty section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades is carefully reviewed**
-* `active_difficulty` [RPC](/commands/rpc-protocol/#work_validate) and [WebSocket](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins, otherwise the response formats will remain the same
+* `active_difficulty` [RPC](/commands/rpc-protocol/#active-difficulty) and [WebSocket](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins, otherwise the response formats will remain the same
 * **BREAKING CHANGE** [`bootstrap_status`](/commands/rpc-protocol/#bootstrap_status) responses now have `connections` field as an array of connection-related fields and adds an `attempts` field with an area of individual bootstrap attempt details, each including information such as a unique id, type of bootstrap (legacy, lazy) and various other granular information.
+* [`block_create`](/commands/rpc-protocol/#block_create) RPC response now contains the `difficulty` value of the work included in the block for easy reference by integrations
 * [`account_info`](/commands/rpc-protocol/#account_info) responses now contain `confirmation_height_frontier` which is the hash of the last confirmed block.
+
 **----------TODO:** Add brief details about how this is helpful to integrations...
 
 --8<-- "process-sub-type-recommended.md"
