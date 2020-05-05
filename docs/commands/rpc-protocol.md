@@ -306,6 +306,8 @@ Returns a list of pairs of account and block hash representing the head block fo
 ### accounts_pending  
 Returns a list of block hashes which have not yet been received by these **accounts**  
 
+--8<-- "rpc_include_only_confirmed_recommended.md"
+
 **Request:**
 ```json
 {
@@ -1858,6 +1860,8 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 
 ### pending  
 Returns a list of block hashes which have not yet been received by this account.
+
+--8<-- "rpc_include_only_confirmed_recommended.md"
 
 **Request:**
 ```json
