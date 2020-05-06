@@ -7,7 +7,7 @@ The default location of standard node log files for various systems:
 | **OS**  | **Location** |
 |---------|--------------|
 | Windows | `:::bash C:\Users\<user>\AppData\Local\Nano\log` -or- `:::bash %LOCALAPPDATA%\Nano\log`  |
-| OSX     | `:::bash /Users/<user>/Library/Nano/log ` |
+| macOS   | `:::bash /Users/<user>/Library/Nano/log ` |
 | Linux   | `:::bash /home/<user>/Nano/log ` |
 
 ---
