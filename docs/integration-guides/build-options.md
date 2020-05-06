@@ -143,7 +143,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 ---
 
-## Unix Dependencies
+## Debian/Ubuntu Dependencies
 
 These instructions are for the following systems:
 
@@ -159,7 +159,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install git cmake g++ curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## CentOS 7 Dependencies
 
@@ -192,7 +192,7 @@ sudo make install
 cd ..
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## Arch Linux Dependencies
 
@@ -203,11 +203,11 @@ pacman -Syu
 pacman -S base-devel git gcc cmake curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ---
 
-## Build Instructions - Unix, CentOS, Arch Linux
+## Build Instructions - Debian, CentOS, Arch Linux
 
 --8<-- "unsupported-configuration.md"
 
