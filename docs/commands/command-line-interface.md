@@ -254,6 +254,9 @@ Profile vote verification
 _version 20.0+_  
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
 
+### --debug_validate_blocks
+Alias to [`--validate_blocks`](#-validate_blocks)
+
 ### --debug_verify_profile
 Profile signature verification
 
