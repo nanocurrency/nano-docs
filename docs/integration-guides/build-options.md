@@ -211,22 +211,14 @@ Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
 
 --8<-- "unsupported-configuration.md"
 
-### Static Boost
-```bash
-wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz
-tar xzvf boost_1_67_0.tar.gz
-cd boost_1_67_0
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
-./b2 --prefix=../[boost] link=static install
-cd ..
-```
-
 ### Node
 
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+export BOOST_ROOT=`pwd`/../boost_build
+sh util/build_prep/bootstrap_boost.sh -m
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
@@ -240,8 +232,9 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
+export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
