@@ -2787,8 +2787,13 @@ A valid Nano account. If provided and `use_peers` is set to `true`, this informa
 
 **Optional "version"**
 
-_version 21.0+_
+_version 21.0+_  
 Work version string. Currently "work_1" is the default and only valid option.
+
+**Optional "block"**
+
+_version 21.0+_  
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and no `difficulty` or `multiplier` are set, is used to calculate work generation difficulty for given block from node ledger.
 
 ---
 
