@@ -79,6 +79,10 @@ Clear unchecked blocks
 ### --vacuum
 Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
 
+### --validate_blocks
+_version 21.0+_ (_version 19.0+_ as `--debug_validate_blocks`)  
+Validate blocks in the ledger, includes checks for confirmation height. Optional `--threads` for multithreaded validation in version 21.0+. Multithreaded validation can limit other host operations with high I/O & CPU usage.
+
 ### --version    
 Prints out version
 
@@ -251,8 +255,7 @@ _version 20.0+_
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
 
 ### --debug_validate_blocks
-_version 19.0+_  
-Validate blocks in the ledger, includes checks for confirmation height
+Alias to [`--validate_blocks`](#-validate_blocks)
 
 ### --debug_verify_profile
 Profile signature verification
