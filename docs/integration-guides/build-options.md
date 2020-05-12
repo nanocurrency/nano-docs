@@ -225,7 +225,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 ---
 
-## Build Instructions - OSX
+## Build Instructions - macOS
 
 --8<-- "unsupported-configuration.md"
 
