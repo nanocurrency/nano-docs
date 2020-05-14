@@ -67,6 +67,39 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ---
 
+## Practical guide
+
+``` mermaid
+graph TD
+    subgraph Work generated elsewhere
+      M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
+      M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
+      N -->|network_minimum| P_1(Generate work at<br><b>network_minimum</b> difficulty)
+      O_1 -->O_2((active<br>difficulty))
+      P_1 -->|work| P_2(Use <b>work</b> in block)
+      P_2 -->P_3((block))
+      P_3 -->P_4[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quotfalse&quot</i>]
+      P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
+      P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
+      P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
+      P_7 -->|network_current| P_8(Generate work at<br><b>network_current</b> difficulty)
+      P_8 -->|updated_work| P_9(Use <b>updated_work</b> in <b>block</b>)
+      P_9 -->P_4
+    end
+    subgraph Work generated through the node, incl. work peers
+      A{Block Signing}
+      A -->|in the node| B[<a href='/commands/rpc-protocol/#block_create'><b>RPC block_create</b></a><br>no <i>&quotwork&quot</i>]
+      A -->|other| C_1(Create and sign <b>block</b>)
+      B -->block((block))
+      C_1 -->C_2[<a href='/commands/rpc-protocol/#work_generate'><b>RPC work_generate</b></a><br><i>&quotblock&quot: </i><b>block</b>]
+      C_2 -->|work| C_3(Use <b>work</b> in <b>block</b>)
+      C_3 -->block
+      block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
+    end
+```
+
+---
+
 ## Benchmarks
 
 ### Benchmark commands
