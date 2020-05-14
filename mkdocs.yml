@@ -99,8 +99,6 @@ extra_javascript:
 extra_css:
   - 'stylesheets/extras.css'
 extra:
-  search:
-  - tokenizer: '[\s\-\.]+'
   social:
   - type: 'github'
     link: 'https://github.com/nanocurrency'
@@ -123,6 +121,7 @@ extra:
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
+    - search
     - redirects:
         redirect_maps:
             'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'

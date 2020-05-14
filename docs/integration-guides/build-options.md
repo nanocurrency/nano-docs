@@ -114,7 +114,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_TIMED_LOCKS=50` (*v20.0+* when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables.)
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
-* `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/) for more details)
+* `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
 
 **Build Node**
 
@@ -143,7 +143,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 ---
 
-## Unix Dependencies
+## Debian/Ubuntu Dependencies
 
 These instructions are for the following systems:
 
@@ -159,7 +159,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install git cmake g++ curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## CentOS 7 Dependencies
 
@@ -192,7 +192,7 @@ sudo make install
 cd ..
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## Arch Linux Dependencies
 
@@ -203,45 +203,38 @@ pacman -Syu
 pacman -S base-devel git gcc cmake curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ---
 
-## Build Instructions - Unix, CentOS, Arch Linux
+## Build Instructions - Debian, CentOS, Arch Linux
 
 --8<-- "unsupported-configuration.md"
-
-### Static Boost
-```bash
-wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz
-tar xzvf boost_1_67_0.tar.gz
-cd boost_1_67_0
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
-./b2 --prefix=../[boost] link=static install
-cd ..
-```
 
 ### Node
 
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+export BOOST_ROOT=`pwd`/../boost_build
+sh util/build_prep/bootstrap_boost.sh -m
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
 
 ---
 
-## Build Instructions - OSX
+## Build Instructions - macOS
 
 --8<-- "unsupported-configuration.md"
 
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
+export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
@@ -353,7 +346,7 @@ If running on a debugger, add the argument `--gtest_break_on_failure` break at t
 ### Environment variables to customize tests
 
 * `TEST_KEEP_TMPDIRS=1` - Setting this to anything will prevent the tests deleting any files it creates, useful for debugging log files. 
-* `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/) support.
+* `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) support.
 * `TEST_BASE_PORT=26000` - The base port used in tests, the range of ports used in this case would be 26000 - 26199. This is useful if wanting to run multiple tests at once without port conflicts, the default base port used is 24000. 
 
 ### Sanitizers

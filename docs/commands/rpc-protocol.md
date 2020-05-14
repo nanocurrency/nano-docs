@@ -306,6 +306,8 @@ Returns a list of pairs of account and block hash representing the head block fo
 ### accounts_pending  
 Returns a list of block hashes which have not yet been received by these **accounts**  
 
+--8<-- "rpc_include_only_confirmed_recommended.md"
+
 **Request:**
 ```json
 {
@@ -613,6 +615,7 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",
+  "difficulty": "ffffffe1278b3dc6", // since V21.0
   "block": {
     "type": "state",
     "account": "nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr",
@@ -907,6 +910,10 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 _version 20.0+_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
 ---
 
 ### bootstrap_any  
@@ -927,6 +934,10 @@ Initialize multi-connection bootstrap to random peers. Not compatible with launc
 **Optional "force"**  
 _version 20.0+_  
 Boolean, false by default. Manually force closing of all current bootstraps  
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
@@ -950,6 +961,10 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 **Optional "force"**
 
 Boolean, false by default. Manually force closing of all current bootstraps  
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
@@ -1862,6 +1877,8 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 
 ### pending  
 Returns a list of block hashes which have not yet been received by this account.
+
+--8<-- "rpc_include_only_confirmed_recommended.md"
 
 **Request:**
 ```json
