@@ -18,7 +18,7 @@ ED25519 is an elliptic curve algorithm developed in an academic setting with a f
 
 ### Hashing algorithm: Blake2
 
-Compared to existing cryptocurrencies, the hash algorithm chosen is much less important since it's not being used in a [Proof-of-Work](/glossary#proof-of-work-pow) context.  In Nano hashing is used purely as a digest algorithm against block contents.  Blake2b-512 is a highly optimized cryptographic hash function whose predecessor was a SHA3 finalist.[^2]
+Compared to existing cryptocurrencies, the hash algorithm chosen is much less important since it's not being used in a [Proof-of-Work](/glossary#proof-of-work-pow) context.  In Nano hashing is used purely as a digest algorithm against block contents.  Blake2b-256 is a highly optimized cryptographic hash function whose predecessor was a SHA3 finalist.[^2]
 
 ### Key derivation function: Argon2
 
