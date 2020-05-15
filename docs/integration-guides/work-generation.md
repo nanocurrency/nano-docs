@@ -146,21 +146,20 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 ### Benchmark commands
 
-To benchmark a specific device you want to know the performance for, the node CLI commands or a separate script for the Nano Work Server can be used.
+**Node RPC or external work server**
 
-**Using the Nano node**
+1. Setup one of the following:
+	- A node with RPC enabled and any desired work peer
+	- A standalone work server
+1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench)
 
-1. Install and configure the Nano node on the machine
-1. Run a CLI command:
-	* CPU: `nano_node --debug_profile_generate`
-	* GPU: `nano_node --debug_opencl --platform=0 --device=0` (updating `platform` and `device` as necessary)
+**Node local work generation**
 
-This will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which is the number of microseconds to generate work.
+[CPU](/commands/command-line-interface#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-**Using Nano Work Server**
+[GPU](/commands/command-line-interface#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-If using work server, head over to the README at https://github.com/guilhermelawless/blake2b-pow-bench for details for benchmark script execution.
-
+The command will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which are the number of microseconds it took to generate each sample.
 
 ### Example benchmarks
 
