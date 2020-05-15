@@ -5,7 +5,7 @@ description: Understand the best configurations for work generation on the Nano 
 
 Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](/glossary/#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
-This work value is not used in concensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
+This work value is not used in consensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
 
 ## System considerations
 
@@ -140,7 +140,7 @@ work_peers = [
 
 ### node.max_work_generate_multiplier
 
-Sets a limit on the generation difficulty. Multiplier is based off the [base difficulty threshold](#difficulty-thresholds). If the node is setup as a work peer itself, requests for work higher than this limit are ignored. Default value is `64.`.
+Sets a limit on the generation difficulty. Multiplier is based off the [base difficulty threshold](#difficulty-thresholds). If the node is setup as a work peer itself, requests for work higher than this limit are ignored. Default value is `64`.
 
 ---
 
