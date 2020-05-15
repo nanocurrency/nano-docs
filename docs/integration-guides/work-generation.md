@@ -157,6 +157,8 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 **Node local work generation**
 
+Note that these commands do not use the configuration of the node. Prefer using the alternative above for that purpose, such as changing the number of threads for CPU work generation, or using work peers.
+
 [CPU](/commands/command-line-interface#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
 [GPU](/commands/command-line-interface#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
