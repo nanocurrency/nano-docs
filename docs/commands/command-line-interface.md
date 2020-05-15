@@ -185,6 +185,10 @@ Prevent drop of all unchecked entries at node/wallet start
 _version 21.0+_  
 Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
 
+### --disable_block_processor_unchecked_deletion
+_version 21.0+_  
+Disable deletion of unchecked blocks after processing.
+
 ### --enable_udp
 _version 21.0+_  
 Turn on use of the UDP live network.
@@ -194,7 +198,7 @@ _version 21.0+_
 Allow multiple connections to the same peer in bootstrap attempts
 
 ### --fast_bootstrap
-Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
+Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks.
 
 
 ## Debug commands
