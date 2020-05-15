@@ -94,6 +94,7 @@ Nano prefers the standard GitHub workflow. You create a fork of the Nano reposit
 
 Before:
 
+* Branch out of the **develop** branch. The **master** branch is only updated on new releases.
 * Review your code locally. Have you followed the guidelines in this document?
 * Run tests. Did you consider adding a test case for your feature?
 * Run ASAN and TSAN to detect memory or threading bugs
@@ -109,13 +110,13 @@ After:
 
 ##### Resolve conflicts
 
-If time passes between your pull request (PR) submission and the team accepting it, merge conflicts may occur due to activity on master, such as merging other PR's before yours. In order for your PR to be accepted, you must resolve these conflicts.
+If time passes between your pull request (PR) submission and the team accepting it, merge conflicts may occur due to activity on develop, such as merging other PR's before yours. In order for your PR to be accepted, you must resolve these conflicts.
 
 The preferred process is to rebase your changes, resolve any conflicts, and push your changes again. [^2][^3]
 
 * Check out your branch
 * `git fetch upstream`
-* `git rebase upstream/master`
+* `git rebase upstream/develop`
 * Resolve conflicts in your favorite editor
 * `git add {filename}`
 * `git rebase --continue`
