@@ -1,7 +1,7 @@
 title: Work Generation | Nano Documentation
 description: Understand the best configurations for work generation on the Nano network.
 
-!!!tip "Some section of this page target node version 21 or higher"
+!!!tip "Some sections of this page target node version 21 or higher"
 
 Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](/glossary/#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
