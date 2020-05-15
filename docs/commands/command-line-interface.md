@@ -263,6 +263,6 @@ Profile signature verification
 ### --debug_xorshift_profile
 [Disabled] Profile xorshift algorithms
 
-### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
-_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
+### --debug_opencl
+Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics).  
 Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
