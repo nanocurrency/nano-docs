@@ -22,7 +22,7 @@ Compared to existing cryptocurrencies, the hash algorithm chosen is much less im
 
 ### Key derivation function: Argon2
 
-The key derivation function of Argon2 is used for securing the account keys in the reference wallet. [^3]
+The key derivation function of Argon2d version 1.0 is used for securing the account keys in the reference wallet. [^3]
 
 [^1]:http://ed25519.cr.yp.to/
 [^2]:https://blake2.net/
