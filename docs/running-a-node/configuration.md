@@ -179,6 +179,9 @@ Config options are referred to below using the format `section.setting`. This fo
 enable_voting = true
 ```
 
+### Work generation options
+These configurations are located in the [Work Generation Guide](/integration-guides/work-generation/#node-configuration).
+
 ### config-node.toml
 
 #### node.enable_voting
@@ -188,41 +191,6 @@ As of V18.0, newly setup nodes have voting disabled by default. In order to part
 
 #### node.vote_minimum
 As of V18.0, nodes with weight delegated to them under this value in their config will not vote, regardless of the `enable_voting` flag setting. In order for a node to vote, this value must be lower than the weight delegated to the representative account setup on the node.
-
----
-
-#### node.work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
-
-```toml
-[node]
-work_peers = [
-    "example.work-peer.org:7000"
-]
-```
-
----
-
-#### node.work_threads
-
---8<-- "alternative-work-generation-setup-preferred.md"
-
-Determines the number of local CPU threads to used for work generation. To turn off local CPU work generation set to `0`. See [opencl.enable](#opencl-enable) below for details on setting the node up for GPU-based work generation (preferred).
-
----
-
-#### node.max_work_generate_multiplier
-
-Sets a limit on the multiplier above the base difficulty threshold that the node will generate. If the node is setup as a work peer itself, no requests for work higher than this limit will be accepted. Default value is `64.000000000000000`.
-
----
-
-#### opencl.enable
-
-To enable GPU acceleration for PoW, set this option to `true`. Other OpenCL parameters may need to be adjusted depending on the desired setup.
-
-!!! tip "Using OpenCL and CPU for work generation"
-	Since V20.0, if OpenCL is enabled, both the GPU and CPU are used for work generation. The number of CPU threads is set with `node.work_threads`. To disable CPU work generation, set that value to "0".
 
 ---
 

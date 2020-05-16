@@ -1,9 +1,11 @@
 title: Work Generation | Nano Documentation
 description: Understand the best configurations for work generation on the Nano network.
 
+!!!tip "Some sections of this page target node version 21 or higher"
+
 Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](/glossary/#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
-This work value is not used in concensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
+This work value is not used in consensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
 
 ## System considerations
 
@@ -67,25 +69,101 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ---
 
+## Practical guides
+
+### Work generated using the node, incl. work peers
+
+``` mermaid
+graph TD
+    A{Block signing<br> location?}
+    A -->|in the node| B[<a href='/commands/rpc-protocol/#block_create'><b>RPC block_create</b></a><br>no <i>&quotwork&quot</i>]
+    A -->|not in the node| C_1(Create and sign <b>block</b>)
+    B -->block((block))
+    C_1 -->|block| C_2[<a href='/commands/rpc-protocol/#work_generate'><b>RPC work_generate</b></a><br><i>&quotblock&quot: </i><b>block</b>]
+    C_2 -->|work| C_3(Use <b>work</b> in <b>block</b>)
+    C_3 -->block
+    block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
+```
+
+### Work generated without using the node
+
+``` mermaid
+graph TD
+    M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
+    M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
+    N -->|network_minimum| P_1(Generate work at<br><b>network_minimum</b> difficulty)
+    O_1 -->O_2((active<br>difficulty))
+    P_1 -->|work| P_2(Use <b>work</b> in block)
+    P_2 -->P_3((block))
+    P_3 -->P_4[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quotfalse&quot</i>]
+    P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
+    P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
+    P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
+    P_7 -->|network_current| P_8{Block difficulty less<br>than <b>network_current</b> ?}
+    P_8 -->|yes| P_9(Generate work at<br><b>network_current</b> difficulty)
+    P_8 -->|no| P_6
+    P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
+    P_10 -->P_4
+```
+
+---
+
+## Node Configuration
+
+The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](/running-a-node/configuration/) page.
+
+### opencl.enable
+
+!!!success "When GPU acceleration is enabled, the CPU is also used by default"
+	Make sure to set `node.work_threads` to `0` when using the GPU
+
+To enable GPU acceleration for work generation, set this option to `true`. Other fields may need to be changed if you have multiple OpenCL-enabled platforms and devices.
+
+### node.work_threads
+
+!!!tip "Recommended value: `node.work_threads = 0`"
+
+Determines the number of local CPU threads to used for work generation. **While enabled by default, it is [recommended](#recommended-configurations) to turn off local CPU work generation.**
+
+Set to `0` to turn off local CPU work generation.
+
+### node.work_peers
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
+
+```toml
+[node]
+work_peers = [
+    "example.work-peer.org:7000",
+    "::ffff:192.168.1.25:7076"
+]
+```
+
+### node.max_work_generate_multiplier
+
+Sets a limit on the generation difficulty. Multiplier is based off the [base difficulty threshold](#difficulty-thresholds). If the node is setup as a work peer itself, requests for work higher than this limit are ignored. Default value is `64`.
+
+---
+
 ## Benchmarks
 
 ### Benchmark commands
 
-To benchmark a specific device you want to know the performance for, the node CLI commands or a separate script for the Nano Work Server can be used.
+**Node RPC or external work server**
 
-**Using the Nano node**
+1. Setup one of the following:
+	- A node with RPC enabled and any desired work peer
+	- A standalone work server
+1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench)
 
-1. Install and configure the Nano node on the machine
-1. Run a CLI command:
-	* CPU: `nano_node --debug_profile_generate`
-	* GPU: `nano_node --debug_opencl --platform=0 --device=0` (updating `platform` and `device` as necessary)
+**Node local work generation**
 
-This will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which is the number of microseconds to generate work.
+Note that these commands do not use the configuration of the node. Prefer using the alternative above for that purpose, such as changing the number of threads for CPU work generation, or using work peers.
 
-**Using Nano Work Server**
+[CPU](/commands/command-line-interface#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-If using work server, head over to the README at https://github.com/guilhermelawless/blake2b-pow-bench for details for benchmark script execution.
+[GPU](/commands/command-line-interface#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
 
+The command will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which are the number of microseconds it took to generate each sample.
 
 ### Example benchmarks
 
@@ -159,7 +237,7 @@ With V21+ the work difficulty thresholds were split by block type. For many inte
 
 **Utilizing lower work when batching**
 
-For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of.  In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
+For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
 
 
 ### Difficulty multiplier

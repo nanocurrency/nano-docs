@@ -235,6 +235,10 @@ Output the stacktrace stored after a node crash.
 ### --debug_generate_crash_report
 After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
+### --debug_opencl
+Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics).  
+Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
+
 ### --debug_profile_bootstrap
 Profile simulated bootstrap process
 
@@ -267,7 +271,3 @@ Profile signature verification
 
 ### --debug_xorshift_profile
 [Disabled] Profile xorshift algorithms
-
-### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
-_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
-Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
