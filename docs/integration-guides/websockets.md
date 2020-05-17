@@ -19,7 +19,7 @@ Sample clients are available:
 
 ## Configuration
 
-For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#websocket).
+For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#nodewebsocket).
 
 With the default configuration, localhost clients should connect to `ws://[::1]:7078`.
 
