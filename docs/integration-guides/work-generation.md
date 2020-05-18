@@ -113,7 +113,7 @@ The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedi
 
 **Block Height 1**
 
-The first block on an account-chain doesn't have a previous (head) block, so the account public key is used:
+The first block on an account-chain doesn't have a previous (head) block, so the account public key is used (`||` means concatenation):
 
 $$
 blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
