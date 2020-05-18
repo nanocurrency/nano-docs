@@ -5,7 +5,7 @@ The following are minimum recommended specifications for nodes with more than 0.
 
 * 4GB RAM
 * Quad-Core CPU
-* 250 MB/s bandwidth (2TB of available monthly bandwidth)
+* 200 Mbps bandwidth (2TB or more of available monthly bandwidth)
 * SSD-based hard drive with 80GB+ of free space
 
 #### Representative Node
@@ -13,7 +13,7 @@ The following are minimum recommended specifications for nodes with less than 0.
 
 * 2GB RAM (additional RAM or swap space may be needed if bootstrapping a new node from scratch)
 * Dual-Core CPU
-* 100 MB/s bandwidth (1TB of available monthly bandwidth)
+* 100 Mbps bandwidth (2TB or more of available monthly bandwidth)
 * SSD-based hard drive with 80GB+ of free space
 
 !!! warning
