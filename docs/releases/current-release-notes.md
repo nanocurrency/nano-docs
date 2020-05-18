@@ -37,7 +37,7 @@ As outlined in the [February Development Update: V21 PoW Difficulty Increases](h
 ### UDP disabled by default
 With all active peers capable of communicating via TCP, the UDP connections will be disabled by default in this version. To avoid disruptions, all nodes should allow traffic on 7075 TCP (see [Network Ports](/running-a-node/node-setup/#network-ports) details) and once upgraded, the [`peers`](/commands/rpc-protocol/#peers) RPC call should return at least dozens of peers and the [`confirmation_quorum`](/commands/rpc-protocol/#confirmation_quorum) RPC call should have a `peers_stake_total` value in the high tens of millions of Nano.
 
-Although not recommended, if necessary temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
+Although not recommended, if necessary the temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
 
 ---
 
@@ -46,10 +46,10 @@ Although not recommended, if necessary temporary use of UDP can be done with the
 ### Work difficulty increase
 As mentioned in the [Upgrade Notices](#upgrade-notices) section above, work difficulty changes were implemented in V21, but will not be activated until epoch v2 blocks are distributed at a future date. Please review the [Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades page for details.
 
-Updates on the progress toward the epoch upgrade will be posted in our many social channels as well as sent through our technical updates mailing list which can be joined here: http://eepurl.com/gZucL1.
+Updates on the progress toward the epoch upgrade will be posted in our many social channels as well as sent through our technical updates mailing list which can be joined here: <a href="http://eepurl.com/gZucL1" class="button" target="_blank" rel="noopener">Join Mailing List</a>.
 
 ### Node Telemetry
-To allow better communication between nodes about various performance and other details, telemetry was added between peers. Details of what is shared and option to request them can be found within the [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them. For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
+To allow better communication between nodes about various performance and other details, telemetry was added between peers. Details of what is shared and options to request them can be found within the [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them. For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
 
 --8<-- "telemetry-can-be-forged.md"
 
@@ -90,17 +90,15 @@ The following options are notable node configuration updates. Additional configu
 * [`block_create`](/commands/rpc-protocol/#block_create) RPC response now contains the `difficulty` value of the work included in the block for easy reference by integrations
 * [`account_info`](/commands/rpc-protocol/#account_info) responses now contain `confirmation_height_frontier` which is the hash of the last confirmed block.
 
-**----------TODO:** Add brief details about how this is helpful to integrations...
-
 --8<-- "process-sub-type-recommended.md"
 
 ## CLI Updates
 
-* **NEW** [`--generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*
-* **NEW** [`--config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file
-* **NEW** [`--inactive_votes_cache_size`](/commands/command-line-interface/#-inactive_votes_cache_size) allows adjusting of the cache that holds votes where the block is does not have an action election, default is 16384 votes
+* **NEW** [`--generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*.
+* **NEW** [`--config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file.
+* **NEW** [`--inactive_votes_cache_size`](/commands/command-line-interface/#-inactive_votes_cache_size) allows adjusting of the cache that holds votes where the block does not have an action election, default is 16384 votes.
 * **NEW** [`--rebuild_database`](/commands/command-line-interface/#-rebuild_database) provides a better compaction method for LMDB. **NOTE:** This requires approximately `data.ldb` file size * 2 in free space on disk.
-* **NEW** [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) gives the ability to compare the current ledger voting weight distribution against the hard coded weights provided in the node on release. Useful when attempting to use a downloaded ledger. More details on use on [Ledger Management page](/running-a-node/ledger-management)
+* **NEW** [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) gives the ability to compare the current ledger voting weight distribution against the hard coded weights provided in the node on release. Useful when attempting to use a downloaded ledger. More details on use can be found on the [Ledger Management page](/running-a-node/ledger-management).
 
 ---
 
