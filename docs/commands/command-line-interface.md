@@ -26,10 +26,12 @@ Displays a summarized comparison between the hardcoded bootstrap weights and rep
 * `newcomers`: large voting weights found in the ledger but not hardcoded, for potential inspection
 
 ### --config key=value
+_version 20.0+_  
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --confirmation_height_clear
-_version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account. Do not use while the node is running.
+_version 19.0+_  
+Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account. Do not use while the node is running.
 
 ### --daemon
 Start node daemon. Since version 19.0, network and path will be output, similar to:
@@ -46,6 +48,7 @@ Use the supplied `<path>` as the data directory.
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
 ### --generate_config node|rpc
+_version 20.0+_  
 Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
 If `--use_defaults` is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.
 
@@ -61,15 +64,19 @@ Generates a adhoc random keypair and prints it to stdout
 Derive public key and account number from `<key>`
 
 ### --network
+_version 19.0+_  
 Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
 
 ### --online_weight_clear
+_version 18.0+_  
 Clear record history for long term online weight trending
 
 ### --peer_clear
+_version 18.0+_  
 Clear cached peers
 
 ### --rebuild_database
+_version 21.0+_  
 Rebuild LMDB database with `--vacuum` for best compaction. Requires approximately `data.ldb size * 2` free space on disk.
 
 ### --snapshot
@@ -165,7 +172,7 @@ Turn off use of wallet-based bootstrap
 Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
 
 ### --disable_tcp_realtime
-_version 19.0+_
+_version 19.0+_  
 Turn off use of TCP live network (TCP for bootstrap will remain available)
 
 ### --disable_udp (Deprecated)
@@ -196,6 +203,9 @@ Allow multiple connections to the same peer in bootstrap attempts
 ### --fast_bootstrap
 Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
 
+### --batch_size (Deprecated)
+_version 18.0+_  
+Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and will be removed in _v22_ as it will not support upgrades from v18 nodes and earlier.
 
 ## Debug commands
 
@@ -226,13 +236,15 @@ List online weights table and current online_weights value
 ### --debug_dump_representatives
 List representatives and weights
 
-### --debug_mass_activity
-Generates fake debug activity
+### --debug_mass_activity (Deprecated)
+Generates fake debug activity. Deprecated in _v21+_, can use `slow_test --gtest_filter=system.generate_mass_activity` instead.
 
 ### --debug_output_last_backtrace_dump
+_version 19.0+_  
 Output the stacktrace stored after a node crash.
 
 ### --debug_generate_crash_report
+_version 21.0+_
 After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
 ### --debug_opencl
