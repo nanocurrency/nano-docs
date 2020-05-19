@@ -65,7 +65,9 @@ It should be noted that Nano reference wallet is using described Blake2b private
 	seed = b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01" # "0000000000000000000000000000000000000000000000000000000000000001"
 	index = 0x00000001.to_bytes(4, 'big') # 1
 	blake2b_state = hashlib.blake2b(digest_size=32)
-	blake2b_state.update(seed+index) # equal to blake2b_state.update(seed); blake2b_state.update(index)
+	blake2b_state.update(seed+index)
+	# where `+` means concatenation, not sum: https://docs.python.org/3/library/hashlib.html#hashlib.hash.update
+	# code line above is equal to `blake2b_state.update(seed); blake2b_state.update(index)`
 	PrivK = blake2b_state.digest()
 	print(blake2b_state.hexdigest().upper()) # "1495F2D49159CC2EAAAA97EBB42346418E1268AFF16D7FCA90E6BAD6D0965520"
 	```
