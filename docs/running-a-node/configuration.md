@@ -249,7 +249,7 @@ JSON POST requests with every confirmed block are sent to the callback server as
 For details on how to integrate using the HTTP callback, see the [HTTP Callback section of the Integration Guides](/integration-guides/advanced#http-callback).
 
 !!! tip
-	When possible, using the [websockets](#websocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
+	When possible, using a [websocket](#nodewebsocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
 
 ---
 
