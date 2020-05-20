@@ -107,6 +107,7 @@ The following options are notable node configuration updates. Additional configu
 * Updates to WebSocket subscriptions are now allowed on the [`confirmation`](/integration-guides/websockets/#confirmations) topic. With `options` of `accounts_add` and `accounts_del` an existing subscription can now be more easily managed to avoid resubscribing with a large list of accounts or managing multiple subscriptions.
 * **NEW** [`bootstrap`](/integration-guides/websockets/#bootstrap) topic provides notifications about the starting and exiting of bootstrap attempts.
 * **NEW** [`new_unconfirmed_block`](/integration-guides/websockets/#new_unconfirmed_block) topic provides notifications about blocks which were just processed and are being seen by the node for the first time. This is useful for integrations that want to watch for blocks they didn't create themselves, but for which they want to update with new work (external work watcher).
+* WebSocket server is now enabled by default in V21+ Docker images to make it more consistent with RPC server setup and documented port mappings
 
 ---
 
