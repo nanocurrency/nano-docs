@@ -219,6 +219,21 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 
 ---
 
+#### node.lmdb
+
+!!! note ""
+    Available in Version 21.0+ only
+
+**map_size**: allows the map size to be changed (default value is 128GB). This only affects the ledger database.
+**max_databases**: maximum open LMDB databases. Increase default if more than 100 wallets is required. [External management](/integration-guides/key-management/) is recommended when a large amounts of wallets are required.
+**sync**: LMDB environment flags. Applies to ledger, not wallet:
+* always: Default (MDB_NOSUBDIR | MDB_NOTLS | MDB_NORDAHEAD).
+* nosync_safe: Do not flush meta data eagerly. This may cause loss of transactions, but maintains integrity (MDB_NOSUBDIR | MDB_NOTLS | MDB_NORDAHEAD | MDB_NOMETASYNC).
+* nosync_unsafe: Let the OS decide when to flush to disk. On filesystems with write ordering, this has the same guarantees as nosync_safe, otherwise corruption may occur on system crash (MDB_NOSUBDIR | MDB_NOTLS | MDB_NORDAHEAD | MDB_NOSYNC).
+* nosync_unsafe_large_memory: Use a writeable memory map. Let the OS decide when to flush to disk, and make the request asynchronous. This may give better performance on systems where the database fits entirely in memory, otherwise it may be slower. Note that this option will expand the file size logically to map_size. It may expand the file physically on some file systems. (MDB_NOSUBDIR | MDB_NOTLS | MDB_NORDAHEAD | MDB_NOSYNC | MDB_WRITEMAP | MDB_MAPASYNC).
+
+---
+
 ### config-rpc.toml
 
 #### enable_control
