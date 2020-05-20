@@ -22,4 +22,4 @@ The following are minimum recommended specifications for nodes with less than 0.
 !!! tip "Proof-of-Work Generation"
 	For nodes being used with services requiring regular or high volume sending and receiving of transactions, special considerations must be made for handling Proof-of-Work generation activities.
 
-	GPUs provide much higher throughput than CPUs. [Work peers](/running-a-node/configuration/#work_peers) can also be configured for generating work outside the node.
+	GPUs provide much higher throughput than CPUs. [Work peers](/integration-guides/work-generation/#nodework_peers) can also be configured for generating work outside the node.
