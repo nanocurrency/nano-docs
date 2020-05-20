@@ -224,6 +224,8 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 !!! note ""
     Available in Version 21.0+ only
 
+LMDB ledger & wallets backend settings. An alternative for ledger is [experimental RocksDB backend](/running-a-node/ledger-management/#rocksdb-ledger-backend).
+
 **map_size**: allows the map size to be changed (default value is 128GB). This only affects the ledger database.
 **max_databases**: maximum open LMDB databases. Increase default if more than 100 wallets is required. [External management](/integration-guides/key-management/) is recommended when a large amounts of wallets are required.
 **sync**: LMDB environment flags. Applies to ledger, not wallet:
