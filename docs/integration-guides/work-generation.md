@@ -3,7 +3,7 @@ description: Understand the best configurations for work generation on the Nano 
 
 !!!tip "Some sections of this page target node version 21 or higher"
 
-Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](/glossary/#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
+Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](../glossary.md#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
 This work value is not used in consensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
 
@@ -110,7 +110,7 @@ graph TD
 
 ## Node Configuration
 
-The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](/running-a-node/configuration/) page.
+The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
 ### node.opencl.enable
 
@@ -128,7 +128,7 @@ Determines the number of local CPU threads to used for work generation. **While 
 Set to `0` to turn off local CPU work generation.
 
 ### node.work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](../commands/rpc-protocol.md#work_generate). Example:
 
 ```toml
 [node]
@@ -159,9 +159,9 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 Note that these commands do not use the configuration of the node. Prefer using the alternative above for that purpose, such as changing the number of threads for CPU work generation, or using work peers.
 
-[CPU](/commands/command-line-interface#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
+[CPU](../commands/command-line-interface.md#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-[GPU](/commands/command-line-interface#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
+[GPU](../commands/command-line-interface.md#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
 
 The command will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which are the number of microseconds it took to generate each sample.
 
@@ -207,7 +207,7 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC.
+The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
 
 **Development node wallet behavior**
 
@@ -227,7 +227,7 @@ For services aiming to ensure the highest priority on their transactions, the co
 
 Work for an account can be pre-cached and saved for immediate use on an account as long as it was based on the current frontier block at the time of use. Although this customization must be made externally to the node, it can help level out potential spikes in work generation, especially useful with wallet implementations.
 
-To accomplish this, after a block is published for an account (whatever type of block), note the _**hash**_ of that block and use it in a RPC [work_generate](https://docs.nano.org/commands/rpc-protocol/#work_generate) call. Note that you may require setting `“use_peers”: “true”`.
+To accomplish this, after a block is published for an account (whatever type of block), note the _**hash**_ of that block and use it in a RPC [work_generate](../commands/rpc-protocol.md#work_generate) call. Note that you may require setting `“use_peers”: “true”`.
 
 Upon receiving a response, store its value in your database for later use for that account. Note that after a new block is published for the account, that value will no longer be a valid PoW.
 
@@ -242,7 +242,7 @@ For services that process receiving their pending transactions in bulk the lower
 
 ### Difficulty multiplier
 
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC, but can also be obtained with the following expression:
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC, but can also be obtained with the following expression:
 
 $$
 \frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
