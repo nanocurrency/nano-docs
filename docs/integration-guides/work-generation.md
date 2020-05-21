@@ -3,7 +3,7 @@ description: Understand the best configurations for work generation on the Nano 
 
 !!!tip "Some sections of this page target node version 21 or higher"
 
-Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](glossary.md#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
+Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](../glossary.md#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
 This work value is not used in consensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
 
