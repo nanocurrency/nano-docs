@@ -28,10 +28,10 @@ Although the node can be configured to generate work directly, there are plans t
 
 ### Number of work peers
 
-To provide a more robust and redundant work generation setup, multiple [work peers](../running-a-node/configuration.md#nodework_peers) can be used. Any node configured with multiple peers will make requests serially from the list of work peers until a successful response is received.
+To provide a more robust and redundant work generation setup, multiple [work peers](#nodework_peers) can be used. Any node configured with multiple peers will make requests serially from the list of work peers until a successful response is received.
 
 !!! tip "Disable local CPU work generation"
-	Since using the same CPU resources the node relies on for work generation can cause performance issues, local CPU work generation should be turned off by setting [`node.work_threads`](../running-a-node/configuration.md#nodework_threads) = `0` when using work peers.
+	Since using the same CPU resources the node relies on for work generation can cause performance issues, local CPU work generation should be turned off by setting [`node.work_threads`](#nodework_threads) = `0` when using work peers.
 
 ## Recommended configurations
 
@@ -49,10 +49,10 @@ Services with heavy RPC calls and work generation can benefit from ensuring dedi
 1. Install the [Nano Work Server](https://github.com/nanocurrency/nano-work-server/blob/master/README.md#installation)
 1. Setup a service to start and monitor the work server process using the GPU option `--gpu <PLATFORM:DEVICE>` and run `nano-work-server --help` for additional options and details
 1. Configure the machine running the node to allow traffic over TCP from the work generation machine's IP address
-1. Add the work machine IP address as a [work peer](../running-a-node/configuration.md#nodework_peers) in the node's `config-node.toml` file
+1. Add the work machine IP address as a [work peer](#nodework_peers) in the node's `config-node.toml` file
 
 !!! info "CPU for lower generation levels"
-	For services with heavier RPC usage but less work generation needs excluding the GPU in the above example and relying on the CPU resources of the separate machine is also an option. This can be done by setting [`node.work_threads`](../running-a-node/configuration.md#nodework_threads) to the appropriate thread count for your needs.
+	For services with heavier RPC usage but less work generation needs excluding the GPU in the above example and relying on the CPU resources of the separate machine is also an option. This can be done by setting [`node.work_threads`](#nodework_threads) to the appropriate thread count for your needs.
 
 	Make sure to benchmark the machine performance to plan for any potential spikes, as CPU generation is slower.
 
@@ -62,10 +62,10 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 1. Install the [Nano Work Server](https://github.com/nanocurrency/nano-work-server/blob/master/README.md#installation) on the same machine as the node
 1. Setup a service to start and monitor the work server process with options for using the GPU - `--gpu <PLATFORM:DEVICE:THREADS>` is required, run `nano-work-server --help` for additional options and details
-1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](../running-a-node/configuration.md#nodework_threads) = `0`
+1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](#nodework_threads) = `0`
 
 !!! info "Node work generation option"
-	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](../running-a-node/configuration.md#openclenable) = `true` and adusting `opencl.device` and `opencl.platform` to match your setup.
+	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`node.opencl.enable`](#nodeopenclenable) = `true` and adusting `node.opencl.device` and `node.opencl.platform` to match your setup.
 
 ---
 
@@ -112,7 +112,7 @@ graph TD
 
 The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
-### opencl.enable
+### node.opencl.enable
 
 !!!success "When GPU acceleration is enabled, the CPU is also used by default"
 	Make sure to set `node.work_threads` to `0` when using the GPU
@@ -218,7 +218,7 @@ The developer wallet included with the node is configured to pre-cache work at t
 For services aiming to ensure the highest priority on their transactions, the confirmation of published blocks should be monitored by their integration and work levels compared against active difficulty in a similar fashion to the development wallet mentioned above. If work is left at base difficulty there could be delays in the transactions being processed during heavy network usage times.
 
 !!! tip "Configure max work generate multiplier"
-    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](../running-a-node/configuration.md#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
+    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
 
 !!! warning "Upcoming threshold changes and variations by block type"
 	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
