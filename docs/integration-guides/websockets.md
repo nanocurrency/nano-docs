@@ -19,6 +19,29 @@ Sample clients are available:
 
 ## Configuration
 
+These configuration options are set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
+
+```toml
+[node.websocket]
+
+# WebSocket server bind address.
+# type:string,ip
+address = "::1"
+
+# Enable or disable WebSocket server.
+# type:bool
+enable = true
+
+# WebSocket server listening port.
+# type:uint16
+port = 7078
+```
+
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/websockets).
+
+!!! tip "Configuration for docker nodes"
+    Docker nodes have the default `address` set to `"::ffff:0.0.0.0"`. To allow a connection between the host and the node, include `-p 127.0.0.1:7078:7078` (or another port if changed) in the `docker run` command or equivalent.
+
 For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#nodewebsocket).
 
 ## Acknowledgement
