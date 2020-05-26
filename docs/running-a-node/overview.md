@@ -16,6 +16,9 @@ Regardless of the motivation for running a node, it will only benefit the networ
 
 --8<-- "dedicated-representative-nodes.md"
 
+!!! tip "Review Node security guide"
+	Regardless of the type of node you are planning to run, make sure to review the [Node security guide](security.md) to ensure best practice with configuration, firewalls and more.
+
 ### Non-voting nodes
 When first setting up a node it will not be configured to participate in consensus by voting on traffic. This type of node is common and is recommended for all integrations. If your goal in setting up a node is to learn how to integrate and use Nano for payments, this is the best starting point. If you want to dedicate resources to help secure consensus on the network, then a Representative node should be explored.
 
@@ -27,9 +30,6 @@ Representative nodes with **at least 0.1% of the [online voting weight](/glossar
 
 !!! success "Becoming a Principal Representative"
 	With the ability for any user on the network to redelegate their voting weight, even an account with no weight today can become a Principal Representative over time.
-
-!!! tip "Review Node security guide"
-	Regardless of the type of node you are planning to run, make sure to review the [Node security guide](security.md) to ensure best practice with configuration, firewalls and more.
 
 ## Hardware recommendations
 <span id="resources-and-ongoing-maintenance"></span>
