@@ -271,6 +271,10 @@ Profile signature generation
 ### --debug_profile_votes
 Profile vote verification
 
+### --debug_profile_frontiers_confirmation
+_version 21.0+_
+Profile frontiers confirmation speed
+
 ### --debug_stacktrace
 _version 20.0+_  
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
