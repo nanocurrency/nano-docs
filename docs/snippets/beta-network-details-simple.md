@@ -4,5 +4,4 @@
 	* **55000 TCP:** For communication with RPC server. Anyone with access to this port can control your node's RPC.
 	* **57000 TCP:** For communication with [websocket server](/integration-guides/websockets). Depending on configuration, data throughput can be very high.
 
-!!! warning "UDP disabled by default, deprecated"
-	As of V21 peering and communicating via UDP has been disabled by default and is deprecated. The ability to use UDP will be removed from the node in a future release yet to be determined.
+--8<-- "udp-deprecated.md"

@@ -4,5 +4,4 @@
 	* **7076 TCP:** For communication with RPC server. **Do not expose this outside of your production environment. Anyone with access to this port can control your node's RPC.**
 	* **7078 TCP:** For communication with [websocket server](/integration-guides/websockets). Depending on configuration, data throughput can be very high.
 
-!!! warning "UDP disabled by default, deprecated"
-	As of V21 peering and communicating via UDP has been disabled by default and is deprecated. The ability to use UDP will be removed from the node in a future release yet to be determined.
+--8<-- "udp-deprecated.md"
