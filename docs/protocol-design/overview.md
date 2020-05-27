@@ -33,7 +33,7 @@ Make sure you have the correct [Boost version](https://github.com/nanocurrency/n
 
 | **Name**                        | **Details** |
 |                                 |             |
-| cryptopp                        | Provides the implementation for blake2, AES and other cryptographic schemes. |
+| cryptopp                        | Provides the implementation for random number generator, SipHash, AES and other cryptographic schemes. |
 | phc&#x2011;winner&#x2011;argon2 | When encrypting with AES, the password first goes through key derivation, and argon2 is our hash of choice for doing that. |
 | lmdb     			              | The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys. It is extremely resilient to crashes in the program, OS, and power-downs without corruption. |
 | miniupnp 			              | This library is used to do port mapping if the gateway supports it. |
@@ -94,6 +94,7 @@ Nano prefers the standard GitHub workflow. You create a fork of the Nano reposit
 
 Before:
 
+* Branch out of the **develop** branch. The **master** branch is only updated on new releases.
 * Review your code locally. Have you followed the guidelines in this document?
 * Run tests. Did you consider adding a test case for your feature?
 * Run ASAN and TSAN to detect memory or threading bugs
@@ -109,13 +110,13 @@ After:
 
 ##### Resolve conflicts
 
-If time passes between your pull request (PR) submission and the team accepting it, merge conflicts may occur due to activity on master, such as merging other PR's before yours. In order for your PR to be accepted, you must resolve these conflicts.
+If time passes between your pull request (PR) submission and the team accepting it, merge conflicts may occur due to activity on develop, such as merging other PR's before yours. In order for your PR to be accepted, you must resolve these conflicts.
 
 The preferred process is to rebase your changes, resolve any conflicts, and push your changes again. [^2][^3]
 
 * Check out your branch
 * `git fetch upstream`
-* `git rebase upstream/master`
+* `git rebase upstream/develop`
 * Resolve conflicts in your favorite editor
 * `git add {filename}`
 * `git rebase --continue`

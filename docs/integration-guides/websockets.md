@@ -19,9 +19,25 @@ Sample clients are available:
 
 ## Configuration
 
-For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#websocket).
+These configuration options are set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
 
-With the default configuration, localhost clients should connect to `ws://[::1]:7078`.
+```toml
+[node.websocket]
+
+# WebSocket server bind address.
+# type:string,ip
+address = "::1"
+
+# Enable or disable WebSocket server.
+# type:bool
+enable = true
+
+# WebSocket server listening port.
+# type:uint16
+port = 7078
+```
+
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`. If using with Docker, see [Managing the Container](../running-a-node/docker-management.md#managing-the-container) for details on port and address settings.
 
 ## Acknowledgement
 
@@ -496,6 +512,7 @@ Notes:
 - If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
 - When work generation is done locally it will show `"source": "local"`
 
+---
 
 ### Node telemetry
 
@@ -590,3 +607,55 @@ No filters are currently available for the `new_unconfirmed_block` topic.
   }
 }
 ```
+
+---
+
+#### Bootstrap
+
+This subscription is available since _v21.0_
+
+##### Subscribing
+
+To subscribe to bootstrap attempts start/exit notifications:
+```json
+{
+  "action": "subscribe",
+  "topic": "bootstrap"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `bootstrap` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "bootstrap",
+  "time": "1561661740065",
+  "message": {
+    "reason": "started",
+    "id": "C9FF2347C4DF512A7F6B514CC4A0F79A",
+    "mode": "legacy"
+  }
+}
+```
+
+```json
+{
+  "topic": "bootstrap",
+  "time": "1561661740565",
+  "message": {
+    "reason": "exited",
+    "id": "C9FF2347C4DF512A7F6B514CC4A0F79A",
+    "mode": "legacy",
+    "total_blocks": "1000000",
+    "duration": "500"
+  }
+}
+```
+
+Notes:
+
+- The duration is in seconds

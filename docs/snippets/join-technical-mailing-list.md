@@ -1,0 +1,2 @@
+!!! info "Join the technical updates mailing list"
+	Follow this link to sign up for email updates on the latest protocol/node releases and other technical details. This will include network upgrades such as the upcoming epoch distribution: <a href="http://eepurl.com/gZucL1" class="button" target="_blank" rel="noopener">Join Mailing List</a>

@@ -39,7 +39,18 @@ The additional resource usage these options cause should be considered, especial
 !!! tip "Always backup your ledgers file"
 	Whenever you are attempting to change the ledger, it is highly recommended you create backups of the existing `data.ldb` file to ensure you have a rollback point if issues are encountered.
 
-To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the #ledger channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
+To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the `#ledger` channel of our [Discord server](https://chat.nano.org). This is posted by `SergSW` and contains checksums for validation.
+Alternatively, one of [My Nano Ninja](https://mynano.ninja/api) APIs redirects the current ledger file preserved at [Yandex](https://yandex.com/):
+```bash
+wget -O ledger.7z https://mynano.ninja/api/ledger/download -q --show-progress
+```
+
+Verify the checksum of the above downloaded ledger file:
+```bash
+printf "%s ledger.7z" `wget -q -O - https://mynano.ninja/api/ledger/checksum/sha256` | sha256sum --check
+```
+
+Be patient and wait for the message `ledger.7z: OK`.
 
 Before using this method there are a few considerations to ensure it is done safely:
 
@@ -52,7 +63,7 @@ Blocks are confirmed using the voting weight of representatives and these weight
 If looking to use a downloaded ledger there is a risk of it providing inaccurate representative voting weights. Although the potential impacts of this are minimal, below are some recommended steps to take which can help provide additional confidence the ledger can be used.
 
 1. **Scan the ledger for integrity using the [`--debug_validate_blocks`](/commands/command-line-interface/#-debug_validate_blocks) CLI command**. If issues are found they should be inspected carefully and alternative sources of a ledger may need to be considered as failures with this command have a high chance of indicating potentially malicious behavior.
-1. **Review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command** with the new ledger in the default data folder (old ledger backed up) or in a different data folder by using the optional `--data_path` argument. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the [CLI command](/commands/command-line-interface/#-compare_rep_weights) for details on the output with special attention paid to entries in the `outliers` and `newcomers` sections. By inspecting those addresses in public explorers such as [Nanocrawler.cc](https://nanocrawler.cc), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
+1. **Review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command** (_v21.0+ only)_ with the new ledger in the default data folder (old ledger backed up) or in a different data folder by using the optional `--data_path` argument. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the [CLI command](/commands/command-line-interface/#-compare_rep_weights) for details on the output with special attention paid to entries in the `outliers` and `newcomers` sections. By inspecting those addresses in public explorers such as [Nanocrawler.cc](https://nanocrawler.cc), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
 
 If you need support with this process or need help in evaluating some of the CLI command results, join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
 
