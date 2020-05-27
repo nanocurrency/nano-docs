@@ -21,13 +21,14 @@ nav:
     - Exploring More: what-is-nano/exploring-more.md
   - Running a Node:
     - Overview: running-a-node/overview.md
-    - Node Setup: running-a-node/node-setup.md
     - Security: running-a-node/security.md
+    - Node Setup: running-a-node/node-setup.md
     - Docker Management: running-a-node/docker-management.md
-    - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
-    - Troubleshooting: running-a-node/troubleshooting.md
     - Ledger Management: running-a-node/ledger-management.md
+    - Voting as a Representative: running-a-node/voting-as-a-representative.md
+    - Beta Network: running-a-node/beta-network.md
+    - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
     - The Basics: integration-guides/the-basics.md

@@ -1,0 +1,2 @@
+!!! tip "Dedicated Representative nodes recommended"
+	Due to the resources needed to participate in the voting process, it is recommended that **any node setup as a Representative should be dedicated to generating consensus**. If the resources of the Representative are used for other activities, such as application integrations or , it reduces the potential benefit that node brings to the network.
