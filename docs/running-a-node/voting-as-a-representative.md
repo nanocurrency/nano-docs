@@ -13,6 +13,10 @@ Running a Nano Representative is a commitment to helping secure the network. Thi
 * Carefully review the [security guide](security.md) and follow general security best practices at all times
 * Ensure you are prepared for the time and cost commitments of maintaining the node over the long term to help maximize the benefits
 
+## Hardware recommendations
+
+--8<-- "hardware-recommendations.md"
+
 ---
 
 ## Step 1: Enable voting
