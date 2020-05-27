@@ -51,7 +51,7 @@ This is the value that you get back when using the `wallet_create` etc RPC comma
 ### Seed
 This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatenation and `i` is a 32-bit big-endian unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
-Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to 2^32 - 1 (because the index value is a unsigned 32-bit integer).
+Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to $2^{32} - 1$ (because the index value is a unsigned 32-bit integer).
 
 Wallet implementations will commonly start from index 0 and increment it by 1 each time you create a new account so that recovering accounts is as easy as importing the seed and then repeating this account creation process.
 
