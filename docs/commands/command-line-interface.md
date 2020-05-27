@@ -112,7 +112,10 @@ Changes seed for `<wallet>` to `<seed>`.  Note the legacy `--key` option can sti
 
 ### --wallet_decrypt_unsafe --wallet=`<wallet>` --password=`<password>`
 Decrypts `<wallet>` using `<password>`  
-**!!THIS WILL PRINT YOUR PRIVATE KEY AND SEED TO STDOUT!!**  
+
+!!! danger
+	**USE WITH CAUTION: THIS WILL PRINT YOUR PRIVATE KEY AND SEED TO STDOUT**
+  
 If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=`<wallet>`
 
 ### --wallet_destroy --wallet=`<wallet>`
