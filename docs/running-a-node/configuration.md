@@ -232,6 +232,9 @@ See the [IPC Integration guide](../integration-guides/ipc-integration.md#configu
 ### Voting
 See the [Voting as a Representative guide](voting-as-a-representative.md).
 
+### Ledger backends
+See the [Ledger Management guide](ledger-management.md).
+
 ### HTTP callback
 
 !!! tip
@@ -262,6 +265,3 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 ---
 
 --8<-- "network-details.md"
-
-## Ledger backends
-LMDB is used by default, in _v20.0+_ [RocksDB](ledger-management.md#rocksdb-ledger-backend) is also available as an experimental option. See [Ledger Management](ledger-management.md) guide for more details.
