@@ -26,10 +26,12 @@ Displays a summarized comparison between the hardcoded bootstrap weights and rep
 * `newcomers`: large voting weights found in the ledger but not hardcoded, for potential inspection
 
 ### --config key=value
+_version 20.0+_  
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --confirmation_height_clear
-_version 19.0+_ Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account. Do not use while the node is running.
+_version 19.0+_  
+Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account. Do not use while the node is running.
 
 ### --daemon
 Start node daemon. Since version 19.0, network and path will be output, similar to:
@@ -46,6 +48,7 @@ Use the supplied `<path>` as the data directory.
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
 ### --generate_config node|rpc
+_version 20.0+_  
 Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
 If `--use_defaults` is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.
 
@@ -61,23 +64,32 @@ Generates a adhoc random keypair and prints it to stdout
 Derive public key and account number from `<key>`
 
 ### --network
+_version 19.0+_  
 Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
 
 ### --online_weight_clear
+_version 18.0+_  
 Clear record history for long term online weight trending
 
 ### --peer_clear
+_version 18.0+_  
 Clear cached peers
 
+### --rebuild_database
+_version 21.0+_  
+Rebuild LMDB database with `--vacuum` for best compaction. Requires approximately `data.ldb size * 2` free space on disk.
+
 ### --snapshot
-Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
-Optional `--confirmation_height_clear` in version 19.0+
+Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`.
+Optional `--confirmation_height_clear` in version 19.0+.
 
 ### --unchecked_clear
 Clear unchecked blocks
 
 ### --vacuum
-Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`
+Compact database. If data_path is missing, the database in data directory is compacted. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`.
+Optional `--confirmation_height_clear` in version 19.0+.
+Optional `--rebuild_database` in version 21.0+. Requires approximately `data.ldb size * 2` free space on disk.
 
 ### --validate_blocks
 _version 21.0+_ (_version 19.0+_ as `--debug_validate_blocks`)  
@@ -170,12 +182,16 @@ Prevent drop of all unchecked entries at node/wallet start
 _version 21.0+_  
 Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
 
+### --disable_block_processor_unchecked_deletion
+_version 21.0+_  
+Disable deletion of unchecked blocks after processing.
+
 ### --enable_udp
 _version 21.0+_  
 Turn on use of the UDP live network.
 
 ### --fast_bootstrap
-Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
+Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks.
 
 ### --inactive_votes_cache_size
 _version 21.0+_  
@@ -214,16 +230,17 @@ List online weights table and current online_weights value
 ### --debug_dump_representatives
 List representatives and weights
 
-### --debug_output_last_backtrace_dump
-_version 19.0+_  
-Output the stacktrace stored after a node crash.
-
 ### --debug_generate_crash_report
-_version 21.0+_  
+_version 21.0+_
 After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
-### --debug_opencl --platform=`<platform>` --device=`<device>` --threads=`<threads>`
-_[Draft]_ Profile OpenCL work generation for `<device>` on `<platform>` using `<threads>` count. To retrieve available platforms & devices run --diagnostics.  
+### --debug_opencl
+Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics). 
+
+### --debug_output_last_backtrace_dump
+_version 19.0+_  
+Output the stacktrace stored after a node crash. 
+
 Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
 
 ### --debug_profile_bootstrap
@@ -245,6 +262,10 @@ Profile signature generation
 
 ### --debug_profile_votes
 Profile vote verification
+
+### --debug_profile_frontiers_confirmation
+_version 21.0+_
+Profile frontiers confirmation speed
 
 ### --debug_stacktrace
 _version 20.0+_  
