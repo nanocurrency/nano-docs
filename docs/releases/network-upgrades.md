@@ -2,13 +2,13 @@
 
 For details on why and how network upgrades happen, along with explanations of the various types, please see the [Upgrades overview](#upgrades-overview) and [Upgrade methods](#upgrade-methods) sections further down.
 
+--8<-- "join-technical-mailing-list.md"
+
 ---
 
 ## Upcoming upgrades
 
 ### Increased work difficulty
-
---8<-- "join-technical-mailing-list.md"
 
 To help ensure Quality of Service on the network by increasing the difficulty required for send and change blocks to be considered valid by the network (8x compared to current). To help offset the difficulty increase and add incentive to receive blocks so ledger pruning can be done more broadly in the future, the difficulty for receive blocks will simultaneously be reduced (1/8 compared to current).
 
