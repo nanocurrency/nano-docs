@@ -34,6 +34,14 @@ Pages automatically have a `<h1>` title setup for them based on the page name so
 ### Table of Contents
 Currently the ToC on the right side is limited to a depth of 4, so `##`, `###` and `####` will be included there. Higher header levels can be used on the page ot better organize content but will not be in the ToC.
 
+### Links
+MKDocs has a link checker built in that can be run using the `--strict` flag on `mkdocs serve` or `mkdocs build` command. This flag is included in the build pipeline. In order for it to work, links must be referencing the relative file path with the file extension included and no trailing slashes. Anchors are not included in this check. Although relative URLs will function if used, they will not be verified by the link checker.
+
+For example, linking from a page in the`running-a-node` folder to `integration-guides` would be:
+
+* Gets checked: `../integration-guides/the-basics.md`.
+* Doens't get checked: `/integration-guides/the-basics`
+
 ### Snippets
 The `snippets` folder contains reusable pieces of content which can be inserted as follows:
 
