@@ -35,7 +35,7 @@ Pages automatically have a `<h1>` title setup for them based on the page name so
 Currently the ToC on the right side is limited to a depth of 4, so `##`, `###` and `####` will be included there. Higher header levels can be used on the page ot better organize content but will not be in the ToC.
 
 ### Snippets
-The `snippets` folder contains reusable pieces of content which can be inserted as follows:
+The `snippets` directory contains reusable pieces of content which can be inserted as follows:
 
 `--8<-- "snippet-file-name.md"`
 

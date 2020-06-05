@@ -5,7 +5,7 @@ The Nano node software is designed to run with little or no configuration. All c
 !!! success "Automatic migration and backups of JSON files"
     Versions prior to 20 use JSON as the configuration file format, and these will be automatically migrated to TOML files on startup. Note that only non-default values are migrated.
 
-    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same folder for easy recovery if needed.
+    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same directory for easy recovery if needed.
 
     As TOML files are never upgraded by the node, no backups are created for these.
 
@@ -151,7 +151,7 @@ The node and its related processes will look for the files listed below, either 
 
 The default locations of the config files are listed in the table below.
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
 
 ## Options formatting
 
