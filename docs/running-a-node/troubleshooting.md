@@ -37,11 +37,11 @@ Please follow the steps below for the corresponding node version you are using. 
 
 !!! example "Step 1: Make sure addr2line is installed"
     It is likely installed already, consult documentation for your linux distribution if it is not mentioned below:  
-    **Ubuntu**  
-    `apt-get install addr2line`  
+    **Ubuntu/Debian**
+    `apt-get install binutils`
   
     **Fedora 22+**  
-    `dnf install addr2line`
+    `dnf install binutils`
 
 !!! example "(Optional) Step 2: Save crash dump files"
     The next step will clean up the dump files generated during the crash, if you wish to keep these then save `nano_node_backtrace.dump`, and all `nano_node_crash_load_address_dump_*.txt` files.
