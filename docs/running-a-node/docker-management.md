@@ -199,6 +199,12 @@ Or the blockcount:
 curl -d '{ "action" : "block_count" }' [::1]:7076
 ```
 
+In addition, you can make use of command-line JSON utilities such as [jq](https://stedolan.github.io/jq/) to parse and manipulate the structured data retrieved from `curl`. For example the account information associated with certain block:
+
+```bash
+curl -s -d '{ "action": "blocks_info", "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"], "json_block": "true" }' [::1]:7076 | jq ".blocks[].block_account"
+```
+
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
 
 ---
