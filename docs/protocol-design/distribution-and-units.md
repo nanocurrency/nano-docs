@@ -34,7 +34,10 @@ A 128 bit integer is used to represent account balances.  A set of SI prefixes[^
 |               | μnano/unano | 1000000000000000000                | $10^{18}$
 | raw           |             | 1                                  | $10^{0}$
 
-1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc. In other words, NANO is the ticker symbol on exchanges, representing 1 million nano. All block-related [RPC commands](/commands/rpc-protocol/) only accept `raw` amounts, and amounts are always given in requests and responses as decimal strings. The node wallet only receives amounts larger than 1 nano (i.e. $10^{24}$ raw) by default.
+
+!!! info "Key Consideration Behind String-based Representation"
+	RPCs accept amounts as strings, not decimal integers, to avoid issues with the built-in JSON conversion in some programming languages which could not support 128-bit integers. For the C programming language, 128-bit support is optional, e.g. via the `int128_t` type, which is implemented as a compiler-specific extension.
 
 [^1]:https://medium.com/nanocurrency/the-nano-faucet-c99e18ae1202
 [^2]:The SI prefixes are metric prefixes that were standardized for use in the International System of Units (SI) by the International Bureau of Weights and Measures (BIPM). https://www.bipm.org/en/measurement-units/prefixes.html
