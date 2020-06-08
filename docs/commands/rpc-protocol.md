@@ -1728,7 +1728,7 @@ Removing node ID (restart required to take effect)
 
 ### node_telemetry
 _version 21.0+_  
-Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+Return metrics from nodes. See [networking node telemetry](../protocol-design/networking.md#node-telemetry) for more information. If regular checks or tracking of telemetry is required, the [node telemetry WebSocket](../integration-guides/websockets.md#node-telemetry) is the preferred option.
 
 --8<-- "telemetry-can-be-forged.md"
 
