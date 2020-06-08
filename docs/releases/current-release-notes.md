@@ -49,7 +49,9 @@ As mentioned in the [Upgrade Notices](#upgrade-notices) section above, work diff
 Updates on the progress toward the epoch upgrade will be posted in our many social channels as well as sent through our technical updates mailing list which can be joined here: <a href="http://eepurl.com/gZucL1" class="button" target="_blank" rel="noopener">Join Mailing List</a>.
 
 ### Node Telemetry
-To allow better communication between nodes about various performance and other details, telemetry was added between peers. Details of what is shared and options to request them can be found within the [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them. For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
+To allow better communication between nodes about various performance and other details, telemetry was added between peers. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them.
+
+Details of what is shared and options for receiving them can be found in the [node telemetry WebSocket section](../integration-guides/websockets.md#node-telemetry) and [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC.  For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
 
 --8<-- "telemetry-can-be-forged.md"
 
