@@ -95,8 +95,6 @@ The following options are notable node configuration updates. Additional configu
 
 ## CLI Updates
 
-* **NEW** [`--generate_config [node|rpc]`](/commands/command-line-interface/#-generate_config-noderpc) prints sample configuration files to *stdout*.
-* **NEW** [`--config`](/commands/command-line-interface/#-config-keyvalue) passes configuration arguments, alternative to setting in the config file.
 * **NEW** [`--inactive_votes_cache_size`](/commands/command-line-interface/#-inactive_votes_cache_size) allows adjusting of the cache that holds votes where the block does not have an action election, default is 16384 votes.
 * **NEW** [`--rebuild_database`](/commands/command-line-interface/#-rebuild_database) provides a better compaction method for LMDB. **NOTE:** This requires approximately `data.ldb` file size * 2 in free space on disk.
 * **NEW** [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) gives the ability to compare the current ledger voting weight distribution against the hard coded weights provided in the node on release. Useful when attempting to use a downloaded ledger. More details on use can be found on the [Ledger Management page](/running-a-node/ledger-management).
