@@ -118,6 +118,7 @@ The following options are notable node configuration updates. Additional configu
 * [`confirmation_active`](/commands/rpc-protocol/#confirmation_active) RPC response includes new `unconfirmed` and `confirmed` fields to help with more granular election tracking and monitoring
 * When the node is started there are new messages pushed to the logs which indicate when voting is enabled and how many representatives are configured to vote. A warning will be included in both the logs and `stdout` if multiple representatives are configured to be voting.
 * New [`--debug_generate_crash_report`](/commands/command-line-interface/#-debug_generate_crash_report) CLI command consumes the dump files to create a helpful crash report. See [What to do if the node crashes (Linux)](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more details on using this command.
+* New [`logging.log_rpc`](../running-a-node/configuration.md#logginglog_rpc) configuration can be optionally set to `false` to prevent explicit logging of RPC requests made to the node
 
 ---
 
