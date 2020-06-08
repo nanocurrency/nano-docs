@@ -110,8 +110,8 @@ The upgrade to [state blocks](/integration-guides/the-basics/#blocks-specificati
 | 2018-04-11 | Canary block | Parse canary block distributed which enabled parsing of state blocks by nodes so manual generation of that block type would be accepted on the network going forward. This action was performed after a majority of the network upgraded to the required V11.0 to allow confirmations to occur on this new block type. |
 | 2018-05-20 | Canary block | Generation canary block distributed which forced the generation of state blocks by nodes going forward. At this point both state and legacy type (open, send, receive, change) blocks remain valid on the network. |
 | 2018-08-20 | Node release | Nano node V15.0 released with support for epoch blocks built-in and away distribution. |
-| 2018-10-25 | <span class="no-break">Epoch blocks start</span> | Distribution of epoch blocks begins. |
-| 2019-05-24 | Epoch blocks end | Distribution of epoch blocks is finished. All accounts, opened and unopened, are now capped and can no longer attempt inserting legacy style blocks. |
+| 2018-10-25 | <span class="no-break">Epoch v1 block</span> <span class="no-break">distribution start</span> | Distribution of epoch v1 blocks begins. |
+| 2019-05-24 | Epoch v1 block distribution end | Distribution of epoch v1 blocks is finished. All accounts, opened and unopened, are now capped and can no longer attempt inserting legacy style blocks. |
 
 ### Vote-by-Hash
 
@@ -170,3 +170,10 @@ A special block type that can only be generated using a pre-determined private k
 | Trigger | Uses blocks | Benefits | Drawbacks |
 |---------|-------------|----------|-----------|
 | Node upgrade + distribution of epoch blocks | Yes | <ul><li>Provides clean upgrade markers directly within the ledger on every account-chain</li><li>Timing flexible</li><li>Ability to asynchronously upgrade block versions even for inactive/unopened account chains</li></ul> | <ul><li>Requires manual intervention</li><li>Introduces ability for non-account owner to write to account chain in a highly restricted way</li><li>Adds additional code complexity</li><li>Requires large volume of blocks</li></ul> |
+
+The following are the epoch versions and the related accounts which are used to distribute them to the network. For certain protocol implementations these epoch signers need to be included to efficiently determine whether incoming blocks are epoch blocks.
+
+| Version | Epoch signer account | Notes |
+|---------|----------------------|-------|
+| 1 | `xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3` | Genesis account |
+| 2 | `nano_3qb6o6i1tkzr6jwr5s7eehfxwg9x6eemitdinbpi7u8bjjwsgqfj4wzser3x` | Undistributed as of June 2020, see [Increased work difficulty](#increased-work-difficulty) details above |
