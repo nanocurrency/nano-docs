@@ -39,9 +39,9 @@ Setting up a node on the beta network is similar to the main network. To start y
 
 ___
 
-### Folder locations
+### Directory locations
 
---8<-- "beta-folder-locations.md"
+--8<-- "beta-directory-locations.md"
 
 !!! info
 	Directory names for extracting builds downloaded from GitHub or https://beta.nano.org/ will be updated with RC versions for V19 and later.
@@ -76,7 +76,7 @@ docker run --restart=unless-stopped -d \
   -p 54000:54000 \
   -p [::1]:55000:55000 \
   -p [::1]:57000:57000 \
-  -v ${NANO_HOST_FOLDER_BETA}:/root \
+  -v ${NANO_HOST_DIR_BETA}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano-beta:latest-including-rc
 ```
@@ -85,8 +85,8 @@ docker run --restart=unless-stopped -d \
 	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting) details for the main network.
 	* See [Docker management](/running-a-node/docker-management/) for other related commands
 
-!!! warning "Separate host folders"
-	Be sure to use a different host folder for main network and beta network Docker node setups. Attempting to use the same folder will result in issues.
+!!! warning "Separate host directories"
+	Be sure to use a different host directory for main network and beta network Docker node setups. Attempting to use the same directory will result in issues.
 
 ## Additional beta resources
 

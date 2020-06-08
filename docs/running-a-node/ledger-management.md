@@ -5,9 +5,9 @@
 
 ## Ledger file
 
-The node automatically manages the full Nano ledger in the `data.ldb` file which can be found in the data folder at these locations:
+The node automatically manages the full Nano ledger in the `data.ldb` file which can be found in the data directory at these locations:
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
 
 This file will grow in size as the ledger does. As of April 2020 there are over 49 million blocks in the ledger which requires at least 26GB of free space. See [hardware recommendations](/running-a-node/node-setup/#hardware-recommendations) for more preferred node specs.
 
@@ -81,7 +81,7 @@ Blocks are confirmed using the voting weight of representatives and these weight
 If looking to use a downloaded ledger there is a risk of it providing inaccurate representative voting weights. Although the potential impacts of this are minimal, below are some recommended steps to take which can help provide additional confidence the ledger can be used.
 
 1. **Scan the ledger for integrity using the [`--debug_validate_blocks`](/commands/command-line-interface/#-debug_validate_blocks) CLI command**. If issues are found they should be inspected carefully and alternative sources of a ledger may need to be considered as failures with this command have a high chance of indicating potentially malicious behavior.
-1. **Review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command** (_v21.0+ only)_ with the new ledger in the default data folder (old ledger backed up) or in a different data folder by using the optional `--data_path` argument. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the [CLI command](/commands/command-line-interface/#-compare_rep_weights) for details on the output with special attention paid to entries in the `outliers` and `newcomers` sections. By inspecting those addresses in public explorers such as [Nanocrawler.cc](https://nanocrawler.cc), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
+1. **Review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command** (_v21.0+ only)_ with the new ledger in the default data directory (old ledger backed up) or in a different data directory by using the optional `--data_path` argument. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the [CLI command](/commands/command-line-interface/#-compare_rep_weights) for details on the output with special attention paid to entries in the `outliers` and `newcomers` sections. By inspecting those addresses in public explorers such as [Nanocrawler.cc](https://nanocrawler.cc), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
 
 If you need support with this process or need help in evaluating some of the CLI command results, join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
 

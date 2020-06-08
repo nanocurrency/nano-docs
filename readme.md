@@ -43,7 +43,7 @@ For example, linking from a page in the`running-a-node` folder to `integration-g
 * Doesn't get checked: `/integration-guides/the-basics`
 
 ### Snippets
-The `snippets` folder contains reusable pieces of content which can be inserted as follows:
+The `snippets` directory contains reusable pieces of content which can be inserted as follows:
 
 `--8<-- "snippet-file-name.md"`
 
