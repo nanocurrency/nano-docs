@@ -172,7 +172,7 @@ Your code will be reviewed with security in mind, but please do your part before
     * Avoid using ANSI C functions. Many of these are prone to buffer overruns.
     * Avoid using C strings and direct buffer manipulation.
 
-* Use static analysis tools, such as valgrind, XCode instrumentation, linters and sanitizers. These tools are also great for debugging crashes and performance problems.
+* Use static and dynamic analysis tools, such as valgrind, XCode instrumentation, linters and sanitizers. These tools are also great for debugging crashes and performance problems.
 
 ### General tips for contributors
 

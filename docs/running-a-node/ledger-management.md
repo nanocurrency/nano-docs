@@ -1,5 +1,8 @@
 # Ledger Management
 
+!!! tip "Default and experimental backends available"
+	By default the node uses LMDB as the ledger backend, which the first part of this guide is focused on. The second part of the guide covers [RocksDB](#rocksdb-ledger-backend), which is an experimental option available as of _v20.0+_.
+
 ## Ledger file
 
 The node automatically manages the full Nano ledger in the `data.ldb` file which can be found in the data folder at these locations:
@@ -16,6 +19,21 @@ This file will grow in size as the ledger does. As of April 2020 there are over 
 
 ---
 
+## Configuration
+
+!!! note ""
+    Available in Version 21.0+ only
+
+Within the `node.lmdb` section of the [`config-node.toml`](../running-a-node/configuration.md#configuration-file-locations) file, the following options can be set to better tune LMDB performance for the available resources.
+
+| Option name | Details |
+|             |         |
+| `map_size`  | Allows the map size to be changed (default value is 128GB). This only affects the ledger database. |
+| `max_databases` | Maximum open LMDB databases. Increase default if more than 100 wallets is required. [External management](/integration-guides/key-management/) is recommended when a large amounts of wallets are required. |
+| `sync`      | LMDB environment flags. Applies to ledger, not wallet:<ul><li>`always`: Default (MDB_NOSUBDIR \| MDB_NOTLS \| MDB_NORDAHEAD).</li><li>`nosync_safe`: Do not flush meta data eagerly. This may cause loss of transactions, but maintains integrity (MDB_NOSUBDIR \| MDB_NOTLS \| MDB_NORDAHEAD \| MDB_NOMETASYNC).</li><li>`nosync_unsafe`: Let the OS decide when to flush to disk. On filesystems with write ordering, this has the same guarantees as nosync_safe, otherwise corruption may occur on system crash (MDB_NOSUBDIR \| MDB_NOTLS \| MDB_NORDAHEAD \| MDB_NOSYNC).</li><li>`nosync_unsafe_large_memory`: Use a writeable memory map. Let the OS decide when to flush to disk, and make the request asynchronous. This may give better performance on systems where the database fits entirely in memory, otherwise it may be slower. Note that this option will expand the file size logically to map_size. It may expand the file physically on some file systems. (MDB_NOSUBDIR \| MDB_NOTLS \| MDB_NORDAHEAD \| MDB_NOSYNC \| MDB_WRITEMAP \| MDB_MAPASYNC).</li></ul> |
+
+---
+
 ## Bootstrapping
 
 When starting a new node the ledger must be downloaded and kept updated in order to participate on the network properly. This is done automatically via bootstrapping - the node downloads and verifies blocks from other nodes across the network. This process can take hours to days to complete depending on network conditions and [hardware specifications](/running-a-node/node-setup/#hardware-recommendations).
@@ -25,7 +43,7 @@ When starting a new node the ledger must be downloaded and kept updated in order
 
 ### Tuning options
 
-Depending on machine and networking resources, the bootstrap performance can be improved by updating the following [configuration](/running-a-node/configuration/) values:
+Depending on machine and networking resources, the bootstrap performance can be improved by updating the following [configuration](/running-a-node/configuration/) values in the [`config-node.toml`](../running-a-node/configuration.md#configuration-file-locations) file:
 
 * `node.bootstrap_connections_max`: up to max of `128`
 * `node.bootstrap_connections`: up to max of `16`
