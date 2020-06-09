@@ -56,7 +56,7 @@ Updates on the progress toward the epoch upgrade will be posted in our many soci
 ### Node Telemetry
 To allow better communication between nodes about various performance and other details, telemetry was added between peers. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them.
 
-Details of what is shared and options for receiving them can be found in the [node telemetry WebSocket section](../integration-guides/websockets.md#node-telemetry) and [`node_telemetry`](/commands/rpc-protocol/#node_telemetry) RPC.  For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
+Details of what is shared and options for receiving them can be found in the [node telemetry WebSocket section](../integration-guides/websockets.md#node-telemetry) and [`node_telemetry`](/commands/rpc-protocol/#telemetry) RPC.  For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
 
 --8<-- "telemetry-can-be-forged.md"
 
@@ -93,7 +93,7 @@ The following options are notable node configuration updates. Additional configu
     * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
     * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
     * **To best understand how these and other epoch related changes will impact your integration, it is highly recommended that the [Upcoming upgrades > Increased work difficulty section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades is carefully reviewed**
-* `active_difficulty` [RPC](/commands/rpc-protocol/#active-difficulty) and [WebSocket](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins, otherwise the response formats will remain the same
+* `active_difficulty` [RPC](/commands/rpc-protocol/#active_difficulty) and [WebSocket](/integration-guides/websockets/#active-difficulty) will automatically begin returning the higher difficulty threshold for send/change blocks in the `network_minimum` field once the epoch upgrade begins, otherwise the response formats will remain the same
 * **BREAKING CHANGE** [`bootstrap_status`](/commands/rpc-protocol/#bootstrap_status) responses now have `connections` field as an array of connection-related fields and adds an `attempts` field with an area of individual bootstrap attempt details, each including information such as a unique id, type of bootstrap (legacy, lazy) and various other granular information.
 * [`block_create`](/commands/rpc-protocol/#block_create) response now contains the `difficulty` value of the work included in the block for easy reference by integrations. When generating work for the created block, the node ledger data is used to estimate the required difficulty threshold.
 * [`work_generate`](/commands/rpc-protocol/#work_generate) request now accepts optional `block` (and corresponding boolean `json_block`), which is used to estimate the required difficulty threshold by using ledger data. Two common use-cases are generating work for blocks created elsewhere, and re-generating work for a previously published block.
@@ -114,7 +114,7 @@ The following options are notable node configuration updates. Additional configu
 
 * Updates to WebSocket subscriptions are now allowed on the [`confirmation`](/integration-guides/websockets/#confirmations) topic. With `options` of `accounts_add` and `accounts_del` an existing subscription can now be more easily managed to avoid resubscribing with a large list of accounts or managing multiple subscriptions.
 * **NEW** [`bootstrap`](/integration-guides/websockets/#bootstrap) topic provides notifications about the starting and exiting of bootstrap attempts.
-* **NEW** [`new_unconfirmed_block`](/integration-guides/websockets/#new_unconfirmed_block) topic provides notifications about blocks which were just processed and are being seen by the node for the first time. This is useful for integrations that want to watch for blocks they didn't create themselves, but for which they want to update with new work (external work watcher).
+* **NEW** [`new_unconfirmed_block`](/integration-guides/websockets/#new-unconfirmed-blocks) topic provides notifications about blocks which were just processed and are being seen by the node for the first time. This is useful for integrations that want to watch for blocks they didn't create themselves, but for which they want to update with new work (external work watcher).
 * WebSocket server is now enabled by default in V21+ Docker images to make it more consistent with RPC server setup and documented port mappings
 
 ---
@@ -132,7 +132,7 @@ The following options are notable node configuration updates. Additional configu
 
 The following functionality is now deprecated and will be removed in a future release:
 
-* UDP is disabled by default in this version and will be removed in a future release. Launch flag [`--disable_udp`](/commands/command-line-interface/#-disable_udp-deprecated) is deprecated and temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
+* UDP is disabled by default in this version and will be removed in a future release. Launch flag [`--disable_udp`](/commands/command-line-interface/#deprecated-commands) is deprecated and temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
 
 ---
 
