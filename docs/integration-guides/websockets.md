@@ -563,7 +563,7 @@ No filters are currently available for the `telemetry` topic.
   }
 }
 ```
-See the [node_telemetry](/commands/rpc-protocol/#node_telemetry) RPC command which gives more information about the message response  
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response  
 
 
 ### New unconfirmed blocks
