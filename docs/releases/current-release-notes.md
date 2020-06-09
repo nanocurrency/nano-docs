@@ -3,6 +3,11 @@ description: Details of the most current Nano node release including upgrade not
 
 # Current Release Notes: V21.0
 
+!!! warning "V21.0 is in Release Candidate phase"
+	Although the current active version of the Nano node is V20.0, this page was updated with V21.0 details to provide early access to the upcoming changes before final release. Visit the [Previous Release Notes page](previous-release-notes.md) for V20.0 and earlier Release Notes.
+
+	The details here are nearly final, but subject to change prior to the final release.
+
 --8<-- "release-details-v21-0.md"
 
 --8<-- "known-issue-macos-too-many-open-files.md"
