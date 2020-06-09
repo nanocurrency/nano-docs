@@ -124,7 +124,7 @@ The upgrade to [state blocks](/integration-guides/the-basics/#blocks-specificati
 
 **Purpose**
 
-The upgrade to include the [vote-by-hash](/glossary/#active-transaction) feature was based on a hardcoded timestamp in the node. After this time nodes began voting using this new feature.
+The upgrade to include the [vote-by-hash](../glossary.md#vote-by-hash) feature was based on a hardcoded timestamp in the node. After this time nodes began voting using this new feature.
 
 **Transition Details**
 
