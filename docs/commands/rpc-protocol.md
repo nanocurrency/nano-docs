@@ -2798,7 +2798,8 @@ Work version string. Currently "work_1" is the default and only valid option.
 **Optional "block"**
 
 _version 21.0+_  
-A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.  
+***Note:*** block should be the one where the resulting work value will be used, not the previous block.
 
 **Optional "json_block"**
 
