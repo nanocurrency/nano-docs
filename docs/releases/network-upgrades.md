@@ -29,30 +29,35 @@ This upgrade is sometimes referenced as the epoch v2 upgrade and the relate even
 
 In order to best prepare for the transition to new thresholds, the following items should be considered:
 
-**Active difficulty**
+**Work generation guide**  
+The new [Work Generation guide](../integration-guides/work-generation.md) was written to help users and integrations leverage their work generation at all times.
 
-To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC and [WebSocket topic](/integration-guides/websockets/#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
+**Active difficulty**  
+To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC and [WebSocket topic](../integration-guides/websockets.md#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
 
 Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
 
-**Work validation**
-
-The [`work_validate`](/commands/rpc-protocol/#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
+**Work validation**  
+The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
 
 * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
 * `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
 * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
 * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
 
-**Work generation performance**
+**External work generation**  
+[nano-work-server](https://github.com/nanocurrency/nano-work-server) has been updated to use the higher threshold by default when not given an explicit `difficulty`. The `work_validate` response has the same breaking changes as above.
 
-Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](/integration-guides/work-generation/#benchmarks).
+* Prefer directly using the server as a [work peer](../integration-guides/work-generation.md#nodework_peers) as outlined in the [guide](../integration-guides/work-generation.md#work-generated-using-the-node-incl-work-peers). The node always requests the appropriate difficulty threshold when using RPC [block_create](../commands/rpc-protocol.md#block_create), or [work_generate](../commands/rpc-protocol.md#work_generate) with the optional `block`.
+* In cases where requesting directly from a node is not possible, avoid using the lower threshold for receive blocks until the epoch upgrade is fully complete.
 
-**Other integration considerations**
+**Work generation performance**  
+Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](../integration-guides/work-generation.md#benchmarks).
 
+**Other integration considerations**  
 Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
 
-See [Step 1: Get Account Info](/integration-guides/key-management/#send-transaction) for the [`account_info`](/commands/rpc-protocol#account_info) RPC recommendation when creating transactions.
+See [Step 1: Get Account Info](../integration-guides/key-management.md#send-transaction) for the [`account_info`](../commands/rpc-protocol.md#account_info) RPC recommendation when creating transactions.
 
 #### Transition Explanation
 
