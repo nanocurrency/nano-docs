@@ -2787,8 +2787,18 @@ A valid Nano account. If provided and `use_peers` is set to `true`, this informa
 
 **Optional "version"**
 
-_version 21.0+_
+_version 21.0+_  
 Work version string. Currently "work_1" is the default and only valid option.
+
+**Optional "block"**
+
+_version 21.0+_  
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.
+
+**Optional "json_block"**
+
+_version 21.0+_  
+Default "false". If "true", `block` in the request should contain a JSON subtree instead of a JSON string.
 
 ---
 
