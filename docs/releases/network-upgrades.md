@@ -32,11 +32,6 @@ In order to best prepare for the transition to new thresholds, the following ite
 **Work generation guide**  
 The new [Work Generation guide](../integration-guides/work-generation.md) was written to help users and integrations leverage their work generation at all times.
 
-**Active difficulty**  
-To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC and [WebSocket topic](../integration-guides/websockets.md#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
-
-Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
-
 **Work validation**  
 The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
 
@@ -58,6 +53,13 @@ Testing out work generation capabilities on a machine is recommended. Details fo
 Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
 
 See [Step 1: Get Account Info](../integration-guides/key-management.md#send-transaction) for the [`account_info`](../commands/rpc-protocol.md#account_info) RPC recommendation when creating transactions.
+
+??? info "Post-distribution active difficulty changes"
+	**The following changes will only be valid after the epoch v2 distribution is complete or the accounts you are dealing with have been upgraded.**
+
+	To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC and [WebSocket topic](../integration-guides/websockets.md#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
+
+	Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
 
 #### Transition Explanation
 
