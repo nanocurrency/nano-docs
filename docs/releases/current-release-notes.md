@@ -139,3 +139,15 @@ The following functionality is now deprecated and will be removed in a future re
 ## Builds and Commands
 
 --8<-- "current-release-build-links.md"
+
+---
+
+## Useful guide updates
+
+We've been making many useful updates to the documentation here, especially around various guides for managing different aspects of the Nano node. Here are a few worth digging into:
+
+* **NEW** [Ledger Management](../running-a-node/ledger-management.md)
+* **NEW** [Voting as a Representative](../running-a-node/voting-as-a-representative.md)
+* **NEW** [Work Generation](../integration-guides/work-generation.md)
+* [Node Security](../running-a-node/security.md)
+* [Block Confirmation Tracking](../integration-guides/block-confirmation-tracking.md)
