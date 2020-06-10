@@ -79,7 +79,7 @@ The following options are notable node configuration updates. Additional configu
 
 * The ability to enable a static log file name is available via the `node.logging.stable_log_filename` option. If update to `true`, a static log file of `log/node.log` will be written to and rotated to timestamped files once full. This option requires the node being built with Boost 1.70+ (default for Docker images and published binaries).
 * Nodes will now clear their peers lists and online weight if they are started after more than 1 week of being offline. This aims to improve re-peering in these situations, as well as provide more accurate online weight values as the node begins participating on the network again ([related PR](https://github.com/nanocurrency/nano-node/pull/2506)).
-* When `watch_work` is set to `false`, it is no longer required to have [`enable_control`](/running-a-node/configuration/#enable_control) = `true` in the `config-rpc.toml` file.
+* When `watch_work` is set to `false` in the [process](../commands/rpc-protocol.md#process) RPC, it is no longer required to have [`enable_control`](../running-a-node/configuration.md#enable_control) = `true` in the `config-rpc.toml` file.
 
 !!! note "Log when voting, warn multiple accounts"
 	When the node is started there are new messages pushed to the logs which indicate when voting is enabled and how many representatives are configured to vote. A warning will be included in both the logs and `stdout` if multiple representatives are configured to be voting.
