@@ -10,8 +10,6 @@ description: Details of the most current Nano node release including upgrade not
 
 --8<-- "release-details-v21-0.md"
 
---8<-- "known-issue-macos-too-many-open-files.md"
-
 !!! info "Nano Forum available"
 	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
 
