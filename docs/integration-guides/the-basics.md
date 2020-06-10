@@ -145,7 +145,7 @@ Because each block contains the current state of the account, the `"type"` of th
 | balance        | decimal string      | 16 bytes   | Resulting balance (in [raw](#units)) |
 | link           | -                   | 32 bytes   | Multipurpose field - see link table below |
 | signature      | 128 hex-char string | 64 bytes   | ED25519+Blake2b 512-bit signature |
-| work           | 16 hex-char string  | 8 bytes    | [Proof of Work](#proof-of-work) Nonce |
+| work           | 16 hex-char string  | 8 bytes    | [Proof of Work](../glossary.md#proof-of-work-pow) Nonce |
 
 Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/commands/rpc-protocol#block_create) RPC command:
 
