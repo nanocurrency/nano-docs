@@ -1027,33 +1027,33 @@ _versions 21.0+_
   ]
 }
 ```
-**Response:**
-_versions 17.0-20.0_
-```json
-{
-  "clients": "0",
-  "pulls": "0",
-  "pulling": "0",
-  "connections": "31",
-  "idle": "31",
-  "target_connections": "16",
-  "total_blocks": "13558",
-  "runs_count": "0",
-  "requeued_pulls": "31",
-  "frontiers_received": "true",
-  "frontiers_confirmed": "false",
-  "mode": "legacy",
-  "lazy_blocks": "0",
-  "lazy_state_backlog": "0",
-  "lazy_balances": "0",
-  "lazy_destinations": "0",
-  "lazy_undefined_links": "0",
-  "lazy_pulls": "32",
-  "lazy_keys": "32",
-  "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
-  "duration": "29"
-}
-```
+
+??? abstract "Response V17.0-V20.0"
+    ```json
+    {
+      "clients": "0",
+      "pulls": "0",
+      "pulling": "0",
+      "connections": "31",
+      "idle": "31",
+      "target_connections": "16",
+      "total_blocks": "13558",
+      "runs_count": "0",
+      "requeued_pulls": "31",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "mode": "legacy",
+      "lazy_blocks": "0",
+      "lazy_state_backlog": "0",
+      "lazy_balances": "0",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "32",
+      "lazy_keys": "32",
+      "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
+      "duration": "29"
+    }
+    ```
 
 ---
 
