@@ -92,7 +92,9 @@ docker run --restart=unless-stopped -d \
 
 | Parameter | Main Network | Beta Network | Comment |
 |-----------|--------------|--------------|---------|
-| [Proof of Work](/integration-guides/the-basics/#proof-of-work) Difficulty Threshold | `0xffffffc000000000` | `0xfffff00000000000` | 64 times lower on the beta network |
+| Epoch 1 difficulty threshold | `ffffffc000000000` | `fffff00000000000` | 64 times lower on the beta network |
+| Epoch 2 send/change threshold | `fffffff800000000` | `fffff00000000000` | 2 times higher than epoch 1 |
+| Epoch 2 receive threshold | `fffffe0000000000` | `ffffe00000000000` | 2 times lower than epoch 1 |
 
 <span id="release-candidate-builds"></span>
 <span id="development-builds"></span>
