@@ -226,6 +226,19 @@ enable_control = false
 
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
+#### logging.log_rpc
+This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
+
+By default, all RPC calls and the time spent handling each one are [logged](../running-a-node/troubleshooting.md#log-files). This can be optionally turned off by switching option `logging.log_rpc` to `false`
+
+```toml
+[logging]
+
+# Whether to log RPC calls.
+# type:bool
+log_rpc = true
+```
+
 ### IPC
 See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
 

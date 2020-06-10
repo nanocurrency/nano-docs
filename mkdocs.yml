@@ -51,6 +51,8 @@ nav:
     - Original whitepaper: whitepaper/english.md
   - Releases:
     - Node Releases: releases/node-releases.md
+    - Current Release Notes: releases/current-release-notes.md
+    - Previous Release Notes: releases/previous-release-notes.md
     - Network Upgrades: releases/network-upgrades.md
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md

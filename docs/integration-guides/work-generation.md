@@ -167,19 +167,22 @@ The command will trigger continual work generation, so let it run until a suffic
 
 ### Example benchmarks
 
-Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs updated in late 2017.
+Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs. All values are presented in **# work/second generated**. See the [difficulty thresholds section](#difficulty-thresholds) below for details about values required for different epoch versions and block types.
 
-| Device | Epoch v1<br /># PoW/sec |
-|--------|-|
-| Nvidia Tesla V100 (AWS) | 6.4 |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 |
-| Nvidia Tesla K80 (Google,Cloud) | 1.64 |
-| AMD RX 470 OC | 1.59 |
-| Nvidia GTX 1060 3GB | 1.25 |
-| Intel Core i7 4790K AVX2 | 0.33 |
-| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 |
-| Google Cloud 4 vCores 0.14-0.16 | 0.14-0.16 |
-| ARM64 server 4 cores (Scaleway) | 0.05-0.07 |
+| **Device** | **Epoch v1**<br />All Blocks | **Epoch v2**<br />Send/Change Blocks | **Epoch v2**<br />Receive Blocks |
+|--------|-|-|-|
+| Nvidia Tesla V100 (AWS) | 6.4 | | |
+| Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
+| Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
+| AMD RX 470 OC | 1.59 | | |
+| Nvidia GTX 1060 3GB | 1.25 | | |
+| Intel Core i7 4790K AVX2 | 0.33 | | |
+| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 | | |
+| Google Cloud 4 vCores | 0.14-0.16 | | |
+| ARM64 server 4 cores (Scaleway) | 0.05-0.07 | | |
+| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
+| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
+| AMD R9-3900X (12C/24T@3.97GHz AVX2) | 1.97 | 0.26 | 15.6 |
 
 ---
 
@@ -207,7 +210,19 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+The mainnet's base difficulty threshold is currently `ffffffc000000000` for all epoch v1 blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+
+Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+
+After the next [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty), which will occur after the [V21.0 release](../releases/current-release-notes.md) and subsequent distribution of epoch v2 blocks, there will be two difficulty thresholds:
+
+| Epoch version | Block Type | Difficulty Threshold |
+|               |            |                      |
+| 1             | All        | `ffffffc000000000`   |
+| 2             | Send or change | `fffffff800000000` |
+| 2             | Receive        | `fffffe0000000000` |
+
+Although preparations can be done ahead of the upgrade, please find related considerations in the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) section.
 
 **Development node wallet behavior**
 

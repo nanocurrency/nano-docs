@@ -640,8 +640,10 @@ _version 21.0+_
 Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
 
 **Optional "difficulty"**
-_version 21.0+_
+
+_version 21.0+_  
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+
 If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 ---
@@ -2795,7 +2797,8 @@ Work version string. Currently "work_1" is the default and only valid option.
 **Optional "block"**
 
 _version 21.0+_  
-A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.  
+***Note:*** block should be the one where the resulting work value will be used, not the previous block.
 
 **Optional "json_block"**
 

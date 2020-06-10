@@ -65,7 +65,7 @@ A block with funds being transferred to an [account](#account) owned by a [walle
 Blocks on an account chain before the first v1 block (which is often the v1 epoch block but can be other types). The first v1 block and all subsequent blocks are stateful blocks.
 
 #### live network
-A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).
+A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. As of V21, use of UDP is deprecated.
 
 #### online voting weight
 Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
