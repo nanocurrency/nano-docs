@@ -114,5 +114,15 @@ The funds used for testing transactions on the beta network are generated from a
 
 For small amounts suitable for most basic integration, you can get beta Nano from the beta faucet here: https://beta.nano.org/faucet/. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
 
+### Beta ledger file
+
+To help get beta nodes in sync more quickly it is recommended that an updated ledger file is downloaded and placed into the data directory. Often referred to as a "fast sync", more details around this approach can be found in the [Ledger Management guide](ledger-management.md#downloaded-ledger-files). Since the beta network contains no value, validating the blocks, voting weights and confirmation heights isn't necessary.
+
+The following command will download and unzip a recent ledger snapshot. Any existing ledger files should be backed up elswhere as this will override them. From within the [data directory](#directory-locations) run:
+
+```
+curl -O https://s3.us-east-2.amazonaws.com/beta-snapshot.nano.org/data.tar.gz; tar -xzvf data.tar.gz; rm -fr data.tar.gz
+```
+
 ### Ongoing Test Cases
 A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
