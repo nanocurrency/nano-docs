@@ -103,16 +103,21 @@ In order to minimize downtime, consider performing the update in a different mac
 
 1. Create a directory `/home/<user>/Nano_Update` on Machine B.
 1. Stop the node on Machine A.
-1. Copy the `data.ldb` [file](#ledger-management) from Machine A to `/home/<user>/Nano_Update/data.ldb` on Machine B.
-1. Start the node again on Machine A.
-1. Download the [latest node version](/releases/node-releases/#current-release). For the purposes of this guide, using a binary is easier.
-1. Run the following command (varies based on your operating system): `./nano_node --debug_block_count --data_path /home/<user>/Nano_Update --config node.logging.log_to_cerr=true`
+1. If enough free space (at least [`data.ldb`](#ledger-file) size) is available on Machine A:
+	* Make a local copy of [`data.ldb`](#ledger-file) in any directory.
+	* Start the node again on Machine A, resuming operation.
+	* Move the local copy of the ledger from Machine A to `/home/<user>/Nano_Update/data.ldb` on Machine B.
+	* Skip the next step.
+1. If there is not enough free space on Machine A:
+	* Copy [`data.ldb`](#ledger-file) from Machine A to `/home/<user>/Nano_Update/data.ldb` on Machine B.
+	* Start the node again on Machine A, resuming operation.
+1. Download the [latest node version](/releases/node-releases/#current-release) to Machine B. For the purposes of this guide, using a binary is easier.
+1. Run the following command on Machine B (varies based on your operating system): `./nano_node --debug_block_count --data_path /home/<user>/Nano_Update --config node.logging.log_to_cerr=true`
 1. The message *"Upgrade in progress..."* will be displayed if a ledger upgrade is required. Wait until the command finishes and **do not stop the upgrade preemptively**.
 1. Copy `/home/<user>/Nano_Update/data.ldb` from Machine B to a temporary location on Machine A. **do not overwrite data.ldb on Machine A while the node is running**.
-1. Stop and **upgrade** to the latest node version on Machine A as you would do normally.
-1. Stop the node on Machine A in case upgrading restarted it.
+1. **Stop** the node on Machine A.
 1. Replace `/home/<user>/Nano/data.ldb` with the transferred file.
-1. Restart the node.
+1. **Upgrade** to the latest node version on Machine A as you would do normally.
 
 In the event that you are unable to upgrade the ledger on another machine but would still like to minimize downtime, consider [obtaining the ledger from another source](#downloaded-ledger-files) as a last resource.
 
