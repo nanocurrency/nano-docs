@@ -3,3 +3,4 @@
 | Linux | V21.0RC1 | https://repo.nano.org/beta/binaries/nano-node-V21.0RC1-Linux.tar.bz2 |
 | macOS | V21.0RC1 | https://repo.nano.org/beta/binaries/nano-node-V21.0RC1-Darwin.dmg |
 | Windows | V21.0RC1 | https://repo.nano.org/beta/binaries/nano-node-V21.0RC1-win64.exe |
+| Docker | V21.0RC1 | `docker pull nanocurrency/nano-beta:V21.0RC1` or `docker pull nanocurrency/nano-beta:latest`<br />See [Pulling the Docker Image](../running-a-node/beta-network.md#pulling-the-docker-image) for more details. |

@@ -136,7 +136,7 @@ The following functionality is now deprecated and will be removed in a future re
 
 ## Builds and Commands
 
---8<-- "current-release-build-links.md"
+--8<-- "current-beta-build-links.md"
 
 ---
 
