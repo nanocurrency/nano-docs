@@ -2,9 +2,76 @@
 
 For details on why and how network upgrades happen, along with explanations of the various types, please see the [Upgrades overview](#upgrades-overview) and [Upgrade methods](#upgrade-methods) sections further down.
 
+--8<-- "join-technical-mailing-list.md"
+
 ---
 
 ## Upcoming upgrades
+
+### Increased work difficulty
+
+To help ensure Quality of Service on the network by increasing the difficulty required for send and change blocks to be considered valid by the network (8x compared to current). To help offset the difficulty increase and add incentive to receive blocks so ledger pruning can be done more broadly in the future, the difficulty for receive blocks will simultaneously be reduced (1/8 compared to current).
+
+#### Transition details
+
+This upgrade is sometimes referenced as the epoch v2 upgrade and the relate events to complete are as follows:
+
+| Date | Type | Description |
+|------|------|-------------|
+| TBD  | Node release | Nano node V21.0 released which includes changes necessary for supporting new difficulty validation and generation |
+| TBD | <span class="no-break">v2 epoch blocks distribution start</span> | Distribution of v2 epoch blocks to all accounts to mark in the ledger the point at which the new work difficulty levels will be required. The start of this distribution process will occur once key services and over 90% of voting weight on the network has upraded. |
+| TBD | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
+
+!!! warning "Nodes de-peered with epoch blocks"
+	Due to the nature of the work difficulty changes, any nodes not updated to V21.0 at the time of epoch block distribution will be de-peered from the network.
+
+#### Recommended preparations
+
+In order to best prepare for the transition to new thresholds, the following items should be considered:
+
+**Work generation guide**  
+The new [Work Generation guide](../integration-guides/work-generation.md) was written to help users and integrations leverage their work generation at all times.
+
+**Work validation**  
+The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
+
+* If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
+* `valid_all` is a new return field, `true` if the work is valid at the current default difficulty (will go up after epoch upgrade)
+* `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
+* **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
+
+**External work generation**  
+[nano-work-server](https://github.com/nanocurrency/nano-work-server) has been updated to use the higher threshold by default when not given an explicit `difficulty`. The `work_validate` response has the same breaking changes as above.
+
+* Prefer directly using the server as a [work peer](../integration-guides/work-generation.md#nodework_peers) as outlined in the [guide](../integration-guides/work-generation.md#work-generated-using-the-node-incl-work-peers). The node always requests the appropriate difficulty threshold when using RPC [block_create](../commands/rpc-protocol.md#block_create), or [work_generate](../commands/rpc-protocol.md#work_generate) with the optional `block`.
+* In cases where requesting directly from a node is not possible, avoid using the lower threshold for receive blocks until the epoch upgrade is fully complete.
+
+**Work generation performance**  
+Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](../integration-guides/work-generation.md#benchmarks).
+
+**Other integration considerations**  
+Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
+
+See [Step 1: Get Account Info](../integration-guides/key-management.md#send-transaction) for the [`account_info`](../commands/rpc-protocol.md#account_info) RPC recommendation when creating transactions.
+
+??? info "Post-distribution active difficulty changes"
+	**The following changes will only be valid after the epoch v2 distribution is complete or the accounts you are dealing with have been upgraded.**
+
+	To programatically retrieve the current difficulty for any integrations doing work generation outside the node, the `network_minimum` field in [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC and [WebSocket topic](../integration-guides/websockets.md#active-difficulty) will see a change from `ffffffc000000000` (pre-epoch v2 difficulty) to `fffffff800000000` (8x higher epoch v2 difficulty), an indication the epoch upgrade has begun.
+
+	Once this occurs, send and change blocks should use this newly returned, higher threshold, and receive blocks can optionally use `fffffe0000000000` as the lower threshold going forward.
+
+#### Transition Explanation
+
+When changing the work difficulty requirements it is necessary to mark a point in each account where the difficulty requirements change so bootstrapping and other behaviors can accurately validate historical blocks. For this reason the epoch blocks are being distributed to act as the marker in the ledger.
+
+Once epoch block distribution is started the ability to validate the new work difficulty levels is required. Since node versions before V21.0 do not have the ability to do this, they will be immediately de-peered from the network and cannot participate with the current network until upgraded.
+
+To mitigate the impacts of this approach the Nano Foundation will be communicating regularly about progress and monitoring closely the activity on the network. Once acceptable conditions exist to finalize the transition, the distribution will begin. The current plan is to start once over 90% of voting weight has been upgraded, along with all the key services on the network.
+
+---
+
+## Future upgrades
 
 ### New PoW algorithm
 
@@ -50,14 +117,14 @@ The upgrade to [state blocks](/integration-guides/the-basics/#blocks-specificati
 | 2018-04-11 | Canary block | Parse canary block distributed which enabled parsing of state blocks by nodes so manual generation of that block type would be accepted on the network going forward. This action was performed after a majority of the network upgraded to the required V11.0 to allow confirmations to occur on this new block type. |
 | 2018-05-20 | Canary block | Generation canary block distributed which forced the generation of state blocks by nodes going forward. At this point both state and legacy type (open, send, receive, change) blocks remain valid on the network. |
 | 2018-08-20 | Node release | Nano node V15.0 released with support for epoch blocks built-in and away distribution. |
-| 2018-10-25 | <span class="no-break">Epoch blocks start</span> | Distribution of epoch blocks begins. |
-| 2019-05-24 | Epoch blocks end | Distribution of epoch blocks is finished. All accounts, opened and unopened, are now capped and can no longer attempt inserting legacy style blocks. |
+| 2018-10-25 | <span class="no-break">Epoch v1 block</span> <span class="no-break">distribution start</span> | Distribution of epoch v1 blocks begins. |
+| 2019-05-24 | Epoch v1 block distribution end | Distribution of epoch v1 blocks is finished. All accounts, opened and unopened, are now capped and can no longer attempt inserting legacy style blocks. |
 
 ### Vote-by-Hash
 
 **Purpose**
 
-The upgrade to include the [vote-by-hash](/glossary/#active-transaction) feature was based on a hardcoded timestamp in the node. After this time nodes began voting using this new feature.
+The upgrade to include the [vote-by-hash](../glossary.md#vote-by-hash) feature was based on a hardcoded timestamp in the node. After this time nodes began voting using this new feature.
 
 **Transition Details**
 
@@ -110,3 +177,10 @@ A special block type that can only be generated using a pre-determined private k
 | Trigger | Uses blocks | Benefits | Drawbacks |
 |---------|-------------|----------|-----------|
 | Node upgrade + distribution of epoch blocks | Yes | <ul><li>Provides clean upgrade markers directly within the ledger on every account-chain</li><li>Timing flexible</li><li>Ability to asynchronously upgrade block versions even for inactive/unopened account chains</li></ul> | <ul><li>Requires manual intervention</li><li>Introduces ability for non-account owner to write to account chain in a highly restricted way</li><li>Adds additional code complexity</li><li>Requires large volume of blocks</li></ul> |
+
+The following are the epoch versions and the related accounts which are used to distribute them to the network. For certain protocol implementations these epoch signers need to be included to efficiently determine whether incoming blocks are epoch blocks.
+
+| Version | Epoch signer account | Notes |
+|---------|----------------------|-------|
+| 1 | `xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3` | Genesis account |
+| 2 | `nano_3qb6o6i1tkzr6jwr5s7eehfxwg9x6eemitdinbpi7u8bjjwsgqfj4wzser3x` | Undistributed as of June 2020, see [Increased work difficulty](#increased-work-difficulty) details above |

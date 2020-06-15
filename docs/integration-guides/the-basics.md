@@ -34,89 +34,6 @@ The Nano Network achieves consensus using the unique [Open Representative Voting
 
 ---
 
-## Proof-of-Work
-
-Every Nano transaction contains a small Proof-of-Work (PoW) which is only used as an anti-spam measure.  It is not used in the consensus mechanism.
-
-!!! quote ""
-    **Within the Nano Protocol, Proof-of-Work is used only as an anti-spam measure.**
-
-In general, PoW is the solving of a simple math problem where a solution can only be found by repeatedly guessing and checking. The harder the problem, the more guesses it takes on average to find an answer. Once found, the non-unique solution can then be verified with a single check. This allows computers to prove (on average) that they spent a certain amount of computation power.
-
-!!! info
-    Nano's Proof of Work uses the [blake2b cryptographic hash function](https://blake2.net/)
-
-### Calculating Work
-
-The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) found using the blake2b hash function.  The nonce satisfies the equation.
-
-$$
-blake2b(\text{nonce} || \text{prev_block_hash}) \ge \text{threshold}
-$$
-
-Currently the mainnet's base threshold is `0xffffffc000000000`. When running a node the work is automatically calculated for you, but options exist for delegating work generation to [work peers](/running-a-node/configuration/#work_peers) and allowing GPU acceleration by [enabling OpenCL](/running-a-node/configuration/#opencl_enable). With the addition of Dynamic PoW and rework in V19.0, the threshold used to calculate work can vary under certain conditions.
-
-!!! info
-    At the base threshold, any random nonce has a $1.49 * 10^{-8}$ chance of being a correct solution. This results in an average of $67,108,864$ guesses to generate a valid nonce that requires only a single blake2b hash to validate.
-
-#### First Account Block
-
-The first block on an account-chain doesn't have a previous (head) block, so a variant of the above equation is used to calculate the `"work"` field:
-
-$$
-blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
-$$
-
-### Difficulty Multiplier
-
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for the Dynamic PoW feature introduced in V19.0.
-
-A multiplier can be obtained with the following expression.
-
-$$
-\frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
-$$
-
-In the inverse direction, in order to get the equivalent difficulty for a certain multiplier, the following expression can be used.
-
-$$
-2^{64} - \frac{2^{64} - \text{base_difficulty}}{\text{multiplier}}
-$$
-
-??? example "Code Snippets"
-    **Python**
-    ```python
-    def to_multiplier(difficulty: int, base_difficulty) -> float:
-      return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
-
-    def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
-      return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
-    ```
-
-    **Rust**
-    ```rust
-    fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
-      (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
-    }
-
-    fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
-      (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
-    }
-    ```
-
-    **C++**
-    ```cpp
-    double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
-      return static_cast<double>(-base_difficulty) / (-difficulty);
-    }
-
-    uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
-      return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
-    }
-    ```
-
----
-
 ## Account, Key, Seed and Wallet IDs
 
 When dealing with the various IDs in the node it is important to understand the function and implication of each one.
@@ -132,20 +49,49 @@ The reason this is necessary is because we want to store information about each 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
 ### Seed
-This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatentation and `i` is a 32bit unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
+This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatenation and `i` is a 32-bit big-endian unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
-Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to 2^32 - 1 (because the index value is a unsigned 32 bit integer).
+Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to $2^{32} - 1$ (because the index value is a unsigned 32-bit integer).
 
 Wallet implementations will commonly start from index 0 and increment it by 1 each time you create a new account so that recovering accounts is as easy as importing the seed and then repeating this account creation process.
+
+It should be noted that Nano reference wallet is using described Blake2b private keys derivation path. However some implementations can use BIP44 deterministic wallets and [menmonic seed](/integration-guides/key-management/#mnemonic-seed) producing different private keys for given seed and indices. Additionally 24-word mnemonic can be derived from a Nano 64 length hex seed as entropy with clear notice for users that this is not BIP44 seed/entropy.
+
+??? info "Code samples"
+
+	Python deterministic key:
+	```python
+	import hashlib
+	seed = b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01" # "0000000000000000000000000000000000000000000000000000000000000001"
+	index = 0x00000001.to_bytes(4, 'big') # 1
+	blake2b_state = hashlib.blake2b(digest_size=32)
+	blake2b_state.update(seed+index)
+	# where `+` means concatenation, not sum: https://docs.python.org/3/library/hashlib.html#hashlib.hash.update
+	# code line above is equal to `blake2b_state.update(seed); blake2b_state.update(index)`
+	PrivK = blake2b_state.digest()
+	print(blake2b_state.hexdigest().upper()) # "1495F2D49159CC2EAAAA97EBB42346418E1268AFF16D7FCA90E6BAD6D0965520"
+	```
+	
+	Mnemonic words for Blake2b Nano seed using [Bitcoinjs](https://github.com/bitcoinjs/bip39):
+	```js
+	const bip39 = require('bip39')
+	
+	const mnemonic = bip39.entropyToMnemonic('0000000000000000000000000000000000000000000000000000000000000001')
+	// => abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon diesel
+	
+	bip39.mnemonicToEntropy(mnemonic)
+	// => '0000000000000000000000000000000000000000000000000000000000000001'
+	```
+
 
 ### Account private key
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string(0-9A-F). It can either be random (an *ad-hoc key*) or derived from a seed, as described above. This is what represents control of a specific account on the ledger. If you know or can know the private key of someone's account, you can transact as if you own that account.
 
 ### Account public key
-This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from an *account private key* by using the ed25519 curve using blake2b as the hash function (instead of sha). Usually account public keys will not be passed around in this form, rather the below address is used.
+This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from an *account private key* by using the ED25519 curve using Blake2b-512 as the hash function (instead of SHA-512). Usually account public keys will not be passed around in this form, rather the below address is used.
 
 ### Account public address
-This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are a checksum of the account public key to aid in discovering typos, also encoded with the same base32 scheme.
+This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are Blake2b-40 checksum of the account public key to aid in discovering typos, also encoded with the same base32 scheme (5 bytes).
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
 
@@ -199,7 +145,7 @@ Because each block contains the current state of the account, the `"type"` of th
 | balance        | decimal string      | 16 bytes   | Resulting balance (in [raw](#units)) |
 | link           | -                   | 32 bytes   | Multipurpose field - see link table below |
 | signature      | 128 hex-char string | 64 bytes   | ED25519+Blake2b 512-bit signature |
-| work           | 16 hex-char string  | 8 bytes    | [Proof of Work](#proof-of-work) Nonce |
+| work           | 16 hex-char string  | 8 bytes    | [Proof of Work](../glossary.md#proof-of-work-pow) Nonce |
 
 Depending on the action each transaction intends to perform, the `"link"` field will have a different value for [block_create](/commands/rpc-protocol#block_create) RPC command:
 
@@ -235,192 +181,9 @@ The digital signing algorithm (which internally applies another Blake2b hashing)
 !!! warning "Private/public key usage"
     Make sure that your private key uses the correct partnering public key while signing as using an incorrect public key may leak information about your private key.
 
-### Block Creation Examples
+### Creating Blocks
 
-Read these examples in order to correctly interpret balances and block hashes on the example account-chain.
-
-!!! note
-    All example `"work"` values included in the responses are not valid (`0000000000000000`).
-
-#### Receive
-
-*Scenario*
-
-* Address creates block sending 5 $nano$ to `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
-* Hash of block sending funds is `B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F`
-* We want to receive the pending 5 $nano$ into this new (unopened) account
-
-*Action*
-
-* Create a block to receive Nano for account: `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php` account-chain.
-* Sets `nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j` as the representative.
-* This receives the block hash `B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F` and because this is the first block on the account, the account is considered "opened".
-
-```bash
-curl -d '{
-  "action":"block_create",
-  "json_block": "true",
-  "type":"state",
-  "previous":"FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
-  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"5000000000000000000000000000000",
-  "link":"B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F",
-  "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
-}' http://127.0.0.1:7076
-```
-
-```json
-{
-  "hash": "597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F",
-  "block": {
-    "type": "state",
-    "account": "nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-    "previous": "FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0",
-    "representative": "nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-    "balance": "5000000000000000000000000000001",
-    "link": "B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F",
-    "link_as_account": "nano_3eqegh1zc1znhr4joosgsfakrrxtjrf1om3exs9cmajhw97xptbzi3kfba1j",
-    "signature": "90CBD62F5466E35DB3BFE5EFDBC6283BD30C0591A3787C9458D11F2AF6188E45E6E71B5F4A8E3598B1C80080D6024867878E355161AD1935CD757477991D3B0B",
-    "work": "0000000000000000"
-  }
-}
-```
-
-!!! info
-    * The `"balance"` field is in $raw$ format.  For more information, see [units](#units).
-    * Take note of the field `"link_as_account"`. This is if the `"link"` field were to be interpreted as a 256-bit public key and translated into an "nano\_..." address. This field is only provided for convenience and is stripped away before it is broadcast to the network.
-    * If you are creating and signing your own blocks external to nano\_node, you do not need to include a `"link_as_account"` field.
-
----
-
-#### Send
-
-*Scenario*
-
-* We want to send from our account `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`.
-* We want to send 2 $nano$ to account `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`.
-
-*Response*
-
-```bash
-curl -d '{
-  "action":"block_create",
-  "type":"state",
-  "previous":"597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F",
-  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"3000000000000000000000000000000",
-  "link":"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
-  "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
-}' http://127.0.0.1:7076
-```
-
-```json
-{
-  "hash": "128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4",
-  "block": {
-    "type": "state",
-    "account": "nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-    "previous": "597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F",
-    "representative": "nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-    "balance": "3000000000000000000000000000000",
-    "link": "5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF",
-    "link_as_account": "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
-    "signature": "D7975EE2F6FAE1FC7DA336FB9DD5F7E30FC1A6825021194E614F0588073D1A4901E34E3CAE8739F1DE2FD85A73D2A0B26F8BE6539E0548C9A45E1C1887BFFC05",
-    "work": "0000000000000000"
-  }
-}
-```
-
-!!! info
-    Because the account balance was reduced from `5000000000000000000000000000000` $raw$ to `3000000000000000000000000000000` $raw$, the block is interpreted as a send. The `"link"` field is populated with the public key of the account we are sending to.
-
----
-
-#### Change
-
-*Scenario*
-
-* We want to change the representative of our account `nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php`
-* We want the representative to be `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`
-
-*Response*
-
-```bash
-curl -d '{
-  "action":"block_create",
-  "type":"state",
-  "previous":"128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4",
-  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
-  "balance":"3000000000000000000000000000000",
-  "link":"0000000000000000000000000000000000000000000000000000000000000000",
-  "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
-}' http://127.0.0.1:7076
-```
-
-```json
-{
-  "hash": "2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E",
-  "block": {
-    "type": "state",
-    "account": "nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-    "previous": "128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4",
-    "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
-    "balance": "3000000000000000000000000000000",
-    "link": "0000000000000000000000000000000000000000000000000000000000000000",
-    "link_as_account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
-    "signature": "7E9A7B368DBEB280B01C22633DC82F6CEF00F529E07B76A0232614D2BCDAF85BF52AC9DA4DBE4468B6F144CE82F2FDE44080C8363F903A6EC3D999252CB1E801",
-    "work": "0000000000000000"
-  }
-}
-```
-
-!!! note
-    Note that the `""link"` field is all 0's. As another sanity check, we notice the all 0 public key gets translated into the burn address `nano_1111111111111111111111111111111111111111111111111111hifc8npp`
-
----
-
-#### Change & Send
-
-*Scenario*
-
-* We want to change our representative at the same time we perform a send or receive of funds.
-* We want to send 2 more $nano$ to account `nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p`
-* We want to revert our representative back to `nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j`
-
-*Response*
-
-```bash
-curl -d '{
-  "action":"block_create",
-  "type":"state",
-  "previous":"2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E",
-  "account":"nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-  "representative":"nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-  "balance":"1000000000000000000000000000000",
-  "link":"nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
-  "wallet":"557832FF41BAF4860ED4D7023E9ACE74F1427C3F8232B6AFFB491D98DD0EA1A2"
-}' http://127.0.0.1:7076
-```
-
-```json
-{
-  "hash": "9664412A834F0C27056C7BC4A363FBAE86DF8EF51341A5A5EA14061727AE519F",
-  "block": {
-    "type": "state",
-    "account": "nano_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php",
-    "previous": "2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E",
-    "representative": "nano_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j",
-    "balance": "1000000000000000000000000000000",
-    "link": "5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF",
-    "link_as_account": "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p",
-    "signature": "4D388F982188E337D22E0E66CD24BCABD09BED1E920940C453039B55B6A4724D7BD106019AACC1840480938FF4FA024F041E6E6A32B3641C28E0262025020B03",
-    "work": "0000000000000000"
-  }
-}
-```
+For details on how to create individual blocks for sending from, receiving to, opening or changing representatives for an account, please see the [Creating Transactions](/integration-guides/key-management/#creating-transactions) section.
 
 ---
 

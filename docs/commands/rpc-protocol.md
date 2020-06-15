@@ -149,11 +149,13 @@ Returns frontier, open block, change representative block, balance, last modifie
   "modified_timestamp": "1501793775",
   "block_count": "33",
   "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "account_version": "1"
 }
 ```
 
-In response `confirmation_height` only available for _version 19.0+_ 
+In response `confirmation_height` only available for _version 19.0+_  
+In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
@@ -304,6 +306,8 @@ Returns a list of pairs of account and block hash representing the head block fo
 ### accounts_pending  
 Returns a list of block hashes which have not yet been received by these **accounts**  
 
+--8<-- "rpc_include_only_confirmed_recommended.md"
+
 **Request:**
 ```json
 {
@@ -409,7 +413,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
 
 **Request:**
 ```json
@@ -611,6 +615,7 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",
+  "difficulty": "ffffffe1278b3dc6", // since V21.0
   "block": {
     "type": "state",
     "account": "nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr",
@@ -628,6 +633,18 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 **Optional "work"**
 
 Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
+
+**Optional "difficulty"**
+
+_version 21.0+_  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+
+If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 ---
 
@@ -893,6 +910,10 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 _version 20.0+_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
 ---
 
 ### bootstrap_any  
@@ -913,6 +934,10 @@ Initialize multi-connection bootstrap to random peers. Not compatible with launc
 **Optional "force"**  
 _version 20.0+_  
 Boolean, false by default. Manually force closing of all current bootstraps  
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
@@ -937,6 +962,10 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 
 Boolean, false by default. Manually force closing of all current bootstraps  
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
 ---
 
 ### bootstrap_status  
@@ -953,31 +982,80 @@ Returning status of current bootstrap attempt
 }
 ```  
 **Response:**
+_versions 21.0+_
 ```json
 {
-  "clients": "0",
-  "pulls": "0",
-  "pulling": "0",
-  "connections": "31",
-  "idle": "31",
-  "target_connections": "16",
-  "total_blocks": "13558",
-  "runs_count": "0",
-  "requeued_pulls": "31",
-  "frontiers_received": "true",
-  "frontiers_confirmed": "false",
-  "mode": "legacy",
-  "lazy_blocks": "0",
-  "lazy_state_backlog": "0",
-  "lazy_balances": "0",
-  "lazy_destinations": "0",
-  "lazy_undefined_links": "0",
-  "lazy_pulls": "32",
-  "lazy_keys": "32",
-  "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
-  "duration": "29"
+  "bootstrap_threads": "2",
+  "running_attempts_count": "2",
+  "total_attempts_count": "6",
+  "connections": {
+    "clients": "31",
+    "connections": "45",
+    "idle": "0",
+    "target_connections": "64",
+    "pulls": "1158514"
+  },
+  "attempts": [
+    {
+      "id": "EE778222D6407F94A666B8A9E03D242D",
+      "mode": "legacy",
+      "started": "true",
+      "pulling": "1158544",
+      "total_blocks": "4311",
+      "requeued_pulls": "7",
+      "frontier_pulls": "0",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "frontiers_confirmation_pending": "false",
+      "duration": "133"
+    },
+    {
+      "id": "291D2CC32F44E004896C4215A6CDEDAFEF317F6AC802C244E8F4B4F2456175CB",
+      "mode": "lazy",
+      "started": "true",
+      "pulling": "1",
+      "total_blocks": "1878",
+      "requeued_pulls": "4",
+      "lazy_blocks": "1878",
+      "lazy_state_backlog": "1",
+      "lazy_balances": "4",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "13",
+      "lazy_keys": "2",
+      "lazy_key_1": "E6D0B5BD5EBDB3CEC7DBC32EDC3C2DBD5ABA17C54E34485A358BF8948039ED6A",
+      "duration": "17"
+    }
+  ]
 }
 ```
+
+??? abstract "Response V17.0-V20.0"
+    ```json
+    {
+      "clients": "0",
+      "pulls": "0",
+      "pulling": "0",
+      "connections": "31",
+      "idle": "31",
+      "target_connections": "16",
+      "total_blocks": "13558",
+      "runs_count": "0",
+      "requeued_pulls": "31",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "mode": "legacy",
+      "lazy_blocks": "0",
+      "lazy_state_backlog": "0",
+      "lazy_balances": "0",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "32",
+      "lazy_keys": "32",
+      "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
+      "duration": "29"
+    }
+    ```
 
 ---
 
@@ -1014,7 +1092,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation_info)  
+Returns list of active elections roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1034,7 +1112,9 @@ Returns list of active elections roots (excluding stopped & aborted elections). 
 {
  "confirmations": [
    "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"
- ]
+ ],
+ "unconfirmed": "133", // since V21.0
+ "confirmed": "5" // since V21.0
 }
 ```   
    
@@ -1074,7 +1154,7 @@ _version 12.0+_
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/websockets) instead.
 
 **Request:**
 ```json
@@ -1130,7 +1210,7 @@ If the block is unknown on the node, the following error will be returned:
 
 ### confirmation_info 
 _version 16.0+_   
-Returns info about active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1406,6 +1486,10 @@ Upgrade network to new **epoch** with epoch signer private **key**
 ```  
 **Optional "count"**  
 Number. Determines limit of number of accounts to upgrade.
+
+**Optional "threads"**  
+_version 21.0+_  
+Number. Determines limit of work threads to use for concurrent upgrade processes (useful with multiple work peers or high work peer latency).
 
 ---
 
@@ -1694,6 +1778,8 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ### pending  
 Returns a list of block hashes which have not yet been received by this account.
 
+--8<-- "rpc_include_only_confirmed_recommended.md"
+
 **Request:**
 ```json
 {
@@ -1830,11 +1916,14 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
 
+--8<-- "process-sub-type-recommended.md"
+
 **Request:**
 ```json
 {
   "action": "process",
   "json_block": "true",
+  "subtype": "send",
   "block": {
     "type": "state",
     "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
@@ -1862,7 +1951,13 @@ Boolean, false by default. Manually forcing fork resolution if processed block i
 **Optional "subtype"**
 
 _version 18.0+_  
-String, empty by default. Additional check for state blocks subtype (send/receive/open/change/epoch). I.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks   
+String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
+
+* `send` - account balance is reduced
+* `receive` - account balance is increased
+* `open` - first block on account with account balance initially set higher than 0
+* `change` - account balance is unchanged, representative field value changed to valid public address
+* `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
 
 **Optional "json_block"**
 
@@ -2299,6 +2394,105 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 
 ---
 
+### telemetry
+_version 21.0+_  
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+**Request:**
+```json
+{
+  "action": "telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "556896",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587055945990",
+    "active_difficulty": "ffffffcdbf40aa45"
+}
+```
+
+This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
+
+| Field Name | Response details |
+|------------|------------------------------------|
+| **block_count**       | average count of blocks in ledger (including unconfirmed) |
+| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
+| **unchecked_count**   | average count of unchecked blocks |
+| **account_count**     | average count of accounts in ledger |
+| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
+| **peer_count**        | average count of peers nodes are connected to |
+| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
+| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **genesis_block**     | mode (most common) of genesis block hashes |
+| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
+| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "block_count": "5777903",
+      ...
+      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C",
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "block_count": "5777902",
+      ...    
+      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B",
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+---
+
 ### validate_account_number 
 Check whether **account** is a valid account number using checksum  
 
@@ -2552,7 +2746,7 @@ Stop generating **work** for block
 
 ### work_generate
 _enable_control required_  
-Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
+Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key).  
 
 --8<-- "enable-control-warning.md"
 
@@ -2560,16 +2754,15 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 ```json
 {
   "action": "work_generate",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
 **Response:**
 ```json
 {
-  "work": "2bf29ef00786a6bc",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647",
+  "work": "2b3d689bbcb21dca",
+  "difficulty": "fffffff93c41ec94", // of the resulting work
+  "multiplier": "1.182623871097636", // since v19.0, calculated from default base difficulty
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
 ```  
@@ -2583,7 +2776,7 @@ Without this parameter, the node will only generate work locally.
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work.  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
 
@@ -2595,6 +2788,22 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 
 _version 20.0+_  
 A valid Nano account. If provided and `use_peers` is set to `true`, this information will be relayed to work peers.
+
+**Optional "version"**
+
+_version 21.0+_  
+Work version string. Currently "work_1" is the default and only valid option.
+
+**Optional "block"**
+
+_version 21.0+_  
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.  
+***Note:*** block should be the one where the resulting work value will be used, not the previous block.
+
+**Optional "json_block"**
+
+_version 21.0+_  
+Default "false". If "true", `block` in the request should contain a JSON subtree instead of a JSON string.
 
 ---
 
@@ -2665,38 +2874,80 @@ Clear work peers node list until restart
 ---
 
 ### work_validate 
-Check whether **work** is valid for block  
+Check whether **work** is valid for block. Provides two values: **valid_all** is `true` if the work is valid at the current network difficulty (work can be used for any block). **valid_receive** is `true` if the work is valid for use in a receive block.
+
+**Read the details below when using this RPC in V21**.
+
+!!! warning "Semantics change in V21.0"
+    In V21.0, when the optional **difficulty** is *not* given, **valid** is no longer included in the response.
+
+    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value:
+
+    - **valid_all** validates at the current network difficulty. As soon as the node processes the first [epoch_2 block](/releases/network-upgrades#increased-work-difficulty), this difficulty is increased.
+    - **valid_receive** is completely accurate **only once the [epoch_2 upgrade](/releases/network-upgrades#increased-work-difficulty) is finished.** Until the upgrade is finished, it is only accurate if the account where this work will be used is already upgraded. The upgrade status of an account can be obtained from [account_info](#account_info). The account is upgraded if "account_version" is `"2"`.
 
 **Request:**
 ```json
 {
   "action": "work_validate",
   "work": "2bf29ef00786a6bc",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
-**Response:**
+**Response since v21.0:**
 ```json
 {
-  "valid": "1",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647"
+  "valid_all": "1",
+  "valid_receive": "1",
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636" // calculated from the default base difficulty
 }
 ```
 
-*Since version 19.0+:* The response also includes the work `value` in hexadecimal format, and a `multiplier` from the base difficulty (not from the optionally given difficulty).
+??? abstract "Response up to v20.0"
+    ```json
+    {
+      "valid": "1",
+      "difficulty": "fffffff93c41ec94", // since v19.0
+      "multiplier": "9.4609" // since v19.0
+    }
+    ```
 
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty. Response includes extra field **valid** signifying validity at the given difficulty.  
+
+**Request with given "difficulty"**  
+```json
+{
+  "action": "work_validate",
+  "difficulty": "ffffffffffffffff",
+  "work": "2bf29ef00786a6bc",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
+}
+```
+**Response with given "difficulty:**
+```json
+{
+  "valid": "0",
+  "valid_all": "1", // since v21.0
+  "valid_receive": "1", // since v21.0
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636"
+}
+```
 
 **Optional "multiplier"**
 
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to validate work.  
 ***Note:*** overrides the `difficulty` parameter.  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
 
 ---
 

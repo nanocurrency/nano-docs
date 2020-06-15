@@ -4,11 +4,11 @@ Docker greatly simplifies node management.  Below we will go over some of the be
 
 --8<-- "docker-limitations.md"
 
-### Nano Folder
+### Nano Directory
 
---8<-- "folder-contents.md"
+--8<-- "directory-contents.md"
 
-For Docker setups, the `${NANO_HOST_FOLDER}` indicated in the steps below will be the location of these files on your host machine.
+For Docker setups, the `${NANO_HOST_DIR}` indicated in the steps below will be the location of these files on your host machine.
 
 ### Managing the Container
 
@@ -22,7 +22,7 @@ The following command will start the node container. Either set the specified en
 
 * `${NANO_TAG}` - The version of docker image you will be running. For consumers, `latest` is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.
 
-* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
+* `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
 
 ---
 
@@ -32,7 +32,7 @@ docker run --restart=unless-stopped -d \
   -p 7075:7075 \
   -p [::1]:7076:7076 \
   -p [::1]:7078:7078 \
-  -v ${NANO_HOST_FOLDER}:/root \
+  -v ${NANO_HOST_DIR}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
 ```
@@ -42,11 +42,11 @@ docker run --restart=unless-stopped -d \
 | `-d`                                                  | Starts the docker container as a daemon |
 | `-p 7075:7075/udp`                                    | Maps the network activity port |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
-| `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
+| `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
 | `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
-| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
+| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/websockets). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
@@ -62,7 +62,7 @@ This will start the docker container using host ports 7075 and 7076 and put the 
     On port 7075, both TCP and UDP are required.
 
 !!! warning
-    If you are running multiple nano\_node Docker containers, **DO NOT** share the same `${NANO_HOST_FOLDER}`, each nano\_node requires its own independent files.
+    If you are running multiple nano\_node Docker containers, **DO NOT** share the same `${NANO_HOST_DIR}`, each nano\_node requires its own independent files.
 
 ---
 
@@ -136,7 +136,7 @@ docker stop ${NANO_NAME}
 !!! warning
 	Modifications made to configuration files while the Docker container is running have no effect until the container is restarted.
 
-You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
+You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_DIR}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
 
@@ -205,6 +205,6 @@ For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
 
 ### Troubleshooting
 
-If you get `Error starting userland proxy: port is not a proto:IP:port: 'tcp:[:'.` or want to expose IPv4 port, use `-p 127.0.0.1:7076:7076`.
+If you get `Error starting userland proxy: port is not a proto:IP:port: 'tcp:[:'.` or want to expose IPv4 port, use `-p 127.0.0.1:7076:7076`. Likewise, if you get `curl: (7) Couldn't connect to server` when interacting with the node, replace `[::1]:7076` with `127.0.0.1:7076`.
 
 If you get `create ~: volume name is too short, names should be at least two alphanumeric characters.` replace the `~` with the full pathname such as `/Users/someuser`.

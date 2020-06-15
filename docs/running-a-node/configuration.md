@@ -1,11 +1,11 @@
 # Node Configuration
 
-The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing config values via the command line, or a combination of the two methods.
+The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing configuration values via the command line, or a combination of the two methods.
 
 !!! success "Automatic migration and backups of JSON files"
     Versions prior to 20 use JSON as the configuration file format, and these will be automatically migrated to TOML files on startup. Note that only non-default values are migrated.
 
-    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same folder for easy recovery if needed.
+    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same directory for easy recovery if needed.
 
     As TOML files are never upgraded by the node, no backups are created for these.
 
@@ -143,7 +143,7 @@ The Nano node software is designed to run with little or no configuration. All c
 	}
 	```
 
-## Configuration File Locations
+## Configuration file locations
 
 The node and its related processes will look for the files listed below, either in their default location or the location specified with `--data_path`. These files are *optional*. The table includes a command which can be used to generate a documented TOML file with defaults suitable for the system.
 
@@ -151,7 +151,29 @@ The node and its related processes will look for the files listed below, either 
 
 The default locations of the config files are listed in the table below.
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
+
+## Options formatting
+
+Config options are referred to in the documentation using the format `category.option` where `category` can be multiple levels. For example, the `node.enable_voting` option would correspond to the following entry in the TOML file:
+
+```toml
+[node]
+
+# Enable or disable voting. Enabling this option requires additional system resources, namely increased CPU, bandwidth and disk usage.
+# type:bool
+enable_voting = true
+```
+
+While a multiple category option like `node.websocket.enable` would correspond to this TOML file entry:
+
+```toml
+[node.websocket]
+
+# Enable or disable WebSocket server.
+# type:bool
+enable = false
+```
 
 ## Passing config values on the command line
 
@@ -161,124 +183,101 @@ Example that enables the RPC and WebSocket servers:
 
 `nano_node --config rpc.enable=true --config node.websocket.enable=true`
 
+Strings are passed with escaped quotes (`\"`), such as:
+
+`nano_node --config node.httpcallback.target=\"api/callback\"`
 
 !!! info "Mixing config options on the command line and TOML files"
     If a config file exists, config values passed in via the command line will take precedence.
 
 ## Notable configuration options
 
-This section details some of the most important configuration options. 
+As of _V20.0_ the sample TOML packaged with the binaries and available for [generation via the command line](#configuration-file-locations) are commented out with descriptions of each option. Where applicable the following integration areas have those options included along with additional context where necessary.
 
-Config options are referred to below using the format `section.setting`. This format can be used directly on the command line, such as `--config node.enable_voting=true`. The corresponding entry in the TOML file would be:
+### Work generation
+See the [Work Generation guide](../integration-guides/work-generation.md#node-configuration).
 
-```toml
-[node]
-enable_voting = true
-```
+### WebSockets
+See the [WebSockets Integration guide](../integration-guides/websockets.md#configuration).
 
-### config-node.toml
+### RPC
 
-#### node.enable_voting
-As of V18.0, newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated to enable voting and the node restarted.
-
----
-
-#### node.vote_minimum
-As of V18.0, nodes with weight delegated to them under this value in their config will not vote, regardless of the `enable_voting` flag setting. In order for a node to vote, this value must be lower than the weight delegated to the representative account setup on the node.
-
----
-
-#### node.work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are not allowed at this time. Calls are made to the ip:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
-
-```toml
-[node]
-work_peers = [
-    "::ffff:127.0.0.1:7076"
-]
-```
-
----
-
-#### opencl.enable
-
-To enable GPU acceleration for PoW, set this option to `true`. Other OpenCL parameters may need to be adjusted depending on the desired setup.
-
-!!! tip "Using OpenCL and CPU for work generation"
-	Since V20.0, if OpenCL is enabled, both the GPU and CPU are used for work generation. The number of CPU threads is set with `node.work_threads`. To disable CPU work generation, set that value to "0".
-
----
-
-#### node.ipc
-
-IPC is disabled by default. For details about using the IPC setup, see the [IPC Integration Guide](/integration-guides/advanced#ipc-integration).
-
----
-
-#### node.websocket
-
-!!! note ""
-    Available in Version 19.0+ only
-
-```toml
-[node.websocket]
-address = "::1"
-enable = true
-port = 7078
-```
-
-With the above configuration, localhost clients should connect to `ws://[::1]:7078`. For details on how to integrate using websockets, see the [Websocket Support section of the Integration Guides](/integration-guides/advanced#websocket-support).
-
-!!! tip "Configuration for docker nodes"
-    Docker nodes have the default `address` set to `"::ffff:0.0.0.0"`. To allow a connection between the host and the node, include `-p 127.0.0.1:7078:7078` (or another port if changed) in the `docker run` command or equivalent.
-
----
-
-### config-rpc.toml
+--8<-- "config-node-option-rpc-enable-true.md"
 
 #### enable_control
+This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
 
 Due to their sensitive or dangerous nature, certain RPC calls/options require this setting to be enabled before they can be used. Examples of RPC calls that require this include:
 
-* [stop](/commands/rpc-protocol#stop): allows you to completely stop the node from running
-* [work_generate](/commands/rpc-protocol#work_generate): allows potential consumption of CPU or GPU resources on the node or attached work peers to generate PoW
-* [send](/commands/rpc-protocol#send): can be used to transfer available funds in the wallet to another account
+* [stop](../commands/rpc-protocol.md#stop): allows you to completely stop the node from running
+* [work_generate](../commands/rpc-protocol.md#work_generate): allows potential consumption of CPU or GPU resources on the node or attached work peers to generate PoW
+* [send](../commands/rpc-protocol.md#send): can be used to transfer available funds in the wallet to another account
 * Various other wallet and resource-heavy operations
 
+```toml
+# Enable or disable control-level requests.
+# WARNING: Enabling this gives anyone with RPC access the ability to stop the node and access wallet funds.
+# type:bool
+enable_control = false
+```
+
 !!! danger "Dangerous RPC calls controlled by `enable_control`"
-	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the node to limit RPC access to dangerous calls. For more details see the [Node Security page](/running-a-node/security).
+	Due to the sensitive or dangerous nature of these calls, **caution should be used when considering setting `enable_control` to `true`** in your config file. It is highly recommended to **only enable this when RPC ports are listening exclusively to local or loopback IP addresses** or other measure are put in place outside the node to limit RPC access to dangerous calls. For more details see the [Node Security page](security.md).
 
----
+More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
-#### HTTP callback
+#### logging.log_rpc
+This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
+
+By default, all RPC calls and the time spent handling each one are [logged](../running-a-node/troubleshooting.md#log-files). This can be optionally turned off by switching option `logging.log_rpc` to `false`
+
+```toml
+[logging]
+
+# Whether to log RPC calls.
+# type:bool
+log_rpc = true
+```
+
+### IPC
+See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
+
+### Voting
+See the [Voting as a Representative guide](voting-as-a-representative.md).
+
+### Ledger backends
+See the [Ledger Management guide](ledger-management.md).
+
+### HTTPS support
+See the [HTTPS Support guide](configuration-https.md).
+
+### HTTP callback
+
+!!! tip
+	When possible, using a [WebSocket](../integration-guides/websockets.md#configuration) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
+
+These configuration options are set in the [`config-node.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
 
 ```toml
 [node.httpcallback]
-address = "::ffff:127.0.0.1"
-port = 17076
-target = "/"
+
+# Callback address.
+# type:string,ip
+#address = ""
+
+# Callback port number.
+# type:uint16
+#port = 0
+
+# Callback target path.
+# type:string,uri
+#target = ""
 ```
 
 JSON POST requests with every confirmed block are sent to the callback server as defined in the config values above: `http://callback_address:callback_port<callback_target>`. Callback target should include a leading slash.
 
-For details on how to integrate using the HTTP callback, see the [HTTP Callback section of the Integration Guides](/integration-guides/advanced#http-callback).
-
-!!! tip
-	When possible, using the [websockets](#websocket) is recommended as it provides more efficiency, more options for types of information to receive and better control over the volume of notifications with filtering.
-
----
-
-## RPC
-
-More details about the RPC setup can be found in the [Running Nano as a service guide](/integration-guides/advanced/#running-nano-as-a-service).
-
-To add HTTPS support to the RPC server, please see [HTTPS Support](configuration-https.md).
-
---8<-- "multiple-node-setups-warning.md"
+For details on how to integrate using the HTTP callback, see the [HTTP Callback section of the Integration Guides](../integration-guides/advanced.md#http-callback).
 
 ---
 
 --8<-- "network-details.md"
-
-## Ledger backends
-LMDB is used by default, in _v20.0+_ [RocksDB](/running-a-node/rocksdb-ledger-backend) can be used instead
