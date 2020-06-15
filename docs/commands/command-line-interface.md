@@ -112,7 +112,10 @@ Changes seed for `<wallet>` to `<seed>`.  Note the legacy `--key` option can sti
 
 ### --wallet_decrypt_unsafe --wallet=`<wallet>` --password=`<password>`
 Decrypts `<wallet>` using `<password>`  
-**!!THIS WILL PRINT YOUR PRIVATE KEY AND SEED TO STDOUT!!**  
+
+!!! danger
+	**USE WITH CAUTION: THIS WILL PRINT YOUR PRIVATE KEY AND SEED TO STDOUT**
+  
 If you didn't set password yet, use --wallet_decrypt_unsafe --wallet=`<wallet>`
 
 ### --wallet_destroy --wallet=`<wallet>`
@@ -137,7 +140,12 @@ Set `<account>` as default representative for `<wallet>`
 ## Launch options
 When initially starting the nano_node or nano_wallet as a service the following launch options are available.
 
-NOTE: These options are only for developer use so please understand the impacts before use.
+!!! note "Intended for developer use"
+	These options are only for developer use so please understand the impacts before use.
+
+### --allow_bootstrap_peers_duplicates
+_version 21.0+_  
+Allow multiple connections to the same peer in bootstrap attempts
 
 ### --block_processor_batch_size
 Increase block processor transaction batch write size, default 0 (limited by config block_processor_batch_max_time), 256k for fast_bootstrap
@@ -147,14 +155,6 @@ Increase block processor allowed blocks queue size before dropping live network 
 
 ### --block_processor_verification_size
 Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
-
-### --inactive_votes_cache_size
-_version 21.0+_  
-Increase cached votes without active elections size, default 16384
-
-### --vote_processor_capacity
-_version 21.0+_  
-Vote processor queue size before dropping votes, default 144k
 
 ### --disable_backup
 Turn off automatic wallet backup process
@@ -175,13 +175,6 @@ Turn off listener on the bootstrap network so incoming TCP (bootstrap) connectio
 _version 19.0+_  
 Turn off use of TCP live network (TCP for bootstrap will remain available)
 
-### --disable_udp (Deprecated)
-_version 21.0+_  
-This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
-
-_version 19.0+_  
-Turn off use of UDP live network
-
 ### --disable_unchecked_cleanup
 Prevent periodic cleaning of unchecked table
 
@@ -192,20 +185,24 @@ Prevent drop of all unchecked entries at node/wallet start
 _version 21.0+_  
 Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
 
+### --disable_block_processor_unchecked_deletion
+_version 21.0+_  
+Disable deletion of unchecked blocks after processing.
+
 ### --enable_udp
 _version 21.0+_  
 Turn on use of the UDP live network.
 
-### --allow_bootstrap_peers_duplicates
-_version 21.0+_  
-Allow multiple connections to the same peer in bootstrap attempts
-
 ### --fast_bootstrap
-Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks
+Increase bootstrap processor limits to allow more blocks before hitting full state and verify/write more per database call. Also disable deletion of processed unchecked blocks.
 
-### --batch_size (Deprecated)
-_version 18.0+_  
-Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and will be removed in _v22_ as it will not support upgrades from v18 nodes and earlier.
+### --inactive_votes_cache_size
+_version 21.0+_  
+Increase cached votes without active elections size, default 16384
+
+### --vote_processor_capacity
+_version 21.0+_  
+Vote processor queue size before dropping votes, default 144k
 
 ## Debug commands
 
@@ -236,19 +233,17 @@ List online weights table and current online_weights value
 ### --debug_dump_representatives
 List representatives and weights
 
-### --debug_mass_activity (Deprecated)
-Generates fake debug activity. Deprecated in _v21+_, can use `slow_test --gtest_filter=system.generate_mass_activity` instead.
-
-### --debug_output_last_backtrace_dump
-_version 19.0+_  
-Output the stacktrace stored after a node crash.
-
 ### --debug_generate_crash_report
 _version 21.0+_
 After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
 ### --debug_opencl
-Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics).  
+Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics). 
+
+### --debug_output_last_backtrace_dump
+_version 19.0+_  
+Output the stacktrace stored after a node crash. 
+
 Optionals `--difficulty` and `--multiplier` (only the latter is used if both given) in version 21.0+ to set the work generation threshold.
 
 ### --debug_profile_bootstrap
@@ -271,6 +266,10 @@ Profile signature generation
 ### --debug_profile_votes
 Profile vote verification
 
+### --debug_profile_frontiers_confirmation
+_version 21.0+_
+Profile frontiers confirmation speed
+
 ### --debug_stacktrace
 _version 20.0+_  
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
@@ -283,3 +282,23 @@ Profile signature verification
 
 ### --debug_xorshift_profile
 [Disabled] Profile xorshift algorithms
+
+## Deprecated commands
+
+### Debug
+
+##### --debug_mass_activity (Deprecated)
+Generates fake debug activity. Deprecated in _v21+_, can use `slow_test --gtest_filter=system.generate_mass_activity` instead.
+
+### Launch options
+
+##### --batch_size (Deprecated)
+_version 18.0+_  
+Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and will be removed in _v22_ as it will not support upgrades from v18 nodes and earlier.
+
+##### --disable_udp (Deprecated)
+_version 21.0+_  
+This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
+
+_version 19.0+_  
+Turn off use of UDP live network

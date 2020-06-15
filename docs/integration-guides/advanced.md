@@ -286,6 +286,9 @@ The choice depends on the setup and security that you want. The easiest way is t
 
     curl -g -d '{ "action": "block_count" }' '[::1]:7076'
 
+!!! tip
+    If you get `curl: (7) Couldn't connect to server`, replace `[::1]:7076` with `127.0.0.1:7076`.
+
 **To stop node, use**   
 
     curl -g -d '{ "action": "stop" }' '[::1]:7076'

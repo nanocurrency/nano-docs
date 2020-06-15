@@ -33,7 +33,7 @@ Make sure you have the correct [Boost version](https://github.com/nanocurrency/n
 
 | **Name**                        | **Details** |
 |                                 |             |
-| cryptopp                        | Provides the implementation for blake2, AES and other cryptographic schemes. |
+| cryptopp                        | Provides the implementation for random number generator, SipHash, AES and other cryptographic schemes. |
 | phc&#x2011;winner&#x2011;argon2 | When encrypting with AES, the password first goes through key derivation, and argon2 is our hash of choice for doing that. |
 | lmdb     			              | The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys. It is extremely resilient to crashes in the program, OS, and power-downs without corruption. |
 | miniupnp 			              | This library is used to do port mapping if the gateway supports it. |
@@ -172,7 +172,7 @@ Your code will be reviewed with security in mind, but please do your part before
     * Avoid using ANSI C functions. Many of these are prone to buffer overruns.
     * Avoid using C strings and direct buffer manipulation.
 
-* Use static analysis tools, such as valgrind, XCode instrumentation, linters and sanitizers. These tools are also great for debugging crashes and performance problems.
+* Use static and dynamic analysis tools, such as valgrind, XCode instrumentation, linters and sanitizers. These tools are also great for debugging crashes and performance problems.
 
 ### General tips for contributors
 

@@ -3,7 +3,7 @@ description: Understand the best configurations for work generation on the Nano 
 
 !!!tip "Some sections of this page target node version 21 or higher"
 
-Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](/glossary/#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
+Every block published to the network, whether a send, receive or representative change block, requires a small, valid [Proof-of-Work](../glossary.md#proof-of-work-pow) to be completed above a minimum difficulty floor (threshold). As of V21 this threshold is different for different block types: send and change blocks require a higher threshold, while receive blocks are lower.
 
 This work value is not used in consensus, but instead is one of the first pieces of data used to validate blocks on the network and is a key component of maintaining consistent quality of service on the network.
 
@@ -28,10 +28,10 @@ Although the node can be configured to generate work directly, there are plans t
 
 ### Number of work peers
 
-To provide a more robust and redundant work generation setup, multiple [work peers](/running-a-node/configuration/#nodework_peers) can be used. Any node configured with multiple peers will make requests serially from the list of work peers until a successful response is received.
+To provide a more robust and redundant work generation setup, multiple [work peers](#nodework_peers) can be used. Any node configured with multiple peers will make requests serially from the list of work peers until a successful response is received.
 
 !!! tip "Disable local CPU work generation"
-	Since using the same CPU resources the node relies on for work generation can cause performance issues, local CPU work generation should be turned off by setting [`node.work_threads`](/running-a-node/configuration/#nodework_threads) = `0` when using work peers.
+	Since using the same CPU resources the node relies on for work generation can cause performance issues, local CPU work generation should be turned off by setting [`node.work_threads`](#nodework_threads) = `0` when using work peers.
 
 ## Recommended configurations
 
@@ -49,10 +49,10 @@ Services with heavy RPC calls and work generation can benefit from ensuring dedi
 1. Install the [Nano Work Server](https://github.com/nanocurrency/nano-work-server/blob/master/README.md#installation)
 1. Setup a service to start and monitor the work server process using the GPU option `--gpu <PLATFORM:DEVICE>` and run `nano-work-server --help` for additional options and details
 1. Configure the machine running the node to allow traffic over TCP from the work generation machine's IP address
-1. Add the work machine IP address as a [work peer](/running-a-node/configuration/#nodework_peers) in the node's `config-node.toml` file
+1. Add the work machine IP address as a [work peer](#nodework_peers) in the node's `config-node.toml` file
 
 !!! info "CPU for lower generation levels"
-	For services with heavier RPC usage but less work generation needs excluding the GPU in the above example and relying on the CPU resources of the separate machine is also an option. This can be done by setting [`node.work_threads`](/running-a-node/configuration/#nodework_threads) to the appropriate thread count for your needs.
+	For services with heavier RPC usage but less work generation needs excluding the GPU in the above example and relying on the CPU resources of the separate machine is also an option. This can be done by setting [`node.work_threads`](#nodework_threads) to the appropriate thread count for your needs.
 
 	Make sure to benchmark the machine performance to plan for any potential spikes, as CPU generation is slower.
 
@@ -62,10 +62,10 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 1. Install the [Nano Work Server](https://github.com/nanocurrency/nano-work-server/blob/master/README.md#installation) on the same machine as the node
 1. Setup a service to start and monitor the work server process with options for using the GPU - `--gpu <PLATFORM:DEVICE:THREADS>` is required, run `nano-work-server --help` for additional options and details
-1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](/running-a-node/configuration/#nodework_threads) = `0`
+1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](#nodework_threads) = `0`
 
 !!! info "Node work generation option"
-	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](/running-a-node/configuration/#openclenable) = `true` and adusting `opencl.device` and `opencl.platform` to match your setup.
+	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`node.opencl.enable`](#nodeopenclenable) = `true` and adusting `node.opencl.device` and `node.opencl.platform` to match your setup.
 
 ---
 
@@ -110,9 +110,9 @@ graph TD
 
 ## Node Configuration
 
-The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](/running-a-node/configuration/) page.
+The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
-### opencl.enable
+### node.opencl.enable
 
 !!!success "When GPU acceleration is enabled, the CPU is also used by default"
 	Make sure to set `node.work_threads` to `0` when using the GPU
@@ -128,7 +128,7 @@ Determines the number of local CPU threads to used for work generation. **While 
 Set to `0` to turn off local CPU work generation.
 
 ### node.work_peers
-Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](/commands/rpc-protocol#work_generate). Example:
+Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](../commands/rpc-protocol.md#work_generate). Example:
 
 ```toml
 [node]
@@ -159,27 +159,31 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 Note that these commands do not use the configuration of the node. Prefer using the alternative above for that purpose, such as changing the number of threads for CPU work generation, or using work peers.
 
-[CPU](/commands/command-line-interface#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
+[CPU](../commands/command-line-interface.md#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-[GPU](/commands/command-line-interface#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
+[GPU](../commands/command-line-interface.md#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
 
 The command will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which are the number of microseconds it took to generate each sample.
 
 ### Example benchmarks
 
-Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs updated in late 2017.
+Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs. All values are presented in **# work/second generated**. See the [difficulty thresholds section](#difficulty-thresholds) below for details about values required for different epoch versions and block types.
 
-| Device | Epoch v1<br /># PoW/sec |
-|--------|-|
-| Nvidia Tesla V100 (AWS) | 6.4 |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 |
-| Nvidia Tesla K80 (Google,Cloud) | 1.64 |
-| AMD RX 470 OC | 1.59 |
-| Nvidia GTX 1060 3GB | 1.25 |
-| Intel Core i7 4790K AVX2 | 0.33 |
-| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 |
-| Google Cloud 4 vCores 0.14-0.16 | 0.14-0.16 |
-| ARM64 server 4 cores (Scaleway) | 0.05-0.07 |
+| **Device** | **Epoch v1**<br />All Blocks | **Epoch v2**<br />Send/Change Blocks | **Epoch v2**<br />Receive Blocks |
+|--------|-|-|-|
+| Nvidia Tesla V100 (AWS) | 6.4 | | |
+| Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
+| Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
+| Google Cloud 4 vCores | 0.15 | | |
+| ARM64 server 4 cores (Scaleway) | 0.06 | | |
+| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
+| AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
+| AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
+| AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.6 |
+| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
+| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
+| AMD R9 290 | 1.23 | 0.15 | 8.06 |
+| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
 
 ---
 
@@ -191,7 +195,7 @@ The `"work"` field in transactions contains a 64-bit [nonce](https://en.wikipedi
 
 **Block Height 1**
 
-The first block on an account-chain doesn't have a previous (head) block, so the account public key is used:
+The first block on an account-chain doesn't have a previous (head) block, so the account public key is used (`||` means concatenation):
 
 $$
 blake2b(\text{nonce} || \text{public_key}) \ge \text{threshold}
@@ -207,7 +211,19 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC.
+The mainnet's base difficulty threshold is currently `ffffffc000000000` for all epoch v1 blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+
+Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+
+After the next [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty), which will occur after the [V21.0 release](../releases/current-release-notes.md) and subsequent distribution of epoch v2 blocks, there will be two difficulty thresholds:
+
+| Epoch version | Block Type | Difficulty Threshold |
+|               |            |                      |
+| 1             | All        | `ffffffc000000000`   |
+| 2             | Send or change | `fffffff800000000` |
+| 2             | Receive        | `fffffe0000000000` |
+
+Although preparations can be done ahead of the upgrade, please find related considerations in the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) section.
 
 **Development node wallet behavior**
 
@@ -218,7 +234,7 @@ The developer wallet included with the node is configured to pre-cache work at t
 For services aiming to ensure the highest priority on their transactions, the confirmation of published blocks should be monitored by their integration and work levels compared against active difficulty in a similar fashion to the development wallet mentioned above. If work is left at base difficulty there could be delays in the transactions being processed during heavy network usage times.
 
 !!! tip "Configure max work generate multiplier"
-    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](/running-a-node/configuration/#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
+    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
 
 !!! warning "Upcoming threshold changes and variations by block type"
 	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
@@ -227,7 +243,7 @@ For services aiming to ensure the highest priority on their transactions, the co
 
 Work for an account can be pre-cached and saved for immediate use on an account as long as it was based on the current frontier block at the time of use. Although this customization must be made externally to the node, it can help level out potential spikes in work generation, especially useful with wallet implementations.
 
-To accomplish this, after a block is published for an account (whatever type of block), note the _**hash**_ of that block and use it in a RPC [work_generate](https://docs.nano.org/commands/rpc-protocol/#work_generate) call. Note that you may require setting `“use_peers”: “true”`.
+To accomplish this, after a block is published for an account (whatever type of block), note the _**hash**_ of that block and use it in a RPC [work_generate](../commands/rpc-protocol.md#work_generate) call. Note that you may require setting `“use_peers”: “true”`.
 
 Upon receiving a response, store its value in your database for later use for that account. Note that after a new block is published for the account, that value will no longer be a valid PoW.
 
@@ -242,7 +258,7 @@ For services that process receiving their pending transactions in bulk the lower
 
 ### Difficulty multiplier
 
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) RPC, but can also be obtained with the following expression:
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC, but can also be obtained with the following expression:
 
 $$
 \frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
