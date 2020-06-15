@@ -174,20 +174,16 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 | Nvidia Tesla V100 (AWS) | 6.4 | | |
 | Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
 | Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
-| AMD RX 470 OC | 1.59 | | |
-| Nvidia GTX 1060 3GB | 1.25 | | |
-| Intel Core i7 4790K AVX2 | 0.33 | | |
-| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 | | |
 | Google Cloud 4 vCores | 0.14-0.16 | | |
 | ARM64 server 4 cores (Scaleway) | 0.05-0.07 | | |
-| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
-| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
 | Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
-| AMD R9 290 | 1.23 | 0.15 | 8.06 |
-| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
 | AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
 | AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
 | AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.6 |
+| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
+| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
+| AMD R9 290 | 1.23 | 0.15 | 8.06 |
+| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
 
 ---
 
