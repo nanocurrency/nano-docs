@@ -174,8 +174,8 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 | Nvidia Tesla V100 (AWS) | 6.4 | | |
 | Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
 | Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
-| Google Cloud 4 vCores | 0.14-0.16 | | |
-| ARM64 server 4 cores (Scaleway) | 0.05-0.07 | | |
+| Google Cloud 4 vCores | 0.15 | | |
+| ARM64 server 4 cores (Scaleway) | 0.06 | | |
 | Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
 | AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
 | AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
