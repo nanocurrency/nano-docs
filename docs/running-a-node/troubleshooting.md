@@ -10,6 +10,9 @@ The default location of standard node log files for various systems:
 | macOS   | `:::bash /Users/<user>/Library/Nano/log ` |
 | Linux   | `:::bash /home/<user>/Nano/log ` |
 
+!!! tip ""
+    To get a static file name for the currently active log file, see the [stable_log_filename configuration option](configuration.md#loggingstable_log_filename)
+
 ---
 
 ## What to do if the node crashes (Linux)
