@@ -3,11 +3,6 @@ description: Details of the most current Nano node release including upgrade not
 
 # Current Release Notes: V21.0
 
-!!! warning "V21.0 is in Release Candidate phase"
-	Although the current active version of the Nano node is V20.0, this page was updated with V21.0 details to provide early access to the upcoming changes before final release. Visit the [Previous Release Notes page](previous-release-notes.md) for V20.0 and earlier Release Notes.
-
-	The details here are nearly final, but subject to change prior to the final release.
-
 --8<-- "release-details-v21-0.md"
 
 !!! info "Nano Forum available"
@@ -20,7 +15,7 @@ description: Details of the most current Nano node release including upgrade not
 The following key upgrade details should be reviewed by all node operators to determine how they will impact plans for upgrading:
 
 ### Database upgrades
-An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 20-30GB free disk space to accommodate the upgrade. During the upgrade process, which may take multiple hours to complete depending on the machine specs, the node will not participate on the network or respond to RPC calls.
+An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 30GB free disk space to accommodate the upgrade. During the upgrade process, which may take multiple hours to complete depending on the machine specs, the node will not participate on the network or respond to RPC calls.
 
 As a result, **the recommended approach is to upgrade the ledger in a separate environment before replacing on production**. For detailed steps on this approach and other options, see the [Updating the node section](/running-a-node/ledger-management/#updating-the-node) of the Ledger Management page.
 
@@ -136,7 +131,7 @@ The following functionality is now deprecated and will be removed in a future re
 
 ## Builds and Commands
 
---8<-- "current-beta-build-links.md"
+--8<-- "current-release-build-links.md"
 
 ---
 
