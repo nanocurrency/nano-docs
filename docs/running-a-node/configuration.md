@@ -253,6 +253,9 @@ See the [Voting as a Representative guide](voting-as-a-representative.md).
 ### Ledger backends
 See the [Ledger Management guide](ledger-management.md).
 
+### HTTPS support
+See the [HTTPS Support guide](configuration-https.md).
+
 ### HTTP callback
 
 !!! tip
