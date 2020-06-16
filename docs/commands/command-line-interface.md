@@ -272,7 +272,7 @@ Profile frontiers confirmation speed
 
 ### --debug_rpc
 _version 18.0+_  
-Allows running RPC commands without enabling the RPC server. Not recommended for normal usage.  
+Allows running RPC commands without enabling the RPC server. Not recommended for daily usage.  
 Example: `echo '{"action": "block_count"}' | nano_node --debug_rpc`
 
 ### --debug_stacktrace
