@@ -234,7 +234,7 @@ List online weights table and current online_weights value
 List representatives and weights
 
 ### --debug_generate_crash_report
-_version 21.0+_
+_version 21.0+_  
 After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
 ### --debug_opencl
@@ -267,8 +267,13 @@ Profile signature generation
 Profile vote verification
 
 ### --debug_profile_frontiers_confirmation
-_version 21.0+_
+_version 21.0+_  
 Profile frontiers confirmation speed
+
+### --debug_rpc
+_version 18.0+_  
+Allows running RPC commands without enabling the RPC server. Not recommended for normal usage.  
+Example: `echo '{"action": "block_count"}' | nano_node --debug_rpc`
 
 ### --debug_stacktrace
 _version 20.0+_  
