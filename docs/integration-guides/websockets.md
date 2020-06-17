@@ -37,7 +37,10 @@ enable = true
 port = 7078
 ```
 
-With the above configuration, localhost clients should connect to `ws://[::1]:7078`. If using with Docker, see [Managing the Container](../running-a-node/docker-management.md#managing-the-container) for details on port and address settings.
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`. 
+
+!!! note
+    If using with Docker, set the WebSocket server bind address to `::ffff:0.0.0.0`. Be aware this actually opens up the RPC port to the world, but since we're running the node inside a Docker container and we included the option `-p [::1]:7078:7078`, it's bound to port 7078 on the localhost only.
 
 ## Acknowledgement
 
