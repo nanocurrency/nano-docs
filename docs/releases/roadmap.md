@@ -264,10 +264,10 @@ See the [Upcoming Features](/releases/upcoming-features) page for more details o
 
 ??? success "Hardware Wallets"
 	**Status**
-	
 
 
-	* Ledger Nano S integration completed (6/11/18) 
+
+	* Ledger Nano S integration completed (6/11/18)
 
 	* Jolt Hardware wallet development announced (5/31/18)
 

@@ -39,7 +39,7 @@ Docker must be installed on the host machine and instructions can be found here:
 
 ---
 
-## Pulling the Docker Image 
+## Pulling the Docker Image
 [![Docker Pulls](https://img.shields.io/docker/pulls/nanocurrency/nano.svg)](https://hub.docker.com/r/nanocurrency/nano/)
 
 The Docker image can be downloaded via `docker pull`. We can either grab the `latest` or a specific version/tag. Not specifying a tag defaults to `latest`. An example of each is found below.

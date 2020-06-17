@@ -39,11 +39,11 @@ Please follow the steps below for the corresponding node version you are using. 
 #### _v21_+ nodes
 
 !!! example "Step 1: Make sure addr2line is installed"
-    It is likely installed already, consult documentation for your linux distribution if it is not mentioned below:  
+    It is likely installed already, consult documentation for your linux distribution if it is not mentioned below:
     **Ubuntu/Debian**
     `apt-get install binutils`
-  
-    **Fedora 22+**  
+
+    **Fedora 22+**
     `dnf install binutils`
 
 !!! example "(Optional) Step 2: Save crash dump files"
@@ -118,7 +118,7 @@ Please follow the steps below for the corresponding node version you are using. 
 
 ## Statistics from RPC
 
-The "stats" RPC command can be used by external processes to query statistics, such as traffic counters. This is useful for diagnostics, monitoring and display in admin consoles. 
+The "stats" RPC command can be used by external processes to query statistics, such as traffic counters. This is useful for diagnostics, monitoring and display in admin consoles.
 
 Statistics are optionally logged to separate text files.
 
@@ -145,7 +145,7 @@ All configuration nodes and values are optional, with the default values shown i
         },
 
         // File logging (optional)
-        "log": {                              
+        "log": {
             "interval_counters": "5000",      // How often to write counters to file in milliseconds. Default 0 (off)
             "interval_samples": "5000",       // How often to write samples to file, milliseconds. Default 0 (off)
             "rotation_count": "5",            // Rotate file after writing statistics this many times. Default 100.

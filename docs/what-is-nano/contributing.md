@@ -16,7 +16,7 @@ If you're a developer and want to build using Nano you've come to the right plac
 
 ## Helping out further
 
-If you have an interest in helping the network or community in other capacities, please don't hesitate to reach out. Below are links to our website and community. 
+If you have an interest in helping the network or community in other capacities, please don't hesitate to reach out. Below are links to our website and community.
 
 --8<-- "community-links.md"
 

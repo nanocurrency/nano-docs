@@ -6,7 +6,7 @@ description: Details of the most current Nano node release including upgrade not
 --8<-- "release-details-v21-0.md"
 
 !!! info "Nano Forum available"
-	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
+	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions.
 
 --8<-- "join-technical-mailing-list.md"
 
@@ -40,7 +40,7 @@ Although not recommended, if necessary the temporary use of UDP can be done with
 ---
 
 ## Major Updates
- 
+
 ### Work difficulty increase
 As mentioned in the [Upgrade Notices](#upgrade-notices) section above, work difficulty changes were implemented in V21, but will not be activated until epoch v2 blocks are distributed at a future date. Please review the [Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades page for details.
 

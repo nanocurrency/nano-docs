@@ -33,7 +33,7 @@ The following releases can still actively participate on the network by peering 
 
 --8<-- "release-details-v21-0.md"
 
---- 
+---
 
 --8<-- "release-details-v20-0.md"
 

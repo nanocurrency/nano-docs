@@ -11,7 +11,7 @@ There are three important aspects of divisibility of the supply which are satisf
 The distribution of Nano (formerly RaiBlocks) was performed through solving manual captchas starting in late 2015 and ending in October 2017. Distribution stopped after \~39% of the [Genesis](/glossary#genesis) amount was distributed and the rest of the supply was burnt.[^1]
 
 !!! info "Distribution Accounts"
-	* **Genesis**: `nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3` 
+	* **Genesis**: `nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3`
 	* **Landing**: `nano_13ezf4od79h1tgj9aiu4djzcmmguendtjfuhwfukhuucboua8cpoihmh8byo`
 	* **Faucet**: `nano_35jjmmmh81kydepzeuf9oec8hzkay7msr6yxagzxpcht7thwa5bus5tomgz9`
 	* **Burn**: `nano_1111111111111111111111111111111111111111111111111111hifc8npp`

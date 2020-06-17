@@ -19,23 +19,23 @@ Details coming soon
 ??? abstract "Dual-phase voting"
 
 	Release  | V22+ (Targeted)
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Use a dual-phased voting approach: first is a negotiation phase to gather network consensus, and then second is issuing a final, durable vote that cannot be re-negotiated.
 	Benefits | Blocks cemented after durable vote and allowing durable vote snapshots.
-	Links    | 
+	Links    |
 
 ??? abstract "Move wallet out of process"
 
 	Release  | V22 (Targeted)
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Remove wallet operations out of node process.
 	Benefits | Reduced node attack surface.
-	Links    | 
+	Links    |
 
 ??? abstract "RPC 2.0"
 
 	Release  | V22 (Targeted)
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
 	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
 	Links    | [Forum Discussion](https://forum.nano.org/t/rpc-2-0-refactor/110)
@@ -43,7 +43,7 @@ Details coming soon
 ??? abstract "Ledger pruning"
 
 	Release  | V23 (Targeted)
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Allow optional pruning of ledger blocks down to frontier, frontier predecessor and pending blocks.
 	Benefits | Reduce ledger size on disk and lower requirements for nodes joining the network.
 	Links    | [Forum Discussion](https://forum.nano.org/t/ledger-pruning/114) - [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
@@ -53,7 +53,7 @@ Details coming soon
 ??? info "New PoW algorithm"
 
 	Release  | TBD
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
 	Benefits | Increase Quality of Service on network through increased spam cost.
 	Links    | [Forum Discussion](https://forum.nano.org/t/minimum-memory-requirement-in-a-new-pow-algorithm/439) - [GitHub Issue #506](https://github.com/nanocurrency/nano-node/issues/506)
@@ -61,7 +61,7 @@ Details coming soon
 ??? info "Network overlay (DHT-based)"
 
 	Release  | V22+
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Provide a structured network overlay of nodes on the network through a distributed hash table.
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
 	Links    | [Forum Discussion](https://forum.nano.org/t/consider-adding-a-network-overlay/106)
@@ -69,7 +69,7 @@ Details coming soon
 ??? info "Durable vote snapshots"
 
 	Release  | V23+ (Targeted)
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Provide methods for export and importing snapshots of durable votes between nodes.
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
 	Links    | N/A
@@ -77,7 +77,7 @@ Details coming soon
 ??? info "QUIC protocol"
 
 	Release  | TBD
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Determine if QUIC protocol is a viable alternative to UDP and TCP for live network activity
 	Benefits | More efficient traffic handling for live network.
 	Links    | N/A
@@ -85,7 +85,7 @@ Details coming soon
 ??? info "Local account priority bootstrapping"
 
 	Release  | TBD
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Allow bootstrapping of local accounts first.
 	Benefits | Nodes can send/receive Nano before fully synced.
 	Links    | [GitHub Issue #1731](https://github.com/nanocurrency/nano-node/issues/1731)
@@ -95,31 +95,31 @@ Details coming soon
 ??? success "V21.0"
 
 	Release  | V21 Athena
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Provide methods for nodes to report block count, bandwidth caps, version numbers, node vendor versions and more.
 	Benefits | Better monitoring of network status and upgrades progress.
 	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
 
 	Release  | V21 Athena
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Add new internal and external APIs for the node using Flatbuffers over IPC.
 	Benefits | Faster performance and lower memory usage, allows streaming.
 	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
 
 	Release  | V21 Athena
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Optimizations, fixes and adjustments to the RocksDB implementation.
 	Benefits | Better disk performance and early work leading up to potential production release in V22+.
 	Links    | [Forum Discussion](https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4)
 
 	Release  | V21 Athena
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Optimizations, fixes and adjustments to Lazy Bootstrapping.
 	Benefits | Reduced bandwidth and reliance on legacy bootstrapping.
 	Links    | N/A
 
 	Release  | V21 Athena
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Adjust elections process for better alignment of active elections across the network.
 	Benefits | Better performance during heavy load with reduced bandwidth.
 	Links    | N/A
@@ -129,7 +129,7 @@ Details coming soon
 	**New PoW infrastructure**
 
 	Release  | V20 Lydia
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
 	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
 	Links    | https://github.com/nanocurrency/nano-pow-server, https://github.com/nanocurrency/nano-node/pull/2331
@@ -137,7 +137,7 @@ Details coming soon
 	**Initial support for RocksDB**
 
 	Release  | V20 Lydia
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Add support for a new database backend using RocksDB (experimental).
 	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
 	Links    | https://github.com/nanocurrency/nano-node/pull/2197
@@ -145,7 +145,7 @@ Details coming soon
 	**Migrate to TOML config files**
 
 	Release  | V20 Lydia
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
 	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
 	Links    | https://github.com/nanocurrency/nano-node/issues/1878
@@ -163,7 +163,7 @@ Details coming soon
 	**Confirmation Height**
 
 	Release  | V19 Solidus
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Track height of confirmed blocks per account and confirm dependent elections based on this height.
 	Benefits | Provide simpler block confirmation procedures, reduce network voting and confirmation traffic, and provide easier implementation of various future features.
 	Links    | [GitHub PR #1770](https://github.com/nanocurrency/nano-node/pull/1770) - [Looking up to Confirmation Height (Medium)](https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc) - [V19 Solidus Feature Analysis (Medium)](https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c)
@@ -171,7 +171,7 @@ Details coming soon
 	**Dynamic Proof-of-Work (PoW) and Prioritization**
 
 	Release  | V19 Solidus
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Capture work difficulty levels on the network and adjust wallet work generation dynamically when delays in confirmation for locally published blocks are experienced. Also include dropping of active transactions failing to confirm quickly.
 	Benefits | Reduce impacts to regular users during spam attacks and increase cost of spam attacks.
 	Links    | [GitHub PR #1990](https://github.com/nanocurrency/nano-node/pull/1990) - [GitHub PR #1858](https://github.com/nanocurrency/nano-node/pull/1858) - [V19 Solidus Feature Analysis (Medium)](https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c)
@@ -179,7 +179,7 @@ Details coming soon
 	**Out of node process RPC**
 
 	Release  | V19 Solidus
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Remove RPC operations out of node process.
 	Benefits | Reduced node attack surface as signing keys no longer in the same memory space as network and ledger code.
 	Links    | [GitHub PR #1857](https://github.com/nanocurrency/nano-node/pull/1857) - [V19 Solidus Feature Analysis (Medium)](https://medium.com/nanocurrency/v19-solidus-feature-analysis-3c8f3d2d949c)
@@ -188,7 +188,7 @@ Details coming soon
 	**Bandwidth throttling**
 
 	Release  | V19 Solidus
-	---------|----------------------- 
+	---------|-----------------------
 	Goal     | Provide configuration options for nodes to limit bandwidth resource usage.
 	Benefits | More control over resource consumption for node operators and to provide a metric for analyzing more objectively the TPS capabilities of the network.
 	Links    | N/A
@@ -254,7 +254,7 @@ Details coming soon
 
 	**2019-07-30**
 
-	* Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release 
+	* Moved Local account priority bootstrapping item into Research section with unknown feature target. Updates related to this are targeted for V20: better prioritization of bootstrap accounts using a pre-calculated list of high depth accounts packaged with the node release
 
 	**2019-07-11**
 

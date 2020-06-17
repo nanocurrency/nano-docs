@@ -29,10 +29,10 @@ This upgrade is sometimes referenced as the epoch v2 upgrade and the relate even
 
 In order to best prepare for the transition to new thresholds, the following items should be considered:
 
-**Work generation guide**  
+**Work generation guide**
 The new [Work Generation guide](../integration-guides/work-generation.md) was written to help users and integrations leverage their work generation at all times.
 
-**Work validation**  
+**Work validation**
 The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multiple changes to the response, one which will break most existing integrations when upgrading to V21, two others that will become useful after upgrade:
 
 * If `difficulty` parameter is not explicitly passed in the request, the existing `valid` field will not be returned (**breaking**)
@@ -40,16 +40,16 @@ The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multipl
 * `valid_receive` is a new return field, `true` if the work is valid at the lower epoch_2 receive difficulty (only useful after the epoch upgrade is finished)
 * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
 
-**External work generation**  
+**External work generation**
 [nano-work-server](https://github.com/nanocurrency/nano-work-server) has been updated to use the higher threshold by default when not given an explicit `difficulty`. The `work_validate` response has the same breaking changes as above.
 
 * Prefer directly using the server as a [work peer](../integration-guides/work-generation.md#nodework_peers) as outlined in the [guide](../integration-guides/work-generation.md#work-generated-using-the-node-incl-work-peers). The node always requests the appropriate difficulty threshold when using RPC [block_create](../commands/rpc-protocol.md#block_create), or [work_generate](../commands/rpc-protocol.md#work_generate) with the optional `block`.
 * In cases where requesting directly from a node is not possible, avoid using the lower threshold for receive blocks until the epoch upgrade is fully complete.
 
-**Work generation performance**  
+**Work generation performance**
 Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](../integration-guides/work-generation.md#benchmarks).
 
-**Other integration considerations**  
+**Other integration considerations**
 Although it is already recommended as best practice, any integrations not already calling for the frontier block when constructing a transaction should do so. If hashes are being internally tracked and frontier is not requested, the integration could unintentionally cause a fork on the account with distribution of epoch blocks.
 
 See [Step 1: Get Account Info](../integration-guides/key-management.md#send-transaction) for the [`account_info`](../commands/rpc-protocol.md#account_info) RPC recommendation when creating transactions.
@@ -141,7 +141,7 @@ Nano is a protocol, an agreed upon standard that allows computers to communicate
 
 In most blockchain networks these upgrades can be scheduled to take effect once a particular block height is hit because all nodes operate off a single, synchronous chain. Due to the Nano network being asynchronous this method doesn’t work, so instead we need methods for upgrading accounts asynchronously.
 
-There are a couple different options for handling these upgrades and the process is currently managed primarily by the Nano Foundation. The upgrades are tested on the beta network to ensure all components are behaving as expecting before being considered for updating on the main network. If the behavior being changed involves consensus, any manual upgrade actions are triggered once a large majority of nodes and major services have upgraded. 
+There are a couple different options for handling these upgrades and the process is currently managed primarily by the Nano Foundation. The upgrades are tested on the beta network to ensure all components are behaving as expecting before being considered for updating on the main network. If the behavior being changed involves consensus, any manual upgrade actions are triggered once a large majority of nodes and major services have upgraded.
 
 Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in [this GitHub issue](https://github.com/nanocurrency/nano-node/issues/1308). There is also a discussion around how to potentially automate network upgrade processes in this forum topic: https://forum.nano.org/t/automated-network-upgrades/113.
 
@@ -165,7 +165,7 @@ A date is hardcoded into the node release to activate a feature or behavior at a
 | Node upgrade + specific date | No | <ul><li><span class="no-break">Simple to implement</span></li><li>No manual activity required</li></ul> | <ul><li>Inability to adjust timing without rushing new release out</li></ul> |
 
 ### Canary block(s)
-The hash of a block is hardcoded in the node such that once that hash is seen by the node, it will activate a feature or behavior. Multiple block hashes can be used to perform different phases of a transition. See [State blocks upgrade](#state-blocks) details for an example. 
+The hash of a block is hardcoded in the node such that once that hash is seen by the node, it will activate a feature or behavior. Multiple block hashes can be used to perform different phases of a transition. See [State blocks upgrade](#state-blocks) details for an example.
 
 | Trigger | Uses blocks | Benefits | Drawbacks |
 |---------|-------------|----------|-----------|

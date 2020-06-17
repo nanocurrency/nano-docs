@@ -13,7 +13,7 @@ The Nano protocol is a complex piece of software aiming at a simple, singular go
 | [Distribution and Units](/protocol-design/distribution-and-units/) | Original distribution details and Nano unit breakdowns |
 | [Networking](/protocol-design/networking/) | Details about the network protocols nodes use to communicate with peers |
 | [Network Attacks](/protocol-design/network-attacks/) | Explanation of some of the potential attack vectors on the Nano network |
-| [Signing, Hashing and Key Derivation](/protocol-design/signing-hashing-and-key-derivation/) | Details of the algorithms and functions used for these activities | 
+| [Signing, Hashing and Key Derivation](/protocol-design/signing-hashing-and-key-derivation/) | Details of the algorithms and functions used for these activities |
 
 ---
 
@@ -60,7 +60,7 @@ If you add new functionality, adding unit tests to avoid regressions in the futu
 
 The easiest way to get started writing your first test is to base it off one of the existing tests. You'll find these in the `core_test` directory.
 
-Make sure the `NANO_TEST` cache variable in cmake is set. You should also switch the `ACTIVE_NETWORK` variable to nano_test_network. 
+Make sure the `NANO_TEST` cache variable in cmake is set. You should also switch the `ACTIVE_NETWORK` variable to nano_test_network.
 
 **Run tests before creating a pull request**
 
@@ -76,7 +76,7 @@ Communication is the key to working together efficiently. A good way to get in t
 	**Do NOT discuss potential security vulnerabilities on the issue tracker, public forums or open discussion channels**
 
 	If you discover a bug you believe to pose a security risk to the Nano network, please contact bugs@nano.org with a proof of concept with full details of the bug including:
-	
+
 	* Repository of the bug
 	* High-level summary
 	* Detailed description
@@ -88,7 +88,7 @@ Communication is the key to working together efficiently. A good way to get in t
 
 ##### Fork and do all your work on a branch
 
-Nano prefers the standard GitHub workflow. You create a fork of the Nano repository, make branches for features/issues, and commit and push these. 
+Nano prefers the standard GitHub workflow. You create a fork of the Nano repository, make branches for features/issues, and commit and push these.
 
 ##### Create pull requests
 
@@ -124,7 +124,7 @@ The preferred process is to rebase your changes, resolve any conflicts, and push
 
 **Consider squashing or amending commits**
 
-In the review process, you're likely to get feedback. You'll commit and push more changes, get more feedback, etc. 
+In the review process, you're likely to get feedback. You'll commit and push more changes, get more feedback, etc.
 
 This can lead to a messy git history, and can make stuff like bisecting harder.
 
@@ -145,7 +145,7 @@ clang-format is used to enforce most of the formatting rules, such as:
 
 Please run `ci/clang-format-all.sh` before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. The definition file `.clang-format` is located in the project root directory.
 
-Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^5]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings. 
+Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^5]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings.
 
 #### Coding guidelines
 
@@ -158,11 +158,11 @@ Make sure you set up your editor to use tabs. Use tabs for indentation, and spac
 
 #### Performance and scalabiliy considerations
 
-* When making changes, think about performance and scalability. Pick good data structures and think about algorithmic complexity. 
+* When making changes, think about performance and scalability. Pick good data structures and think about algorithmic complexity.
     * For small data sets, std::vector should be your to-go container, as a linear scan through contiguous memory is often faster than any alternative.
     * Nested loops yield quadratic behavior - is there an alternative? A typical example is removing an inner lookup loop with a map.
-* Make sure your change doesn't conflict with the scalability characteristics described in the white paper. 
- 
+* Make sure your change doesn't conflict with the scalability characteristics described in the white paper.
+
 #### Security
 
 Your code will be reviewed with security in mind, but please do your part before creating a pull request:

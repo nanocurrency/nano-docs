@@ -44,7 +44,7 @@ When dealing with the various IDs in the node it is important to understand the 
 ### Wallet ID
 This is a series of 32 random bytes of data and is **not the seed**. It is used in several RPC actions and command line options for the node. It is a **purely local** UUID that is a reference to a block of data about a specific wallet (set of seed/private keys/info about them) in your node's local database file.
 
-The reason this is necessary is because we want to store information about each account in a wallet: whether it's been used, what its account is so we don't have to generate it every time, its balance, etc. Also, so we can hold ad hoc accounts, which are accounts that are not derived from the seed. This identifier is only useful in conjunction with your node's database file and **it will not recover funds if that database is lost or corrupted**. 
+The reason this is necessary is because we want to store information about each account in a wallet: whether it's been used, what its account is so we don't have to generate it every time, its balance, etc. Also, so we can hold ad hoc accounts, which are accounts that are not derived from the seed. This identifier is only useful in conjunction with your node's database file and **it will not recover funds if that database is lost or corrupted**.
 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
@@ -71,14 +71,14 @@ It should be noted that Nano reference wallet is using described Blake2b private
 	PrivK = blake2b_state.digest()
 	print(blake2b_state.hexdigest().upper()) # "1495F2D49159CC2EAAAA97EBB42346418E1268AFF16D7FCA90E6BAD6D0965520"
 	```
-	
+
 	Mnemonic words for Blake2b Nano seed using [Bitcoinjs](https://github.com/bitcoinjs/bip39):
 	```js
 	const bip39 = require('bip39')
-	
+
 	const mnemonic = bip39.entropyToMnemonic('0000000000000000000000000000000000000000000000000000000000000001')
 	// => abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon diesel
-	
+
 	bip39.mnemonicToEntropy(mnemonic)
 	// => '0000000000000000000000000000000000000000000000000000000000000001'
 	```
@@ -115,8 +115,8 @@ $$
 $$
 
 !!! warning "Important"
-    
-    * All RPC commands expect units to be represented as $raw$. 
+
+    * All RPC commands expect units to be represented as $raw$.
     * Always keep units in integer $raw$ amounts to prevent any floating-point error or unit confusion.
     * Depending on your implementation language, you may require a big number library to perform arithmetic directly on $raw$.
     * See [Distribution and Units](/protocol-design/distribution-and-units/) page for more details on units.
@@ -191,7 +191,7 @@ For details on how to create individual blocks for sending from, receiving to, o
 
 Note: `amount` values should always be in RAW.
 
-Note: Please use `nano://` for deep links 
+Note: Please use `nano://` for deep links
 
 ### Send to an address
 

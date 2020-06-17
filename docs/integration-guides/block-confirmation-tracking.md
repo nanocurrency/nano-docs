@@ -3,7 +3,7 @@
 !!! tip "Guide based on node V19.0"
 	The recommendations below are based on node V19.0 and node versions earlier may not have all these options available. All integrations should upgrade their nodes to make use of easier block confirmation procedures detailed here.
 
-A primary function of any integration is to track confirmation of blocks on the network and the node provides both proactive notifications and options to request confirmation status on individual blocks. This combination allows building of robust systems for monitoring the status of any blocks of interest. 
+A primary function of any integration is to track confirmation of blocks on the network and the node provides both proactive notifications and options to request confirmation status on individual blocks. This combination allows building of robust systems for monitoring the status of any blocks of interest.
 
 !!! tip "Notifications and fallback requests both recommended"
 	Due to notification methods not guaranteeing delivery of every block confirmed, it is recommended that manual requests for confirmation status be implemented as a fallback option. Both these types of methods are outlined below.

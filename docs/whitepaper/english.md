@@ -133,7 +133,7 @@ graph TB
     B-->C["..."]
     C-->D["Block 1"]
     D-->E["Block 0"]
-    end    
+    end
     subgraph Account B
     F["Block <i>N<sub>B</sub></i>"]-->G["Block <i>N<sub>B</sub></i>  - 1"]
     G-->H["..."]
@@ -813,7 +813,7 @@ comparison of various hardware. Currently the PoW threshold is fixed,
 but an adaptive threshold may be implemented as average computing power
 progresses.
 
-Table I  
+Table I
 Hardware PoW Performance
 
 | Device                                     | Transactions Per Second |

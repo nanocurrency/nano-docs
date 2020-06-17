@@ -76,7 +76,7 @@ In short, JSON requests and responses are 32-bit big-endian length-prefixed.
 
 The RPC gateway automatically translates between Flatbuffers and JSON messages over HTTP. The request and response is standard JSON.
 
-!!! info "Examples require TLS support" 
+!!! info "Examples require TLS support"
 	The examples below assumes the node is compiled with TLS support. If not, replace https with http. If using TLS with a self-signed certificate, add --insecure to curl commands.
 
 ### Making calls without a message envelope
@@ -138,8 +138,8 @@ If the message name is missing from the path, an envelope will be expected which
 
 `POST` to https://www.example.com:7076/api/v2
 ```json
-{ 
-    "message_type" : "AccountWeight", 
+{
+    "message_type" : "AccountWeight",
     "message": {
         "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
     }
@@ -153,9 +153,9 @@ The envelope allows additional information to be sent, such as credentials:
 `POST` to https://www.example.com:7076/api/v2
 
 ```json
-{ 
-    "credentials": "mywalletuser",  
-    "message_type" : "AccountWeight", 
+{
+    "credentials": "mywalletuser",
+    "message_type" : "AccountWeight",
     "message": {
         "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
     }
@@ -216,7 +216,7 @@ There is also a default user with limited default permissions, currently only al
 
 Credentials:
 
-* IPC clients set the credentials in the message envelope 
+* IPC clients set the credentials in the message envelope
 * HTTP(S) clients either use a message envelope or the HTTP Header `Nano-Api-Key`
 
 !!! tip "Layered security highly recommended"
@@ -234,14 +234,14 @@ This uses HTTPS (which the node supports through a build option), and the `--ins
 Using an envelope instead of the `AccountWeight` endpoint:
 
 ```json
-{ 
+{
    "credentials": "mywalletuser",
-   "message_type" : "AccountWeight", 
-   "message": 
+   "message_type" : "AccountWeight",
+   "message":
    {
-       "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3" 
+       "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
    }
-} 
+}
 ```
 
 `POST` the above to https://www.example.com:7076/api/v2

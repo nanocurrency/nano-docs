@@ -197,7 +197,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 * `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
 
 !!! tip "Updating the list of accounts"
-    _version 21.0+_  
+    _version 21.0+_
     The list of `accounts` for which blocks are broadcasted can be updated (see [Update](#update)):
     ```json
     {
@@ -563,7 +563,7 @@ No filters are currently available for the `telemetry` topic.
   }
 }
 ```
-See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response  
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response
 
 
 ### New unconfirmed blocks

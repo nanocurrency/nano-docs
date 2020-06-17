@@ -14,7 +14,7 @@ This guide extends the concepts covered in [External Private Key Management](/in
 
 !!! note
 	Operations done on the hot, online, insecure computer will be prefaced with `(HOT)`. Operations done on the cold, offline, secure computer will be prefaced with `(COLD)`.
-	
+
 	Both the hot and cold computers need to have the nano\_node software installed. The hot nano\_node needs to be synced with the network; the cold nano\_node by definition should not be synced as it **never connects to the internet**.
 
 ---
@@ -28,7 +28,6 @@ This guide extends the concepts covered in [External Private Key Management](/in
 	1. `(COLD)` Generate and Sign new transaction data.
 	1. Transfer the signed transaction back to the `(HOT)` insecure online-computer.
 	1. `(HOT)` Publish the signed transaction to the Nano Network.
-
 
 ```mermaid
 sequenceDiagram
@@ -170,7 +169,7 @@ curl -d '{
 ###### Success Response
 
 ```json
-{ 
+{
   "hash": "DC8EC06D1F32F97BD69BF59E3297563BD23779F72176A4FF553CFF52309C337E"
 }
 ```
@@ -204,46 +203,45 @@ For details on configuring the HTTP callback within a node, see the [HTTP callba
 **Example Callback**
 
 ```json
-{  
-    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
-    "hash": "B785D56473DE6330AC9A2071F19BD44BCAF1DE5C200A826B4BBCC85E588620FB",  
-    "block": "{\n    
+{
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+    "hash": "B785D56473DE6330AC9A2071F19BD44BCAF1DE5C200A826B4BBCC85E588620FB",
+    "block": "{\n
              \"type\": \"state\",\n
-             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
-             \"previous\": \"82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2\",\n    
-             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
-             \"balance\": \"5256159500000000000000000000000000000\",\n    
-             \"link\": \"8B95FEB05496327471F4729F0B0919E1994F9116FD213F44C76F696B7ECD386A\",\n    
-             \"link_as_account\": \"nano_34woztr7b7jkgjrzawnz3e6jmresbyajfzb39x4eguubffzetg5c96f3s16p\",\n    
-             \"signature\": \"FBE5CC5491B54FE9CD8C48312A7A6D3945835FD97F4526571E9BED50E407A27ED8FB0E4AA0BF67E2831B8DB32A74E686A62BF4EC162E8FBB6E665196135C050B\",\n    
-            \"work\": \"824ca671ce7067ac\"\n    
-         }\n",  
-    "amount": "2500000000000000000000000000000"  
+             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n
+             \"previous\": \"82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2\",\n
+             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
+             \"balance\": \"5256159500000000000000000000000000000\",\n
+             \"link\": \"8B95FEB05496327471F4729F0B0919E1994F9116FD213F44C76F696B7ECD386A\",\n
+             \"link_as_account\": \"nano_34woztr7b7jkgjrzawnz3e6jmresbyajfzb39x4eguubffzetg5c96f3s16p\",\n
+             \"signature\": \"FBE5CC5491B54FE9CD8C48312A7A6D3945835FD97F4526571E9BED50E407A27ED8FB0E4AA0BF67E2831B8DB32A74E686A62BF4EC162E8FBB6E665196135C050B\",\n
+            \"work\": \"824ca671ce7067ac\"\n
+         }\n",
+    "amount": "2500000000000000000000000000000"
 }
 ```
 
-Send state blocks have special fields "is_send" & "subtype"   
+Send state blocks have special fields "is_send" & "subtype"
 ```json
-{  
-    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
-    "hash": "82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2",  
-    "block": "{\n    
+{
+    "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+    "hash": "82D68AE43E3E04CBBF9ED150999A347C2ABBE74B38D6E506C18DF7B1994E06C2",
+    "block": "{\n
              \"type\": \"state\",\n
-             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n    
-             \"previous\": \"BE716FE4E21E0DC923ED67543601090A17547474CBA6D6F4B3FD6C113775860F\",\n    
-             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n    
-             \"balance\": \"5256157000000000000000000000000000000\",\n    
-             \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n    
-             \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n    
-             \"signature\": \"5AF10D3DDD0E3D7A0EF18670560D194C35A519943150650BBBE0CBDB2A47A1E41817DA69112F996A9898E11F1D79EF51C041BD57C1686B81E7F9DFCCFFBAB000\",\n    
-            \"work\": \"13ae0ea3e2af9004\"\n    
-         }\n",  
-    "amount": "90000000000000000000000000000000000",   
-    "is_send": "true",  
-    "subtype": "send"  
+             \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",\n
+             \"previous\": \"BE716FE4E21E0DC923ED67543601090A17547474CBA6D6F4B3FD6C113775860F\",\n
+             \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",\n
+             \"balance\": \"5256157000000000000000000000000000000\",\n
+             \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",\n
+             \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",\n
+             \"signature\": \"5AF10D3DDD0E3D7A0EF18670560D194C35A519943150650BBBE0CBDB2A47A1E41817DA69112F996A9898E11F1D79EF51C041BD57C1686B81E7F9DFCCFFBAB000\",\n
+            \"work\": \"13ae0ea3e2af9004\"\n
+         }\n",
+    "amount": "90000000000000000000000000000000000",
+    "is_send": "true",
+    "subtype": "send"
 }
-```  
-
+```
 
 !!! warning
     It is recommended to fetch the block using the hash provided in the callback rather than trust this data is valid, and check that data instead, since a malicious 3rd party can also make a fake callback request to your endpoint.
@@ -259,7 +257,7 @@ There are 3 different ways to enable RPC for the node:
 * `rpc.enable` = **true**
 * `rpc.child_process.enable` = **false** (default, V19.0+)
 
-**Child process**  
+**Child process**
 *V19.0+ only*
 
 * `rpc.enable` = **true**
@@ -268,7 +266,7 @@ There are 3 different ways to enable RPC for the node:
 * `ipc.tcp.enable` = **true**
 * `ipc.tcp.port` = `process.ipc_port` of `config-rpc.toml`
 
-**Out of node process**  
+**Out of node process**
 *V19.0+ only*
 
 * `rpc.enable` = **false**
@@ -278,33 +276,33 @@ There are 3 different ways to enable RPC for the node:
 
 The choice depends on the setup and security that you want. The easiest way is to use RPC *in_process* according to [configuration](/running-a-node/configuration)
 
-**Launch nano_node in test mode**   
+**Launch nano_node in test mode**
 
     ./nano_node --daemon --network=test
 
-**Check if RPC is enabled with curl (use different terminal or session)**   
+**Check if RPC is enabled with curl (use different terminal or session)**
 
     curl -g -d '{ "action": "block_count" }' '[::1]:7076'
 
 !!! tip
     If you get `curl: (7) Couldn't connect to server`, replace `[::1]:7076` with `127.0.0.1:7076`.
 
-**To stop node, use**   
+**To stop node, use**
 
     curl -g -d '{ "action": "stop" }' '[::1]:7076'
 
-**Launch nano_node as a service with systemd**   
+**Launch nano_node as a service with systemd**
 
-    sudo touch /etc/systemd/system/nano_node.service   
-    sudo chmod 664 /etc/systemd/system/nano_node.service   
-    sudo nano /etc/systemd/system/nano_node.service   
+    sudo touch /etc/systemd/system/nano_node.service
+    sudo chmod 664 /etc/systemd/system/nano_node.service
+    sudo nano /etc/systemd/system/nano_node.service
 
-**Paste your specific user, group, path settings (example)**  
-    
+**Paste your specific user, group, path settings (example)**
+
     [Unit]
     Description=Nano node service
     After=network.target
-    
+
     [Service]
     ExecStart=/path_to_nano_node/nano_node --daemon
     Restart=on-failure
@@ -318,23 +316,22 @@ The choice depends on the setup and security that you want. The easiest way is t
 
     sudo service nano_node start
 
-**Enable at startup**    
+**Enable at startup**
 
     sudo systemctl enable nano_node
-    
-    
+
 !!! tip
     To manage node, use [RPC commands](/commands/rpc-protocol) or [CLI](/commands/command-line-interface)
 
-### Known issues  
+### Known issues
 
 **Error initiating bootstrap ... Too many open files**
 
-Increase max open files limit. Edit `/etc/security/limits.conf` & add    
+Increase max open files limit. Edit `/etc/security/limits.conf` & add
 ```
-    *               soft    nofile          65535    
-    *               hard    nofile          65535    
-    root            soft    nofile          65535    
-    root            hard    nofile          65535    
+    *               soft    nofile          65535
+    *               hard    nofile          65535
+    root            soft    nofile          65535
+    root            hard    nofile          65535
 ```
 Then restart session & nano_node service. Check changes with `ulimit -n`

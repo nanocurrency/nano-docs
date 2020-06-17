@@ -25,7 +25,7 @@ A local integer value that represents the order of a block in an account chain. 
 The Block Lattice is a data-structure in which individual accounts control their own blockchain. This allows transactions to be added quickly without conflict and sent to the network for confirmation.
 
 #### Blocks Per Second (BPS)
-The transmission rate of [unconfirmed](#confirmation) blocks (transactions) on the network. 
+The transmission rate of [unconfirmed](#confirmation) blocks (transactions) on the network.
 
 #### bootstrap network
 A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main, beta and test networks).

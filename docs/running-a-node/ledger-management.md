@@ -136,9 +136,9 @@ It is anticipated that bootstrapping will be slower using RocksDB during the ini
 
 Using RocksDB requires a few extra steps as it is an externally required dependency which requires a recent version of RocksDB, so older repositories may not be sufficient, it also requires `zlib`. If using the docker node, skip to [Enable RocksDB](#enable-rocksdb).
 
-### Installation  
+### Installation
 
-**Linux**  
+**Linux**
 Ubuntu 19.04 and later:
 ```
 sudo apt-get install zlib1g-dev
@@ -153,10 +153,10 @@ cd rocksdb
 make static_lib
 make install
 ```
-**MacOS**  
+**MacOS**
 `brew install rocksdb`
 
-**Windows**  
+**Windows**
 Recommended way is to use `vcpkg`:
 
 * add `set (VCPKG_LIBRARY_LINKAGE static)` to the top of `%VCPKG_DIR%\ports\rocksdb\portfile.cmake`

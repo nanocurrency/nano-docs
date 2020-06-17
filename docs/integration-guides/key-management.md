@@ -93,7 +93,7 @@ However, you must always wait for the confirmation of **pending blocks** before 
 
 A Nano private key is a 256-bit piece of data produced from a cryptographically secure random number generator.
 
-!!! danger "Secure Private Keys" 
+!!! danger "Secure Private Keys"
     * Generating private keys from an insecure source may result in loss of funds.
     * Be sure to backup any generated private key; if lost the funds in the account will become inaccessible.
 
@@ -144,7 +144,7 @@ Using external keys, transactions are generated in two steps: creation and broad
 
 !!! example "Step 1: Get Account Info"
     To send funds to an account, first call the [`account_info`](/commands/rpc-protocol#account_info) RPC command to gather necessary account information to craft your transaction. Setting `"representative": "true"` makes the nano\_node also return the account's representative address, a necessary piece of data for creating a transaction.
-    
+
 ##### Request Example
 
 ```bash
@@ -432,7 +432,7 @@ curl -d '{
 ### Broadcasting Transactions
 
 !!! example "Broadcast using [`process`](/commands/rpc-protocol/#process) RPC command"
-    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
+    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.
     A successful broadcast will return the broadcasted block's hash.
 
 --8<-- "process-sub-type-recommended.md"
@@ -459,7 +459,7 @@ curl -d '{
 
 ##### Success Response
 ```json
-{ 
+{
   "hash": "42A723D2B60462BF7C9A003FE9A70057D3A6355CA5F1D0A57581000000000000"
 }
 ```
@@ -514,7 +514,7 @@ curl -d '{
 ##### Success Response
 
 ```json
-{ 
+{
   "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
 }
 ```
@@ -565,7 +565,7 @@ Prv: 1F6FEB5D1E05C10B904E1112F430C3FA93ACC7067206B63AD155199501794E3E
 
 !!! info
     The nano\_node responds with three pieces of information:
-    
+
     1. The seed of the wallet (back this up).
     1. The pairing public address
     1. The private key (deterministically derived from seed) of accounts within the wallet.
@@ -635,7 +635,7 @@ Response if the wallet_id isn't found in nano\_node:
 
 Response if the seed field contains non-hexidecimal values or is too long:
 ```json
-{ 
+{
   "error": "Bad seed"
 }
 ```
@@ -661,7 +661,7 @@ curl -d '{
 ##### Success Response
 
 ```json
-{ 
+{
   "account": "nano_16odwi933gpzmkgdcy9tt5zef5ka3jcfubc97fwypsokg7sji4mb9n6qtbme"
 }
 ```
@@ -805,7 +805,7 @@ curl -d '{
 ##### Success Response
 
 ```json
-{ 
+{
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```

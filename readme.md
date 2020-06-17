@@ -19,7 +19,7 @@ The recommended local setup is to use Docker with a pre-built image for MkDocs a
 
 You can also install MkDocs with Python 3 to serve using the following:
 
-``` 
+```
 pip install -r requirements.txt
 mkdocs serve
 ```
