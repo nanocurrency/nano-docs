@@ -18,7 +18,7 @@ This upgrade is sometimes referenced as the epoch v2 upgrade and the relate even
 
 | Date | Type | Description |
 |------|------|-------------|
-| TBD  | Node release | Nano node V21.0 released which includes changes necessary for supporting new difficulty validation and generation |
+| <span class="no-break">2020-06-16</span>  | Node release | Nano node V21.0 released which includes changes necessary for supporting new difficulty validation and generation |
 | TBD | <span class="no-break">v2 epoch blocks distribution start</span> | Distribution of v2 epoch blocks to all accounts to mark in the ledger the point at which the new work difficulty levels will be required. The start of this distribution process will occur once key services and over 90% of voting weight on the network has upraded. |
 | TBD | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
 
@@ -41,10 +41,10 @@ The [`work_validate`](../commands/rpc-protocol.md#work_validate) RPC has multipl
 * **If possible, it is best to avoid using this RPC until the epoch upgrade is completed**
 
 **External work generation**  
-[nano-work-server](https://github.com/nanocurrency/nano-work-server) has been updated to use the higher threshold by default when not given an explicit `difficulty`. The `work_validate` response has the same breaking changes as above.
+[nano-work-server](https://github.com/nanocurrency/nano-work-server) has been updated to use the higher threshold (`fffffff800000000`) by default when not given an explicit `difficulty`. The `work_validate` response has the same breaking changes as above.
 
 * Prefer directly using the server as a [work peer](../integration-guides/work-generation.md#nodework_peers) as outlined in the [guide](../integration-guides/work-generation.md#work-generated-using-the-node-incl-work-peers). The node always requests the appropriate difficulty threshold when using RPC [block_create](../commands/rpc-protocol.md#block_create), or [work_generate](../commands/rpc-protocol.md#work_generate) with the optional `block`.
-* In cases where requesting directly from a node is not possible, avoid using the lower threshold for receive blocks until the epoch upgrade is fully complete.
+* In cases where requesting directly from a node is not possible, avoid using the lower threshold for receive blocks (`fffffe0000000000`) until the epoch upgrade is fully complete.
 
 **Work generation performance**  
 Testing out work generation capabilities on a machine is recommended. Details for how to accomplish this can be found in the [Benchmark section of the Work Generation guide](../integration-guides/work-generation.md#benchmarks).
