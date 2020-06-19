@@ -144,6 +144,27 @@ Once modifications are complete, [start up the docker container again](#starting
 
 ---
 
+### Docker Compose
+
+A sample docker-compose.yml is provided to model the same behavior as the docker cli examples above
+
+```yml
+version: '3'
+services:
+  node:
+    image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull, none for latest
+    restart: "unless-stopped"
+    ports:
+     - "7075:7075/udp"   #udp network traffic
+     - "7075:7075"       #tcp network traffic
+     - "[::1]:7076:7076" #rpc to localhost only
+     - "[::1]:7078:7078" #websocket to localhost only
+    volumes:
+     - "${NANO_HOST_DIR}:/root" #path to host directory
+```
+
+---
+
 ### Docker entrypoint support
 
 As of v20.0, the docker entry script has migrated to a command with default arguments:
