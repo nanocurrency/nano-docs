@@ -47,6 +47,7 @@ Depending on machine and networking resources, the bootstrap performance can be 
 
 * `node.bootstrap_connections_max`: up to max of `128`
 * `node.bootstrap_connections`: up to max of `16`
+* `node.bootstrap_initiator_threads`: set to `2`
 
 The additional resource usage these options cause should be considered, especially if left during normal operation (after initial bootstrap is complete).
 
