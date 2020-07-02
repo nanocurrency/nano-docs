@@ -169,7 +169,7 @@ While somewhat less convenient, the envelope approach is desirable for very larg
 
 ### Flatbuffers mapping
 
-Here's the corresponding message definitions for the AccountWeight request and response types:
+Here's the corresponding [message definitions](https://github.com/nanocurrency/nano-node/blob/master/api/flatbuffers/nanoapi.fbs) for the AccountWeight request and response types:
 
 ```
 /** Returns the voting weight for the given account */
