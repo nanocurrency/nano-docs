@@ -49,7 +49,7 @@ docker pull nanocurrency/nano-beta
 
 Pulls a specific version of the Nano node:
 ```bash
-docker pull nanocurrency/nano-beta:V21.0RC1
+docker pull nanocurrency/nano-beta:V21.1RC1
 ```
 
 Pulls the latest release which includes any release candidate versions:
