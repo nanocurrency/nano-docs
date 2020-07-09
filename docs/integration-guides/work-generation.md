@@ -65,7 +65,7 @@ Services where RPC usage is lighter but regular work generation is needed could 
 1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](#nodework_threads) = `0`
 
 !!! info "Node work generation option"
-	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`node.opencl.enable`](#nodeopenclenable) = `true` and adusting `node.opencl.device` and `node.opencl.platform` to match your setup.
+	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](#openclenable) = `true` and adusting `opencl.device` and `opencl.platform` to match your setup.
 
 ---
 
@@ -112,7 +112,7 @@ graph TD
 
 The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
-### node.opencl.enable
+### opencl.enable
 
 !!!success "When GPU acceleration is enabled, the CPU is also used by default"
 	Make sure to set `node.work_threads` to `0` when using the GPU
