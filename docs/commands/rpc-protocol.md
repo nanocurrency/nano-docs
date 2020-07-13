@@ -2462,7 +2462,7 @@ When setting raw to true metrics from all nodes are displayed. It additionally c
     {
       "block_count": "5777903",
       ...
-      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C",
+      "node_id": "nano_1cmi8difuruopgzpnb4ybrnnj5rproxwuwe5mad7ucbsekakiwn37qqg1zo5",
       "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
       "address": "::ffff:152.89.106.89",
       "port": "54000"
@@ -2470,7 +2470,7 @@ When setting raw to true metrics from all nodes are displayed. It additionally c
     {
       "block_count": "5777902",
       ...    
-      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B",
+      "node_id": "nano_3ipxdjrha3rfg9h3spiz5jkprw8kdj7bph9fir51kf6pmryzznsyhakqznk3",
       "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
       "address": "::ffff:95.216.205.215",
       "port": "54006"
