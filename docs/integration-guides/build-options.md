@@ -214,9 +214,8 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ### Node
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
-git checkout master
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
@@ -231,9 +230,8 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
-git checkout master
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
@@ -261,7 +259,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 Using git_bash:
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node
 cd nano-node
 git checkout master
 ```
