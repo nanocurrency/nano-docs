@@ -538,28 +538,28 @@ No filters are currently available for the `telemetry` topic.
 ```json
 {
   "topic": "telemetry",
-  "time": "1587109495082",
+  "time": "1594654710305",
   "message": {
-    "block_count": "23173713",
-    "cemented_count": "23173713",
+    "block_count": "51571901",
+    "cemented_count": "51571901",
     "unchecked_count": "0",
-    "account_count": "1502809",
-    "bandwidth_cap": "5242880",
-    "peer_count": "36",
+    "account_count": "1376750",
+    "bandwidth_cap": "10485760",
+    "peer_count": "261",
     "protocol_version": "18",
-    "uptime": "636056",
-    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "uptime": "1223618",
+    "genesis_block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
     "major_version": "21",
     "minor_version": "0",
     "patch_version": "0",
     "pre_release_version": "0",
     "maker": "0",
-    "timestamp": "1587109484086",
-    "active_difficulty": "ffffffcdbf40aa45",
-    "node_id": "59A442B93C43623EB250330A31B158D7DF97EFB9365ABACC1A9416968FDCE4CB",
-    "signature": "A133AD584C3C1F44BB7FDA1F53B80DA83EBF5E3D9DCB55D74F0B6899151331C1FB11E4E29CE54F3B4C315FEAEECAD4AF383BDB175ECA76C1744DE51AEB097709",
-    "address": "::ffff:165.22.133.254",
-    "port": "54000"
+    "timestamp": "1594654710521",
+    "active_difficulty": "ffffffc000000000",
+    "node_id": "node_3cczh431wuh5gg64jen6a658xewpx7eiyfqn7f8gpdcfp786s7xdb51kr1rp",
+    "signature": "C9429FBC069F15E9AE552FB80500B4BA0F0CF2E25DD6C6D2018FA1D96DC4353A75E4A86872E54E7B2BFF06526719076E792DA3C83F1B2FD40244804EAC324C00",
+    "address": "::ffff:139.180.168.194",
+    "port": "7075"
   }
 }
 ```
