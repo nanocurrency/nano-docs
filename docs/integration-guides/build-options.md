@@ -216,6 +216,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
+git checkout master
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
@@ -232,6 +233,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
+git checkout master
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
@@ -261,6 +263,7 @@ Using git_bash:
 ```bash
 git clone --recursive https://github.com/nanocurrency/nano-node
 cd nano-node
+git checkout master
 ```
 
 **Create a `build` directory inside nano-node (makes for easier cleaning of build)**
