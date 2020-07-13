@@ -11,16 +11,17 @@ If you want to help with updating documentation, we recommend you join the Disco
 To submit changes, please fork the repository and create a branch to make your changes in. Submit a Pull Request back to the source repository when ready and they will be reviewed for possible inclusion.
 
 ## Development
-The recommended local setup is to use Docker with a pre-built image for MkDocs and Material theme. With Docker installed, from your nano-docs directory run:
+The recommended local setup is to use Docker with a pre-built image for MkDocs and Material theme. With Docker installed, from your cloned nano-docs directory run:
 
-`docker pull squidfunk/mkdocs-material`
-
-`docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material`
+```bash
+docker pull nanocurrency/nano-docs:base
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs nanocurrency/nano-docs:base
+```
 
 You can also install MkDocs with Python 3 to serve using the following:
 
-``` 
-pip install -r requirements.txt
+```bash
+pip3 install -r requirements.txt
 mkdocs serve
 ```
 
