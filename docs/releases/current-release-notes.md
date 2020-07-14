@@ -1,9 +1,13 @@
 title: Current Release Notes | Nano Documentation
 description: Details of the most current Nano node release including upgrade notices, major features, API changes and more
 
-# Current Release Notes: V21.0
+# Current Release Notes: V21+
 
---8<-- "release-details-v21-0.md"
+
+!!! warning "V21.1 Patch Release Available"
+	After launch of V21.0...
+
+--8<-- "release-details-v21-1.md"
 
 !!! info "Nano Forum available"
 	The Nano Forum is available at https://forum.nano.org/ as a resource to ask questions and get support when participating on the network. The [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) is a great place to ask node upgrade related questions. 
