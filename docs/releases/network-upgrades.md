@@ -23,7 +23,7 @@ This upgrade is sometimes referenced as the epoch v2 upgrade and the relate even
 | TBD | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
 
 !!! warning "Nodes de-peered with epoch blocks"
-	Due to the nature of the work difficulty changes, any nodes not updated to V21.0 at the time of epoch block distribution will be de-peered from the network.
+	Due to the nature of the work difficulty changes, any nodes not updated to V21.0+ at the time of epoch block distribution will be de-peered from the network.
 
 #### Recommended preparations
 

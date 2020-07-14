@@ -28,12 +28,12 @@ Although breaking changes were kept to a minimum in this release, there are two 
 ### Upcoming v2 epoch upgrade
 As outlined in the [February Development Update: V21 PoW Difficulty Increases](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e), an epoch block distribution must be done to complete the upgrade to the new work difficulty thresholds. **All integrations generating work are encouraged to review the details on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) ahead of the epoch V2 distribution.**
 
-!!! danger "Only node V21.0 will be active after epoch distribution"
-	Nodes upgrading to V21.0 will remain peered with nodes V19.0 and V20.0 on the network until the epoch v2 block distribution begins. **After the first epoch v2 block is distributed, all nodes not running V21.0 will no longer be able to participate on the network.** This distribution will occur once 90% of voting weight and key services on the network have upgraded. Communications around the progress towards this goal will be sent following the release.
+!!! danger "Only nodes V21.0+ will be active after epoch distribution"
+	Nodes upgrading to V21.0+ will remain peered with nodes V19.0 and V20.0 on the network until the epoch v2 block distribution begins. **After the first epoch v2 block is distributed, all nodes not running V21.0+ will no longer be able to participate on the network.** This distribution will occur once 90% of voting weight and key services on the network have upgraded. Communications around the progress towards this goal will be sent following the release.
 
 	More details about this network upgrade can be found on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty)
 
-	**All network participants are encouraged to upgrade to V21.0 as soon as possible to avoid disruption.**
+	**All network participants are encouraged to upgrade to V21.1 as soon as possible to avoid disruption.**
 
 ### UDP disabled by default
 With all active peers capable of communicating via TCP, the UDP connections will be disabled by default in this version. To avoid disruptions, all nodes should allow traffic on 7075 TCP (see [Network Ports](/running-a-node/node-setup/#network-ports) details) and once upgraded, the [`peers`](/commands/rpc-protocol/#peers) RPC call should return at least dozens of peers and the [`confirmation_quorum`](/commands/rpc-protocol/#confirmation_quorum) RPC call should have a `peers_stake_total` value in the high tens of millions of Nano.
