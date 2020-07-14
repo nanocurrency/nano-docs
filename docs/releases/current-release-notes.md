@@ -3,9 +3,8 @@ description: Details of the most current Nano node release including upgrade not
 
 # Current Release Notes: V21+
 
-
 !!! warning "V21.1 Patch Release Available"
-	After launch of V21.0...
+	Following the release of V21.0, some issues were detected and resolved with the release of the V21.1 patch, some of which affect the node's ability to communicate with the network. Upgrading to V21.1 is **highly recommended**.
 
 --8<-- "release-details-v21-1.md"
 
