@@ -7,7 +7,7 @@ Welcome! This documentation is focused on helping developers understand the Nano
 |<span class="no-break">**[Running a Node](/running-a-node/overview/)**</span>| Get up and running with a Nano node to manage the ledger, create and publish blocks and participate in consensus. | Node operators, developers  |
 |<span class="no-break">**[Integration Guides](/integration-guides/the-basics)**</span>| Learn practical concepts, structures and features for building wallets, payment systems and other services on the network. | Developers  |
 |<span class="no-break">**[Commands](/commands/rpc-protocol/)**</span>|  Explore an exhaustive list interaction methods for the node via RPC and CLI. | Node operators, developers |
-|<span class="no-break">**[Protocol Design](/protocol-design/overview)**</span>|  Dig deeper into the design and behaviors driving this amazing protocol including the election process, peering mechanics and more. | Developers |
+|<span class="no-break">**[Protocol Design](/protocol-design/overview)**</span>|  Dig deeper into the design and behaviors driving the protocol including the election process, peering mechanics and more. | Developers |
 |<span class="no-break">**[Releases](/releases/node-releases)**</span>| Review past node releases and get details about the features coming soon in new releases.  | Everyone  |
 
 **Join the Community**
