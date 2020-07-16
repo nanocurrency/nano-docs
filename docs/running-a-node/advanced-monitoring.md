@@ -50,11 +50,11 @@ Typical configurations will have the exporter running on the same server as the 
 nano-prom -h --rpchost ::1 \
              --rpcport 7076 \
              --datapath ~/Nano/Nano \
-             --pushgateway exporter-and-node.server.org:9091 \
+             --pushgateway your-exporter-and-node.server.org:9091 \
              --hostname MyNanoMetrics
 ```
 
-See the [README](https://github.com/nanocurrency/nano_prom_exporter) at for more details on usage.
+See the [README](https://github.com/nanocurrency/nano_prom_exporter) for more details on usage.
 
 ### Step 4: View your metrics
 
@@ -74,6 +74,8 @@ Other options can be explored in the [Visualization](https://prometheus.io/docs/
 
 ## Connecting to other push gateways
 
-The exporter supports sending metrics to multiple push gateways using a `;` separated list of targets. Although no public push gateways for node monitoring are available at this time, there may be opportunities in the future to share your node metrics with the community or other monitoring setups to provide a better view of network performance. Check back here and keep an eye out for these public gateways to become available.
+The exporter supports sending metrics to multiple push gateways using a `config.ini` file and the `--config_path` option in the command to accept the location.  Within this file the authentication can be managed between different endpoints and support for selecting specific metrics per push gateway will added soon. See the [README](https://github.com/nanocurrency/nano_prom_exporter) for more details on usage.
+
+Although no public push gateways for node monitoring are available at this time, there may be opportunities in the future to share your node metrics with the community or other monitoring setups to provide a better view of network performance. Check back here and keep an eye out for these public gateways to become available.
 
 And if you know of any public push gateways available to send this useful node data to, [please let us know](https://nano.org/connect).
