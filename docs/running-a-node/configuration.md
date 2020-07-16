@@ -5,7 +5,7 @@ The Nano node software is designed to run with little or no configuration. All c
 !!! success "Automatic migration and backups of JSON files"
     Versions prior to 20 use JSON as the configuration file format, and these will be automatically migrated to TOML files on startup. Note that only non-default values are migrated.
 
-    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same folder for easy recovery if needed.
+    In version 19.0 when the node is upgraded between releases, including any beta releases, all config files will be backed up prior to the upgrade in the same directory for easy recovery if needed.
 
     As TOML files are never upgraded by the node, no backups are created for these.
 
@@ -151,7 +151,7 @@ The node and its related processes will look for the files listed below, either 
 
 The default locations of the config files are listed in the table below.
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
 
 ## Options formatting
 
@@ -226,11 +226,35 @@ enable_control = false
 
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
+#### logging.stable_log_filename
+This configuration option is set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
+
+By default this option is set to `false` which results in all log files having a timestamp appended to them, even the currently active file. If set to `true` the currently active log file will have a static name at `log/node.log` for easier management.
+
+#### logging.log_rpc
+This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
+
+By default, all RPC calls and the time spent handling each one are [logged](../running-a-node/troubleshooting.md#log-files). This can be optionally turned off by switching option `logging.log_rpc` to `false`
+
+```toml
+[logging]
+
+# Whether to log RPC calls.
+# type:bool
+log_rpc = true
+```
+
 ### IPC
 See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
 
 ### Voting
 See the [Voting as a Representative guide](voting-as-a-representative.md).
+
+### Ledger backends
+See the [Ledger Management guide](ledger-management.md).
+
+### HTTPS support
+See the [HTTPS Support guide](configuration-https.md).
 
 ### HTTP callback
 
@@ -262,6 +286,3 @@ For details on how to integrate using the HTTP callback, see the [HTTP Callback 
 ---
 
 --8<-- "network-details.md"
-
-## Ledger backends
-LMDB is used by default, in _v20.0+_ [RocksDB](ledger-management.md#rocksdb-ledger-backend) is also available as an experimental option. See [Ledger Management](ledger-management.md) guide for more details.

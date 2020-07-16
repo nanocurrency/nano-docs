@@ -10,6 +10,9 @@ The default location of standard node log files for various systems:
 | macOS   | `:::bash /Users/<user>/Library/Nano/log ` |
 | Linux   | `:::bash /home/<user>/Nano/log ` |
 
+!!! tip ""
+    To get a static file name for the currently active log file, see the [stable_log_filename configuration option](configuration.md#loggingstable_log_filename)
+
 ---
 
 ## What to do if the node crashes (Linux)
@@ -37,11 +40,11 @@ Please follow the steps below for the corresponding node version you are using. 
 
 !!! example "Step 1: Make sure addr2line is installed"
     It is likely installed already, consult documentation for your linux distribution if it is not mentioned below:  
-    **Ubuntu**  
-    `apt-get install addr2line`  
+    **Ubuntu/Debian**
+    `apt-get install binutils`
   
     **Fedora 22+**  
-    `dnf install addr2line`
+    `dnf install binutils`
 
 !!! example "(Optional) Step 2: Save crash dump files"
     The next step will clean up the dump files generated during the crash, if you wish to keep these then save `nano_node_backtrace.dump`, and all `nano_node_crash_load_address_dump_*.txt` files.
@@ -299,6 +302,7 @@ details:
     requests_generated_hashes
     requests_cached_votes
     requests_generated_votes
+    requests_cannot_vote
     requests_unknown
 
     // duplicate

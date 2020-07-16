@@ -640,8 +640,10 @@ _version 21.0+_
 Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
 
 **Optional "difficulty"**
-_version 21.0+_
+
+_version 21.0+_  
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+
 If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 ---
@@ -1027,33 +1029,33 @@ _versions 21.0+_
   ]
 }
 ```
-**Response:**
-_versions 17.0-20.0_
-```json
-{
-  "clients": "0",
-  "pulls": "0",
-  "pulling": "0",
-  "connections": "31",
-  "idle": "31",
-  "target_connections": "16",
-  "total_blocks": "13558",
-  "runs_count": "0",
-  "requeued_pulls": "31",
-  "frontiers_received": "true",
-  "frontiers_confirmed": "false",
-  "mode": "legacy",
-  "lazy_blocks": "0",
-  "lazy_state_backlog": "0",
-  "lazy_balances": "0",
-  "lazy_destinations": "0",
-  "lazy_undefined_links": "0",
-  "lazy_pulls": "32",
-  "lazy_keys": "32",
-  "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
-  "duration": "29"
-}
-```
+
+??? abstract "Response V17.0-V20.0"
+    ```json
+    {
+      "clients": "0",
+      "pulls": "0",
+      "pulling": "0",
+      "connections": "31",
+      "idle": "31",
+      "target_connections": "16",
+      "total_blocks": "13558",
+      "runs_count": "0",
+      "requeued_pulls": "31",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "mode": "legacy",
+      "lazy_blocks": "0",
+      "lazy_state_backlog": "0",
+      "lazy_balances": "0",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "32",
+      "lazy_keys": "32",
+      "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
+      "duration": "29"
+    }
+    ```
 
 ---
 
@@ -1721,103 +1723,6 @@ Removing node ID (restart required to take effect)
   "deprecated": "1"
 }
 ```  
-
----
-
-### node_telemetry
-_version 21.0+_  
-Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
-**Request:**
-```json
-{
-  "action": "node_telemetry"
-}
-```
-**Response:**
-```json
-{
-    "block_count": "5777903",
-    "cemented_count": "688819",
-    "unchecked_count": "443468",
-    "account_count": "620750",
-    "bandwidth_cap": "1572864",
-    "peer_count": "32",
-    "protocol_version": "18",
-    "uptime": "556896",
-    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
-    "major_version": "21",
-    "minor_version": "0",
-    "patch_version": "0",
-    "pre_release_version": "0",
-    "maker": "0",
-    "timestamp": "1587055945990",
-    "active_difficulty": "ffffffcdbf40aa45"
-}
-```
-
-This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
-
-| Field Name | Response details |
-|------------|------------------------------------|
-| **block_count**       | average count of blocks in ledger (including unconfirmed) |
-| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
-| **unchecked_count**   | average count of unchecked blocks |
-| **account_count**     | average count of accounts in ledger |
-| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
-| **peer_count**        | average count of peers nodes are connected to |
-| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
-| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
-| **genesis_block**     | mode (most common) of genesis block hashes |
-| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
-| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
-
-This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
-
-**Optional "raw"**  
-When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
-
-**Request:**
-```json
-{
-  "action": "node_telemetry",
-  "raw" : "true"
-}
-```
-
-**Response:**
-```json
-{
-  "metrics": [
-    {
-      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
-      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C"
-      ...
-      "address": "::ffff:152.89.106.89",
-      "port": "54000"
-    },
-    {
-      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
-      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B"
-      ...    
-      "address": "::ffff:95.216.205.215",
-      "port": "54006"
-    }
-    ...
-  ]
-}
-```
-
-**Optional "address" & "port"**  
-Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
-```json
-{
-  "action": "node_telemetry",
-  "address": "246.125.123.456",
-  "port": "7075"
-}
-```
-Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 
@@ -2489,6 +2394,105 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 
 ---
 
+### telemetry
+_version 21.0+_  
+Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+**Request:**
+```json
+{
+  "action": "telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "556896",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587055945990",
+    "active_difficulty": "ffffffcdbf40aa45"
+}
+```
+
+This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
+
+| Field Name | Response details |
+|------------|------------------------------------|
+| **block_count**       | average count of blocks in ledger (including unconfirmed) |
+| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
+| **unchecked_count**   | average count of unchecked blocks |
+| **account_count**     | average count of accounts in ledger |
+| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
+| **peer_count**        | average count of peers nodes are connected to |
+| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
+| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **genesis_block**     | mode (most common) of genesis block hashes |
+| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
+| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "block_count": "5777903",
+      ...
+      "node_id": "DF00C99E4205D74B0B20E2F9399DCF847C6A8FDFD9F47BAB2F95EE8C056B670C",
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "block_count": "5777902",
+      ...    
+      "node_id": "C8172AB14437B245760B418621AD0FF22003F4ED55C1736C41FAFEAFC30FF70B",
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+---
+
 ### validate_account_number 
 Check whether **account** is a valid account number using checksum  
 
@@ -2787,8 +2791,19 @@ A valid Nano account. If provided and `use_peers` is set to `true`, this informa
 
 **Optional "version"**
 
-_version 21.0+_
+_version 21.0+_  
 Work version string. Currently "work_1" is the default and only valid option.
+
+**Optional "block"**
+
+_version 21.0+_  
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.  
+***Note:*** block should be the one where the resulting work value will be used, not the previous block.
+
+**Optional "json_block"**
+
+_version 21.0+_  
+Default "false". If "true", `block` in the request should contain a JSON subtree instead of a JSON string.
 
 ---
 

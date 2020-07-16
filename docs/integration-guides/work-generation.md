@@ -65,7 +65,7 @@ Services where RPC usage is lighter but regular work generation is needed could 
 1. Configure the node to prevent local CPU work generation by setting [`node.work_threads`](#nodework_threads) = `0`
 
 !!! info "Node work generation option"
-	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`node.opencl.enable`](#nodeopenclenable) = `true` and adusting `node.opencl.device` and `node.opencl.platform` to match your setup.
+	A less preferred alternative to setting up, running and monitoring the Nano Work Server is to use the node itself to generate work. This should only be done with an attached GPU by setting up and enabling OpenCL with [`opencl.enable`](#openclenable) = `true` and adusting `opencl.device` and `opencl.platform` to match your setup.
 
 ---
 
@@ -112,7 +112,7 @@ graph TD
 
 The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
-### node.opencl.enable
+### opencl.enable
 
 !!!success "When GPU acceleration is enabled, the CPU is also used by default"
 	Make sure to set `node.work_threads` to `0` when using the GPU
@@ -167,19 +167,23 @@ The command will trigger continual work generation, so let it run until a suffic
 
 ### Example benchmarks
 
-Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs updated in late 2017.
+Below are work generation benchmarks from a variety of consumer-grade CPUs and GPUs. All values are presented in **# work/second generated**. See the [difficulty thresholds section](#difficulty-thresholds) below for details about values required for different epoch versions and block types.
 
-| Device | Epoch v1<br /># PoW/sec |
-|--------|-|
-| Nvidia Tesla V100 (AWS) | 6.4 |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 |
-| Nvidia Tesla K80 (Google,Cloud) | 1.64 |
-| AMD RX 470 OC | 1.59 |
-| Nvidia GTX 1060 3GB | 1.25 |
-| Intel Core i7 4790K AVX2 | 0.33 |
-| Intel Core i7 4790K,WebAssembly (Firefox) | 0.14 |
-| Google Cloud 4 vCores 0.14-0.16 | 0.14-0.16 |
-| ARM64 server 4 cores (Scaleway) | 0.05-0.07 |
+| **Device** | **Epoch v1**<br />All Blocks | **Epoch v2**<br />Send/Change Blocks | **Epoch v2**<br />Receive Blocks |
+|--------|-|-|-|
+| Nvidia Tesla V100 (AWS) | 6.4 | | |
+| Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
+| Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
+| Google Cloud 4 vCores | 0.15 | | |
+| ARM64 server 4 cores (Scaleway) | 0.06 | | |
+| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
+| AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
+| AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
+| AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.6 |
+| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
+| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
+| AMD R9 290 | 1.23 | 0.15 | 8.06 |
+| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
 
 ---
 
@@ -207,7 +211,19 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `0xffffffc000000000` for all blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation. Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+The mainnet's base difficulty threshold is currently `ffffffc000000000` for all epoch v1 blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+
+Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+
+After the next [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty), which will occur after the [V21.0 release](../releases/current-release-notes.md) and subsequent distribution of epoch v2 blocks, there will be two difficulty thresholds:
+
+| Epoch version | Block Type | Difficulty Threshold |
+|               |            |                      |
+| 1             | All        | `ffffffc000000000`   |
+| 2             | Send or change | `fffffff800000000` |
+| 2             | Receive        | `fffffe0000000000` |
+
+Although preparations can be done ahead of the upgrade, please find related considerations in the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) section.
 
 **Development node wallet behavior**
 

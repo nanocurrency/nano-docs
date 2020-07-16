@@ -1,4 +1,4 @@
-site_name: Documentation
+site_name: Nano Docs
 site_url: https://docs.nano.org/
 theme:
   name: 'material'
@@ -8,9 +8,9 @@ theme:
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
-  logo: 'images/nano.svg'
-  feature:
-    tabs: false
+  icon: 
+    logo: 'nano'
+    repo: 'fontawesome/brands/github'
   favicon: 'images/favicon.png'
   custom_dir: 'theme'
 nav:
@@ -52,6 +52,8 @@ nav:
     - Original whitepaper: whitepaper/english.md
   - Releases:
     - Node Releases: releases/node-releases.md
+    - Current Release Notes: releases/current-release-notes.md
+    - Previous Release Notes: releases/previous-release-notes.md
     - Network Upgrades: releases/network-upgrades.md
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
@@ -100,23 +102,23 @@ extra_css:
   - 'stylesheets/extras.css'
 extra:
   social:
-  - type: 'github'
+  - icon: 'fontawesome/brands/github'
     link: 'https://github.com/nanocurrency'
-  - type: 'twitter'
+  - icon: 'fontawesome/brands/twitter'
     link: 'https://twitter.com/nano'
-  - type: 'comments'
+  - icon: 'material/comment-multiple'
     link: 'https://chat.nano.org'
-  - type: 'reddit'
+  - icon: 'fontawesome/brands/reddit'
     link: 'https://reddit.com/r/nanocurrency'
-  - type: 'medium'
+  - icon: 'fontawesome/brands/medium'
     link: 'https://medium.com/nanocurrency'
-  - type: 'facebook'
+  - icon: 'fontawesome/brands/facebook'
     link: 'https://facebook.com/nanofoundation'
-  - type: 'linkedin'
+  - icon: 'fontawesome/brands/linkedin'
     link: 'https://linkedin.com/company/nano-foundation'
-  - type: 'youtube'
+  - icon: 'fontawesome/brands/youtube'
     link: 'https://www.youtube.com/nanocurrency/'
-  - type: 'instagram'
+  - icon: 'fontawesome/brands/instagram'
     link: 'https://www.instagram.com/nanocurrency/'
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'

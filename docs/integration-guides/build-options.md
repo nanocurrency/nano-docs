@@ -26,22 +26,22 @@ sudo yum install nanocurrency-beta
 
 This installs `nano_node-beta` to bin.
 
-## Nano Folder
+## Nano Directory
 
 ### Contents
 
---8<-- "folder-contents.md"
+--8<-- "directory-contents.md"
 
 ### Locations
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
 
-??? tip "Moving folder locations"
+??? tip "Moving directory locations"
     Some users desire to change the blockchain download location. A solution is available for the no gui nano_node (see https://github.com/nanocurrency/nano-node/issues/79), but no concrete solution is available for the GUI client. However, a workaround can be acheived via the use of symbolic links. Below is a short tutorial for Windows builds:
 
-    1. Rename/delete the Nano folder in your `appdata` Local folder (if you haven't run the wallet yet, skip this step). This is necessary because the command to create a symbolic link in windows will fail if the the input directory already exists.
-    1. Decide on where you want to store the blockchain and create a symbolic link. The command is (in an administrative command-prompt): `mklink /d "C:\Users\<user>\AppData\Local\Nano\" "E:\Some\Other\Directory"`. This command creates a symbolic link for a directory (`/d`) that 'redirects' all requests for files/directories in the `Local\Nano` folder to the `Other\Directory`. This means that a file created in the input directory will actually be in the output directory (on the other disk).
-    1. Verify it works. Create a file in your Nano folder in your appdata, and you should see it appear in the directory you linked it to (and vice-versa). If you have old wallets or a partially-downloaded blockchain, copy them back into the local directory. Start the wallet.
+    1. Rename/delete the Nano directory in your `appdata` Local directory (if you haven't run the wallet yet, skip this step). This is necessary because the command to create a symbolic link in windows will fail if the the input directory already exists.
+    1. Decide on where you want to store the blockchain and create a symbolic link. The command is (in an administrative command-prompt): `mklink /d "C:\Users\<user>\AppData\Local\Nano\" "E:\Some\Other\Directory"`. This command creates a symbolic link for a directory (`/d`) that 'redirects' all requests for files/directories in the `Local\Nano` directory to the `Other\Directory`. This means that a file created in the input directory will actually be in the output directory (on the other disk).
+    1. Verify it works. Create a file in your Nano directory in your appdata, and you should see it appear in the directory you linked it to (and vice-versa). If you have old wallets or a partially-downloaded blockchain, copy them back into the local directory. Start the wallet.
 
 ---
 
@@ -52,7 +52,7 @@ This installs `nano_node-beta` to bin.
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.67](http://www.boost.org/users/history/version_1_67_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
@@ -214,7 +214,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ### Node
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
@@ -230,7 +230,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
@@ -245,7 +245,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 ### Dependencies
 
-* [Boost 1.67+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
+* [Boost 1.69+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
 * [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
 * [Git for Windows](https://git-scm.com/download/win) **git_bash**
 * [CMake](https://cmake.org/download/)
@@ -259,18 +259,19 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 Using git_bash:
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node
+git clone --branch master --recursive https://github.com/nanocurrency/nano-node
 cd nano-node
+git checkout master
 ```
 
-**Create a `build` folder inside nano-node (makes for easier cleaning of build)**
+**Create a `build` directory inside nano-node (makes for easier cleaning of build)**
 
 Using git_bash:
 ```bash
 mkdir build
 cd build
 ``` 
-* **Note:** all subsequent commands should be run within this "build" folder.
+* **Note:** all subsequent commands should be run within this "build" directory.
 
 **Get redistributables** 
 
@@ -288,7 +289,7 @@ Using 64 Native Tools Command Prompt:
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_67_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_67_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_69_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_69_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
 ```
 
 ### Build

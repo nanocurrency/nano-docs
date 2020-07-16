@@ -540,8 +540,6 @@ No filters are currently available for the `telemetry` topic.
   "topic": "telemetry",
   "time": "1587109495082",
   "message": {
-    "signature": "A133AD584C3C1F44BB7FDA1F53B80DA83EBF5E3D9DCB55D74F0B6899151331C1FB11E4E29CE54F3B4C315FEAEECAD4AF383BDB175ECA76C1744DE51AEB097709",
-    "node_id": "59A442B93C43623EB250330A31B158D7DF97EFB9365ABACC1A9416968FDCE4CB",
     "block_count": "23173713",
     "cemented_count": "23173713",
     "unchecked_count": "0",
@@ -557,12 +555,15 @@ No filters are currently available for the `telemetry` topic.
     "pre_release_version": "0",
     "maker": "0",
     "timestamp": "1587109484086",
+    "active_difficulty": "ffffffcdbf40aa45",
+    "node_id": "59A442B93C43623EB250330A31B158D7DF97EFB9365ABACC1A9416968FDCE4CB",
+    "signature": "A133AD584C3C1F44BB7FDA1F53B80DA83EBF5E3D9DCB55D74F0B6899151331C1FB11E4E29CE54F3B4C315FEAEECAD4AF383BDB175ECA76C1744DE51AEB097709",
     "address": "::ffff:165.22.133.254",
     "port": "54000"
   }
 }
 ```
-See the [node_telemetry](/commands/rpc-protocol/#node_telemetry) RPC command which gives more information about the message response  
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response  
 
 
 ### New unconfirmed blocks

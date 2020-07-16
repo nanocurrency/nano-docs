@@ -1,0 +1,2 @@
+!!! info "Setup for testing on beta network"
+	If you are looking to test the latest version of the node ahead of release, check out the [Beta Network](/running-a-node/beta-network/) page for more details about how to get setup. Testing specific features, integrations and anything else is highly encouraged during all stages of node development.
