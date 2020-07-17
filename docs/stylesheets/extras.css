@@ -99,7 +99,7 @@
 	color: #131121;
 }
 
-.md-nav__title--site {
+.md-nav__title {
 	display: none;
 }
 
@@ -135,14 +135,30 @@
     max-width: 100%;
 }
 
+.md-footer-social {
+    padding: 0;
+    float:right;
+}
+
+.md-footer-social__link svg {
+    max-height: 1.2rem;
+}
+
+.md-header-nav__button.md-logo svg {
+    width: 120px;
+}
+
 @media only screen and (min-width: 45em) {
     .md-footer-social {
         padding: 0;
     }
+    .md-footer-disclaimer {
+        width: 100%;
+    }
 }
 
 @media (min-width: 1600px) {
-    .md-header-nav__button.md-logo img {
-    height: 52px;
+    .md-header-nav__button.md-logo svg {
+        height: 52px;
     }
 }
