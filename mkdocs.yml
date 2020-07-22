@@ -27,6 +27,7 @@ nav:
     - Configuration: running-a-node/configuration.md
     - Ledger Management: running-a-node/ledger-management.md
     - Voting as a Representative: running-a-node/voting-as-a-representative.md
+    - Advanced Monitoring: running-a-node/advanced-monitoring.md
     - Beta Network: running-a-node/beta-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
