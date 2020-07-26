@@ -283,7 +283,17 @@ Change to representative with label and message
 
     nanoseed:<encoded seed>[?][label=<label>][&][message=<message>][&][lastindex=<index>]
 
-### Process a JSON blob block
-(to be sent as the `block` argument to the RPC call `process`)
+### Sign a JSON block
+Block to be verified by the user on a remote device and hash to be signed. Recommended to include the previous block for the correct transaction amount and subtype to be determined and the hash of the previous block to be verified against the new block frontier making it tamper-proof.
 
-    nanoblock:<blob>
+    nanosign:{"block":<newBlock>,"previous":<previousBlock>}
+
+### Process a JSON block (without amount and type verification)
+To be sent as the `block` argument to the RPC call `process`. Signature included but work optional as it can be embedded by the device making the call.
+
+    nanoblock:{"block":<block>}
+
+### Process a JSON block (with amount and type verification)
+To be verified by the user and sent as the `block` argument to the RPC call `process`. Signature included but work optional as it can be embedded by the device making the call.Previous block included for the correct transaction amount and subtype to be determined and previous block hash to be verified against the new block frontier making it tamper-proof.
+
+    nanoprocess:{"block":<newBlock>,"previous":<previousBlock>}
