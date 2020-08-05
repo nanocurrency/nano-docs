@@ -20,8 +20,6 @@ We invite anyone interested in contributing to Nano to consider participating on
 
 !!! warning
 	* Release candidate builds are only recommended for use on the beta network
-	* The fastest and most recommended method of installation is through [Docker](#running-a-beta-node)
-	* Binaries and other details can be found at: https://beta.nano.org/
 
 ## Running a beta node
 
@@ -49,7 +47,7 @@ docker pull nanocurrency/nano-beta
 
 Pulls a specific version of the Nano node:
 ```bash
-docker pull nanocurrency/nano-beta:V21.1RC1
+docker pull nanocurrency/nano-beta:<tag>
 ```
 
 Pulls the latest release which includes any release candidate versions:
@@ -63,7 +61,6 @@ A list of beta tags can be found at the official [Nano Currency Docker Hub](http
 
 ```bash
 docker run --restart=unless-stopped -d \
-  -p 54000:54000/udp \
   -p 54000:54000 \
   -p [::1]:55000:55000 \
   -p [::1]:57000:57000 \
@@ -82,8 +79,7 @@ docker run --restart=unless-stopped -d \
 ## Additional beta resources
 
 | URL                                     | Description |
-|                                         |             |
-| https://beta.nano.org/                  | Nano Foundation beta site and faucet |
+|                                         |             |	
 | https://beta.nanocrawler.cc/            | Beta Explorer |
 | https://beta.nanoticker.info/           | Beta node details and stats |
 | https://b.repnode.org/                  | Beta node details and stats |
@@ -98,21 +94,18 @@ docker run --restart=unless-stopped -d \
 
 <span id="release-candidate-builds"></span>
 <span id="development-builds"></span>
+<span id="latest-beta-builds"></span>
 ## Testing Builds
 
-In addition to the Docker details above, the latest binary builds of the node for the beta network are shared in the #beta_announcements channel on our [Discord server](https://chat.nano.org) and updated below for easy reference. These assets are also available on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) under `RC#` and `DB#` tags, which can also be used to manually build if necessary.
+Most of the resources needed to participate on the beta network can be found within the `#beta-xxxxxxx` channels on our [Discord server](https://chat.nano.org). As much of the discussion, planning and engagement happens here, all participants are highly encouraged to join there.
 
-Additional details for services who wish to test their integrations on the beta network for proper migration between releases can be found in the [Release Notes area](/releases/node-releases/#release-notes).
+### Binaries
 
-### Latest Beta Builds
-
---8<-- "current-beta-build-links.md"
+In addition to the Docker details above, the latest binary builds of the node for the beta network are shared in the `#beta_announcements` channel on our [Discord server](https://chat.nano.org). These assets are also available on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) under `RC#` and `DB#` tags, which can also be used to manually build if necessary.
 
 ### Beta fund distribution
 
-The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. Given the large number of transactions done during testing the ledger can grow quite large and will be restarted from scratch between releases and/or as needed. As a result, previously distributed beta Nano are no longer useful and need to be redistributed again.
-
-For small amounts suitable for most basic integration, you can get beta Nano from the beta faucet here: https://beta.nano.org/faucet/. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
+The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
 
 ### Beta ledger file
 
@@ -125,4 +118,4 @@ curl -O https://s3.us-east-2.amazonaws.com/beta-snapshot.nano.org/data.tar.gz; t
 ```
 
 ### Ongoing Test Cases
-A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the #beta-net channel on our [Discord server](https://chat.nano.org).
+A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
