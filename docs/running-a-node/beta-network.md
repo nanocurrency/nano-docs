@@ -1,12 +1,12 @@
 # Joining the beta network
 
-!!! tip "Testing is currently ongoing on the beta network for Version 21"
-	Read through this page if you would like to participate, and find the currently selected test cases at the end.
+!!! tip "Testing is currently ongoing on the beta network for Version 22"
+	Read through this page if you would like to participate.
 
 A few common reasons for joining the beta network include:
 
 * Learning node setup and management
-* Testing out integrations for services build on Nano before running on the main network
+* Testing out integrations for services built on Nano before running on the main network
 * [Assisting in testing new node releases and features](#node-release-testing)
 * Contributing to a network testing various behaviors and patterns with the protocol
 
