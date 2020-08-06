@@ -101,7 +101,7 @@ Most of the resources needed to participate on the beta network can be found wit
 
 ### Binaries
 
-In addition to the Docker details above, the latest binary builds of the node for the beta network are shared in the `#beta_announcements` channel on our [Discord server](https://chat.nano.org). These assets are also available on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) under `RC#` and `DB#` tags, which can also be used to manually build if necessary.
+In addition to the Docker details above, the latest binary builds of the node for the beta network are shared in the `#beta-announcements` channel on our [Discord server](https://chat.nano.org). These assets are also available on the [GitHub repository Releases page](https://github.com/nanocurrency/nano-node/releases) under `RC#` and `DB#` tags, which can also be used to manually build if necessary.
 
 ### Beta fund distribution
 
