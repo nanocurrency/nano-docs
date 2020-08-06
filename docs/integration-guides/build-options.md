@@ -14,11 +14,10 @@ Each release cycle official builds of the node for Linux, MacOS and Windows are 
 
 ### Beta builds
 
-**OS Binaries**  
-Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released and can be found at https://beta.nano.org. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
+Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released, along with Docker images. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
 
 **Other sources**  
-The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-network#pulling-the-docker-image) and RHEL/CentOS rpm:
+The beta node can be also be installed for RHEL/CentOS rpm:
 ```bash
 sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
 sudo yum install nanocurrency-beta
