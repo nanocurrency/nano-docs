@@ -21,7 +21,7 @@ The Nano protocol is a complex piece of software aiming at a simple, singular go
 
 ### About the code base
 
-Nano is written in C++14 and supports Linux, macOS and Windows.
+Nano is written in C++17 and supports Linux, macOS and Windows.
 
 **Libraries**
 
