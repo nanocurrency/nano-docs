@@ -57,7 +57,7 @@ This installs `nano_node-beta` to bin.
 
     **Required build tools**
 
-    * (macOS) XCode >= 9+
+    * (macOS) XCode >= 9
     * (Windows) Visual Studio >= 2017 (15.0)
     * (Windows) NSIS package builder
     * (\*nix) Clang >= 5 or GCC >= 5
