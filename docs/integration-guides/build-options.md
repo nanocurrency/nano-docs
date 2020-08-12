@@ -60,7 +60,7 @@ This installs `nano_node-beta` to bin.
     * (macOS) XCode >= 9
     * (Windows) Visual Studio >= 2017 (15.0)
     * (Windows) NSIS package builder
-    * (\*nix) Clang >= 5 or GCC >= 5
+    * (\*nix) Clang >= 5 or GCC >= 7
     * CMake >= 3.8
 
 ### Boost
@@ -146,8 +146,8 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 These instructions are for the following systems:
 
-* Ubuntu 16.04 LTS Server
-* Ubuntu 16.10+
+* Ubuntu 18.04 LTS Server
+* Ubuntu 18.10+
 * Debian 8 Jessie (Debian 8 requires Cmake 3.8+)
 * Debian 9 Stretch
 
@@ -164,7 +164,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 **Requirements**
 
-* GCC compiler version 5+ or other compiler with C++17 language support (default Centos 7 compilers are outdated)
+* GCC compiler version 7+ or other compiler with C++17 language support (default Centos 7 compilers are outdated)
 * Cmake 3.8+
 
 **Install dependencies**
