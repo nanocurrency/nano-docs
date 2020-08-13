@@ -227,6 +227,10 @@ enable_control = false
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
 #### logging.stable_log_filename
+
+!!! warning "Node V21 crashes on Windows"
+	Setting this configuration option to `true` results in a node crash on Windows in V21. A temporary solution is to access the properties of file `log/node.log` and untick "Read-only" attribute.
+
 This configuration option is set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
 
 By default this option is set to `false` which results in all log files having a timestamp appended to them, even the currently active file. If set to `true` the currently active log file will have a static name at `log/node.log` for easier management.
