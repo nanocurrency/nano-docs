@@ -235,6 +235,15 @@ This configuration option is set in the [`config-node.toml` file](../running-a-n
 
 By default this option is set to `false` which results in all log files having a timestamp appended to them, even the currently active file. If set to `true` the currently active log file will have a static name at `log/node.log` for easier management.
 
+```toml
+[logging]
+
+# Append to log/node.log without a timestamp in the filename.
+# The file is not emptied on startup if it exists, but appended to.
+# type:bool
+stable_log_filename = true
+```
+
 #### logging.log_rpc
 This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
 
