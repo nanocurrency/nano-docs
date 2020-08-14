@@ -228,8 +228,7 @@ More advanced options for controlling the process the RPC server runs under can 
 
 #### logging.stable_log_filename
 
-!!! warning "Node V21 crashes on Windows"
-	Setting this configuration option to `true` results in a node crash on Windows in V21. A temporary solution is to access the properties of file `log/node.log` and untick "Read-only" attribute.
+--8<-- "known-issue-windows-logging-stable.md"
 
 This configuration option is set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
 
