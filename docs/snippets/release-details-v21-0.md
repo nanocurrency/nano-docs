@@ -5,3 +5,5 @@
 --8<-- "known-issue-macos-too-many-open-files.md"
 
 --8<-- "known-issue-unable-to-find-libboost.md"
+
+--8<-- "known-issue-windows-logging-stable.md"
