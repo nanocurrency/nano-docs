@@ -2396,7 +2396,8 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 
 ### telemetry
 _version 21.0+_  
-Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+Return metrics from other nodes on the network. By default, returns a summarized view of the whole network. See below for details on obtaining local telemetry data.  
+[Networking - node telemetry](/protocol-design/networking#node-telemetry) contains more detailed information on the protocol implementation of telemetry.  
 **Request:**
 ```json
 {
@@ -2489,7 +2490,9 @@ Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
   "port": "7075"
 }
 ```
-Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+!!!tip "Requesting telemetry data from the local node"
+    Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 

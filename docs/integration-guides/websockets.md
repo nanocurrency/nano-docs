@@ -520,7 +520,7 @@ This subscription is available since _v21.0_
 
 ##### Subscribing
 
-To subscribe to node telemetry response notifications:
+To subscribe to telemetry response notifications from **other nodes on the network**:
 
 ```json
 {
@@ -563,7 +563,7 @@ No filters are currently available for the `telemetry` topic.
   }
 }
 ```
-See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response  
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response.  
 
 
 ### New unconfirmed blocks
