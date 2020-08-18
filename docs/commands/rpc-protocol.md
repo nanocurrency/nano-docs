@@ -2492,7 +2492,7 @@ Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
 ```
 
 !!!tip "Requesting telemetry data from the local node"
-    Metrics for the local node can be requested using the peering port and any loopback address **localhost**, **127.0.0.1**, **::1** or **[::1]**
+    Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 
