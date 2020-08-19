@@ -3337,6 +3337,9 @@ Send **amount** from **source** in **wallet** to **destination**
 
 --8<-- "enable-control-warning.md"
 
+!!! success "Use of `id` option is highly recommended"
+    Integrations using the node wallet must ensure idempotency for transactions and can be done externally. Using the `id` field provides this option internally and is highly recommended for all node wallet uses.
+
 **Request:**
 ```json
 {
@@ -3344,7 +3347,8 @@ Send **amount** from **source** in **wallet** to **destination**
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
-  "amount": "1000000"
+  "amount": "1000000",
+  "id": "your-unique-id"
 }
 ```  
 **Response:**
