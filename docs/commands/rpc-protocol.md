@@ -3338,7 +3338,7 @@ Send **amount** from **source** in **wallet** to **destination**
 --8<-- "enable-control-warning.md"
 
 !!! success "Use of `id` option is highly recommended"
-    Integrations using the node wallet must ensure idempotency for transactions and can be done externally. Using the `id` field provides this option internally and is highly recommended for all node wallet uses.
+    Integrations using the node wallet must ensure idempotency for transactions and this can be done externally if preferred. Using the `id` field provides this option internally and is highly recommended for all node wallet uses.
 
 **Request:**
 ```json
