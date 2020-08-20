@@ -148,12 +148,14 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 ### Benchmark commands
 
-**Node RPC or external work server**
+**Nano Work Server**
 
-1. Setup one of the following:
-	- A node with RPC enabled and any desired work peer
-	- A standalone work server
-1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench)
+The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) is the preferred approach for benchmarking and includes an [example](https://github.com/nanocurrency/nano-work-server#benchmarking).
+
+**Node RPC**
+
+1. Setup and run a node with RPC enabled, control enabled, and the desired configuration including work peers.
+1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench).
 
 **Node local work generation**
 
