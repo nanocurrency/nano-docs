@@ -17,26 +17,7 @@ nav:
   - Home: index.md
   - What is Nano?:
     - Overview: what-is-nano/overview.md
-    - Exploring More: what-is-nano/exploring-more.md
-  - Running a Node:
-    - Overview: running-a-node/overview.md
-    - Node Setup: running-a-node/node-setup.md
-    - Security: running-a-node/security.md
-    - Docker Management: running-a-node/docker-management.md
-    - Beta Network: running-a-node/beta-network.md
-    - Configuration: running-a-node/configuration.md
-    - Troubleshooting: running-a-node/troubleshooting.md
-    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
-    - Beyond the Node: running-a-node/beyond-the-node.md
-  - Integration Guides: 
-    - The Basics: integration-guides/the-basics.md
-    - Key Management: integration-guides/key-management.md
-    - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
-    - Build Options: integration-guides/build-options.md
-    - Advanced: integration-guides/advanced.md
-  - Commands:
-    - RPC Protocol: commands/rpc-protocol.md
-    - Command Line Interface: commands/command-line-interface.md
+    - Living Whitepaper: what-is-nano/living-whitepaper.md
   - Protocol Design:
     - Overview: protocol-design/overview.md
     - Ledger: protocol-design/ledger.md
@@ -59,6 +40,25 @@ nav:
     - Work: node-implementation/work.md
     - Signing, Hashing and Key Derivation: node-implementation/signing-hashing.md
     - Contributing: node-implementation/contributing.md
+  - Running a Node:
+    - Overview: running-a-node/overview.md
+    - Node Setup: running-a-node/node-setup.md
+    - Security: running-a-node/security.md
+    - Docker Management: running-a-node/docker-management.md
+    - Beta Network: running-a-node/beta-network.md
+    - Configuration: running-a-node/configuration.md
+    - Troubleshooting: running-a-node/troubleshooting.md
+    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
+    - Beyond the Node: running-a-node/beyond-the-node.md
+  - Integration Guides: 
+    - The Basics: integration-guides/the-basics.md
+    - Key Management: integration-guides/key-management.md
+    - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
+    - Build Options: integration-guides/build-options.md
+    - Advanced: integration-guides/advanced.md
+  - Commands:
+    - RPC Protocol: commands/rpc-protocol.md
+    - Command Line Interface: commands/command-line-interface.md
   - Releases:
     - Node Releases: releases/node-releases.md
     - Network Upgrades: releases/network-upgrades.md

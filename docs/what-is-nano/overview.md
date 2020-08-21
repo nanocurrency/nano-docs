@@ -37,6 +37,13 @@ Nano was designed with new data structures, consensus mechanisms and other featu
 * Without traditional Proof-of-Work and mining, nodes use significantly less energy per transaction than other popular networks
 * Emergent centralization forces for node operators are reduced due to the near zero marginal cost of producing consensus in Nano [^1]
 
-For a more detailed look at the design of various protocol features, head to over to the [Protocol Design Overview](/protocol-design/overview).
+---
+
+### Exploring More
+
+* Looking for technical details of the protocol and node design? Click **Next** below to learn about the [Living Whitepaper](/what-is-nano/living-whitepaper/)
+* Ready to participate on the network? Try [running a node](/running-a-node/overview), [review integration options](/integration-guides/the-basics) or find commands via [RPC](/commands/rpc-protocol) and [CLI](/commands/command-line-interface)
+* Want to know the future of Nano? See the [upcoming features](/releases/upcoming-features/) for the node or help shape the future by [contributing to the development of the protocol](/node-implementation/contributing) if you can!
+* Want to explore less technical aspects of Nano or join our community? Head over to [Nano.org](https://nano.org)
 
 [^1]: https://medium.com/@clemahieu/emergent-centralization-due-to-economies-of-scale-83cc85a7cbef
