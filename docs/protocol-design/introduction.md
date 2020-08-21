@@ -34,9 +34,9 @@ blockchain, cryptocurrency, decentralization, Nano, distributed ledger, digital,
 
 Incentives for participating in consensus
 [Incentives to run a node](https://medium.com/nanocurrency/the-incentives-to-run-a-node-ccc3510c2562)
+
 (move under ORV section)
 
----
-
 | [Network Attacks P2](https://github.com/georgehara/nano/wiki/unofficial) | Additional deep-dive into potential attack vectors & mitigations |
+
 (move under Attack section)
