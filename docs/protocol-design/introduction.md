@@ -23,7 +23,7 @@ Cryptocurrency statistics reported in this living whitepaper are accurate as of 
 
 # Protocol Design vs Node Implementation
 
-It is important to keep in mind that there can be differences between specific node implementations of the Nano protocol, though the protocol itself (i.e. the network rules) should always be the same. While Nano the protocol is fairly simple, the reference node implementation is pretty complex and involves many moving parts. This section of the living whitepaper primarily deals with the protocol design. For details on the reference node implementation, see [here]().
+It is important to keep in mind that there can be differences between specific node implementations of the Nano protocol, though the protocol itself (i.e. the network rules) should always be the same. While the Nano protocol is fairly simple, the reference node implementation is pretty complex and involves many moving parts. This section of the living whitepaper focuses on the protocol design. For details on the reference node implementation, see [here]().
 
 # Index Terms
 blockchain, cryptocurrency, decentralization, Nano, distributed ledger, digital, transactions
