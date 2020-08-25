@@ -19,7 +19,7 @@ nav:
     - Overview: what-is-nano/overview.md
     - Living Whitepaper: what-is-nano/living-whitepaper.md
   - Protocol Design:
-    - Overview: protocol-design/overview.md
+    - Introduction: protocol-design/introduction.md
     - Ledger: protocol-design/ledger.md
     - Blocks: protocol-design/blocks.md
     - Work: protocol-design/work.md

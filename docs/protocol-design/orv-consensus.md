@@ -20,6 +20,11 @@ Existing content:
 
 ---
 
+## Incentives for participating in consensus
+[Incentives to run a node](https://medium.com/nanocurrency/the-incentives-to-run-a-node-ccc3510c2562)
+
+---
+
 ## Block validation
 
 ---
