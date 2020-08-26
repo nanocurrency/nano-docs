@@ -12,6 +12,30 @@ This roadmap document represents the current areas that are being pursued by the
 ??? info "Global Markets"
 	**Status**
 
+	* CycleBit Launched (Dec. 23rd 2019)
+
+	* DigiFinex Launched (Dec. 23rd 2019)
+
+	* ShareRing Launched (Dec. 6th 2019)
+
+	* Coinify Launched (Dec. 2nd 2019)
+
+	* Kraken Launched (Nov. 6th 2019)
+
+	* Binance US Launched (Nov. 20th 2019)
+
+	* Changelly Launched (Nov. 13th 2019)
+
+	* Probit Launched (Nov. 4th 2019)
+
+	* MetalPay Launched (Sept. 10th 2019)
+
+	* Uphold Launched (Aug. 29th 2019)
+
+	* Crypto.com Launched (Aug. 27th 2019)
+
+	* CoinGate Launched (Dec. 20th 2018)
+
 	* Huobi Launched (Oct. 31st 2018)
 
 	* Bitinka Launched (Jul. 10th 2018)
@@ -19,8 +43,6 @@ This roadmap document represents the current areas that are being pursued by the
 	* Binance Launched (Feb. 2nd 2018)
 
 	* OKEx Launched (Feb. 1st 2018)
-
-	* Nanex Launched (Jan. 31st 2018)
 
 	* KuCoin Launched (Jan. 5th 2018)
 
@@ -92,6 +114,8 @@ This roadmap document represents the current areas that are being pursued by the
 ??? info "Point of Sale"
 	**Status**
 
+	* Appia Launched (Dec. 19th 2019)
+
 	* [Kappture](https://www.kappture.co.uk), a UK-based POS manufacturer, announces an exclusive integration of Nano into their ePOS systems and releases a [white paper](https://www.kappture.co.uk/files/accepting-cryptocurrency-at-the-point-of-sale.pdf) detailing the decision to only include Nano (June 2019)
 
 	---
@@ -128,7 +152,7 @@ This roadmap document represents the current areas that are being pursued by the
 ??? info "Fiat On-Ramp"
 	**Status**
 
-	Fiat on-ramps are now available with base pairs including USD, EUR and GBP.
+	Fiat on-ramps are now available with base pairs including USD, EUR, GBP and more.
 
 	Continuing to seek out and add additional gateways to provide easy access to Nano for users across the globe.
 
@@ -240,6 +264,9 @@ See the [Upcoming Features](/releases/upcoming-features) page for more details o
 
 ??? success "Hardware Wallets"
 	**Status**
+	
+
+
 	* Ledger Nano S integration completed (6/11/18) 
 
 	* Jolt Hardware wallet development announced (5/31/18)

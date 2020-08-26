@@ -18,7 +18,7 @@ Details coming soon
 
 ??? abstract "Dual-phase voting"
 
-	Release  | V21 (Targeted)
+	Release  | V22+ (Targeted)
 	---------|----------------------- 
 	Goal     | Use a dual-phased voting approach: first is a negotiation phase to gather network consensus, and then second is issuing a final, durable vote that cannot be re-negotiated.
 	Benefits | Blocks cemented after durable vote and allowing durable vote snapshots.
@@ -26,26 +26,10 @@ Details coming soon
 
 ??? abstract "Move wallet out of process"
 
-	Release  | V21 (Targeted)
+	Release  | V22 (Targeted)
 	---------|----------------------- 
 	Goal     | Remove wallet operations out of node process.
 	Benefits | Reduced node attack surface.
-	Links    | 
-
-??? abstract "Node Telemetry"
-
-	Release  | V21 (Targeted)
-	---------|----------------------- 
-	Goal     | Provide methods for nodes to report block height, bandwidth caps, version numbers, node vendor versions and more.
-	Benefits | Better monitoring of network status and upgrades progress.
-	Links    | 
-
-??? abstract "Protobuf based RPCs"
-
-	Release  | V22 (Targeted)
-	---------|----------------------- 
-	Goal     | Add support for protocol buffer based RPCs.
-	Benefits | Faster performance on RPC calls and support for non-JSON RPCs. Easier integrations.
 	Links    | 
 
 ??? abstract "RPC 2.0"
@@ -54,7 +38,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Refactor RPC implementation while removing unnecessary and adding new, more useful endpoints.
 	Benefits | Better RPC performance, more consistent input and output handling and expanded functionality.
-	Links    | 
+	Links    | [Forum Discussion](https://forum.nano.org/t/rpc-2-0-refactor/110)
 
 ??? abstract "Ledger pruning"
 
@@ -62,7 +46,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Allow optional pruning of ledger blocks down to frontier, frontier predecessor and pending blocks.
 	Benefits | Reduce ledger size on disk and lower requirements for nodes joining the network.
-	Links    | [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
+	Links    | [Forum Discussion](https://forum.nano.org/t/ledger-pruning/114) - [GitHub Issue #1094](https://github.com/nanocurrency/nano-node/issues/1094)
 
 ### Researching
 
@@ -72,7 +56,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Design a new Proof-of-Work (PoW) algorithm to be more memory bound.
 	Benefits | Increase Quality of Service on network through increased spam cost.
-	Links    | https://github.com/nanocurrency/nano-node/issues/506
+	Links    | [Forum Discussion](https://forum.nano.org/t/minimum-memory-requirement-in-a-new-pow-algorithm/439) - [GitHub Issue #506](https://github.com/nanocurrency/nano-node/issues/506)
 
 ??? info "Network overlay (DHT-based)"
 
@@ -80,7 +64,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Provide a structured network overlay of nodes on the network through a distributed hash table.
 	Benefits | Decreased connection count for nodes, better Distributed Denial-of-Service (DDoS) protection and reduced network bandwidth.
-	Links    | N/A
+	Links    | [Forum Discussion](https://forum.nano.org/t/consider-adding-a-network-overlay/106)
 
 ??? info "Durable vote snapshots"
 
@@ -88,7 +72,7 @@ Details coming soon
 	---------|----------------------- 
 	Goal     | Provide methods for export and importing snapshots of durable votes between nodes.
 	Benefits | Easier bootstrap verification through dependence on durable votes plus frontier elections only.
-	Links    | 
+	Links    | N/A
 
 ??? info "QUIC protocol"
 
@@ -108,10 +92,43 @@ Details coming soon
 
 ### Completed
 
+??? success "V21.0"
+
+	Release  | V21 Athena
+	---------|----------------------- 
+	Goal     | Provide methods for nodes to report block count, bandwidth caps, version numbers, node vendor versions and more.
+	Benefits | Better monitoring of network status and upgrades progress.
+	Links    | [Forum Discussion](https://forum.nano.org/t/node-telemetry-metrics/112) - [GitHub Issue #2225](https://github.com/nanocurrency/nano-node/issues/2225)
+
+	Release  | V21 Athena
+	---------|----------------------- 
+	Goal     | Add new internal and external APIs for the node using Flatbuffers over IPC.
+	Benefits | Faster performance and lower memory usage, allows streaming.
+	Links    | [WIP Documentation](https://github.com/cryptocode/notes/wiki/IPC-Flatbuffers-API)
+
+	Release  | V21 Athena
+	---------|----------------------- 
+	Goal     | Optimizations, fixes and adjustments to the RocksDB implementation.
+	Benefits | Better disk performance and early work leading up to potential production release in V22+.
+	Links    | [Forum Discussion](https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4)
+
+	Release  | V21 Athena
+	---------|----------------------- 
+	Goal     | Optimizations, fixes and adjustments to Lazy Bootstrapping.
+	Benefits | Reduced bandwidth and reliance on legacy bootstrapping.
+	Links    | N/A
+
+	Release  | V21 Athena
+	---------|----------------------- 
+	Goal     | Adjust elections process for better alignment of active elections across the network.
+	Benefits | Better performance during heavy load with reduced bandwidth.
+	Links    | N/A
+
+
 ??? success "V20.0"
 	**New PoW infrastructure**
 
-	Release  | V20
+	Release  | V20 Lydia
 	---------|----------------------- 
 	Goal     | Setup the necessary infrastructure for standalone PoW server and easy algorithm integration in future release.
 	Benefits | Increased security, faster PoW algorithm updates in future release and better resource management options.
@@ -119,7 +136,7 @@ Details coming soon
 
 	**Initial support for RocksDB**
 
-	Release  | V20
+	Release  | V20 Lydia
 	---------|----------------------- 
 	Goal     | Add support for a new database backend using RocksDB (experimental).
 	Benefits | Lower disk I/O operations and increase disk I/O speeds on average.
@@ -127,7 +144,7 @@ Details coming soon
 
 	**Migrate to TOML config files**
 
-	Release  | V20
+	Release  | V20 Lydia
 	---------|----------------------- 
 	Goal     | Migrate existing config files to be TOML format, split into read-only and override files.
 	Benefits | Allows easier to read config files with ability to add comments in the file. Prevents node from having to write over the same user managed config file.
@@ -179,15 +196,39 @@ Details coming soon
 
 ### Recent Page Updates
 
-**2019-11-14**
+**2020-06-15**
 
 | Feature | Previous | New | Reason |
 |---------|--------- |-----|--------|
-| New PoW algorithm | In Progress | Completed | V20.0 release |
-| Initial support for RocksDB | In Progress | Completed | V20.0 release |
-| Migrate to TOML config files | In Progress | Completed | V20.0 release |
+| Node Telemetry | In Progress | Completed | In V21.0 release |
+| IPC Flatbuffers API | In Progress | Completed | In V21.0 release |
+| RocksDB Improvements | In Progress | Completed | In V21.0 release |
+| Lazy Bootstrap Optimizations | In Progress | Completed | In V21.0 release |
+| Better election alignment | In Progress | Completed | In V21.0 release |
+
 
 ??? info "Other past changes"
+
+	**2019-12-13**
+
+	| Feature | Previous | New | Reason |
+	|---------|--------- |-----|--------|
+	| Dual-phase voting | V21 | V22+ | Aligning with network overlay |
+	| Move wallet out of process | V21 | V22 | Other higher priority items needed |
+	| Node Telemetry | Planning | In Progress | Including in V21 release |
+	| Protobuf based RPCs | Planning | Removed | Replaced with IPC Flatbuffers API |
+	| IPC Flatbuffers API | - | In Progress (V21 Targeted) | Get foundation ready for RPC 2.0 in V22 |
+	| RocksDB Improvements | - | In Progress | Additional updates ahead of potential production release in V22+ |
+	| Lazy Bootstrap Optimizations | - | In Progress | Reduced reliance on less efficient legacy bootstrapping |
+	| Better election alignment | - | In Progress | Based on optimization opportunities found during V20 beta testing |
+
+	**2019-11-14**
+
+	| Feature | Previous | New | Reason |
+	|---------|--------- |-----|--------|
+	| New PoW algorithm | In Progress | Researching | Researching alternatives |
+	| Initial support for RocksDB | In Progress | Completed | V20.0 release |
+	| Migrate to TOML config files | In Progress | Completed | V20.0 release |
 
 	**2019-10-09**
 
