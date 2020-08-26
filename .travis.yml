@@ -11,10 +11,11 @@ before_script:
   - pip install pymdown-extensions
   - pip install mkdocs-material
   - pip install MarkdownHighlight
+  - pip install mkdocs-redirects
 script:
   - |
     if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
-      mkdocs build
+      mkdocs build --strict
     elif [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ]; then
       openssl aes-256-cbc -K $encrypted_5f828affe522_key -iv $encrypted_5f828affe522_iv -in deploy-key.enc -out deploy-key -d
       chmod 600 deploy-key

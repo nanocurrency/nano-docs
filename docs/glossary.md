@@ -65,7 +65,7 @@ A block with funds being transferred to an [account](#account) owned by a [walle
 Blocks on an account chain before the first v1 block (which is often the v1 epoch block but can be other types). The first v1 block and all subsequent blocks are stateful blocks.
 
 #### live network
-A sub-network established between peers via User Datagram Protocol (UDP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks).
+A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. As of V21, use of UDP is deprecated.
 
 #### online voting weight
 Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
@@ -98,9 +98,10 @@ The [account](#account) if the block is the first block on the account, otherwis
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
 
 #### Transactions Per Second (TPS)
-Often used to refer to the rate of complete transactions between two parties (i.e. a send with a corresponding receive). In the past, TPS was a per-node measurement that represented the perceived network-level transmission rate ([BPS](#blocks-per-second-bps)), but this measurement was found to be somewhat inaccurate due to peering and propagation differences between nodes. TPS is now used to refer to ([Confirmations Per Second](#confirmations-per-second-cps)/2) which is more similar to the TPS metric used by other cryptocurrencies (e.g. Bitcoin). Nano sends do not require a corresponding receive to be [confirmed](#confirmation), but receive blocks do need to be confirmed before received funds can be sent again (see [pending](#pending)).
+Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [pending](#pending)).
 
 #### unchecked (blocks)
+Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all bocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
 
 #### unopened account
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).
@@ -118,10 +119,10 @@ Each node configured with a [Representative](#representative) votes on every blo
 The amount of weight delegated to a [Representative](#representative).
 
 #### wallet
-A wallet is an organizational object in a nano\_node that holds a single seed from which multiple accounts are deterministically derived via a `uint32` index starting at 0. Private keys are derived from the seed and index as follows:
+A wallet is an organizational object in a nano\_node that holds a single seed from which multiple accounts are deterministically derived via a 32-bit unsigned integer index starting at 0. Private keys are derived from the seed and index as follows: (`||` means concatenation; `blake2b` is a [highly optimized cryptographic hash function](/protocol-design/signing-hashing-and-key-derivation/#hashing-algorithm-blake2))
 
 $$
-k_{private} = blake2b(seed || index)
+k_{private} = blake2b(\text{seed} || \text{index})
 $$
 
 #### WALLET_ID

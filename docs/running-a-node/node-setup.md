@@ -17,27 +17,29 @@ While you can run a Nano node by downloading a binary or building from source, i
 
 ---
 
+## Hardware recommendations
+
 --8<-- "hardware-recommendations.md"
 
 ---
 
-### Network Ports
+## Network Ports
 
-The nano\_node will use two configurable ports throughout its lifecycle. The default values suggested by the [network details](/running-a-node/configuration/#network-details) are below:
+The nano\_node will use two configurable ports throughout its lifecycle. The default values suggested by the [network details](configuration.md#network-details) are below:
 
 --8<-- "network-details-simple.md"
 
 !!! note ""
-	By default nano\_node will attempt to use UPnP. [Troubleshooting information can be found here](/running-a-node/troubleshooting/#troubleshooting-upnp)
+	By default nano\_node will attempt to use UPnP. [Troubleshooting information can be found here](troubleshooting.md#troubleshooting-upnp)
 
 ---
 
-### Installing Docker
+## Installing Docker
 Docker must be installed on the host machine and instructions can be found here: https://docs.docker.com/install/. We recommend installing the latest stable version available.
 
 ---
 
-### Pulling the Docker Image 
+## Pulling the Docker Image 
 [![Docker Pulls](https://img.shields.io/docker/pulls/nanocurrency/nano.svg)](https://hub.docker.com/r/nanocurrency/nano/)
 
 The Docker image can be downloaded via `docker pull`. We can either grab the `latest` or a specific version/tag. Not specifying a tag defaults to `latest`. An example of each is found below.
@@ -49,7 +51,7 @@ docker pull nanocurrency/nano
 
 Pulls a specific version of the Nano node:
 ```bash
-docker pull nanocurrency/nano:V18.0
+docker pull nanocurrency/nano:V20.0
 ```
 
 !!! tip
@@ -59,8 +61,20 @@ docker pull nanocurrency/nano:V18.0
 
 ---
 
-### Starting the Node
-With Docker there are basic commands for managing containers. To properly bring the node up, learn these commands beginning with [starting the container](/running-a-node/docker-management#starting).
+## Starting the Node
+With Docker there are basic commands for managing containers. To properly bring the node up, learn these commands beginning with [starting the container](docker-management.md#starting).
 
 !!! info "Advanced Builds"
-	For additional options around building the node to run on various platforms, head over to the [Integration Guides Build Options](/integration-guides/build-options).
+	For additional options around building the node to run on various platforms, head over to the [Integration Guides Build Options](../integration-guides/build-options.md).
+
+---
+
+## Additional setup
+The above instructions cover getting a node up and running with the default configuration settings. Additional setup areas to explore include:
+
+- Learning more about [managing the node in a Docker container](docker-management.md)
+- Updating [node configuration options](configuration.md) to enable various features
+- Setting up the node to [vote as a representative](voting-as-a-representative.md)
+- Finding out how to best [manage your ledger file](ledger-management.md)
+
+--8<-- "join-technical-mailing-list.md"

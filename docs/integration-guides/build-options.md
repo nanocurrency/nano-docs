@@ -8,15 +8,16 @@ Each release cycle official builds of the node for Linux, MacOS and Windows are 
 
 --8<-- "current-release-build-links.md"
 
---8<-- "known-issues-v19.md"
+--8<-- "known-issue-peers-stake-reporting.md"
+
+--8<-- "known-issue-macos-too-many-open-files.md"
 
 ### Beta builds
 
-**OS Binaries**  
-Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released and can be found at https://beta.nano.org. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
+Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released, along with Docker images. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
 
 **Other sources**  
-The beta node can be also be installed from other sources including [Docker](/running-a-node/beta-network#pulling-the-docker-image) and RHEL/CentOS rpm:
+The beta node can be also be installed for RHEL/CentOS rpm:
 ```bash
 sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
 sudo yum install nanocurrency-beta
@@ -24,22 +25,22 @@ sudo yum install nanocurrency-beta
 
 This installs `nano_node-beta` to bin.
 
-## Nano Folder
+## Nano Directory
 
 ### Contents
 
---8<-- "folder-contents.md"
+--8<-- "directory-contents.md"
 
 ### Locations
 
---8<-- "folder-locations.md"
+--8<-- "directory-locations.md"
 
-??? tip "Moving folder locations"
+??? tip "Moving directory locations"
     Some users desire to change the blockchain download location. A solution is available for the no gui nano_node (see https://github.com/nanocurrency/nano-node/issues/79), but no concrete solution is available for the GUI client. However, a workaround can be acheived via the use of symbolic links. Below is a short tutorial for Windows builds:
 
-    1. Rename/delete the Nano folder in your `appdata` Local folder (if you haven't run the wallet yet, skip this step). This is necessary because the command to create a symbolic link in windows will fail if the the input directory already exists.
-    1. Decide on where you want to store the blockchain and create a symbolic link. The command is (in an administrative command-prompt): `mklink /d "C:\Users\<user>\AppData\Local\Nano\" "E:\Some\Other\Directory"`. This command creates a symbolic link for a directory (`/d`) that 'redirects' all requests for files/directories in the `Local\Nano` folder to the `Other\Directory`. This means that a file created in the input directory will actually be in the output directory (on the other disk).
-    1. Verify it works. Create a file in your Nano folder in your appdata, and you should see it appear in the directory you linked it to (and vice-versa). If you have old wallets or a partially-downloaded blockchain, copy them back into the local directory. Start the wallet.
+    1. Rename/delete the Nano directory in your `appdata` Local directory (if you haven't run the wallet yet, skip this step). This is necessary because the command to create a symbolic link in windows will fail if the the input directory already exists.
+    1. Decide on where you want to store the blockchain and create a symbolic link. The command is (in an administrative command-prompt): `mklink /d "C:\Users\<user>\AppData\Local\Nano\" "E:\Some\Other\Directory"`. This command creates a symbolic link for a directory (`/d`) that 'redirects' all requests for files/directories in the `Local\Nano` directory to the `Other\Directory`. This means that a file created in the input directory will actually be in the output directory (on the other disk).
+    1. Verify it works. Create a file in your Nano directory in your appdata, and you should see it appear in the directory you linked it to (and vice-versa). If you have old wallets or a partially-downloaded blockchain, copy them back into the local directory. Start the wallet.
 
 ---
 
@@ -50,7 +51,7 @@ This installs `nano_node-beta` to bin.
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.67](http://www.boost.org/users/history/version_1_67_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
@@ -112,7 +113,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_TIMED_LOCKS=50` (*v20.0+* when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables.)
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
-* `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/) for more details)
+* `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
 
 **Build Node**
 
@@ -141,7 +142,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 ---
 
-## Unix Dependencies
+## Debian/Ubuntu Dependencies
 
 These instructions are for the following systems:
 
@@ -157,7 +158,7 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install git cmake g++ curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## CentOS 7 Dependencies
 
@@ -190,7 +191,7 @@ sudo make install
 cd ..
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ## Arch Linux Dependencies
 
@@ -201,45 +202,38 @@ pacman -Syu
 pacman -S base-devel git gcc cmake curl wget
 ```
 
-Follow the [build instructions](#build-instructions-unix-centos-arch-linux).
+Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 ---
 
-## Build Instructions - Unix, CentOS, Arch Linux
+## Build Instructions - Debian, CentOS, Arch Linux
 
 --8<-- "unsupported-configuration.md"
-
-### Static Boost
-```bash
-wget -O boost_1_67_0.tar.gz https://netix.dl.sourceforge.net/project/boost/boost/1.67.0/boost_1_67_0.tar.gz
-tar xzvf boost_1_67_0.tar.gz
-cd boost_1_67_0
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
-./b2 --prefix=../[boost] link=static install
-cd ..
-```
 
 ### Node
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+export BOOST_ROOT=`pwd`/../boost_build
+sh util/build_prep/bootstrap_boost.sh -m
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
 
 ---
 
-## Build Instructions - OSX
+## Build Instructions - macOS
 
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
+export BOOST_ROOT=`pwd`/../boost_build
 sh util/build_prep/bootstrap_boost.sh -m
-cmake -DBOOST_ROOT=../[boost] -G "Unix Makefiles"
+cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 ```
@@ -250,7 +244,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 ### Dependencies
 
-* [Boost 1.67+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
+* [Boost 1.69+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
 * [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
 * [Git for Windows](https://git-scm.com/download/win) **git_bash**
 * [CMake](https://cmake.org/download/)
@@ -264,18 +258,18 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 Using git_bash:
 ```bash
-git clone --recursive https://github.com/nanocurrency/nano-node
+git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node
 cd nano-node
 ```
 
-**Create a `build` folder inside nano-node (makes for easier cleaning of build)**
+**Create a `build` directory inside nano-node (makes for easier cleaning of build)**
 
 Using git_bash:
 ```bash
 mkdir build
 cd build
 ``` 
-* **Note:** all subsequent commands should be run within this "build" folder.
+* **Note:** all subsequent commands should be run within this "build" directory.
 
 **Get redistributables** 
 
@@ -293,7 +287,7 @@ Using 64 Native Tools Command Prompt:
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_67_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_67_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_69_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_69_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
 ```
 
 ### Build
@@ -351,7 +345,7 @@ If running on a debugger, add the argument `--gtest_break_on_failure` break at t
 ### Environment variables to customize tests
 
 * `TEST_KEEP_TMPDIRS=1` - Setting this to anything will prevent the tests deleting any files it creates, useful for debugging log files. 
-* `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/) support.
+* `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) support.
 * `TEST_BASE_PORT=26000` - The base port used in tests, the range of ports used in this case would be 26000 - 26199. This is useful if wanting to run multiple tests at once without port conflicts, the default base port used is 24000. 
 
 ### Sanitizers

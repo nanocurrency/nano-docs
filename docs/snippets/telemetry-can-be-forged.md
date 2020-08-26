@@ -1,0 +1,2 @@
+!!! warning "Telemetry can be forged"
+	Although the telemetry messages are signed by nodes, the data provided by other peers can be forged by malicious nodes so they cannot be guaranteed as accurate. All details in these messages should be used as rough indicators of peer and broad network situations, but not exclusively relied on for any key integration or network activities.
