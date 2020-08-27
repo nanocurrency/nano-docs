@@ -26,6 +26,8 @@ While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus))
 
 - Each Nano account has its own blockchain that only the owner can modify (representatives can only modify their own blockchain)
 
+- In Nano, a block is a single transaction (not a group of transactions). Transactions are evaluated individually and asynchronously
+
 - Users can remotely re-delegate their voting weight to anyone at any time
 
 - Anyone can be a representative
@@ -34,9 +36,7 @@ While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus))
 
 - Representatives do not earn transaction fees
 
-- In Nano, a block is a single transaction (not a group of transactions). Transactions are evaluated individually and asynchronously
-
-- Representatives cannot reverse transactions nodes have locally confirmed (due to [block cementing](/glossary#cementing)).
+- Representatives cannot reverse transactions that nodes have locally confirmed (due to [block cementing](/glossary#cementing)).
 
 ### PR vs non-PR (brief? implementation decision)
 
