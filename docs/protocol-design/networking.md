@@ -1,7 +1,7 @@
-# Networking
+Title: Protocol Design - Networking | Nano Documentation
+Description: Details of networking setup design for Nano protocol
 
-!!! warning "Page may be migrating"
-	This page may be migrated into another page or section - TBD.
+# Protocol Design - Networking
 
 --8<-- "wip-living-whitepaper.md"
 
@@ -32,3 +32,19 @@ The data is signed so that it cannot be forged by a Man In The Middle (MITM) att
 
 !!! warning "Peer disconnections"
     Sending incorrectly signed telemetry data to peers will result in being blacklisted as it is seen as malicious, make sure the signing is correct! Verify signatures against known signing done by node by testing [local telemetry](../commands/rpc-protocol.md#telemetry). Nodes with a different genesis block hash will also be disconnected.
+
+## Peering process
+
+---
+
+## Live traffic
+
+---
+
+## Bootstrap traffic
+
+---
+
+Existing whitepaper sections related to this page:
+
+* [Networking](/protocol-design/networking/)

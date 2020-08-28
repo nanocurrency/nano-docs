@@ -1,8 +1,5 @@
 # Signing, Hashing and Key Derivation
 
-!!! warning "Page may be migrating"
-	This page may be migrated into [Node Implementation Signing, Hashing and Key Derivation page](/node-implementation/signing-hashing).
-
 --8<-- "wip-living-whitepaper.md"
 
 ### Signing algorithm: ED25519

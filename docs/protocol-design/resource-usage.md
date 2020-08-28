@@ -4,26 +4,13 @@ Title: Nano Protocol Design - Resource Usage
 
 --8<-- "wip-living-whitepaper.md"
 
-Existing whitepaper sections: [Resource Usage](/whitepaper/english/#resource-usage)
-
-Existing content:
-
-* [Representatives and voting](/what-is-nano/overview/#representatives-and-voting)
-* [Representatives](/integration-guides/the-basics/#representatives)
-
----
-
 ## Network
 
-### Principal Representatives
+### Principal Representatives (Voting)
 
 ### Representatives (Voting)
 
-### Trustless (Non-voting)
-
-### Trusting
-
-### Light
+### Observer (Non-voting)
 
 ---
 
@@ -35,16 +22,27 @@ Existing content:
 
 ### Historical
 
-### Current
-
-### Light
+### Pruned
 
 ---
 
 ## CPU/GPU
 
-### Proof-of-Work Generation
+### Work Generation
+
+### Principal Representative
 
 ### Representative
 
 ### Observer
+
+---
+
+Existing whitepaper sectionsrelated to this page:
+
+* [Resource Usage](/whitepaper/english/#resource-usage)
+
+Existing content related to this page:
+
+* [Representatives and voting](/what-is-nano/overview/#representatives-and-voting)
+* [Representatives](/integration-guides/the-basics/#representatives)

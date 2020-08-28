@@ -4,12 +4,6 @@ Title: Nano Node Implementation - Components
 
 --8<-- "wip-living-whitepaper.md"
 
-Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
-
-Existing content: -
-
----
-
 ## Overview (diagram)
 
 ---
@@ -28,8 +22,18 @@ Existing content: -
 
 ---
 
-## RPC server
+## Communications
+
+### RPC server
+
+### IPC
+
+### CLI
+
+### WebSockets
 
 ---
 
-## Notifications (websocket)
+Existing whitepaper sections related to this page:
+
+* [Implementation](/whitepaper/english/#implementation)

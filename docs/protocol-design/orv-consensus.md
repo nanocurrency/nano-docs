@@ -4,16 +4,6 @@ Title: Nano Protocol Design - ORV Consensus
 
 --8<-- "wip-living-whitepaper.md"
 
-Existing whitepaper sections: [System Overview](/whitepaper/english/#system-overview), [Implementation](/whitepaper/english/#implementation)
-
-Existing content:
-
-* [Representatives and voting](/what-is-nano/overview/#representatives-and-voting)
-* [Representatives](/integration-guides/the-basics/#representatives)
-* [PoW for Receive block](https://github.com/nanocurrency/nano-node/issues/464#issuecomment-356467448)
-
----
-
 ## Overview
 
 ### PR vs non-PR (brief? implementation decision)
@@ -53,6 +43,13 @@ Existing content:
 
 ---
 
-## Future improvements
+Existing whitepaper sections related to this page:
 
-### Dual-phase voting
+* [System Overview](/whitepaper/english/#system-overview)
+* [Implementation](/whitepaper/english/#implementation)
+
+Existing content related to this page:
+
+* [Representatives and voting](/what-is-nano/overview/#representatives-and-voting)
+* [Representatives](/integration-guides/the-basics/#representatives)
+* [PoW for Receive block](https://github.com/nanocurrency/nano-node/issues/464#issuecomment-356467448)
