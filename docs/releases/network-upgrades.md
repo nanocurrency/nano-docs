@@ -19,8 +19,8 @@ This upgrade is sometimes referenced as the epoch v2 upgrade and the relate even
 | Date | Type | Description |
 |------|------|-------------|
 | <span class="no-break">2020-06-16</span>  | Node release | Nano node V21.0 released which includes changes necessary for supporting new difficulty validation and generation |
-| TBD | <span class="no-break">v2 epoch blocks distribution start</span> | Distribution of v2 epoch blocks to all accounts to mark in the ledger the point at which the new work difficulty levels will be required. The start of this distribution process will occur once key services and over 90% of voting weight on the network has upraded. |
-| TBD | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
+| <span class="no-break">2020-08-18</span> | <span class="no-break">v2 epoch blocks distribution start</span> | Distribution of v2 epoch blocks to all accounts to mark in the ledger the point at which the new work difficulty levels will be required. The start of this distribution process will occur once key services and over 90% of voting weight on the network has upraded. |
+| <span class="no-break">2020-08-29</span> | <span class="no-break">v2 epoch blocks distribution end</span> | Distribution of epoch blocks ends after all accounts are upgraded. |
 
 !!! warning "Nodes de-peered with epoch blocks"
 	Due to the nature of the work difficulty changes, any nodes not updated to V21.0+ at the time of epoch block distribution will be de-peered from the network.
