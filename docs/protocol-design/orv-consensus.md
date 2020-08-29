@@ -14,9 +14,9 @@ Existing content:
 
 ---
 
-# Overview
+## Overview
 
-# Open Representative Voting (ORV) vs Proof of Stake (PoS)
+### Open Representative Voting (ORV) vs Proof of Stake (PoS)
 
 While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus)) that can be compared to PoS, it differs from traditional PoS because:
 
