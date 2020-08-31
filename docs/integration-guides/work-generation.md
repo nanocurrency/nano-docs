@@ -211,7 +211,7 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `fffffff800000000` for all send or change blocks and `fffffe0000000000` for all receive blocks. These split difficulties were upgraded to as part of the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) completed at the end of August 2020.
+The mainnet's base difficulty threshold is currently `fffffff800000000` for all send or change blocks and `fffffe0000000000` for all receive blocks. These split difficulties were set as part of the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) completed at the end of August 2020.
 
 Previous difficulty levels are outlined below as well for historical reference, but currently the epoch v2 thresholds are required when publishing new blocks to the network:
 
