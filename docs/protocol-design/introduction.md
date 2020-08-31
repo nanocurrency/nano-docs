@@ -26,6 +26,29 @@ In this living whitepaper, we introduce Nano, a low-latency cryptocurrency built
 
 Cryptocurrency statistics reported in this living whitepaper are accurate as of August 21, 2020.
 
+---
+
+The following sections of the [Living Whitepaper](../what-is-nano/living-whitepaper.md) outline the design of the Nano protocol. The focus here is providing details of the blueprints for the different messages shared between nodes which allow data to be stored and communicated consistently across the network.
+
+Because Nano is decentralized and uses network-wide consensus to validate transactions, participating requires following specific message and data designs, otherwise attempts at transacting will not be confirmed by the network.
+
+Although there is cross-over between the two main areas of the living whitepaper, the following Protocol Design sections are largely required to participate on the network, while the [Node Implementation](../node-implementation/introduction.md) sections primarily cover functionality that improves performance and security through a specific node design, but doesn't contain elements the network explicitly requires.
+
+| Section | Description |
+|---------|-------------|
+| [Introduction](#introduction) | Abstract, introduction, and background for the Nano protocol
+| [Ledger](ledger.md) | Unique Block Lattice design of the Nano ledger |
+| [Blocks](blocks.md) | Block structures and transaction types |
+| [Work](work.md) | Computation required to establish validity and priority of transactions on the network | 
+| [Networking](networking.md) | Protocols, ports and details of current vs. historical traffic | 
+| [ORV Consensus](orv-consensus.md) | Mechanism for efficiently achieving network-wide consensus | 
+| [Attack Vectors](attack-vectors.md) | Potential attack vectors, risk levels and mitigations in place  | 
+| [Resource Usage](resource-usage.md) | Estimates for bandwidth, disk and computational resources for nodes | 
+| [Distribution and Units](distribution-and-units.md) | Unit measurements and methods used for full distribution of Nano | 
+| [Signing, Hashing and Key Derivation](signing-hashing-and-key-derivation.md) | Cryptographic methods used for signing and validation | 
+| [Contributing](../node-implementation/contributing.md) | How to contribute to the Nano protocol directly | 
+| [Original Whitepaper](../whitepaper/english.md) | Online version of original whitepaper last revised in November 2017 | 
+
 ## Background
 
 In 2008, an anonymous individual under the pseudonym Satoshi Nakamoto published a whitepaper outlining the world’s first decentralized cryptocurrency, Bitcoin [^3]. A key innovation brought about by Bitcoin was the blockchain, a public, immutable and decentralized data-structure which is used as a ledger for the currency’s transactions. Unfortunately, as Bitcoin matured, several issues in the protocol made Bitcoin prohibitive for many applications: 
@@ -43,13 +66,6 @@ An alternative consensus protocol, Proof of Stake (PoS), was first introduced by
 
 The original Nano (RaiBlocks) paper and first beta implementation were published in December, 2014, making it one of the first Directed Acyclic Graph (DAG) based cryptocurrencies [^9]. Soon after, other DAG cryptocurrencies began to develop, most notably DagCoin/Byteball and IOTA [^10], [^11]. These DAG-based cryptocurrencies broke the blockchain mold, improving system performance and security. Byteball achieves consensus by relying on a “main-chain” comprised of honest, reputable and user-trusted “witnesses”, while IOTA achieves consensus via the cumulative PoW of stacked transactions. Nano achieves consensus via a balance-weighted vote on conflicting transactions. This consensus system provides quicker, more deterministic transactions while still maintaining a strong, decentralized system. Nano continues this development and has positioned itself as one of the highest performing cryptocurrencies.
 
-## Protocol Design vs Node Implementation
-
-It is important to keep in mind that there can be differences between specific node implementations of the Nano protocol, though the protocol itself (i.e. the core network rules) should always be the same. While the Nano protocol is fairly simple, the reference node implementation is pretty complex and involves many moving parts. This section of the living whitepaper focuses on the protocol design. For details on the reference node implementation (e.g. database design), see [here](/node-implementation/overview).
-
-## Index Terms
-blockchain, cryptocurrency, decentralization, Nano, distributed ledger, digital, transactions
-
 ## References
 
 [^1]: "Block Confirmation Times", 2020. [Online]. Available: https://repnode.org/network/confirmation
@@ -63,28 +79,6 @@ blockchain, cryptocurrency, decentralization, Nano, distributed ledger, digital,
 [^9]: C. LeMahieu, “Raiblocks distributed ledger network,” 2014. 
 [^10]: Y. Ribero and D. Raissar, “Dagcoin whitepaper,” 2015. Available: https://dagcoin.org/wp-content/uploads/2019/07/Dagcoin_White_Paper.pdf
 [^11]: S. Popov, “The tangle,” 2016.
----
-
-The following sections of the [Living Whitepaper](../what-is-nano/living-whitepaper.md) outline the design of the Nano protocol. The focus here is providing details of the blueprints for the different messages shared between nodes which allow data to be stored and communicated consistently across the network.
-
-Because Nano is decentralized and uses network-wide consensus to validate transactions, participating requires following specific message and data designs, otherwise attempts at transacting will not be confirmed by the network.
-
-Although there is cross-over between the two main areas of the living whitepaper, the following Protocol Design sections are largely required to participant on the network, while the [Node Implementation](../node-implementation/introduction.md) sections primarily cover functionality that improves performance and security through a specific node design, but doesn't contain elements the network explicitly requires.
-
-
-| Section | Description |
-|---------|-------------|
-| [Ledger](ledger.md) | Unique Block Lattice design of the Nano ledger |
-| [Blocks](blocks.md) | Block structures and transaction types |
-| [Work](work.md) | Computation required to establish validity and priority of transactions on the network | 
-| [Networking](networking.md) | Protocols, ports and details of current vs. historical traffic | 
-| [ORV Consensus](orv-consensus.md) | Mechanism for efficiently achieving network-wide consensus | 
-| [Attack Vectors](attack-vectors.md) | Potential attack vectors, risk levels and mitigations in place  | 
-| [Resource Usage](resource-usage.md) | Estimates for bandwidth, disk and computational resources for nodes | 
-| [Distribution and Units](distribution-and-units.md) | Unit measurements and methods used for full distribution of Nano | 
-| [Signing, Hashing and Key Derivation](signing-hashing-and-key-derivation.md) | Cryptographic methods used for signing and validation | 
-| [Contributing](../node-implementation/contributing.md) | How to contribute to the Nano protocol directly | 
-| [Original Whitepaper](../whitepaper/english.md) | Online version of original whitepaper last revised in November 2017 | 
 
 ---
 
@@ -98,7 +92,3 @@ Other existing content related to this page:
 * [Nano Overview](../what-is-nano/overview.md)
 * [Representatives and Voting](/what-is-nano/overview/#representatives-and-voting)
 * [Incentives to run a node](https://medium.com/nanocurrency/the-incentives-to-run-a-node-ccc3510c2562)
-
-[^1]: Repnode.org Nano transaction times: https://repnode.org/network/confirmation
-[^2]: Main network throughput statistics: https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
-[^3]: Bitcoin Whitepaper: https://bitcoin.org/bitcoin.pdf
