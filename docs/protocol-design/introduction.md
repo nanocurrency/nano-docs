@@ -5,7 +5,8 @@ Description: As the beginning of the living whitepaper, get details and backgrou
 
 --8<-- "wip-living-whitepaper.md"
 
---8<-- "contributing-code.md"
+!!! tip "Contributing to the protocol"
+	If you are interested in helping develop the Nano protocol check out our details on [contributing code to the Nano node](../node-implementation/contributing.md) as a starting point to understanding the current implementation contributions, as these are often tightly coupled with protocol-related changes.
 
 ---
 
