@@ -67,6 +67,9 @@ Blocks on an account chain before the first v1 block (which is often the v1 epoc
 #### live network
 A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. As of V21, use of UDP is deprecated.
 
+#### node version
+The version used to identify a unique release build of the node. Each node version is tied to a single [protocol version](#protocol-version), but they are updated independently.
+
 #### online voting weight
 Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
 
@@ -87,6 +90,9 @@ When the delta between the two successive blocks of a root is > 50% of the onlin
 
 #### Principal Representative
 A Nano account with >= 0.1% of the [online voting weight](#online-voting-weight) delegated to it. When configured on a node which is voting, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
+
+#### protocol version
+The version used to identify the set of protocol rules nodes are required to follow in order to properly communicate with peers. Nodes running older protocol versions are periodically de-peered on the network to keep communication efficient - see [Active Releases](/releases/node-releases/#active-releases) and [Inactive Releases](/releases/node-releases/#inactive-releases) for the latest versions allowed to peer with one another.
 
 #### Representative
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.

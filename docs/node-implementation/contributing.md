@@ -1,25 +1,8 @@
-Title: Protocol Design Overview | Nano Documentation
+title: Contributing code to the Nano node | Nano Documentation
 
-# Protocol Design Overview
+# Contributing code to the Nano node
 
-The Nano protocol is a complex piece of software aiming at a simple, singular goal: transfer value as efficiently as possible. Doing so on a network that is decentralized for the long-term involves many moving parts. Below are some detailed explanations of various pieces of the protocol intended for advanced developers and those with deep knowledge of the network.
-
---8<-- "contributing-code.md"
-
-## Feature Details
-
-| Feature | Description |
-|---------|-------------|
-| [Distribution and Units](/protocol-design/distribution-and-units/) | Original distribution details and Nano unit breakdowns |
-| [Networking](/protocol-design/networking/) | Details about the network protocols nodes use to communicate with peers |
-| [Network Attacks](/protocol-design/network-attacks/) | Explanation of some of the potential attack vectors on the Nano network |
-| [Signing, Hashing and Key Derivation](/protocol-design/signing-hashing-and-key-derivation/) | Details of the algorithms and functions used for these activities | 
-
----
-
-## Contributing code to the Nano node
-
-### About the code base
+## About the code base
 
 Nano is written in C++14 and supports Linux, macOS and Windows.
 
@@ -52,7 +35,7 @@ Please familiarize yourself with basic cmake usage, such as how to change cache 
 
 Find out more about building in [Integration Guides Build Options](/integration-guides/build-options).
 
-### Testing
+## Testing
 
 **Add tests**
 
@@ -68,7 +51,7 @@ Please run the tests before submitting a PR. Go to the build directory and run t
 
 If you get a lot of failures, such as `frontier_req.begin` failing, make sure `ACTIVE_NETWORK` is set to `nano_test_network`
 
-### GitHub collaboration
+## GitHub collaboration
 
 Communication is the key to working together efficiently. A good way to get in touch with the developers is to join the #development channel on [Discord](https://chat.nano.org/). If you have an idea of an improvement or new feature, consider discussing it first with the team, either on Discord, or by adding an issue. Maybe someone is already working on it, or have suggestions on how to improve on the idea.
 
@@ -84,13 +67,13 @@ Communication is the key to working together efficiently. A good way to get in t
 	* Supporting material/references
 	* The potential security impact of the bug
 
-#### Code Process
+### Code Process
 
-##### Fork and do all your work on a branch
+#### Fork and do all your work on a branch
 
 Nano prefers the standard GitHub workflow. You create a fork of the Nano repository, make branches for features/issues, and commit and push these. 
 
-##### Create pull requests
+#### Create pull requests
 
 Before:
 
@@ -108,7 +91,7 @@ After:
 * Check that CI completes successfully. If not, fix the problem and push an update.
 * Respond to comments and reviews in a timely fashion.
 
-##### Resolve conflicts
+#### Resolve conflicts
 
 If time passes between your pull request (PR) submission and the team accepting it, merge conflicts may occur due to activity on develop, such as merging other PR's before yours. In order for your PR to be accepted, you must resolve these conflicts.
 
@@ -132,9 +115,9 @@ Once your PR is OK'ed, please squash the commits into a one.[^4]
 
 Note that you can also update the last commit with `git commit --amend`. Say your last commit had a typo. Instead of committing and having to squash it later, simply commit with amend and push the branch.
 
-### Code standard
+## Code standard
 
-#### Formatting
+### Formatting
 
 clang-format is used to enforce most of the formatting rules, such as:
 
@@ -147,7 +130,7 @@ Please run `ci/clang-format-all.sh` before pushing your code to ensure that the 
 
 Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^5]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings. 
 
-#### Coding guidelines
+### Coding guidelines
 
 * Use `auto` type inference for local variables if it's clear from the context what the type will be. Use your best judgement, sometimes adding explicit types can increase readability [^1]
 * Handle exceptions, including IO exceptions for file and network operations.
@@ -156,14 +139,14 @@ Make sure you set up your editor to use tabs. Use tabs for indentation, and spac
 * Add comments to explain complex and subtle situations, but avoid comments that reiterates what the code already says.
 * Use RAII and C++11 smart pointers to manage memory and other resources.
 
-#### Performance and scalabiliy considerations
+### Performance and scalabiliy considerations
 
 * When making changes, think about performance and scalability. Pick good data structures and think about algorithmic complexity. 
     * For small data sets, std::vector should be your to-go container, as a linear scan through contiguous memory is often faster than any alternative.
     * Nested loops yield quadratic behavior - is there an alternative? A typical example is removing an inner lookup loop with a map.
 * Make sure your change doesn't conflict with the scalability characteristics described in the white paper. 
  
-#### Security
+### Security
 
 Your code will be reviewed with security in mind, but please do your part before creating a pull request:
 
@@ -174,7 +157,7 @@ Your code will be reviewed with security in mind, but please do your part before
 
 * Use static and dynamic analysis tools, such as valgrind, XCode instrumentation, linters and sanitizers. These tools are also great for debugging crashes and performance problems.
 
-### General tips for contributors
+## General tips for contributors
 
 * Read the [white paper](https://nano.org/en/whitepaper)
 * Peruse the code and don't be shy about asking questions if there are parts you don't understand.

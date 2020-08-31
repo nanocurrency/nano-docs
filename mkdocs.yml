@@ -17,8 +17,7 @@ nav:
   - Home: index.md
   - What is Nano?:
     - Overview: what-is-nano/overview.md
-    - Contributing: what-is-nano/contributing.md
-    - Exploring More: what-is-nano/exploring-more.md
+    - Living Whitepaper: what-is-nano/living-whitepaper.md
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Security: running-a-node/security.md
@@ -44,12 +43,25 @@ nav:
     - RPC Protocol: commands/rpc-protocol.md
     - Command Line Interface: commands/command-line-interface.md
   - Protocol Design:
-    - Overview: protocol-design/overview.md
-    - Distribution and Units: protocol-design/distribution-and-units.md
+    - Introduction: protocol-design/introduction.md
+    - Ledger: protocol-design/ledger.md
+    - Blocks: protocol-design/blocks.md
+    - Work: protocol-design/work.md
     - Networking: protocol-design/networking.md
-    - Network Attacks: protocol-design/network-attacks.md
+    - ORV Consensus: protocol-design/orv-consensus.md
+    - Attack Vectors: protocol-design/attack-vectors.md
+    - Resource Usage: protocol-design/resource-usage.md
+    - Distribution and Units: protocol-design/distribution-and-units.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+    - Contributing: node-implementation/contributing.md
     - Original whitepaper: whitepaper/english.md
+  - Node Implementation:
+    - Introduction: node-implementation/introduction.md
+    - Components: node-implementation/components.md
+    - Database: node-implementation/database.md
+    - Voting: node-implementation/voting.md
+    - Work: node-implementation/work.md
+    - Contributing: node-implementation/contributing.md
   - Releases:
     - Node Releases: releases/node-releases.md
     - Current Release Notes: releases/current-release-notes.md
@@ -127,3 +139,6 @@ plugins:
     - redirects:
         redirect_maps:
             'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
+            'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
+            'what-is-nano/contributing.md': 'node-implementation/contributing.md'
+            'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
