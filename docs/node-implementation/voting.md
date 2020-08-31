@@ -4,12 +4,6 @@ Title: Nano Node Implementation - Voting
 
 --8<-- "wip-living-whitepaper.md"
 
-Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
-
-Existing content: -
-
----
-
 ## Vote rebroadcasting
 
 ---
@@ -23,3 +17,13 @@ Existing content: -
 ---
 
 ## Active transactions loop
+
+---
+
+Existing whitepaper sections related to this page:
+
+* [Implementation](/whitepaper/english/#implementation)
+
+Other content related to this page:
+
+* [Voting as a Representative guide](../running-a-node/voting-as-a-representative.md)

@@ -148,12 +148,14 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 ### Benchmark commands
 
-**Node RPC or external work server**
+**Nano Work Server**
 
-1. Setup one of the following:
-	- A node with RPC enabled and any desired work peer
-	- A standalone work server
-1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench)
+The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) is the preferred approach for benchmarking and includes an [example](https://github.com/nanocurrency/nano-work-server#benchmarking).
+
+**Node RPC**
+
+1. Setup and run a node with RPC enabled, control enabled, and the desired configuration including work peers.
+1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench).
 
 **Node local work generation**
 
@@ -211,11 +213,9 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `ffffffc000000000` for all epoch v1 blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+The mainnet's base difficulty threshold is currently `fffffff800000000` for all send or change blocks and `fffffe0000000000` for all receive blocks. These split difficulties were set as part of the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) completed at the end of August 2020.
 
-Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
-
-After the next [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty), which will occur after the [V21.0 release](../releases/current-release-notes.md) and subsequent distribution of epoch v2 blocks, there will be two difficulty thresholds:
+Previous difficulty levels are outlined below as well for historical reference, but currently the epoch v2 thresholds are required when publishing new blocks to the network:
 
 | Epoch version | Block Type | Difficulty Threshold |
 |               |            |                      |
@@ -223,7 +223,9 @@ After the next [network upgrade to increase difficulty](../releases/network-upgr
 | 2             | Send or change | `fffffff800000000` |
 | 2             | Receive        | `fffffe0000000000` |
 
-Although preparations can be done ahead of the upgrade, please find related considerations in the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) section.
+For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+
+Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
 
 **Development node wallet behavior**
 

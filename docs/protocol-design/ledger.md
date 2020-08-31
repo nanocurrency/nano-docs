@@ -4,16 +4,6 @@ Title: Nano Protocol Design - Ledger
 
 --8<-- "wip-living-whitepaper.md"
 
-Existing whitepaper sections: [Nano Components](/whitepaper/english/#raiblocks-components)
-
-Existing content:
-
-* [Block Lattice design](/integration-guides/the-basics/#block-lattice-design)
-* [Accounts, Keys, Seeds, etc.](/integration-guides/the-basics/#account-key-seed-and-wallet-ids)
-* [Looking up to Confirmation Height](https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc)
-
----
-
 ## Ledger design (block lattice)
 
 ### Accounts
@@ -24,6 +14,17 @@ Existing content:
 
 ---
 
-## Future Improvements
+## Ledger pruning
 
-### Ledger pruning
+---
+
+Existing whitepaper sections related to this page:
+
+* [Nano Components](/whitepaper/english/#raiblocks-components)
+
+Other existing content related to this page:
+
+* [Block Lattice design](/integration-guides/the-basics/#block-lattice-design)
+* [Accounts, Keys, Seeds, etc.](/integration-guides/the-basics/#account-key-seed-and-wallet-ids)
+* [Looking up to Confirmation Height](https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc)
+* [Ledger Management guide](../running-a-node/ledger-management.md)

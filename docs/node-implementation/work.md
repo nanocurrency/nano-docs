@@ -1,14 +1,8 @@
-Title: Nano Node Implementation - Proof of Work
+Title: Nano Node Implementation - Work
 
-# Node Implementation - Proof of Work
+# Node Implementation - Work
 
 --8<-- "wip-living-whitepaper.md"
-
-Existing whitepaper sections: [Implementation](/whitepaper/english/#implementation)
-
-Existing content: -
-
----
 
 ## OpenCL implementation
 
@@ -20,3 +14,13 @@ Existing content: -
 
 ## Work re-generation
 
+---
+
+
+Existing whitepaper sections related to this page:
+
+* [Implementation](../whitepaper/english.md#implementation)
+
+Other content related to this page:
+
+* [Work Generation guide](../integration-guides/work-generation.md)

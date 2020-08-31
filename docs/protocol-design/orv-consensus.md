@@ -38,6 +38,8 @@ While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus))
 
 - Representatives cannot reverse transactions that nodes have locally confirmed (due to [block cementing](/glossary#cementing)).
 
+## Overview
+
 ### PR vs non-PR (brief? implementation decision)
 
 ---
@@ -75,6 +77,13 @@ While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus))
 
 ---
 
-## Future improvements
+Existing whitepaper sections related to this page:
 
-### Dual-phase voting
+* [System Overview](/whitepaper/english/#system-overview)
+* [Implementation](/whitepaper/english/#implementation)
+
+Existing content related to this page:
+
+* [Representatives and voting](/what-is-nano/overview/#representatives-and-voting)
+* [Representatives](/integration-guides/the-basics/#representatives)
+* [PoW for Receive block](https://github.com/nanocurrency/nano-node/issues/464#issuecomment-356467448)
