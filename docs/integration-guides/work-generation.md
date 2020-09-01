@@ -91,7 +91,7 @@ graph TD
 graph TD
     M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
     M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
-    N -->|network_minimum| P_1(Generate work at<br><b>network_minimum</b> difficulty)
+    N -->P_1(Generate work at<br><b>network_minimum</b><br>or <b>network_receive_minimum</b><br>difficulty)
     O_1 -->O_2((active<br>difficulty))
     P_1 -->|work| P_2(Use <b>work</b> in block)
     P_2 -->P_3((block))
