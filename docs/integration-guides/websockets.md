@@ -440,9 +440,10 @@ No filters are currently available for the `active_difficulty` topic.
   "topic": "active_difficulty",
   "time": "1561661736065",
   "message": {
-    "multiplier": "1.273557846739298",
-    "network_current": "fffffff9b7e81549",
+    "multiplier": "1.5",
+    "network_current": "fffffffaaaaaaaab",
     "network_minimum": "fffffff800000000",
+    "network_receive_current": "fffffff07c1f07c2", // since V21.2
     "network_receive_minimum": "fffffe0000000000" // since V21.2
   }
 }

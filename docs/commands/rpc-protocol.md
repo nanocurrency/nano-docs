@@ -413,7 +413,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` is also provided as a lower threshold exclusively for receive blocks. This does not work fr
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
 
 **Request:**
 ```json
@@ -425,9 +425,10 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 **Response:**
 ```json
 {
-  "multiplier": "1.273557846739298",
-  "network_current": "fffffff9b7e81549",
+  "multiplier": "1.5",
+  "network_current": "fffffffaaaaaaaab",
   "network_minimum": "fffffff800000000",
+  "network_receive_current": "fffffff07c1f07c2", // since V21.2
   "network_receive_minimum": "fffffe0000000000" // since V21.2
 }
 ```

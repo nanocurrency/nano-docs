@@ -87,11 +87,14 @@ graph TD
 
 ### Work generated without using the node
 
+!!!tip "Lower thresholds for receive blocks"
+    **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
+
 ``` mermaid
 graph TD
     M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
     M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
-    N -->P_1(Generate work at<br><b>network_minimum</b><br>or <b>network_receive_minimum</b><br>difficulty)
+    N -->P_1(Generate work at<br><b>network_minimum</b> difficulty)
     O_1 -->O_2((active<br>difficulty))
     P_1 -->|work| P_2(Use <b>work</b> in block)
     P_2 -->P_3((block))
@@ -99,7 +102,7 @@ graph TD
     P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
     P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
     P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
-    P_7 -->|network_current| P_8{Block difficulty less<br>than <b>network_current</b> ?}
+    P_7 -->P_8{Block difficulty less<br>than <b>network_current</b> ?}
     P_8 -->|yes| P_9(Generate work at<br><b>network_current</b> difficulty)
     P_8 -->|no| P_6
     P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
