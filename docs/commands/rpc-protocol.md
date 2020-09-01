@@ -413,7 +413,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` is also provided as a lower threshold exclusively for receive blocks. This does not work fr
 
 **Request:**
 ```json
@@ -425,9 +425,10 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffcdbf40aa45",
-  "multiplier": "1.273557846739298"
+  "multiplier": "1.273557846739298",
+  "network_current": "fffffff9b7e81549",
+  "network_minimum": "fffffff800000000",
+  "network_receive_minimum": "fffffe0000000000" // since V21.2
 }
 ```
 
@@ -447,9 +448,7 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffc1816766f2",
-  "multiplier": "1.024089858417128",
+  ...,
   "difficulty_trend": [
     "1.156096135149775",
     "1.190133894573061",
