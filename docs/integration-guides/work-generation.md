@@ -241,9 +241,6 @@ For services aiming to ensure the highest priority on their transactions, the co
 !!! tip "Configure max work generate multiplier"
     Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
 
-!!! warning "Upcoming threshold changes and variations by block type"
-	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
-
 ### Pre-caching
 
 Work for an account can be pre-cached and saved for immediate use on an account as long as it was based on the current frontier block at the time of use. Although this customization must be made externally to the node, it can help level out potential spikes in work generation, especially useful with wallet implementations.
@@ -259,7 +256,6 @@ With V21+ the work difficulty thresholds were split by block type. For many inte
 **Utilizing lower work when batching**
 
 For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
-
 
 ### Difficulty multiplier
 
