@@ -148,6 +148,10 @@
     width: 120px;
 }
 
+.md-announce {
+    background-color: #000034;
+}
+
 @media only screen and (min-width: 45em) {
     .md-footer-social {
         padding: 0;
