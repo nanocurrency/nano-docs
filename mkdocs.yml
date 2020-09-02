@@ -13,6 +13,8 @@ theme:
     repo: 'fontawesome/brands/github'
   favicon: 'images/favicon.png'
   custom_dir: 'theme'
+  features:
+    - tabs
 nav:
   - Home: index.md
   - What is Nano?:
