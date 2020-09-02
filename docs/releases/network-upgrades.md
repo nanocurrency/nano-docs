@@ -24,13 +24,11 @@ To help ensure Quality of Service on the network by providing the ability to gen
 
 | Date | Type | Description |
 |------|------|-------------|
-| TBD  | Node release | Nano node V20.0 released to include a new PoW server and epoch block support. These are only foundational updates and will not be configured for activation in this release. |
-| TBD  | Node release | Nano node VXX.X released to include new PoW algorithm in PoW server, addition of a new state block version (v2) with support for the new work values and final changes allowing transition via epoch blocks. |
-| TBD | <span class="no-break">Epoch blocks start</span> | Distribution of epoch blocks to each account which upgrades them to use the new state block version (v2).  Once an account is upgraded nodes will only validate work made using the new PoW algorithm for that account. |
+| <span class="no-break">2019-11-21</span>  | Node release | Nano node V20.0 released to include a new PoW server and epoch block support. These are only foundational updates and will not be configured for activation in this release. |
+| <span class="no-break">2020-08-29</span> | Epoch blocks | Following the [postponing of the Nano PoW algorithm](https://medium.com/nanocurrency/nano-pow-v20-update-e2197ff52941) in favor or research towards other options, the original epoch v2 blocks intended for the PoW algorithm update were modified for increasing work difficulty using the existing algorithm in V21.0 and [subsequently distributed in August 2020](#increased-work-difficulty). Any future PoW algorithm updates will require a different epoch block version. |
+| TBD  | Node release | Nano node VXX.X released to include new PoW algorithm in PoW server and final changes allowing transition via epoch blocks. |
+| TBD | <span class="no-break">Epoch blocks start</span> | Distribution of epoch blocks to each account which upgrades them to use the new PoW algorithm.  Once an account is upgraded nodes will only validate work made using the new PoW algorithm for that account. |
 | TBD | Epoch blocks end | Distribution of epoch blocks ends after all accounts are upgraded. |
-
-!!! warning "Nodes de-peered with epoch blocks"
-	Due to the nature of the state block changes to be included in the 2nd node release of this transition, any nodes not updated to the latest version at the time of epoch block distribution will be de-peered as part of this process.
 
 **Transition Explanation**
 
