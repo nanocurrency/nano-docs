@@ -39,7 +39,7 @@ Since account owners are the only ones who can modify their own account chains, 
 
 ### Blocks
 
-In Nano, a block is a single transaction. The term “block” and “transaction” are often used interchangeably, where a block contains only one transaction. "Transaction" specifically refers to the action, while block refers to the digital encoding of the transaction. Transactions are signed by the private-key belonging to the account on which the transaction is performed. 
+In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a group of transactions. In Nano, a block is a single transaction, so the term “block” and “transaction” are often used interchangeably. "Transaction" specifically refers to the action, while block refers to the digital encoding of the transaction. Transactions are signed by the private-key belonging to the account on which the transaction is performed. 
 
 An example of a Nano block:
 ```
