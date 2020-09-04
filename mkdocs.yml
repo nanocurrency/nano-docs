@@ -17,9 +17,8 @@ theme:
     - tabs
 nav:
   - Home: index.md
-  - What is Nano?:
-    - Overview: what-is-nano/overview.md
-    - Living Whitepaper: what-is-nano/living-whitepaper.md
+  - What is Nano?: what-is-nano/overview.md
+  - Living Whitepaper: what-is-nano/living-whitepaper.md
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Security: running-a-node/security.md
@@ -67,7 +66,11 @@ nav:
   - Releases:
     - Node Releases: releases/node-releases.md
     - Current Release Notes: releases/current-release-notes.md
-    - Previous Release Notes: releases/previous-release-notes.md
+    - Previous Release Notes:
+      - V21.1: releases/release-v21-1.md
+      - V21.0: releases/release-v21-0.md
+      - V20.0: releases/release-v20-0.md
+      - V19.0: releases/release-v19-0.md
     - Network Upgrades: releases/network-upgrades.md
     - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
