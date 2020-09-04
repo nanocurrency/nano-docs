@@ -1,3 +1,9 @@
+:root {
+  --md-primary-fg-color:        #4a90e2;
+  --md-primary-fg-color--light: #4a90e2;
+  --md-primary-fg-color--dark:  #90030C;
+}
+
 .md-container {
     background-color: white;
 }
