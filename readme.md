@@ -87,3 +87,8 @@ Types include:
 
 ### Mermaid Sequence Diagrams
 There is support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram
+
+### Octicon icons
+The scripts for using Github's Octicons are included in the header. Details for available icons can be found here: https://primer.style/octicons/. Usage should be limited. Example currently available in announcement block:
+
+`<span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>`
