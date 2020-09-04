@@ -55,6 +55,7 @@ An example of a Nano block:
   "work": "cab7404f0b5449d0"
 }
 ```
+Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.
 
 See the [blocks](blocks.md) page for additional details.
 
@@ -66,7 +67,9 @@ While confirmed send transactions are final, to complete a full transaction loop
 
 ## Ledger pruning
 
-Since Nano transactions (blocks) capture the complete current state of an account, the ledger can be aggressively pruned. While there are a few exceptions and caveats (epoch blocks, pending transactions, etc), Nano's ledger design enables significant account chain pruning - to almost one block per account, regardless of how many transactions the account has sent or received. See the official [forum](https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
+Since Nano transactions (blocks) capture the complete current state of an account, the ledger can potentially be pruned quite aggressively. While there are a few exceptions and caveats (e.g. epoch blocks and pending transactions), Nano's ledger design could enable significant account chain pruning - down to almost one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
+
+See the official [forum](https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
 
 ---
 
