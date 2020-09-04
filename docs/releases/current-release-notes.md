@@ -6,7 +6,7 @@ description: Details of the most current Nano node release including upgrade not
 !!! success "V21.2 Release Available"
 	The latest release is V21.2 which adds optimizations for the OpenCL work kernel and resolves issues interrupting node operation during certain network conditions. Upgrading to V21.2 is recommended for all node operators.
 
-	**There are no special integration considerations or impacts with this release if upgrading from V21.0 or higher. If upgrading from V20.0 or lower, please review the [V21.0 Release Notes](previous-release-notes.md#v210) for upgrade notices and other considerations.**
+	**There are no special integration considerations or impacts with this release if upgrading from V21.0 or higher. If upgrading from V20.0 or lower, please review the [V21.0 Release Notes](release-v21-0.md) for upgrade notices and other considerations.**
 
 --8<-- "release-details-v21-2.md"
 
