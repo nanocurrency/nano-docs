@@ -1,12 +1,30 @@
-:root {
+
+[data-md-color-scheme="nano"] {
   --md-primary-fg-color:        #4a90e2;
-  --md-primary-fg-color--light: #4a90e2;
-  --md-primary-fg-color--dark:  #90030C;
+  --md-primary-fg-color--light: #F4FAFF;
+  --md-primary-fg-color--dark:  #000034;
+
+  --md-footer-bg-color:         #000034;
 }
 
-.md-container {
-    background-color: white;
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #000034;
+  --md-primary-fg-color--light: #F4FAFF;
+  --md-primary-fg-color--dark:  #000034;
+
+  --md-footer-bg-color:         #000034;
+
+  --md-hue: 240;
+
 }
+
+.md-announce__inner a {
+    color: #F4FAFF;
+}
+
+/*.md-container {
+    background-color: white;
+}*/
 
 .md-header-nav__button.md-logo img {
     display: block;
@@ -28,15 +46,17 @@
 	padding-left: 0.6rem;
 }
 
+/*
 .md-header,
 .md-footer-nav,
 .md-footer-meta {
     background-color: #4a90e2;
 }
+*/
 
 /* Highlight current page in nav menu */
 .md-nav__link--active {
-    color      : #4a90e2;
+    /*color      : #4a90e2;*/
     font-weight: bold;
 }
 
@@ -101,9 +121,9 @@
 	color: #7e7c8e;
 }
 
-.md-typeset h1 {
+/*.md-typeset h1 {
 	color: #131121;
-}
+}*/
 
 .md-nav__title {
 	display: none;

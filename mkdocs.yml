@@ -3,8 +3,14 @@ site_url: https://docs.nano.org/
 theme:
   name: 'material'
   palette:
-    primary: '#4a90e2'
-    accent: '#131121'
+    - scheme: nano
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
