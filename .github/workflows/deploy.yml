@@ -1,0 +1,21 @@
+name: ci
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs
+      - run: pip install mkdocs-material
+      - run: pip install pymdown-extensions
+      - run: pip install MarkdownHighlight
+      - run: pip install mkdocs-redirects
+      - run: mkdocs build --strict
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
