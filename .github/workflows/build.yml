@@ -9,7 +9,8 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: pip install mkdocs
+      - run: pip install mkdocs-material
       - run: pip install pymdown-extensions
       - run: pip install MarkdownHighlight
       - run: pip install mkdocs-redirects
