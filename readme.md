@@ -33,7 +33,7 @@ Access the site at http://localhost:8000. This supports automatic rebuilding, so
 Pages automatically have a `<h1>` title setup for them based on the page name, so headers `##` (`<h2>`) and higher should only be used to organize the content.
 
 ### Table of Contents
-Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###', and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
+Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###`, and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
 
 ### Links
 MkDocs has a link checker built in that can be run using the `--strict` flag on `mkdocs serve`, or `mkdocs build` command. This flag is included in the build pipeline. For it to work, links must be referencing the relative file path with the file extension included and no trailing slashes. Anchors are not included in this check. Although relative URLs will function if used, they will not be verified by the link checker.
