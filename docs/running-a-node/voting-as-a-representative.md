@@ -1,3 +1,6 @@
+title: Voting as a Representative
+description: A comprehensive guide for getting your node to participate in consensus on the Nano network by voting as a representative
+
 # Voting as a Representative
 
 The default [node setup](node-setup.md) guide provides instructions for getting a non-voting node setup, but if you're looking to run a [Representative node](overview.md#representative-nodes), and perhaps hoping to become a [Principal Representative](overview.md#principal-representative-nodes), the node will need to be configured to vote and be setup with a Representative account.

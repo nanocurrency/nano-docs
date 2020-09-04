@@ -1,3 +1,6 @@
+title: Integration Guides - The Basics
+description: Understand some of the core details of the Nano protocol including block specifications, accounts, keys, and more
+
 # The Basics
 
 ## Block Lattice Design

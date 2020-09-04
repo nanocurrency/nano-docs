@@ -1,3 +1,6 @@
+title: Integration Guides - Build Options
+description: Instructions for manually building the Nano node for a variety of operating systems
+
 # Build Options
 
 --8<-- "only-official-builds-supported.md"

@@ -1,3 +1,6 @@
+title: Beyond the node
+description: Explore other tools, services, education and inspiration available after getting your node up and running
+
 # Beyond the Node
 
 ## Building tools and services

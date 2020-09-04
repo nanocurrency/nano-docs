@@ -1,4 +1,5 @@
-Title: Nano Protocol Design - ORV Consensus
+title: Protocol Design - ORV Consensus
+description: Take a deep dive into the unique, gossip-based algorithm used by Nano to generate global consensus across all nodes on the network
 
 # Protocol Design - ORV Consensus
 

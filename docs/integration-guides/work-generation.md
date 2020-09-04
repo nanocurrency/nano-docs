@@ -1,5 +1,5 @@
-title: Work Generation | Nano Documentation
-description: Understand the best configurations for work generation on the Nano network.
+title: Integration Guides - Work Generation
+description: Understand the best configurations for work generation on the Nano network
 
 !!!tip "Some sections of this page target node version 21 or higher"
 

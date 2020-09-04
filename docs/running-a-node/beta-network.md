@@ -1,3 +1,6 @@
+title: Beta Network
+description: Find out how to join the Nano community in testing the latest node and protocol features on the beta network
+
 # Joining the beta network
 
 !!! tip "Testing is currently ongoing on the beta network for Version 22"

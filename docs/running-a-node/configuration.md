@@ -1,3 +1,6 @@
+title: Node Configuration
+description: Dig into the most popular configuration options to help your Nano node work the best for your needs
+
 # Node Configuration
 
 The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing configuration values via the command line, or a combination of the two methods.
