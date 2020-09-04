@@ -45,6 +45,7 @@ An example of a Nano block:
   "work": "cab7404f0b5449d0"
 }
 ```
+Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.
 
 ### Account balance
 
