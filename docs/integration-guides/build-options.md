@@ -51,7 +51,7 @@ This installs `nano_node-beta` to bin.
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
@@ -70,7 +70,7 @@ This installs `nano_node-beta` to bin.
 Inside `nano-node` directory run:
 
 ```bash
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 ```
 
 This will build the required Boost libraries at `/usr/local/boost/`.
@@ -216,7 +216,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
@@ -232,7 +232,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
