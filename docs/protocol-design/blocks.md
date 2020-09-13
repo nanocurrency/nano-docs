@@ -61,11 +61,20 @@ In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a grou
 
 ### Open
 
+To create an account, an open transaction must be issued first. This is always the first transaction (block 0) of every account-chain and can be created upon the first receipt of funds. To open an account, you must have sent some funds to it with a send transaction from another account. The funds will be pending on the receiving account. The account field stores the public-key (address) derived from the private-key that is used for signing. The link field contains the hash of the transaction that sent the funds. On account creation, a representative must be chosen to vote on your behalf; this can be changed later. The account can declare itself as its own representative. 
+
+
 ### Send
+
+A send transaction is one that decreases the sender's account balance by the amount they intend to send. To send from an address, the address must already have an existing open block, and therefore a balance. The previous field contains the hash of the previous block in the account-chain. The link field contains the account for funds to be sent to. A send block is immutable once confirmed. Once broadcasted to the network, funds are immediately deducted from the balance of the sender's account and wait as pending until the receiving party signs a block to accept these funds. Pending funds should not be considered awaiting confirmation, as they are as good as spent from the senders account and the sender cannot revoke the transaction.
 
 ### Receive
 
+A receive block is very similar to the send block mentioned above, except the account balance is increasing and the link field contains the send block's hash. To complete a transaction, the recipient of sent funds must create a receive block on their own account-chain. The source field references the hash of the associated send transaction. Once this block is created and broadcasted, the account's balance is updated and the funds have officially moved into their account.
+
 ### Change rep
+
+Nano account holders have the ability to choose a representative to vote on their behalf. This can be done any time (i.e. in an open, send, or receive transaction) by changing the representative field. In conventional PoS systems, the account owner’s node must be running to participate in voting. Continuously running a node is impractical for many users; giving a representative the power to vote on an account’s behalf relaxes this requirement. A change transaction changes the representative of an account by subtracting the vote weight from the old representative and adding the weight to the new representative. No funds are moved in this transaction, and the representative does not have spending power of the account’s funds.
 
 ---
 
@@ -73,7 +82,7 @@ In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a grou
 
 Since all accounts on the Nano network are asynchronous, an asynchronous form of chain upgrades is needed. Unlike Bitcoin, Nano is not able to say “upgrade at block X”, so Epoch blocks were developed as a solution to this problem. 
 
-Epoch blocks are a special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures.
+Epoch blocks are a special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. Furthermore, if the majority of the network does not upgrade to a new node version that enables a particular epoch block, then the epoch block will have minimal or no effect. 
 
 ![Visualization of Epoch block distribution](../images/epoch-blocks.png)
 
