@@ -1,5 +1,5 @@
-Title: Living Whitepaper
-Description: Overview of the living whitepaper on the Nano protocol and existing node implementation
+title: Living Whitepaper
+description: Overview of the living whitepaper on the Nano protocol and existing node implementation
 
 # Nano - Digital money for the modern world
 
