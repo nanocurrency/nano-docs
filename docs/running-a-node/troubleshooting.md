@@ -1,3 +1,6 @@
+title: Troubleshooting
+description: Find answers for common issues Nano node operators run as well as methods for getting proper log and crash files
+
 # Troubleshooting
 
 ## Log Files

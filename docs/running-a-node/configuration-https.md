@@ -1,4 +1,8 @@
+title: HTTPS Configuration
+description: Learn how to enabled HTTPS for the node RPC server to better secure commands across the internet
+
 # HTTPS Support
+
 The RPC server supports TLS to allow HTTPS requests, as well as optional client certificates. To enable TLS, the node must first be built with the `NANO_SECURE_RPC` cmake cache flag set to `ON`.
 
 OpenSSL must be installed. When running cmake initially, you may need to set `-DOPENSSL_ROOT_DIR` as well, depending on your system.

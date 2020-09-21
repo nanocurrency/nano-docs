@@ -1,3 +1,6 @@
+title: RPC Protocol
+description: Reference for the various RPC commands available for the Nano node
+
 # RPC Protocol
 
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:

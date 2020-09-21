@@ -1,4 +1,4 @@
-title: Roadmap | Nano Documentation
+title: Roadmap
 description: The Nano roadmap which is aimed at achieving the mission of allowing Nano to become a global currency.
 
 # Roadmap
