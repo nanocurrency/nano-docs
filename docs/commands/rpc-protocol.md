@@ -2440,11 +2440,11 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
 | **peer_count**        | average count of peers nodes are connected to |
 | **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
-| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **uptime**            | average number of seconds since the UTC epoch at the point where the response is sent from the peer |
 | **genesis_block**     | mode (most common) of genesis block hashes |
-| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
