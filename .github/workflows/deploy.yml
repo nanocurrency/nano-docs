@@ -7,15 +7,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@aabbfeb
+      - uses: actions/setup-python@24156c2
         with:
           python-version: 3.x
-      - run: pip install mkdocs
-      - run: pip install mkdocs-material
-      - run: pip install pymdown-extensions
-      - run: pip install MarkdownHighlight
-      - run: pip install mkdocs-redirects
+      - run: pip install -r ../../requirements.txt
       - run: mkdocs build --strict
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
