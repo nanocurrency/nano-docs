@@ -1,4 +1,5 @@
-Title: Nano Protocol Design - Attack Vectors
+title: Protocol Design - Attack Vectors
+description: Understand the different attack vectors on the Nano network and the mitigations in place to limit them
 
 # Protocol Design - Attack Vectors
 

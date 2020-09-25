@@ -1,4 +1,5 @@
-Title: Nano Protocol Design - Blocks
+title: Protocol Design - Blocks
+description: Tour the unique design and structure of blocks in the Nano protocol
 
 # Protocol Design - Blocks
 

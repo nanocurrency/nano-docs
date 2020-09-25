@@ -1,3 +1,6 @@
+title: Network Upgrades
+description: Check out the various types of network upgrades available on the Nano network and explore their previous and future planned uses
+
 # Network Upgrades
 
 For details on why and how network upgrades happen, along with explanations of the various types, please see the [Upgrades overview](#upgrades-overview) and [Upgrade methods](#upgrade-methods) sections further down.
