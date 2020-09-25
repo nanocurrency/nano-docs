@@ -1,3 +1,6 @@
+title: Integration Guides - Block Confirmation Tracking
+description: Guide detailing best practices for block confirmation tracking from the Nano node
+
 # Block Confirmation Tracking
 
 !!! tip "Guide based on node V19.0"

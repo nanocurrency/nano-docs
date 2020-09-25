@@ -1,3 +1,6 @@
+title: RPC Protocol
+description: Reference for the various RPC commands available for the Nano node
+
 # RPC Protocol
 
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
@@ -413,7 +416,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
 
 **Request:**
 ```json
@@ -425,9 +428,11 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffcdbf40aa45",
-  "multiplier": "1.273557846739298"
+  "multiplier": "1.5",
+  "network_current": "fffffffaaaaaaaab",
+  "network_minimum": "fffffff800000000",
+  "network_receive_current": "fffffff07c1f07c2", // since V21.2
+  "network_receive_minimum": "fffffe0000000000" // since V21.2
 }
 ```
 
@@ -447,9 +452,7 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffc1816766f2",
-  "multiplier": "1.024089858417128",
+  ...,
   "difficulty_trend": [
     "1.156096135149775",
     "1.190133894573061",
@@ -2437,11 +2440,11 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
 | **peer_count**        | average count of peers nodes are connected to |
 | **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
-| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **uptime**            | average number of seconds since the UTC epoch at the point where the response is sent from the peer |
 | **genesis_block**     | mode (most common) of genesis block hashes |
-| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 

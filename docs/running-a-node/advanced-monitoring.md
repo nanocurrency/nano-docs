@@ -1,3 +1,6 @@
+title: Advanced Monitoring
+description: Learn how to install advanced monitoring to keep an eye on your Nano node using a Prometheus-based agent
+
 # Advanced Monitoring
 
 For keeping a closer watch on node performance a Prometheus-based exporter monitoring solution is avialable. It provides an easy way to automatically gather and export a multitude of stats and metrics from the node RPC, as well as from the machine running the exporter. For added security, the exporter doesn't require opening any additional inbound ports as the metrics are pushed out to a Prometheus push gateway, which can be hosted externally.

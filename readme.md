@@ -29,11 +29,14 @@ Access the site at http://localhost:8000. This supports automatic rebuilding, so
 
 ## Formatting and Organization Tips
 
+## Title and description
+At the top of every page (not snippets) two fields should be added `title: ` and `description: ` which will be converted to values of `<title>` and `<meta>` tags in the header to better inform search engines, social scraping tools and more.
+
 ### Headers
 Pages automatically have a `<h1>` title setup for them based on the page name, so headers `##` (`<h2>`) and higher should only be used to organize the content.
 
 ### Table of Contents
-Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###', and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
+Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###`, and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
 
 ### Links
 MkDocs has a link checker built in that can be run using the `--strict` flag on `mkdocs serve`, or `mkdocs build` command. This flag is included in the build pipeline. For it to work, links must be referencing the relative file path with the file extension included and no trailing slashes. Anchors are not included in this check. Although relative URLs will function if used, they will not be verified by the link checker.
@@ -87,3 +90,8 @@ Types include:
 
 ### Mermaid Sequence Diagrams
 There is support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram
+
+### Octicon icons
+The scripts for using Github's Octicons are included in the header. Details for available icons can be found here: https://primer.style/octicons/. Usage should be limited. Example currently available in announcement block:
+
+`<span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>`

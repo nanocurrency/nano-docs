@@ -32,6 +32,8 @@
   {% endif %}
   <meta property="og:site_name" content="Nano Docs" />
 
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
 {% endblock %}
 
 {% block analytics %}
@@ -52,4 +54,16 @@
 </script>
 <!-- End Matomo Code -->
 
+{% endblock %}
+
+{% block announce %}
+<a href="/releases/current-release-notes/" height="100" style="color:white;">
+  <span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>
+  <span style="padding-left: 0.3em;"><strong>Nano node V21.2 now available!</strong> Upgrades recommended for all node operators</span>
+  <span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 8" fill="none" height="8px">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.35355 0.146447C7.15829 -0.0488156 6.84171 -0.0488156 6.64645 0.146447C6.45118 0.341709 6.45118 0.658291 6.64645 0.853553L9.29287 3.49998H0.5C0.223858 3.49998 0 3.72383 0 3.99998C0 4.27612 0.223858 4.49998 0.5 4.49998H9.29292L6.64645 7.14645C6.45118 7.34171 6.45118 7.65829 6.64645 7.85355C6.84171 8.04882 7.15829 8.04882 7.35355 7.85355L10.8536 4.35355C11.0488 4.15829 11.0488 3.84171 10.8536 3.64645L7.35355 0.146447Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</a>
 {% endblock %}
