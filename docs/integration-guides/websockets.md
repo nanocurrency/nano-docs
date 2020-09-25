@@ -1,5 +1,7 @@
-title: WebSockets | Nano Documentation
-description: Details for integration into WebSockets for notifications from the Nano node.
+title: Integration Guides - WebSockets
+description: Details for how to integrate with WebSockets for getting notifications from the Nano node
+
+# WebSockets
 
 !!! note ""
     Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.

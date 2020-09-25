@@ -1,4 +1,5 @@
-Title: Nano Protocol Design - Resource Usage
+title: Protocol Design - Resource Usage
+description: Find out the expected resource usage for the Nano procotol across network, disk, compute and memory resources
 
 # Protocol Design - Resource Usage
 

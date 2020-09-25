@@ -1,3 +1,6 @@
+title: Command Line Interface
+description: Reference for the CLI commands for the Nano node
+
 # Command Line Interface
 
 ### --account_create --wallet=`<wallet>`

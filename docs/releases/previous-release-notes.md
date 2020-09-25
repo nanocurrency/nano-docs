@@ -1,4 +1,4 @@
-title: Previous Release Notes | Nano Documentation
+title: Previous Release Notes
 description: A collection of release notes for older Nano node releases including upgrade notices, major features, API changes and more
 
 ## V21.1
