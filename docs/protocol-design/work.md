@@ -1,4 +1,5 @@
-Title: Nano Protocol Design - Work
+title: Protocol Design - Work
+description: Learn the algorithm, purpose and benchmarks for the spam-resisting work generation requirements in the Nano protocol
 
 # Protocol Design - Work
 

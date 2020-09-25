@@ -1,4 +1,5 @@
-Title: Nano Node Implementation - Introduction
+title: Node Implementation - Introduction
+description: An overview of the Nano node implementation being developed by the Nano Foundation and broader Nano community
 
 # Node Implementation - Introduction
 

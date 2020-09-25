@@ -1,4 +1,4 @@
-title: Node Releases | Nano Documentation
+title: Node Releases
 description: Explore details of the current, next and past releases of the Nano node, including protocol versions, release dates and supporting resources.
 
 # Node Releases
@@ -8,7 +8,7 @@ Updates to the Nano protocol are done through major node releases, occurring app
 ## Current Release
 The following release is the latest and only release actively supported by the Nano Foundation. This release and the [Active Releases](#active-releases) below represent the only node versions that will participate on the main network. More details can be found on the [Current Release Notes page](/releases/current-release-notes).
 
---8<-- "release-details-v21-1.md"
+--8<-- "release-details-v21-2.md"
 
 **Builds and Commands**
 
@@ -28,22 +28,15 @@ The following release is currently under development. Details about potential fe
 ## Active Releases
 The following releases can still actively participate on the network by peering with other nodes of the same versions. Any nodes running versions earlier than these will no longer peer with the latest and fall out of sync with the network.
 
-!!! warning "V19 and V20 will be depeered with epoch v2 distribution"
-	Although V19 and V20 are currently listed as active releases, once [epoch v2 distribution](network-upgrades.md#increased-work-difficulty) begins, all V21+ nodes will begin depeering them and the only active version will be V21+. All nodes will need to upgrade to V21+ to continue participating on the network.
+--8<-- "release-details-v21-2.md"
+
+---
 
 --8<-- "release-details-v21-1.md"
 
 ---
 
 --8<-- "release-details-v21-0.md"
-
---- 
-
---8<-- "release-details-v20-0.md"
-
----
-
---8<-- "release-details-v19-0.md"
 
 ---
 
@@ -54,6 +47,8 @@ The following versions are no longer peered with by nodes running the active ver
 
 	| Node | Protocol | Database | Release Date | Release Notes | GitHub Links |
 	|              |   |               |              |               |              |
+	| 20.0 | 17 | 15 | 2019-11-12 | [V20.0](/releases/previous-release-notes/#v200) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V20.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V19.0...V20.0) | 
+	| 19.0 | 17 | 14 | 2019-07-11 | [V19.0](/releases/previous-release-notes/#v190) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V19.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/9) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V18.0...V19.0) | 
 	| 18.0 | 16 | 13 | 2019-02-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V18.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/7) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.1...V18.0) |
 	| 17.1 | 15 |  | 2018-12-21 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/17) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V17.0...V17.1) |
 	| 17.0 | 15 |  | 2018-12-18 || [Release](https://github.com/nanocurrency/nano-node/releases/tag/V17.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/6) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V16.3...V17.0) |

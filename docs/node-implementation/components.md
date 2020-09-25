@@ -1,4 +1,5 @@
-Title: Nano Node Implementation - Components
+title: Node Implementation - Components
+description: A breakdown of the various components making up the Nano node implementation
 
 # Node Implementation - Components
 

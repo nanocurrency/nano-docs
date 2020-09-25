@@ -1,5 +1,5 @@
-title: Work Generation | Nano Documentation
-description: Understand the best configurations for work generation on the Nano network.
+title: Integration Guides - Work Generation
+description: Understand the best configurations for work generation on the Nano network
 
 !!!tip "Some sections of this page target node version 21 or higher"
 
@@ -87,11 +87,14 @@ graph TD
 
 ### Work generated without using the node
 
+!!!tip "Lower thresholds for receive blocks"
+    **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
+
 ``` mermaid
 graph TD
     M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
     M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
-    N -->|network_minimum| P_1(Generate work at<br><b>network_minimum</b> difficulty)
+    N -->P_1(Generate work at<br><b>network_minimum</b> difficulty)
     O_1 -->O_2((active<br>difficulty))
     P_1 -->|work| P_2(Use <b>work</b> in block)
     P_2 -->P_3((block))
@@ -99,7 +102,7 @@ graph TD
     P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
     P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
     P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
-    P_7 -->|network_current| P_8{Block difficulty less<br>than <b>network_current</b> ?}
+    P_7 -->P_8{Block difficulty less<br>than <b>network_current</b> ?}
     P_8 -->|yes| P_9(Generate work at<br><b>network_current</b> difficulty)
     P_8 -->|no| P_6
     P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
@@ -238,9 +241,6 @@ For services aiming to ensure the highest priority on their transactions, the co
 !!! tip "Configure max work generate multiplier"
     Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
 
-!!! warning "Upcoming threshold changes and variations by block type"
-	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
-
 ### Pre-caching
 
 Work for an account can be pre-cached and saved for immediate use on an account as long as it was based on the current frontier block at the time of use. Although this customization must be made externally to the node, it can help level out potential spikes in work generation, especially useful with wallet implementations.
@@ -256,7 +256,6 @@ With V21+ the work difficulty thresholds were split by block type. For many inte
 **Utilizing lower work when batching**
 
 For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
-
 
 ### Difficulty multiplier
 

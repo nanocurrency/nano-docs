@@ -1,4 +1,5 @@
-title: Contributing code to the Nano node | Nano Documentation
+title: Contributing to the Nano Node
+description: Find out how to contribute code to the Nano node implementation and help improve the protocol and network
 
 # Contributing code to the Nano node
 
