@@ -53,7 +53,7 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 [^8]: S. King and S. Nadal, “Ppcoin: Peer-to-peer crypto-currency withproof-of-stake,” 2012. [Online]. Available: https://decred.org/research/king2012.pdf
 [^9]: C. LeMahieu, “Raiblocks distributed ledger network,” 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
 [^10]: Y. Ribero and D. Raissar, “Dagcoin whitepaper,” 2015. Available: https://dagcoin.org/wp-content/uploads/2019/07/Dagcoin_White_Paper.pdf
-[^11]: S. Popov, “The tangle,” 2016. https://www.iota.org/foundation/research-papers
+[^11]: S. Popov, “The tangle,” 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
 
 ---
 
