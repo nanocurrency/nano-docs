@@ -26,7 +26,7 @@ To date, the Nano network has processed more than 53 million transactions with a
 
 ## Background
 
-In 2008, an anonymous individual under the pseudonym Satoshi Nakamoto published a whitepaper outlining the world’s first decentralized cryptocurrency, Bitcoin [^3]. A key innovation brought about by Bitcoin was the blockchain, a public, immutable and decentralized data-structure which is used as a ledger for the currency’s transactions. Unfortunately, as Bitcoin matured, several issues in the protocol made Bitcoin prohibitive for many applications: 
+In 2008, an anonymous individual under the pseudonym Satoshi Nakamoto published a whitepaper outlining the world’s first decentralized cryptocurrency, Bitcoin [^1]. A key innovation brought about by Bitcoin was the blockchain, a public, immutable and decentralized data-structure which is used as a ledger for the currency’s transactions. Unfortunately, as Bitcoin matured, several issues in the protocol made Bitcoin prohibitive for many applications: 
 
 1. Poor scalability: Each block in the blockchain can store a limited amount of data, which means the system can only process so many transactions per second, making
 spots in a block a commodity. Median transaction fees flucutate between a few cents and as high as \$34 (currently ~\$2.98 as of August 26, 2020) [^4].
