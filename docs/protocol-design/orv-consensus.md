@@ -113,9 +113,6 @@ In some circumstances, brief network connectivity issues may cause a broadcasted
 
 ## Quorum
 
-
-## References
-
 [^1]: "Block Confirmation Times", 2020. [Online]. Available: https://repnode.org/network/confirmation 
 [^2]: C. LeMahieu, "Emergent centralization due to economies of scale", 2020. [Online]. Available: https://medium.com/@clemahieu/emergent-centralization-due-to-economies-of-scale-83cc85a7cbef
 [^3]: Srayman, "Community Blog: Proposal for Nano Node Network Optimizations", 2020. [Online]. Available: https://medium.com/nanocurrency/proposal-for-nano-node-network-optimizations-21003e79cdba
