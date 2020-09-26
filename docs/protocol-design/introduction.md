@@ -54,7 +54,7 @@ Although there is cross-over between the two main areas of the living whitepaper
 In 2008, an anonymous individual under the pseudonym Satoshi Nakamoto published a whitepaper outlining the world’s first decentralized cryptocurrency, Bitcoin [^3]. A key innovation brought about by Bitcoin was the blockchain, a public, immutable and decentralized data-structure which is used as a ledger for the currency’s transactions. Unfortunately, as Bitcoin matured, several issues in the protocol made Bitcoin prohibitive for many applications: 
 
 1. Poor scalability: Each block in the blockchain can store a limited amount of data, which means the system can only process so many transactions per second, making
-spots in a block a commodity. Median transaction fees flucutate between a few cents and as high as $34 (currently ~$2.98 as of August 26, 2020) [^4].
+spots in a block a commodity. Median transaction fees flucutate between a few cents and as high as \$34 (currently ~\$2.98 as of August 26, 2020) [^4].
 
 2. High latency: Average confirmation times fluctuate between 10 and 300 minutes [^5]. In addition, most Bitcoin services require more than one confirmation before considering a transaction fully-settled [^6], which adds additional latency for end users.
 
@@ -66,19 +66,17 @@ An alternative consensus protocol, Proof of Stake (PoS), was first introduced by
 
 The original Nano (RaiBlocks) paper and first beta implementation were published in December, 2014, making it one of the first Directed Acyclic Graph (DAG) based cryptocurrencies [^9]. Soon after, other DAG cryptocurrencies began to develop, most notably DagCoin/Byteball and IOTA [^10], [^11]. These DAG-based cryptocurrencies broke the blockchain mold, improving system performance and security. Byteball achieves consensus by relying on a “main-chain” comprised of honest, reputable and user-trusted “witnesses”, while IOTA achieves consensus via the cumulative PoW of stacked transactions. Nano achieves consensus via a balance-weighted vote on conflicting transactions. This consensus system provides quicker, more deterministic transactions while still maintaining a strong, decentralized system. Nano continues this development and has positioned itself as one of the highest performing cryptocurrencies.
 
-## References
-
 [^1]: "Block Confirmation Times", 2020. [Online]. Available: https://repnode.org/network/confirmation
 [^2]: "Nano Stress Tests - Measuring BPS, CPS, & TPS in the real world", 2020. [Online]. Available: https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
 [^3]: S. Nakamoto, “Bitcoin: A peer-to-peer electronic cash system,” 2008. [Online]. Available: http://bitcoin.org/bitcoin.pdf
 [^4]: “Bitcoin median transaction fee historical chart.” [Online]. Available: https://bitinfocharts.com/comparison/bitcoin-median-transaction-fee.html
 [^5]: “Bitcoin average confirmation time.” [Online]. Available: https://www.blockchain.com/charts/avg-confirmation-time
 [^6]: "Irreversible Transactions - How many confirmation are required", 2020. [Online]. Available: https://en.bitcoin.it/wiki/Irreversible_Transactions#How_many_confirmations_are_required
-[^7] "Bitcoin Energy Consumption Index", 2020. [Online]. Available: https://digiconomist.net/bitcoin-energy-consumption/
-[^8]: S. King and S. Nadal, “Ppcoin: Peer-to-peer crypto-currency withproof-of-stake,” 2012. [Online]. Available: https://peercoin.net/assets/paper/peercoin-paper.pdf
-[^9]: C. LeMahieu, “Raiblocks distributed ledger network,” 2014. 
+[^7]: "Bitcoin Energy Consumption Index", 2020. [Online]. Available: https://digiconomist.net/bitcoin-energy-consumption/
+[^8]: S. King and S. Nadal, “Ppcoin: Peer-to-peer crypto-currency withproof-of-stake,” 2012. [Online]. Available: https://decred.org/research/king2012.pdf
+[^9]: C. LeMahieu, “Raiblocks distributed ledger network,” 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
 [^10]: Y. Ribero and D. Raissar, “Dagcoin whitepaper,” 2015. Available: https://dagcoin.org/wp-content/uploads/2019/07/Dagcoin_White_Paper.pdf
-[^11]: S. Popov, “The tangle,” 2016.
+[^11]: S. Popov, “The tangle,” 2016. https://www.iota.org/foundation/research-papers
 
 ---
 
