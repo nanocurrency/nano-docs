@@ -1,0 +1,17 @@
+name: nano-docs-deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@aabbfeb
+      - uses: actions/setup-python@24156c2
+        with:
+          python-version: 3.x
+      - run: pip install -r requirements.txt
+      - run: mkdocs gh-deploy --force
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
