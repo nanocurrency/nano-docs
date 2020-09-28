@@ -88,8 +88,16 @@ Types include:
 - example
 - quote
 
-### Mermaid Sequence Diagrams
-There is support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram
+### Diagrams
+Usage of Draw.io is encouraged for generating diagrams:
+
+* Folder `/docs/diagrams` contains the `.svg` files that are the preferred format for diagrams
+* Diagrams can be edited using the Draw.io and similar applications:
+	* Web: https://nanocurrency.github.io/drawio/src/main/webapp/index.html or https://app.diagrams.net
+	* Desktop: https://github.com/jgraph/drawio-desktop/releases/latest 
+* Embedding diagrams uses markdown format: `![account-chains](/diagrams/account-chains.svg)`
+
+There is also support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram, however given the desire to have consistency in the diagrams and the limitations of Mermaid, generating Draw.io type diagrams is preferred.
 
 ### Octicon icons
 The scripts for using Github's Octicons are included in the header. Details for available icons can be found here: https://primer.style/octicons/. Usage should be limited. Example currently available in announcement block:
