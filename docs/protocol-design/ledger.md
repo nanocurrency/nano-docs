@@ -5,44 +5,40 @@ description: Explore the structure of the ledger in Nano including accounts, blo
 
 --8<-- "wip-living-whitepaper.md"
 
-## Ledger design (block lattice)
+## Ledger design
 
-The Nano ledger is the global set of accounts where each account has its own transaction chain (figure 1). This is a key design component that falls under the category of replacing a run-time agreement with a design-time agreement - everyone agrees via signature checking that only an account owner can modify their own chain. This converts a seemingly shared data structure (a global blockchain) into a set of non-shared ones (individual accountchains). Each Nano node determines for itself whether or not to add a valid transaction to its local ledger. This means that there is no waiting for leader-selection as there is in single-blockchain cryptocurrencies like Bitcoin, where a single miner or staker extends the global blockchain with a new block (group of transactions) after solving a Proof-of-Work or being chosen through random selection. The block-lattice ledger design removes this bottleneck, drastically decreasing transaction latency, improving decentralization, and simplifying transaction validation. Nano has no concept of block sizes or block times that arbitrarily limit the number of transactions that can be processed - the network will confirm as many transactions as current network conditions allow.
+The Nano ledger is the global set of accounts where each account has its own chain of transactions (<a href="#account-chains-diagram">Figure 1</a>). This is a key design component that falls under the category of replacing a run-time agreement with a design-time agreement - everyone agrees via signature checking that only an account owner can modify the balance and representative on their own chain. This converts a seemingly shared data structure (a global blockchain) into a set of non-shared ones (individual account-chains).
 
-``` mermaid
-graph TB
-    subgraph Account C
-    A["Block <i>N<sub>C</sub></i>"]-->B["Block <i>N<sub>C</sub></i>  - 1"]
-    B-->C["..."]
-    C-->D["Block 1"]
-    D-->E["Block 0"]
-    end    
-    subgraph Account B
-    F["Block <i>N<sub>B</sub></i>"]-->G["Block <i>N<sub>B</sub></i>  - 1"]
-    G-->H["..."]
-    H-->I["Block 1"]
-    I-->J["Block 0"]
-    end
-    subgraph Account A
-    K["Block <i>N<sub>A</sub></i>"]-->L["Block <i>N<sub>A</sub></i> - 1"]
-    L-->M["..."]
-    M-->N["Block 1"]
-    N-->O["Block 0"]
-    end
-```
-*(Figure 1.  Each account has its own blockchain containing the account’s balance history. Block 0 must be an open transaction)*
+Each Nano node determines for itself whether or not to add a valid transaction to its local ledger. This means that there is no waiting for leader-selection as there is in single-blockchain cryptocurrencies like Bitcoin, where a single miner or staker extends the global blockchain with a new block (group of transactions) after solving a Proof-of-Work or being chosen through random selection. The block lattice ledger design removes this bottleneck, drastically decreasing transaction latency, improving decentralization, and simplifying transaction validation. Nano has no concept of block sizes or block times that arbitrarily limit the number of transactions that can be processed - the network will confirm as many transactions as current network conditions allow.
+
+<span id="account-chains-diagram"></span>
+
+![account-chains](/diagrams/account-chains.svg)
+
+*Figure 1.  Each account has its own blockchain containing the account’s balance history. Block 1 must be a receive transaction with it's `previous` field as constant `0`.*
 
 ### Accounts
 
 An account is the public-key portion of a digital signature key-pair. The public-key, also referred to as the address, is shared with other network participants while the private-key is kept secret. A digitally signed packet of data ensures that the contents were approved by the private-key holder. One user may control many accounts, but only one public address may exist per account.
 
-Since account owners are the only ones who can modify their own account chains, contention happens on a per-account basis. If account A attempts a double spend that must be resolved by the network, account B can still make transactions as normal. Transactions are processed independently and asynchronously.
+Although a special private key can be used to publish epoch transactions to all accounts, the only changes allowed for this special type of transaction is related to upgrading the account version. This means that account owners are the only ones who can modify the balance and representative on their own account chains. This results in contention only happening on a per-account basis or in relation to epoch distributions[^1].
+
+For example, if account A attempts a double spend that must be resolved by the network, account B can still make transactions as normal. Transactions are processed independently and asynchronously.
 
 ### Blocks
 
-In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a group of transactions. In Nano, a block is a single transaction, so the term “block” and “transaction” are often used interchangeably. "Transaction" specifically refers to the action, while block refers to the digital encoding of the transaction. Transactions are signed by the private-key belonging to the account on which the transaction is performed. 
+In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a group of transactions. In Nano, a block contains the details of a single transaction. There are four different transaction types in Nano (send, receive, change representative and epoch) and in order to transfer funds, two transactions are required - a send transaction and a receive transaction. 
 
-An example of a Nano block:
+This difference in transaction structures means the terminology used can have different meanings, so it is worth defining these more explicitly:
+
+* **block** is the digital encoding of the transaction details ([Figure 2](#block-diagram)).
+
+* **transaction** is the action of creating and publishing block to the network. Depending on the type of transaction, the block will have different requirements.
+
+* **transfer** is the completion of both a send transactions and the corresponding receive transaction, representing the movement of funds which can be sent again by the recipient.
+
+<span id="block-diagram"></span>
+
 ```
 "block": {
   "type": "state",
@@ -56,19 +52,29 @@ An example of a Nano block:
   "work": "cab7404f0b5449d0"
 }
 ```
+_Figure 2 - An example Nano block with all required fields_
+
 Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.
 
 See the [blocks](blocks.md) page for additional details.
 
-#### Why receive blocks
+#### Why require two transactions to transfer
 
-While confirmed send transactions are final, to complete a full transaction loop (i.e. *recipients* being able to claim funds that were sent to them), the recipient of sent funds must create a receive block on their own account-chain. This is required since current protocol rules state that account owners are the only ones who are allowed modify their own account chains. There is ongoing [discussion](https://forum.nano.org/t/updating-receive-balances-without-a-receive-block-or-signature-when-the-send-is-cemented/920) to determine whether or not this can be changed in the future.
+Although send transactions confirmed by the network are irreversible, in order for the recipient to send those funds again they first must complete a receive transaction on their account. This receiving requirement to complete a transfer of funds provides a few benefits:
+
+* Sending of funds can be performed while the receiver is offline
+* Account owners are the only ones who are allowed to modify the balance and representative on their accounts
+* Allows account owners to ignore transactions, which prevents continuous sending of tiny amounts in an attempt to can prevent use of the account
+
+### Block lattice
+
+The lattice structure of the ledger arises from blocks connecting across account-chains. All block types use the `previous` field to vertically extend the account-chain. In addition, send and receive blocks also use the `link` field to connect across account-chains: send blocks include the destination account as the `link` value, while receive blocks include the corresponding send block hash they are receiving from (Figure 3 _TBD_).
 
 ---
 
 ## Ledger pruning
 
-Since Nano transactions (blocks) capture the complete current state of an account, the ledger can potentially be pruned quite aggressively. While there are a few exceptions and caveats (e.g. epoch blocks and pending transactions), Nano's ledger design could enable significant account chain pruning - down to almost one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
+Since Nano every transaction includes a block with the complete current state of an account, the ledger can be significantly pruned. While there are a few exceptions (e.g. pending transactions), Nano's ledger design could be pruned down to one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
 
 See the official [forum](https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
 
@@ -84,3 +90,5 @@ Other existing content related to this page:
 * [Accounts, Keys, Seeds, etc.](/integration-guides/the-basics/#account-key-seed-and-wallet-ids)
 * [Looking up to Confirmation Height](https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc)
 * [Ledger Management guide](../running-a-node/ledger-management.md)
+
+[^1]: Epoch blocks details, Network Upgrades documentation: https://docs.nano.org/releases/network-upgrades/#epoch-blocks
