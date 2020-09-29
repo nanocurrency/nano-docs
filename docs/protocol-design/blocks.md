@@ -5,8 +5,8 @@ description: Tour the unique design and structure of blocks in the Nano protocol
 
 --8<-- "wip-living-whitepaper.md"
 
-!!! tip "Transaction vs. block"
-	The word *transaction* should be used in the context of a fully completed, 2-part protocol-level transaction, otherwise *block* should be used.
+!!! tip "Block vs Transaction vs Transfer"
+	The word *transfer* should be used in the context of a fully completed, 2-part protocol-level transaction, otherwise *block* should be used. Click [here](../protocol-design/ledger.md#blocks) for more details.
 
 ## State Blocks
 
