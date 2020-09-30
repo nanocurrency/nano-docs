@@ -21,7 +21,7 @@ Each Nano node determines for itself whether or not to add a valid transaction t
 
 An account is the public-key portion of a digital signature key-pair. The public-key, also referred to as the address, is shared with other network participants while the private-key is kept secret. A digitally signed packet of data ensures that the contents were approved by the private-key holder. One user may control many accounts, but only one public address may exist per account.
 
-Although a special private key can be used to publish epoch transactions to all accounts, the only changes allowed for this special type of transaction is related to upgrading the account version. This means that account owners are the only ones who can modify the balance and representative on their own account chains. This results in contention only happening on a per-account basis or in relation to epoch distributions[^1].
+Although a special private key can be used to publish epoch transactions to all accounts, the only changes allowed for this special type of transaction are related to upgrading the account version. This means that account owners are the only ones who can modify the balance and representative on their own account chains and thus contention only happens on a per-account basis or in relation to epoch distributions[^1].
 
 For example, if account A attempts a double spend that must be resolved by the network, account B can still make transactions as normal. Transactions are processed independently and asynchronously.
 
@@ -33,9 +33,9 @@ This difference in transaction structures means the terminology used can have di
 
 * **block** is the digital encoding of the transaction details ([Figure 2](#block-diagram)).
 
-* **transaction** is the action of creating and publishing block to the network. Depending on the type of transaction, the block will have different requirements.
+* **transaction** is the action of creating and publishing a block to the network. Depending on the type of transaction, the block will have different requirements.
 
-* **transfer** is the completion of both a send transactions and the corresponding receive transaction, representing the movement of funds which can be sent again by the recipient.
+* **transfer** is the completion of both a send transaction and the corresponding receive transaction, representing the movement of funds which can be sent again by the recipient.
 
 <span id="block-diagram"></span>
 
@@ -56,8 +56,6 @@ _Figure 2 - An example Nano block with all required fields_
 
 Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.
 
-See the [blocks](blocks.md) page for additional details.
-
 #### Why require two transactions to transfer
 
 Although send transactions confirmed by the network are irreversible, in order for the recipient to send those funds again they first must complete a receive transaction on their account. This receiving requirement to complete a transfer of funds provides a few benefits:
@@ -68,7 +66,13 @@ Although send transactions confirmed by the network are irreversible, in order f
 
 ### Block lattice
 
-The lattice structure of the ledger arises from blocks connecting across account-chains. All block types use the `previous` field to vertically extend the account-chain. In addition, send and receive blocks also use the `link` field to connect across account-chains: send blocks include the destination account as the `link` value, while receive blocks include the corresponding send block hash they are receiving from (Figure 3 _TBD_).
+The lattice structure of the ledger arises from blocks connecting across account-chains. All block types use the `previous` field to vertically extend the account-chain. In addition, send and receive blocks also use the `link` field to connect across account-chains. [Figure 3](#block-lattice-diagram) below illustrates the lattice structure at a high level with additional details about blocks available on the [blocks](blocks.md) page.
+
+<span id="block-lattice-diagram"></span>
+
+![block-lattice](/diagrams/block-lattice.svg)
+
+As illustrated above, the ledger was initiated with a genesis account containing the genesis balance. The genesis balance was a fixed quantity and can never be increased. The genesis balance was divided across various accounts via send transactions registered on the genesis account-chain. The sum of the balances of all accounts in the ledger will never exceed the initial genesis balance, which gives the system an upper bound on quantity and no ability to increase it.
 
 ---
 
