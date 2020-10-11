@@ -1,13 +1,12 @@
-Title: Nano Protocol Design - Blocks
+title: Protocol Design - Blocks
+description: Tour the unique design and structure of blocks in the Nano protocol
 
 # Protocol Design - Blocks
 
 --8<-- "wip-living-whitepaper.md"
 
-!!! tip "Transaction vs. block"
-	The word *transaction* should be used in the context of a fully completed, 2-part protocol-level transaction, otherwise *block* should be used.
-
-	Details on legacy blocks are not necessary as they will only lead to confusion.
+!!! info "Key terms in this section"
+	--8<-- "terms-block-transaction-transfer.md"
 
 ## State Blocks
 

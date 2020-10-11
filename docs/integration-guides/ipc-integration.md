@@ -1,5 +1,7 @@
-title: IPC Integration | Nano Documentation
-description: Learn how to integration into the Nano node using the Interprocess communication (IPC) interface.
+title: Integration Guides - IPC Integration
+description: Learn how to integrate into the Nano node using the Interprocess Communication (IPC) interface
+
+# IPC Integration
 
 The node manages communications using an IPC interface with v1 introduced in V18 (see [IPC v1 Details](#ipc-v1-details)) and upgraded to v2 in V21 to include more robust options. This latest version supports the original RPC v1 endpoint and introduces RPC v2 for completion in future release, along with an authentication system for more granular control of permissioned calls.
 

@@ -1,11 +1,12 @@
-Title: Original RaiBlocks/Nano Whitepaper
+title: Original RaiBlocks/Nano Whitepaper
+description: An HTML-based version of the original RaiBlocks/Nano whitepaper last updated in November 2017
 
 # Original RaiBlocks/Nano Whitepaper
 
 _Last updated: November 2017_
 
 !!! info
-    This original whitepaper contains details about the protocol which are no longer accurate, such as voting only being performed on blocks for which forks were detected, but is being left intact for historical reference purposes.
+    This original whitepaper contains details about the protocol which are no longer accurate, such as voting only being performed on blocks for which forks were detected, but is being left intact for historical reference purposes. For more accurate details, head over to the [Living Whitepaper](../what-is-nano/living-whitepaper.md) section.
 
 ## Introduction
 

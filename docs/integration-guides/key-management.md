@@ -1,3 +1,6 @@
+title: Integration Guides - Key Management
+description: Learn best practices for private key management for the Nano protocol
+
 # Key Management
 
 ## Seeds

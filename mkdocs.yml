@@ -1,4 +1,4 @@
-site_name: Nano Docs
+site_name: Nano Documentation
 site_url: https://docs.nano.org/
 theme:
   name: 'material'

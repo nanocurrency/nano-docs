@@ -1,3 +1,6 @@
+title: Running a Node Overview
+description: Understand the purpose for running a node, the different types of nodes available and what type of maintenance should be expected
+
 # Running a Node Overview
 
 Running a node is a key way to help decentralize the network and provide a network access point for systems built on top of Nano. Before setting up a node we recommend reviewing the following details in order to understand more about the motivations for running, required upkeep, types and recommended specifications for nodes.
