@@ -20,7 +20,7 @@ theme:
   favicon: 'images/favicon.png'
   custom_dir: 'theme'
   features:
-    - tabs
+    - navigation.tabs
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
