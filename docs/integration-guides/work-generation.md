@@ -73,6 +73,8 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ### Work generated using the node, incl. work peers
 
+<div class="mermaid-wrapper">
+
 ``` mermaid
 graph TD
     A{Block signing<br> location?}
@@ -85,10 +87,14 @@ graph TD
     block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
 ```
 
+</div>
+
 ### Work generated without using the node
 
 !!!tip "Lower thresholds for receive blocks"
     **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
+
+<div class="mermaid-wrapper">
 
 ``` mermaid
 graph TD
@@ -108,6 +114,8 @@ graph TD
     P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
     P_10 -->P_4
 ```
+
+</div>
 
 ---
 

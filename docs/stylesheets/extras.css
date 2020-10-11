@@ -5,6 +5,7 @@
   --md-primary-fg-color--dark:  #000034;
 
   --md-footer-bg-color:         #000034;
+
 }
 
 [data-md-color-scheme="slate"] {
@@ -16,6 +17,10 @@
 
   --md-hue: 240;
 
+}
+
+[data-md-color-scheme="slate"] .mermaid-wrapper {
+  background-color:rgb(107,107,133) !important;
 }
 
 .md-announce__inner a {
