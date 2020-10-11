@@ -101,6 +101,7 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.tabbed
   - pymdownx.snippets:
       check_paths: true
       base_path: 'docs/snippets'
