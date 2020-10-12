@@ -17,10 +17,25 @@
 
   --md-hue: 240;
 
+  --md-typeset-a-color: #4a90e2;
+
 }
 
 [data-md-color-scheme="slate"] .mermaid-wrapper {
-  background-color:rgb(107,107,133) !important;
+  background-color: var(--md-default-fg-color--light);
+}
+
+[data-md-color-scheme="slate"] .mermaid-wrapper a {
+    color: var(--md-primary-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-announce {
+  background-color: var(--md-default-fg-color--light);
+  color: var(--md-default-bg-color);
+}
+
+[data-md-color-scheme="slate"] .md-announce a {
+  color: var(--md-primary-fg-color);
 }
 
 .md-announce__inner a {
