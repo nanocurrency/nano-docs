@@ -29,15 +29,6 @@
     color: var(--md-primary-fg-color);
 }
 
-[data-md-color-scheme="slate"] .md-announce {
-  background-color: var(--md-default-fg-color--light);
-  color: var(--md-default-bg-color);
-}
-
-[data-md-color-scheme="slate"] .md-announce a {
-  color: var(--md-primary-fg-color);
-}
-
 .md-announce__inner a {
     color: #F4FAFF;
 }
