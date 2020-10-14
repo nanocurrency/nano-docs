@@ -5,6 +5,9 @@ description: Explore details of the current, next and past releases of the Nano 
 
 Updates to the Nano protocol are done through major node releases, occurring approximately every 1 to 4 months, and necessary patch releases in between. As changes are made to the protocol over time, newer node versions will stop peering with older versions. Details on which versions are actively peering, supported and being developed are included below.
 
+!!! info "Nano Roadmap moved to GitHub"
+	Head over to the new [Nano Roadmap GitHub Project](https://github.com/orgs/nanocurrency/projects/5) for a more dynamic and updated view of the upcoming features under research and implementation for the Nano node and protocol.
+
 ## Current Release
 The following release is the latest and only release actively supported by the Nano Foundation. This release and the [Active Releases](#active-releases) below represent the only node versions that will participate on the main network. More details can be found on the [Current Release Notes page](/releases/current-release-notes).
 
