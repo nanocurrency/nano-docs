@@ -79,7 +79,6 @@ nav:
       - V20.0: releases/release-v20-0.md
       - V19.0: releases/release-v19-0.md
     - Network Upgrades: releases/network-upgrades.md
-    - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
 markdown_extensions:
@@ -155,3 +154,5 @@ plugins:
             'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
             'what-is-nano/contributing.md': 'node-implementation/contributing.md'
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
+            'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
+            'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
