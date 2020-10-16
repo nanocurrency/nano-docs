@@ -21,7 +21,7 @@ The following release is currently under development. Details about potential fe
 
 --8<-- "release-details-v22-0.md"
 
---8<-- "setup-beta-testing.md"
+--8<-- "setup-beta-test-testing.md"
 
 ---
 
