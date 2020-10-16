@@ -75,4 +75,4 @@ docker run --restart=unless-stopped -d \
 
 ## Getting test funds
 
-One you have a node up and running the ledger should bootstrap from the network quickly, and then you just need some test network specific Nano funds. We are currently working on a faucet setup to enable self-service options, but for now please reach out to `Zach - ATX#0646` on [Discord](https://chat.nano.org) or email [integrations@nano.org](mailto:integrations@nano.org) with the account number you would like funds distributed to for the test network.
+One you have a node up and running the ledger should bootstrap from the network quickly, and then you just need some test network specific Nano funds. We are currently working on a faucet setup to enable self-service options, but for now please reach out to `Zach - ATX#0646` and `argakiig#1783` on [Discord](https://chat.nano.org) or email [infrastructure@nano.org](mailto:integrations@nano.org) with the account number you would like funds distributed to for the test network.
