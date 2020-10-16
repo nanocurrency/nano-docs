@@ -33,6 +33,8 @@ This guide extends the concepts covered in [External Private Key Management](/in
 	1. `(HOT)` Publish the signed transaction to the Nano Network.
 
 
+<div class="mermaid-wrapper">
+
 ```mermaid
 sequenceDiagram
   participant Network
@@ -47,6 +49,8 @@ sequenceDiagram
   HOT->>Network: Publish Signed
   Note over COLD,HOT: Cold/Hot Wallet transfers are done <br />offline using USB Stick or similar.
 ```
+
+</div>
 
 ---
 

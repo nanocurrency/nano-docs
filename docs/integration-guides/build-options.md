@@ -28,6 +28,11 @@ sudo yum install nanocurrency-beta
 
 This installs `nano_node-beta` to bin.
 
+### Test builds
+
+Each Release Candidate (RC) or final release build can be used on the public test network for general integration and node upgrade testing. Go to the [Test Network page](/running-a-node/test-network/) for more details about Docker, binaries configuration, etc., or see the [Test network](#node) section below for manual build details.
+
+
 ## Nano Directory
 
 ### Contents
@@ -142,6 +147,11 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 * More information can be found on the [Beta Network page](/running-a-node/beta-network/)
 * To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
+
+**Test Network Participation**
+
+* More information can be found on the [Test Network page](/running-a-node/test-network/)
+* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
 
 ---
 
