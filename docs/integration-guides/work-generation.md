@@ -73,6 +73,8 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ### Work generated using the node, incl. work peers
 
+<div class="mermaid-wrapper">
+
 ``` mermaid
 graph TD
     A{Block signing<br> location?}
@@ -85,10 +87,14 @@ graph TD
     block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
 ```
 
+</div>
+
 ### Work generated without using the node
 
 !!!tip "Lower thresholds for receive blocks"
     **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
+
+<div class="mermaid-wrapper">
 
 ``` mermaid
 graph TD
@@ -108,6 +114,8 @@ graph TD
     P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
     P_10 -->P_4
 ```
+
+</div>
 
 ---
 
@@ -272,33 +280,33 @@ $$
 $$
 
 ??? example "Code Snippets"
-    **Python**
-    ```python
-    def to_multiplier(difficulty: int, base_difficulty) -> float:
-      return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
+    === "Python"
+        ```python
+        def to_multiplier(difficulty: int, base_difficulty) -> float:
+          return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
 
-    def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
-      return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
-    ```
+        def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
+          return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
+        ```
 
-    **Rust**
-    ```rust
-    fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
-      (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
-    }
+    === "Rust"
+        ```rust
+        fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
+          (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
+        }
 
-    fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
-      (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
-    }
-    ```
+        fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
+          (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
+        }
+        ```
 
-    **C++**
-    ```cpp
-    double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
-      return static_cast<double>(-base_difficulty) / (-difficulty);
-    }
+    === "C++"
+        ```cpp
+        double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
+          return static_cast<double>(-base_difficulty) / (-difficulty);
+        }
 
-    uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
-      return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
-    }
-    ```
+        uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
+          return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
+        }
+        ```
