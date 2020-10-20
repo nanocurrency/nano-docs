@@ -61,7 +61,6 @@ nav:
     - Resource Usage: protocol-design/resource-usage.md
     - Distribution and Units: protocol-design/distribution-and-units.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
-    - Contributing: node-implementation/contributing.md
     - Original whitepaper: whitepaper/english.md
   - Node Implementation:
     - Introduction: node-implementation/introduction.md
