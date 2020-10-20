@@ -5,7 +5,7 @@ description: Find out how to contribute code to the Nano node implementation and
 
 ## About the code base
 
-Nano is written in C++14 and supports Linux, macOS and Windows.
+Nano is written in C++17 and supports Linux, macOS and Windows.
 
 **Libraries**
 
@@ -19,8 +19,12 @@ Make sure you have the correct [Boost version](https://github.com/nanocurrency/n
 |                                 |             |
 | cryptopp                        | Provides the implementation for random number generator, SipHash, AES and other cryptographic schemes. |
 | phc&#x2011;winner&#x2011;argon2 | When encrypting with AES, the password first goes through key derivation, and argon2 is our hash of choice for doing that. |
-| lmdb     			              | The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys. It is extremely resilient to crashes in the program, OS, and power-downs without corruption. |
-| miniupnp 			              | This library is used to do port mapping if the gateway supports it. |
+| lmdb     			  | The database library used for the ledger and wallet, with local patches for Windows. This is a very fast and portable key/value store with ordered keys. It is extremely resilient to crashes in the program, OS, and power-downs without corruption. |
+| rocksdb                         | This database library can be used for the ledger. Provides better file IO and reduced ledger size. |
+| miniupnp 			  | This library is used to do port mapping if the gateway supports it. |
+| cpptoml                         | This library is used for rpc, wallet and node configuration files |
+| flatbuffers                     | A (de)serialization library for sending binary messages over IPC instead of plain-text JSON |
+| gtest                           | A unit testing library, only used in development environments |
 
 **Qt Wallet**
 
@@ -42,15 +46,13 @@ Find out more about building in [Integration Guides Build Options](/integration-
 
 If you add new functionality, adding unit tests to avoid regressions in the future is required.
 
-The easiest way to get started writing your first test is to base it off one of the existing tests. You'll find these in the `core_test` directory.
+The easiest way to get started writing your first test is to base it off one of the existing tests. You'll find these in the `core_test` & `rpc_test` directories. There is also `slow_test` & `load_test` directories but these are not commonly modified.
 
-Make sure the `NANO_TEST` cache variable in cmake is set. You should also switch the `ACTIVE_NETWORK` variable to nano_test_network. 
+Make sure the `NANO_TEST` cache variable in cmake is set. 
 
 **Run tests before creating a pull request**
 
 Please run the tests before submitting a PR. Go to the build directory and run the `core_test` binary.
-
-If you get a lot of failures, such as `frontier_req.begin` failing, make sure `ACTIVE_NETWORK` is set to `nano_test_network`
 
 ## GitHub collaboration
 
@@ -127,7 +129,7 @@ clang-format is used to enforce most of the formatting rules, such as:
 * Space before open parenthesis.
 * Space after comma.
 
-Please run `ci/clang-format-all.sh` before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. The definition file `.clang-format` is located in the project root directory.
+Please run `ci/clang-format-all.sh` on *nix systems before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. Visual studio for instance provides a way to automatically format on saving. The definition file `.clang-format` is located in the project root directory.
 
 Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^5]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings. 
 
@@ -135,16 +137,16 @@ Make sure you set up your editor to use tabs. Use tabs for indentation, and spac
 
 * Use `auto` type inference for local variables if it's clear from the context what the type will be. Use your best judgement, sometimes adding explicit types can increase readability [^1]
 * Handle exceptions, including IO exceptions for file and network operations.
-* Be liberal with `assert`. Use asserts to check invariants, not potential runtime errors, which should be handled gracefully. Asserts are for detecting bugs, not error handling.
-* Be liberal with `BOOST_LOG` statements, except in performance critical paths.
+* Be liberal with `debug_assert`. Use asserts to check invariants, not potential runtime errors, which should be handled gracefully. `debug_assert` has an advantage over normal `assert` as it will always print out the stacktrace of the current thread when it hits. Debug asserts are for detecting bugs, not error handling. There is also `release_assert` which is similar to `debug_assert` but also hits in a release build. When there is unexpected behaviour and no suitable way to recover it can be used to halt program execution.
+* Be liberal with `logger.always_log` or `logger.try_log` statements, except in performance critical paths.
 * Add comments to explain complex and subtle situations, but avoid comments that reiterates what the code already says.
 * Use RAII and C++11 smart pointers to manage memory and other resources.
 
 ### Performance and scalabiliy considerations
 
 * When making changes, think about performance and scalability. Pick good data structures and think about algorithmic complexity. 
-    * For small data sets, std::vector should be your to-go container, as a linear scan through contiguous memory is often faster than any alternative.
-    * Nested loops yield quadratic behavior - is there an alternative? A typical example is removing an inner lookup loop with a map.
+    * For small data sets, `std::vector` should be your to-go container, as a linear scan through contiguous memory is often faster than any alternative due to memory being read in cache lines.
+    * Nested loops yield quadratic behavior - is there an alternative? A typical example is removing an inner lookup loop with an unordered set/map to improve lookup performance to O(1).
 * Make sure your change doesn't conflict with the scalability characteristics described in the white paper. 
  
 ### Security
