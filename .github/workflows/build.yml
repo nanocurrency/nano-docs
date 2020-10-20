@@ -10,7 +10,7 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install -r requirements.txt
-      - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: pip install mkdocs-material
       - run: mkdocs build --strict
 
 env:
