@@ -187,31 +187,23 @@ This can be enabled by adding the following to the `config-node.toml` file:
 enable = true
 ```
 
-There are many other options which can be set. Due to RocksDB generally using more memory the defaults have been made pessimistic in order to run on a wider range of lower end devices. Recommended settings if on a system with 8GB or more RAM (see TOML comments in the generated file for more information on what these do):
+The other options are:
+```
+io_threads = 4
+memory_multiplier = 2
+```
+It shouldn't be necessary to update these variables manually. See TOML comments in the generated file for more information on what these do.
 
-```
-[node.rocksdb]
-bloom_filter_bits = 10
-block_cache = 1024
-enable_pipelined_write=true
-cache_index_and_filter_blocks=true
-block_size=64
-memtable_size=128
-num_memtables=3
-total_memtable_size=0
-```
-Comparision:
+Ledger backend comparison:
 
 | LMDB | RocksDB |
 | :-------: | :---------: |
-| Tested with the node for many years | Experimental status |
+| Tested with the node for many years | Recently implemented |
 | 1 file (data.ldb) | 100+ SST files |
-| *15GB live ledger size | Smaller file size (11GB) |
-| Not many options to configure  | Very configurable |
-| Unlikely to be further optimized | Many optimizations possible in future |
-| Part of the node build process | Required external dep (incl recent version 5.13+) |
+| Ledger size won't shrink without manual vacuum | Will shrink automatically when using pruning |
+| Unlikely to be further optimized | More likely to be optimized in future |
 | - | Less file I/O (writes are flushed in bulk) |
-| - | May use more memory |
+| - | More CPU heavy |
 
 \* At the time of writing (Oct 2019)
 
@@ -219,7 +211,7 @@ RocksDB Limitations:
 
 * Automatic backups not currently supported
 * Database transaction tracker is not supported
-* Cannot execute CLI commands which require writing to the database, such as `nano_node --peer_clear` these must be executed when the node is stopped
+* Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear, these must be executed when the node is stopped
 
 !!! note "Snapshotting with RocksDB"
 	When backing up using the --snapshot CLI option, it is currently set up to do incremental backups, which reduces the need to copy the whole database. However if the original files are deleted, then the backup directory should also be deleted otherwise there can be inconsistencies.
