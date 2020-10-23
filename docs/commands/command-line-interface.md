@@ -293,20 +293,25 @@ Profile signature verification
 
 ## Deprecated commands
 
-### Debug
-
-##### --debug_mass_activity (Deprecated)
-Generates fake debug activity. Deprecated in _v21+_, can use `slow_test --gtest_filter=system.generate_mass_activity` instead.
-
 ### Launch options
 
-##### --batch_size (Deprecated)
-_version 18.0+_  
-Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and will be removed in _v22_ as it will not support upgrades from v18 nodes and earlier.
-
-##### --disable_udp (Deprecated)
+##### --disable_udp
 _version 21.0+_  
 This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
 
 _version 19.0+_  
 Turn off use of UDP live network
+
+## Removed commands
+
+### Debug
+
+##### --debug_mass_activity
+Generates fake debug activity. Deprecated in _v21_ and removed in v22. Use `slow_test --gtest_filter=system.generate_mass_activity` instead.
+
+### Launch options
+
+##### --batch_size
+_version 18.0+_  
+Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and removed in _v22_ as no longer required.
+
