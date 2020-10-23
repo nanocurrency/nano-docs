@@ -19,6 +19,8 @@
 
   --md-typeset-a-color: #4a90e2;
 
+  --md-code-bg-color: #2E2E3E;
+
 }
 
 [data-md-color-scheme="slate"] .mermaid-wrapper {
