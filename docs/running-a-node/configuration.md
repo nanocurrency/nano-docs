@@ -186,7 +186,13 @@ Example that enables the RPC and WebSocket servers:
 
 `nano_node --config rpc.enable=true --config node.websocket.enable=true`
 
-Strings are passed with escaped quotes (`\"`), such as:
+The way strings are passed is as follows:  
+_v22_+ use quotes (`"`), such as:
+
+`nano_node --config node.httpcallback.target="api/callback"`  
+Arrays must not have spaces inbetween entries.
+
+_v21_ and earlier use escaped quotes (`\"`), such as:
 
 `nano_node --config node.httpcallback.target=\"api/callback\"`
 
