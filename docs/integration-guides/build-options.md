@@ -122,6 +122,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
 * `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
+* `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
 
 **Build Node**
 
