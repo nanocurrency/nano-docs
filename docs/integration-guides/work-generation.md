@@ -184,19 +184,19 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 
 | **Device** | **Epoch v1**<br />All Blocks | **Epoch v2**<br />Send/Change Blocks | **Epoch v2**<br />Receive Blocks |
 |--------|-|-|-|
-| Nvidia Tesla V100 (AWS) | 6.4 | | |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
+| Nvidia GTX 1080 | 2.63 | 3.32 | 26.24 |
+| Nvidia Tesla P100 (Google,Cloud) | 4.9 | 3.63 | 29.28 |
+| Nvidia RTX 2080 Ti | 4.01 | 5.48 | 47.27 |
+| Nvidia Tesla V100 (AWS) | 6.4 | 7.25 | 57.48 |
+| AMD R9 290 | 1.23 | 1.92 | 14.57 |
+| AMD RX Vega 64 | 3.77 | 3.79 | 30.77 |
+| AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.55 | 3.45 |
+| AMD R5-3600 @4.07GHz | 0.59 | | |
+| AMD R9-3900X @3.97GHz AVX2 | 1.97 | | |
 | Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
 | Google Cloud 4 vCores | 0.15 | | |
 | ARM64 server 4 cores (Scaleway) | 0.06 | | |
-| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
-| AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
-| AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
-| AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.6 |
-| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
-| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
-| AMD R9 290 | 1.23 | 0.15 | 8.06 |
-| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
+| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | | |
 
 ---
 
