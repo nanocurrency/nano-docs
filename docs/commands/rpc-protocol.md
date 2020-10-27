@@ -2322,6 +2322,44 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
 }
 ```
 
+_version 22.0+_  
+NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed and will be different depending on the ledger backend.
+
+**Request database:**
+```json
+{
+  "action": "stats",
+  "type": "database"
+}
+```
+
+**Database response:**  
+**LMDB:**
+```json
+{
+    "branch_pages": "0",
+    "depth": "1",
+    "entries": "11",
+    "leaf_pages": "1",
+    "overflow_pages": "0",
+    "page_size": "4096"
+}
+```
+**RocksDB:**  
+```json
+{
+    "cur-size-all-mem-tables": "74063072",
+    "size-all-mem-tables": "487744504",
+    "estimate-table-readers-mem": "113431016",
+    "estimate-live-data-size": "17756425993",
+    "compaction-pending": "0",
+    "estimate-num-keys": "81835964",
+    "estimate-pending-compaction-bytes": "0",
+    "total-sst-files-size": "20350606013",
+    "block-cache-capacity": "318767104",
+    "block-cache-usage": "150310696"
+}
+```
 ---
 
 ### stats_clear
