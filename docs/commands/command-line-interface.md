@@ -66,6 +66,10 @@ Generates a adhoc random keypair and prints it to stdout
 ### --key_expand --key=`<key>`
 Derive public key and account number from `<key>`
 
+### --migrate_database_lmdb_to_rocksdb
+_version 22.0+_  
+Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards.
+
 ### --network
 _version 19.0+_  
 Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
@@ -281,6 +285,14 @@ Example: `echo '{"action": "block_count"}' | nano_node --debug_rpc`
 ### --debug_stacktrace
 _version 20.0+_  
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
+
+### --debug_sys_logging
+_version 19.0+_  
+On *nix system this checks writing to the system log. On Windows it writes to the event viewer, a registry entry needs to exist for this to work correctly which can be created by running this command for the first time as an administrator
+
+### --debug_unconfirmed_frontiers
+_version 22.0+_  
+Prints the account, height, frontiers and cemented frontier for all accounts which are not fully confirmed. Sorted by height in descending order
 
 ### --debug_validate_blocks
 Alias to [`--validate_blocks`](#-validate_blocks)
