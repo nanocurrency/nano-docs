@@ -190,7 +190,8 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 | Nvidia Tesla V100 (Google Cloud) | 57.48 | 7.25 | 420.33 |
 | AMD R9 290 | 14.57 | 1.92 | 94.47 |
 | AMD RX Vega 64 | 30.77 | 3.79 | 232.56 |
-| AMD R7-4800U @2.8GHz AVX2 | 3.45 | 0.55 | 23.81 |
+| AMD Vega 8 @1750MHz | 3.45 | 0.55 | 23.81 |
+| AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
 | AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
 | AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.64 |
 | Nvidia Tesla K80 (Google Cloud) | 1.64 | | |
