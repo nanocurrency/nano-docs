@@ -17,30 +17,6 @@ Existing content:
 
 ## Overview
 
-### Open Representative Voting (ORV) vs Proof of Stake (PoS)
-
-While Nano uses a weighted-voting system ([ORV](/protocol-design#orv-consensus)) that can be compared to PoS, it differs from traditional PoS because:
-
-- There is not one monolithic blockchain that requires leader selection (i.e. a staker or a miner) to extend
-
-- Representatives do not create or produce shared blocks (groups of transactions)
-
-- Each Nano account has its own blockchain that only the owner can modify (representatives can only modify their own blockchain)
-
-- In Nano, a block is a single transaction (not a group of transactions). Transactions are evaluated individually and asynchronously
-
-- Users can remotely re-delegate their voting weight to anyone at any time
-
-- Anyone can be a representative
-
-- No funds are staked or locked up
-
-- Representatives do not earn transaction fees
-
-- Representatives cannot reverse transactions that nodes have locally confirmed (due to [block cementing](/glossary#cementing)).
-
-## Overview
-
 In order to protect against [double spending](attack-vectors.md#50-attack) and [Sybil attacks](attack-vectors.md#sybil-attack-to-change-ledger-entries), Nano uses a unique consensus mechanism called Open Representative Voting (ORV). In ORV, user-selected representative nodes vote on each transaction, and every node (representative or not) independently [cements](../glossary.md#cementing) each transaction after seeing enough representative votes to achieve [quorum](#quorum). Since Nano transactions are processed individually and asynchronously, deterministic finality (irreversible, full-settlement) is achieved in a short period of time, typically less than 1 second [^1].
 
 Due to Nano's [block-lattice ledger design](ledger.md), only account owners have the ability to sign blocks into their account-chains, so all forks must be the result of poor programming or malicious intent (double-spend) by the account owner, which means that nodes can easily make policy decisions on how to handle forks without affecting legitimate transactions.
