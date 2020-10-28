@@ -60,14 +60,14 @@ In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a grou
 
 ## Creating transactions
 
-### Open
+### Open (Receive)
 
-To create an account, an open transaction must be issued first. This is always the first transaction (block 0) of every account-chain and can be created upon the first receipt of funds. To open an account, you must have sent some funds to it with a send transaction from another account. The funds will be pending on the receiving account. The account field stores the public-key (address) derived from the private-key that is used for signing. The link field contains the hash of the transaction that sent the funds. On account creation, a representative must be chosen to vote on your behalf; this can be changed later. The account can declare itself as its own representative. 
+To create an account, an open transaction must be issued first. This is always the first transaction (block height 1) of every account-chain and can be created upon the first receipt of funds. To open an account, you must have sent some funds to it with a send transaction from another account. The funds will be pending on the receiving account. The account field stores the public-key (address) derived from the private-key that is used for signing. The link field contains the hash of the transaction that sent the funds. On account creation, a representative must be chosen to vote on your behalf; this can be changed later. The account can declare itself as its own representative. 
 
 
 ### Send
 
-A send transaction is one that decreases the sender's account balance by the amount they intend to send. To send from an address, the address must already have an existing open block, and therefore a balance. The previous field contains the hash of the previous block in the account-chain. The link field contains the account for funds to be sent to. A send block is immutable once confirmed. Once broadcasted to the network, funds are immediately deducted from the balance of the sender's account and wait as pending until the receiving party signs a block to accept these funds. Pending funds should not be considered awaiting confirmation, as they are as good as spent from the senders account and the sender cannot revoke the transaction.
+A send transaction is one that decreases the sender's account balance by the amount they intend to send. To send from an address, the address must already have been opened with an open (receive) block and therefore will have a balance. The previous field contains the hash of the previous block in the account-chain. The link field contains the account for funds to be sent to. A send block is immutable once confirmed by the network. This means the funds are deducted from the balance of the sender's account and wait as pending until the receiving party signs a block to accept these funds. Pending funds should not be considered awaiting confirmation, as they are as good as spent from the senders account and the sender cannot revoke the transaction.
 
 ### Receive
 
@@ -75,17 +75,15 @@ A receive block is very similar to the send block mentioned above, except the ac
 
 ### Change rep
 
-Nano account holders have the ability to choose a representative to vote on their behalf. This can be done any time (i.e. in an open, send, or receive transaction) by changing the representative field. In conventional PoS systems, the account owner’s node must be running to participate in voting. Continuously running a node is impractical for many users; giving a representative the power to vote on an account’s behalf relaxes this requirement. A change transaction changes the representative of an account by subtracting the vote weight from the old representative and adding the weight to the new representative. No funds are moved in this transaction, and the representative does not have spending power of the account’s funds.
+Nano account holders have the ability to choose a representative to vote on their behalf. This can be done any time (i.e. in an open, send, or receive transaction) by changing the representative field. In conventional PoS systems, the account owner’s node must be  continuosly running to participate in voting. This is impractical for many users, so to remove this requirement Nano was designed to give a representative the power to vote on an account’s behalf. A change transaction is what changes the representative of an account by subtracting the vote weight from the old representative and adding the weight to the new representative. No funds are moved in this transaction, and the representative does not have spending power of the account’s funds.
 
 ---
 
 ## Epoch blocks
 
-Since all accounts on the Nano network are asynchronous, an asynchronous form of chain upgrades is needed. Unlike Bitcoin, Nano is not able to say “upgrade at block X”, so Epoch blocks were developed as a solution to this problem. 
+Since all accounts on the Nano network are asynchronous, an asynchronous form of chain upgrades is needed. Unlike Bitcoin and other traditional blockchains, Nano is not able to say “upgrade at block X”, so Epoch blocks were one of the approaches developed to solve this problem. 
 
-Epoch blocks are a special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. Furthermore, if the majority of the network does not upgrade to a new node version that enables a particular epoch block, then the epoch block will have minimal or no effect. 
-
-![Visualization of Epoch block distribution](../images/epoch-blocks.png)
+Epoch blocks are a special block type that can only be generated using a pre-determined private key currently owned by the [Nano Foundation](https://nano.org/foundation). These blocks will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. Furthermore, if the majority of the network does not upgrade to a new node version that enables a particular epoch block, then the epoch block will have minimal or no effect. 
 
 As an account-chain upgrade, Epoch blocks move accounts on the network from Epoch X to Epoch X+1. Any future transactions from an upgraded account will have a minimum version of X+1, which cannot be received by previous node versions.
 
