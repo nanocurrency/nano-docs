@@ -300,9 +300,6 @@ Alias to [`--validate_blocks`](#-validate_blocks)
 ### --debug_verify_profile
 Profile signature verification
 
-### --debug_xorshift_profile
-[Disabled] Profile xorshift algorithms
-
 ## Deprecated commands
 
 ### Launch options
@@ -320,6 +317,9 @@ Turn off use of UDP live network
 
 ##### --debug_mass_activity
 Generates fake debug activity. Deprecated in _v21_ and removed in v22. Use `slow_test --gtest_filter=system.generate_mass_activity` instead.
+
+##### --debug_xorshift_profile
+Profile xorshift algorithms
 
 ### Launch options
 
