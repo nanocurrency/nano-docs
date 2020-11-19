@@ -6,10 +6,7 @@ Title: Nano Protocol Design - Work
 
 ## Spam resistance
 
-!!! note ""
-	Proof-of-Work is used in Nano as an anti-spam tool, to deter spam transactions on the network. It is not used in the consensus mechanism. Motivated by this key difference, the simplified term **work** is used instead.
-
-A spam transaction is loosely defined as a block broadcasted with the intention of saturating the network, reducing its availability for other network participants, or increasing the size of the ledger. Participants can compute the required work in the order of seconds. The cost of spamming the network increases linearly with the number of spam transactions, thus reducing the impact of spam transactions from theoretically infinite to a manageable amount.
+A spam transaction is loosely defined as a block broadcasted with the intention of saturating the network, reducing its availability for other network participants, or increasing the size of the ledger. In order to make spam attempts more costly, each valid block in Nano requires a proof-of-work solution to be attached to it - similar to the original proposition of Hashcash[^1]. Participants can compute the required work in the order of seconds. The cost of spamming the network then increases linearly with the number of spam transactions, thus reducing the impact of spam transactions from theoretically infinite to a manageable amount.
 
 With this design, there is an added step of verifying a block's work. As one could spam invalid blocks (in this context, blocks with invalid work), one key requirement is that the cost of verifying work is negligible.
 
