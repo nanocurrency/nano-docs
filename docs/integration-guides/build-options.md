@@ -227,7 +227,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ### Node
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 bash util/build_prep/bootstrap_boost.sh -m
@@ -243,7 +243,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 bash util/build_prep/bootstrap_boost.sh -m
