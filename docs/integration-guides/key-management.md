@@ -445,7 +445,7 @@ curl -d '{
 curl -d '{
   "action": "process",
   "json_block": "true",
-  "subtype": "send",
+  "subtype": "open",
   "block": {
     "type": "state",
     "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
