@@ -123,6 +123,7 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
 * `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
 * `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
+* `NANO_FUZZER_TEST=ON` (Build the fuzz tests, not available on Windows)
 
 **Build Node**
 
