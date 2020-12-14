@@ -43,7 +43,7 @@ docker run --restart=unless-stopped -d \
 | Option                                                | Purpose |
 |                                                       |         |
 | `-d`                                                  | Starts the docker container as a daemon |
-| `-p 7075:7075/udp`                                    | Maps the network activity port (depricated since V21) |
+| `-p 7075:7075/udp`                                    | Maps the network activity port (deprecated since V21) |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
 | `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
@@ -158,7 +158,7 @@ services:
     image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull, none for latest
     restart: "unless-stopped"
     ports:
-     - "7075:7075/udp"   #udp network traffic (depricated since V21)
+     - "7075:7075/udp"   #udp network traffic (deprecated since V21)
      - "7075:7075"       #tcp network traffic
      - "[::1]:7076:7076" #rpc to localhost only
      - "[::1]:7078:7078" #websocket to localhost only
