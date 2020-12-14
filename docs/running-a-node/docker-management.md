@@ -43,7 +43,7 @@ docker run --restart=unless-stopped -d \
 | Option                                                | Purpose |
 |                                                       |         |
 | `-d`                                                  | Starts the docker container as a daemon |
-| `-p 7075:7075/udp`                                    | Maps the network activity port |
+| `-p 7075:7075/udp`                                    | Maps the network activity port (deprecated since V21) |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
 | `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
@@ -60,9 +60,9 @@ This will start the docker container using host ports 7075 and 7076 and put the 
 ```
 
 !!! note
-    TCP is used for bootstrapping and UDP is used to stream live transactions on the network.  For more information, see the [network details](/running-a-node/configuration/#network-details).
+    As of V21 peering and communicating via UDP has been disabled by default and is deprecated. The ability to use UDP will be removed from the node in a future release yet to be determined.  For more information, see the [network details](/running-a-node/configuration/#network-details).
 
-    On port 7075, both TCP and UDP are required.
+    On port 7075, only TCP is required since V21.
 
 !!! warning
     If you are running multiple nano\_node Docker containers, **DO NOT** share the same `${NANO_HOST_DIR}`, each nano\_node requires its own independent files.
@@ -158,7 +158,7 @@ services:
     image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull, none for latest
     restart: "unless-stopped"
     ports:
-     - "7075:7075/udp"   #udp network traffic
+     - "7075:7075/udp"   #udp network traffic (deprecated since V21)
      - "7075:7075"       #tcp network traffic
      - "[::1]:7076:7076" #rpc to localhost only
      - "[::1]:7078:7078" #websocket to localhost only
