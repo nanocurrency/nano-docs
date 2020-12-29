@@ -30,7 +30,7 @@ For the node to start voting, the following [configuration](configuration.md) op
 --8<-- "config-node-option-rpc-enable-true.md"
 
 #### enable_control
-This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file. Please make sure you are aware of the sensitive RPC calls enabling this option opens up as detailed on the [configuration page](configuration.md#enable_control).
+This configuration option, which is needed to create the account for the Representative, is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file. Please make sure you are aware of the sensitive RPC calls enabling this option opens up as detailed on the [configuration page](configuration.md#enable_control).
 
 ```toml
 # Enable or disable control-level requests.
@@ -69,7 +69,20 @@ Once you have enough weight, after a few minutes you can search for your represe
 
 --8<-- "multiple-node-setups-warning.md"
 
-## Step 4: Monitoring and more
+## Step 4 (Optional): Disable RPC control commands for more security
+
+`enable_control` was only needed to create the account which the Representative uses to vote. It is not actually needed for voting. Therefore there is no need to actually keep it active after the node is prepared for voting.
+
+In the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file, you can disable the control commands again by setting `enable_control` back to false.
+
+```toml
+# Enable or disable control-level requests.
+# WARNING: Enabling this gives anyone with RPC access the ability to stop the node and access wallet funds.
+# type:bool
+enable_control = false
+```
+
+## Step 5: Monitoring and more
 
 Congratulations on getting your representative setup! If you are able to do a good job maintaining the node and keeping it performing well, you may have a chance at becoming a [Principal Representative](overview.md#principal-representative-nodes). To reach this higher level of participation in consensus, you must get at least 0.1% of [online voting weight](/glossary#online-voting-weight) delegated to your node. After that any votes you send for transactions will be rebroadcast by other nodes to help with consensus even more.
 
