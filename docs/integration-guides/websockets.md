@@ -618,7 +618,7 @@ No filters are currently available for the `new_unconfirmed_block` topic.
 
 ---
 
-#### Bootstrap
+### Bootstrap
 
 This subscription is available since _v21.0_
 
