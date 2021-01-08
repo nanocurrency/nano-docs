@@ -549,30 +549,6 @@ Default "true". If "true", "cemented" in the response will contain the number of
 
 ---
 
-### block_count_type  
-Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
-
-**Request:**
-```json
-{
-  "action": "block_count_type"
-}
-```  
-**Response:**
-```json
-{
-  "send": "5016664",
-  "receive": "4081228",
-  "open": "546457",
-  "change": "24193",
-  "state_v0": "4216537",
-  "state_v1": "10653709",
-  "state": "14870246"
-}
-```  
-
----
-
 ### block_create
 _enable_control required, version 9.0+_  
 Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. Using the optional `json_block` is recommended since v19.0.  
@@ -4259,6 +4235,30 @@ Multiply an rai amount by the rai ratio.
 ---
 
 #### Removed in _v22_
+
+### block_count_type  
+Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
+
+**Request:**
+```json
+{
+  "action": "block_count_type"
+}
+```  
+**Response:**
+```json
+{
+  "send": "5016664",
+  "receive": "4081228",
+  "open": "546457",
+  "change": "24193",
+  "state_v0": "4216537",
+  "state_v1": "10653709",
+  "state": "14870246"
+}
+```  
+
+---
 
 ### payment_begin   
 Begin a new payment session. Searches wallet for an account that's marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned.  
