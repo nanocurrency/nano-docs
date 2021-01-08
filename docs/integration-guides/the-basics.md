@@ -58,7 +58,7 @@ Private keys are derived **deterministically** from the seed, which means that a
 
 Wallet implementations will commonly start from index 0 and increment it by 1 each time you create a new account so that recovering accounts is as easy as importing the seed and then repeating this account creation process.
 
-It should be noted that Nano reference wallet is using described Blake2b private keys derivation path. However some implementations can use BIP44 deterministic wallets and [menmonic seed](/integration-guides/key-management/#mnemonic-seed) producing different private keys for given seed and indices. Additionally 24-word mnemonic can be derived from a Nano 64 length hex seed as entropy with clear notice for users that this is not BIP44 seed/entropy.
+It should be noted that Nano reference wallet is using described Blake2b private keys derivation path. However some implementations can use BIP44 deterministic wallets and [mnemonic seed](/integration-guides/key-management/#mnemonic-seed) producing different private keys for given seed and indices. Additionally 24-word mnemonic can be derived from a Nano 64 length hex seed as entropy with clear notice for users that this is not BIP44 seed/entropy.
 
 ??? info "Code samples"
 

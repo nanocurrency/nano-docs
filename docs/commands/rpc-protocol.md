@@ -416,7 +416,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
 
 **Request:**
 ```json
@@ -2322,6 +2322,44 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
 }
 ```
 
+_version 22.0+_  
+NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed and will be different depending on the ledger backend.
+
+**Request database:**
+```json
+{
+  "action": "stats",
+  "type": "database"
+}
+```
+
+**Database response:**  
+**LMDB:**
+```json
+{
+    "branch_pages": "0",
+    "depth": "1",
+    "entries": "11",
+    "leaf_pages": "1",
+    "overflow_pages": "0",
+    "page_size": "4096"
+}
+```
+**RocksDB:**  
+```json
+{
+    "cur-size-all-mem-tables": "74063072",
+    "size-all-mem-tables": "487744504",
+    "estimate-table-readers-mem": "113431016",
+    "estimate-live-data-size": "17756425993",
+    "compaction-pending": "0",
+    "estimate-num-keys": "81835964",
+    "estimate-pending-compaction-bytes": "0",
+    "total-sst-files-size": "20350606013",
+    "block-cache-capacity": "318767104",
+    "block-cache-usage": "150310696"
+}
+```
 ---
 
 ### stats_clear
@@ -2442,7 +2480,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
 | **uptime**            | average number of seconds since the UTC epoch at the point where the response is sent from the peer |
 | **genesis_block**     | mode (most common) of genesis block hashes |
-| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
 | **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
@@ -4211,8 +4249,13 @@ Multiply an rai amount by the rai ratio.
 
 ---
 
+## Removed RPCs
+
+---
+
+#### Removed in _v22_
+
 ### payment_begin   
-**_Deprecated_**, to be removed in version 22  
 Begin a new payment session. Searches wallet for an account that's marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned.  
 
 **Request:**
@@ -4232,7 +4275,6 @@ Begin a new payment session. Searches wallet for an account that's marked as ava
 ---
 
 ### payment_end  
-**_Deprecated_**, to be removed in version 22  
 End a payment session.  Marks the account as available for use in a payment session. 
 
 **Request:**
@@ -4252,7 +4294,6 @@ End a payment session.  Marks the account as available for use in a payment sess
 ---
 
 ### payment_init  
-**_Deprecated_**, to be removed in version 22  
 Marks all accounts in wallet as available for being used as a payment session.  
 
 **Request:**
@@ -4272,7 +4313,6 @@ Marks all accounts in wallet as available for being used as a payment session.
 ---
 
 ### payment_wait  
-**_Deprecated_**, to be removed in version 22  
 Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseconds have elapsed.  
 
 **Request:**

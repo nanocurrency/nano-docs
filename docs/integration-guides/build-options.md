@@ -121,102 +121,104 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_TIMED_LOCKS=50` (*v20.0+* when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables.)
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
+* `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
+* `NANO_FUZZER_TEST=ON` (Build the fuzz tests, not available on Windows)
 
-**Build Node**
+	**Build Node**
 
-* `git submodule update --init --recursive`
-* Generate with cmake then build with your compiler
-* (\*nix) to build node without GUI execute: `make nano_node`
-* (\*nix) to build wallet with GUI execute: `make nano_wallet`
-* (\*nix) to build rpc for child/out of process execute: `make nano_rpc`
+	* `git submodule update --init --recursive`
+	* Generate with cmake then build with your compiler
+	* (\*nix) to build node without GUI execute: `make nano_node`
+	* (\*nix) to build wallet with GUI execute: `make nano_wallet`
+	* (\*nix) to build rpc for child/out of process execute: `make nano_rpc`
 
-**Building a package**
+	**Building a package**
 
-* (macOS) `cpack -G "DragNDrop"`
-* (Windows) `cpack -G "NSIS"`
-* (\*nix) `cpack -G "TBZ2"`
+	* (macOS) `cpack -G "DragNDrop"`
+	* (Windows) `cpack -G "NSIS"`
+	* (\*nix) `cpack -G "TBZ2"`
 
-**Testing the Node**
+	**Testing the Node**
 
-* In order to run the tests, the corresponding CMake variable must be set: `-D NANO_TEST=ON`.
-* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test`, `load_test` and `slow_test` binaries, which can be executed such as `./core_test`.
-* See more details in [Testing](#testing)
+	* In order to run the tests, the corresponding CMake variable must be set: `-D NANO_TEST=ON`.
+	* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test`, `load_test` and `slow_test` binaries, which can be executed such as `./core_test`.
+	* See more details in [Testing](#testing)
 
-**Beta Network Participation**
+	**Beta Network Participation**
 
-* More information can be found on the [Beta Network page](/running-a-node/beta-network/)
-* To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
+	* More information can be found on the [Beta Network page](/running-a-node/beta-network/)
+	* To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
 
-**Test Network Participation**
+	**Test Network Participation**
 
-* More information can be found on the [Test Network page](/running-a-node/test-network/)
-* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
+	* More information can be found on the [Test Network page](/running-a-node/test-network/)
+	* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
 
----
+	---
 
-## Debian/Ubuntu Dependencies
+	## Debian/Ubuntu Dependencies
 
-These instructions are for the following systems:
+	These instructions are for the following systems:
 
-* Ubuntu 16.04 LTS Server
-* Ubuntu 16.10+
-* Debian 8 Jessie (Debian 8 requires Cmake 3.4+)
-* Debian 9 Stretch
+	* Ubuntu 16.04 LTS Server
+	* Ubuntu 16.10+
+	* Debian 8 Jessie (Debian 8 requires Cmake 3.4+)
+	* Debian 9 Stretch
 
-**Install dependencies**
+	**Install dependencies**
 
-```bash
-sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install git cmake g++ curl wget
-```
+	```bash
+	sudo apt-get update && sudo apt-get upgrade
+	sudo apt-get install git cmake g++ curl wget
+	```
 
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
+	Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
-## CentOS 7 Dependencies
+	## CentOS 7 Dependencies
 
-**Requirements**
+	**Requirements**
 
-* GCC compiler version 4.9+ or other compiler with C++14 language support (default Centos 7 compilers are outdated)
-* Cmake 3.4+
+	* GCC compiler version 4.9+ or other compiler with C++14 language support (default Centos 7 compilers are outdated)
+	* Cmake 3.4+
 
-**Install dependencies**
+	**Install dependencies**
 
-```bash
-sudo yum check-update
-sudo yum install git libstdc++-static curl wget
-```
+	```bash
+	sudo yum check-update
+	sudo yum install git libstdc++-static curl wget
+	```
 
-**Configure repository with modern GCC**
-```bash
-sudo yum install centos-release-scl
-sudo yum install devtoolset-7-gcc*
-scl enable devtoolset-7 bash
-```
+	**Configure repository with modern GCC**
+	```bash
+	sudo yum install centos-release-scl
+	sudo yum install devtoolset-7-gcc*
+	scl enable devtoolset-7 bash
+	```
 
-**Modern Cmake**
-```bash
-wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
-tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
-./bootstrap --prefix=/usr/local
-make -j$(nproc)
-sudo make install
-cd ..
-```
+	**Modern Cmake**
+	```bash
+	wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
+	tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
+	./bootstrap --prefix=/usr/local
+	make -j$(nproc)
+	sudo make install
+	cd ..
+	```
 
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
+	Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
-## Arch Linux Dependencies
+	## Arch Linux Dependencies
 
-**Install dependencies**
+	**Install dependencies**
 
-```bash
-pacman -Syu
-pacman -S base-devel git gcc cmake curl wget
-```
+	```bash
+	pacman -Syu
+	pacman -S base-devel git gcc cmake curl wget
+	```
 
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
+	Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
----
+	---
 
 ## Build Instructions - Debian, CentOS, Arch Linux
 
@@ -225,7 +227,7 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ### Node
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 bash util/build_prep/bootstrap_boost.sh -m
@@ -241,7 +243,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
 bash util/build_prep/bootstrap_boost.sh -m

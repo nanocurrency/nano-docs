@@ -66,6 +66,10 @@ Generates a adhoc random keypair and prints it to stdout
 ### --key_expand --key=`<key>`
 Derive public key and account number from `<key>`
 
+### --migrate_database_lmdb_to_rocksdb
+_version 22.0+_  
+Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards.
+
 ### --network
 _version 19.0+_  
 Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported.
@@ -282,31 +286,44 @@ Example: `echo '{"action": "block_count"}' | nano_node --debug_rpc`
 _version 20.0+_  
 Prints a stacktrace example, useful to verify that it includes the desired information, such as files, function names and line numbers
 
+### --debug_sys_logging
+_version 19.0+_  
+On *nix system this checks writing to the system log. On Windows it writes to the event viewer, a registry entry needs to exist for this to work correctly which can be created by running this command for the first time as an administrator
+
+### --debug_unconfirmed_frontiers
+_version 22.0+_  
+Prints the account, height, frontiers and cemented frontier for all accounts which are not fully confirmed. Sorted by height in descending order
+
 ### --debug_validate_blocks
 Alias to [`--validate_blocks`](#-validate_blocks)
 
 ### --debug_verify_profile
 Profile signature verification
 
-### --debug_xorshift_profile
-[Disabled] Profile xorshift algorithms
-
 ## Deprecated commands
-
-### Debug
-
-##### --debug_mass_activity (Deprecated)
-Generates fake debug activity. Deprecated in _v21+_, can use `slow_test --gtest_filter=system.generate_mass_activity` instead.
 
 ### Launch options
 
-##### --batch_size (Deprecated)
-_version 18.0+_  
-Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and will be removed in _v22_ as it will not support upgrades from v18 nodes and earlier.
-
-##### --disable_udp (Deprecated)
+##### --disable_udp
 _version 21.0+_  
 This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
 
 _version 19.0+_  
 Turn off use of UDP live network
+
+## Removed commands
+
+### Debug
+
+##### --debug_mass_activity
+Generates fake debug activity. Deprecated in _v21_ and removed in v22. Use `slow_test --gtest_filter=system.generate_mass_activity` instead.
+
+##### --debug_xorshift_profile
+Profile xorshift algorithms
+
+### Launch options
+
+##### --batch_size
+_version 18.0+_  
+Increase sideband upgrade batch size (default 512). Deprecated in _v21_ and removed in _v22_ as no longer required.
+
