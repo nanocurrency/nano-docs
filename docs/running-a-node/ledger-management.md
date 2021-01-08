@@ -211,7 +211,7 @@ RocksDB Limitations:
 
 * Automatic backups not currently supported
 * Database transaction tracker is not supported
-* Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear, these must be executed when the node is stopped
+* Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear`, these must be executed when the node is stopped
 
 !!! note "Snapshotting with RocksDB"
 	When backing up using the --snapshot CLI option, it is currently set up to do incremental backups, which reduces the need to copy the whole database. However if the original files are deleted, then the backup directory should also be deleted otherwise there can be inconsistencies.
