@@ -1867,8 +1867,13 @@ Boolean, false by default. Returns the minimum version (epoch) of a block which 
 
 **Optional "sorting"**
 
-_version 19.0+_   
 Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   
+
+_version 22.0+_   
+If used with "count" returns the absolute sorted values.
+
+_version 19.0+_   
+If used with "count" only sorts relative to the first pending entries found up to count so not necessarily the ones with the largest pending balance.   
 
 **Optional "include_only_confirmed"**
 
