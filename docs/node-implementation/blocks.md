@@ -6,6 +6,7 @@ description: Review of block handling in the current node implementation
 --8<-- "wip-living-whitepaper.md"
 
 ## Block publishing and propagation
+Nodes use a modified gossip protocol for message distribution that enables quick distribution of blocks and votes across the network while distributing the load required to propagate messages across multiple nodes rather than each node having to respond to requests from every other node.  Prioritization of messages are focused on the Principal Representative nodes that make up the core consensus mechanism where they receive blocks and votes directly from other nodes and then messages are spread to the rest of the network via gossiping.
 
 Blocks are initially broadcast and propagated across the network to different types of nodes based on the blocks status. Some basic rules are listed below:
 
