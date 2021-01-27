@@ -10,6 +10,6 @@ description: Review of block handling in the current node implementation
 Blocks are initially broadcast and propagated across the network to different type of Representatives and nodes based on the blocks status. Some basic rules are listed below:
 
 - Nodes initially publish new blocks on the live network to **all Principal Representatives they can connect to** and a subset of Non Principal Representative nodes.
-- When a new block is processed on a node that is not a known fork, or is a known fork but the block become the new winner on an election, nodes will republish that block to `sqrt(peers)` (excluding Principal Representatives)
+- When a new block is processed on a node that is not a known fork, or is a known fork but the block becomes the new winner on an election, nodes will republish that block to `sqrt(peers)`.
 
 On average, this gossiping results in blocks arriving multiple times at each node. To help reduce node resource usage, there are duplicate block filters in place to prevent reprocessing of the same blocks.
