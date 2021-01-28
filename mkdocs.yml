@@ -67,6 +67,7 @@ nav:
     - Introduction: node-implementation/introduction.md
     - Components: node-implementation/components.md
     - Database: node-implementation/database.md
+    - Blocks: node-implementation/blocks.md
     - Voting: node-implementation/voting.md
     - Work: node-implementation/work.md
     - Contributing: node-implementation/contributing.md
