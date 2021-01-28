@@ -169,8 +169,6 @@ Your code will be reviewed with security in mind, but please do your part before
 
 ## [WIP] Developer starter pack
 
-Developer starter-pack
-
 Items include:
 
 - Windows/MacOS/Linux
@@ -228,14 +226,14 @@ node/bootstrap/boostrap_legacy.cpp
 Legacy bootstrapping works by requesting frontiers periodically (every 5 minutes) from a random selection of peers, this is done in `nano::node::ongoing_bootstrap ()`. `bootstrap_frontier.cpp` contains the frontier req client and server. A `frontier_req` message is send from `frontier_req_client` to get a list of frontiers from a peer’s `frontier_req_server` starting at `frontier_req.start` which is done as `accounts_begin (transaction, current + 1);`. The accounts are sorted by their hash.
 
 ##### Lazy
-node/bootstrap/boostrap_lazy.hpp
+node/bootstrap/boostrap_lazy.hpp  
 TODO
 
 ##### Wallet lazy
 TODO
 
 ##### How messages are handled (bootstrap_server.cpp)
-When a message is received through the bootstrap server, its header is first checked inside `nano::bootstrap_server::receive_header_action ()`. The message is deserialized and added in `add_request ()` to the `std::queue<std::unique_ptr<nano::message>> requests` collection which holds a queue of messages. `run_next ()` is then called (and will be called after the request is finished if there are more messages to process), this runs the message through a `request_response_visitor`  object which creates a `tcp_message_item` and adds it to the `tcp_message_manager` to be processed. The newest set of messages added were for telemetry. If new messages need adding that can be used as a guide: https://github.com/nanocurrency/nano-node/pull/2446
+When a message is received through the bootstrap server, its header is first checked inside `nano::bootstrap_server::receive_header_action ()`. The message is deserialized and added in `add_request ()` to the `std::queue<std::unique_ptr<nano::message>> requests` collection which holds a queue of messages. `run_next ()` is then called (and will be called after the request is finished if there are more messages to process), this runs the message through a `request_response_visitor` object which creates a `tcp_message_item` and adds it to the `tcp_message_manager` to be processed. The newest set of messages added were for telemetry. If new messages need adding that can be used as a guide: https://github.com/nanocurrency/nano-node/pull/2446
 
 ##### Websocket
 Websockets were introduced in https://github.com/nanocurrency/nano-node/pull/1840. Previously a HTTP callback had to be used, but websockets provides a more efficient 2 way communication protocol. Websocket events are available for various topics. For an example of adding a websocket topic look at: https://github.com/nanocurrency/nano-node/pull/2634. `observers.notify (message_a.data, endpoint);` is what ultimately invokes the websocket server to send a message which is deserialized inside `nano::websocket::message_builder`.
@@ -304,7 +302,8 @@ We have a variety of submodules https://docs.nano.org/node-implementation/contri
 
 ##### All threads should have a name set
 An easy example to follow is https://github.com/nanocurrency/nano-node/pull/2987/files This is so that debuggers/viewers which show threads can pick up the name to make it easier to navigate. It’s been known not to work in the Visual Studio Concurrency visualizer.
-(de)serializing
+
+##### (de)serializing
 Where possible we try and store primitives in big-endian. As most systems are little-endian this means using `boost::endian::native_to_big` on primitives when serializing and `boost::endian::big_to_native` when deserializing.
 
 ##### Boost
@@ -333,19 +332,21 @@ To confirm a block a sufficient number of votes which are taken from `confirm_ac
 Votes are signed by the representative and the vote processor schedules checking these votes through the `signature_checker` inside `nano::vote_processor::verify_votes ()`.
 
 ##### request_aggregator
-voting.hpp/cpp
-vote_processor
+voting.hpp/cpp  
+vote_processor  
 TODO
 
 ##### Confirmation height processor
-When a block is confirmed `void nano::node::process_confirmed ()` the block is added to the confirmation height processor. This begins the process of cementing it and all of its dependents, once this occurs these blocks can never be rolled back. There are 2 confirmation height algorithms bounded and unbounded. Originally only the unbounded one existed, this would store the block hash for the original block confirmed, all its previous blocks, and recurse the bottom most receive block to the source and repeat the process. If this hit something like the binance chain or (any long chain) it could use a lot of memory (unbounded amount). So this brought about the bounded confirmation height processor algorithm which starts at the very bottom of the account chains but does the same recursion when a receive block is hit. This limits the amount of block hashes needing to be stored in memory to be able to cement the bottom most blocks. Checkpoints are used if there are a lot of accounts which need to be traversed to reach which exceeds the maximum amount of memory . It does mean in certain cases the same iteration will need to be done more than once but this should be a rare case only during initial cementing.
-Once the uncemented count (block count – cemented count) is less than 16K the unbounded processor is used. As mentioned above this instead starts from the top (original confirmed block) and works downwards and saves all the blocks hit (not just hash) which means they don’t need to be re-read during writing  later. This does use a lot more memory though which is why this is limited to a certain number of blocks, once the unbounded cutoff is exceeded the bounded processor resumes.
+When a block is confirmed `void nano::node::process_confirmed ()` the block is added to the confirmation height processor. This begins the process of cementing it and all of its dependents, once this occurs these blocks can never be rolled back. There are 2 confirmation height algorithms bounded and unbounded. Originally only the unbounded one existed, this would store the block hash for the original block confirmed, all its previous blocks, and recurse the bottom most receive block to the source and repeat the process. If this hit something like the binance chain or (any long chain) it could use a lot of memory (unbounded amount). So this brought about the bounded confirmation height processor algorithm which starts at the very bottom of the account chains but does the same recursion when a receive block is hit. This limits the amount of block hashes needing to be stored in memory to be able to cement the bottom most blocks. Checkpoints are used if there are a lot of accounts which need to be traversed to reach which exceeds the maximum amount of memory . It does mean in certain cases the same iteration will need to be done more than once but this should be a rare case only during initial cementing.  
+
+Once the uncemented count (block count – cemented count) is less than 16K the unbounded processor is used. As mentioned above this instead starts from the top (original confirmed block) and works downwards and saves all the blocks hit (not just hash) which means they don’t need to be re-read during writing  later. This does use a lot more memory though which is why this is limited to a certain number of blocks, once the unbounded cutoff is exceeded the bounded processor resumes.  
+
 Both algorithms operate with a read transaction first which reduces write lock held time as it can do a lot of iterating. This does mean that there can be some inconsistency by the time the writing is done, but this shouldn’t be an issue because once a block is confirmed by the network it will stay confirmed by `debug_assert` checks are added to catch any programming mistakes. While it is more effort to maintain 2 algorithms the unbounded one largely existed before so it made sense to re-use it, given the performance improvements in almost cemented ledgers.
-node_initialized_latch
 
+##### node_initialized_latch
 Some classes use `node_initialized_latch.wait ();` The latch was added in https://github.com/nanocurrency/nano-node/pull/2042 this is to prevent some of the issues in the node constructor initializer list where the `node` object is passed and a child constructor is wants to use a node member which is not yet initialized. This makes it resume operation once the latch is incremented at the beginning of the `node` constructor.
-Frontiers confirmation
 
+##### Frontiers confirmation
 `nano/node/frontiers_confirmation.cpp` contains code which starts at the beginning of the accounts database (`nano::blockstore_partial::accounts_begin`) and iterates in ascending order and prioritises accounts based on the number of uncemented blocks (stores up to 100k) and requests confirmation for a limited number of these accounts. When the cemented count is above the hardcoded bootstrap weights this is limited to the number of optimistic elections which is 50 in this case so it is expected to be quite slow in this case. Accounts in wallets are also checked.
 
 ##### Telemetry
@@ -366,7 +367,8 @@ When the node is run it prints out some information about the database used, com
 
 ##### Pruning
 Pruning occurs periodically inside `nano::node::ongoing_ledger_pruning ()`. Pruning currently requires a full ledger to be bootstrapped and when an account frontier is confirmed it can then be pruned. The hashes of the pruned blocks are put into the pruned database so that we know to ignore any of these old blocks should the node bootstrap them again. Pending blocks cannot be pruned currently.
-Removing old upgrade version support
+
+##### Removing old upgrade version support
 Sometimes it is necessary/desired to remove being able to upgrade from specific versions. We dropped support for upgrades from v18 and earlier nodes in v1 using https://github.com/nanocurrency/nano-node/pull/2770
 
 ##### Config files
@@ -375,8 +377,9 @@ There are no versions or upgrades done here, instead any defaults not explicitly
 
 ##### config-node.toml
 This is actually called `daemonconfig.cpp` in the code base, but it wraps a `node_config` object.
-*config-rpc.toml*
-*config-wallet.toml*
+
+##### config-rpc.toml  
+##### config-wallet.toml  
 These contain settings which can be modified by the user to override the defaults. The most common ones are enabling rpc/websocket & rocksdb.
 The `nano/node/node_rpc_config.cpp` are the rpc settings for the node.
 
@@ -398,16 +401,18 @@ class my_class
 {
 private:
    int private_member; // the Test (node, example); test can access this member
-  `friend class node_example_Test;`
+   friend class node_example_Test;
 };
 ```
 The test itself needs to be wrapped with the nano { } namespace for this to work correctly, if the class itself is in the nano namespace which is normally the case.
-nanodb-specification & protocol repositories
+
+##### nanodb-specification & protocol repositories
 There are 2 repositories which use kaitai specifications which should be updated (normally near the end of the release) if there are any changes to the https://github.com/nanocurrency/nanodb-specification or https://github.com/nanocurrency/protocol message
 
 ##### nano-docs
 All RPC/CLI changes should have a documentation update specifying the version that they work. There is a documentation label in the nano-node repository which is useful as a reminder that they should be added, documentation updates are often overlooked.
-Before a release the following should be done:
+
+##### Before a release the following should be done:
 - Run tests with TSAN/ASAN/Valgrind. All errors should be fixed before launch unless these are determined to be test related or false positives. We currently have some errors with using coroutines. There are blacklist files for the sanitizers which remove some errors caused by lmdb & rocksdb.
  
 Tips:
