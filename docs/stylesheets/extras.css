@@ -254,7 +254,7 @@
     max-height: 1.2rem;
 }
 
-.md-header-nav__button.md-logo svg {
+.md-header__button.md-logo svg {
     width: 120px;
 }
 
