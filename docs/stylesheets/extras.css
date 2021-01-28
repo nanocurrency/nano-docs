@@ -81,6 +81,11 @@
     letter-spacing: -0.01em;
 }
 
+[data-md-color-scheme="slate"] .md-typeset h5 {
+    color: rgb(233, 233, 252);
+    font-size: 0.6rem;
+}
+
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
     min-width: 5rem;
     padding: .9375em 1.25em;

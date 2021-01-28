@@ -129,7 +129,7 @@ clang-format is used to enforce most of the formatting rules, such as:
 * Space before open parenthesis.
 * Space after comma.
 
-Please run `ci/clang-format-all.sh` on *nix systems before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. Visual studio for instance provides a way to automatically format on saving. The definition file `.clang-format` is located in the project root directory.
+Please run `ci/clang-format-all.sh` on \*nix systems before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. Visual studio for instance provides a way to automatically format on saving. The definition file `.clang-format` is located in the project root directory.
 
 Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^5]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings. 
 
@@ -172,6 +172,7 @@ Your code will be reviewed with security in mind, but please do your part before
 Developer starter-pack
 
 Items include:
+
 - Windows/MacOS/Linux
 - C++17 compiler
 - Boost
@@ -184,7 +185,7 @@ Modern C++ knowledge (up to C++17) including multithreading primitives (mutex, c
 
 The main Nano projects are located inside the /nano subdirectory.  
 
-#### Executable binaries (all have nano\_ prefix):
+### Executable binaries (all have nano\_ prefix)
 All executable projects have a `main` function inside `entry.cpp`
 
 *nano_node* – The standard way to start a node. There are 2 source files in here, `entry.cpp` and `daemon.cpp`. `nano_daemon::daemon::run()` is always called so is a good place to put a breakpoint if there are any issues during node operation (especially errors when launching initially).
@@ -211,7 +212,7 @@ scoped_thread_name_io.renew ();
 **test_common** – This is a helper library which contains test specific (not node related) things which can be used by all test projects. This project should not have a `node` dependency. Anything which does should be put into `nano/node/testing.cpp`.
 
 ##### Fuzzer
-The fuzzer uses libfuzzer which inputs arbitrary data continuously trying to find catch edge cases missed in traditional testing on specific examples. This is not currently supported on Windows. The executables are found in fuzzer_test/*. The node must be built with the CMake option `-DNANO_FUZZER_TEST=ON`, this does not require that `NANO_TEST` be set. Currently there are 3 executables built: fuzz_bignum, fuzz_buffer, fuzz_endpoint_parsing.
+The fuzzer uses libfuzzer which inputs arbitrary data continuously trying to find catch edge cases missed in traditional testing on specific examples. This is not currently supported on Windows. The executables are found in fuzzer_test/\*. The node must be built with the CMake option `-DNANO_FUZZER_TEST=ON`, this does not require that `NANO_TEST` be set. Currently there are 3 executables built: fuzz_bignum, fuzz_buffer, fuzz_endpoint_parsing.
 
 **Notes:**  
 There aren’t currently tests for specific CLIs so it’s recommended to abstract the functionality so that it can be tested in `core_test`.
@@ -325,7 +326,7 @@ This was introduced to reduce LMDB write lock contention between the block proce
 ##### debug_assert (!mutex.try_lock ());
 When functions require that a mutex is required before being called we often check that the mutex is locked. Although this is technically undefined behaviour to be called by a thread which already owns the mutex we have been using this idiom for years and found no issues with the major compilers.
 
-#### Voting/Consensus
+### Voting/Consensus
 To confirm a block a sufficient number of votes which are taken from `confirm_ack` messages are tallied up. If the tally is above the delta inside `nano::election::have_quorum ()` it returns true and the block is considered confirmed. `confirm_ack` messages can either contain the whole block or a hash (vote by hash). `confirm_req` message header as well as `confirm_ack` indicate what the type of the contents is in the header, either `not_a_block` which means dealing with block hashes or the block type. `nano/node/common.cpp` contains these messages (among others) and (de)serializing functions.
 
 ##### vote_processor
@@ -358,7 +359,7 @@ The `stats` object is used to keep a count of events that have happened, this is
 Most classes which have a member variable of container of multiple items (map, vector, list etc..) should have a function with a prototype of:
 `std::unique_ptr<container_info_component> collect_container_info (my_class & my_class, std::string const & name);`
 And then call this in an owning object which should itself be called recursively until it reaches the `node` object `collect_container_info`. They are typically not made as part of the class itself because it’s a very specialised function which is only called as part of the stats->object RPC, like so:
-'{"action":"stats","type":"objects"}`
+`{"action":"stats","type":"objects"}`
 
 ##### Initial output when running the node
 When the node is run it prints out some information about the database used, compiler etc. An example of appending to the output is here: https://github.com/nanocurrency/nano-node/pull/2807
@@ -385,7 +386,7 @@ CMake is used as the build system, and git submodules for any third party depend
 ##### nano/boost
 Use nano/boost/asio nano/boost/beast for includes, this wraps up various includes and prevents warnings being shown (particularly on Windows builds).
 
-#### Running tests
+### Running tests
 The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
 Build with `cmake -DNANO_TESTS_ON ..`
 See docs.nano.org for more information. There may be intermittent failures, if so add them here https://github.com/nanocurrency/nano-node/issues/1121 and fix if possible.
@@ -410,6 +411,7 @@ Before a release the following should be done:
 - Run tests with TSAN/ASAN/Valgrind. All errors should be fixed before launch unless these are determined to be test related or false positives. We currently have some errors with using coroutines. There are blacklist files for the sanitizers which remove some errors caused by lmdb & rocksdb.
  
 Tips:
+
 - Do not use the `node` object or include `node.hpp` in new core source files unless necessary, instead include the dependencies that it requires. We are still in the process of removing this idiom from other files because it adds circular dependencies, potentially ordering bugs and increases the build time.
 - Take care not to have nested `tx_begin_write ()`, it is quite easy to forget about this in tests, it will just cause a deadlock. To solve it, limit the scope:
 - Pass `std::shared_ptr` parameters by reference where possible, https://github.com/nanocurrency/nano-node/pull/3029
