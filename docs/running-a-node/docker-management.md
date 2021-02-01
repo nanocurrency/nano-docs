@@ -160,8 +160,8 @@ services:
     ports:
      - "7075:7075/udp"   #udp network traffic (deprecated since V21)
      - "7075:7075"       #tcp network traffic
-     - "[::1]:7076:7076" #rpc to localhost only
-     - "[::1]:7078:7078" #websocket to localhost only
+     - "127.0.0.1:7076:7076" #rpc to localhost only
+     - "127.0.0.1:7078:7078" #websocket to localhost only
     volumes:
      - "${NANO_HOST_DIR}:/root" #path to host directory
 ```
@@ -222,6 +222,8 @@ Or the blockcount:
 ```bash
 curl -d '{ "action" : "block_count" }' [::1]:7076
 ```
+
+Replace `[::1]` with `127.0.0.1` according to your setup.
 
 In addition, you can make use of command-line JSON utilities such as [jq](https://stedolan.github.io/jq/) to parse and manipulate the structured data retrieved from `curl`. For example the account information associated with certain block:
 
