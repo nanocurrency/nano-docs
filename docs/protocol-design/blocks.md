@@ -99,7 +99,7 @@ Existing whitepaper sections related to this page:
 Existing content:
 
 * [Athena and Epoch v2 Blocks Explained](https://medium.com/nanocurrency/athena-and-epoch-v2-blocks-explained-de0a3dd37c39)
-* [Blocks specifications](/protocol-design/blocks/)
+* [Blocks specifications](/integration-guides/the-basics/#blocks-specifications)
 * [Creating transactions](/integration-guides/key-management/#creating-transactions)
 * [Nano 101: Epoch Blocks](https://medium.com/nanocurrency/an-epoch-blocks-explainer-aa22905b28db)
 * [Nano How 2: Blocks and Lattices](https://medium.com/nano-education/nano-how-2-blocks-and-lattices-c0ccd417bd5a)
