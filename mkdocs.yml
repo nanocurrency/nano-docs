@@ -21,7 +21,6 @@ theme:
   custom_dir: 'theme'
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
