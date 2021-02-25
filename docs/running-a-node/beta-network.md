@@ -6,7 +6,7 @@ description: Find out how to join the Nano community in testing the latest node 
 !!! tip "Testing is currently ongoing on the beta network for Version 22"
 	Read through this page if you would like to participate.
 
-The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing]((#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features. As a result, an alternative [test network](test-network.md) is also available which will be more stable and is a better fit for learning node setup and management, and testing out upgrades and other activities for Nano before moving to production.
+The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing](#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features. As a result, an alternative [test network](test-network.md) is also available which will be more stable and is a better fit for learning node setup and management, and testing out upgrades and other activities for Nano before moving to production.
 
 With those things in consideration, if you are interested in helping with testing on the beta network we are excited to help you out - so keep reading!
 
