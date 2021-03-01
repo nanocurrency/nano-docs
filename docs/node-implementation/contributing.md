@@ -194,9 +194,9 @@ All executable projects have a `main` function inside `entry.cpp`
 The googletest (gtest) framework is used to validate a variety of functionality in the node, we do not currently use gmock in the codebase.  
 
 **Executables**  
-**core\_test** – This is where the majority of tests should go. If there is any new functionality added or something has changed, it more often than not should have a test here! Any new core areas should have their own separate test file to encapsulate the logic. 
-**ipc\_flatbuffers\_test** – This actually doesn’t use the `gtest` library and has its own main file which just contains a simple example of using flatbuffers.
-**load_test** – This creates a dynamic number of nodes, sends blocks from 1 of the nodes (primary) and waits until all other nodes have the same number of blocks. This does not normally need to be modified but is run as part CI at the end.
+**core\_test** – This is where the majority of tests should go. If there is any new functionality added or something has changed, it more often than not should have a test here! Any new core areas should have their own separate test file to encapsulate the logic.   
+**ipc\_flatbuffers\_test** – This actually doesn’t use the `gtest` library and has its own main file which just contains a simple example of using flatbuffers.  
+**load_test** – This creates a dynamic number of nodes, sends blocks from 1 of the nodes (primary) and waits until all other nodes have the same number of blocks. This does not normally need to be modified but is run as part CI at the end.  
 **rpc_test** – All RPC tests go here. There is some boilerplate to follow which creates an `ipc_server` for the node which mimics out of process rpc commands communicating with it. Care must be taken when creating write transactions as they are not allowed on io-threads (https://github.com/nanocurrency/nano-node/pull/1264). To make sure this is adhered to when calling the RPC commands, there is an RAII object `scoped_io_thread_name_change` which changes the current thread (normally the main one) to be `io`, and restores it when the object goes out of scope. For instance
 ```
 ...
@@ -238,18 +238,15 @@ When a message is received through the bootstrap server, its header is first che
 ##### Websocket
 Websockets were introduced in https://github.com/nanocurrency/nano-node/pull/1840. Previously a HTTP callback had to be used, but websockets provides a more efficient 2 way communication protocol. Websocket events are available for various topics. For an example of adding a websocket topic look at: https://github.com/nanocurrency/nano-node/pull/2634. `observers.notify (message_a.data, endpoint);` is what ultimately invokes the websocket server to send a message which is deserialized inside `nano::websocket::message_builder`.
 
-##### Worker
-There is a single worker thread, the class definition is defined inside nano/lib/worker.cpp, which allows tasks to be added to a queue for execution. This was added in https://github.com/nanocurrency/nano-node/pull/1264 and its primary purpose was to schedule write transactions off the io threads. It is generally recommended to push tasks onto the io threads though to avoid bottlenecking this single thread.
-
-##### Alarm
-The `alarm` object is used to schedule a callback to be called at a specific time in the future. It is always executed asynchronously on the io thread. For this reason if the callback creates a write transaction it is pushed onto the worker thread.
+##### Workers (thread pool)
+The class definition for `thread_pool` is defined inside `nano/lib/threading.cpp`, which allows tasks to be added to a queue for execution as well as executed at a specific time. Previously there were worker/alarm classes, which were combined in https://github.com/nanocurrency/nano-node/pull/2871. Its primary purpose was to schedule write transactions off the io threads. It is generally recommended to push other tasks onto the io threads though to avoid bottlenecking these threads.
 
 ##### Database
-There are 2 logical areas where a persistent file is needed: the ledger and wallets. For this 2 NoSQL databases which store binary data are used, namely LMDB & RocksDB. The ledger database is comprised of a few files:
-nano/secure/blockstore.hpp (interface)
-nano/secure/blockstore_partial.hpp (partial implementation of the interface, it allows CRTP for derived classes)
-nano/node/lmdb/* (anything specific to LMDB goes here)
-nano/node/rocksdb/* (anything specific to RocksDB goes here)
+There are 2 logical areas where a persistent file is needed: the ledger and wallets. For this 2 NoSQL databases which store binary data are used, namely LMDB & RocksDB. The ledger database is comprised of a few files:  
+**nano/secure/blockstore.hpp** (interface)  
+**nano/secure/blockstore_partial.hpp** (partial implementation of the interface, it allows CRTP for derived classes)  
+**nano/node/lmdb/** (anything specific to LMDB goes here)  
+**nano/node/rocksdb/** (anything specific to RocksDB goes here)  
 The wallets database uses the wallets_store which only has an LMDB backend.
 
 ##### Database upgrades
@@ -458,7 +455,7 @@ worker.push_back ([&x]() {
 ```
  
 - Currently using C++17 with Boost 1.70, at the time of writing C++20 is still not fully implemented by any of the major standards compliant compilers. It may be considered for inclusion no earlier than 2022 at which point Linux LTS versions should support it through the default repositories.
-There are known exceptions triggered when consume_future is called do not be alarmed when seeing this
+There are known exceptions triggered when `consume_future` is called do not be alarmed when seeing this.
 Areas of future improvement:
 - A lot of tests still use legacy blocks, any new ones should use state blocks.
 - Minimise heap allocation. This can lead to fragmentation which affects long running processes.
