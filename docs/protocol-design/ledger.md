@@ -78,7 +78,7 @@ As illustrated above, the ledger was initiated with a genesis account containing
 
 ## Ledger pruning
 
-Since Nano every transaction includes a block with the complete current state of an account, the ledger can be significantly pruned. While there are a few exceptions (e.g. pending transactions), Nano's ledger design could be pruned down to one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
+Since every transaction in Nano includes a block with the complete current state of an account, the ledger can be significantly pruned. While there are a few exceptions (e.g. pending transactions), Nano's ledger design could be pruned down to one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
 
 See the official [forum](https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
 
