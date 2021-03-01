@@ -62,7 +62,7 @@ Although send transactions confirmed by the network are irreversible, in order f
 
 * Sending of funds can be performed while the receiver is offline
 * Account owners are the only ones who are allowed to modify the balance and representative on their accounts
-* Allows account owners to ignore transactions, which prevents continuous sending of tiny amounts in an attempt to can prevent use of the account
+* Allows account owners to ignore transactions, which prevents continuous sending of tiny amounts in an attempt to prevent use of the account
 
 ### Block lattice
 
