@@ -459,24 +459,23 @@ There are known exceptions triggered when `consume_future` is called do not be a
 Areas of future improvement:
 - A lot of tests still use legacy blocks, any new ones should use state blocks.
 - Minimise heap allocation. This can lead to fragmentation which affects long running processes.
-- slow_test run as part of CI
-- Out of process/gpu signature checking
+- `slow_test` is not run as part of CI
 
 ##### FAQs
 Where are blocks added to the ledger?  
 `nano::ledger::process ()`
 
 Where are rpc calls handled?  
-nano/node/json_handler.cpp
+**nano/node/json_handler.cpp**
 
 Where is the genesis block created?    
-nano::blockstore_partial::init ()  
+`nano::blockstore_partial::init ()`  
 
 How to stop the node effectively?  
-rpc -> stop ()
+`rpc->stop ();`
 
 How to use RocksDB in tests?  
-Set the environment variable: TEST_USE_ROCKSDB=1
+Set the environment variable: `TEST_USE_ROCKSDB=1`
 
 [^1]: http://www.acodersjourney.com/2016/02/c-11-auto/
 [^2]: https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/
