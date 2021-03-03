@@ -129,56 +129,11 @@ In the event that you are unable to upgrade the ledger on another machine but wo
 
 ## RocksDB Ledger Backend
 
-!!! warning "RocksDB is experimental, do not use in production"
-	RocksDB is being included in _V20.0_ as experimental only. Future versions of the node may allow for production use of RocksDB, however old experimental RocksDB ledgers are not guarenteed to be compatible and may require resyncing from scratch.
-
 	If you are testing RocksDB and want to discuss results, configurations, etc. please join the forum topic here: https://forum.nano.org/t/rocksdb-ledger-backend-testing/111
 
-The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB becomes available as an experimental option.
+The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB became available as an experimental option. In _v22+_ it is now suitable for production environments.
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
-It is anticipated that bootstrapping will be slower using RocksDB during the initial version at least, but live traffic should be faster due to singluar writes being cached in memory and flushed to disk in bulk.
 
-Using RocksDB requires a few extra steps as it is an externally required dependency which requires a recent version of RocksDB, so older repositories may not be sufficient, it also requires `zlib`. If using the docker node, skip to [Enable RocksDB](#enable-rocksdb).
-
-### Installation  
-
-**Linux**  
-Ubuntu 19.04 and later:
-```
-sudo apt-get install zlib1g-dev
-sudo apt-get install librocksdb-dev
-```
-Otherwise:
-```
-sudo apt-get install zlib1g-dev
-export USE_RTTI=1
-git clone https://github.com/facebook/rocksdb.git
-cd rocksdb
-make static_lib
-make install
-```
-**MacOS**  
-`brew install rocksdb`
-
-**Windows**  
-Recommended way is to use `vcpkg`:
-
-* add `set (VCPKG_LIBRARY_LINKAGE static)` to the top of `%VCPKG_DIR%\ports\rocksdb\portfile.cmake`
-* `vcpkg install rocksdb:x64-windows`
-
-For other or more detailed instructions visit the official page:
-https://github.com/facebook/rocksdb/blob/master/INSTALL.md
-
-### Build node with RocksDB support
-Once RocksDB is installed successfully, the node must be built with RocksDB support using the CMake variable `-DNANO_ROCKSDB=ON`
-
-The following CMake options can be used to specify where the RocksDB and zlib libraries are if they cannot be found automatically:
-```
-ROCKSDB_INCLUDE_DIRS
-ROCKSDB_LIBRARIES
-ZLIB_LIBRARY
-ZLIB_INCLUDE_DIR
-```
 ### Enable RocksDB
 This can be enabled by adding the following to the `config-node.toml` file:
 
@@ -193,6 +148,9 @@ io_threads = 4
 memory_multiplier = 2
 ```
 It shouldn't be necessary to update these variables manually. See TOML comments in the generated file for more information on what these do.
+
+### Migrating existing ledger from LMDB to RocksDB
+An existing LMDB ledger can be upgraded by running the [--migrate_database_lmdb_to_rocksdb](/commands/command-line-interface/#-migrate_database_lmdb_to_rocksdb) CLI command. This process can take some time, estimates range from 20 minutes to 1 hour depending on node hardware specs. There are some internal checks which are made to determine if the migration was successful, however it is recommended to run the node first (after enabling RocksDB) for a period of time to make sure things are working as expected. After which the `data.ldb` file can be deleted if no longer required to save on disk space.
 
 Ledger backend comparison:
 
