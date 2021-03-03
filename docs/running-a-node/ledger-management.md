@@ -150,7 +150,7 @@ memory_multiplier = 2
 It shouldn't be necessary to update these variables manually. See TOML comments in the generated file for more information on what these do.
 
 ### Migrating existing ledger from LMDB to RocksDB
-An existing LMDB ledger can be upgraded by running the [--migrate_database_lmdb_to_rocksdb](/commands/command-line-interface/#-migrate_database_lmdb_to_rocksdb) CLI command. This process can take some time, estimates range from 20 minutes to 1 hour depending on node hardware specs. There are some internal checks which are made to determine if the migration was successful, however it is recommended to run the node first (after enabling RocksDB) for a period of time to make sure things are working as expected. After which the `data.ldb` file can be deleted if no longer required to save on disk space.
+An existing LMDB ledger can be upgraded by running the [--migrate_database_lmdb_to_rocksdb](/commands/command-line-interface/#-migrate_database_lmdb_to_rocksdb) CLI command. This process can take some time, estimates range from 20 minutes to 1 hour depending on node hardware specs. There are some internal checks which are made to determine if the migration was successful, however it is recommended to run the node first (after enabling RocksDB) for a period of time to make sure things are working as expected. After which the `data.ldb` file can be deleted if no longer required to save on disk space. Please also note the [limitations](#rocksdb-limitations) most notably is that the `unchecked_count` from the `block_count` RPC will only be an estimate.
 
 Ledger backend comparison:
 
@@ -165,11 +165,12 @@ Ledger backend comparison:
 
 \* At the time of writing (Oct 2019)
 
-RocksDB Limitations:
+### RocksDB Limitations:
 
 * Automatic backups not currently supported
 * Database transaction tracker is not supported
 * Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear`, these must be executed when the node is stopped
+* The `unchecked_count` from the `block_count` RPC & telemetry from RocksDB nodes will only be an estimate.
 
 !!! note "Snapshotting with RocksDB"
 	When backing up using the --snapshot CLI option, it is currently set up to do incremental backups, which reduces the need to copy the whole database. However if the original files are deleted, then the backup directory should also be deleted otherwise there can be inconsistencies.
