@@ -18,9 +18,12 @@ theme:
     logo: 'nano'
     repo: 'fontawesome/brands/github'
   favicon: 'images/favicon.png'
-  custom_dir: 'theme'
+  custom_dir: 'theme-overrides'
   features:
     - navigation.tabs
+    - search.share
+    - search.highlight
+    - search.suggest
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
@@ -144,8 +147,8 @@ extra:
     link: 'https://www.youtube.com/nanocurrency/'
   - icon: 'fontawesome/brands/instagram'
     link: 'https://www.instagram.com/nanocurrency/'
-repo_name: 'nanocurrency/nano-docs'
-repo_url: 'https://github.com/nanocurrency/nano-docs'
+repo_name: 'nanocurrency/nano-node'
+repo_url: 'https://github.com/nanocurrency/nano-node'
 plugins:
     - search
     - redirects:
