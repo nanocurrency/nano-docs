@@ -35,7 +35,7 @@ A 128 bit integer is used to represent account balances.  A set of SI prefixes[^
 | Name              | Integer                            | Power    | Previous              |
 |-------------------|------------------------------------|----------|-----------------------|
 | nano (NANO/Nano)  | 1000000000000000000000000000000    | $10^{30}$| Mnano                 |
-| cents (cnano)     | 1000000000000000000000000000       | $10^{28}$| undefined             |
+| cents (cnano)     | 10000000000000000000000000000      | $10^{28}$| undefined             |
 | micronano (μnano) | 1000000000000000000000000          | $10^{24}$| nano (case sensitive) |
 | rai               | 1                                  | $10^{0}$ | raw                   |
 
