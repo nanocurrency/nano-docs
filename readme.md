@@ -27,6 +27,12 @@ mkdocs serve
 
 Access the site at http://localhost:8000. This supports automatic rebuilding, so anytime changes are saved to the documentation or configuration, it will be rebuilt and refresh the page. Some search indexing may remain cache between builds.
 
+## Theme
+
+We sponsor the developer of this theme on GitHub ([@squidfunk](https://github.com/squidfunk)) in order to get access to special features of the [Insiders](https://squidfunk.github.io/mkdocs-material-insiders/) version. Our [@nano-infrastructure](https://github.com/nano-infrastructure) account has the permissions to the private repository for that Insiders theme and using a personal access token in the GitHub deployment workflow (set as a GitHub secret in this repository), the theme is pulled down as part of deployment.
+
+Those developing locally may not have access to some of the special features of this insider theme, but most changes done by external contributors do not need the special theme - changes are backwards compatible with the regular theme. If you need access to the Insiders theme please contact the Nano core team.
+
 ## Formatting and Organization Tips
 
 ## Title and description
