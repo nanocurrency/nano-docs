@@ -337,11 +337,20 @@ The choice depends on the setup and security that you want. The easiest way is t
 
 **Error initiating bootstrap ... Too many open files**
 
-Increase max open files limit. Edit `/etc/security/limits.conf` & add    
+This issue has been seen on some versions of macOS and Linux. The node will detect when the file descriptor limit is considered too low and log a warning similar to:
+
+```
+WARNING: The file descriptor limit on this system may be too low (512) 
+and should be increased to at least 16384.
+```
+
+To resolve this on Linux increase max open files limit by editing `/etc/security/limits.conf` and adding or updating:    
 ```
     *               soft    nofile          65535    
     *               hard    nofile          65535    
     root            soft    nofile          65535    
     root            hard    nofile          65535    
 ```
-Then restart session & nano_node service. Check changes with `ulimit -n`
+Then restart session & `nano_node` service. Check changes with `ulimit -n`.
+
+For macOS the version impacts the steps necessary, but some people had success with the recipe in [https://superuser.com/a/1171028](https://superuser.com/a/1171028).
