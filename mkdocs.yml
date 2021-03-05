@@ -21,6 +21,9 @@ theme:
   custom_dir: 'theme-overrides'
   features:
     - navigation.tabs
+    - search.share
+    - search.highlight
+    - search.suggest
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
