@@ -58,17 +58,21 @@ Please run the tests before submitting a PR. Go to the build directory and run t
 
 Communication is the key to working together efficiently. A good way to get in touch with the developers is to join the #development channel on [Discord](https://chat.nano.org/). If you have an idea of an improvement or new feature, consider discussing it first with the team, either on Discord, or by adding an issue. Maybe someone is already working on it, or have suggestions on how to improve on the idea.
 
-!!! warning "Security Vulnerability Disclosure"
-	**Do NOT discuss potential security vulnerabilities on the issue tracker, public forums or open discussion channels**
+### Security vulnerability disclosure
 
-	If you discover a bug you believe to pose a security risk to the Nano network, please contact bugs@nano.org with a proof of concept with full details of the bug including:
-	
-	* Repository of the bug
-	* High-level summary
-	* Detailed description
-	* Steps to reproduce
-	* Supporting material/references
-	* The potential security impact of the bug
+!!! warning "Submit vulnerabilities privately"
+	**Do NOT discuss potential security vulnerabilities on the issue tracker, public forums or open discussion channels. Submit sensitive issues privately to the Nano Foundation for review.**
+
+If you discover a bug you believe to pose a security risk to the Nano network, please contact security@nano.org with a proof of concept with full details of the bug including:
+
+* Repository of the bug
+* High-level summary
+* Detailed description
+* Steps to reproduce
+* Supporting material/references
+* The potential security impact of the bug
+
+The Nano Foundation will work to determine potential impacts and coordinate resolution in a node release.
 
 ### Code Process
 
