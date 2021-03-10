@@ -72,7 +72,7 @@ If you discover a bug you believe to pose a security risk to the Nano network, p
 * Supporting material/references
 * The potential security impact of the bug
 
-The Nano Foundation will work to determine potential impacts and coordinate resolution in a node release.
+It is strongly recommended to encrypt the email using GPG and the pubkeys for this purpose can be found on the [SECURITY file](https://github.com/nanocurrency/nano-node/blob/develop/SECURITY.md) in the node repository. The Nano Foundation will work to determine potential impacts and coordinate resolution in a node release.
 
 ### Code Process
 
