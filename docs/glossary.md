@@ -33,8 +33,11 @@ A sub-network established between peers via Transmission Control Protocol (TCP) 
 #### bootstrapping
 During initial sync, the nano\_node requests old transactions to independently verify and populate its local ledger database. Bootstrapping will also occur when the nano\_node becomes out of sync with the network.
 
+#### burn
+When a 'burn' takes place, funds are sent to a specifc address that no one can access. Because no one can ever access funds sent to a burn address, it reduces the [circulating supply](#circulating-supply).
+
 #### circulating supply
-133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after burns were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
+133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after [burns](#burn) were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
 
 #### Cementing
 When a specific node marks a [confirmed](#confirmation) transaction as locally irreversible by setting the [account's](#account) [confirmation height](#confirmation-height) (in the node database) to the now higher [block height](#block-height) of the confirmed transaction. Cementing is a node-level operation.
@@ -54,6 +57,7 @@ The rate of [confirmed](#confirmation) [blocks](#blocks) (send or receive).
 The most recent block added to the account chain. Also called the head block. Can be either confirmed or unconfirmed.
 
 #### genesis
+The first [account](#account) to be created, containing the maximum amount of Nano to ever exist. From here the funds were sent to other wallets; for distribution or to be [burned](#burn).
 
 #### head block
 See [frontier](#frontier).
