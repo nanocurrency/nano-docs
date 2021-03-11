@@ -34,7 +34,7 @@ A sub-network established between peers via Transmission Control Protocol (TCP) 
 During initial sync, the nano\_node requests old transactions to independently verify and populate its local ledger database. Bootstrapping will also occur when the nano\_node becomes out of sync with the network.
 
 #### burn
-When a 'burn' takes place, funds are sent to a specifc address that no one can access. Because no one can ever access funds sent to a burn address, it reduces the [curculating supply](#circulating-supply).
+When a 'burn' takes place, funds are sent to a specifc address that no one can access. Because no one can ever access funds sent to a burn address, it reduces the [circulating supply](#circulating-supply).
 
 #### circulating supply
 133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after [burns](#burn) were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
