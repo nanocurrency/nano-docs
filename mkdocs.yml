@@ -21,6 +21,7 @@ theme:
   custom_dir: 'theme-overrides'
   features:
     - navigation.tabs
+    - navigation.top
     - search.share
     - search.highlight
     - search.suggest
