@@ -83,6 +83,12 @@ Nodes connected over the public internet to share Nano network data.
 #### pending
 A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
 
+#### Private Key
+See [wallet](#wallet).
+
+#### Public Key
+A public key is derived from a [private key](#private-key) using the ED25519 elliptic curve algorithm. An address is a representation of the public key, see [account](#account) for more info.
+
 #### Open Representative Voting (ORV)
 A consensus mechanism unique to Nano which involves accounts delegating their balance as [voting weight](#voting-weight) to [Representatives](#representative). The Representatives [vote](#voting) themselves on the validity of transactions published to the network using the voting weight delegated to them. These votes are shared with their directly connected peers and they also rebroadcast votes seen from [Principal Representatives](#principal-representative). Votes are tallied and once [quorum](#quorum) is reached on a published block, it is considered confirmed by the network.
 
