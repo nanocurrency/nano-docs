@@ -78,6 +78,7 @@ nav:
     - Node Releases: releases/node-releases.md
     - Current Release Notes: releases/current-release-notes.md
     - Previous Release Notes:
+      - V21.2: releases/release-v21-2.md
       - V21.1: releases/release-v21-1.md
       - V21.0: releases/release-v21-0.md
       - V20.0: releases/release-v20-0.md
