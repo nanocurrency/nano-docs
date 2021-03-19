@@ -886,7 +886,7 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 ```
 
 **Optional "bypass_frontier_confirmation"**  
-_version 20.0+_  
+_version 20.0-21.3_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
 
 **Optional "id"**  
