@@ -117,7 +117,7 @@ A 256-bit random value usually represented to the user as a 64 character hexidec
 Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [pending](#pending)).
 
 #### unchecked (blocks)
-Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all bocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
+Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all blocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
 
 #### unopened account
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).
