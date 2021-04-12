@@ -151,9 +151,9 @@ Returns frontier, open block, change representative block, balance, last modifie
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
-  "confirmation_height" : "28",
-  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "account_version": "1"
+  "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB"
 }
 ```
 
@@ -184,6 +184,9 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
+  "account_version": "1"
+  "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB"
   "representative": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "weight": "1105577030935649664609129644855132177",
   "pending": "2309370929000000000000000000000000"
