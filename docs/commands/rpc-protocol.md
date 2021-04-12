@@ -262,17 +262,16 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json
 {
   "action": "accounts_balances",
-  "accounts": ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
+  "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
 }
 ```  
 **Response:**
 ```json
 {
   "balances" : {
-    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":
-    {
-      "balance": "10000",
-      "pending": "10000"
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
+        "balance": "325586539664609129644855132177",
+        "pending": "2309372032769300000000000000000000"
     },
     "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":
     {
@@ -494,13 +493,13 @@ Returns the account containing block
 ```json
 {
   "action": "block_account",
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+  "hash": "023B94B7D27B311666C8636954FE17F1FD2EAA97A8BAC27DE5084FBBD5C6B02C"
 }
 ```  
 **Response:**
 ```json
 {
-  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
 }
 ```
 
