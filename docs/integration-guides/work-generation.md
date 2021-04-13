@@ -121,7 +121,7 @@ graph TD
 
 ## Node Configuration
 
-The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
+The following configuration options can be changed in `config-node.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
 ### opencl.enable
 
