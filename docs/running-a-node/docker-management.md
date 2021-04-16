@@ -166,6 +166,8 @@ services:
      - "127.0.0.1:7078:7078" #websocket to localhost only
     volumes:
      - "${NANO_HOST_DIR}:/root" #path to host directory
+    userns_mode: "host"  #for userns-remap feature
+
 ```
 
 ---
@@ -228,6 +230,7 @@ $ grep dockremap /etc/subgid
 
 dockremap:231072:65536
 ```
+
 * `dockremap` must have permissions to access `${NANO_HOST_DIR}`.
 
 In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`. There is no need for setting the `userns-remap` feature in this case.
