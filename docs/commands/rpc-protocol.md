@@ -1900,7 +1900,7 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ---
 
 ### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`.
 
 --8<-- "process-sub-type-recommended.md"
 
