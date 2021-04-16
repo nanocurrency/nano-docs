@@ -203,7 +203,7 @@ As of v20.0, the docker containers support the [--user=](https://docs.docker.com
 
 To maintain existing compatibility the Docker containers are being built with `USER ROOT` and `WORK_DIR /root`
 
-The problem with this is that a straigthforward setup using host's `ROOT` user as the default may lead to a security issue. For hardening it, we recommend using the [userns-remap](https://docs.docker.com/engine/security/userns-remap/) Docker feature. This will require some extra steps for the setup.
+The problem with this is that a straightforward setup using host's `ROOT` user as the default may lead to a security issue. For hardening it, we recommend using the [userns-remap](https://docs.docker.com/engine/security/userns-remap/) Docker feature. This will require some extra steps for the setup.
 
 * Use `dockerd --userns-remap="default"` or edit `/etc/docker/daemon.json`:
 
