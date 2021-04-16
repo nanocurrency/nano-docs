@@ -36,6 +36,7 @@ docker run --restart=unless-stopped -d \
   -p [::1]:7076:7076 \
   -p [::1]:7078:7078 \
   -v ${NANO_HOST_DIR}:/root \
+  --userns host \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
 ```
@@ -46,6 +47,7 @@ docker run --restart=unless-stopped -d \
 | `-p 7075:7075/udp`                                    | Maps the network activity port (deprecated since V21) |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
 | `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
+| `--userns host`                                       | Set to use the host namespace (use this for [hardening](https://docs.nano.org/running-a-node/docker-management/#docker-user-support) with Docker userns-remap feature) |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
 | `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
@@ -199,11 +201,36 @@ As of v20.0, the docker containers support the [--user=](https://docs.docker.com
 
 To maintain existing compatibility the Docker containers are being built with `USER ROOT` and `WORK_DIR /root`
 
-The problem with this is that the container ends up writing files to your mounted path as root. Best practices would dictate that since there is no need for privilege escalation we can create a user and run under that context instead.
+The problem with this is that a straigthforward setup using host's `ROOT` user as the default may lead to a security issue. For hardening it, we recomend using the [userns-remap](https://docs.docker.com/engine/security/userns-remap/) Docker feature. This will require some extra steps for the setup.
 
-In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`
+* Use `dockerd --userns-remap="default"` or edit `/etc/docker/daemon.json`:
 
-This will be changed to default to `USER nanocurrency` and `WORK_DIR /home/nanocurrency` in a future release
+```
+{
+	"userns-remap": "default"
+}
+```
+
+* If you are using `default` rather than other host user, Docker creates the user `dockremap` in the host system that will get mapped to `root` in the Docker container. If it doesn't create it automatically, you may need to do it manually having something like this in your `/etc/passwd`:
+
+```
+dockremap:x:139:150::/home/dockremap:/bin/false
+```
+
+* There must be also enries for `dockremap` in `/etc/subuid` and in `/etc/subgid`:
+
+```
+$ grep dockremap /etc/subuid
+
+dockremap:231072:65536
+
+$ grep dockremap /etc/subgid
+
+dockremap:231072:65536
+```
+* `dockremap` must have permissions to access `${NANO_HOST_DIR}`.
+
+In the event you wish to use the `--user=nanocurrency -w=/home/nanocurrency` flags the directory you mount should have permissions changed for uid:guid 1000:1000 using `sudo chown -R 1000:1000 <local_path>` and your mount flag will become `-v <local_path>:/home/nanocurrency`. There is no need for setting the `userns-remap` feature in this case.
 
 ---
 
