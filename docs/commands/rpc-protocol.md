@@ -1252,7 +1252,7 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 {
   "action": "confirmation_info",
   "json_block": "true",
-  "root": "F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44",
+  "root": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44",
   "representatives": "true"
 }
 ```  
