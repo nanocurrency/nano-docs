@@ -721,7 +721,7 @@ curl -d '{
 
 ### Receiving Funds
 
-As long as the nano\_node is synced and unlocked (nano\_node locking is not covered in this guide), nano\_node automatically creates and signs receive transactions for all accounts in the wallet's internal private-key management system.
+As long as the nano\_node is synced and the node wallet is unlocked (node wallet locking is not covered in this guide), nano\_node automatically creates and signs receive transactions for all accounts in the wallet's internal private-key management system.
 
 !!! tip
     In the event that a receive is not automatically generated, it can be manually generated using the [`receive`](/commands/rpc-protocol#receive) RPC command.
