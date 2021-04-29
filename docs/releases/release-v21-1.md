@@ -1,5 +1,5 @@
 title: Previous Release Notes - V21.1 | Nano Documentation
-description: Details of a previous Nano node release including upgrade notices, major features, API changes and more
+description: Details of the V21.1 Nano node release including upgrade notices, major features, API changes and more
 
 # V21.1
 

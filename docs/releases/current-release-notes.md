@@ -1,5 +1,5 @@
-title: Current Release Notes
-description: Details of the most current Nano node release including upgrade notices, major features, API changes and more
+title: Release Notes - V21.3 | Nano Documentation
+description: Details of the V21.3 Nano node release including upgrade notices, major features, API changes and more
 
 # V21.3
 
