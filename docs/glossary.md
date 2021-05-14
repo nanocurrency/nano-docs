@@ -95,14 +95,14 @@ A consensus mechanism unique to Nano which involves accounts delegating their ba
 #### Proof-of-Work (PoW)
 A Proof-of-Work is a piece of data which satisfies certain requirements and is difficult (costly, time-consuming) to produce, but easy for others to verify. In some systems this data is a central part of the security model used to protect against double-spends and other types of attacks, but with Nano it is only used to increase economic costs of spamming the network.
 
-#### quorum
-When the delta between the two successive blocks of a root is > 50% of the online voting weight.
-
 #### Principal Representative
 A Nano account with >= 0.1% of the [online voting weight](#online-voting-weight) delegated to it. When configured on a node which is voting, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
 
 #### protocol version
 The version used to identify the set of protocol rules nodes are required to follow in order to properly communicate with peers. Nodes running older protocol versions are periodically de-peered on the network to keep communication efficient - see [Active Releases](/releases/node-releases/#active-releases) and [Inactive Releases](/releases/node-releases/#inactive-releases) for the latest versions allowed to peer with one another.
+
+#### quorum
+When the delta between the two successive blocks of a root is > 67% of the online voting weight.
 
 #### Representative
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.

@@ -11,7 +11,13 @@ For details on why and how network upgrades happen, along with explanations of t
 
 ## Upcoming upgrades
 
-No upcoming upgrades at this time
+### Final votes
+
+**Purpose**
+
+To enable the [final votes](https://github.com/nanocurrency/nano-node/pull/3134) feature which will add a second round of voting to the consensus process as follows: once initial voting weight for an unconfirmed block has reached [quorum](../glossary.md#quorum), nodes will issue final votes by setting the timestamp to the maximum integer possible for that field (18446744073709551615). These final votes will then be required to confirm and cement a block in the ledger.
+
+Because this is a consensus change, a network upgrade is required to activate. As noted above, this will be done using a canary block once at least 80% of voting weight on the network has been upgraded. After the canary block is distributed by the Nano Foundation, the final votes will be used for cementing going forward.
 
 ---
 
