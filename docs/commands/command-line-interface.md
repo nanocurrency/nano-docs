@@ -68,7 +68,7 @@ Derive public key and account number from `<key>`
 
 ### --migrate_database_lmdb_to_rocksdb
 _version 22.0+_  
-Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards.
+Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards. NOTE: config files must still be updated to [enable RocksDB](../running-a-node/ledger-management.md#enable-rocksdb) after database is migrated.
 
 ### --network
 _version 19.0+_  
