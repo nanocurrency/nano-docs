@@ -507,7 +507,7 @@ Returns the account containing block
 
 ### block_confirm   
 _version 12.2+_   
-Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).  
+Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).
 
 **Request:**
 ```json
@@ -522,6 +522,8 @@ Request confirmation for **block** from known online representative nodes. Check
   "started": "1"
 }
 ```
+
+**NOTE:** Unless there was an error encountered during the command, the response will always return `"started": "1"`. This response does not indicate the block was successfully confirmed, only that an error did not occur. This response happens even if the block has already been confirmed previously and notifications will be triggered for this block (via HTTP callbacks or WebSockets) in all cases. This behavior may change in a future release.
 
 ---
 
