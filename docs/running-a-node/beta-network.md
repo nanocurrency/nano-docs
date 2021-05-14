@@ -3,9 +3,6 @@ description: Find out how to join the Nano community in testing the latest node 
 
 # Joining the beta network
 
-!!! tip "Testing is currently ongoing on the beta network for Version 22"
-	Read through this page if you would like to participate.
-
 The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing](#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features. As a result, an alternative [test network](test-network.md) is also available which will be more stable and is a better fit for learning node setup and management, and testing out upgrades and other activities for Nano before moving to production.
 
 With those things in consideration, if you are interested in helping with testing on the beta network we are excited to help you out - so keep reading!
@@ -46,11 +43,6 @@ Pulls a specific version of the Nano node:
 docker pull nanocurrency/nano-beta:<tag>
 ```
 
-Pulls the latest release which includes any release candidate versions:
-```bash
-docker pull nanocurrency/nano-beta:latest-including-rc
-```
-
 A list of beta tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano-beta/tags)
 
 ### Starting the Docker container
@@ -62,7 +54,7 @@ docker run --restart=unless-stopped -d \
   -p [::1]:57000:57000 \
   -v ${NANO_HOST_DIR_BETA}:/root \
   --name ${NANO_NAME} \
-  nanocurrency/nano-beta:latest-including-rc
+  nanocurrency/nano-beta
 ```
 
 !!! tip
@@ -101,7 +93,7 @@ In addition to the Docker details above, the latest binary builds of the node fo
 
 ### Beta fund distribution
 
-The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `argakiig#1783` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
+The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `argakiig#1783` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
 
 ### Beta ledger file
 

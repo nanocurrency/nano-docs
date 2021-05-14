@@ -37,22 +37,17 @@ If manual builds are needed, see the [build options](../integration-guides/build
 ### Pulling the Docker image
 [![Docker Pulls](https://img.shields.io/docker/pulls/nanocurrency/nano.svg)](https://hub.docker.com/r/nanocurrency/nano-test)
 
-Pulls the latest release of the Nano Node:
+Pulls the latest test release of the nano Node:
 ```bash
 docker pull nanocurrency/nano-test
 ```
 
-Pulls a specific version of the Nano node:
+Pulls a specific test version of the nano node:
 ```bash
 docker pull nanocurrency/nano-test:<tag>
 ```
 
-Pulls the latest release which includes any release candidate versions:
-```bash
-docker pull nanocurrency/nano-test:latest-including-rc
-```
-
-A list of beta tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano-test/tags)
+A list of test tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano-test/tags)
 
 ### Starting the Docker container
 
@@ -63,7 +58,7 @@ docker run --restart=unless-stopped -d \
   -p [::1]:17078:17078 \
   -v ${NANO_HOST_DIR_TEST}:/root \
   --name ${NANO_NAME} \
-  nanocurrency/nano-test:latest-including-rc
+  nanocurrency/nano-test
 ```
 
 !!! tip
@@ -75,4 +70,4 @@ docker run --restart=unless-stopped -d \
 
 ## Getting test funds
 
-One you have a node up and running the ledger should bootstrap from the network quickly, and then you just need some test network specific Nano funds. We are currently working on a faucet setup to enable self-service options, but for now please reach out to `Zach - ATX#0646` and `argakiig#1783` on [Discord](https://chat.nano.org) or email [infrastructure@nano.org](mailto:integrations@nano.org) with the account number you would like funds distributed to for the test network.
+One you have a node up and running the ledger should bootstrap from the network quickly, and then you just need some test network specific Nano funds. We are currently working on a faucet setup to enable self-service options, but for now please reach out to `argakiig#1783` on [Discord](https://chat.nano.org) or email [infrastructure@nano.org](mailto:integrations@nano.org) with the account number you would like funds distributed to for the test network.

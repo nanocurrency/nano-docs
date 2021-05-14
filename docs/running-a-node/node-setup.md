@@ -44,21 +44,12 @@ Docker must be installed on the host machine and instructions can be found here:
 
 ## Pulling the Docker Image 
 [![Docker Pulls](https://img.shields.io/docker/pulls/nanocurrency/nano.svg)](https://hub.docker.com/r/nanocurrency/nano/)
+An
+The Docker image can be downloaded via `docker pull` for a specific version/tag. Please verify you are requesting the latest version (example may not always reflect that):
 
-The Docker image can be downloaded via `docker pull`. We can either grab the `latest` or a specific version/tag. Not specifying a tag defaults to `latest`. An example of each is found below.
-
-Pulls the latest release of the Nano Node:
 ```bash
-docker pull nanocurrency/nano
+docker pull nanocurrency/nano:V22.0
 ```
-
-Pulls a specific version of the Nano node:
-```bash
-docker pull nanocurrency/nano:V20.0
-```
-
-!!! tip
-	If you are running in an enterprise environment, it is recommended that you explicitly specify the latest stable version to ensure deterministic containers. A list of tags can be found at the official [Nano Currency Docker Hub](https://hub.docker.com/r/nanocurrency/nano/tags/).
 
 --8<-- "multiple-node-setups-warning.md"
 

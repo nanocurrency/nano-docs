@@ -3,6 +3,8 @@ description: Reference for the CLI commands for the Nano node
 
 # Command Line Interface
 
+## nano_node commands
+
 ### --account_create --wallet=`<wallet>`
 Insert next deterministic key into `<wallet>`
 
@@ -30,6 +32,7 @@ Displays a summarized comparison between the hardcoded bootstrap weights and rep
 
 ### --config key=value
 _version 20.0+_  
+_Valid for both nano_node and nano_wallet processes_  
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --confirmation_height_clear
@@ -50,6 +53,9 @@ Use the supplied `<path>` as the data directory.
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
+### --final_vote_clear
+Either specify a single `--root` to clear or `--all` to clear all final votes (not recommended)
+
 ### --generate_config node|rpc
 _version 20.0+_  
 Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
@@ -68,7 +74,7 @@ Derive public key and account number from `<key>`
 
 ### --migrate_database_lmdb_to_rocksdb
 _version 22.0+_  
-Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards.
+Deletes existing rocksdb subfolder if it exists and migrates the ledger from LMDB to RocksDB. Does not delete the data.ldb file afterwards. NOTE: config files must still be updated to [enable RocksDB](../running-a-node/ledger-management.md#enable-rocksdb) after database is migrated.
 
 ### --network
 _version 19.0+_  
@@ -85,6 +91,11 @@ Clear cached peers
 ### --rebuild_database
 _version 21.0+_  
 Rebuild LMDB database with `--vacuum` for best compaction. Requires approximately `data.ldb size * 2` free space on disk.
+
+### --rpcconfig key=value
+_version 22.0+_  
+_Valid for both nano_node and nano_wallet processes_  
+Pass RPC configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --snapshot
 Compact database and create snapshot, functions similar to vacuum but does not replace the existing database. Optional `--unchecked_clear`, `--clear_send_ids`, `--online_weight_clear`, `--peer_clear`.
@@ -288,7 +299,7 @@ Prints a stacktrace example, useful to verify that it includes the desired infor
 
 ### --debug_sys_logging
 _version 19.0+_  
-On *nix system this checks writing to the system log. On Windows it writes to the event viewer, a registry entry needs to exist for this to work correctly which can be created by running this command for the first time as an administrator
+On \*nix system this checks writing to the system log. On Windows it writes to the event viewer, a registry entry needs to exist for this to work correctly which can be created by running this command for the first time as an administrator
 
 ### --debug_unconfirmed_frontiers
 _version 22.0+_  

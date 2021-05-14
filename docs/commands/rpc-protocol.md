@@ -22,9 +22,6 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
---8<-- "unconfirmed-information.md"
-    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
-
 **Request:**
 ```json 
 {
@@ -40,6 +37,10 @@ Returns how many RAW is owned and how many have not yet been received by **accou
   "pending": "10000"
 }
 ```
+
+**Optional "include_only_confirmed"**
+_version 22.0+_   
+Boolean, true by default. Results in `balance` only including blocks on this account that have already been confirmed and `pending` only including incoming send blocks that have already been confirmed on the sending account.
 
 ---
 
@@ -134,6 +135,8 @@ Returns frontier, open block, change representative block, balance, last modifie
 --8<-- "unconfirmed-information.md"
     The balance is obtained from the frontier, which may be unconfirmed. As long as you follow the [guidelines](/integration-guides/key-management/#transaction-order-and-correctness), you can rely on the **balance** for the purposes of creating transactions for this account. If the frontier is never confirmed, then the blocks that proceed it will also never be confirmed.
 
+    If you need only details for confirmed blocks, use the `include_confirmed` option below and referenced the `confirmed_*` fields added in to the response.
+
 **Request:**
 ```json
 {
@@ -159,6 +162,49 @@ Returns frontier, open block, change representative block, balance, last modifie
 
 In response `confirmation_height` only available for _version 19.0+_  
 In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
+
+**Optional "include_confirmed"**
+_version 22.0+_   
+Boolean, false by default. Adds new return fields with prefix of `confirmed_` for consistency:
+
+- `confirmed_balance`: balance for only blocks on this account that have already been confirmed
+- `confirmed_height`: matches `confirmation_height` value
+- `confirmed_frontier`: matches `confirmation_height_frontier` value
+- If `representative` option also `true`, `confirmed_representative` included: representative account from the confirmed frontier block
+- If `pending` option also `true`, `confirmed_pending` included: balance of all pending amounts where the matching incoming send blocks have been confirmed on their account
+
+**Request:**
+```json
+{
+  "action": "account_info",  
+  "account": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+  "representative": "true",
+  "weight": "true",
+  "pending": "true",
+  "include_confirmed": "true"
+}
+```
+
+**Response:**
+```json
+{
+    "frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "open_block": "0E3F07F7F2B8AEDEA4A984E29BFE1E3933BA473DD3E27C662EC041F6EA3917A0",
+    "representative_block": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "balance": "11999999999999999918751838129509869131",
+    "confirmed_balance": "11999999999999999918751838129509869131",
+    "modified_timestamp": "1606934662",
+    "block_count": "22966",
+    "account_version": "1",
+    "confirmed_height": "22966",
+    "confirmed_frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "confirmed_representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "weight": "11999999999999999918751838129509869131",
+    "pending": "0",
+    "confirmed_pending": "0"
+}
+```
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
@@ -412,59 +458,6 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 
 _version 19.0+_  
 Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.
-
----
-
-### active_difficulty
-_version 19.0+_ 
-
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
-
-**Request:**
-```json
-{
-  "action": "active_difficulty"
-}
-```  
-
-**Response:**
-```json
-{
-  "multiplier": "1.5",
-  "network_current": "fffffffaaaaaaaab",
-  "network_minimum": "fffffff800000000",
-  "network_receive_current": "fffffff07c1f07c2", // since V21.2
-  "network_receive_minimum": "fffffe0000000000" // since V21.2
-}
-```
-
-**Optional "include_trend"**
-
-Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
-Note: Before v20, the sampling period was between 16 and 36 seconds.
-
-**Request:**
-```json
-{
-  "action": "active_difficulty",
-  "include_trend": "true"
-}
-```
-
-**Response:**
-```json
-{
-  ...,
-  "difficulty_trend": [
-    "1.156096135149775",
-    "1.190133894573061",
-    "1.135567138563921",
-    "1.000000000000000",
-    "...",
-    "1.000000000000000"
-  ]
-}
-```
 
 ---
 
@@ -924,11 +917,15 @@ Boolean, false by default. Manually force closing of all current bootstraps
 _version 21.0+_  
 String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
+**Optional "account"**
+_version 22.0+_
+String, empty by default. Public address for targeting a specific account on bootstrap attempt
+
 ---
 
 ### bootstrap_lazy  
 _version 17.0+_   
-Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap)   
+Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap). As of _version 22.0_, response includes whether new election was `started` and whether a new lazy `key_inserted` was successful.
 
 **Request:**
 ```json
@@ -940,7 +937,8 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 **Response:**
 ```json
 {
-  "started": "1"
+  "started": "1",
+  "key_inserted": "0"
 }
 ```
 **Optional "force"**
@@ -992,6 +990,8 @@ _versions 21.0+_
       "frontiers_received": "true",
       "frontiers_confirmed": "false",
       "frontiers_confirmation_pending": "false",
+      "frontiers_age": "4294967295",
+      "last_account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
       "duration": "133"
     },
     {
@@ -1912,7 +1912,7 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ---
 
 ### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`.
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
 
 --8<-- "process-sub-type-recommended.md"
 
@@ -1941,13 +1941,11 @@ Publish **block** to the network. Using the optional `json_block` is recommended
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
 }
 ```
-**Optional "force"**
-
+**Optional "force"**  
 _version 13.1+_  
 Boolean, false by default. Manually forcing fork resolution if processed block is not accepted as fork
 
-**Optional "subtype"**
-
+**Optional "subtype"**  
 _version 18.0+_  
 String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
 
@@ -1957,15 +1955,19 @@ String, empty by default. Additional check for state blocks subtype, i.e. preven
 * `change` - account balance is unchanged, representative field value changed to valid public address
 * `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
 
-**Optional "json_block"**
-
+**Optional "json_block"**  
 _version 19.0+_  
-Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
+Boolean, default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
 
-**Optional "watch_work"**
+**Optional "watch_work"**  
+_added in version 20.0+_  
+_removed in version 22.0_  
+Boolean, default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
 
-_version 20.0+_  
-Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+**Optional "async"**  
+_version 22.0+_  
+Boolean, default "false". If "true", requests will add the blocks to the block processor queue and `{"started":"1"}` will be immediately returned, instead of waiting for block process completion to return. To know if the block was properly processed, monitor the [WebSocket topic `new_unconfirmed_block`](../integration-guides/websockets.md#new-unconfirmed-blocks) and a notification for that successful block will be sent.
+
 
 ---
 
@@ -2477,7 +2479,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **genesis_block**     | mode (most common) of genesis block hashes |
 | **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | as of V22.0 this returns default difficulty due to deprecated active difficulty measurements, otherwise average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
@@ -4239,6 +4241,59 @@ Multiply an rai amount by the rai ratio.
 ## Deprecated RPCs
 
 ---
+
+
+### active_difficulty
+_added in version 19.0+_  
+_deprecated in version 22.0_
+
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty"
+}
+```  
+
+**Response:**
+```json
+{
+  "multiplier": "1.5",
+  "network_current": "fffffffaaaaaaaab",
+  "network_minimum": "fffffff800000000",
+  "network_receive_current": "fffffff07c1f07c2", // since V21.2
+  "network_receive_minimum": "fffffe0000000000" // since V21.2
+}
+```
+
+**Optional "include_trend"**
+
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
+Note: Before v20, the sampling period was between 16 and 36 seconds.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty",
+  "include_trend": "true"
+}
+```
+
+**Response:**
+```json
+{
+  ...,
+  "difficulty_trend": [
+    "1.156096135149775",
+    "1.190133894573061",
+    "1.135567138563921",
+    "1.000000000000000",
+    "...",
+    "1.000000000000000"
+  ]
+}
+```
 
 ### history  
 
