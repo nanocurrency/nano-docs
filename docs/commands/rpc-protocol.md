@@ -1,3 +1,6 @@
+title: RPC Protocol
+description: Reference for the various RPC commands available for the Nano node
+
 # RPC Protocol
 
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
@@ -148,9 +151,9 @@ Returns frontier, open block, change representative block, balance, last modifie
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
+  "account_version": "1",
   "confirmation_height" : "28",
-  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
-  "account_version": "1"
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB"
 }
 ```
 
@@ -181,6 +184,9 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
+  "account_version": "1",
+  "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "representative": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "weight": "1105577030935649664609129644855132177",
   "pending": "2309370929000000000000000000000000"
@@ -256,17 +262,16 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json
 {
   "action": "accounts_balances",
-  "accounts": ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
+  "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
 }
 ```  
 **Response:**
 ```json
 {
   "balances" : {
-    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":
-    {
-      "balance": "10000",
-      "pending": "10000"
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
+        "balance": "325586539664609129644855132177",
+        "pending": "2309372032769300000000000000000000"
     },
     "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":
     {
@@ -413,7 +418,7 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 ### active_difficulty
 _version 19.0+_ 
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
 
 **Request:**
 ```json
@@ -425,9 +430,11 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffcdbf40aa45",
-  "multiplier": "1.273557846739298"
+  "multiplier": "1.5",
+  "network_current": "fffffffaaaaaaaab",
+  "network_minimum": "fffffff800000000",
+  "network_receive_current": "fffffff07c1f07c2", // since V21.2
+  "network_receive_minimum": "fffffe0000000000" // since V21.2
 }
 ```
 
@@ -447,9 +454,7 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffc1816766f2",
-  "multiplier": "1.024089858417128",
+  ...,
   "difficulty_trend": [
     "1.156096135149775",
     "1.190133894573061",
@@ -488,13 +493,13 @@ Returns the account containing block
 ```json
 {
   "action": "block_account",
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+  "hash": "023B94B7D27B311666C8636954FE17F1FD2EAA97A8BAC27DE5084FBBD5C6B02C"
 }
 ```  
 **Response:**
 ```json
 {
-  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
 }
 ```
 
@@ -543,30 +548,6 @@ _version 19.0+ (enable_control required in version 19.0, not required in version
 Default "true". If "true", "cemented" in the response will contain the number of cemented blocks. (In V19.0 default was "false")
 
 --8<-- "enable-control-warning.md"
-
----
-
-### block_count_type  
-Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
-
-**Request:**
-```json
-{
-  "action": "block_count_type"
-}
-```  
-**Response:**
-```json
-{
-  "send": "5016664",
-  "receive": "4081228",
-  "open": "546457",
-  "change": "24193",
-  "state_v0": "4216537",
-  "state_v1": "10653709",
-  "state": "14870246"
-}
-```  
 
 ---
 
@@ -907,7 +888,7 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 ```
 
 **Optional "bypass_frontier_confirmation"**  
-_version 20.0+_  
+_version 20.0-21.3_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
 
 **Optional "id"**  
@@ -1271,7 +1252,7 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 {
   "action": "confirmation_info",
   "json_block": "true",
-  "root": "F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44",
+  "root": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44",
   "representatives": "true"
 }
 ```  
@@ -1864,8 +1845,13 @@ Boolean, false by default. Returns the minimum version (epoch) of a block which 
 
 **Optional "sorting"**
 
-_version 19.0+_   
 Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   
+
+_version 22.0+_   
+If used with "count" returns the absolute sorted values.
+
+_version 19.0+_   
+If used with "count" only sorts relative to the first pending entries found up to count so not necessarily the ones with the largest pending balance.   
 
 **Optional "include_only_confirmed"**
 
@@ -1914,7 +1900,7 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ---
 
 ### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`.
 
 --8<-- "process-sub-type-recommended.md"
 
@@ -2319,6 +2305,44 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
 }
 ```
 
+_version 22.0+_  
+NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed and will be different depending on the ledger backend.
+
+**Request database:**
+```json
+{
+  "action": "stats",
+  "type": "database"
+}
+```
+
+**Database response:**  
+**LMDB:**
+```json
+{
+    "branch_pages": "0",
+    "depth": "1",
+    "entries": "11",
+    "leaf_pages": "1",
+    "overflow_pages": "0",
+    "page_size": "4096"
+}
+```
+**RocksDB:**  
+```json
+{
+    "cur-size-all-mem-tables": "74063072",
+    "size-all-mem-tables": "487744504",
+    "estimate-table-readers-mem": "113431016",
+    "estimate-live-data-size": "17756425993",
+    "compaction-pending": "0",
+    "estimate-num-keys": "81835964",
+    "estimate-pending-compaction-bytes": "0",
+    "total-sst-files-size": "20350606013",
+    "block-cache-capacity": "318767104",
+    "block-cache-usage": "150310696"
+}
+```
 ---
 
 ### stats_clear
@@ -2396,7 +2420,8 @@ Boolean, false by default. Returns a consecutive list of block hashes in the acc
 
 ### telemetry
 _version 21.0+_  
-Return metrics from nodes. See [networking node telemetry](/protocol-design/networking#node-telemetry) for more information.    
+Return metrics from other nodes on the network. By default, returns a summarized view of the whole network. See below for details on obtaining local telemetry data.  
+[Networking - node telemetry](/protocol-design/networking#node-telemetry) contains more detailed information on the protocol implementation of telemetry.  
 **Request:**
 ```json
 {
@@ -2436,11 +2461,11 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
 | **peer_count**        | average count of peers nodes are connected to |
 | **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
-| **uptime**            | number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **uptime**            | average number of seconds since the UTC epoch at the point where the response is sent from the peer |
 | **genesis_block**     | mode (most common) of genesis block hashes |
-| **maker**             | meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation |
+| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
@@ -2489,7 +2514,9 @@ Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
   "port": "7075"
 }
 ```
-Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
+
+!!!tip "Requesting telemetry data from the local node"
+    Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 
@@ -3334,6 +3361,9 @@ Send **amount** from **source** in **wallet** to **destination**
 
 --8<-- "enable-control-warning.md"
 
+!!! success "Use of `id` option is highly recommended"
+    Integrations using the node wallet must ensure idempotency for transactions and this can be done externally if preferred. Using the `id` field provides this option internally and is highly recommended for all node wallet uses.
+
 **Request:**
 ```json
 {
@@ -3341,7 +3371,8 @@ Send **amount** from **source** in **wallet** to **destination**
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
-  "amount": "1000000"
+  "amount": "1000000",
+  "id": "your-unique-id"
 }
 ```  
 **Response:**
@@ -4201,8 +4232,37 @@ Multiply an rai amount by the rai ratio.
 
 ---
 
+## Removed RPCs
+
+---
+
+#### Removed in _v22_
+
+### block_count_type  
+Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
+
+**Request:**
+```json
+{
+  "action": "block_count_type"
+}
+```  
+**Response:**
+```json
+{
+  "send": "5016664",
+  "receive": "4081228",
+  "open": "546457",
+  "change": "24193",
+  "state_v0": "4216537",
+  "state_v1": "10653709",
+  "state": "14870246"
+}
+```  
+
+---
+
 ### payment_begin   
-**_Deprecated_**, to be removed in version 22  
 Begin a new payment session. Searches wallet for an account that's marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned.  
 
 **Request:**
@@ -4222,7 +4282,6 @@ Begin a new payment session. Searches wallet for an account that's marked as ava
 ---
 
 ### payment_end  
-**_Deprecated_**, to be removed in version 22  
 End a payment session.  Marks the account as available for use in a payment session. 
 
 **Request:**
@@ -4242,7 +4301,6 @@ End a payment session.  Marks the account as available for use in a payment sess
 ---
 
 ### payment_init  
-**_Deprecated_**, to be removed in version 22  
 Marks all accounts in wallet as available for being used as a payment session.  
 
 **Request:**
@@ -4262,7 +4320,6 @@ Marks all accounts in wallet as available for being used as a payment session.
 ---
 
 ### payment_wait  
-**_Deprecated_**, to be removed in version 22  
 Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseconds have elapsed.  
 
 **Request:**

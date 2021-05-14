@@ -1,6 +1,6 @@
-var config = {
+var mermaid_config = {
 	startOnLoad:true,
 	securityLevel:'loose',
 };
 
-mermaid.initialize(config);
+mermaid.initialize(mermaid_config);

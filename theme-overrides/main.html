@@ -4,17 +4,35 @@
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@nano">
+  {% if page and page.meta.title %}
   <meta name="twitter:title" content="{{ page.meta.title }}">
+  {% else %}
+  <meta name="twitter:title" content="Nano Docs">
+  {% endif %}
+  {% if page and page.meta.description %}
   <meta name="twitter:description" content="{{ page.meta.description }}">
+  {% else %}
+  <meta name="twitter:description" content="Official documentation for the Nano network, node and protocol">
+  {% endif %}
   <meta name="twitter:image" content="{{ config.site_url }}images/nano-docs-open-graph.png" />
 
   <!-- Open Graph data -->
   <meta property="og:type" content="website" />
+  {% if page and page.meta.title %}
   <meta property="og:title" content="{{ page.meta.title }}" />
+  {% else %}
+  <meta name="og:title" content="Nano Docs">
+  {% endif %}
   <meta property="og:url" content="{{ page.canonical_url }}" />
   <meta property="og:image" content="{{ config.site_url }}images/nano-docs-open-graph.png" />
+  {% if page and page.meta.description %}
   <meta property="og:description" content="{{ page.meta.description }}" />
+  {% else %}
+  <meta name="og:description" content="Official documentation for the Nano network, node and protocol">
+  {% endif %}
   <meta property="og:site_name" content="Nano Docs" />
+
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
 {% endblock %}
 
@@ -36,4 +54,12 @@
 </script>
 <!-- End Matomo Code -->
 
+{% endblock %}
+
+{% block announce %}
+<a href="/releases/current-release-notes/" height="100">
+  <span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>
+  <span style="padding-left: 0.3em;"><strong>Nano node V21.3 now available!</strong> All node operators should upgrade as soon as possible</span> ⭢
+  </div>
+</a>
 {% endblock %}

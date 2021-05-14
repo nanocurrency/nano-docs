@@ -27,13 +27,22 @@ mkdocs serve
 
 Access the site at http://localhost:8000. This supports automatic rebuilding, so anytime changes are saved to the documentation or configuration, it will be rebuilt and refresh the page. Some search indexing may remain cache between builds.
 
+## Theme
+
+We sponsor the developer of this theme on GitHub ([@squidfunk](https://github.com/squidfunk)) in order to get access to special features of the [Insiders](https://squidfunk.github.io/mkdocs-material-insiders/) version. Our [@nano-infrastructure](https://github.com/nano-infrastructure) account has the permissions to the private repository for that Insiders theme and using a personal access token in the GitHub deployment workflow (set as a GitHub secret in this repository), the theme is pulled down as part of deployment.
+
+Those developing locally may not have access to some of the special features of this insider theme, but most changes done by external contributors do not need the special theme - changes are backwards compatible with the regular theme. If you need access to the Insiders theme please contact the Nano core team.
+
 ## Formatting and Organization Tips
+
+## Title and description
+At the top of every page (not snippets) two fields should be added `title: ` and `description: ` which will be converted to values of `<title>` and `<meta>` tags in the header to better inform search engines, social scraping tools and more.
 
 ### Headers
 Pages automatically have a `<h1>` title setup for them based on the page name, so headers `##` (`<h2>`) and higher should only be used to organize the content.
 
 ### Table of Contents
-Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###', and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
+Currently, the ToC on the right side is limited to a depth of 4, so `##`, `###`, and `####` will be included there. Higher header levels can be used on the page to better organize content but will not be in the ToC.
 
 ### Links
 MkDocs has a link checker built in that can be run using the `--strict` flag on `mkdocs serve`, or `mkdocs build` command. This flag is included in the build pipeline. For it to work, links must be referencing the relative file path with the file extension included and no trailing slashes. Anchors are not included in this check. Although relative URLs will function if used, they will not be verified by the link checker.
@@ -85,5 +94,18 @@ Types include:
 - example
 - quote
 
-### Mermaid Sequence Diagrams
-There is support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram
+### Diagrams
+Usage of Draw.io is encouraged for generating diagrams:
+
+* Folder `/docs/diagrams` contains the `.svg` files that are the preferred format for diagrams
+* Diagrams can be edited using the Draw.io and similar applications:
+	* Web: https://nanocurrency.github.io/drawio/src/main/webapp/index.html or https://app.diagrams.net
+	* Desktop: https://github.com/jgraph/drawio-desktop/releases/latest 
+* Embedding diagrams uses markdown format: `![account-chains](/diagrams/account-chains.svg)`
+
+There is also support for Mermaid Sequence Diagrams, and documentation can be found here: https://mermaidjs.github.io/#/sequenceDiagram, however given the desire to have consistency in the diagrams and the limitations of Mermaid, generating Draw.io type diagrams is preferred.
+
+### Octicon icons
+The scripts for using Github's Octicons are included in the header. Details for available icons can be found here: https://primer.style/octicons/. Usage should be limited. Example currently available in announcement block:
+
+`<span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>`

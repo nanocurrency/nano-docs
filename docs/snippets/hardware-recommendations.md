@@ -7,7 +7,7 @@ The following are minimum recommended specifications for nodes with more than 0.
 * SSD-based hard drive with 80GB+ of free space
 
 ### Non-voting and Representative Nodes
-The following are minimum recommended specifications for non-voting nodes and Represntative nodes with less than 0.1% of the online voting weight (regular [Representatives](../glossary.md#representative)):
+The following are minimum recommended specifications for non-voting nodes and Representative nodes with less than 0.1% of the online voting weight (regular [Representatives](../glossary.md#representative)):
 
 * 2GB RAM (additional RAM or swap space may be needed if bootstrapping a new node from scratch)
 * Dual-Core CPU

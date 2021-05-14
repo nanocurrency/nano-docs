@@ -1,3 +1,6 @@
+title: Integration Guides - Build Options
+description: Instructions for manually building the Nano node for a variety of operating systems
+
 # Build Options
 
 --8<-- "only-official-builds-supported.md"
@@ -25,6 +28,11 @@ sudo yum install nanocurrency-beta
 
 This installs `nano_node-beta` to bin.
 
+### Test builds
+
+Each Release Candidate (RC) or final release build can be used on the public test network for general integration and node upgrade testing. Go to the [Test Network page](/running-a-node/test-network/) for more details about Docker, binaries configuration, etc., or see the [Test network](#node) section below for manual build details.
+
+
 ## Nano Directory
 
 ### Contents
@@ -51,7 +59,7 @@ This installs `nano_node-beta` to bin.
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `sh nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
@@ -70,7 +78,7 @@ This installs `nano_node-beta` to bin.
 Inside `nano-node` directory run:
 
 ```bash
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 ```
 
 This will build the required Boost libraries at `/usr/local/boost/`.
@@ -114,6 +122,8 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
 * `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
+* `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
+* `NANO_FUZZER_TEST=ON` (Build the fuzz tests, not available on Windows)
 
 **Build Node**
 
@@ -139,6 +149,11 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 * More information can be found on the [Beta Network page](/running-a-node/beta-network/)
 * To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
+
+**Test Network Participation**
+
+* More information can be found on the [Test Network page](/running-a-node/test-network/)
+* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
 
 ---
 
@@ -213,10 +228,10 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 ### Node
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
@@ -229,10 +244,10 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 --8<-- "unsupported-configuration.md"
 
 ```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
 cd nano_build
 export BOOST_ROOT=`pwd`/../boost_build
-sh util/build_prep/bootstrap_boost.sh -m
+bash util/build_prep/bootstrap_boost.sh -m
 cmake -G "Unix Makefiles" .
 make nano_node
 cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics

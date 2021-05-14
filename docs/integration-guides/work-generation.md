@@ -1,5 +1,5 @@
-title: Work Generation | Nano Documentation
-description: Understand the best configurations for work generation on the Nano network.
+title: Integration Guides - Work Generation
+description: Understand the best configurations for work generation on the Nano network
 
 !!!tip "Some sections of this page target node version 21 or higher"
 
@@ -73,6 +73,8 @@ Services where RPC usage is lighter but regular work generation is needed could 
 
 ### Work generated using the node, incl. work peers
 
+<div class="mermaid-wrapper">
+
 ``` mermaid
 graph TD
     A{Block signing<br> location?}
@@ -85,13 +87,20 @@ graph TD
     block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
 ```
 
+</div>
+
 ### Work generated without using the node
+
+!!!tip "Lower thresholds for receive blocks"
+    **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
+
+<div class="mermaid-wrapper">
 
 ``` mermaid
 graph TD
     M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
     M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
-    N -->|network_minimum| P_1(Generate work at<br><b>network_minimum</b> difficulty)
+    N -->P_1(Generate work at<br><b>network_minimum</b> difficulty)
     O_1 -->O_2((active<br>difficulty))
     P_1 -->|work| P_2(Use <b>work</b> in block)
     P_2 -->P_3((block))
@@ -99,18 +108,20 @@ graph TD
     P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
     P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
     P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
-    P_7 -->|network_current| P_8{Block difficulty less<br>than <b>network_current</b> ?}
+    P_7 -->P_8{Block difficulty less<br>than <b>network_current</b> ?}
     P_8 -->|yes| P_9(Generate work at<br><b>network_current</b> difficulty)
     P_8 -->|no| P_6
     P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
     P_10 -->P_4
 ```
 
+</div>
+
 ---
 
 ## Node Configuration
 
-The following configuration options can be changed in `node-config.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
+The following configuration options can be changed in `config-node.toml`. For more information on the location of this file, and general information on the configuration of the node, see the [Configuration](../running-a-node/configuration.md) page.
 
 ### opencl.enable
 
@@ -148,12 +159,14 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 ### Benchmark commands
 
-**Node RPC or external work server**
+**Nano Work Server**
 
-1. Setup one of the following:
-	- A node with RPC enabled and any desired work peer
-	- A standalone work server
-1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench)
+The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) is the preferred approach for benchmarking and includes an [example](https://github.com/nanocurrency/nano-work-server#benchmarking).
+
+**Node RPC**
+
+1. Setup and run a node with RPC enabled, control enabled, and the desired configuration including work peers.
+1. Use the script from [blake2b-pow-bench](https://github.com/guilhermelawless/blake2b-pow-bench).
 
 **Node local work generation**
 
@@ -171,19 +184,17 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 
 | **Device** | **Epoch v1**<br />All Blocks | **Epoch v2**<br />Send/Change Blocks | **Epoch v2**<br />Receive Blocks |
 |--------|-|-|-|
-| Nvidia Tesla V100 (AWS) | 6.4 | | |
-| Nvidia Tesla P100 (Google,Cloud) | 4.9 | | |
-| Nvidia Tesla K80 (Google,Cloud) | 1.64 | | |
-| Google Cloud 4 vCores | 0.15 | | |
-| ARM64 server 4 cores (Scaleway) | 0.06 | | |
-| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
+| Nvidia GTX 1080 | 26.24 | 3.32 | 203.42 |
+| Nvidia Tesla P100 (Google Cloud) | 29.28 | 3.63 | 220.35 |
+| Nvidia RTX 2080 Ti | 47.27 | 5.48 | 357.23 |
+| Nvidia Tesla V100 (Google Cloud) | 57.48 | 7.25 | 420.33 |
+| AMD R9 290 | 14.57 | 1.92 | 94.47 |
+| AMD RX Vega 64 | 30.77 | 3.79 | 232.56 |
+| AMD Vega 8 @1750MHz | 3.45 | 0.55 | 23.81 |
 | AMD R7-4800U @2.8GHz AVX2 | 0.64 | 0.06 | 3.70 |
 | AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
-| AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.6 |
-| Nvidia GTX 1080 | 2.63 | 0.37 | 21.29 |
-| Nvidia RTX 2080 Ti | 4.01 | 0.51 | 31.5 |
-| AMD R9 290 | 1.23 | 0.15 | 8.06 |
-| AMD RX Vega 64 | 3.77 | 0.45 | 25.00 |
+| AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.64 |
+| Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
 
 ---
 
@@ -211,11 +222,9 @@ $$
 
 ### Difficulty thresholds
 
-The mainnet's base difficulty threshold is currently `ffffffc000000000` for all epoch v1 blocks. For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+The mainnet's base difficulty threshold is currently `fffffff800000000` for all send or change blocks and `fffffe0000000000` for all receive blocks. These split difficulties were set as part of the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) completed at the end of August 2020.
 
-Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
-
-After the next [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty), which will occur after the [V21.0 release](../releases/current-release-notes.md) and subsequent distribution of epoch v2 blocks, there will be two difficulty thresholds:
+Previous difficulty levels are outlined below as well for historical reference, but currently the epoch v2 thresholds are required when publishing new blocks to the network:
 
 | Epoch version | Block Type | Difficulty Threshold |
 |               |            |                      |
@@ -223,7 +232,9 @@ After the next [network upgrade to increase difficulty](../releases/network-upgr
 | 2             | Send or change | `fffffff800000000` |
 | 2             | Receive        | `fffffe0000000000` |
 
-Although preparations can be done ahead of the upgrade, please find related considerations in the [network upgrade to increase difficulty](../releases/network-upgrades.md#increased-work-difficulty) section.
+For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
+
+Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
 
 **Development node wallet behavior**
 
@@ -235,9 +246,6 @@ For services aiming to ensure the highest priority on their transactions, the co
 
 !!! tip "Configure max work generate multiplier"
     Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
-
-!!! warning "Upcoming threshold changes and variations by block type"
-	  Plans are underway to change the thresholds based on the type of block with the release of V21 and subsequent distribution of v2 epoch blocks to enable the feature. See the [Development Update: V21 PoW Difficulty Increases article](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e) for full details.
 
 ### Pre-caching
 
@@ -255,7 +263,6 @@ With V21+ the work difficulty thresholds were split by block type. For many inte
 
 For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
 
-
 ### Difficulty multiplier
 
 Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC, but can also be obtained with the following expression:
@@ -271,33 +278,33 @@ $$
 $$
 
 ??? example "Code Snippets"
-    **Python**
-    ```python
-    def to_multiplier(difficulty: int, base_difficulty) -> float:
-      return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
+    === "Python"
+        ```python
+        def to_multiplier(difficulty: int, base_difficulty) -> float:
+          return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
 
-    def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
-      return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
-    ```
+        def from_multiplier(multiplier: float, base_difficulty: int = NANO_DIFFICULTY) -> int:
+          return int((1 << 64) - ((1 << 64) - base_difficulty) / multiplier)
+        ```
 
-    **Rust**
-    ```rust
-    fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
-      (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
-    }
+    === "Rust"
+        ```rust
+        fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
+          (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
+        }
 
-    fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
-      (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
-    }
-    ```
+        fn from_multiplier(multiplier: f64, base_difficulty: u64) -> u64 {
+          (((base_difficulty.wrapping_neg() as f64) / multiplier) as u64).wrapping_neg()
+        }
+        ```
 
-    **C++**
-    ```cpp
-    double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
-      return static_cast<double>(-base_difficulty) / (-difficulty);
-    }
+    === "C++"
+        ```cpp
+        double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
+          return static_cast<double>(-base_difficulty) / (-difficulty);
+        }
 
-    uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
-      return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
-    }
-    ```
+        uint64_t from_multiplier(double const multiplier, uint64_t const base_difficulty) {
+          return (-static_cast<uint64_t>((-base_difficulty) / multiplier));
+        }
+        ```

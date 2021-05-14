@@ -1,6 +1,9 @@
-# Network Attacks
+title: Protocol Design - Attack Vectors
+description: Understand the different attack vectors on the Nano network and the mitigations in place to limit them
 
-Nano has a number of mechanisms built in to protect from a range of possible attacks on the system.  Here we go over all attacks there could be on the system and what safeguards are in place.  
+# Protocol Design - Attack Vectors
+
+--8<-- "wip-living-whitepaper.md"
 
 ## Block gap synchronization
 | | |
@@ -54,3 +57,13 @@ Nano has a number of mechanisms built in to protect from a range of possible att
 |**Impacts** | New-user denial of service
 |**Description** | The longer an attacker is able to hold an old private key with a balance, the higher the probability of balances that existed at that time no longer having representatives that are participating in voting because their balances or representatives have transferred to new people.  This means if a node is bootstrapped to an old representation of the network where the attacker has a quorum of voting stake compare to representatives at that point in time, they would be able to oscillate voting decisions to that node.  If this new user wanted to interact with anyone besides the attacking node all of their transactions would be denied since they have different head blocks.  The net result is nodes can waste the time of new nodes in the network by feeding them bad information.    
 |**Defense** | Nodes can be paired with an initial database of accounts and known-good block heads; this is a replacement for downloading the database all the way back to the genesis block.  The closer the download is to be current, the higher the probability of accurately defending against this attack.  In the end this attack is probably no worse than feeding junk data to nodes while bootstrapping since they wouldn't be able to transact with anyone who has a contemporary database.  
+
+## Other attacks
+
+* [Network Attacks Part 2](https://github.com/georgehara/nano/wiki/unofficial) - Additional deep-dive into potential attack vectors & mitigations
+
+---
+
+Existing whitepaper sections related to this page:
+
+* [Attack Vectors](/whitepaper/english/#attack-vectors)

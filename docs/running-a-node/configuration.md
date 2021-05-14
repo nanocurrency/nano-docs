@@ -1,3 +1,6 @@
+title: Node Configuration
+description: Dig into the most popular configuration options to help your Nano node work the best for your needs
+
 # Node Configuration
 
 The Nano node software is designed to run with little or no configuration. All configuration options have defaults that can be changed using TOML configuration files, by passing configuration values via the command line, or a combination of the two methods.
@@ -183,9 +186,16 @@ Example that enables the RPC and WebSocket servers:
 
 `nano_node --config rpc.enable=true --config node.websocket.enable=true`
 
-Strings are passed with escaped quotes (`\"`), such as:
+The way strings are passed is as follows:  
+_v22_+ uses quotes (`"`) such as:
 
-`nano_node --config node.httpcallback.target=\"api/callback\"`
+`nano_node --config node.httpcallback.target="api/callback"`  
+Arrays must not have spaces inbetween entries.
+
+_v21_ and earlier must use escaped quotes (`\"`) such as:
+
+`nano_node --config node.httpcallback.target=\"api/callback\"`  
+For backwards compatibility this is also supported in _v22_+
 
 !!! info "Mixing config options on the command line and TOML files"
     If a config file exists, config values passed in via the command line will take precedence.
@@ -227,9 +237,21 @@ enable_control = false
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
 #### logging.stable_log_filename
+
+--8<-- "known-issue-windows-logging-stable.md"
+
 This configuration option is set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
 
 By default this option is set to `false` which results in all log files having a timestamp appended to them, even the currently active file. If set to `true` the currently active log file will have a static name at `log/node.log` for easier management.
+
+```toml
+[logging]
+
+# Append to log/node.log without a timestamp in the filename.
+# The file is not emptied on startup if it exists, but appended to.
+# type:bool
+stable_log_filename = true
+```
 
 #### logging.log_rpc
 This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.

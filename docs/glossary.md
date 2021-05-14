@@ -33,8 +33,11 @@ A sub-network established between peers via Transmission Control Protocol (TCP) 
 #### bootstrapping
 During initial sync, the nano\_node requests old transactions to independently verify and populate its local ledger database. Bootstrapping will also occur when the nano\_node becomes out of sync with the network.
 
+#### burn
+When a 'burn' takes place, funds are sent to a specifc address that no one can access. Because no one can ever access funds sent to a burn address, it reduces the [circulating supply](#circulating-supply).
+
 #### circulating supply
-133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after burns were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
+133,248,297.920938463463374607431768211455 Nano. This is the supply that resulted after [burns](#burn) were made from the [genesis](#genesis) account, landing account and faucet account, following original distribution. Actual circulating supply is lower due to lost keys and sends to burn accounts. The original supply minus any amounts sent to the burn account can be found using the [available_supply](/commands/rpc-protocol/#available_supply) RPC.
 
 #### Cementing
 When a specific node marks a [confirmed](#confirmation) transaction as locally irreversible by setting the [account's](#account) [confirmation height](#confirmation-height) (in the node database) to the now higher [block height](#block-height) of the confirmed transaction. Cementing is a node-level operation.
@@ -54,6 +57,7 @@ The rate of [confirmed](#confirmation) [blocks](#blocks) (send or receive).
 The most recent block added to the account chain. Also called the head block. Can be either confirmed or unconfirmed.
 
 #### genesis
+The first [account](#account) to be created, containing the maximum amount of Nano to ever exist. From here the funds were sent to other wallets; for distribution or to be [burned](#burn).
 
 #### head block
 See [frontier](#frontier).
@@ -67,6 +71,9 @@ Blocks on an account chain before the first v1 block (which is often the v1 epoc
 #### live network
 A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. As of V21, use of UDP is deprecated.
 
+#### node version
+The version used to identify a unique release build of the node. Each node version is tied to a single [protocol version](#protocol-version), but they are updated independently.
+
 #### online voting weight
 Also called online stake, it is a trended value. The node samples online representative weights every 5 minutes across a rolling 2 week period. The online voting weight value is the median of those samples.
 
@@ -75,6 +82,12 @@ Nodes connected over the public internet to share Nano network data.
 
 #### pending
 A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
+
+#### Private Key
+See [wallet](#wallet).
+
+#### Public Key
+A public key is derived from a [private key](#private-key) using the ED25519 elliptic curve algorithm. An address is a representation of the public key, see [account](#account) for more info.
 
 #### Open Representative Voting (ORV)
 A consensus mechanism unique to Nano which involves accounts delegating their balance as [voting weight](#voting-weight) to [Representatives](#representative). The Representatives [vote](#voting) themselves on the validity of transactions published to the network using the voting weight delegated to them. These votes are shared with their directly connected peers and they also rebroadcast votes seen from [Principal Representatives](#principal-representative). Votes are tallied and once [quorum](#quorum) is reached on a published block, it is considered confirmed by the network.
@@ -87,6 +100,9 @@ When the delta between the two successive blocks of a root is > 50% of the onlin
 
 #### Principal Representative
 A Nano account with >= 0.1% of the [online voting weight](#online-voting-weight) delegated to it. When configured on a node which is voting, the votes it produces will be rebroadcasted by other nodes to who receive them, helping the network reach consensus more quickly.
+
+#### protocol version
+The version used to identify the set of protocol rules nodes are required to follow in order to properly communicate with peers. Nodes running older protocol versions are periodically de-peered on the network to keep communication efficient - see [Active Releases](/releases/node-releases/#active-releases) and [Inactive Releases](/releases/node-releases/#inactive-releases) for the latest versions allowed to peer with one another.
 
 #### Representative
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
@@ -101,7 +117,7 @@ A 256-bit random value usually represented to the user as a 64 character hexidec
 Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [pending](#pending)).
 
 #### unchecked (blocks)
-Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all bocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
+Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all blocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
 
 #### unopened account
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).

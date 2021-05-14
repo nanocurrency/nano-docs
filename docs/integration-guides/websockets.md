@@ -1,5 +1,7 @@
-title: WebSockets | Nano Documentation
-description: Details for integration into WebSockets for notifications from the Nano node.
+title: Integration Guides - WebSockets
+description: Details for how to integrate with WebSockets for getting notifications from the Nano node
+
+# WebSockets
 
 !!! note ""
     Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.
@@ -37,7 +39,10 @@ enable = true
 port = 7078
 ```
 
-With the above configuration, localhost clients should connect to `ws://[::1]:7078`. If using with Docker, see [Managing the Container](../running-a-node/docker-management.md#managing-the-container) for details on port and address settings.
+With the above configuration, localhost clients should connect to `ws://[::1]:7078`.
+
+!!! note "Configuration for use with Docker"
+    Set the WebSocket server bind `address` to `::ffff:0.0.0.0` instead, and configure the container to map port 7078 accordingly. **Review [Managing the Container](../running-a-node/docker-management.md#managing-the-container) to ensure the websocket is not exposed externally.**
 
 ## Acknowledgement
 
@@ -437,9 +442,11 @@ No filters are currently available for the `active_difficulty` topic.
   "topic": "active_difficulty",
   "time": "1561661736065",
   "message": {
-    "network_minimum": "ffffffc000000000",
-    "network_current": "ffffffc81644d01f",
-    "multiplier": "1.144635159892734"
+    "multiplier": "1.5",
+    "network_current": "fffffffaaaaaaaab",
+    "network_minimum": "fffffff800000000",
+    "network_receive_current": "fffffff07c1f07c2", // since V21.2
+    "network_receive_minimum": "fffffe0000000000" // since V21.2
   }
 }
 ```
@@ -520,7 +527,7 @@ This subscription is available since _v21.0_
 
 ##### Subscribing
 
-To subscribe to node telemetry response notifications:
+To subscribe to telemetry response notifications from **other nodes on the network**:
 
 ```json
 {
@@ -563,7 +570,7 @@ No filters are currently available for the `telemetry` topic.
   }
 }
 ```
-See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response  
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response.  
 
 
 ### New unconfirmed blocks
@@ -611,7 +618,7 @@ No filters are currently available for the `new_unconfirmed_block` topic.
 
 ---
 
-#### Bootstrap
+### Bootstrap
 
 This subscription is available since _v21.0_
 

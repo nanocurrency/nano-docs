@@ -1,4 +1,9 @@
-# Signing, Hashing and Key Derivation
+title: Protocol Design - Signing, Hashing and Key Derivation
+description: All about the methods for signing messages, hashing data and deriving keys on the Nano protocol
+
+# Protocol Design - Signing, Hashing and Key Derivation
+
+--8<-- "wip-living-whitepaper.md"
 
 ### Signing algorithm: ED25519
 

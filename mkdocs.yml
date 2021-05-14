@@ -1,10 +1,16 @@
-site_name: Nano Docs
+site_name: Nano Documentation
 site_url: https://docs.nano.org/
 theme:
   name: 'material'
   palette:
-    primary: '#4a90e2'
-    accent: '#131121'
+    - scheme: nano
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
@@ -12,13 +18,17 @@ theme:
     logo: 'nano'
     repo: 'fontawesome/brands/github'
   favicon: 'images/favicon.png'
-  custom_dir: 'theme'
+  custom_dir: 'theme-overrides'
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.share
+    - search.highlight
+    - search.suggest
 nav:
   - Home: index.md
-  - What is Nano?:
-    - Overview: what-is-nano/overview.md
-    - Contributing: what-is-nano/contributing.md
-    - Exploring More: what-is-nano/exploring-more.md
+  - What is Nano?: what-is-nano/overview.md
+  - Living Whitepaper: what-is-nano/living-whitepaper.md
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Security: running-a-node/security.md
@@ -29,6 +39,7 @@ nav:
     - Voting as a Representative: running-a-node/voting-as-a-representative.md
     - Advanced Monitoring: running-a-node/advanced-monitoring.md
     - Beta Network: running-a-node/beta-network.md
+    - Test Network: running-a-node/test-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
@@ -44,18 +55,35 @@ nav:
     - RPC Protocol: commands/rpc-protocol.md
     - Command Line Interface: commands/command-line-interface.md
   - Protocol Design:
-    - Overview: protocol-design/overview.md
-    - Distribution and Units: protocol-design/distribution-and-units.md
+    - Introduction: protocol-design/introduction.md
+    - Ledger: protocol-design/ledger.md
+    - Blocks: protocol-design/blocks.md
+    - Work: protocol-design/work.md
     - Networking: protocol-design/networking.md
-    - Network Attacks: protocol-design/network-attacks.md
+    - ORV Consensus: protocol-design/orv-consensus.md
+    - Attack Vectors: protocol-design/attack-vectors.md
+    - Resource Usage: protocol-design/resource-usage.md
+    - Distribution and Units: protocol-design/distribution-and-units.md
     - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
     - Original whitepaper: whitepaper/english.md
+  - Node Implementation:
+    - Introduction: node-implementation/introduction.md
+    - Components: node-implementation/components.md
+    - Database: node-implementation/database.md
+    - Blocks: node-implementation/blocks.md
+    - Voting: node-implementation/voting.md
+    - Work: node-implementation/work.md
+    - Contributing: node-implementation/contributing.md
   - Releases:
     - Node Releases: releases/node-releases.md
     - Current Release Notes: releases/current-release-notes.md
-    - Previous Release Notes: releases/previous-release-notes.md
+    - Previous Release Notes:
+      - V21.2: releases/release-v21-2.md
+      - V21.1: releases/release-v21-1.md
+      - V21.0: releases/release-v21-0.md
+      - V20.0: releases/release-v20-0.md
+      - V19.0: releases/release-v19-0.md
     - Network Upgrades: releases/network-upgrades.md
-    - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
 markdown_extensions:
@@ -78,6 +106,7 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.tabbed
   - pymdownx.snippets:
       check_paths: true
       base_path: 'docs/snippets'
@@ -127,3 +156,8 @@ plugins:
     - redirects:
         redirect_maps:
             'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
+            'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
+            'what-is-nano/contributing.md': 'node-implementation/contributing.md'
+            'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
+            'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
+            'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'

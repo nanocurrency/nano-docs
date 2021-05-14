@@ -1,25 +1,21 @@
+title: Beta Network
+description: Find out how to join the Nano community in testing the latest node and protocol features on the beta network
+
 # Joining the beta network
 
 !!! tip "Testing is currently ongoing on the beta network for Version 22"
 	Read through this page if you would like to participate.
 
-A few common reasons for joining the beta network include:
+The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing](#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features. As a result, an alternative [test network](test-network.md) is also available which will be more stable and is a better fit for learning node setup and management, and testing out upgrades and other activities for Nano before moving to production.
 
-* Learning node setup and management
-* Testing out integrations for services built on Nano before running on the main network
-* [Assisting in testing new node releases and features](#node-release-testing)
-* Contributing to a network testing various behaviors and patterns with the protocol
-
-[Running a beta node](#running-a-beta-node) is a great way to join in and help the network grow stronger.
+With those things in consideration, if you are interested in helping with testing on the beta network we are excited to help you out - so keep reading!
 
 
 ## Node release testing
-The beta network is also used to coordinate the testing of Nano node releases. The Nano Foundation maintains a few beta nodes on the network and various community members also setup nodes to help provide an environment more similar to the main network. During each development cycle Development Builds (DB) are prepared and shared in the Discord Beta Testing section of channels where early testing is coordinated. Once features are stabilized and included, release builds are published as Release Candidates (RC). Starting with RC1 and incrementing with each published build if needed (RC2, RC3, etc.). Final release of a version typically follows quickly once the RC is observed to be stable.
-
-We invite anyone interested in contributing to Nano to consider participating on the beta network. Not only is it beneficial to the ecosystem, it is also a great way to learn more about setting up and managing a node.
+The Nano Foundation maintains a few beta nodes on the network and various community members also setup nodes to help provide an environment more similar to the main network. During each development cycle Development Builds (DB) are prepared and shared in the Discord Beta Testing section of channels where early testing is coordinated. Once features are stabilized and included, release builds are published as Release Candidates (RC). Starting with RC1 and incrementing with each published build if needed (RC2, RC3, etc.). Final release of a version typically follows quickly once the RC is observed to be stable.
 
 !!! warning
-	* Release candidate builds are only recommended for use on the beta network
+	Development Builds (DBs) are only recommended for use on the beta network, and Release Candidate builds (RCs) are only recommended for use on the test and beta networks
 
 ## Running a beta node
 
@@ -105,7 +101,7 @@ In addition to the Docker details above, the latest binary builds of the node fo
 
 ### Beta fund distribution
 
-The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
+The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `Zach - ATX#0646` or `argakiig#1783` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
 
 ### Beta ledger file
 
@@ -116,6 +112,6 @@ The following command will download and unzip a recent ledger snapshot. Any exis
 ```
 curl -O https://s3.us-east-2.amazonaws.com/beta-snapshot.nano.org/data.tar.gz; tar -xzvf data.tar.gz; rm -fr data.tar.gz
 ```
-
-### Ongoing Test Cases
-A spreadsheet of some test cases is maintained separately and available for sharing with community members who are involved on the beta network.  If you are interested in helping with these test cases, please connect with `Zach - ATX#0646` or `Dotcom#9351` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
+<span id="ongoing-test-cases"></span>
+### Build contents and test cases
+With each DB a GitHub Project board will be created in the [Nano GitHub Organization](https://github.com/orgs/nanocurrency/projects) containing all the Pull Requests newly added in the DB, changes from previous DBs that still need network testing, and issues with the various test cases that are targeted to be run with that build. For those looking to assist with these tests, we encourage connecting with the other beta network participants in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
