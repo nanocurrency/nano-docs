@@ -2672,6 +2672,8 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 _version 8.0+_   
 Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
 
+--8<-- "known-issue-unchecked-keys-rpc-rocksdb.md"
+
 **Request:**
 ```json
 {
