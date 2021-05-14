@@ -59,17 +59,17 @@ Each Release Candidate (RC) or final release build can be used on the public tes
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
     **Required build tools**
 
-    * (macOS) XCode >= 7.3
-    * (Windows) Visual Studio 2015
+    * (macOS) XCode >= 9
+    * (Windows) Visual Studio >= 2017 (15.0)
     * (Windows) NSIS package builder
-    * (\*nix) Clang >= 3.5 or GCC >= 5
-    * CMake
+    * (\*nix) Clang >= 5 or GCC >= 7
+    * CMake >= 3.8
 
 ### Boost
 
@@ -87,7 +87,7 @@ This will build the required Boost libraries at `/usr/local/boost/`.
 
 Inside [boost.src] run:
 ```bash
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
+./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
 ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
 ```
 If on Windows: an additional b2 option `address-model=64` for x64 builds should be included.
@@ -121,7 +121,6 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_TIMED_LOCKS=50` (*v20.0+* when the number of milliseconds a mutex is held is equal or greater than this output a stacktrace, 0 disables.)
 * `NANO_STACKTRACE_BACKTRACE=ON` (*v20.0+* use a different configuration of Boost backtrace in stacktraces, attempting to display filenames, function names and line numbers. Needs `libbacktrace` to be installed. Some [workarounds](https://www.boost.org/doc/libs/develop/doc/html/stacktrace/configuration_and_build.html#stacktrace.configuration_and_build.f3) may be necessary depending on system and configuration. Use CLI [`--debug_stacktrace`](/commands/command-line-interface#-debug_stacktrace) to get an example output.)
 * `CI_BUILD=TRUE` (*v20.0+* if enabled, uses environment variable `TRAVIS_TAG` (required) to modify the locally reported node version; example `TRAVIS_TAG="My Nano Node v20"`)
-* `NANO_ROCKSDB=ON` (*v20.0+* NOTE: RocksDB support is still in experimental stages and should not be used in production systems. To build the node with RocksDB [click here](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) for more details)
 * `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
 * `NANO_FUZZER_TEST=ON` (Build the fuzz tests, not available on Windows)
 
@@ -161,9 +160,9 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 These instructions are for the following systems:
 
-* Ubuntu 16.04 LTS Server
-* Ubuntu 16.10+
-* Debian 8 Jessie (Debian 8 requires Cmake 3.4+)
+* Ubuntu 18.04 LTS Server
+* Ubuntu 18.10+
+* Debian 8 Jessie (Debian 8 requires Cmake 3.8+)
 * Debian 9 Stretch
 
 **Install dependencies**
@@ -179,8 +178,8 @@ Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
 
 **Requirements**
 
-* GCC compiler version 4.9+ or other compiler with C++14 language support (default Centos 7 compilers are outdated)
-* Cmake 3.4+
+* GCC compiler version 7+ or other compiler with C++17 language support (default Centos 7 compilers are outdated)
+* Cmake 3.8+
 
 **Install dependencies**
 
@@ -259,7 +258,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 ### Dependencies
 
-* [Boost 1.69+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
+* [Boost 1.70+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
 * [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
 * [Git for Windows](https://git-scm.com/download/win) **git_bash**
 * [CMake](https://cmake.org/download/)
@@ -302,7 +301,7 @@ Using 64 Native Tools Command Prompt:
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_69_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_69_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
 ```
 
 ### Build

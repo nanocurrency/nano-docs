@@ -507,7 +507,7 @@ Returns the account containing block
 
 ### block_confirm   
 _version 12.2+_   
-Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).  
+Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).
 
 **Request:**
 ```json
@@ -522,6 +522,8 @@ Request confirmation for **block** from known online representative nodes. Check
   "started": "1"
 }
 ```
+
+**NOTE:** Unless there was an error encountered during the command, the response will always return `"started": "1"`. This response does not indicate the block was successfully confirmed, only that an error did not occur. This response happens even if the block has already been confirmed previously and notifications will be triggered for this block (via HTTP callbacks or WebSockets) in all cases. This behavior may change in a future release.
 
 ---
 
@@ -542,6 +544,8 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
   "cemented": "25"
 }
 ```
+**Note:** If the node is running the RocksDB backend the unchecked count may only be estimate.  
+
 **Optional "include_cemented"**
 
 _version 19.0+ (enable_control required in version 19.0, not required in version 20.0+)_  
@@ -589,6 +593,22 @@ Parameters for state block:
 
 _version 19.0+_  
 Default "false". If "true", "block" in the response will contain a JSON subtree instead of a JSON string.
+ 
+**Optional "work"**
+
+Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
+
+**Optional "difficulty"**
+
+_version 21.0+_  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+
+If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 **Examples**
 
@@ -610,22 +630,6 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
   }
 }
 ```  
- 
-**Optional "work"**
-
-Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
-
-**Optional "version"**
-
-_version 21.0+_
-Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
-
-**Optional "difficulty"**
-
-_version 21.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
-
-If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 ---
 
@@ -1291,7 +1295,15 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 
 ### confirmation_quorum  
 _version 16.0+_   
-Returns information about node elections settings & observed network state: delta tally required to rollback block, percentage of online weight for delta, minimum online weight to confirm block, currently observed online total weight, known peers total weight   
+Returns information about node elections settings & observed network state:
+
+- `quorum_delta`: Online weight times `online_weight_quorum_percent`
+- `online_weight_quorum_percent`: Percent of online vote weight required for confirmation
+- `online_weight_minimum`: When calculating online weight, the node is forced to assume at least this much voting weight is online, thus setting a floor for voting weight to confirm transactions at `online_weight_minimum` * `quorum_delta`
+- `online_stake_total`: Total online weight from gossip vote traffic
+- `peers_stake_total`: Total online weight from direct node connections
+- `trended_stake_total`: Median of online weight samples taken every 5 minutes over previous 2 week period
+- Removed in _version 22.0_: `peers_stake_required`
 
 **Request:**
 ```json
@@ -1307,7 +1319,7 @@ Returns information about node elections settings & observed network state: delt
   "online_weight_minimum": "60000000000000000000000000000000000000",
   "online_stake_total": "82939414347555434636491651871033324568",
   "peers_stake_total": "69026910610720098597176027400951402360",
-  "peers_stake_required": "60000000000000000000000000000000000000"
+  "trended_stake_total": "81939414347555434636491651871033324568"
 }   
 ```   
 
@@ -2456,7 +2468,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 |------------|------------------------------------|
 | **block_count**       | average count of blocks in ledger (including unconfirmed) |
 | **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
-| **unchecked_count**   | average count of unchecked blocks |
+| **unchecked_count**   | average count of unchecked blocks. This should only be considered an estimate as nodes running RocksDB may not return exact counts. |
 | **account_count**     | average count of accounts in ledger |
 | **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
 | **peer_count**        | average count of peers nodes are connected to |
@@ -2659,6 +2671,8 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 ### unchecked_keys   
 _version 8.0+_   
 Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
+
+--8<-- "known-issue-unchecked-keys-rpc-rocksdb.md"
 
 **Request:**
 ```json
