@@ -461,59 +461,6 @@ Boolean, false by default. Only returns blocks which have their confirmation hei
 
 ---
 
-### active_difficulty
-_version 19.0+_ 
-
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
-
-**Request:**
-```json
-{
-  "action": "active_difficulty"
-}
-```  
-
-**Response:**
-```json
-{
-  "multiplier": "1.5",
-  "network_current": "fffffffaaaaaaaab",
-  "network_minimum": "fffffff800000000",
-  "network_receive_current": "fffffff07c1f07c2", // since V21.2
-  "network_receive_minimum": "fffffe0000000000" // since V21.2
-}
-```
-
-**Optional "include_trend"**
-
-Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
-Note: Before v20, the sampling period was between 16 and 36 seconds.
-
-**Request:**
-```json
-{
-  "action": "active_difficulty",
-  "include_trend": "true"
-}
-```
-
-**Response:**
-```json
-{
-  ...,
-  "difficulty_trend": [
-    "1.156096135149775",
-    "1.190133894573061",
-    "1.135567138563921",
-    "1.000000000000000",
-    "...",
-    "1.000000000000000"
-  ]
-}
-```
-
----
-
 ### available_supply  
 Returns how many raw are in the public supply  
 
@@ -1955,7 +1902,7 @@ Boolean, false by default. Only returns hashes which have their confirmation hei
 ---
 
 ### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`.
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
 
 --8<-- "process-sub-type-recommended.md"
 
@@ -2003,7 +1950,8 @@ _version 19.0+_
 Boolean, default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
 
 **Optional "watch_work"**  
-_version 20.0+_  
+_added in version 20.0+_  
+_removed in version 22.0_  
 Boolean, default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
 
 **Optional "async"**  
@@ -2521,7 +2469,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **genesis_block**     | mode (most common) of genesis block hashes |
 | **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | as of V22.0 this returns default difficulty due to deprecated active difficulty measurements, otherwise average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
@@ -4281,6 +4229,59 @@ Multiply an rai amount by the rai ratio.
 ## Deprecated RPCs
 
 ---
+
+
+### active_difficulty
+_added in version 19.0+_  
+_deprecated in version 22.0_
+
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty"
+}
+```  
+
+**Response:**
+```json
+{
+  "multiplier": "1.5",
+  "network_current": "fffffffaaaaaaaab",
+  "network_minimum": "fffffff800000000",
+  "network_receive_current": "fffffff07c1f07c2", // since V21.2
+  "network_receive_minimum": "fffffe0000000000" // since V21.2
+}
+```
+
+**Optional "include_trend"**
+
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
+Note: Before v20, the sampling period was between 16 and 36 seconds.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty",
+  "include_trend": "true"
+}
+```
+
+**Response:**
+```json
+{
+  ...,
+  "difficulty_trend": [
+    "1.156096135149775",
+    "1.190133894573061",
+    "1.135567138563921",
+    "1.000000000000000",
+    "...",
+    "1.000000000000000"
+  ]
+}
+```
 
 ### history  
 
