@@ -87,7 +87,7 @@ This will build the required Boost libraries at `/usr/local/boost/`.
 
 Inside [boost.src] run:
 ```bash
-./bootstrap.sh --with-libraries=filesystem,log,program_options,system,thread
+./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
 ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
 ```
 If on Windows: an additional b2 option `address-model=64` for x64 builds should be included.
