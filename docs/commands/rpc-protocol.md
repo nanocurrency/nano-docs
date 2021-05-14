@@ -968,6 +968,10 @@ Boolean, false by default. Manually force closing of all current bootstraps
 _version 21.0+_  
 String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
+**Optional "account"**
+_version 22.0+_
+String, empty by default. Public address for targeting a specific account on bootstrap attempt
+
 ---
 
 ### bootstrap_lazy  
@@ -1036,6 +1040,8 @@ _versions 21.0+_
       "frontiers_received": "true",
       "frontiers_confirmed": "false",
       "frontiers_confirmation_pending": "false",
+      "frontiers_age": "4294967295",
+      "last_account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
       "duration": "133"
     },
     {
