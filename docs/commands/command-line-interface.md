@@ -53,6 +53,9 @@ Use the supplied `<path>` as the data directory.
 ### --diagnostics
 Run internal diagnostics and validate existing config file (or create default config file if it doesn't exist)
 
+### --final_vote_clear
+Either specify a single `--root` to clear or `--all` to clear all final votes (not recommended)
+
 ### --generate_config node|rpc
 _version 20.0+_  
 Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
