@@ -129,56 +129,11 @@ In the event that you are unable to upgrade the ledger on another machine but wo
 
 ## RocksDB Ledger Backend
 
-!!! warning "RocksDB is experimental, do not use in production"
-	RocksDB is being included in _V20.0_ as experimental only. Future versions of the node may allow for production use of RocksDB, however old experimental RocksDB ledgers are not guarenteed to be compatible and may require resyncing from scratch.
-
 	If you are testing RocksDB and want to discuss results, configurations, etc. please join the forum topic here: https://forum.nano.org/t/rocksdb-ledger-backend-testing/111
 
-The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB becomes available as an experimental option.
+The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB became available as an experimental option. In _v22+_ it is now suitable for production environments.
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
-It is anticipated that bootstrapping will be slower using RocksDB during the initial version at least, but live traffic should be faster due to singluar writes being cached in memory and flushed to disk in bulk.
 
-Using RocksDB requires a few extra steps as it is an externally required dependency which requires a recent version of RocksDB, so older repositories may not be sufficient, it also requires `zlib`. If using the docker node, skip to [Enable RocksDB](#enable-rocksdb).
-
-### Installation  
-
-**Linux**  
-Ubuntu 19.04 and later:
-```
-sudo apt-get install zlib1g-dev
-sudo apt-get install librocksdb-dev
-```
-Otherwise:
-```
-sudo apt-get install zlib1g-dev
-export USE_RTTI=1
-git clone https://github.com/facebook/rocksdb.git
-cd rocksdb
-make static_lib
-make install
-```
-**MacOS**  
-`brew install rocksdb`
-
-**Windows**  
-Recommended way is to use `vcpkg`:
-
-* add `set (VCPKG_LIBRARY_LINKAGE static)` to the top of `%VCPKG_DIR%\ports\rocksdb\portfile.cmake`
-* `vcpkg install rocksdb:x64-windows`
-
-For other or more detailed instructions visit the official page:
-https://github.com/facebook/rocksdb/blob/master/INSTALL.md
-
-### Build node with RocksDB support
-Once RocksDB is installed successfully, the node must be built with RocksDB support using the CMake variable `-DNANO_ROCKSDB=ON`
-
-The following CMake options can be used to specify where the RocksDB and zlib libraries are if they cannot be found automatically:
-```
-ROCKSDB_INCLUDE_DIRS
-ROCKSDB_LIBRARIES
-ZLIB_LIBRARY
-ZLIB_INCLUDE_DIR
-```
 ### Enable RocksDB
 This can be enabled by adding the following to the `config-node.toml` file:
 
@@ -187,39 +142,35 @@ This can be enabled by adding the following to the `config-node.toml` file:
 enable = true
 ```
 
-There are many other options which can be set. Due to RocksDB generally using more memory the defaults have been made pessimistic in order to run on a wider range of lower end devices. Recommended settings if on a system with 8GB or more RAM (see TOML comments in the generated file for more information on what these do):
+The other options are:
+```
+io_threads = 4
+memory_multiplier = 2
+```
+It shouldn't be necessary to update these variables manually. See TOML comments in the generated file for more information on what these do.
 
-```
-[node.rocksdb]
-bloom_filter_bits = 10
-block_cache = 1024
-enable_pipelined_write=true
-cache_index_and_filter_blocks=true
-block_size=64
-memtable_size=128
-num_memtables=3
-total_memtable_size=0
-```
-Comparision:
+### Migrating existing ledger from LMDB to RocksDB
+An existing LMDB ledger can be upgraded by running the [--migrate_database_lmdb_to_rocksdb](/commands/command-line-interface/#-migrate_database_lmdb_to_rocksdb) CLI command. This process can take some time, estimates range from 20 minutes to 1 hour depending on node hardware specs. There are some internal checks which are made to determine if the migration was successful, however it is recommended to run the node first (after enabling RocksDB) for a period of time to make sure things are working as expected. After which the `data.ldb` file can be deleted if no longer required to save on disk space. Please also note the [limitations](#rocksdb-limitations) most notably is that the `unchecked_count` from the `block_count` RPC will only be an estimate.
+
+Ledger backend comparison:
 
 | LMDB | RocksDB |
 | :-------: | :---------: |
-| Tested with the node for many years | Experimental status |
+| Tested with the node for many years | Recently implemented |
 | 1 file (data.ldb) | 100+ SST files |
-| *15GB live ledger size | Smaller file size (11GB) |
-| Not many options to configure  | Very configurable |
-| Unlikely to be further optimized | Many optimizations possible in future |
-| Part of the node build process | Required external dep (incl recent version 5.13+) |
+| Ledger size won't shrink without manual vacuum | Will shrink automatically when using pruning |
+| Unlikely to be further optimized | More likely to be optimized in future |
 | - | Less file I/O (writes are flushed in bulk) |
-| - | May use more memory |
+| - | More CPU heavy |
 
 \* At the time of writing (Oct 2019)
 
-RocksDB Limitations:
+### RocksDB Limitations:
 
 * Automatic backups not currently supported
 * Database transaction tracker is not supported
-* Cannot execute CLI commands which require writing to the database, such as `nano_node --peer_clear` these must be executed when the node is stopped
+* Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear`, these must be executed when the node is stopped
+* The `unchecked_count` from the `block_count` RPC & telemetry from RocksDB nodes will only be an estimate.
 
 !!! note "Snapshotting with RocksDB"
 	When backing up using the --snapshot CLI option, it is currently set up to do incremental backups, which reduces the need to copy the whole database. However if the original files are deleted, then the backup directory should also be deleted otherwise there can be inconsistencies.

@@ -542,6 +542,8 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
   "cemented": "25"
 }
 ```
+**Note:** If the node is running the RocksDB backend the unchecked count may only be estimate.  
+
 **Optional "include_cemented"**
 
 _version 19.0+ (enable_control required in version 19.0, not required in version 20.0+)_  
@@ -2456,7 +2458,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 |------------|------------------------------------|
 | **block_count**       | average count of blocks in ledger (including unconfirmed) |
 | **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
-| **unchecked_count**   | average count of unchecked blocks |
+| **unchecked_count**   | average count of unchecked blocks. This should only be considered an estimate as nodes running RocksDB may not return exact counts. |
 | **account_count**     | average count of accounts in ledger |
 | **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
 | **peer_count**        | average count of peers nodes are connected to |
