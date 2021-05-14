@@ -76,8 +76,9 @@ nav:
     - Contributing: node-implementation/contributing.md
   - Releases:
     - Node Releases: releases/node-releases.md
-    - Current Release Notes: releases/current-release-notes.md
-    - Previous Release Notes:
+    - Release Notes:
+      - V22.0 (Latest): releases/release-v22-0.md
+      - V21.3: releases/release-v21-3.md
       - V21.2: releases/release-v21-2.md
       - V21.1: releases/release-v21-1.md
       - V21.0: releases/release-v21-0.md
@@ -161,3 +162,4 @@ plugins:
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
             'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
             'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
+            'releases/current-release-notes.md': 'releases/release-v22-0.md'
