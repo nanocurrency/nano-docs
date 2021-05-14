@@ -59,7 +59,7 @@ Each Release Candidate (RC) or final release build can be used on the public tes
 !!! success "Requirements"
     **Required Source**
 
-    * [Boost 1.69+](http://www.boost.org/users/history/version_1_69_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
+    * [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
     * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
     * Nano node source in [nano-node.src]
 
@@ -258,7 +258,7 @@ cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
 
 ### Dependencies
 
-* [Boost 1.69+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
+* [Boost 1.70+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
 * [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
 * [Git for Windows](https://git-scm.com/download/win) **git_bash**
 * [CMake](https://cmake.org/download/)
@@ -301,7 +301,7 @@ Using 64 Native Tools Command Prompt:
 * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
 ```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_69_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_69_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
 ```
 
 ### Build
