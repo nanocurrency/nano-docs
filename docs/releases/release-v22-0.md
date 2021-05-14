@@ -7,11 +7,17 @@ description: Details of the V22.0 Nano node release including upgrade notices, m
 
 ## Upgrade notices
 
-### Database upgrades
+### Database upgrades with increased disk requirements
 
-A major database upgrade to [merge block databases](https://github.com/nanocurrency/nano-node/pull/2829) will be done on upgrade to V22 and have a large impact on downtime and disk space. Upgrade times have recently been seen from 30 minutes up to 8 hours or more, depending on hardware specs. In addition, it is recommended nodes have an extra 100GB of available disk space for the upgrade and taking backups of the ledger is always highly advised. Once the upgrade is complete the ledger file size will be reduced back to \~70GB.
+!!! warning "Upgrade requires 150GB of free disk space"
 
-Due to these impacts, [upgrading the database in a staging environment](../running-a-node/ledger-management.md#updating-the-node) is recommended where possible. Alternatively, an [upgraded copy of the ledger can also be downloaded](../running-a-node/ledger-management.md#downloaded-ledger-files) for use.
+This version performs a database upgrade of the ledger format on disk. This process requires a large amount of disk space and due to the DoS attack on nano earlier in the year, the disk space requirements during upgrade require attention.
+
+Upgrading to V22.0 requires approximately 150GB of free disk space, however, the final upgraded ledger size is \~50GB. The upgrade takes between 30 minutes and 4 hours on most machines, depending on the speed of the disk.
+
+Due to these impacts, [upgrading the database in a staging environment](../running-a-node/ledger-management.md#updating-the-node) is recommended where possible. For operators who are unable to perform this direct upgrade, you may [download a snapshot of an already upgraded ledger](../running-a-node/ledger-management.md#downloaded-ledger-files).
+
+We are in the process of adding online upgrade support for future versions which will eliminate these upgrade disk requirements.
 
 ### Docker tag `latest` removed
 
