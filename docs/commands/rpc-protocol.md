@@ -976,7 +976,7 @@ String, empty by default. Public address for targeting a specific account on boo
 
 ### bootstrap_lazy  
 _version 17.0+_   
-Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap)   
+Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap). As of _version 22.0_, response includes whether new election was `started` and whether a new lazy `key_inserted` was successful.
 
 **Request:**
 ```json
@@ -988,7 +988,8 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 **Response:**
 ```json
 {
-  "started": "1"
+  "started": "1",
+  "key_inserted": "0"
 }
 ```
 **Optional "force"**
