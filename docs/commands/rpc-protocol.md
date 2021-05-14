@@ -22,9 +22,6 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
---8<-- "unconfirmed-information.md"
-    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
-
 **Request:**
 ```json 
 {
@@ -40,6 +37,10 @@ Returns how many RAW is owned and how many have not yet been received by **accou
   "pending": "10000"
 }
 ```
+
+**Optional "include_only_confirmed"**
+_version 22.0+_   
+Boolean, true by default. Results in `balance` only including blocks on this account that have already been confirmed and `pending` only including incoming send blocks that have already been confirmed on the sending account.
 
 ---
 
@@ -134,6 +135,8 @@ Returns frontier, open block, change representative block, balance, last modifie
 --8<-- "unconfirmed-information.md"
     The balance is obtained from the frontier, which may be unconfirmed. As long as you follow the [guidelines](/integration-guides/key-management/#transaction-order-and-correctness), you can rely on the **balance** for the purposes of creating transactions for this account. If the frontier is never confirmed, then the blocks that proceed it will also never be confirmed.
 
+    If you need only details for confirmed blocks, use the `include_confirmed` option below and referenced the `confirmed_*` fields added in to the response.
+
 **Request:**
 ```json
 {
@@ -159,6 +162,49 @@ Returns frontier, open block, change representative block, balance, last modifie
 
 In response `confirmation_height` only available for _version 19.0+_  
 In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
+
+**Optional "include_confirmed"**
+_version 22.0+_   
+Boolean, false by default. Adds new return fields with prefix of `confirmed_` for consistency:
+
+- `confirmed_balance`: balance for only blocks on this account that have already been confirmed
+- `confirmed_height`: matches `confirmation_height` value
+- `confirmed_frontier`: matches `confirmation_height_frontier` value
+- If `representative` option also `true`, `confirmed_representative` included: representative account from the confirmed frontier block
+- If `pending` option also `true`, `confirmed_pending` included: balance of all pending amounts where the matching incoming send blocks have been confirmed on their account
+
+**Request:**
+```json
+{
+  "action": "account_info",  
+  "account": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+  "representative": "true",
+  "weight": "true",
+  "pending": "true",
+  "include_confirmed": "true"
+}
+```
+
+**Response:**
+```json
+{
+    "frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "open_block": "0E3F07F7F2B8AEDEA4A984E29BFE1E3933BA473DD3E27C662EC041F6EA3917A0",
+    "representative_block": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "balance": "11999999999999999918751838129509869131",
+    "confirmed_balance": "11999999999999999918751838129509869131",
+    "modified_timestamp": "1606934662",
+    "block_count": "22966",
+    "account_version": "1",
+    "confirmed_height": "22966",
+    "confirmed_frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "confirmed_representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "weight": "11999999999999999918751838129509869131",
+    "pending": "0",
+    "confirmed_pending": "0"
+}
+```
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
