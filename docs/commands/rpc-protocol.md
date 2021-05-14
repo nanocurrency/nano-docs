@@ -1983,13 +1983,11 @@ Publish **block** to the network. Using the optional `json_block` is recommended
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
 }
 ```
-**Optional "force"**
-
+**Optional "force"**  
 _version 13.1+_  
 Boolean, false by default. Manually forcing fork resolution if processed block is not accepted as fork
 
-**Optional "subtype"**
-
+**Optional "subtype"**  
 _version 18.0+_  
 String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
 
@@ -1999,15 +1997,18 @@ String, empty by default. Additional check for state blocks subtype, i.e. preven
 * `change` - account balance is unchanged, representative field value changed to valid public address
 * `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
 
-**Optional "json_block"**
-
+**Optional "json_block"**  
 _version 19.0+_  
-Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
+Boolean, default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
 
-**Optional "watch_work"**
-
+**Optional "watch_work"**  
 _version 20.0+_  
-Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+Boolean, default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+
+**Optional "async"**  
+_version 22.0+_  
+Boolean, default "false". If "true", requests will add the blocks to the block processor queue and `{"started":"1"}` will be immediately returned, instead of waiting for block process completion to return. To know if the block was properly processed, monitor the [WebSocket topic `new_unconfirmed_block`](../integration-guides/websockets.md#new-unconfirmed-blocks) and a notification for that successful block will be sent.
+
 
 ---
 
