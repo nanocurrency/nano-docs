@@ -1293,7 +1293,15 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 
 ### confirmation_quorum  
 _version 16.0+_   
-Returns information about node elections settings & observed network state: delta tally required to rollback block, percentage of online weight for delta, minimum online weight to confirm block, currently observed online total weight, known peers total weight   
+Returns information about node elections settings & observed network state:
+
+- `quorum_delta`: Online weight times `online_weight_quorum_percent`
+- `online_weight_quorum_percent`: Percent of online vote weight required for confirmation
+- `online_weight_minimum`: When calculating online weight, the node is forced to assume at least this much voting weight is online, thus setting a floor for voting weight to confirm transactions at `online_weight_minimum` * `quorum_delta`
+- `online_stake_total`: Total online weight from gossip vote traffic
+- `peers_stake_total`: Total online weight from direct node connections
+- `trended_stake_total`: Median of online weight samples taken every 5 minutes over previous 2 week period
+- Removed in _version 22.0_: `peers_stake_required`
 
 **Request:**
 ```json
@@ -1309,7 +1317,7 @@ Returns information about node elections settings & observed network state: delt
   "online_weight_minimum": "60000000000000000000000000000000000000",
   "online_stake_total": "82939414347555434636491651871033324568",
   "peers_stake_total": "69026910610720098597176027400951402360",
-  "peers_stake_required": "60000000000000000000000000000000000000"
+  "trended_stake_total": "81939414347555434636491651871033324568"
 }   
 ```   
 
