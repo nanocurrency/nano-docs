@@ -23,7 +23,7 @@ The following command will start the node container. Either set the specified en
 
 * `${NANO_NAME}` - The name that you would like to assign to the docker container.
 
-* `${NANO_TAG}` - The version of docker image you will be running. For consumers, `latest` is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.
+* `${NANO_TAG}` - The version of docker image you will be running.
 
 * `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
 
@@ -112,19 +112,14 @@ First, [stop the container](#stopping) if it is running.
 docker stop ${NANO_NAME}
 ```
 
-Then we can download the latest version with `docker pull` (or [whichever version](https://hub.docker.com/r/nanocurrency/nano/tags/) we need).
+Then we can download the [specific version](https://hub.docker.com/r/nanocurrency/nano/tags/) we need.
 
-Pull latest release of the Nano Node
+Pull a version of the nano node
 ```bash
-docker pull nanocurrency/nano
+docker pull nanocurrency/nano:V22.0
 ```
 
-Or pull the Nano Node tagged with "V19.0" from Dockerhub
-```bash
-docker pull nanocurrency/nano:V19.0
-```
-
-Lastly, we [start up the docker container again](#starting) using the same command.
+Lastly, we [start up the docker container again](#starting) using the same command but the with new version tag.
 
 ---
 
@@ -155,7 +150,7 @@ A sample docker-compose.yml is provided to model the same behavior as the docker
 version: '3'
 services:
   node:
-    image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull, none for latest
+    image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull
     restart: "unless-stopped"
     ports:
      - "7075:7075/udp"   #udp network traffic (deprecated since V21)
