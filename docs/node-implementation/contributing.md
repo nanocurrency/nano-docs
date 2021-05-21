@@ -410,7 +410,7 @@ Use nano/boost/asio nano/boost/beast for includes, this wraps up various include
 
 ### Running tests
 The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
-Build with `cmake -DNANO_TESTS_ON ..`
+Build with `cmake -DNANO_TEST=ON ..`
 See docs.nano.org for more information. There may be intermittent failures, if so add them here https://github.com/nanocurrency/nano-node/issues/1121 and fix if possible.
 
 ##### Testing implementation details
