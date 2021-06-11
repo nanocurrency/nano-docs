@@ -163,4 +163,4 @@ plugins:
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
             'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
             'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
-            'releases/current-release-notes.md': 'releases/release-v22-0.md'
+            'releases/current-release-notes.md': 'releases/release-v22-1.md'
