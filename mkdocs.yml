@@ -14,7 +14,7 @@ theme:
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
-  icon: 
+  icon:
     logo: 'nano'
     repo: 'fontawesome/brands/github'
   favicon: 'images/favicon.png'
@@ -42,7 +42,7 @@ nav:
     - Test Network: running-a-node/test-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
-  - Integration Guides: 
+  - Integration Guides:
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
@@ -77,7 +77,8 @@ nav:
   - Releases:
     - Node Releases: releases/node-releases.md
     - Release Notes:
-      - V22.0 (Latest): releases/release-v22-0.md
+      - V22.1 (Latest): releases/release-v22-1.md
+      - V22.0: releases/release-v22-0.md
       - V21.3: releases/release-v21-3.md
       - V21.2: releases/release-v21-2.md
       - V21.1: releases/release-v21-1.md
@@ -162,4 +163,4 @@ plugins:
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
             'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
             'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
-            'releases/current-release-notes.md': 'releases/release-v22-0.md'
+            'releases/current-release-notes.md': 'releases/release-v22-1.md'
