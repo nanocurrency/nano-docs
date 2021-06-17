@@ -354,3 +354,34 @@ To resolve this on Linux increase max open files limit by editing `/etc/security
 Then restart session & `nano_node` service. Check changes with `ulimit -n`.
 
 For macOS the version impacts the steps necessary, but some people had success with the recipe in [https://superuser.com/a/1171028](https://superuser.com/a/1171028).
+
+**Increasing max open file descriptors on a Droplet w/Ubuntu**
+
+Add `session required pam_limits.so` to these two files:
+
+```
+/etc/pam.d/common-session
+/etc/pam.d/common-session-noninteractive
+```
+
+Next, edit
+`/etc/security/limits.conf`
+
+... and add the following lines:
+
+```
+* soft nofile 20000
+* hard nofile 30000
+root hard nofile 16384
+root soft nofile 16384
+```
+
+The last two lines can be skipped if you're not running the node as root.
+
+Log out and back in or reboot and see if `ulimit -n` picked it up
+
+On some systems, you may need to change systemd files, etc.
+
+**Docker**
+
+Once the host is updated, pass `--ulimit nofile=16384:16384`
