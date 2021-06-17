@@ -41,7 +41,7 @@ An alternative consensus protocol, Proof of Stake (PoS), was first introduced by
 
 While Nano uses a weighted-voting system that can be compared to PoS, it differs significantly from traditional PoS. See the [Open Representative Voting (ORV)](../protocol-design/orv-consensus.md) page for more details.
 
-The original Nano (RaiBlocks) paper and first beta implementation were published in December, 2014, making it one of the first Directed Acyclic Graph (DAG) based cryptocurrencies [^9]. Soon after, other DAG cryptocurrencies began to develop, most notably DagCoin/Byteball and IOTA [^10], [^11]. These DAG-based cryptocurrencies broke the blockchain mold, improving system performance and security. Byteball achieves consensus by relying on a “main-chain” comprised of honest, reputable and user-trusted “witnesses”, while IOTA achieves consensus via the cumulative PoW of stacked transactions. Nano achieves consensus via a balance-weighted vote on conflicting transactions. This consensus system provides quicker, more deterministic transactions while still maintaining a strong, decentralized system. Nano continues this development and has positioned itself as one of the highest performing cryptocurrencies.
+The original Nano (RaiBlocks) paper and first beta implementation were published in December, 2014, making it one of the first Directed Acyclic Graph (DAG) based cryptocurrencies [^9]. Soon after, other DAG cryptocurrencies began to develop, most notably DagCoin, Obyte (formerly Byteball) and IOTA [^10], [^11], [^12]. These DAG-based cryptocurrencies broke the blockchain mold, improving system performance and security. Obyte achieves consensus by relying on a “main-chain” comprised of honest, reputable and user-trusted “witnesses”, while IOTA achieves consensus via the cumulative PoW of stacked transactions. Nano achieves consensus via a balance-weighted vote on conflicting transactions. This consensus system provides quicker, more deterministic transactions while still maintaining a strong, decentralized system. Nano continues this development and has positioned itself as one of the highest performing cryptocurrencies.
 
 [^1]: S. Nakamoto, “Bitcoin: A peer-to-peer electronic cash system,” 2008. [Online]. Available: http://bitcoin.org/bitcoin.pdf
 [^2]: "Block Confirmation Times", 2021. [Online]. Available: https://nanoticker.info
@@ -50,10 +50,11 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 [^5]: “Bitcoin average confirmation time.” [Online]. Available: https://www.blockchain.com/charts/avg-confirmation-time
 [^6]: "Irreversible Transactions - How many confirmation are required", 2020. [Online]. Available: https://en.bitcoin.it/wiki/Irreversible_Transactions#How_many_confirmations_are_required
 [^7]: "Bitcoin Energy Consumption Index", 2020. [Online]. Available: https://digiconomist.net/bitcoin-energy-consumption/
-[^8]: S. King and S. Nadal, “Ppcoin: Peer-to-peer crypto-currency withproof-of-stake,” 2012. [Online]. Available: https://decred.org/research/king2012.pdf
-[^9]: C. LeMahieu, “Raiblocks distributed ledger network,” 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
-[^10]: Y. Ribero and D. Raissar, “Dagcoin whitepaper,” 2015. Available: https://dagcoin.org/wp-content/uploads/2019/07/Dagcoin_White_Paper.pdf
-[^11]: S. Popov, “The tangle,” 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
+[^8]: S. King and S. Nadal, “Ppcoin: Peer-to-peer crypto-currency withproof-of-stake”, 2012. [Online]. Available: https://decred.org/research/king2012.pdf
+[^9]: C. LeMahieu, “Raiblocks distributed ledger network”, 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
+[^10]: S. D. Lerner, “DagCoin Draft”, 2015. Available: https://bitslog.files.wordpress.com/2015/09/dagcoin-v41.pdf
+[^11]: A. Churyumov, “Byteball: A Decentralized System for Storage and Transfer of Value”, 2016. Available: https://obyte.org/Byteball.pdf
+[^12]: S. Popov, “The tangle”, 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
 
 ---
 
