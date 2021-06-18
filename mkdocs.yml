@@ -6,11 +6,11 @@ theme:
     - scheme: nano
       toggle:
         icon: material/weather-sunny
-        name: Switch to light mode
+        name: Switch to dark mode
     - scheme: slate
       toggle:
         icon: material/weather-night
-        name: Switch to dark mode
+        name: Switch to light mode
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
