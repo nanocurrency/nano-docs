@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 title: Living Whitepaper
 description: Overview of the living whitepaper on the Nano protocol and existing node implementation
 

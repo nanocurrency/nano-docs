@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Nano Node and Protocol Documentation
 Welcome! This documentation is focused on helping developers understand the Nano protocol, as well as setup, maintain and build on top of the Nano node. Details of how this documentation has been arranged are below:
 
