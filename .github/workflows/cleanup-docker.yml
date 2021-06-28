@@ -1,6 +1,6 @@
 name: nano-docs-docker
 on: pull_request
-  types: [ closed ]
+  - types: closed
 
 env:
   PR_NUMBER: ${{ github.event.number }}
