@@ -13,7 +13,7 @@ jobs:
   container_cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Clean up any untagged containers
+      - name: Clean up PR specific container and any untagged containers
         uses: actions/github-script@v3
         with:
           github-token: ${{ secrets.GHCR_TOKEN }}
@@ -22,7 +22,7 @@ jobs:
               { per_page: ${{ env.PER_PAGE }}
             });
             for(metadata of response.data) {
-                if (metadata.container.tags.length == 0) {
+                if (metadata.container.tags.length == 0 || metadata.container.tags == "${{ env.PR_NUMBER }}") {
                     console.log("delete " + version.id)
                     const deleteResponse = await github.request("DELETE /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
                     console.log("status " + deleteResponse.status)
