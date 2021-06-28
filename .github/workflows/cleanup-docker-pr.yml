@@ -22,7 +22,7 @@ jobs:
               { per_page: ${{ env.PER_PAGE }}
             });
             for(version of response.data) {
-                if (metadata.container.tags[0] == "pr-${{ env.PR_NUMBER }}") {
+                if (version.metadata.container.tags[0] == "pr-${{ env.PR_NUMBER }}") {
                     console.log("delete " + version.id)
                     const deleteResponse = await github.request("DELETE /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
                     console.log("status " + deleteResponse.status)
