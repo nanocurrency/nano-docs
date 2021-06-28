@@ -17,8 +17,8 @@ jobs:
         uses: bots-house/ghcr-delete-image-action@v1.0.0
         with:
           # NOTE: at now only orgs is supported
-          owner: bots-house
-          name: some-web-service
+          owner: ${{ env.OWNER }}
+          name: ${{ env. PACKAGE_NAME }}
           # NOTE: using Personal Access Token
           token: ${{ secrets.GHCR_TOKEN }}
           tag: pr-${{ github.event.number }}
