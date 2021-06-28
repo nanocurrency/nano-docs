@@ -13,16 +13,20 @@ jobs:
   container_cleanup:
     runs-on: ubuntu-latest
     steps:
+      - name: View context attributes
+        uses: actions/github-script@v4
+        with:
+          script: console.log(context)
       - name: Clean up PR specific container and any untagged containers
-        uses: actions/github-script@v3
+        uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GHCR_TOKEN }}
           script: |
             const response = await github.request("GET /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions",
               { per_page: ${{ env.PER_PAGE }}
             });
-            for(metadata of response.data) {
-                if (metadata.container.tags.length == 0 || metadata.container.tags == "${{ env.PR_NUMBER }}") {
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0 ) {
                     console.log("delete " + version.id)
                     const deleteResponse = await github.request("DELETE /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
                     console.log("status " + deleteResponse.status)
