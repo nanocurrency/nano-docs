@@ -1,4 +1,4 @@
-name: nano-docs-docker-cleanup
+name: cleanup-docker
 on:
   pull_request:
     types: [closed]

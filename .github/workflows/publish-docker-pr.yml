@@ -1,4 +1,4 @@
-name: nano-docs-docker
+name: publish-docker-pr
 on: pull_request
 
 env:
