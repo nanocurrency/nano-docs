@@ -14,5 +14,5 @@ jobs:
       - run: |
           echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u nanocurrency --password-stdin
           docker pull ghcr.io/nanocurrency/mkdocs-material-insiders:latest
-          docker build -t ghcr.io/nanocurrency/nano-docs:${{ env.PR_NUMBER }} .
-          docker push ghcr.io/nanocurrency/nano-docs:${{ env.PR_NUMBER }}
+          docker build -t ghcr.io/nanocurrency/nano-docs:pr-${{ env.PR_NUMBER }} .
+          docker push ghcr.io/nanocurrency/nano-docs:pr-${{ env.PR_NUMBER }}
