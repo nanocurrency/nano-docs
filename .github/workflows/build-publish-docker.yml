@@ -12,7 +12,7 @@ jobs:
 
       # Build and test Docker image
       - run: |
-          docker login ghcr.io -u nanocurrency -p ${{ secrets.GHCR_TOKEN }}
+          echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u nanocurrency --password-stdin
           docker pull ghcr.io/nanocurrency/mkdocs-material-insiders:latest
           docker build -t ghcr.io/nanocurrency/nano-docs:${{ env.PR_NUMBER }} .
           docker push ghcr.io/nanocurrency/nano-docs:${{ env.PR_NUMBER }}

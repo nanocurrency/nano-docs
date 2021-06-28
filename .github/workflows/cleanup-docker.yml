@@ -5,14 +5,27 @@ on:
 
 env:
   PR_NUMBER: ${{ github.event.number }}
+  OWNER: orgs/nanocurrency
+  PACKAGE_NAME: nano-docs
+  PER_PAGE: 100
 
 jobs:
   container_cleanup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
-
-      # Build and test Docker image
-      - run: |
-          docker login ghcr.io -u nanocurrency -p ${{ secrets.GHCR_TOKEN }}
-          docker rmi ghcr.io/nanocurrency/nano-docs:${{ env.PR_NUMBER }}
+      - name: Clean up any untagged containers
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GHCR_TOKEN }}
+          script: |
+            const response = await github.request("GET /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions",
+              { per_page: ${{ env.PER_PAGE }}
+            });
+            for(version of response.data) {
+                if (version.metadata.container.tags.length == 0) {
+                    console.log("delete " + version.id)
+                    const deleteResponse = await github.request("DELETE /${{ env.OWNER }}/packages/container/${{ env.PACKAGE_NAME }}/versions/" + version.id, { });
+                    console.log("status " + deleteResponse.status)
+                }
+            }
+          
