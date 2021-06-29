@@ -27,8 +27,8 @@ mkdocs serve
 
 If only reviewing pull requests is required, using a pre-packaged container with all custom theme modifications can be done with the following commands:
 ```bash
-docker pull ghcr.io/nanocurrency/nano-docs:<pull_request_number>
-docker run --rm -it -p 8000:8000 ghcr.io/nanocurrency/nano-docs:<pull_request_number>
+docker pull ghcr.io/nanocurrency/nano-docs:pr-<pull_request_number>
+docker run --rm -it -p 8000:8000 ghcr.io/nanocurrency/nano-docs:pr-<pull_request_number>
 ```
 
 Note that because a local volume isn't being mounted this pull request review approach is only good for validating changes and not for development purposes. These PR-specific containers will be deleted once the related pull request is either closed or merged. If an offline version of the docs are needed, the container tag `latest` is also available and updated on each change to the `master` branch.
