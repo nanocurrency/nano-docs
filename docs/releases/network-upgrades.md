@@ -9,15 +9,9 @@ For details on why and how network upgrades happen, along with explanations of t
 
 ---
 
-## Upcoming upgrades
+## Planned upgrades
 
-### Final votes
-
-**Purpose**
-
-To enable the [final votes](https://github.com/nanocurrency/nano-node/pull/3134) feature which will add a second round of voting to the consensus process as follows: once initial voting weight for an unconfirmed block has reached [quorum](../glossary.md#quorum), nodes will issue final votes by setting the timestamp to the maximum integer possible for that field (18446744073709551615). These final votes will then be required to confirm and cement a block in the ledger.
-
-Because this is a consensus change, a network upgrade is required to activate. As noted above, this will be done using a canary block once at least 80% of voting weight on the network has been upgraded. After the canary block is distributed by the Nano Foundation, the final votes will be used for cementing going forward.
+**No planned network upgrades**
 
 ---
 
@@ -50,6 +44,21 @@ To mitigate the impacts of this approach the Nano Foundation will be communicati
 ---
 
 ## Past upgrades
+
+### Final votes
+
+**Purpose**
+
+To enable the [final votes](https://github.com/nanocurrency/nano-node/pull/3134) feature which will add a second round of voting to the consensus process as follows: once initial voting weight for an unconfirmed block has reached [quorum](../glossary.md#quorum), nodes will issue final votes by setting the timestamp to the maximum integer possible for that field (18446744073709551615). These final votes will then be required to confirm the block and increase the related accounts confirmation height in the ledger.
+
+Because this is a consensus change, a network upgrade is required to activate. As noted above, this will be done using a canary block once at least 80% of voting weight on the network has been upgraded. After the canary block is distributed by the Nano Foundation, the final votes will be used for confirmation going forward.
+
+**Transition details**
+
+| Date | Type | Description |
+|------|------|-------------|
+| <span class="no-break">2021-05-14</span>  | Node release | Nano node V22.0 released with final votes functionality and hardcoded with the block hash for the canary to activate the behavior. |
+| <span class="no-break">2021-06-03</span> | Canary block | Canary block hash `B0AA9D2D10837ABD6E96DD9ECD9409F5D6F5B982D26D0E395FF3ECFBC2D139A0` distributed to the network which forced nodes upgraded to V22.0+ to only confirm blocks using final votes. Non-final votes reaching quorum are used to trigger when final votes are generated, not used for confirmation.  |
 
 ### Increased work difficulty
 
