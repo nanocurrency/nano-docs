@@ -1,4 +1,4 @@
-name: nano-docs-build
+name: build
 on: pull_request
 
 jobs:
