@@ -23,8 +23,8 @@ theme:
     - navigation.tabs
     - navigation.top
     - search.share
-    - search.highlight
     - search.suggest
+    - content.tabs.link
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
@@ -33,6 +33,7 @@ nav:
     - Overview: running-a-node/overview.md
     - Security: running-a-node/security.md
     - Node Setup: running-a-node/node-setup.md
+    - Wallet Setup: running-a-node/wallet-setup.md
     - Docker Management: running-a-node/docker-management.md
     - Configuration: running-a-node/configuration.md
     - Ledger Management: running-a-node/ledger-management.md
@@ -71,6 +72,7 @@ nav:
     - Components: node-implementation/components.md
     - Database: node-implementation/database.md
     - Blocks: node-implementation/blocks.md
+    - Networking: node-implementation/networking.md
     - Voting: node-implementation/voting.md
     - Work: node-implementation/work.md
     - Contributing: node-implementation/contributing.md
@@ -90,11 +92,11 @@ nav:
   - Glossary: glossary.md
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite:
       guess_lang: false
-  - toc:
-      permalink: true
-      toc_depth: 4
+  - footnotes
+  - meta
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -102,29 +104,32 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.tabbed
   - pymdownx.snippets:
       check_paths: true
       base_path: 'docs/snippets'
+  - pymdownx.striphtml:
+      strip_comments: true
+      strip_attributes: ''
   - pymdownx.superfences:
       custom_fences:
       - name: mermaid
         class: mermaid
         format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - footnotes
-  - pymdownx.striphtml:
-      strip_comments: true
-      strip_attributes: ''
-  - meta
+  - toc:
+      permalink: true
+      toc_depth: 4
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'

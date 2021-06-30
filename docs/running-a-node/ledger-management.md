@@ -10,7 +10,7 @@ description: Learn various aspects of properly managing your node's ledger file 
 
 The node automatically manages the full Nano ledger in the `data.ldb` file which can be found in the data directory at these locations:
 
---8<-- "directory-locations.md"
+--8<-- "directory-locations-all.md"
 
 This file will grow in size as the ledger does. As of September 2020 there are over 56 million blocks in the ledger which requires at least 29GB of free space. See [hardware recommendations](/running-a-node/node-setup/#hardware-recommendations) for more preferred node specs.
 

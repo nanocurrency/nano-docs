@@ -4,7 +4,7 @@ The following are minimum recommended specifications for nodes with more than 0.
 * 4GB RAM
 * Quad-Core CPU
 * 200 Mbps bandwidth (2TB or more of available monthly bandwidth)
-* SSD-based hard drive with 80GB+ of free space
+* SSD-based hard drive with 100GB+ of free space
 
 ### Non-voting and Representative Nodes
 The following are minimum recommended specifications for non-voting nodes and Representative nodes with less than 0.1% of the online voting weight (regular [Representatives](../glossary.md#representative)):
@@ -12,7 +12,9 @@ The following are minimum recommended specifications for non-voting nodes and Re
 * 2GB RAM (additional RAM or swap space may be needed if bootstrapping a new node from scratch)
 * Dual-Core CPU
 * 100 Mbps bandwidth (2TB or more of available monthly bandwidth)
-* SSD-based hard drive with 80GB+ of free space
+* SSD-based hard drive with 100GB+ of free space
+
+These lower specifications are also valid for any type of node run on the [Beta network](../running-a-node/beta-network.md) and [Test network](../running-a-node/test-network.md).
 
 !!! warning "Varied resource usage"
 	Various factors affect resource usage including how often RPC calls are made, other applications running on the machine, etc. These recommendations should be evaluated along with other considerations.
