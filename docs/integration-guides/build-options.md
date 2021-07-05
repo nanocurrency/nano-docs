@@ -7,31 +7,9 @@ description: Instructions for manually building the Nano node for a variety of o
 
 ## Official release builds
  
-Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases):
+Throughout the development cycle and after releases official builds of the node for Docker, Linux, macOS and Windows are generated and published for test, beta and main networks.
 
---8<-- "current-build-links-main.md"
-
---8<-- "known-issue-peers-stake-reporting.md"
-
---8<-- "known-issue-macos-too-many-open-files.md"
-
-### Beta builds
-
-Each beta release cycle official beta builds of the node for Linux, MacOS and Windows are released, along with Docker images. Go to the [Beta Network page](/running-a-node/beta-network/) for more details.
-
-**Other sources**  
-The beta node can be also be installed for RHEL/CentOS rpm:
-```bash
-sudo yum-config-manager --add-repo https://repo.nano.org/nanocurrency-beta.repo
-sudo yum install nanocurrency-beta
-```
-
-This installs `nano_node-beta` to bin.
-
-### Test builds
-
-Each Release Candidate (RC) or final release build can be used on the public test network for general integration and node upgrade testing. Go to the [Test Network page](/running-a-node/test-network/) for more details about Docker, binaries configuration, etc., or see the [Test network](#node) section below for manual build details.
-
+--8<-- "current-build-links-all.md"
 
 ## Nano Directory
 
@@ -52,59 +30,259 @@ Each Release Candidate (RC) or final release build can be used on the public tes
 
 ---
 
-## General Build Instructions
+## Requirements & setup
 
 --8<-- "unsupported-configuration.md"
 
-!!! success "Requirements"
-    **Required Source**
-
-    * [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html) extracted to [boost.src] (OR `bash nano-node/util/build_prep/bootstrap_boost.sh -m`)
-    * (wallet) [Qt 5.x open source edition](https://www1.qt.io/download-open-source/) extracted to [qt.src]
-    * Nano node source in [nano-node.src]
-
-    **Required build tools**
-
-    * (macOS) XCode >= 9
-    * (Windows) Visual Studio >= 2017 (15.0)
-    * (Windows) NSIS package builder
-    * (\*nix) Clang >= 5 or GCC >= 7
-    * CMake >= 3.8
-
 ### Boost
 
-**Option 1**
+The build commands below include bootstrapping Boost, but it can be optionally built from the downloaded source instead:
 
-Inside `nano-node` directory run:
+* Download [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html)
+* Extract to \[boost.src\]
+* From inside [boost.src] run:
 
-```bash
-bash util/build_prep/bootstrap_boost.sh -m
-```
+=== "*nix"
+    ```bash
+    ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
+    ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
+    ```
 
-This will build the required Boost libraries at `/usr/local/boost/`.
+=== "macOS"
+    ```bash
+    ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
+    ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
+    ```
 
-**Option 2**
+=== "Windows"
+    ```bash
+    ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
+    ./b2 --prefix=[boost] --build-dir=[boost.build] address-model=64 link=static install
+    ```
 
-Inside [boost.src] run:
-```bash
-./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
-./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
-```
-If on Windows: an additional b2 option `address-model=64` for x64 builds should be included.
+If using this option, remove `bash util/build_prep/bootstrap_boost.sh -m` from the [build command](#build-commands) below.
 
-### QT Wallet
+### Qt wallet
 
-In [qt.build] execute:
-```bash
-[qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
-make
-make install
-```
-If on Windows: use `nmake` instead of `make`.
+If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source edition](https://www.qt.io/download) and extract to [qt.src]. In [qt.build] execute:
+
+=== "*nix"
+    ```bash
+    [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
+    make
+    make install
+    ```
+
+=== "macOS"
+    ```bash
+    [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
+    make
+    make install
+    ```
+
+=== "Windows"
+    ```bash
+    [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
+    nmake
+    nmake install
+    ```
 
 ### Node
 
-**CMake variables**
+=== "*nix"
+    **Required build tools**
+
+    * CMake >= 3.8
+    * Clang >= 5 or GCC >= 7
+
+
+    === "Debian"
+        **Version**
+
+        * Debian 8 Jessie (Debian 8 requires Cmake 3.8+)
+        * Debian 9 Stretch
+
+        **Install dependencies**
+
+        ```bash
+        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get install git cmake g++ curl wget
+        ```
+
+    === "Ubuntu"
+        **Version**
+        
+        * Ubuntu 18.04 LTS Server
+        * Ubuntu 18.10+
+
+        **Install dependencies**
+
+        ```bash
+        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get install git cmake g++ curl wget
+        ```
+
+    === "CentOS"
+        **Version**
+        
+        * CentOS 7
+
+        **Install dependencies**
+
+        ```bash
+        sudo yum check-update
+        sudo yum install git libstdc++-static curl wget
+        ```
+
+        **Configure repository with modern GCC**
+        ```bash
+        sudo yum install centos-release-scl
+        sudo yum install devtoolset-7-gcc*
+        scl enable devtoolset-7 bash
+        ```
+
+        **Modern Cmake**
+        ```bash
+        wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
+        tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
+        ./bootstrap --prefix=/usr/local
+        make -j$(nproc)
+        sudo make install
+        cd ..
+        ```
+
+    === "Arch Linux"
+
+        **Install dependencies**
+
+        ```bash
+        pacman -Syu
+        pacman -S base-devel git gcc cmake curl wget
+        ```
+
+=== "macOS"
+    **Required build tools**
+    
+    * CMake >= 3.8
+    * XCode >= 9
+
+=== "Windows"
+    **Required build tools**
+
+    * CMake >= 3.8
+    * NSIS package builder
+    * [Visual Studio 2017 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise)
+        * Select **Desktop development with C++**
+        * Select the latest Windows 10 SDK
+
+---
+
+## Build commands
+
+### Node
+
+The process below will build the node for the [test network](../running-a-node/test-network.md). Remove the `-DACTIVE_NETWORK=nano_test_network` and `-DCMAKE_BUILD_TYPE=RelWithDebInfo` CMake variables to create a release build for the main network. See [CMake variables](#cmake-variables) and [network options](#network-options) below for details.
+
+=== "*nix"
+    ```bash
+    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    cd nano_build
+    export BOOST_ROOT=`pwd`/../boost_build
+    bash util/build_prep/bootstrap_boost.sh -m
+    cmake -DACTIVE_NETWORK=nano_test_network -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles" .
+    make nano_node
+    cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
+    ```
+
+=== "macOS"
+    ```bash
+    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    cd nano_build
+    export BOOST_ROOT=`pwd`/../boost_build
+    bash util/build_prep/bootstrap_boost.sh -m
+    cmake -DACTIVE_NETWORK=nano_test_network -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles" .
+    make nano_node
+    cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
+    ```
+
+=== "Windows"
+
+    **Setup**
+
+    *Download Source*
+
+    Using git_bash:
+    ```bash
+    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node
+    cd nano-node
+    ```
+
+    *Create a `build` directory inside nano-node (makes for easier cleaning of build)*
+
+    Using git_bash:
+    ```bash
+    mkdir build
+    cd build
+    ``` 
+    * **Note:** all subsequent commands should be run within this "build" directory.
+
+    *Get redistributables*
+
+    Using Powershell:
+    ```bash
+    Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
+    ```
+
+    *Generate the build configuration.*
+
+    Using 64 Native Tools Command Prompt:
+
+    * Ensure the Qt, Boost, and Windows SDK paths match your installation.
+
+    ```bash
+    cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DACTIVE_NETWORK=nano_test_network -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+    ```
+
+    **Build**
+    	
+    * Open `nano-node.sln` in Visual Studio
+    * Build the configuration specified in the previous step
+    * Alternative using 64 Native Tools Command Prompt:
+
+    ```bash 
+    cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PROCESSORS%
+    ```
+
+    **Package up binaries**
+
+    Using 64 Native Tools Command Prompt:
+
+    * Replace **%CONFIGURATION%** with the build configuration specified in previous step
+    * Replace **%GENERATOR%** with NSIS (if installed) or ZIP
+
+    ```bash 
+    cpack -G %GENERATOR% -C %CONFIGURATION%
+    ```
+
+### Qt wallet
+
+This is only required when the Qt wallet with GUI is needed.
+
+`make nano_wallet`
+
+### RPC server
+
+This is only required for when the RPC server is being [run as a child process or outside the node process completely](advanced.md#running-nano-as-a-service).
+
+`make nano_rpc`
+
+---
+
+## Additional build details
+
+### Node
+
+#### CMake variables
 
 Format: `cmake -D VARNAME=VARVALUE`
 
@@ -124,212 +302,36 @@ Format: `cmake -D VARNAME=VARVALUE`
 * `NANO_ASIO_HANDLER_TRACKING=10` (Output asio diagnostics for any completion handlers which have taken longer than this in milliseconds. For more information see the description of the PR [#2681](https://github.com/nanocurrency/nano-node/pull/2681))
 * `NANO_FUZZER_TEST=ON` (Build the fuzz tests, not available on Windows)
 
-**Build Node**
+#### Building a package
 
-* `git submodule update --init --recursive`
-* Generate with cmake then build with your compiler
-* (\*nix) to build node without GUI execute: `make nano_node`
-* (\*nix) to build wallet with GUI execute: `make nano_wallet`
-* (\*nix) to build rpc for child/out of process execute: `make nano_rpc`
+=== "*nix"
+    `cpack -G "TBZ2"`
 
-**Building a package**
+=== "macOS"
+    `cpack -G "DragNDrop"`
 
-* (macOS) `cpack -G "DragNDrop"`
-* (Windows) `cpack -G "NSIS"`
-* (\*nix) `cpack -G "TBZ2"`
+=== "Windows"
+    `cpack -G "NSIS"`
 
-**Testing the Node**
+#### Network options
 
-* In order to run the tests, the corresponding CMake variable must be set: `-D NANO_TEST=ON`.
-* With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test`, `load_test` and `slow_test` binaries, which can be executed such as `./core_test`.
-* See more details in [Testing](#testing)
+**Test Network**
 
-**Beta Network Participation**
-
-* More information can be found on the [Beta Network page](/running-a-node/beta-network/)
-* To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
-
-**Test Network Participation**
-
-* More information can be found on the [Test Network page](/running-a-node/test-network/)
 * To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
+* More information can be found on the [Test Network page](../running-a-node/test-network.md)
 
----
+**Main network**
 
-## Debian/Ubuntu Dependencies
+The default build network is the main network. No option needs to be specified.
 
-These instructions are for the following systems:
+**Beta Network**
 
-* Ubuntu 18.04 LTS Server
-* Ubuntu 18.10+
-* Debian 8 Jessie (Debian 8 requires Cmake 3.8+)
-* Debian 9 Stretch
-
-**Install dependencies**
-
-```bash
-sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install git cmake g++ curl wget
-```
-
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
-
-## CentOS 7 Dependencies
-
-**Requirements**
-
-* GCC compiler version 7+ or other compiler with C++17 language support (default Centos 7 compilers are outdated)
-* Cmake 3.8+
-
-**Install dependencies**
-
-```bash
-sudo yum check-update
-sudo yum install git libstdc++-static curl wget
-```
-
-**Configure repository with modern GCC**
-```bash
-sudo yum install centos-release-scl
-sudo yum install devtoolset-7-gcc*
-scl enable devtoolset-7 bash
-```
-
-**Modern Cmake**
-```bash
-wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
-tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
-./bootstrap --prefix=/usr/local
-make -j$(nproc)
-sudo make install
-cd ..
-```
-
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
-
-## Arch Linux Dependencies
-
-**Install dependencies**
-
-```bash
-pacman -Syu
-pacman -S base-devel git gcc cmake curl wget
-```
-
-Follow the [build instructions](#build-instructions-debian-centos-arch-linux).
-
----
-
-## Build Instructions - Debian, CentOS, Arch Linux
-
---8<-- "unsupported-configuration.md"
-
-### Node
-
-```bash
-git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
-cd nano_build
-export BOOST_ROOT=`pwd`/../boost_build
-bash util/build_prep/bootstrap_boost.sh -m
-cmake -G "Unix Makefiles" .
-make nano_node
-cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
-```
-
----
-
-## Build Instructions - macOS
-
---8<-- "unsupported-configuration.md"
-
-```bash
-git clone --branch V21.2 --recursive https://github.com/nanocurrency/nano-node.git nano_build
-cd nano_build
-export BOOST_ROOT=`pwd`/../boost_build
-bash util/build_prep/bootstrap_boost.sh -m
-cmake -G "Unix Makefiles" .
-make nano_node
-cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
-```
-
-## Build Instructions - Windows
-
---8<-- "unsupported-configuration.md"
-
-### Dependencies
-
-* [Boost 1.70+ for your build env](https://sourceforge.net/projects/boost/files/boost-binaries)
-* [Qt 5.9.5+ 64-bit (open source version) appropriate for your build env](https://www.qt.io/download)
-* [Git for Windows](https://git-scm.com/download/win) **git_bash**
-* [CMake](https://cmake.org/download/)
-* [Visual Studio 2017 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise)
-	* Select **Desktop development with C++**
-	* Select the latest Windows 10 SDK
-
-### Setup
-
-**Download Source**
-
-Using git_bash:
-```bash
-git clone --branch V21.1 --recursive https://github.com/nanocurrency/nano-node
-cd nano-node
-```
-
-**Create a `build` directory inside nano-node (makes for easier cleaning of build)**
-
-Using git_bash:
-```bash
-mkdir build
-cd build
-``` 
-* **Note:** all subsequent commands should be run within this "build" directory.
-
-**Get redistributables** 
-
-Using Powershell:
-```bash
-Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
-```
-
-**Generate the build configuration.**
-
-Using 64 Native Tools Command Prompt:
-
-* Replace **%CONFIGURATION%** with one of the following: `Release`, `RelWithDebInfo`, `Debug`
-* Replace **%NETWORK%** with one of the following: `nano_beta_network`, `nano_live_network`, `nano_test_network`
-* Ensure the Qt, Boost, and Windows SDK paths match your installation.
-
-```bash
-cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DACTIVE_NETWORK=%NETWORK% -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
-```
-
-### Build
-	
-* Open `nano-node.sln` in Visual Studio
-* Build the configuration specified in the previous step
-* Alternative using 64 Native Tools Command Prompt:
-
-```bash 
-cmake --build . --target ALL_BUILD --config %CONFIGURATION% -- /m:%NUMBER_OF_PROCESSORS%
-```
-
-### Package up binaries
-
-Using 64 Native Tools Command Prompt:
-
-* Replace **%CONFIGURATION%** with the build configuration specified in previous step
-* Replace **%GENERATOR%** with NSIS (if installed) or ZIP
-
-```bash 
-cpack -G %GENERATOR% -C %CONFIGURATION%
-```
-
----
+* To run a node on the beta network, set CMake variable: `-DACTIVE_NETWORK=nano_beta_network`
+* More information can be found on the [Beta Network page](../running-a-node/beta-network.md)
 
 ## Testing
 
-A number of tests binaries can be built when the `-DNANO_TEST` CMake variable is set to `ON`.
+A number of tests binaries can be built when the CMake variable `-DNANO_TEST=ON`. With this variable set, `make` will also build test files, and will produce `core_test`, `rpc_test`, `load_test` and `slow_test` binaries, which can be executed:
 
 * `core_test` - Tests the majority of protocol, node and network functionality.
 * `slow_test` - Tests which operate on a large amount of data and may take a while. Not currently tested by CI.
