@@ -20,13 +20,13 @@ Setting up a node on the beta network is similar to the main network. To start y
 
 ### Network ports
 
---8<-- "beta-network-details-simple.md"
+--8<-- "network-details-simple-beta.md"
 
 ___
 
 ### Directory locations
 
---8<-- "beta-directory-locations.md"
+--8<-- "directory-locations-beta.md"
 
 ---
 
@@ -47,15 +47,7 @@ A list of beta tags can be found at the official [Nano Currency Docker Hub](http
 
 ### Starting the Docker container
 
-```bash
-docker run --restart=unless-stopped -d \
-  -p 54000:54000 \
-  -p [::1]:55000:55000 \
-  -p [::1]:57000:57000 \
-  -v ${NANO_HOST_DIR_BETA}:/root \
-  --name ${NANO_NAME} \
-  nanocurrency/nano-beta
-```
+--8<-- "docker-run-command-beta.md"
 
 !!! tip
 	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting) details for the main network.

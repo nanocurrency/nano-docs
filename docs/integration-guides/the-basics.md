@@ -60,9 +60,12 @@ Wallet implementations will commonly start from index 0 and increment it by 1 ea
 
 It should be noted that Nano reference wallet is using described Blake2b private keys derivation path. However some implementations can use BIP44 deterministic wallets and [mnemonic seed](/integration-guides/key-management/#mnemonic-seed) producing different private keys for given seed and indices. Additionally 24-word mnemonic can be derived from a Nano 64 length hex seed as entropy with clear notice for users that this is not BIP44 seed/entropy.
 
-??? info "Code samples"
+**Code samples**
 
-	Python deterministic key:
+=== "Python"
+	
+	Generates a deterministic key:
+
 	```python
 	import hashlib
 	seed = b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01" # "0000000000000000000000000000000000000000000000000000000000000001"
@@ -74,7 +77,9 @@ It should be noted that Nano reference wallet is using described Blake2b private
 	PrivK = blake2b_state.digest()
 	print(blake2b_state.hexdigest().upper()) # "1495F2D49159CC2EAAAA97EBB42346418E1268AFF16D7FCA90E6BAD6D0965520"
 	```
-	
+
+=== "Bitcoinjs"
+
 	Mnemonic words for Blake2b Nano seed using [Bitcoinjs](https://github.com/bitcoinjs/bip39):
 	```js
 	const bip39 = require('bip39')

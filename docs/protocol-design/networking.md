@@ -35,6 +35,8 @@ The data is signed so that it cannot be forged by a Man In The Middle (MITM) att
 
 ## Peering process
 
+Initial identification of peers is a [node implementation detail](../node-implementation/networking.md#peering-process), but once a node successfully connects with another using the protocol handshake, the keepalive messages each node sends will include a random selection of the IP addresses of 8 of their peers. Any new IP addresses will be included in the list of potential peers the node will attempt to connect with during bootstrapping, vote request, telemetry and other activities.
+
 ---
 
 ## Live traffic

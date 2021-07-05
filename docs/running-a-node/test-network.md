@@ -13,13 +13,13 @@ Setting up a node on the test network is similar to the beta network. To start y
 
 ### Network ports
 
---8<-- "test-network-details-simple.md"
+--8<-- "network-details-simple-test.md"
 
 ___
 
 ### Directory locations
 
---8<-- "test-directory-locations.md"
+--8<-- "directory-locations-test.md"
 
 ---
 
@@ -28,7 +28,7 @@ ___
 
 In addition to the Docker details above, the latest binary builds of the node for the test network can be found below. These will only change when Release Candidates (RC) builds are ready, or when final releases are done. However, the first build available today is actually a development build since the changes to enable this network were recently introduced.
 
---8<-- "current-test-build-links.md"
+--8<-- "current-build-links-test.md"
 
 
 If manual builds are needed, see the [build options](../integration-guides/build-options.md) page for details.
@@ -51,15 +51,7 @@ A list of test tags can be found at the official [Nano Currency Docker Hub](http
 
 ### Starting the Docker container
 
-```bash
-docker run --restart=unless-stopped -d \
-  -p 17075:17075 \
-  -p [::1]:17076:17076 \
-  -p [::1]:17078:17078 \
-  -v ${NANO_HOST_DIR_TEST}:/root \
-  --name ${NANO_NAME} \
-  nanocurrency/nano-test
-```
+--8<-- "docker-run-command-test.md"
 
 !!! tip
 	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting) details for the main network.

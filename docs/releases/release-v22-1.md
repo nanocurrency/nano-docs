@@ -24,4 +24,4 @@ There are no special considerations when upgrading from V22.0 to V22.1. There ar
 
 ## Builds and commands
 
---8<-- "current-release-build-links.md"
+--8<-- "current-build-links-main.md"

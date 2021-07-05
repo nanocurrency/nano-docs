@@ -23,8 +23,14 @@
 
 }
 
+[data-md-color-scheme="slate"] .md-tooltip {
+
+    background-color: var(--md-primary-fg-color);
+
+ }
+
 [data-md-color-scheme="slate"] .mermaid-wrapper {
-  background-color: var(--md-default-fg-color--light);
+    background-color: var(--md-default-fg-color--light);
 }
 
 [data-md-color-scheme="slate"] .mermaid-wrapper a {
@@ -119,6 +125,11 @@
 .md-header-nav__button.md-logo {
     margin: 0rem;
     padding: 0rem;
+}
+
+.md-nav--primary .md-nav__title, .md-nav--secondary .md-nav__title   {
+    background: none;
+    box-shadow: none;
 }
 
 .md-nav__button img {
