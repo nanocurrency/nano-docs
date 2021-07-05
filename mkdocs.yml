@@ -20,11 +20,11 @@ theme:
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:
+    - content.tabs.link
     - navigation.tabs
     - navigation.top
     - search.share
     - search.suggest
-    - content.tabs.link
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
