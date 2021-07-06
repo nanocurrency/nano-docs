@@ -9,7 +9,17 @@ description: Instructions for manually building the Nano node for a variety of o
  
 Throughout the development cycle and after releases official builds of the node for Docker, Linux, macOS and Windows are generated and published for test, beta and main networks.
 
---8<-- "current-build-links-all.md"
+=== "Main network"
+
+    --8<-- "current-build-links-main.md"
+
+=== "Test network"
+
+    --8<-- "current-build-links-test.md"
+
+=== "Beta network"
+
+    --8<-- "current-build-links-beta.md"
 
 ## Nano Directory
 
@@ -19,7 +29,17 @@ Throughout the development cycle and after releases official builds of the node 
 
 ### Locations
 
---8<-- "directory-locations-all.md"
+=== "Main network"
+
+    --8<-- "directory-locations-main.md"
+
+=== "Test network"
+
+    --8<-- "directory-locations-test.md"
+
+=== "Beta network"
+
+    --8<-- "directory-locations-beta.md"
 
 ??? tip "Moving directory locations"
     Some users desire to change the blockchain download location. A solution is available for the no gui nano_node (see https://github.com/nanocurrency/nano-node/issues/79), but no concrete solution is available for the GUI client. However, a workaround can be acheived via the use of symbolic links. Below is a short tutorial for Windows builds:
@@ -181,7 +201,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source ed
 
 ### Node
 
-The process below will build the node for the [test network](../running-a-node/test-network.md). Remove the `-DACTIVE_NETWORK=nano_test_network` and `-DCMAKE_BUILD_TYPE=RelWithDebInfo` CMake variables to create a release build for the main network. See [CMake variables](#cmake-variables) and [network options](#network-options) below for details.
+The process below will create a release build of the node for the main network. See [network options](#network-options) below for details on building for the test or beta networks.
 
 === "*nix"
     ```bash
@@ -189,7 +209,7 @@ The process below will build the node for the [test network](../running-a-node/t
     cd nano_build
     export BOOST_ROOT=`pwd`/../boost_build
     bash util/build_prep/bootstrap_boost.sh -m
-    cmake -DACTIVE_NETWORK=nano_test_network -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles" .
+    cmake -G "Unix Makefiles" .
     make nano_node
     cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
     ```
@@ -200,7 +220,7 @@ The process below will build the node for the [test network](../running-a-node/t
     cd nano_build
     export BOOST_ROOT=`pwd`/../boost_build
     bash util/build_prep/bootstrap_boost.sh -m
-    cmake -DACTIVE_NETWORK=nano_test_network -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Unix Makefiles" .
+    cmake -G "Unix Makefiles" .
     make nano_node
     cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
     ```
@@ -240,7 +260,7 @@ The process below will build the node for the [test network](../running-a-node/t
     * Ensure the Qt, Boost, and Windows SDK paths match your installation.
 
     ```bash
-    cmake -DNANO_GUI=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo -DACTIVE_NETWORK=nano_test_network -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+    cmake -DNANO_GUI=ON -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
     ```
 
     **Build**
@@ -315,14 +335,14 @@ Format: `cmake -D VARNAME=VARVALUE`
 
 #### Network options
 
+**Main network**
+
+The default build network is the main network. No option needs to be specified.
+
 **Test Network**
 
 * To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
 * More information can be found on the [Test Network page](../running-a-node/test-network.md)
-
-**Main network**
-
-The default build network is the main network. No option needs to be specified.
 
 **Beta Network**
 
