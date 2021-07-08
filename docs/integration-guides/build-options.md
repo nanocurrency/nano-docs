@@ -56,7 +56,7 @@ Throughout the development cycle and after releases official builds of the node 
 
 ### Boost
 
-The node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used  for Windows as well, or you can optionally build from the downloaded source instead as follows:
+The node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used for Windows as well, or you can optionally build from the downloaded source instead as follows:
 
 * Download [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html)
 * Extract to \[boost.src\]
