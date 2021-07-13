@@ -23,7 +23,7 @@ Regardless of the motivation for running a node, it will only benefit the networ
 	Regardless of the type of node you are planning to run, make sure to review the [Node security guide](security.md) to ensure best practice with configuration, firewalls and more.
 
 ### Non-voting nodes
-When first setting up a node it will not  and e configured to participate in consensus by voting on traffic. This type of node is common and is recommended for all integrations. If your goal in setting up a node is to learn how to integrate and use nano for payments, this is the best starting point. If you want to dedicate resources to help secure consensus on the network, then a Representative node should be explored.
+When first setting up a node it will not be configured to participate in consensus by voting on traffic. This type of node is common and is recommended for all integrations. If your goal in setting up a node is to learn how to integrate and use nano for payments, this is the best starting point. If you want to dedicate resources to help secure consensus on the network, then a Representative node should be explored.
 
 !!! info "Representatives and voting"
 	For a very brief overview of how representatives and voting works in the nano network, see the [What is nano? page](../what-is-nano/overview.md#representatives-and-voting). If you're looking to dig deeper, the [ORV consensus section of the living whitepaper](../protocol-design/orv-consensus.md) helps explain further how consensus works.

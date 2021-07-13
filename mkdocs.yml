@@ -25,6 +25,7 @@ theme:
     - navigation.top
     - search.share
     - search.suggest
+    - content.tabs.link
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
