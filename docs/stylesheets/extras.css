@@ -23,6 +23,10 @@
 
 }
 
+.md-annotation__index {
+    background-color: #4a90e2;
+}
+
 [data-md-color-scheme="slate"] .md-tooltip {
 
     background-color: var(--md-primary-fg-color);

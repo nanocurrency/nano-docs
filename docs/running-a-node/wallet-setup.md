@@ -105,34 +105,34 @@ If you would like to replace the wallet's automatically generated seed with your
     This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
 
     === "Test network"
-		**Request**
-		```bash
-		curl -d '{
-		    "action": "wallet_change_seed",
-		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
-		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
-		}' http://127.0.0.1:17076
-		```
+      **Request**
+      ```bash
+      curl -d '{
+          "action": "wallet_change_seed",
+          "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+          "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+      }' http://127.0.0.1:17076
+      ```
 
-	=== "Main network"
-		**Request**
-		```bash
-		curl -d '{
-		    "action": "wallet_change_seed",
-		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
-		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
-		}' http://127.0.0.1:7076
-		```
+	  === "Main network"
+      **Request**
+      ```bash
+      curl -d '{
+          "action": "wallet_change_seed",
+          "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+          "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+      }' http://127.0.0.1:7076
+      ```
 
-	=== "Beta network"
-		**Request**
-		```bash
-		curl -d '{
-		    "action": "wallet_change_seed",
-		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
-		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
-		}' http://127.0.0.1:55000
-		```
+    === "Beta network"
+      **Request**
+      ```bash
+      curl -d '{
+          "action": "wallet_change_seed",
+          "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+          "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+      }' http://127.0.0.1:55000
+      ```
 
 #### Set wallet password
 

@@ -20,6 +20,7 @@ theme:
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:
+    - content.tabs.link
     - navigation.tabs
     - navigation.top
     - search.share
