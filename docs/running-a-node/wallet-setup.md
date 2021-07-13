@@ -44,7 +44,7 @@ For the purposes of this guide we will proceed as if these didn't exist, which w
 
 #### Run command
 
-After this configuration change you can create a wallet using the ['wallet_create' RPC](../commands/rpc-protocol.md#wallet-create). During this call not only will a wallet be created, but a cryptographically secure [seed](../integration-guides/the-basics.md#seed) will also be created and added to the wallet. If you wish to use an existing seed instead of have one generated, make sure to include it using the optional `seed` parameter.
+After this configuration change you can create a wallet using the ['wallet_create' RPC](../commands/rpc-protocol.md#wallet_create). During this call not only will a wallet be created, but a cryptographically secure [seed](../integration-guides/the-basics.md#seed) will also be created and added to the wallet. If you wish to use an existing seed instead of have one generated, make sure to include it using the optional `seed` parameter.
 
 === "Test network"
 	**Request**
@@ -76,13 +76,13 @@ After this configuration change you can create a wallet using the ['wallet_creat
 }
 ```
 
-The wallet ID provided in the response is an ID local to the node and only available from the ['wallet_create' RPC](../commands/rpc-protocol.md#wallet-create) response or from CLI commands. This provides an extra layer of security if RPC access to sensitive calls exists: without direct access to the server to run CLI commands to get the wallet ID, remote calls to RPC won't be able to send funds or take other types of actions. 
+The wallet ID provided in the response is an ID local to the node and only available from the [`wallet_create` RPC](../commands/rpc-protocol.md#wallet_create) response or from CLI commands. This provides an extra layer of security if RPC access to sensitive calls exists: without direct access to the server to run CLI commands to get the wallet ID, remote calls to RPC won't be able to send funds or take other types of actions. 
 
 Make sure to backup this wallet ID as this will be needed for other calls (you can [recover your wallet ID later](../integration-guides/key-management.md#recovering-wallet_id) too if needed).
 
 #### Backup or import your seed
 
-Note that the seed generated in the wallet was not return in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface/#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
+Note that the seed generated in the wallet was not return in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface.md#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
 
 === "Docker"
 	**Request**
@@ -99,16 +99,40 @@ Note that the seed generated in the wallet was not return in the RPC response. T
 Seed: A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6
 ```
 
-If you would like to replace the wallet's automatically generated seed with your own, you can use the wallet_change_seed RPC command:
+If you would like to replace the wallet's automatically generated seed with your own, you can use the [`wallet_change_seed` RPC](../commands/rpc-protocol.md#wallet-change-seed) command:
+
 !!! danger "wallet_change_seed replaces the previous seed"
     This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
-```
-curl -d '{
-    "action": "wallet_change_seed",
-    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
-    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
-}' 127.0.0.1:7076
-```
+
+    === "Test network"
+		**Request**
+		```bash
+		curl -d '{
+		    "action": "wallet_change_seed",
+		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+		}' http://127.0.0.1:17076
+		```
+
+	=== "Main network"
+		**Request**
+		```bash
+		curl -d '{
+		    "action": "wallet_change_seed",
+		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+		}' http://127.0.0.1:7076
+		```
+
+	=== "Beta network"
+		**Request**
+		```bash
+		curl -d '{
+		    "action": "wallet_change_seed",
+		    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+		    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+		}' http://127.0.0.1:55000
+		```
 
 #### Set wallet password
 
