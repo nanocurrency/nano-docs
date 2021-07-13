@@ -1672,7 +1672,7 @@ _enable_control required, version 17.0+_
 
 --8<-- "debug-only-command.md"
  
-Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**  
+Returns private key, public key and node ID number with checksum (similar to account representation) from the existing node ID created on startup. "as_account" field is **deprecated**  
 _version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
 --8<-- "enable-control-warning.md"
