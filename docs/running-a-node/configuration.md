@@ -154,7 +154,7 @@ The node and its related processes will look for the files listed below, either 
 
 The default locations of the config files are listed in the table below.
 
---8<-- "directory-locations.md"
+--8<-- "directory-locations-all.md"
 
 ## Options formatting
 

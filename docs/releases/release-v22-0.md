@@ -120,9 +120,3 @@ A [new election prioritization and scheduling mechanism](https://forum.nano.org/
 * All RPC `payment_*` removed (previously deprecated in V19.0)
 * RPC `active_difficuly` deprecated due to difficulty not longer being used for prioritization, only for checking validity of blocks
 * CLI commands `--batch_size` and `--debug_mass_activity` removed (previously deprecated in V21.0)
-
----
-
-## Builds and commands
-
---8<-- "current-release-build-links.md"

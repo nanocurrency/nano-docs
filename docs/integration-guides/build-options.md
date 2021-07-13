@@ -9,7 +9,7 @@ description: Instructions for manually building the Nano node for a variety of o
  
 Each release cycle official builds of the node for Linux, MacOS and Windows are generated and linked to from the related [GitHub Release](https://github.com/nanocurrency/nano-node/releases):
 
---8<-- "current-release-build-links.md"
+--8<-- "current-build-links-main.md"
 
 --8<-- "known-issue-peers-stake-reporting.md"
 
@@ -41,7 +41,7 @@ Each Release Candidate (RC) or final release build can be used on the public tes
 
 ### Locations
 
---8<-- "directory-locations.md"
+--8<-- "directory-locations-all.md"
 
 ??? tip "Moving directory locations"
     Some users desire to change the blockchain download location. A solution is available for the no gui nano_node (see https://github.com/nanocurrency/nano-node/issues/79), but no concrete solution is available for the GUI client. However, a workaround can be acheived via the use of symbolic links. Below is a short tutorial for Windows builds:
