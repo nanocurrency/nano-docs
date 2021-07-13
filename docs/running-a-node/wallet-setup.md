@@ -101,7 +101,7 @@ Seed: A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6
 
 If you would like to replace the wallet's automatically generated seed with your own, you can use the [`wallet_change_seed` RPC](../commands/rpc-protocol.md#wallet-change-seed) command:
 
-!!! danger "wallet_change_seed replaces the previous seed"
+??? danger "wallet_change_seed replaces the previous seed"
     This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
 
     === "Test network"
@@ -113,8 +113,7 @@ If you would like to replace the wallet's automatically generated seed with your
           "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
       }' http://127.0.0.1:17076
       ```
-
-	  === "Main network"
+	=== "Main network"
       **Request**
       ```bash
       curl -d '{
@@ -123,7 +122,6 @@ If you would like to replace the wallet's automatically generated seed with your
           "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
       }' http://127.0.0.1:7076
       ```
-
     === "Beta network"
       **Request**
       ```bash
