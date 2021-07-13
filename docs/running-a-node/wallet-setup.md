@@ -80,7 +80,7 @@ The wallet ID provided in the response is an ID local to the node and only avail
 
 Make sure to backup this wallet ID as this will be needed for other calls (you can [recover your wallet ID later](../integration-guides/key-management.md#recovering-wallet_id) too if needed).
 
-#### Backup your seed
+#### Backup or import your seed
 
 Note that the seed generated in the wallet was not return in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface/#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
 
@@ -97,6 +97,17 @@ Note that the seed generated in the wallet was not return in the RPC response. T
 **Response**
 ```bash
 Seed: A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6
+```
+
+If you would like to replace the wallet's automatically generated seed with your own, you can use the wallet_change_seed RPC command:
+!!! danger "wallet_change_seed replaces the previous seed"
+    This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
+```
+curl -d '{
+    "action": "wallet_change_seed",
+    "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
+    "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
+}' 127.0.0.1:7076
 ```
 
 #### Set wallet password
