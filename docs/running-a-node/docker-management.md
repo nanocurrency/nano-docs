@@ -120,6 +120,10 @@ docker pull nanocurrency/nano:V22.0
 ```
 
 Lastly, we [start up the docker container again](#starting) using the same command but the with new version tag.
+Alteratively, you can use `docker-compose`
+```bash
+docker-compose up
+```
 
 ---
 
