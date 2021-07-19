@@ -9,11 +9,13 @@ description: Learn best practices for private key management for the Nano protoc
 Nano's private key(s) have been traditionally derived from a 64 character, uppercase hexadecimal string (0-9A-F). This is currently the more popular form of seed supported by a variety of services and wallets. Additional details available in [The Basics guide](/integration-guides/the-basics/#seed).
 
 ### Mnemonic Seed
-Nano's private key(s) from mnemonic derivation follows the BIP[39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)/[44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) standard. Only hardened paths are defined. Nano's [coin-type](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) is 165' (0x800000a5)
+Wallets that provide mnemonic seeds should use the [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) standard word list and methods for generating the seed. When BIP32 master keys are generated from the seed, the HMAC hash key variation "ed25519 seed" should be used due to nano using [ed25519 for the signing algorithm](../protocol-design/signing-hashing-and-key-derivation.md#signing-algorithm-ed25519) (see [SLIP-0010](https://github.com/satoshilabs/slips/blob/master/slip-0010.md)).
 
-`44'/165'/0'` derives the first private key, `44'/165'/1'` derives the second private key, and so on.
+A non-standard derivation path is used for nano in the [Ledger Nano implementation](https://github.com/LedgerHQ/app-nano), as well as other popular wallets. With a coin-type of `165'` (`0x800000a5`), this is a partial BIP44 path of `m/44'/165'/[address index]`. Only hardened paths are defined.
 
-The BIP39 seed modifier "ed25519 seed" is used which makes wallets compatible with each other. This was chosen due to it being used by the Ledger Nano implementation.
+`m/44'/165'/0'` derives the first private key, `m/44'/165'/1'` derives the second private key, and so on.
+
+The partial derivation path is hard-coded in the common verification tool by Ian Coleman: https://iancoleman.io/bip39/ . If using this tool to verify, note that regardless of custom settings on the BIP32 or BIP44 tabs for address generation, the resulting addresses in the table at the bottom will follow `m/44'/165'/[address index]`, even if the path in that table indicates otherwise. To see accurate paths in the Derived Addresses table, on the BIP32 tab set the BIP32 Derivation Path to `m/44'/165'`.
 
 #### Demo Examples
 
@@ -40,18 +42,51 @@ Derived BIP39 Seed:
 ```
 0dc285fde768f7ff29b66ce7252d56ed92fe003b605907f7a4f683c3dc8586d34a914d3c71fc099bb38ee4a59e5b081a3497b7a323e90cc68f67b5837690310c
 ```
-Derived Private Key for `44'/165'/0'`:
-```
-3be4fc2ef3f3b7374e6fc4fb6e7bb153f8a2998b3b3dab50853eabe128024143
-```
-Derived Public key:
-```
-5b65b0e8173ee0802c2c3e6c9080d1a16b06de1176c938a924f58670904e82c4
-```
-Derived Address:
-```
-nano_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
-```
+
+??? success "Index 0 (`44'/165'/0'`)"
+
+    Derived Private Key:
+    ```
+    3be4fc2ef3f3b7374e6fc4fb6e7bb153f8a2998b3b3dab50853eabe128024143
+    ```
+    Derived Public key:
+    ```
+    5b65b0e8173ee0802c2c3e6c9080d1a16b06de1176c938a924f58670904e82c4
+    ```
+    Derived Address:
+    ```
+    nano_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
+    ```
+
+??? success "Index 1 (`44'/165'/1'`)"
+
+    Derived Private Key:
+    ```
+    ce7e429e683d652446261c17a96da9ed1897aea96c8046f2b8036f6b05cb1a83
+    ```
+    Derived Public key:
+    ```
+    d9f7762e9cd4e7ed632481308cdb8f54abf0241332c0a8641f61e92e2fb03c12
+    ```
+    Derived Address:
+    ```
+    nano_3phqgrqbso99xojkb1bijmfryo7dy1k38ep1o3k3yrhb7rqu1h1k47yu78gz
+    ```
+
+??? success "Index 2 (`44'/165'/2'`)"
+
+    Derived Private Key:
+    ```
+    1257df74609b9c6461a3f4e7fd6e3278f2ddcf2562694f2c3aa0515af4f09e38
+    ```
+    Derived Public key:
+    ```
+    a46da51986e25a14d82e32d765dcee69b9eeccd4405411430d91ddb61b717566
+    ```
+    Derived Address:
+    ```
+    nano_3b5fnnerfrkt4me4wepqeqggwtfsxu8fai4n473iu6gxprfq4xd8pk9gh1dg
+    ```
 
 ## External Management
 
