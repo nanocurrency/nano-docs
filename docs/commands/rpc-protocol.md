@@ -703,7 +703,7 @@ Using the optional `json_block` is recommended since v19.0.
 }
 ```
 
-Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 Mnano](/protocol-design/distribution-and-units/)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
+Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 nano](../protocol-design/distribution-and-units.md#unit-dividers)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
 
 **Optional "json_block"**
 
