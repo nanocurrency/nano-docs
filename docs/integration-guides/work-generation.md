@@ -84,35 +84,22 @@ graph TD
     C_1 -->|block| C_2[<a href='/commands/rpc-protocol/#work_generate'><b>RPC work_generate</b></a><br><i>&quotblock&quot: </i><b>block</b>]
     C_2 -->|work| C_3(Use <b>work</b> in <b>block</b>)
     C_3 -->block
-    block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quottrue&quot</i>]
+    block -->D[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a>]
 ```
 
 </div>
 
 ### Work generated without using the node
 
-!!!tip "Lower thresholds for receive blocks"
-    **Receive blocks** benefit from a lower work threshold. In the following guide, replace uses of `network_minimum` and `network_current` with `network_receive_minimum` and `network_receive_current`, respectively, to benefit from the lower threshold.
-
 <div class="mermaid-wrapper">
 
 ``` mermaid
 graph TD
-    M{Access to a node?} -->|yes| N[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
-    M --> |no| O_1(<a href='/protocol-design/networking/#node-telemetry'><b>Telemetry</b></a>)
-    N -->P_1(Generate work at<br><b>network_minimum</b> difficulty)
-    O_1 -->O_2((active<br>difficulty))
+    P_1(Generate work at<br><b><a href='#difficulty-thresholds'>default difficulty thresholds</a></b>)
     P_1 -->|work| P_2(Use <b>work</b> in block)
     P_2 -->P_3((block))
-    P_3 -->P_4[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a><br><i>&quotwatch_work&quot: &quotfalse&quot</i>]
+    P_3 -->P_4[<a href='/commands/rpc-protocol/#process'><b>RPC process</b></a>]
     P_4 -->P_5(<a href='/integration-guides/block-confirmation-tracking/'>Track block confirmation</a>)
-    P_5 -->P_6{Block unconfirmed<br>after 5 seconds?}
-    P_6 -->P_7[active_difficulty <a href='/commands/rpc-protocol/#active_difficulty'><b>RPC</b></a> or <a href='/integration-guides/websockets/#active-difficulty'><b>WS</b></a>]
-    P_7 -->P_8{Block difficulty less<br>than <b>network_current</b> ?}
-    P_8 -->|yes| P_9(Generate work at<br><b>network_current</b> difficulty)
-    P_8 -->|no| P_6
-    P_9 -->|updated_work| P_10(Use <b>updated_work</b> in <b>block</b>)
-    P_10 -->P_4
 ```
 
 </div>
@@ -232,20 +219,15 @@ Previous difficulty levels are outlined below as well for historical reference, 
 | 2             | Send or change | `fffffff800000000` |
 | 2             | Receive        | `fffffe0000000000` |
 
-For a block to be valid, its work field must satisfy the above work equations using this value for threshold. Nodes also prioritize the order in which they confirm transactions based on how far above this threshold the work value is. This only happens in case of saturation.
-
-Due to prioritization, it may be desirable to generate work further above the threshold to guarantee faster processing by the network. To assist integrations with managing these work difficulty levels, nodes monitor the trend of difficulty seen on unconfirmed blocks, and expose that value via the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC.
+For a block to be valid, its work field must satisfy the above work equations using this value for threshold.
 
 **Development node wallet behavior**
 
-The developer wallet included with the node is configured to pre-cache work at the base threshold and monitor any blocks it publishes to the network for confirmation. If they are not confirmed within 5 seconds, the difficulty on that block will be compared against the active difficulty seen on the network. If the block has a lower work value than the network, then new work generation is requested at the higher level.
+The developer wallet included with the node is configured to pre-cache work at the base threshold.
 
 **Difficulty management for external integrations**
 
 For services aiming to ensure the highest priority on their transactions, the confirmation of published blocks should be monitored by their integration and work levels compared against active difficulty in a similar fashion to the development wallet mentioned above. If work is left at base difficulty there could be delays in the transactions being processed during heavy network usage times.
-
-!!! tip "Configure max work generate multiplier"
-    Due to the possibility of network work levels increasing beyond the capabilities of certain work generation setups, the config option [`node.max_work_generate_multiplier`](#nodemax_work_generate_multiplier) can be used to limit how high a work value will be requested at. All setups, whether using the developer wallet or an external integration, should implement an appropriate limit which defaults to 64x in V20.
 
 ### Pre-caching
 
@@ -253,7 +235,7 @@ Work for an account can be pre-cached and saved for immediate use on an account 
 
 To accomplish this, after a block is published for an account (whatever type of block), note the _**hash**_ of that block and use it in a RPC [work_generate](../commands/rpc-protocol.md#work_generate) call. Note that you may require setting `“use_peers”: “true”`.
 
-Upon receiving a response, store its value in your database for later use for that account. Note that after a new block is published for the account, that value will no longer be a valid PoW.
+Upon receiving a response, store its value in your database for later use for that account. Note that after a new block is published for the account, that value will no longer be a valid work value.
 
 **Pre-caching when next block type is unknown**
 
@@ -261,11 +243,14 @@ With V21+ the work difficulty thresholds were split by block type. For many inte
 
 **Utilizing lower work when batching**
 
-For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block, but the difficulty will be normalized for proper prioritization if published during heavy network load times.
+For services that process receiving their pending transactions in bulk the lower work threshold of receive blocks can be taken advantage of. In doing so, the difficulty is 64x lower than a send/change block.
 
 ### Difficulty multiplier
 
-Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. In the node this is typically used to compare against the base threshold, often in relation to rework being performed or validated for proper priotizing of transactions. This value is available as part of the [`active_difficulty`](../commands/rpc-protocol.md#active_difficulty) RPC, but can also be obtained with the following expression:
+!!! info "Work difficulty no longer used for prioritization"
+    Due to changes in prioritization in V22.0 the relative difficulty of work values is no longer used to prioritize the order of transactions. The below details describe how to calculate this relative difficulty for reference, but it is no longer used by the node.
+
+Relative difficulty, or difficulty multiplier, describes how much more value a PoW has compared to another. This can be obtained with the following expression:
 
 $$
 \frac{(2^{64} - \text{base_difficulty})}{(2^{64} - \text{work_difficulty})}
