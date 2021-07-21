@@ -2818,10 +2818,16 @@ Without this parameter, the node will only generate work locally.
 
 **Optional "difficulty"**
 
+!!! info "Difficulty no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher difficulty thresholds on work generation is not useful. However, this can still be used for targeting a lower difficulty for receive blocks. This option may be removed in a future release.
+
 _version 19.0+_  
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
+
+!!! info "Multiplier no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher multipliers on work generation is not useful. This option will be removed in a future release.
 
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to generate work.  
