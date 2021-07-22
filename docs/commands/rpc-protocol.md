@@ -355,9 +355,7 @@ Returns a list of pairs of account and block hash representing the head block fo
 ---
 
 ### accounts_pending  
-Returns a list of block hashes which have not yet been received by these **accounts**  
-
---8<-- "rpc_include_only_confirmed_recommended.md"
+Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
 ```json
@@ -457,7 +455,7 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, true by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -1771,8 +1769,6 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ### pending  
 Returns a list of block hashes which have not yet been received by this account.
 
---8<-- "rpc_include_only_confirmed_recommended.md"
-
 **Request:**
 ```json
 {
@@ -1868,7 +1864,7 @@ If used with "count" only sorts relative to the first pending entries found up t
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, true by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -1907,7 +1903,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns hashes which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, true by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -3970,8 +3966,8 @@ Boolean, false by default. Returns the minimum version (epoch) of a block which 
 
 **Optional "include_only_confirmed"**
 
-_version 19.0+_
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+_version 19.0+_  
+Boolean, true by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
