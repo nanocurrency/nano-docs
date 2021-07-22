@@ -396,8 +396,7 @@ curl -d '{
   "action": "pending",
   "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
   "count": "1",
-  "sorting": "true",
-  "include_only_confirmed": "true"
+  "sorting": "true"
 }' http://127.0.0.1:7076
 ```
 
