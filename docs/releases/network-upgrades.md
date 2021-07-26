@@ -200,7 +200,7 @@ A special block type that can only be generated using a pre-determined private k
 
 The following are the epoch versions and the related accounts which are used to distribute them to the network. For certain protocol implementations these epoch signers need to be included to efficiently determine whether incoming blocks are epoch blocks.
 
-| Version | Epoch signer account | Notes |
+| Version | Epoch signer account | Purpose |
 |---------|----------------------|-------|
-| 1 | `xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3` | Genesis account |
-| 2 | `nano_3qb6o6i1tkzr6jwr5s7eehfxwg9x6eemitdinbpi7u8bjjwsgqfj4wzser3x` | Undistributed as of June 2020, see [Increased work difficulty](#increased-work-difficulty) details above |
+| 1 | `xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3` (Genesis account) | See [State blocks](#state-blocks) |
+| 2 | `nano_3qb6o6i1tkzr6jwr5s7eehfxwg9x6eemitdinbpi7u8bjjwsgqfj4wzser3x` (Used for epoch 2 only) | See [Increased work difficulty](#increased-work-difficulty) |
