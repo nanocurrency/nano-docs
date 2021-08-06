@@ -1,0 +1,1 @@
+Please see https://github.com/nanocurrency/nano-docs/issues/555 for details the article management process and list of ideas.
