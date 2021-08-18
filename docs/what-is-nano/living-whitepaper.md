@@ -1,11 +1,10 @@
 ---
+title: Living Whitepaper
+description: Overview of the living whitepaper about the nano protocol design and existing node implementation
 hide:
   - navigation
   - toc
 ---
-
-title: Living Whitepaper
-description: Overview of the living whitepaper on the Nano protocol and existing node implementation
 
 # Nano - Digital money for the modern world
 

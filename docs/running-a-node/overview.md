@@ -1,5 +1,5 @@
 title: Running a Node Overview
-description: Understand the purpose for running a node, the different types of nodes available and what type of maintenance should be expected
+description: Understand the purpose for running a nano node, the different types of nodes available and what type of maintenance should be expected
 
 # Running a Node Overview
 

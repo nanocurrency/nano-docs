@@ -1,5 +1,5 @@
 title: Docker Management
-description: Learn how to use Docker to manage your node - starting, stopping, upgrading, RPC and more
+description: Learn how to use Docker to manage your nano node - starting, stopping, upgrading, RPC and more
 
 # Docker Management
 

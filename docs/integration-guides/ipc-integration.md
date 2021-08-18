@@ -1,5 +1,5 @@
-title: Integration Guides - IPC Integration
-description: Learn how to integrate into the Nano node using the Interprocess Communication (IPC) interface
+title: IPC Integration Guide
+description: Learn how to integrate with the nano node using the Interprocess Communication (IPC) interface
 
 # IPC Integration
 

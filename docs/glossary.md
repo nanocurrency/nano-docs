@@ -1,3 +1,6 @@
+title: Glossary
+description: A glossary of common terms used within the nano documentation and network
+
 # Glossary
 
 #### account

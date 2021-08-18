@@ -1,5 +1,5 @@
 title: Node Security
-description: Information about how to properly secure your Nano node when getting setup on the network.
+description: Information about how to properly secure your nano node when getting setup on the network
 
 # Node Security
 

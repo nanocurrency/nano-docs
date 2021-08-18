@@ -1,5 +1,5 @@
 title: Node Implementation - Voting
-description: Review the various aspects of voting and vote management in the Nano node implementation
+description: Review the various aspects of voting and vote management in the nano node implementation
 
 # Node Implementation - Voting
 

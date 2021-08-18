@@ -1,5 +1,5 @@
 title: Test Network
-description: Find out how to get setup on the test network for general integration and node upgrade testing
+description: Find out how to get a nano node setup on the test network for general integration and node upgrade testing
 
 # Test network
 

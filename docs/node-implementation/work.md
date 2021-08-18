@@ -1,5 +1,5 @@
 title: Node Implementation - Work
-description: Explore how work generation and management has been implemented in the Nano node implementation
+description: Explore how work generation and management has been implemented in the nano node implementation
 
 # Node Implementation - Work
 

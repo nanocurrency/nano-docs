@@ -1,5 +1,5 @@
 title: Protocol Design - Distribution and Units
-description: Review the breakdown of divisibility, distribution and units within the Nano protocol
+description: Review the breakdown of divisibility, distribution and units within the nano protocol
 
 # Protocol Design - Distribution and Units
 

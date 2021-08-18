@@ -1,5 +1,5 @@
 title: Beta Network
-description: Find out how to join the Nano community in testing the latest node and protocol features on the beta network
+description: Find out how to join the nano community in testing the latest nano node and protocol features on the beta network
 
 # Joining the beta network
 

@@ -1,5 +1,5 @@
 title: HTTPS Configuration
-description: Learn how to enabled HTTPS for the node RPC server to better secure commands across the internet
+description: Learn how to enabled HTTPS for the nano node RPC server to better secure commands across the internet
 
 # HTTPS Support
 

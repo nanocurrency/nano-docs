@@ -1,5 +1,5 @@
 title: Node Configuration
-description: Dig into the most popular configuration options to help your Nano node work the best for your needs
+description: Dig into the most popular configuration options to help your nano node work the best for your needs
 
 # Node Configuration
 
