@@ -11,7 +11,7 @@ The original whitepaper for Nano was last updated in November 2017 and since the
 
 ## Protocol vs. Node
 
-The two main sections of the Living Whitepaper are the [Protocol Design](../protocol-design/introduction.md) and [Node Implementation](../node-implementation/introduction.md). Although they were structured to split the required elements to conform to the protocol (Protocol Design) away from optional improvements built into the current node (Node Implementation), there is some overlap between them. Where possible these overlaps have been highlighted; however, those interested in [contributing to the development of the protocol](../node-implementation/contributing.md) or building another node implementation should analyze more closely the differences between these to ensure the necessary rules are followed.
+The two main sections of the Living Whitepaper are the [Protocol Design](../protocol-design/introduction.md) and [Node Implementation](../node-implementation/introduction.md). Although they were structured to split the required elements to conform to the protocol (Protocol Design) away from optional improvements built into the current node (Node Implementation), there is some overlap between them. Where possible these overlaps have been highlighted; however, those interested in [contributing to the development of the protocol](../core-development/overview.md) or building another node implementation should analyze more closely the differences between these to ensure the necessary rules are followed.
 
 ### [Protocol Design](../protocol-design/introduction.md)
 

@@ -172,7 +172,7 @@ plugins:
         redirect_maps:
             'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
             'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
-            'what-is-nano/contributing.md': 'node-implementation/contributing.md'
+            'what-is-nano/contributing.md': 'core-development/overview.md'
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
             'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
             'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
