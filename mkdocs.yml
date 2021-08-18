@@ -16,7 +16,7 @@ theme:
     code: 'Roboto Mono'
   icon:
     repo: 'fontawesome/brands/github'
-  logo: 'images/nano.svg'
+  logo: 'images/nano+mark.svg'
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:

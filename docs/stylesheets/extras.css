@@ -145,6 +145,10 @@
 	padding-left: 0.6rem;
 }
 
+.md-header__title {
+    margin-left: 0rem;
+}
+
 /*
 .md-header,
 .md-footer-nav,
