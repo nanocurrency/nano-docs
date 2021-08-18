@@ -15,8 +15,8 @@ theme:
     text: 'Noto Sans'
     code: 'Roboto Mono'
   icon:
-    logo: 'nano'
     repo: 'fontawesome/brands/github'
+  logo: 'images/nano.svg'
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:
@@ -161,7 +161,10 @@ repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
     - search
-    - social
+    - social:
+        cards_color:
+            fill: "#4a90e2"
+            text: "#FFFFFF"
     - redirects:
         redirect_maps:
             'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'

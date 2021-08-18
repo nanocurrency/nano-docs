@@ -1,1 +1,0 @@
-placeholder file, url now redirecting to latest direct release notes page in mkdocs.yml file, plugins > redirects > redirect_maps section
