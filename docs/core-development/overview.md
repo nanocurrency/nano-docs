@@ -1,4 +1,4 @@
-title: Core Development
+title: Core Development Overview
 description: All you need to know to help contribute to the core development of the nano node and protocol
 
 # Core Development
@@ -9,7 +9,7 @@ Welcome and thanks for your interest in core development of the nano! The follow
 
 It is recommended to have an understanding of how the nano protocol is designed to work so the code can be more easily read and evaluated.
 
-- Start by reviewing the [living whitepaper](../what-is-nano/living-whitepaper.md)
+- Start by reviewing the [living whitepaper](../living-whitepaper/index.md)
 - Read through (or try out) the [running a node guides](../running-a-node/overview.md)
 - Understand [the basics](../integration-guides/the-basics.md) and maybe even some [advanced details](../integration-guides/advanced.md) about integrations
 - Learn how to [build the node yourself](../integration-guides/build-options.md)

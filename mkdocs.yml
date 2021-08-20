@@ -31,28 +31,6 @@ theme:
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
-  - Living Whitepaper:
-    - living-whitepaper/index.md
-    - Protocol Design:
-      - Introduction: protocol-design/introduction.md
-      - Ledger: protocol-design/ledger.md
-      - Blocks: protocol-design/blocks.md
-      - Work: protocol-design/work.md
-      - Networking: protocol-design/networking.md
-      - ORV Consensus: protocol-design/orv-consensus.md
-      - Attack Vectors: protocol-design/attack-vectors.md
-      - Resource Usage: protocol-design/resource-usage.md
-      - Distribution and Units: protocol-design/distribution-and-units.md
-      - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
-      - Original whitepaper: whitepaper/english.md
-    - Node Implementation:
-      - Introduction: node-implementation/introduction.md
-      - Components: node-implementation/components.md
-      - Database: node-implementation/database.md
-      - Blocks: node-implementation/blocks.md
-      - Networking: node-implementation/networking.md
-      - Voting: node-implementation/voting.md
-      - Work: node-implementation/work.md
   - Running a Node:
     - Overview: running-a-node/overview.md
     - Security: running-a-node/security.md
@@ -76,6 +54,28 @@ nav:
     - WebSockets: integration-guides/websockets.md
     - IPC Integration: integration-guides/ipc-integration.md
     - Advanced: integration-guides/advanced.md
+  - Living Whitepaper:
+      - living-whitepaper/index.md
+      - Protocol Design:
+        - Introduction: protocol-design/introduction.md
+        - Ledger: protocol-design/ledger.md
+        - Blocks: protocol-design/blocks.md
+        - Work: protocol-design/work.md
+        - Networking: protocol-design/networking.md
+        - ORV Consensus: protocol-design/orv-consensus.md
+        - Attack Vectors: protocol-design/attack-vectors.md
+        - Resource Usage: protocol-design/resource-usage.md
+        - Distribution and Units: protocol-design/distribution-and-units.md
+        - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+        - Original whitepaper: whitepaper/english.md
+      - Node Implementation:
+        - Introduction: node-implementation/introduction.md
+        - Components: node-implementation/components.md
+        - Database: node-implementation/database.md
+        - Blocks: node-implementation/blocks.md
+        - Networking: node-implementation/networking.md
+        - Voting: node-implementation/voting.md
+        - Work: node-implementation/work.md
   - Core Development:
     - Overview: core-development/overview.md
     - Collaboration Process: core-development/collaboration-process.md

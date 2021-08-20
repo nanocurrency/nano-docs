@@ -12,7 +12,7 @@ description: As the beginning of the living whitepaper, get details and backgrou
 
 ## Living Whitepaper Information 
 
-The following sections of the [Living Whitepaper](../what-is-nano/living-whitepaper.md) outline the design of the Nano protocol. The focus here is providing details of the blueprints for the different messages shared between nodes which allow data to be stored and communicated consistently across the network. The following Protocol Design sections are largely required to participate on the network, while the [Node Implementation](../node-implementation/introduction.md) sections primarily cover functionality that improves performance and security through a specific node design.
+The following sections of the [Living Whitepaper](../living-whitepaper/index.md) outline the design of the Nano protocol. The focus here is providing details of the blueprints for the different messages shared between nodes which allow data to be stored and communicated consistently across the network. The following Protocol Design sections are largely required to participate on the network, while the [Node Implementation](../node-implementation/introduction.md) sections primarily cover functionality that improves performance and security through a specific node design.
 
 ## Abstract
 
