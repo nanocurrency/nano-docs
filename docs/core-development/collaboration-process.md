@@ -55,6 +55,7 @@ Note that you can also update the last commit with `git commit --amend`. Say you
 
 - Issues are available on GitHub, with the most urgent being in the latest milestone for release
 - Start with issues labeled as [`good first issue`](https://github.com/nanocurrency/nano-node/labels/good%20first%20issue) or connect with the NF core developers on [Discord](https://chat.nano.org) or the [forum](https://forum.nano.org) for ideas on how to help
+- If you find an issue you'd like to help with, comment and tag a [Nano Foundation team member](https://github.com/orgs/nanocurrency/people) who can evaluate and assign it to you
 
 ## Submitting issues and feature requests
 
