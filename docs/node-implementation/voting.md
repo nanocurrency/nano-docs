@@ -13,6 +13,18 @@ Due to the direct 1:1 relationship between PR nodes, their latency is mostly geo
 
 ---
 
+## Final votes
+
+Nodes will treat votes differently depending on the value of their timestamp field, which results in two phases of voting. These votes can be considered non-final votes and final votes.
+
+Non-final votes are generated when a node is ready to vote on a block and it has not seen enough vote weight to reach quorum. This non-final vote will have the current time in the timestamp field.
+
+Once quorum is reached from votes received, the node will then generate a new final vote for the same block where the timestamps field contains the maximum value possible: `18446744073709551615`.
+
+In the above cases when evaluating quorum for generating a final vote, both non-final votes and final votes can be included. But a node will only consider a block confirmed when quorum is reached with all final votes. At that point the triggering of confirmation notifications, updating of confirmation heights, etc. occurs.
+
+---
+
 ## Rep crawler (PRs only)
 
 ---
