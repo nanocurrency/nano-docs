@@ -17,7 +17,7 @@ Due to the direct 1:1 relationship between PR nodes, their latency is mostly geo
 
 Nodes will treat votes differently depending on the value of their timestamp field, which results in two phases of voting. These votes can be considered non-final votes and final votes.
 
-Non-final votes are generated when a node is ready to vote on a block and it has not seen enough vote weight to reach quorum. This non-final vote will have the current time in the timestamp field.
+Non-final votes are generated when a node is ready to vote on a block and it has not seen enough vote weight to reach quorum. This non-final vote will have the current Unix time stamp in seconds in the timestamp field.
 
 Once quorum is reached from votes received, the node will then generate a new final vote for the same block where the timestamps field contains the maximum value possible: `18446744073709551615`.
 
