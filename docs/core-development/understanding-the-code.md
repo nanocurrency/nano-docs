@@ -33,6 +33,11 @@ All executables have `nano_` prefix and projects have a `main` function inside `
 
 The googletest (gtest) framework is used to validate a variety of functionality in the node, we do not currently use gmock in the codebase.  
 
+### Running tests
+The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
+Build with `cmake -DNANO_TEST=ON ..`
+See docs.nano.org for more information. There may be intermittent failures, if so add them here https://github.com/nanocurrency/nano-node/issues/1121 and fix if possible.
+
 ### Executables
 
 **core\_test** – This is where the majority of tests should go. If there is any new functionality added or something has changed, it more often than not should have a test here! Any new core areas should have their own separate test file to encapsulate the logic.   
@@ -64,11 +69,6 @@ The fuzzer uses libfuzzer which inputs arbitrary data continuously trying to fin
 
 **Notes:**  
 There aren’t currently tests for specific CLIs so it’s recommended to abstract the functionality so that it can be tested in `core_test`.
-
-### Running tests
-The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
-Build with `cmake -DNANO_TEST=ON ..`
-See docs.nano.org for more information. There may be intermittent failures, if so add them here https://github.com/nanocurrency/nano-node/issues/1121 and fix if possible.
 
 ### Testing implementation details
 Sometimes it is necessary to be able to change something about a class only for a test. Rather than make this the class interface public just for tests, the specific tests can be added as friends to the class, this is done like so for a test named like so TEST (node, example);

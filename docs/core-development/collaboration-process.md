@@ -15,7 +15,7 @@ Before:
 
 * Branch out of the **develop** branch. The **master** branch is only updated on new releases.
 * Review your code locally. Have you followed the [Code Standards](code-standards.md) closely?
-* Run tests. Did you consider adding a test case for your feature?
+* Run tests: `core_test`,`qt_test`,`rpc_test` (see [running tests](understanding-the-code.md#tests) for more details). Did you consider adding a test case for your feature?
 * Run ASAN, TSAN and Valgrind to detect memory, threading or other bugs
 * Commit and push your fork branch
 
