@@ -202,7 +202,7 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 ## HTTP callback
 Send JSON POST requests with every confirmed block to callback server configured for the node.
 
---8<-- "multiple-confirmation-notifications.md"
+--8<-- "warning-multiple-confirmation-notifications.md"
 
 **Configuration**
 

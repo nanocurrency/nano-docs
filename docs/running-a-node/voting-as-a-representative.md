@@ -61,7 +61,7 @@ Before the node will vote, the representative account configured above must have
 
 Once you have enough weight, after a few minutes you can search for your representative account on the [mynano.ninja](https://mynano.ninja/) site to verify it is voting.
 
---8<-- "multiple-node-setups-warning.md"
+--8<-- "warning-multiple-node-setups.md"
 
 ## Step 4 (Optional): Disable RPC control commands for more security
 

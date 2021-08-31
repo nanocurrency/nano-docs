@@ -65,7 +65,7 @@ There are three main options for nano node builds:
 
 Using Docker is recommended for most implementations due to the ease of upgrading and maintenance, so this guide will focus on setting up a node using that method. If you are not familiar with Docker, we recommend checkout out the official [Docker documentation](https://docs.docker.com/get-started/overview/) and other related resources to gain some knowledge before moving forward.
 
---8<-- "docker-limitations.md"
+--8<-- "warning-docker-limitations.md"
 
 --8<-- "current-build-links-all.md"
 
@@ -103,7 +103,7 @@ The Docker image can be downloaded via `docker pull` for a specific version/tag.
 
 	Please see the [Beta Network](beta-network.md) page if you plan to join this network.
 
---8<-- "multiple-node-setups-warning.md"
+--8<-- "warning-multiple-node-setups.md"
 
 ---
 

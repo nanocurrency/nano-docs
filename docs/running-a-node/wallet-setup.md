@@ -23,8 +23,7 @@ If none of the third-party offerings work for your integration needs, the best o
 
 The published binary builds and Docker images will have an internal node wallet included. The `node_wallet` process runs alongside `nano_node` by default and provides a wallet for use by Representatives on the network, as well as for development activities. If you are building the node manually, make sure to review the [QT wallet section](../integration-guides/build-options.md#qt-wallet) of the build guide for how to include and run this wallet.
 
-!!! info "Node wallet not for production use"
-	The node wallet is not supported for use in production environments. Use third-party or custom key management for production applications.
+--8<-- "warning-node-wallet-not-for-prod-use.md"
 
 Below is a basic walkthrough on how to setup a wallet and make a transaction using the built-in node wallet. It is important to understand the differences between accounts, private and public keys, seeds and wallet IDs before going much further. If you aren't comfortable with these concepts yet, see [this guide](https://docs.nano.org/integration-guides/the-basics/#account-key-seed-and-wallet-ids). Creating a wallet with a seed and generating accounts from that seed will be the focus of this guide.
 

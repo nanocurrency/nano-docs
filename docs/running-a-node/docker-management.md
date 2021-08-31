@@ -5,7 +5,7 @@ description: Learn how to use Docker to manage your node - starting, stopping, u
 
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
---8<-- "docker-limitations.md"
+--8<-- "warning-docker-limitations.md"
 
 ### Nano Directory
 

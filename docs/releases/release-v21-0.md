@@ -49,7 +49,7 @@ To allow better communication between nodes about various performance and other 
 
 Details of what is shared and options for receiving them can be found in the [node telemetry WebSocket section](../integration-guides/websockets.md#node-telemetry) and [`node_telemetry`](/commands/rpc-protocol/#telemetry) RPC.  For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
 
---8<-- "telemetry-can-be-forged.md"
+--8<-- "warning-telemetry-can-be-forged.md"
 
 Continued conversation around telemetry is happening through the [related forum discussion](https://forum.nano.org/t/node-telemetry-metrics/112/8).
 
@@ -90,7 +90,7 @@ The following options are notable node configuration updates. Additional configu
 * [`work_generate`](/commands/rpc-protocol/#work_generate) request now accepts optional `block` (and corresponding boolean `json_block`), which is used to estimate the required difficulty threshold by using ledger data. Two common use-cases are generating work for blocks created elsewhere, and re-generating work for a previously published block.
 * [`account_info`](/commands/rpc-protocol/#account_info) responses now contain `confirmation_height_frontier` which is the hash of the last confirmed block.
 
---8<-- "process-sub-type-recommended.md"
+--8<-- "warning-process-sub-type-recommended.md"
 
 ## CLI Updates
 

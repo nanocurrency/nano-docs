@@ -19,7 +19,7 @@ The partial derivation path is hard-coded in the common verification tool by Ian
 
 #### Demo Examples
 
---8<-- "external-libraries-warning.md"
+--8<-- "warning-external-libraries.md"
 
 https://github.com/roosmaa/nano-bip39-demo
 
@@ -472,7 +472,7 @@ curl -d '{
     Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
     A successful broadcast will return the broadcasted block's hash.
 
---8<-- "process-sub-type-recommended.md"
+--8<-- "warning-process-sub-type-recommended.md"
 
 ##### Request Example
 ```bash
