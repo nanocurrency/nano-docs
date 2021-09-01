@@ -35,7 +35,6 @@ Most of the content in the following documentation is focused around the [nanocu
 
 --8<-- "warning-security-vulnerability-reporting.md"
 
-
 ## Nano Foundation core developers
 
 In addition to contributions from the wider nano community, the [Nano Foundation](https://nano.org/foundation) manages a team of core developers who contribute to the protocol and primary node implementation. For a list of code contributors, see the [GitHub Insights page](https://github.com/nanocurrency/nano-node/graphs/contributors).

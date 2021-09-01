@@ -28,6 +28,8 @@ theme:
     - search.share
     - search.suggest
     - content.tabs.link
+    - navigation.indexes
+    - navigation.expand
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
