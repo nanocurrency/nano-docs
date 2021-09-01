@@ -21,13 +21,13 @@ theme:
   custom_dir: 'theme-overrides'
   features:
     - content.tabs.link
+    - navigation.indexes
+    - navigation.expand
     - navigation.tabs
     - navigation.top
     - search.share
     - search.suggest
     - content.tabs.link
-    - navigation.indexes
-    - navigation.expand
 nav:
   - Home: index.md
   - What is Nano?: what-is-nano/overview.md
@@ -45,7 +45,8 @@ nav:
     - Test Network: running-a-node/test-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
-  - Integration Guides:
+  - Integration Guides: 
+    - integration-guides/index.md
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
