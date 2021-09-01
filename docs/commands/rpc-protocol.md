@@ -2456,7 +2456,7 @@ Return metrics from other nodes on the network. By default, returns a summarized
     "pre_release_version": "0",
     "maker": "0",
     "timestamp": "1587055945990",
-    "active_difficulty": "ffffffcdbf40aa45"
+    "active_difficulty": "fffffff800000000"
 }
 ```
 
@@ -2475,7 +2475,7 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **genesis_block**     | mode (most common) of genesis block hashes |
 | **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
-| **active_difficulty** | as of V22.0 this returns default difficulty due to deprecated active difficulty measurements, otherwise average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **active_difficulty** | _V22.0+_ returns minimum network difficulty due to deprecated active difficulty measurements<br><br> _up to V21.3_ returns average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
@@ -2814,10 +2814,16 @@ Without this parameter, the node will only generate work locally.
 
 **Optional "difficulty"**
 
+!!! info "Difficulty no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher difficulty thresholds on work generation is not useful. However, this can still be used for targeting a lower difficulty for receive blocks. This option may be removed in a future release.
+
 _version 19.0+_  
 Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
+
+!!! info "Multiplier no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher multipliers on work generation is not useful. This option will be removed in a future release.
 
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to generate work.  
@@ -4243,7 +4249,18 @@ Multiply an rai amount by the rai ratio.
 _added in version 19.0+_  
 _deprecated in version 22.0_
 
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison. `network_receive_minimum` and `network_receive_current` are also provided as lower thresholds exclusively for receive blocks.
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) and related multiplier from base difficulty.
+
+| Field Name                | Response Details |
+|---------------------------|------------------|
+| `multiplier`              | Multiplier of the `network_current` from the base difficulty of `network_minimum` for comparison. Note that in V22.0+ this will always be 1 (see below for details). |
+| `network_minimum`         | Minimum difficulty required for the network for all block types |
+| `network_current`         | _V22.0+_ same minimum difficulty above due to the deprecation of active difficulty calculations used for prioritization in previous versions; _up to V21.3_ 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms |
+| `network_receive_minimum` | Lower difficulty threshold exclusively for receive blocks |
+| `network_receive_current` | _V22.0+_ same minimum receive difficulty above due to the deprecation of active difficulty calculations used for prioritization in previous versions; _up to V21.3_ 10 second trended average of adjusted difficulty seen on prioritized receive transactions, refreshed every 500ms |
+
+!!! info "Constant values returned"
+    Due to the deprecation of active difficulty calculations as of V22.0, this RPC call will return constant values as seen below. These values can be used as difficulty thresholds for the respective block types, but this RPC call should not be used for retrieving these values going forward.
 
 **Request:**
 ```json
@@ -4255,11 +4272,12 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the min
 **Response:**
 ```json
 {
-  "multiplier": "1.5",
-  "network_current": "fffffffaaaaaaaab",
-  "network_minimum": "fffffff800000000",
-  "network_receive_current": "fffffff07c1f07c2", // since V21.2
-  "network_receive_minimum": "fffffe0000000000" // since V21.2
+    "deprecated": "1",
+    "network_minimum": "fffffff800000000",
+    "network_receive_minimum": "fffffe0000000000", // since V21.2
+    "network_current": "fffffff800000000",
+    "network_receive_current": "fffffe0000000000", // since V21.2
+    "multiplier": "1"
 }
 ```
 
