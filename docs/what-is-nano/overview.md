@@ -1,13 +1,12 @@
 ---
+title: What is nano?
+description: An broad introduction to nano - the instant, fee-less and eco-friendly digital money available across the world
 hide:
   - navigation
   - toc
 ---
 
-title: What is Nano?
-description: An broad introduction to Nano - the instant, fee-less and eco-friendly digital money available across the world
-
-# What is Nano?
+# What is nano?
 
 Nano is a digital payment protocol designed to be accessible and lightweight, with a focus on removing inefficiencies present in other cryptocurrencies. With ultrafast transactions and zero fees on a secure, green and decentralized network, this makes Nano ideal for everyday transactions.
 

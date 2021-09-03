@@ -1,5 +1,5 @@
 title: Command Line Interface
-description: Reference for the CLI commands for the Nano node
+description: Reference for the CLI commands available for the nano node
 
 # Command Line Interface
 

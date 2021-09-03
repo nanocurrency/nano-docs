@@ -1,5 +1,5 @@
-title: Integration Guides - The Basics
-description: Understand some of the core details of the Nano protocol including block specifications, accounts, keys, and more
+title: Integration Basics Guide
+description: Understand some of the core details of the nano protocol including block specifications, accounts, keys, and more
 
 # The Basics
 

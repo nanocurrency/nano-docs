@@ -1,5 +1,5 @@
 title: Beyond the node
-description: Explore other tools, services, education and inspiration available after getting your node up and running
+description: Explore other tools, services, education and inspiration available after getting your nano node up and running
 
 # Beyond the Node
 

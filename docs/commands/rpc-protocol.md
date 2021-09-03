@@ -1,5 +1,5 @@
 title: RPC Protocol
-description: Reference for the various RPC commands available for the Nano node
+description: Reference for the RPC commands available for the Nano node
 
 # RPC Protocol
 

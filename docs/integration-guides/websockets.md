@@ -1,5 +1,5 @@
-title: Integration Guides - WebSockets
-description: Details for how to integrate with WebSockets for getting notifications from the Nano node
+title: WebSockets Integration Guide
+description: Details for how to integrate with WebSockets for getting notifications from the nano node
 
 # WebSockets
 

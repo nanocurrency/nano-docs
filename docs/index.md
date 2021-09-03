@@ -1,4 +1,6 @@
 ---
+title: Home
+description: Explore the design, features, releases and other related resources for the nano protocol and node implementation.
 hide:
   - navigation
   - toc

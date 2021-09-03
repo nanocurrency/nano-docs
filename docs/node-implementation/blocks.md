@@ -1,5 +1,5 @@
 title: Node Implementation - Blocks
-description: Review of block handling in the current node implementation
+description: Review of block handling in the current nano node implementation
 
 # Node Implementation - Blocks
 

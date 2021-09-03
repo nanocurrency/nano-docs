@@ -1,5 +1,5 @@
 title: Network Upgrades
-description: Check out the various types of network upgrades available on the Nano network and explore their previous and future planned uses
+description: Check out the various types of network upgrades available on the nano network and explore their previous and future planned uses
 
 # Network Upgrades
 
