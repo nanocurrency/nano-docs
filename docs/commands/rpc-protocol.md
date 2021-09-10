@@ -1903,7 +1903,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-BBoolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
