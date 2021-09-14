@@ -115,7 +115,7 @@ The following configuration options can be changed in `config-node.toml`. For mo
 !!!success "When GPU acceleration is enabled, the CPU is also used by default"
 	Make sure to set `node.work_threads` to `0` when using the GPU
 
-To enable GPU acceleration for work generation, set this option to `true`. Other fields may need to be changed if you have multiple OpenCL-enabled platforms and devices.
+To enable GPU acceleration for work generation, set this option to `true`. The `opencl.platform` and `opencl.device` values may need to be changed if you have multiple OpenCL-enabled devices.
 
 ### node.work_threads
 
