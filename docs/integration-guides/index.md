@@ -1,15 +1,15 @@
-title: Get started integrating nano
-description: An introduction to the process of starting a nano integration
+title: Get started integrating Nano
+description: An introduction to the process of starting a Nano integration
 
-# Integrating with nano
+# Integrating with Nano
 
-If you're looking for details about how to integrate your application or service with nano, you've come to the right place! There are a variety of ways to do integrations and this documentation is focused on situations requiring custom development. If you are looking for a more plug-and-play option to accept nano payments or donations, we recommend heading to https://nano.org/accept-nano for some simpler options.
+If you're looking for details about how to integrate your application or service with Nano, you've come to the right place! There are a variety of ways to do integrations and this documentation is focused on situations requiring custom development. If you are looking for a more plug-and-play option to accept Nano payments or donations, we recommend heading to https://nano.org/accept-nano for some simpler options.
 
 ## What is needed to integrate?
 
-The most basic integration with nano will require:
+The most basic integration with Nano will require:
 
-1. Access to make RPC calls to a nano node
+1. Access to make RPC calls to a Nano node
 1. A method of doing work generation for any blocks created
 1. Some form of a wallet to manage the private/public keys for your accounts
 
@@ -17,7 +17,7 @@ But before jumping in to setup, there are a few best practices and concepts you 
 
 ### How transactions work and block specs
 
-Transactions function differently in nano compared to other blockchains due to the block lattice design. The [What is nano?](../what-is-nano/overview.md) page gives a quick explanation on how send and receive transactions are related in nano. As you get into your integration, it is best to be familiar with the [block specifications](the-basics.md#blocks-specifications) in order to understand how different block subtypes are built and relate to each other.
+Transactions function differently in Nano compared to other blockchains due to the block lattice design. The [What is Nano?](../what-is-nano/overview.md) page gives a quick explanation on how send and receive transactions are related in Nano. As you get into your integration, it is best to be familiar with the [block specifications](the-basics.md#blocks-specifications) in order to understand how different block subtypes are built and relate to each other.
 
 ### Account, Key, Seed and Wallet IDs
 
@@ -32,7 +32,7 @@ $$
 1 nano = 10^{30} raw
 $$
 
-All [QR code](the-basics.md#uri-and-qr-code-standards) setups and RPC calls use raw for the amounts, while any human interaction with units is done at the nano level.
+All [QR code](the-basics.md#uri-and-qr-code-standards) setups and RPC calls use raw for the amounts, while any human interaction with units is done at the Nano level.
 
 ### Other concepts
 
@@ -42,7 +42,7 @@ The above concepts capture a minimum understanding to begin your integration jou
 
 ## Accessing RPC calls
 
-Most integrations send and receive funds by making RPC calls to a nano node. This requires either access to a public API or running your own node on one of the available networks. Depending on your goals, both are valid approaches with many options and levels of engagement.
+Most integrations send and receive funds by making RPC calls to a Nano node. This requires either access to a public API or running your own node on one of the available networks. Depending on your goals, both are valid approaches with many options and levels of engagement.
 
 ### Running your own node
 
@@ -58,7 +58,7 @@ If going this route, we encourage use of the existing test network for initial i
 Access to public APIs for the main network is also available via third-party vendors and community members. These are only available for the main network and caution should be taken when evaluating SLAs and uptime in general.
 
 - Community supported public APIs list available at [publicnodes.somenano.com](https://publicnodes.somenano.com/)
-- [NOWNodes](https://nownodes.io/) offers free and paid access to nano node RPC calls (does not include work generation) with some [service quality standards](https://nownodes.io/service-quality-standards)
+- [NOWNodes](https://nownodes.io/) offers free and paid access to Nano node RPC calls (does not include work generation) with some [service quality standards](https://nownodes.io/service-quality-standards)
 
 ---
 
@@ -70,7 +70,7 @@ In order to manage private and public keys, accounts, seeds, etc. you will need 
 
 --8<-- "warning-node-wallet-not-for-prod-use.md"
 
-The official binaries, builds and Docker containers for the nano node published by the Nano Foundation have an internal wallet available for use in development and testing. This is Qt based wallet with both a GUI and related [RPC commands](../commands/rpc-protocol.md#wallet-rpcs). The following features are available via the GUI:
+The official binaries, builds and Docker containers for the Nano node published by the Nano Foundation have an internal wallet available for use in development and testing. This is Qt based wallet with both a GUI and related [RPC commands](../commands/rpc-protocol.md#wallet-rpcs). The following features are available via the GUI:
 
 - Import wallet and adhoc keys
 - Export seed (automatically generated on startup)
