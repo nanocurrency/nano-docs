@@ -51,7 +51,7 @@ Running a node involves installing, configuring and maintaining software on a se
 If going this route, we encourage use of the existing test network for initial integrations. Head over to the [Running a node](../running-a-node/overview.md) guide and make your way through the overview and security pages before stepping through the node setup guide. Make sure you have "Test network" selected in all the example commands.
 
 !!! info "Production integration node should be non-voting"
-	When moving to production with a node on the main network, we recommend running dedicated, non-voting node for your integration. If you are interested in running a representative node to help further decentralize the network consensus, please setup a separate node for this purpose to ensure both operate as effectively as possible.
+	When moving to production with a node on the main network, we recommend running dedicated, non-voting node for your integration. If you are interested in running a representative node to help further decentralize the network consensus, please setup a separate node for this purpose to ensure both operate as effectively as possible. See the [Voting as a Representative guide](../running-a-node/voting-as-a-representative.md) for further details.
 
 ### Public APIs
 
