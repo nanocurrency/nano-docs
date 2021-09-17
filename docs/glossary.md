@@ -84,7 +84,7 @@ Also called online stake, it is a trended value. The node samples online represe
 Nodes connected over the public internet to share Nano network data.
 
 #### pending
-A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
+See [receivable](#receivable)
 
 #### Private Key
 See [wallet](#wallet).
@@ -106,6 +106,9 @@ The version used to identify the set of protocol rules nodes are required to fol
 
 #### quorum
 When the delta between the two successive blocks of a root is > 67% of the online voting weight.
+
+#### receivable
+A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
 
 #### Representative
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
