@@ -1,5 +1,5 @@
-title: Integration Guides - Advanced
-description: More advanced guides to integrating with Nano including cold wallets, private key management and more
+title: Advanced Integration Guide
+description: More advanced guides to integrating with nano including cold wallets, private key management and more
 
 # Advanced Integrations
 

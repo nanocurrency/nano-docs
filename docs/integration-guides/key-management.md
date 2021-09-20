@@ -1,5 +1,5 @@
-title: Integration Guides - Key Management
-description: Learn best practices for private key management for the Nano protocol
+title: Key Management Guide
+description: Learn best practices for private key management for the nano protocol
 
 # Key Management
 

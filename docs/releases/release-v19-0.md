@@ -1,5 +1,5 @@
-title: Previous Release Notes - V19.0 | Nano Documentation
-description: Details of the V19.0 Nano node release including upgrade notices, major features, API changes and more
+title: Release notes - V19.0 nano node
+description: Details of the V19.0 nano node release including upgrade notices, major features, API changes and more
 
 # V19.0
 

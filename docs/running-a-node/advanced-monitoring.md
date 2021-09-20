@@ -1,5 +1,5 @@
 title: Advanced Monitoring
-description: Learn how to install advanced monitoring to keep an eye on your Nano node using a Prometheus-based agent
+description: Learn how to install advanced monitoring to keep an eye on your nano node using a Prometheus-based agent
 
 # Advanced Monitoring
 

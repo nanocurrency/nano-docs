@@ -1,5 +1,5 @@
 title: Protocol Design - Signing, Hashing and Key Derivation
-description: All about the methods for signing messages, hashing data and deriving keys on the Nano protocol
+description: All about the methods for signing messages, hashing data and deriving keys on the nano protocol
 
 # Protocol Design - Signing, Hashing and Key Derivation
 

@@ -1,5 +1,5 @@
 title: Protocol Design Introduction
-description: As the beginning of the living whitepaper, get details and background of the problems Nano aims to solve that other digital money hasn't been able to
+description: As the beginning of the living whitepaper, get details and background of the problems nano aims to solve that other digital money hasn't been able to
 
 # Protocol Design - Introduction
 

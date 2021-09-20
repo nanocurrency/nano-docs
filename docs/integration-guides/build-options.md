@@ -1,4 +1,4 @@
-title: Integration Guides - Build Options
+title: Build Options
 description: Instructions for manually building the Nano node for a variety of operating systems
 
 # Build Options

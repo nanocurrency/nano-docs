@@ -1,5 +1,5 @@
 title: Node Setup
-description: Get the basic recommendations and instructions for setting up a Nano node to participate on the network
+description: Get the basic recommendations and instructions for setting up a nano node to participate on the network
 
 # Node Setup
 

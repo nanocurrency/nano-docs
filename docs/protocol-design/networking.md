@@ -1,5 +1,5 @@
 title: Protocol Design - Networking
-description: Details of networking setup design for Nano protocol
+description: Details of networking setup design for nano protocol
 
 # Protocol Design - Networking
 

@@ -1,5 +1,5 @@
 title: Node Implementation - Database
-description: Learn how the ledger is managed in the various tables and backend database options on the Nano node
+description: Learn how the ledger is managed in the various tables and backend database options on the nano node
 
 # Node Implementation - Database
 

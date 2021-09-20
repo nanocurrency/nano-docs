@@ -1,5 +1,5 @@
 title: Voting as a Representative
-description: A comprehensive guide for getting your node to participate in consensus on the Nano network by voting as a representative
+description: A comprehensive guide for getting your nano node to participate in consensus on the network by voting as a representative
 
 # Voting as a Representative
 

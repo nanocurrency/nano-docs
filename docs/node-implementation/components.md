@@ -1,5 +1,5 @@
 title: Node Implementation - Components
-description: A breakdown of the various components making up the Nano node implementation
+description: A breakdown of the various components making up the nano node implementation
 
 # Node Implementation - Components
 

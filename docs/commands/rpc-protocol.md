@@ -1,5 +1,5 @@
 title: RPC Protocol
-description: Reference for the various RPC commands available for the Nano node
+description: Reference for the RPC commands available for the Nano node
 
 # RPC Protocol
 
@@ -700,7 +700,7 @@ Using the optional `json_block` is recommended since v19.0.
 }
 ```
 
-Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 Mnano](/protocol-design/distribution-and-units/)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
+Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 nano](../protocol-design/distribution-and-units.md#unit-dividers)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
 
 **Optional "json_block"**
 
@@ -1903,7 +1903,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-BBoolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 

@@ -1,5 +1,5 @@
 title: Node Releases
-description: Explore details of the current, next and past releases of the Nano node, including protocol versions, release dates and supporting resources.
+description: Explore details of the current, next and past releases of the nano node, including protocol versions, release dates and supporting resources.
 
 # Node Releases
 

@@ -1,5 +1,5 @@
 title: Protocol Design - Ledger
-description: Explore the structure of the ledger in Nano including accounts, blocks and how they can be managed
+description: Explore the structure of the ledger in nano including accounts, blocks and how they can be managed
 
 # Protocol Design - Ledger
 

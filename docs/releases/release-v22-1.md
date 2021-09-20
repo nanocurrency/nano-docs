@@ -1,5 +1,5 @@
-title: Release Notes - V22.1 | Nano Documentation
-description: Details of the V22.1 Nano node release including upgrade notices and major features.
+title: Release notes - V22.1 nano node
+description: Details of the V22.1 nano node release including upgrade notices and major features.
 
 # V22.1
 

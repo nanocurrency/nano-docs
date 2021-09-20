@@ -1,5 +1,5 @@
 title: Ledger Management
-description: Learn various aspects of properly managing your node's ledger file including boostrapping options, handling it properly for upgrades and more
+description: Learn various aspects of properly managing your nano node's ledger file including boostrapping options, handling it properly for upgrades and more
 
 # Ledger Management
 
