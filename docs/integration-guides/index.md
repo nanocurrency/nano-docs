@@ -55,7 +55,7 @@ If going this route, we encourage use of the existing test network for initial i
 
 ### Public APIs
 
-Access to public APIs for the main network is also available via third-party vendors and community members. These are only available for the main network and caution should be taken when evaluating SLAs and uptime in general.
+Access to public APIs for the main network is also available via third-party vendors and community members. These are only available for the main network and are great for quickly testing out a proof-of-concept or prototype using small amounts. If using for production applications caution should be taken when evaluating SLAs and uptime in general.
 
 - Community supported public APIs list available at [publicnodes.somenano.com](https://publicnodes.somenano.com/)
 - [NOWNodes](https://nownodes.io/) offers free and paid access to Nano node RPC calls (does not include work generation) with some [service quality standards](https://nownodes.io/service-quality-standards)
