@@ -169,7 +169,7 @@ repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
     - search
     - social:
-        cards: !ENV PRODUCTION
+        cards: !ENV [ PRODUCTION, FALSE ]
         cards_color:
             fill: "#4a90e2"
             text: "#FFFFFF"
