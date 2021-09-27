@@ -1457,7 +1457,7 @@ _enable_control required, version 20.0+_
 
 --8<-- "debug-only-command.md"
 
-Upgrade network to new **epoch** with epoch signer private **key**  
+Upgrade network to new **epoch** with epoch signer private **key**. This spawns a background task to iterate over all accounts and add the epoch block to any accounts that do not have it. It will return `{ "started" = "1" }` if the background task was spawned successfully or `{ "started" = "0" }` if the operation could not be started. Reasons for not being able to start the operations include the node being stopped and a previous being in progress. `epoch` can be set to either 1 (representing the [network upgrade to state blocks](../releases/network-upgrades.md#state-blocks)) or 2 (representing the [network upgrade for increase work difficulty](../releases/network-upgrades.md#increased-work-difficulty)).
 
 --8<-- "enable-control-warning.md"
 
