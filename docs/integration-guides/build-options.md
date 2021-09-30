@@ -3,7 +3,7 @@ description: Instructions for manually building the Nano node for a variety of o
 
 # Build Options
 
---8<-- "only-official-builds-supported.md"
+--8<-- "warning-only-official-builds-supported.md"
 
 ## Official release builds
  
@@ -52,7 +52,7 @@ Throughout the development cycle and after releases official builds of the node 
 
 ## Requirements & setup
 
---8<-- "unsupported-configuration.md"
+--8<-- "warning-unsupported-configuration.md"
 
 ### Boost
 
