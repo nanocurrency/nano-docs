@@ -56,8 +56,8 @@ issues in the protocol made Bitcoin prohibitive for many applications:
 Bitcoin, and other cryptocurrencies, function by achieving consensus on
 their global ledgers in order to verify legitimate transactions while
 resisting malicious actors. Bitcoin achieves consensus via an economic
-measure called Proof of Work (PoW). In a PoW system participants compete
-to compute a number, called a *nonce*, such that the hash of the entire
+measure called Proof of Work (PoW). In a PoW system, participants compete
+in computing a number, called a *nonce*, such that the hash of the entire
 block is in a target range. This valid range is inversely proportional
 to the cumulative computation power of the entire Bitcoin network in
 order to maintain a consistent average time taken to find a valid nonce.
@@ -113,7 +113,7 @@ public address may exist per account.
 
 The term "block" and "transaction" are often used interchangeably, where
 a block contains a single transaction. Transaction specifically refers
-to the action while block refers to the digital encoding of the
+to the action, while block refers to the digital encoding of the
 transaction. Transactions are signed by the private-key belonging to the
 account on which the transaction is performed.
 
@@ -124,7 +124,7 @@ transaction chain. This is a key design component that
 falls under the category of replacing a run-time agreement with a
 design-time agreement; everyone agrees via signature checking that only
 an account owner can modify their own chain. This converts a seemingly
-shared data-structure, a distributed ledger, in to a set of non-shared
+shared data-structure, a distributed ledger, into a set of non-shared
 ones.
 
 ``` mermaid
@@ -155,7 +155,7 @@ A *node* is a piece of software running on a computer that conforms to
 the RaiBlocks protocol and participates in the RaiBlocks network. The
 software manages the ledger and any accounts the node may control, if
 any. A node may either store the entire ledger or a pruned history
-containing only the last few block of each account's blockchain. When
+containing only the last few blocks of each account's blockchain. When
 setting up a new node it is recommended to verify the entire history and
 prune locally.
 
@@ -501,7 +501,7 @@ block doesn't receive enough votes it can be assumed to be junk data.
 
 A malicious entity could send many unnecessary but valid transactions
 between accounts under its control in an attempt to saturate the
-network. With no transaction fees they are able to continue this attack
+network. With no transaction fees, they are able to continue this attack
 indefinitely. However, the PoW required for each transaction limits the
 transaction rate the malicious entity could generate without
 significantly investing in computational resources. Even under such an
@@ -514,7 +514,7 @@ users.
 
 An entity could create hundreds of RaiBlocks nodes on a single machine;
 however, since the voting system is weighted based on account balance,
-adding extra nodes in to the network will not gain an attacker extra
+adding extra nodes into the network will not gain an attacker extra
 votes. Therefore there is no advantage to be gained via a Sybil attack.
 
 ### Penny-Spend Attack
@@ -604,7 +604,7 @@ is the amount of investment the attacker is voting with. "Active" is
 representatives that are online and voting according to the protocol. An
 attacker can offset the amount of stake they must forfeit by knocking
 other voters offline via a network DoS attack. If this attack can be
-sustained, the representatives being attacked will become unsynchronized
+sustained, the representatives being attacked will become unsynchronized,
 and this is demonstrated by "Unsync." Finally, an attacker can gain a
 short burst in relative voting strength by switching their Denial of
 Service attack to a new set of representatives while the old set is
@@ -641,7 +641,7 @@ transact with anyone who has a contemporary database.
 
 ## Implementation
 
-Currently the reference implementation is implemented in C++ and has
+Currently, the reference implementation is implemented in C++ and has
 been producing releases since 2014 on Github [^10].
 
 ### Design Features
