@@ -132,6 +132,8 @@ The following command will start the node container. Either set the specified en
 
 	See the [Beta Network](beta-network.md) page for further details.
 
+--8<-- "docker-ipv6-tip.md"
+
 ---
 
 ### Step 4: Check the logs
@@ -291,7 +293,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:17076
+	}' http://127.0.0.1:17076
 	```
 
 	**Response**
@@ -323,7 +325,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:7076
+	}' http://127.0.0.1:7076
 	```
 
 	**Response**
@@ -355,7 +357,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:55000
+	}' http://127.0.0.1:55000
 	```
 
 	**Response**

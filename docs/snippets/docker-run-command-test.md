@@ -1,8 +1,8 @@
 ``` { .bash .annotate }
 docker run --restart=unless-stopped -d \
   -p 17075:17075 \
-  -p [::1]:17076:17076 \ # (1)
-  -p [::1]:17078:17078 \ # (2)
+  -p 127.0.0.1:17076:17076 \ # (1)
+  -p 127.0.0.1:17078:17078 \ # (2)
   -v ${NANO_HOST_DIR}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano-test:${NANO_TAG}
