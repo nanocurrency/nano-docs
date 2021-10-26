@@ -109,9 +109,9 @@ The Docker image can be downloaded via `docker pull` for a specific version/tag.
 
 ### Step 3: Start the Node
 
-The following command will start the node container. Either set the specified environment variables (i.e. `NANO_NAME=nano_node`) or substitute in explicit values to the `docker run` command.
+The following command will start the node container. Either set the specified environment variables (i.e. `NANO_NAME=nano_node_container`) or substitute in explicit values to the `docker run` command.
 
-`${NANO_NAME}` - The name that you would like to assign to the docker container, `nano_node` is commonly used.
+`${NANO_NAME}` - The name that you would like to assign to the docker container, `nano_node_container` can be used to avoid ambiguity with the commands made to the `nano_node` process.
 
 `${NANO_TAG}` - The version you will be running from the Docker tag section above (i.e. `V22.1`).
 
@@ -131,6 +131,8 @@ The following command will start the node container. Either set the specified en
 	--8<-- "docker-run-command-beta.md"
 
 	See the [Beta Network](beta-network.md) page for further details.
+
+--8<-- "docker-ipv6-tip.md"
 
 ---
 
@@ -291,7 +293,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:17076
+	}' http://127.0.0.1:17076
 	```
 
 	**Response**
@@ -323,7 +325,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:7076
+	}' http://127.0.0.1:7076
 	```
 
 	**Response**
@@ -355,7 +357,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```bash
 	curl -d '{
 	  "action": "telemetry"
-	}' [::1]:55000
+	}' http://127.0.0.1:55000
 	```
 
 	**Response**

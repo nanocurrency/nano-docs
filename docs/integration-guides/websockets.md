@@ -375,6 +375,7 @@ By default only `vote` type votes are broadcasted, and the others are filtered. 
     "account": "nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy",
     "signature": "1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353",
     "sequence": "855471574",
+    "timestamp": "1554995525138",
     "blocks": [
       "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
     ],
@@ -382,6 +383,8 @@ By default only `vote` type votes are broadcasted, and the others are filtered. 
   }
 }
 ```
+
+**NOTE:** The `timestamp` field is a Unix timestamp in milliseconds for non-final votes, and the maximum integer value for the field (`18446744073709551615`) indicates it is a [final vote](https://docs.nano.org/node-implementation/voting/#final-votes).
 
 ---
 
