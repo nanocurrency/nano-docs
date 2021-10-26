@@ -1,18 +1,18 @@
 ### Principal Representative Nodes
 The following are minimum recommended specifications for nodes with more than 0.1% of the online voting weight ([Principal Representatives](../glossary.md#principal-representative)):
 
-* 4GB RAM
-* Quad-Core CPU
-* 200 Mbps bandwidth (2TB or more of available monthly bandwidth)
-* SSD-based hard drive with 100GB+ of free space
+* 16GB RAM
+* Quad-Core or higher CPU
+* 500 Mbps bandwidth (8TB or more of available monthly bandwidth)
+* SSD-based hard drive with 400GB+ of free space
 
 ### Non-voting and Representative Nodes
 The following are minimum recommended specifications for non-voting nodes and Representative nodes with less than 0.1% of the online voting weight (regular [Representatives](../glossary.md#representative)):
 
-* 2GB RAM (additional RAM or swap space may be needed if bootstrapping a new node from scratch)
-* Dual-Core CPU
-* 100 Mbps bandwidth (2TB or more of available monthly bandwidth)
-* SSD-based hard drive with 100GB+ of free space
+* 8GB RAM
+* Quad-Core CPU
+* 250 Mbps bandwidth (4TB or more of available monthly bandwidth)
+* SSD-based hard drive with 400GB+ of free space
 
 These lower specifications are also valid for any type of node run on the [Beta network](../running-a-node/beta-network.md) and [Test network](../running-a-node/test-network.md).
 
