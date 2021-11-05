@@ -146,9 +146,16 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 ### Benchmark commands
 
+
+**Nano PoW Benchmarking tool**
+
+The [Nano PoW Benchmark](https://github.com/koczadly/nano-pow-benchmark) tool is the preferred approach for benchmarking OpenCL-enabled hardware such as GPUs.
+
+Note that the system must have Java 8 (or above) installed, and that only OpenCL devices are supported by this tool. For testing unsupported processors such as CPUs, consider using the _Nano Work Server_ listed below.
+
 **Nano Work Server**
 
-The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) is the preferred approach for benchmarking and includes an [example](https://github.com/nanocurrency/nano-work-server#benchmarking).
+The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) also offers built-in support for benchmarking, as shown in [this example](https://github.com/nanocurrency/nano-work-server#benchmarking).
 
 **Node RPC**
 
@@ -182,6 +189,7 @@ Below are work generation benchmarks from a variety of consumer-grade CPUs and G
 | AMD R5-3600 @4.07GHz | 0.59 | 0.09 | 3.51 |
 | AMD R9-3900X @3.97GHz AVX2 | 1.97 | 0.26 | 15.64 |
 | Intel Core i7 6700 @3.7GHz AVX2 | 0.65 | 0.07 | 5.25 |
+| Intel HD Graphics 530 @1.25GHz | 0.47 | 0.06 | 3.72 |
 
 ---
 
