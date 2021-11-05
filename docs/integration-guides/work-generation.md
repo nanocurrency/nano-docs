@@ -149,9 +149,9 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 
 **Nano PoW Benchmarking tool**
 
-The [Nano PoW Benchmark](https://github.com/koczadly/nano-pow-benchmark) tool is the preferred approach for benchmarking OpenCL-enabled hardware such as graphics processing units.
+The [Nano PoW Benchmark](https://github.com/koczadly/nano-pow-benchmark) tool is the preferred approach for benchmarking OpenCL-enabled hardware such as GPUs.
 
-Note that the system must have Java 8 (or above) installed, and that only OpenCL devices are supported by this tool. For tests on other types of processors such as CPUs, consider using the *Nano Work Server* listed below.
+Note that the system must have Java 8 (or above) installed, and that only OpenCL devices are supported by this tool. For testing unsupported processors such as CPUs, consider using the _Nano Work Server_ listed below.
 
 **Nano Work Server**
 
