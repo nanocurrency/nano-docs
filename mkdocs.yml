@@ -167,6 +167,9 @@ extra:
     link: 'https://www.youtube.com/nanocurrency/'
   - icon: 'fontawesome/brands/instagram'
     link: 'https://www.instagram.com/nanocurrency/'
+  analytics:
+    provider: google
+    property: G-RGP8S06PYJ
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
