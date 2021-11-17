@@ -16,7 +16,7 @@ theme:
     code: 'Roboto Mono'
   icon:
     repo: 'fontawesome/brands/github'
-  logo: 'images/nano+mark.svg'
+  logo: 'images/nano-logo.svg'
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:
@@ -174,7 +174,7 @@ plugins:
     - social:
         cards: !ENV [ PRODUCTION, FALSE ]
         cards_color:
-            fill: "#4a90e2"
+            fill: "#20204c"
             text: "#FFFFFF"
     - redirects:
         redirect_maps:
