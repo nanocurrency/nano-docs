@@ -23,6 +23,8 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## CLI updates
 
+
+
 ---
 
 ## WebSocket updates
@@ -32,6 +34,9 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 ## Developer/debug options
 
 * **NEW CONFIGURATION OPTION** `node.rep_crawler_weight_minimum` allows configuration of the minimum vote weight a node needs to qualify for the [rep crawler](../node-implemenation/voting.md#rep-crawler) to solicit confirmations from them. By default the rep crawler only tracks Principal Representatives (all previous versions behave this way) but a lower value for this option can provide broader tracking for debugging purposes.
+* **NEW CLI** `--disable_add_initial_peers` to disable the add initial peers function called on startup which reads the peers table and contacts all
+the peers listed in it.
+
 
 ---
 
