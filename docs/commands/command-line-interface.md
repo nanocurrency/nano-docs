@@ -177,17 +177,31 @@ Increase batch signature verification size in block processor, default 0 (limite
 ### --disable_backup
 Turn off automatic wallet backup process
 
+### --disable_block_processor_unchecked_deletion
+_version 21.0+_  
+Disable deletion of unchecked blocks after processing.
+
+### --disable_bootstrap_listener
+Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
+
 ### --disable_lazy_bootstrap
 Turn off use of lazy bootstrap
 
 ### --disable_legacy_bootstrap
 Turn off use of legacy bootstrap
 
-### --disable_wallet_bootstrap
-Turn off use of wallet-based bootstrap
+### --disable_ongoing_bootstrap
+Turn off the ability for ongoing bootstraps to occur
 
-### --disable_bootstrap_listener
-Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
+### --disable_providing_telemetry_metrics
+_version 21.0+_  
+Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
+
+### --disable_rep_crawler
+Turn off the [rep crawler](../node-implementation/voting.md#rep-crawler) process
+
+### --disable_request_loop
+Turn off the request loop
 
 ### --disable_tcp_realtime
 _version 19.0+_  
@@ -199,13 +213,8 @@ Prevent periodic cleaning of unchecked table
 ### --disable_unchecked_drop
 Prevent drop of all unchecked entries at node/wallet start
 
-### --disable_providing_telemetry_metrics
-_version 21.0+_  
-Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
-
-### --disable_block_processor_unchecked_deletion
-_version 21.0+_  
-Disable deletion of unchecked blocks after processing.
+### --disable_wallet_bootstrap
+Turn off use of wallet-based bootstrap
 
 ### --enable_udp
 _version 21.0+_  
