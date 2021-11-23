@@ -25,11 +25,21 @@ In the above cases when evaluating quorum for generating a final vote, both non-
 
 ---
 
-## Rep crawler (PRs only)
+## Rep crawler
+
+The rep crawler is a repeating process to help track the online (actively voting) status of representatives. Although typical network activity highly propagates votes to many nodes on the network, there is no guarantee that a given node will receive a recent vote from a particular representative.
+
+To help fill these potential gaps in online status, the rep crawler pulls a set of random representatives from its peers list - either 15 entries if the weight of peers is higher than quorum delta, otherwise 50 entries - and sends confirmation requests to them for a randomly chosen block in the local ledger.
+
+If the confirmation acknowledgement is returned for those peers they will be considered online and actively voting. This ongoing crawl happens every 7 seconds on the live, beta and test networks, and every 0.1 seconds on the dev network for unit test purposes.
 
 ---
 
 ## Online weight calculator
+
+Whenever a vote signed by a particular representative is processed by the node, it will consider that representative to be online and included in the online weight calculations. This online status will remain for a period of 5 minutes after the vote processing and the clock will reset back to 5 minutess when additional voting is seen.
+
+This online status is counted regardless of where the vote originated from - the [rep crawler](#rep-crawler), live voting activity, etc.
 
 ---
 
