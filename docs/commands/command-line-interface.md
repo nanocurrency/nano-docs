@@ -66,6 +66,9 @@ The output can be piped to a file, using the locations defined in [configuration
 ### --help
 Print out options
 
+### --initialize
+Initializes the data folder, if it is not already initialized. This command is meant to be run when the data folder is empty, to populate it with the ledger containing only the genesis block.
+
 ### --key_create
 Generates a adhoc random keypair and prints it to stdout
 
@@ -242,6 +245,9 @@ Display the total counts of each version for all accounts (including unpocketed)
 
 ### --debug_block_count
 Display the number of blocks
+
+### --debug_block_dump
+Print ledger blocks - use with caution due to the potentially large amount of data this can output
 
 ### --debug_bootstrap_generate
 Generate bootstrap sequence of blocks
