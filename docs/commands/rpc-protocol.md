@@ -22,6 +22,8 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
+--8<-- "deprecation-info-pending.md"
+
 **Request:**
 ```json 
 {
@@ -34,13 +36,14 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json
 {
   "balance": "10000",
-  "pending": "10000"
+  "pending": "10000",
+  "receivable": "10000"
 }
 ```
 
 **Optional "include_only_confirmed"**
 _version 22.0+_   
-Boolean, true by default. Results in `balance` only including blocks on this account that have already been confirmed and `pending` only including incoming send blocks that have already been confirmed on the sending account.
+Boolean, true by default. Results in `balance` only including blocks on this account that have already been confirmed and `receivable` only including incoming send blocks that have already been confirmed on the sending account.
 
 ---
 
@@ -171,7 +174,9 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
 - `confirmed_height`: matches `confirmation_height` value
 - `confirmed_frontier`: matches `confirmation_height_frontier` value
 - If `representative` option also `true`, `confirmed_representative` included: representative account from the confirmed frontier block
-- If `pending` option also `true`, `confirmed_pending` included: balance of all pending amounts where the matching incoming send blocks have been confirmed on their account
+- If `receivable` option also `true`, `confirmed_receivable` included: balance of all receivable amounts where the matching incoming send blocks have been confirmed on their account
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -180,7 +185,7 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
   "account": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
   "representative": "true",
   "weight": "true",
-  "pending": "true",
+  "receivable": "true",
   "include_confirmed": "true"
 }
 ```
@@ -202,13 +207,15 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
     "confirmed_representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
     "weight": "11999999999999999918751838129509869131",
     "pending": "0",
-    "confirmed_pending": "0"
+    "receivable": "0",
+    "confirmed_pending": "0",
+    "confirmed_receivable": "0"
 }
 ```
 
-**Optional "representative", "weight", "pending"**
+**Optional "representative", "weight", receivable"**
 _version 9.0+_   
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for account   
+Booleans, false by default. Additionally returns representative, voting weight, receivable balance for account   
 
 **Request:**
 ```json
@@ -217,7 +224,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "representative": "true",
   "weight": "true",
-  "pending": "true"
+  "receivable": "true"
 }
 ```
 
@@ -235,7 +242,8 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "representative": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "weight": "1105577030935649664609129644855132177",
-  "pending": "2309370929000000000000000000000000"
+  "pending": "2309370929000000000000000000000000",
+  "receivable": "2309370929000000000000000000000000"
 }
 ```
 
@@ -302,7 +310,9 @@ Returns the voting weight for **account**
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
 
 --8<-- "unconfirmed-information.md"
-    The pending balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
+    The receivable balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -317,12 +327,14 @@ Returns how many RAW is owned and how many have not yet been received by **accou
   "balances" : {
     "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
         "balance": "325586539664609129644855132177",
-        "pending": "2309372032769300000000000000000000"
+        "pending": "2309372032769300000000000000000000",
+        "receivable": "2309372032769300000000000000000000"
     },
     "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":
     {
       "balance": "10000000",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }
   }
 }
@@ -355,12 +367,19 @@ Returns a list of pairs of account and block hash representing the head block fo
 ---
 
 ### accounts_pending  
+
+Deprecated in V23.0+. Replaced by [accounts_receivable](#accounts_receivable)
+
+---
+
+### accounts_receivable  
+
 Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1"
 }
@@ -376,12 +395,12 @@ Returns a list of confirmed block hashes which have not yet been received by the
 ```  
 **Optional "threshold"**  
 _version 8.0+_   
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**   
 
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -402,12 +421,12 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```  
 **Optional "source"**  
 _version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "source": "true"
@@ -440,7 +459,7 @@ Boolean, false by default. Include active (not confirmed) blocks
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "include_active": "true"
@@ -789,18 +808,21 @@ Using the optional `json_block` is recommended since v19.0.
   }
 }
 ```
-**Optional "pending", "source", "balance"**
+**Optional "receivable", "source", "balance"**
 
-_pending, source: version 9.0+_
+_pending, source: version 9.0+, deprecated version 23.0+_
 _balance: version 12.0+_
-Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
+_receivable: version 23.0+ in favor of deprecated pending_
+Booleans, false by default. Additionally checks if block is receivable, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
 {
   "action": "blocks_info",
   "hashes": ["E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"],
-  "pending": "true",
+  "receivable": "true",
   "source": "true",
   "balance": "true"
 }
@@ -816,6 +838,7 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
         ...
       },
       "pending": "0",
+      "receivable": "0",
       "source_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
       "balance": "40200000001000000000000000000000000"
     }
@@ -1619,8 +1642,8 @@ Returns frontier, open block, change representative block, balance, last modifie
   }
 }
 ```  
-**Optional "representative", "weight", "pending"**  
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
+**Optional "representative", "weight", "receivable"**  
+Booleans, false by default. Additionally returns representative, voting weight, receivable balance for each account   
 
 **Request:**
 ```json
@@ -1630,7 +1653,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "count": "1",
   "representative": "true",
   "weight": "true",
-  "pending": "true"
+  "receivable": "true"
 }
 ```  
 **Response:**
@@ -1646,7 +1669,8 @@ Booleans, false by default. Additionally returns representative, voting weight, 
       "block_count": "2",
       "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
       "weight": "0",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }   
   }   
 }
@@ -1661,7 +1685,7 @@ NOTE: The "count" option is ignored if "sorting" is specified
 
 **Optional "threshold"**  
 _version 19.0+_  
-Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **pending** is also given, the number compared with the threshold is the sum of account balance and pending balance.
+Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **receivable** is also given, the number compared with the threshold is the sum of account balance and receivable balance.
 
 ---
 
@@ -1767,143 +1791,14 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ---
 
 ### pending  
-Returns a list of block hashes which have not yet been received by this account.
 
-**Request:**
-```json
-{
-  "action": "pending",
-  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
-  "count": "1"
-}
-```  
-**Response:**
-```json
-{
-  "blocks": [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]
-}
-```   
-**Optional "count"**  
-Number. Determines limit of number of blocks to return.
-
-**Optional "threshold"**  
-_version 8.0+_   
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**  
-
-**Request:**
-```json
-{
-  "action": "pending",
-  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
-  "count": "1",
-  "threshold": "1000000000000000000000000"
-}
-```  
-**Response:**
-```json
-{
-  "blocks" : {
-    "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": "6000000000000000000000000000000"
-  }
-}
-```  
-**Optional "source"**  
-_version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
-
-**Request:**
-```json
-{
-  "action": "pending",
-  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
-  "count": "1",
-  "source": "true"
-}
-```  
-**Response:**
-```json
-{
-  "blocks" : {
-    "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": {
-      "amount": "6000000000000000000000000000000",
-      "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
-    }
-  }
-}
-```  
-**Optional "include_active"**
-
-_version 15.0+_   
-Boolean, false by default. Include active blocks without finished confirmations 
-
-**Request:**
-```json
-{
-  "action": "pending",
-  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
-  "count": "1",
-  "include_active": "true"
-}
-```  
-
-**Optional "min_version"**
-
-_version 15.0+_   
-Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
-
-**Optional "sorting"**
-
-Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   
-
-_version 22.0+_   
-If used with "count" returns the absolute sorted values.
-
-_version 19.0+_   
-If used with "count" only sorts relative to the first pending entries found up to count so not necessarily the ones with the largest pending balance.   
-
-**Optional "include_only_confirmed"**
-
-_version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Deprecated in V23.0+. Replaced by [receivable](#receivable)
 
 ---
 
 ### pending_exists  
-_version 8.0+_   
-Check whether block is pending by **hash**  
 
-**Request:**
-```json
-{
-  "action": "pending_exists",
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
-}
-```  
-**Response:**
-```json
-{
-  "exists" : "1"
-}
-```
-
-**Optional "include_active"**
-
-_version 15.0+_   
-Boolean, false by default. Include active blocks without finished confirmations 
-
-**Request:**
-```json
-{
-  "action": "pending_exists",
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
-  "include_active": "true"
-}
-```  
-
-**Optional "include_only_confirmed"**
-
-_version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ---
 
@@ -1943,7 +1838,7 @@ Boolean, false by default. Manually forcing fork resolution if processed block i
 
 **Optional "subtype"**  
 _version 18.0+_  
-String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks. Options:
+String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving receivable blocks. Options:
 
 * `send` - account balance is reduced
 * `receive` - account balance is increased
@@ -1964,6 +1859,149 @@ Boolean, default "true". If "true", **block** will be placed on watch for confir
 _version 22.0+_  
 Boolean, default "false". If "true", requests will add the blocks to the block processor queue and `{"started":"1"}` will be immediately returned, instead of waiting for block process completion to return. To know if the block was properly processed, monitor the [WebSocket topic `new_unconfirmed_block`](../integration-guides/websockets.md#new-unconfirmed-blocks) and a notification for that successful block will be sent.
 
+
+---
+
+### receivable
+
+Returns a list of block hashes which have not yet been received by this account.
+
+**Request:**
+```json
+{
+  "action": "receivable",
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
+  "count": "1"
+}
+```  
+**Response:**
+```json
+{
+  "blocks": [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]
+}
+```   
+**Optional "count"**  
+Number. Determines limit of number of blocks to return.
+
+**Optional "threshold"**  
+_version 8.0+_   
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**  
+
+**Request:**
+```json
+{
+  "action": "receivable",
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
+  "count": "1",
+  "threshold": "1000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{
+  "blocks" : {
+    "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": "6000000000000000000000000000000"
+  }
+}
+```  
+**Optional "source"**  
+_version 9.0+_   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
+
+**Request:**
+```json
+{
+  "action": "receivable",
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
+  "count": "1",
+  "source": "true"
+}
+```  
+**Response:**
+```json
+{
+  "blocks" : {
+    "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": {
+      "amount": "6000000000000000000000000000000",
+      "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
+    }
+  }
+}
+```  
+**Optional "include_active"**
+
+_version 15.0+_   
+Boolean, false by default. Include active blocks without finished confirmations 
+
+**Request:**
+```json
+{
+  "action": "receivable",
+  "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
+  "count": "1",
+  "include_active": "true"
+}
+```  
+
+**Optional "min_version"**
+
+_version 15.0+_   
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this receivable block.
+
+**Optional "sorting"**
+
+Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   
+
+_version 22.0+_   
+If used with "count" returns the absolute sorted values.
+
+_version 19.0+_   
+If used with "count" only sorts relative to the first receivable entries found up to count so not necessarily the ones with the largest receivable balance.   
+
+**Optional "include_only_confirmed"**
+
+_version 19.0+_  
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+
+---
+
+### receivable_exists
+
+_version 8.0+_   
+Check whether block is receivable by **hash**  
+
+**Request:**
+```json
+{
+  "action": "receivable_exists",
+  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+}
+```  
+**Response:**
+```json
+{
+  "exists" : "1"
+}
+```
+
+**Optional "include_active"**
+
+_version 15.0+_   
+Boolean, false by default. Include active blocks without finished confirmations 
+
+**Request:**
+```json
+{
+  "action": "receivable_exists",
+  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
+  "include_active": "true"
+}
+```  
+
+**Optional "include_only_confirmed"**
+
+_version 19.0+_  
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -2668,7 +2706,7 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 ### unchecked_keys   
 _version 8.0+_   
-Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
+Retrieves unchecked database keys, blocks hashes & a json representations of unchecked receivable blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
 
 --8<-- "known-issue-unchecked-keys-rpc-rocksdb.md"
 
@@ -2716,7 +2754,7 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 _enable_control required, version 19.0+_   
 
-Returns the total pending balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
+Returns the total receivable balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
 
 --8<-- "enable-control-warning.md"
 
@@ -2739,7 +2777,7 @@ Returns the total pending balance for unopened accounts in the local database, s
 ```   
 
 **Optional "threshold"**  
-Number (128 bit, decimal), default 0. Return only accounts with total pending balance above **threshold**.
+Number (128 bit, decimal), default 0. Return only accounts with total receivable balance above **threshold**.
 
 ---
 
@@ -3260,7 +3298,7 @@ Checks whether the password entered for **wallet** is valid
 
 ### receive  
 _enable_control required_  
-Receive pending **block** for **account** in **wallet**. If receiving the block opens the account, sets the account representative to a [wallet representative](#wallet_representative). Before v21, the representative is set to the account itself.  
+Receive receivable **block** for **account** in **wallet**. If receiving the block opens the account, sets the account representative to a [wallet representative](#wallet_representative). Before v21, the representative is set to the account itself.  
 
 --8<-- "enable-control-warning.md"
 
@@ -3329,16 +3367,29 @@ Set **amount** as new receive minimum for node wallet until restart
 
 ---
 
-### search_pending  
+### search_pending
+
+Deprecated in V23.0+. Replaced by [search_receivable](#search_receivable).
+
+---
+
+### search_pending_all  
+
+Deprecated in V23.0+. Replaced by [search_receivable_all](#search_receivable_all).
+
+---
+
+### search_receivable
+
 _enable_control required_  
-Tells the node to look for pending blocks for any account in **wallet**  
+Tells the node to look for receivable blocks for any account in **wallet**  
 
 --8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
 {
-  "action": "search_pending",
+  "action": "search_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
@@ -3349,19 +3400,18 @@ Tells the node to look for pending blocks for any account in **wallet**
 }
 ```
 
-
 ---
 
-### search_pending_all  
+### search_receivable_all  
 _enable_control required, version 8.0+_  
-Tells the node to look for pending blocks for any account in all available wallets  
+Tells the node to look for receivable blocks for any account in all available wallets  
 
 --8<-- "enable-control-warning.md"
 
 **Request:**
 ```json
 {
-  "action": "search_pending_all"
+  "action": "search_receivable_all"
 }
 ```  
 **Response:**
@@ -3526,6 +3576,8 @@ Returns how many raw is owned and how many have not yet been received by all acc
 
 --8<-- "includes-unconfirmed.md"
 
+--8<-- "deprecation-info-pending.md"
+
 **Request:**
 ```json
 {
@@ -3539,7 +3591,8 @@ Returns how many raw is owned and how many have not yet been received by all acc
   "balances" : {
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {
       "balance": "10000",
-      "pending": "10000"
+      "pending": "10000",
+      "receivable": "10000"
     }
   }
 }
@@ -3738,6 +3791,8 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
 
 --8<-- "includes-unconfirmed.md"
 
+--8<-- "deprecation-info-pending.md"
+
 **Request:**
 ```json
 {
@@ -3750,6 +3805,7 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
 {
   "balance": "10000",
   "pending": "10000",
+  "receivable": "10000",
   "accounts_count": "3",
   "adhoc_count": "1",
   "deterministic_count": "2",
@@ -3766,6 +3822,8 @@ Returns frontier, open block, change representative block, balance, last modifie
 --8<-- "includes-unconfirmed.md"
 
 --8<-- "enable-control-warning.md"
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -3789,9 +3847,9 @@ Returns frontier, open block, change representative block, balance, last modifie
   }
 }
 ```  
-**Optional "representative", "weight", "pending"**
+**Optional "representative", "weight", "receivable"**
 
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
+Booleans, false by default. Additionally returns representative, voting weight, receivable balance for each account   
 
 **Request:**
 ```json
@@ -3800,7 +3858,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "representative": "true",
   "weight": "true",
-  "pending": "true"
+  "receivable": "true"
 }
 ```  
 **Response:**
@@ -3816,7 +3874,8 @@ Booleans, false by default. Additionally returns representative, voting weight, 
       "block_count": "2",
       "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
       "weight": "0",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }
   }
 }
@@ -3868,7 +3927,14 @@ Checks whether **wallet** is locked
 
 ---
 
-### wallet_pending  
+### wallet_pending
+
+Deprecated in V23.0+. Replaced by [wallet_receivable](#wallet_receivable)
+
+---
+
+### wallet_receivable
+
 _enable_control required, version 8.0+_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
 
@@ -3877,7 +3943,7 @@ Returns a list of block hashes which have not yet been received by accounts in t
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1"
 }
@@ -3893,12 +3959,12 @@ Returns a list of block hashes which have not yet been received by accounts in t
 ```  
 **Optional "threshold"**
 
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**   
 
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -3920,12 +3986,12 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 **Optional "source"**
 
 _version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "source": "true"
@@ -3958,7 +4024,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "include_active": "true"
@@ -3968,7 +4034,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "min_version"**
 
 _version 15.0+_   
-Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this receivable block.
 
 **Optional "include_only_confirmed"**
 
