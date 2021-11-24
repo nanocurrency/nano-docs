@@ -19,6 +19,8 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## RPC updates
 
+* [`account_history`](../commands/rpc-protocol.md#account_history) RPC now includes whether the block was `confirmed` in the response, allowing more efficient confirmation validation in some cases
+
 ---
 
 ## CLI updates
