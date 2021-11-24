@@ -33,8 +33,7 @@ Most of the content in the following documentation is focused around the [nanocu
 
 ## Security vulnerability reporting
 
---8<-- "security-vulnerability-reporting.md"
-
+--8<-- "warning-security-vulnerability-reporting.md"
 
 ## Nano Foundation core developers
 

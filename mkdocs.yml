@@ -16,11 +16,13 @@ theme:
     code: 'Roboto Mono'
   icon:
     repo: 'fontawesome/brands/github'
-  logo: 'images/nano+mark.svg'
+  logo: 'images/nano-logo.svg'
   favicon: 'images/favicon.png'
   custom_dir: 'theme-overrides'
   features:
     - content.tabs.link
+    - navigation.indexes
+    - navigation.expand
     - navigation.tabs
     - navigation.top
     - search.share
@@ -45,7 +47,8 @@ nav:
     - Test Network: running-a-node/test-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
     - Beyond the Node: running-a-node/beyond-the-node.md
-  - Integration Guides:
+  - Integration Guides: 
+    - integration-guides/index.md
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
@@ -164,14 +167,23 @@ extra:
     link: 'https://www.youtube.com/nanocurrency/'
   - icon: 'fontawesome/brands/instagram'
     link: 'https://www.instagram.com/nanocurrency/'
+  consent:
+    title: Cookie consent
+    description: >-
+      We use necessary cookies to make our site work. By using this and related Nano.org sites, 
+      you are accepting these cookies. For more detailed information, see the Cookies section 
+      in our <a href="https://nano.org/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
+  analytics:
+    provider: google
+    property: G-RGP8S06PYJ
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
     - search
     - social:
-        cards: !ENV PRODUCTION
+        cards: !ENV [ PRODUCTION, FALSE ]
         cards_color:
-            fill: "#4a90e2"
+            fill: "#20204c"
             text: "#FFFFFF"
     - redirects:
         redirect_maps:

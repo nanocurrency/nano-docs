@@ -25,3 +25,5 @@ Welcome! This documentation is focused on helping developers understand the Nano
 If you are looking for other details about Nano, links to wallets, discussions about the network and more, check out our community:
 
 --8<-- "community-links.md"
+
+[Change cookie settings](#__consent)

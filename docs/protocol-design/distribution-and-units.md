@@ -43,4 +43,4 @@ A 128 bit integer is used to represent account balances. The reference wallet us
 A set of SI prefixes[^2] from the base nano has been previously used to make the numbers more accessible and avoid confusion in certain scenarios, but this approach is not common (e.g., micronano or μnano for $10^{24}$).
 
 [^1]:https://medium.com/nanocurrency/the-nano-faucet-c99e18ae1202
-[^2]:The SI prefixes are metric prefixes that were standardized for use in the International System of Units (SI) by the International Bureau of Weights and Measures (BIPM). https://www.bipm.org/en/measurement-units/prefixes.html
+[^2]:The SI prefixes are metric prefixes that were standardized for use in the International System of Units (SI) by the International Bureau of Weights and Measures (BIPM). https://www.bipm.org/en/measurement-units/si-prefixes

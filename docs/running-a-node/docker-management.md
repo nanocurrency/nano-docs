@@ -5,7 +5,7 @@ description: Learn how to use Docker to manage your nano node - starting, stoppi
 
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
---8<-- "docker-limitations.md"
+--8<-- "warning-docker-limitations.md"
 
 ### Nano Directory
 
@@ -31,10 +31,9 @@ The following command will start the node container. Either set the specified en
 
 ```bash
 docker run --restart=unless-stopped -d \
-  -p 7075:7075/udp \
   -p 7075:7075 \
-  -p [::1]:7076:7076 \
-  -p [::1]:7078:7078 \
+  -p 127.0.0.1:7076:7076 \
+  -p 127.0.0.1:7078:7078 \
   -v ${NANO_HOST_DIR}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
@@ -43,13 +42,12 @@ docker run --restart=unless-stopped -d \
 | Option                                                | Purpose |
 |                                                       |         |
 | `-d`                                                  | Starts the docker container as a daemon |
-| `-p 7075:7075/udp`                                    | Maps the network activity port (deprecated since V21) |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
 | `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
-| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/websockets). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
+| `-p 127.0.0.1:7076:7076`<br />or `-p[::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p 127.0.0.1:7078:7078`<br />or `-p[::1]:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/websockets). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
@@ -210,21 +208,29 @@ You can use the RPC interface on the local host via `curl` to interact with the 
 For example the version of the node:
 
 ```bash
-curl -d '{ "action" : "version" }' [::1]:7076
+curl -d '{
+  "action": "version"
+}' http://127.0.0.1:17076
 ```
 
 Or the blockcount:
 
 ```bash
-curl -d '{ "action" : "block_count" }' [::1]:7076
+curl -d '{
+  "action": "block_count"
+}' http://127.0.0.1:17076
 ```
 
-Replace `[::1]` with `127.0.0.1` according to your setup.
+--8<-- "docker-ipv6-tip.md"
 
 In addition, you can make use of command-line JSON utilities such as [jq](https://stedolan.github.io/jq/) to parse and manipulate the structured data retrieved from `curl`. For example the account information associated with certain block:
 
 ```bash
-curl -s -d '{ "action": "blocks_info", "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"], "json_block": "true" }' [::1]:7076 | jq ".blocks[].block_account"
+curl -s -d '{
+  "action": "blocks_info",
+  "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"],
+  "json_block": "true" 
+}' http://127.0.0.1:7076 | jq ".blocks[].block_account"
 ```
 
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.

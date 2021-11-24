@@ -24,7 +24,7 @@ The recommended method for receiving notifications is via [WebSockets](/integrat
 
 As confirmations are received they can be parsed and handled as necessary. All operations handling notifications from the node on block confirmation should be idempotent as multiple notifications for the same block hash can occur.
 
---8<-- "multiple-confirmation-notifications.md"
+--8<-- "warning-multiple-confirmation-notifications.md"
 
 ### Requesting block confirmation status
 

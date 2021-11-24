@@ -202,7 +202,7 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 ## HTTP callback
 Send JSON POST requests with every confirmed block to callback server configured for the node.
 
---8<-- "multiple-confirmation-notifications.md"
+--8<-- "warning-multiple-confirmation-notifications.md"
 
 **Configuration**
 
@@ -291,14 +291,21 @@ The choice depends on the setup and security that you want. The easiest way is t
 
 **Check if RPC is enabled with curl (use different terminal or session)**   
 
-    curl -g -d '{ "action": "block_count" }' '[::1]:7076'
+```bash
+curl -d '{
+  "action": "block_count"
+}' http://127.0.0.1:7076
+```
 
-!!! tip
-    If you get `curl: (7) Couldn't connect to server`, replace `[::1]:7076` with `127.0.0.1:7076`.
+--8<-- "docker-ipv6-tip.md"
 
 **To stop node, use**   
 
-    curl -g -d '{ "action": "stop" }' '[::1]:7076'
+```bash
+curl -d '{
+  "action": "stop"
+}' http://127.0.0.1:7076
+```
 
 **Launch nano_node as a service with systemd**   
 

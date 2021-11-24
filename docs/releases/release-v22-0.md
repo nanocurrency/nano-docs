@@ -1,4 +1,4 @@
-title: Release notes - V2.0 nano node
+title: Release notes - V22.0 nano node
 description: Details of the V22.0 nano node release including upgrade notices, major features, API changes and more
 
 # V22.0
