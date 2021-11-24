@@ -23,6 +23,7 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 * **NEW** [`accounts_representatives`](../commands/rpc-protocol.md#accounts_representatives) RPC allows requesting representatives from multiple accounts in a single call.
 * [`block_info`](../commands/rpc-protocol.md#block_info) and [`blocks_info`](../commands/rpc-protocol.md#blocks_info) RPCs now include the `successor` block hash in responses for easier ledger walking.
 * [`delegators`](../commands/rpc-protocol.md#delegators) now allows for optional parameters `count` (to limit number of returned accounts), `threshold` (to require a minimum balance for returned delegators) and `start` (to allow paging by providing account to start after).
+* [`wallet_info`](../commands/rpc-protocol.md#wallet_info) RPC return includes count of all blocks and confirmed blocks from all accounts in the given wallet.
 
 ---
 

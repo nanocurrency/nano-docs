@@ -3768,7 +3768,15 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 
 ### wallet_info  
 _version 15.0+_   
-Returns the sum of all accounts balances in **wallet**, number of accounts in wallet, number of deterministic & adhoc (non-deterministic) accounts, deterministic index (index of last account derived from seed. Equal to deterministic accounts number if no accounts were removed)   
+Given a **wallet** id, from all of the accounts in the wallet, returns:
+
+* Sum of their **balance** amounts
+* Total number of accounts as **accounts_count**
+* Number of deterministic accounts as **deterministic_count**
+* Number of adhoc (non-deterministic) accounts as **adhoc_count**
+* Index of last account derived from the walet seed as **deterministic_index** (equal to deterministic accounts number if no accounts were removed)
+* Sum of all frontier block heights as **accounts_block_count**
+* Sum of confirmed block heights as **accounts_cemented_block_count**
 
 --8<-- "warning-includes-unconfirmed.md"
 
@@ -3787,7 +3795,9 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
   "accounts_count": "3",
   "adhoc_count": "1",
   "deterministic_count": "2",
-  "deterministic_index": "2"
+  "deterministic_index": "2",
+  "accounts_block_count": "14",
+  "accounts_cemented_block_count": "13"
 }
 ```
 
