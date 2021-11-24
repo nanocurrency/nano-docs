@@ -460,6 +460,28 @@ Boolean, true by default (_version 22.0+_), previously false by default. Only re
 
 ---
 
+### accounts_representatives 
+Returns the representatives for given **accounts**  
+
+**Request:**
+```json
+{
+  "action": "accounts_representatives",
+  "accounts": ["nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5","nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"]
+}
+```  
+**Response:**
+```json
+{
+  "representatives" : {
+    "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5": "nano_3hd4ezdgsp15iemx7h81in7xz5tpxi43b6b41zn3qmwiuypankocw3awes5k",
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
+  }
+}
+```
+
+---
+
 ### available_supply  
 Returns how many raw are in the public supply  
 

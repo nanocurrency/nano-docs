@@ -19,7 +19,8 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## RPC updates
 
-* [`account_history`](../commands/rpc-protocol.md#account_history) RPC now includes whether the block was `confirmed` in the response, allowing more efficient confirmation validation in some cases
+* [`account_history`](../commands/rpc-protocol.md#account_history) RPC now includes whether the block was `confirmed` in the response, allowing more efficient confirmation validation in some cases.
+* **NEW** [`accounts_representatives`](../commands/rpc-protocol.md#accounts_representatives) RPC allows requesting representatives from multiple accounts in a single call.
 
 ---
 
