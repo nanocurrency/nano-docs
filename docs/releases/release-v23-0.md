@@ -11,6 +11,23 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## Major updates
 
+### Refactoring and cleanup
+
+Many of the more than 150 pull requests closed for this release were part of efforts to refactor and cleanup many areas of the code. These updates are helping provide a foundation for better improvements in subsequent releases. More details can be found in the [V23.0 Follis — Development Update](https://blog.nano.org/v23-0-follis-development-update-55ef8c41cbb).
+
+### Unit tests and bug fixes
+
+Another focus area was improving and cleaning up the unit tests, along with various minor bugs and fixes. Test runs are now more consistent and reliable with V23, and will continue to be improved on in the coming releases.
+
+### Naming conventions
+
+Recent updates to naming conventions are noteworthy, although they should not impact integrations as all were made with backwards compatibility in mind:
+
+**Receivable instead of pending**
+
+**Unit name simplifications**
+Updates to simplify the unit names used within the node wallet and unit conversion RPCs were completed. This means previous unit conversion RPCs are now deprecated (see [Deprecations/removals](#deprecationsremovals) below) and the wallet uses the only remaining standard units of `raw` (10^0) and `nano` (10^30).
+
 ---
 
 ## Node configuration and management updates
@@ -53,3 +70,5 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 ---
 
 ## Deprecations/removals
+
+* Most unit conversion RPCs were deprecated, including `krai_from_raw`, `krai_to_raw`, `mrai_from_raw`, `mrai_to_raw`, `rai_from_raw`, `rai_to_raw`
