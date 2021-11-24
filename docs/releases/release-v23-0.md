@@ -21,6 +21,7 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 * [`account_history`](../commands/rpc-protocol.md#account_history) RPC now includes whether the block was `confirmed` in the response, allowing more efficient confirmation validation in some cases.
 * **NEW** [`accounts_representatives`](../commands/rpc-protocol.md#accounts_representatives) RPC allows requesting representatives from multiple accounts in a single call.
+* [`block_info`](../commands/rpc-protocol.md#block_info) and [`blocks_info`](../commands/rpc-protocol.md#blocks_info) RPCs now include the `successor` block hash in responses for easier ledger walking.
 
 ---
 

@@ -688,6 +688,7 @@ Retrieves a json representation of the block in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
 * _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
+* _since version 23.0_: `successor` returned
 
 Using the optional `json_block` is recommended since v19.0.  
 
@@ -707,6 +708,7 @@ Using the optional `json_block` is recommended since v19.0.
   "balance": "5606157000000000000000000000000000000",
   "height": "58",
   "local_timestamp": "0",
+  "successor": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72",
   "confirmed": "true",
   "contents": {
     "type": "state",
@@ -774,6 +776,7 @@ Retrieves a json representations of `blocks` in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
 * _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
+* _since version 23.0_: `successor` returned
 
 Using the optional `json_block` is recommended since v19.0.  
 
@@ -795,6 +798,7 @@ Using the optional `json_block` is recommended since v19.0.
       "balance": "5606157000000000000000000000000000000",
       "height": "58",
       "local_timestamp": "0",
+      "successor": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72",
       "confirmed": "true",
       "contents": {
         "type": "state",
