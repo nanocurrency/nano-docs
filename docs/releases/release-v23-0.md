@@ -7,6 +7,8 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## Upgrade notices
 
+There are no upgrade impacts to be considered with V23.0. However all exchanges, services and integrations are encouraged to test their implementations on the [test network](../running-a-node/test-network.md) (excluding load testing).
+
 ---
 
 ## Major updates
@@ -30,10 +32,6 @@ Updates to simplify the unit names used within the node wallet and unit conversi
 
 ---
 
-## Node configuration and management updates
-
----
-
 ## RPC updates
 
 * [`account_history`](../commands/rpc-protocol.md#account_history) RPC now includes whether the block was `confirmed` in the response, allowing more efficient confirmation validation in some cases.
@@ -44,13 +42,9 @@ Updates to simplify the unit names used within the node wallet and unit conversi
 
 ---
 
-## CLI updates
-
-
-
----
-
 ## WebSocket updates
+
+Support added for `wss://` to allow secure WebSocket connections alongside existing TLS support for RPC. Further details and documentation is pending, with initial pull request available here: https://github.com/nanocurrency/nano-node/pull/3032.
 
 ---
 
@@ -64,8 +58,6 @@ Updates to simplify the unit names used within the node wallet and unit conversi
     * [`--disable_ongoing_bootstrap`](../commands/command-line-interface.md#-disable_ongoing_bootstrap)
     * [`--disable_rep_crawler`](../commands/command-line-interface.md#-disable_rep_crawler)
     * [`--disable_request_loop`](../commands/command-line-interface.md#-disable_request_loop)
-
-
 
 ---
 
