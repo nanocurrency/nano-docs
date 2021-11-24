@@ -1805,7 +1805,7 @@ Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
 
---8<-- "process-sub-type-recommended.md"
+--8<-- "warning-process-sub-type-recommended.md"
 
 **Request:**
 ```json
