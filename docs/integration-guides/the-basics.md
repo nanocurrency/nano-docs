@@ -16,7 +16,7 @@ Receive | Receive funds from a given "Send" transaction
 The system is akin to writing (send) and cashing (receive) a Cashier's Check.  There are a few things to consider about transactions:
 
 * The receiving account does not have to be online during the Send transaction.
-* The transaction will stay as pending indefinitely until a Receive transaction is created.
+* The transaction will stay as receivable indefinitely until a Receive transaction is created.
 * Once funds are sent, they cannot be revoked by the sender.
 
 ---
