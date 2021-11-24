@@ -1416,7 +1416,7 @@ Returns a list of open database transactions which are equal or greater than the
 
 ### delegators  
 _version 8.0+_   
-Returns a list of pairs of delegator names given **account** a representative and its balance  
+Returns a list of pairs of delegator accounts and balances given a representative **account**
 
 **Request:**
 ```json
@@ -1434,6 +1434,13 @@ Returns a list of pairs of delegator names given **account** a representative an
   }
 }
 ```   
+
+**Optional parameters:**  
+_since V23.0_  
+
+* `threshold`: minimum required balance for a delegating account to be included in the response
+* `count`: number of delegators to return
+* `start`: account in the list you would like to start after, to allow for paging responses
 
 ---
 
