@@ -67,6 +67,7 @@ The output can be piped to a file, using the locations defined in [configuration
 Print out options
 
 ### --initialize
+_version 23.0+_  
 Initializes the data folder, if it is not already initialized. This command is meant to be run when the data folder is empty, to populate it with the ledger containing only the genesis block.
 
 ### --key_create
@@ -177,6 +178,10 @@ Increase block processor allowed blocks queue size before dropping live network 
 ### --block_processor_verification_size
 Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
 
+### --disable_add_initial_peers
+_version 23.0+_  
+Disables the add initial peers function called on startup which reads the peers table and contacts all the peers listed in it
+
 ### --disable_backup
 Turn off automatic wallet backup process
 
@@ -194,6 +199,7 @@ Turn off use of lazy bootstrap
 Turn off use of legacy bootstrap
 
 ### --disable_ongoing_bootstrap
+_version 23.0+_  
 Turn off the ability for ongoing bootstraps to occur
 
 ### --disable_providing_telemetry_metrics
@@ -201,9 +207,11 @@ _version 21.0+_
 Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
 
 ### --disable_rep_crawler
+_version 23.0+_  
 Turn off the [rep crawler](../node-implementation/voting.md#rep-crawler) process
 
 ### --disable_request_loop
+_version 23.0+_  
 Turn off the request loop
 
 ### --disable_tcp_realtime
@@ -247,6 +255,7 @@ Display the total counts of each version for all accounts (including unpocketed)
 Display the number of blocks
 
 ### --debug_block_dump
+_version 23.0+_  
 Print ledger blocks - use with caution due to the potentially large amount of data this can output
 
 ### --debug_bootstrap_generate
