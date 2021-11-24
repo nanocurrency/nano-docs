@@ -1,6 +1,6 @@
 ---
 title: What is nano?
-description: An broad introduction to nano - the instant, fee-less and eco-friendly digital money available across the world
+description: A broad introduction to nano - the instant, fee-less and eco-friendly digital money available across the world
 hide:
   - navigation
   - toc
