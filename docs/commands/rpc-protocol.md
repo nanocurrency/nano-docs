@@ -2118,6 +2118,25 @@ Boolean, false by default. Returns voting weight for each representative.
 }
 ```
 
+**Optional "accounts"**  
+Array of accounts. Returned list is filtered for only these accounts.
+
+**Request:**
+```json
+{
+  "action": "representatives_online",
+  "accounts": ["nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p", "nano_1111111111111111111111111111111111111111111111111117353trpda"]
+}
+```  
+**Response:**
+```json
+{
+  "representatives": [
+    "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p"
+  ]
+}
+```
+
 ---
 
 ### republish  
