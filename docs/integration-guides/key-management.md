@@ -92,7 +92,7 @@ Derived BIP39 Seed:
 
 For larger, more robust systems, external private key management is recommended. In this setup, the node operator generates and stores private keys in an external database and only queries the nano\_node to:
 
-1. Find pending blocks for an account
+1. Find receivable blocks for an account
 2. Sign transactions given a private key. More advanced systems may choose to implement signing themselves.
 3. Broadcast the signed transaction to the network.
 
@@ -123,7 +123,7 @@ External accounting systems that track balances arriving to the node must track 
 
 If you are creating a batch of transactions for a single account, which can be a mix of sending and receiving funds, there is no need to wait for the confirmation of blocks **in that account** to create the next transaction. As long as a transaction is valid, it will be confirmed by the network. The transactions that follow it can only be confirmed if the previous transactions are valid.
 
-However, you must always wait for the confirmation of **pending blocks** before creating the corresponding receive transaction, to ensure it will be confirmed. Always wait for confirmation of transactions that you did not create yourself.
+However, you must always wait for the confirmation of **receivable blocks** before creating the corresponding receive transaction, to ensure it will be confirmed. Always wait for confirmation of transactions that you did not create yourself.
 
 ---
 
@@ -383,17 +383,17 @@ curl -d '{
 
 #### First Receive Transaction
 
-The first transaction of an account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **pending** on the receiving account. If you already know the hash of the pending transaction, you can skip Step 1.
+The first transaction of an account is crafted in a slightly different way. To open an account, you must have sent some funds to it with a [Send Transaction](#send-transaction) from another account. The funds will be **receivable** on the receiving account. If you already know the hash of the receivable transaction, you can skip Step 1.
 
-!!! example "Step 1: Obtain the pending transaction block hash"
+!!! example "Step 1: Obtain the receivable transaction block hash"
 
-    Start with obtaining a list of pending transactions in your unopened account. Limit the response to the highest value transaction by using a combination of `sorting` and `count`.
+    Start with obtaining a list of receivable transactions in your unopened account. Limit the response to the highest value transaction by using a combination of `sorting` and `count`.
 
 ##### Request Example
 
 ```bash
 curl -d '{
-  "action": "pending",
+  "action": "receivable",
   "account": "nano_1rawdji18mmcu9psd6h87qath4ta7iqfy8i4rqi89sfdwtbcxn57jm9k3q11",
   "count": "1",
   "sorting": "true"
@@ -411,7 +411,7 @@ curl -d '{
 ```
 
 !!! example "Step 2: Build `block_create` request"
-    Using the block hash and raw transaction amount from the `pending` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The only difference between the normal receive transactions is the `"previous"` field.
+    Using the block hash and raw transaction amount from the `receivable` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The only difference between the normal receive transactions is the `"previous"` field.
 
     For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
@@ -422,7 +422,7 @@ curl -d '{
     | `"previous"`       | always the constant "0" as this request is for the first block of the account |
     | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
     | `"representative"` | `"representative"` the account address to use as [representative](/integration-guides/the-basics#representatives) for your account. Choose a reliable, trustworthy representative. |
-    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"pending"` response above. |
+    | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"receivable"` response above. |
     | `"link"`           | block hash of its paired send transaction, in this case assumed to be the block `5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99` |
     | `"key"`            | account's private key |
 
@@ -762,13 +762,13 @@ As long as the nano\_node is synced and the node wallet is unlocked (node wallet
 
 #### Semi-Manual Receiving Funds
 
-If the nano\_node does not automatically sign in a pending transaction, transactions can be manually signed in. The easiest way is to explicitly command the nano\_node to check all of the accounts in all of its wallets for pending blocks.
+If the nano\_node does not automatically sign in a receivable transaction, transactions can be manually signed in. The easiest way is to explicitly command the nano\_node to check all of the accounts in all of its wallets for receivable blocks.
 
 ##### Request Example
 
 ```bash
 curl -d '{
-  "action": "search_pending_all"
+  "action": "search_receivable_all"
 }' http://127.0.0.1:7076
 ```
 
