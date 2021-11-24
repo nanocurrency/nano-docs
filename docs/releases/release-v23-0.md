@@ -34,8 +34,14 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 ## Developer/debug options
 
 * **NEW CONFIGURATION OPTION** `node.rep_crawler_weight_minimum` allows configuration of the minimum vote weight a node needs to qualify for the [rep crawler](../node-implementation/voting.md#rep-crawler) to solicit confirmations from them. By default the rep crawler only tracks Principal Representatives (all previous versions behave this way) but a lower value for this option can provide broader tracking for debugging purposes.
-* **NEW CLI** `--disable_add_initial_peers` to disable the add initial peers function called on startup which reads the peers table and contacts all
-the peers listed in it.
+* **NEW CLI COMMANDS**
+    * [`--disable_add_initial_peers`](../commands/command-line-interface.md#-disable_add_initial_peers)
+    * [`--debug_block_dump`](../commands/command-line-interface.md#-debug_block_dump)
+    * [`--initialize`](../commands/command-line-interface.md#-initialize)
+    * [`--disable_ongoing_bootstrap`](../commands/command-line-interface.md#-disable_ongoing_bootstrap)
+    * [`--disable_rep_crawler`](../commands/command-line-interface.md#-disable_rep_crawler)
+    * [`--disable_request_loop`](../commands/command-line-interface.md#-disable_request_loop)
+
 
 
 ---
