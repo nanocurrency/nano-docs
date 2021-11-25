@@ -66,6 +66,10 @@ The output can be piped to a file, using the locations defined in [configuration
 ### --help
 Print out options
 
+### --initialize
+_version 23.0+_  
+Initializes the data folder, if it is not already initialized. This command is meant to be run when the data folder is empty, to populate it with the ledger containing only the genesis block.
+
 ### --key_create
 Generates a adhoc random keypair and prints it to stdout
 
@@ -174,8 +178,19 @@ Increase block processor allowed blocks queue size before dropping live network 
 ### --block_processor_verification_size
 Increase batch signature verification size in block processor, default 0 (limited by config signature_checker_threads), unlimited for fast_bootstrap
 
+### --disable_add_initial_peers
+_version 23.0+_  
+Disables the add initial peers function called on startup which reads the peers table and contacts all the peers listed in it
+
 ### --disable_backup
 Turn off automatic wallet backup process
+
+### --disable_block_processor_unchecked_deletion
+_version 21.0+_  
+Disable deletion of unchecked blocks after processing.
+
+### --disable_bootstrap_listener
+Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
 
 ### --disable_lazy_bootstrap
 Turn off use of lazy bootstrap
@@ -183,11 +198,21 @@ Turn off use of lazy bootstrap
 ### --disable_legacy_bootstrap
 Turn off use of legacy bootstrap
 
-### --disable_wallet_bootstrap
-Turn off use of wallet-based bootstrap
+### --disable_ongoing_bootstrap
+_version 23.0+_  
+Turn off the ability for ongoing bootstraps to occur
 
-### --disable_bootstrap_listener
-Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. **Note:** this does not impact TCP traffic for the live network.
+### --disable_providing_telemetry_metrics
+_version 21.0+_  
+Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
+
+### --disable_rep_crawler
+_version 23.0+_  
+Turn off the [rep crawler](../node-implementation/voting.md#rep-crawler) process
+
+### --disable_request_loop
+_version 23.0+_  
+Turn off the request loop
 
 ### --disable_tcp_realtime
 _version 19.0+_  
@@ -199,13 +224,8 @@ Prevent periodic cleaning of unchecked table
 ### --disable_unchecked_drop
 Prevent drop of all unchecked entries at node/wallet start
 
-### --disable_providing_telemetry_metrics
-_version 21.0+_  
-Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload.
-
-### --disable_block_processor_unchecked_deletion
-_version 21.0+_  
-Disable deletion of unchecked blocks after processing.
+### --disable_wallet_bootstrap
+Turn off use of wallet-based bootstrap
 
 ### --enable_udp
 _version 21.0+_  
@@ -233,6 +253,10 @@ Display the total counts of each version for all accounts (including unpocketed)
 
 ### --debug_block_count
 Display the number of blocks
+
+### --debug_block_dump
+_version 23.0+_  
+Print ledger blocks - use with caution due to the potentially large amount of data this can output
 
 ### --debug_bootstrap_generate
 Generate bootstrap sequence of blocks

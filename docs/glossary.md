@@ -46,7 +46,7 @@ When a 'burn' takes place, funds are sent to a specifc address that no one can a
 When a specific node marks a [confirmed](#confirmation) transaction as locally irreversible by setting the [account's](#account) [confirmation height](#confirmation-height) (in the node database) to the now higher [block height](#block-height) of the confirmed transaction. Cementing is a node-level operation.
 
 #### Confirmation
-When a block (transaction) gathers enough votes from the network to pass [quorum](#quorum). Note that confirmed sends are irreversible (i.e. fully-settled), but the receiver must publish a corresponding receive block before they will be able to spend the [pending](#pending) funds. Confirmation is a network-level decision.
+When a block (transaction) gathers enough votes from the network to pass [quorum](#quorum). Note that confirmed sends are irreversible (i.e. fully-settled), but the receiver must publish a corresponding receive block before they will be able to spend the [receivable](#receivable) funds. Confirmation is a network-level decision.
 
 #### Confirmation Height
 A number stored in the local node database that represents the highest (most recent) [confirmed](#confirmation) block in an account chain. Related to (but different from) [block height](#block-height).
@@ -84,7 +84,7 @@ Also called online stake, it is a trended value. The node samples online represe
 Nodes connected over the public internet to share Nano network data.
 
 #### pending
-A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
+See [receivable](#receivable)
 
 #### Private Key
 See [wallet](#wallet).
@@ -107,6 +107,9 @@ The version used to identify the set of protocol rules nodes are required to fol
 #### quorum
 When the delta between the two successive blocks of a root is > 67% of the online voting weight.
 
+#### receivable
+A transaction state where a block sending funds was published and confirmed by the network, but a matching block receiving those funds has not yet been confirmed.
+
 #### Representative
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
 
@@ -117,7 +120,7 @@ The [account](#account) if the block is the first block on the account, otherwis
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
 
 #### Transactions Per Second (TPS)
-Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [pending](#pending)).
+Historically, TPS was a per-node measurement that represented a node's perception of the rate of transactions on the network ([BPS](#blocks-per-second-bps)). This measurement was found to be inaccurate due to peering and propagation differences between nodes, so [CPS](#confirmations-per-second-cps) is now the preferred term for describing overall Nano network scalability. It's also important to note that while Nano sends do not require a corresponding receive to be [confirmed](#confirmation), a receive block must be confirmed before received funds can be sent again (see [receivable](#receivable)).
 
 #### unchecked (blocks)
 Blocks (transactions) that have been downloaded but not yet processed by the Nano node. The node software downloads all blocks from other nodes as unchecked, processes them and adds to block count, confirms the [frontier](#frontier) blocks for each account, and then marks them as [cemented](#cementing).
@@ -126,7 +129,7 @@ Blocks (transactions) that have been downloaded but not yet processed by the Nan
 An account address that does not have a first block on it (which must be a block to receive Nano sent from another account, cannot be a block only changing the Representative).
 
 #### unpocketed
-See [pending](#pending).
+See [receivable](#receivable).
 
 #### vote-by-hash
 Allows representatives to only include the hash of a block in each vote to save bandwidth. Before vote-by-hash was activated the entire block contents were required.

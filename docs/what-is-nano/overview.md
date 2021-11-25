@@ -19,7 +19,7 @@ Transactions occur between accounts with two separate actions:
 1. The sender publishes a block debiting their own account for the amount to be sent to the receiving account
 1. The receiver publishes a matching block crediting their own account for the amount sent
 
-Once a block sending funds is confirmed by the network, the transaction goes into a [pending](/glossary#pending) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching block receiving the funds to their account.
+Once a block sending funds is confirmed by the network, the transaction goes into a [receivable](/glossary#receivable) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching block receiving the funds to their account.
 
 ### Lightweight, stateful blocks
 
