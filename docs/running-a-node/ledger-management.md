@@ -61,18 +61,7 @@ The additional resource usage these options cause should be considered, especial
 !!! tip "Always backup your ledgers file"
 	Whenever you are attempting to change the ledger, it is highly recommended you create backups of the existing `data.ldb` file to ensure you have a rollback point if issues are encountered.
 
-To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation provides a daily ledger file download in the `#ledger` channel of our [Discord server](https://chat.nano.org). This is posted by the robot `Nano Snapshots Uploader` and contains checksums for validation.
-Alternatively, one of [My Nano Ninja](https://mynano.ninja/api) APIs redirects the current ledger file preserved at [Yandex](https://yandex.com/):
-```bash
-wget -O ledger.7z https://mynano.ninja/api/ledger/download -q --show-progress
-```
-
-Verify the checksum of the above downloaded ledger file:
-```bash
-printf "%s ledger.7z" `wget -q -O - https://mynano.ninja/api/ledger/checksum/sha256` | sha256sum --check
-```
-
-Be patient and wait for the message `ledger.7z: OK`.
+To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation uploads a new ledger file every other day for downloading in the `#ledger-download` channel of our [Discord server](https://chat.nano.org). This is posted by the robot `Nano Snapshots Uploader` and contains checksums for validation.
 
 Before using this method there are a few considerations to ensure it is done safely:
 
