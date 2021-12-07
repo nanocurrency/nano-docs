@@ -145,7 +145,7 @@ markdown_extensions:
       toc_depth: 4
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - 'https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'
+  - 'https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js'
   - 'javascript/mermaid-loose-security.js'
 extra_css:
   - 'stylesheets/extras.css'
