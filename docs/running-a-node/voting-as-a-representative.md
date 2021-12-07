@@ -20,6 +20,9 @@ Running a Nano Representative is a commitment to helping secure the network. Thi
 
 --8<-- "hardware-recommendations.md"
 
+## Synced ledger
+In order to open a new account to become a representative, the local node ledger must be in sync with the rest of the network. If you are starting a fresh node and bootstrapping, this process can take days to complete, depending on the network conditions, hardware specifications, etc. To speed this up, a [downloaded ledger](ledger-management.md#downloaded-ledger-files) can be used if necessary.
+
 ---
 
 ## Step 1: Enable voting
