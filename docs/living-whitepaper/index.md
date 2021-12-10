@@ -7,7 +7,7 @@ description: Overview of the living whitepaper on the Nano protocol and existing
 
 --8<-- "contributing-code.md"
 
-The original whitepaper for Nano was last updated in November 2017, and since then, many improvements to the protocol have been made. The current node implementation has received updates every few months on average over 2018 and 2019.[^1] As these updates continue to make the network stronger over time, the static nature of a traditional whitepaper required too much effort to continually update and publish. To ensure information about Nano is kept as up-to-date as possible, a new "Living Whitepaper" is being managed through the existing documentation website, which is easier to update and is open source.[^2]
+The original whitepaper for Nano was last updated in November 2017, and since then, many improvements to the protocol have been made. The current node implementation has received updates every few months on average since 2018.[^1] As these updates continue to make the network stronger over time, the static nature of a traditional whitepaper required too much effort to continually update and publish. To ensure information about Nano is kept as up-to-date as possible, a new "Living Whitepaper" is being managed through the existing documentation website, which is easier to update and is open source.[^2]
 
 ## Protocol vs. Node
 
