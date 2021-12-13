@@ -1809,6 +1809,14 @@ Boolean, false by default. Returns a list of peers IPv6:port with its node proto
 
 _version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
+**Request:**
+```json
+
+{
+  "action": "peers",
+  "peer_details": "true"
+}
+```
 
 **Response:**
 ```json
