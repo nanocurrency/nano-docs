@@ -375,6 +375,7 @@ Deprecated in V23.0+. Replaced by [accounts_receivable](#accounts_receivable)
 
 ### accounts_receivable  
 
+_since V23.0, use [accounts_pending](#accounts_pending) for V22.1 and below_  
 Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
@@ -1907,6 +1908,7 @@ Boolean, default "false". If "true", requests will add the blocks to the block p
 
 ### receivable
 
+_since V23.0, use [pending](#pending) for V22.1 and below_  
 Returns a list of block hashes which have not yet been received by this account.
 
 **Request:**
@@ -2010,7 +2012,7 @@ Boolean, true by default (_version 22.0+_), previously false by default. Only re
 
 ### receivable_exists
 
-_version 8.0+_   
+_since V23.0, use [pending_exists](#pending_exists) for V22.1 and below_  
 Check whether block is receivable by **hash**  
 
 **Request:**
@@ -3443,6 +3445,7 @@ Deprecated in V23.0+. Replaced by [search_receivable_all](#search_receivable_all
 
 ### search_receivable
 
+_since V23.0, use [search_pending](#search_pending) for V22.1 and below_  
 _enable_control required_  
 Tells the node to look for receivable blocks for any account in **wallet**  
 
@@ -3465,6 +3468,8 @@ Tells the node to look for receivable blocks for any account in **wallet**
 ---
 
 ### search_receivable_all  
+
+_since V23.0, use [search_pending_all](#search_pending_all) for V22.1 and below_  
 _enable_control required, version 8.0+_  
 Tells the node to look for receivable blocks for any account in all available wallets  
 
@@ -4007,7 +4012,8 @@ Deprecated in V23.0+. Replaced by [wallet_receivable](#wallet_receivable)
 
 ### wallet_receivable
 
-_enable_control required, version 8.0+_   
+_since V23.0, use [wallet_pending](#wallet_pending) for V22.1 and below_  
+_enable_control required_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
 
 --8<-- "warning-enable-control.md"
