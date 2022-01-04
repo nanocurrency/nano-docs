@@ -17,6 +17,7 @@ Before:
 * Review your code locally. Have you followed the [Code Standards](code-standards.md) closely?
 * Run tests: `core_test`,`qt_test`,`rpc_test` (see [running tests](understanding-the-code.md#tests) for more details). Did you consider adding a test case for your feature?
 * Run [ASAN](../integration-guides/build-options.md#address-sanitizer), [TSAN](../integration-guides/build-options.md#thread-sanitizer) and [Valgrind](../integration-guides/build-options.md#valgrind) to detect memory, threading or other bugs
+* Run clang formatting script and resolve any raised issues: `ci/clang-format-do.sh`
 * Commit and push your fork branch
 
 After:
