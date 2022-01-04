@@ -44,6 +44,11 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 !!! note "Configuration for use with Docker"
     Set the WebSocket server bind `address` to `::ffff:0.0.0.0` instead, and configure the container to map port 7078 accordingly. **Review [Managing the Container](../running-a-node/docker-management.md#managing-the-container) to ensure the websocket is not exposed externally.**
 
+### Secure WebSockets
+
+Support for `wss://` is available as of V23.0. This can be configured in conjunction with HTTPS support for RPC calls by updating the `config-rpc.toml` file with the [`[secure]` section](../running-a-node/configuration-https.md#configuration), or individually by adding these same details to an optional `config-tls.toml` file.
+
+
 ## Acknowledgement
 
 All WebSocket actions can optionally request an acknowledgement. The following is an example for the *subscribe* action.
