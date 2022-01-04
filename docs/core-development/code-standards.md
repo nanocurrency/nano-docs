@@ -28,7 +28,6 @@ Make sure you set up your editor to use tabs. Use tabs for indentation, and spac
 ## Performance and scalabiliy considerations
 
 * When making changes, think about performance and scalability. Pick good data structures and think about algorithmic complexity. 
-    * For small data sets, `std::vector` should be your to-go container, as a linear scan through contiguous memory is often faster than any alternative due to memory being read in cache lines.
     * Nested loops yield quadratic behavior - is there an alternative? A typical example is removing an inner lookup loop with an unordered set/map to improve lookup performance to O(1).
 * Make sure your change doesn't conflict with the scalability characteristics described in the white paper.
 
