@@ -7,10 +7,10 @@ The RPC server supports TLS to allow HTTPS requests, as well as optional client 
 
 OpenSSL must be installed. When running cmake initially, you may need to set `-DOPENSSL_ROOT_DIR` as well, depending on your system.
 
-Support for secure WebSockets (`wss://`) is also available as of V23.0. See [Secure Websockets](../integration-guides/websockets.md#secure-websockets) for details.
+Support for secure WebSockets (`wss://`) is also available as of V23.0 with these build settings and configuration updates. See [Secure Websockets](../integration-guides/websockets.md#secure-websockets) for more details.
 
 ## Configuration
-The following section in `config-rpc.toml` enables TLS:
+The following section in the `config-rpc.toml` (V22.1 and earlier) or `config-tls.toml` (V23.0+) enables TLS:
 
 ```toml
 [secure]
