@@ -1,5 +1,6 @@
 title: Original RaiBlocks/Nano Whitepaper
 description: An HTML-based version of the original RaiBlocks/nano whitepaper last updated in November 2017
+robots: nofollow
 
 # Original RaiBlocks/Nano Whitepaper
 
