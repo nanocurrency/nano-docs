@@ -46,7 +46,19 @@ With the above configuration, localhost clients should connect to `ws://[::1]:70
 
 ### Secure WebSockets
 
-Support for `wss://` is available as of V23.0 by updating [build settings and configuration for TLS](../running-a-node/configuration-https.md#configuration), including the `NANO_SECURE_RPC` cmake cache flag set to `ON`.
+Support for `wss://` is available as of V23.0 by including the `NANO_SECURE_RPC` cmake cache flag set to `ON` when building the node and adding the `config-tls.toml` file with:
+
+```toml
+enable_https=true
+enable_wss=true
+verbose_logging=true
+server_cert_path="/node/server.cert.pem"
+server_key_path="/node/server.key.pem"
+server_key_passphrase="test"
+server_dh_path="/node/dh1024.pem"
+```
+
+This configuration is related to HTTPS support for RPC, see [here for more details](../running-a-node/configuration-https.md#configuration).
 
 ## Acknowledgement
 
