@@ -181,7 +181,8 @@ extra:
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
-    - search
+    - search:
+        separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
     - social:
         cards: !ENV [ PRODUCTION, FALSE ]
         cards_color:
