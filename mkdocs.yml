@@ -135,7 +135,8 @@ markdown_extensions:
       - name: mermaid
         class: mermaid
         format: !!python/name:pymdownx.superfences.fence_div_format
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true 
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
@@ -144,7 +145,7 @@ markdown_extensions:
       toc_depth: 4
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - 'https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'
+  - 'https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js'
   - 'javascript/mermaid-loose-security.js'
 extra_css:
   - 'stylesheets/extras.css'
@@ -180,7 +181,8 @@ extra:
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
 plugins:
-    - search
+    - search:
+        separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
     - social:
         cards: !ENV [ PRODUCTION, FALSE ]
         cards_color:
