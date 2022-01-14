@@ -127,7 +127,7 @@ Dump most recent votes from representatives
 Insert `<key>` in to `<wallet>`
 
 ### --wallet_create --seed=`<seed>` --password=`<password>`
-Creates a new wallet with optional `<seed>` and optional `<password>`, and prints the ID. Note the legacy `--key` option can still be used and will function the same as `--seed`. Use [--wallet-list](#wallet-list) to retrieve the wallet ID in the future.
+Creates a new wallet with optional `<seed>` and optional `<password>`, and prints the ID. Note the legacy `--key` option can still be used and will function the same as `--seed`. Use [--wallet-list](#--wallet-list) to retrieve the wallet ID in the future.
 
 ### --wallet_change_seed --wallet=`<wallet>` --seed=`<seed>`
 Changes seed for `<wallet>` to `<seed>`.  Note the legacy `--key` option can still be used and will function the same as `--seed`.
