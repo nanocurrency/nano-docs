@@ -81,7 +81,7 @@ Make sure to backup this wallet ID as this will be needed for other calls (you c
 
 #### Backup or import your seed
 
-Note that the seed generated in the wallet was not return in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface.md#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
+Note that the seed generated in the wallet isn't returned in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface.md#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
 
 === "Docker"
 	**Request**
