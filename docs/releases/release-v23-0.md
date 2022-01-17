@@ -107,3 +107,9 @@ Support added for `wss://` to allow secure WebSocket connections alongside exist
 ## Deprecations/removals
 
 * Most unit conversion RPCs were deprecated, including `krai_from_raw`, `krai_to_raw`, `mrai_from_raw`, `mrai_to_raw`, `rai_from_raw`, `rai_to_raw`
+
+---
+
+## Builds and commands
+
+--8<-- "current-build-links-main.md"
