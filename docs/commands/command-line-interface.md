@@ -277,7 +277,7 @@ List representatives and weights
 
 ### --debug_generate_crash_report
 _version 21.0+_  
-After a node crash on linux, this command consumes the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
+After a node crash on linux, this command reads the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. See the [troubleshooting guide](/running-a-node/troubleshooting/#what-to-do-if-the-node-crashes-linux) for more information.
 
 ### --debug_opencl
 Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. To retrieve available platforms & devices run [--diagnostics](#-diagnostics). 

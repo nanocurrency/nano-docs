@@ -200,6 +200,10 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 ---
 
 ## HTTP callback
+
+!!! info "WebSockets recommended"
+    The node supports [WebSockets](websockets.md) and these are recommended over the HTTP callbacks whenever possible.
+
 Send JSON POST requests with every confirmed block to callback server configured for the node.
 
 --8<-- "warning-multiple-confirmation-notifications.md"

@@ -14,8 +14,8 @@ To submit changes, please fork the repository and create a branch to make change
 The recommended local setup is to use Docker with a pre-built image for MkDocs and Material theme. With Docker installed, from the cloned nano-docs directory run:
 
 ```bash
-docker pull nanocurrency/nano-docs:base
-docker run --rm -it -p 8000:8000 -v ${PWD}:/docs nanocurrency/nano-docs:base
+docker pull ghcr.io/nanocurrency/nano-docs:latest
+docker run --rm -it -p 8000:8000 ghcr.io/nanocurrency/nano-docs:latest
 ```
 
 You can also install MkDocs with Python 3 to serve using the following:
