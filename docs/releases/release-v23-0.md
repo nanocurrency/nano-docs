@@ -27,15 +27,15 @@ Recent updates to naming conventions are noteworthy:
 
 #### Receivable instead of pending
 
-After community discussions, a change from the term `pending` to `receivable`/`ready to be received` and similar was decided on and implemented in V23.0. These changes can be seen in various areas of the node wallet as well as across many RPC calls. 
+After community discussions, a change from the term `pending` to `receivable`/`ready to be received` and similar was decided on and partially implemented in V23.0. These changes can be seen in various areas of the node wallet as well as across many RPC calls. 
 
 !!! success ""
     _There are no breaking changes with this update, but switching to `receivable` terms is advised._
 
 To keep backwards compatibility:
 
-- All RPC call names containing the term `pending` remain, but are deprecated in favor of versions with `receivable`
-- All RPC responses containing a key of `pending` still include the key as deprecated, and an additional `receivable` key with the same value was added as the preferred option
+- The `pending` RPC call name is deprecated in favor of `receivable` (additional RPC call name changes to be completed in the next release)
+- All RPC responses containing a key of `pending` still include the key as deprecated, and an additional `receivable` key with the same value was added as the preferred option (the only exception is the `blocks_info` RPC which is pending changes in the next release)
 - Any RPC examples in the documentation have been updated to favor `receivable`
 
 The aim of this change is to help reduce the confusion around send blocks that are confirmed, but a matching receive block has not yet been published for them. See [RPC updates](#pendingreceivable-term-rpc-updates) below for a list of impacted RPC calls.
@@ -56,25 +56,20 @@ Updates to simplify the unit names used within the node wallet and unit conversi
 
 ### Pending/Receivable term RPC updates
 
-There are various changes related to the switch from `pending` to `receivable` in RPC calls as noted above. **Although all changes are backwards compatible, switching to the term `receivable` is advised**.
+There are various changes related to the switch from `pending` to `receivable` in RPC calls as noted above. **Although all changes are backwards compatible, switching to the term `receivable` in these cases is advised**.
 
 There are two main types of changes: RPC call name changes and updates to keys in the call requests and responses.
 
 **RPC call name changes**
 
-* [`accounts_pending`](../commands/rpc-protocol.md#accounts_pending) replaced by [`accounts_receivable`](../commands/rpc-protocol.md#accounts_receivable)
 * [`pending`](../commands/rpc-protocol.md#pending) replaced by [`receivable`](../commands/rpc-protocol.md#receivable)
 * [`pending_exists`](../commands/rpc-protocol.md#pending_exists) replaced by [`receivable_exists`](../commands/rpc-protocol.md#receivable_exists)
-* [`search_pending`](../commands/rpc-protocol.md#search_pending) replaced by [`search_receivable`](../commands/rpc-protocol.md#search_receivable)
-* [`search_pending_all`](../commands/rpc-protocol.md#search_pending_all) replaced by [`search_receivable_all`](../commands/rpc-protocol.md#search_receivable_all)
-* [`wallet_pending`](../commands/rpc-protocol.md#wallet_pending) replaced by [`wallet_receivable`](../commands/rpc-protocol.md#wallet_receivable)
 
 **Response/request key changes only**
 
 * [`account_balance`](../commands/rpc-protocol.md#account_balance)
 * [`account_info`](../commands/rpc-protocol.md#account_info)
 * [`accounts_balances`](../commands/rpc-protocol.md#accounts_balances)
-* [`blocks_info`](../commands/rpc-protocol.md#blocks_info)
 * [`ledger`](../commands/rpc-protocol.md#ledger)
 * [`wallet_balances`](../commands/rpc-protocol.md#wallet_balances)
 * [`wallet_info`](../commands/rpc-protocol.md#wallet_info)

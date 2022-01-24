@@ -369,19 +369,12 @@ Returns a list of pairs of account and block hash representing the head block fo
 
 ### accounts_pending  
 
-Deprecated in V23.0+. Replaced by [accounts_receivable](#accounts_receivable)
-
----
-
-### accounts_receivable  
-
-_since V23.0, use [accounts_pending](#accounts_pending) for V22.1 and below_  
 Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
 ```json
 {
-  "action": "accounts_receivable",
+  "action": "accounts_pending",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1"
 }
@@ -402,7 +395,7 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "accounts_receivable",
+  "action": "accounts_pending",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -428,7 +421,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "accounts_receivable",
+  "action": "accounts_pending",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "source": "true"
@@ -461,7 +454,7 @@ Boolean, false by default. Include active (not confirmed) blocks
 **Request:**
 ```json
 {
-  "action": "accounts_receivable",
+  "action": "accounts_pending",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "include_active": "true"
@@ -836,11 +829,10 @@ Using the optional `json_block` is recommended since v19.0.
   }
 }
 ```
-**Optional "receivable", "source", "balance"**
+**Optional "pending", "source", "balance"**
 
-_pending, source: version 9.0+, deprecated version 23.0+_
+_pending, source: version 9.0+_
 _balance: version 12.0+_
-_receivable: version 23.0+ in favor of deprecated pending_
 Booleans, false by default. Additionally checks if block is receivable, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
 
 --8<-- "deprecation-info-pending.md"
@@ -850,7 +842,7 @@ Booleans, false by default. Additionally checks if block is receivable, returns 
 {
   "action": "blocks_info",
   "hashes": ["E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"],
-  "receivable": "true",
+  "pending": "true",
   "source": "true",
   "balance": "true"
 }
@@ -866,7 +858,6 @@ Booleans, false by default. Additionally checks if block is receivable, returns 
         ...
       },
       "pending": "0",
-      "receivable": "0",
       "source_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
       "balance": "40200000001000000000000000000000000"
     }
@@ -3434,19 +3425,6 @@ Set **amount** as new receive minimum for node wallet until restart
 
 ### search_pending
 
-Deprecated in V23.0+. Replaced by [search_receivable](#search_receivable).
-
----
-
-### search_pending_all  
-
-Deprecated in V23.0+. Replaced by [search_receivable_all](#search_receivable_all).
-
----
-
-### search_receivable
-
-_since V23.0, use [search_pending](#search_pending) for V22.1 and below_  
 _enable_control required_  
 Tells the node to look for receivable blocks for any account in **wallet**  
 
@@ -3455,7 +3433,7 @@ Tells the node to look for receivable blocks for any account in **wallet**
 **Request:**
 ```json
 {
-  "action": "search_receivable",
+  "action": "search_pending",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
@@ -3468,9 +3446,8 @@ Tells the node to look for receivable blocks for any account in **wallet**
 
 ---
 
-### search_receivable_all  
+### search_pending_all  
 
-_since V23.0, use [search_pending_all](#search_pending_all) for V22.1 and below_  
 _enable_control required, version 8.0+_  
 Tells the node to look for receivable blocks for any account in all available wallets  
 
@@ -3479,7 +3456,7 @@ Tells the node to look for receivable blocks for any account in all available wa
 **Request:**
 ```json
 {
-  "action": "search_receivable_all"
+  "action": "search_pending_all"
 }
 ```  
 **Response:**
@@ -4007,13 +3984,6 @@ Checks whether **wallet** is locked
 
 ### wallet_pending
 
-Deprecated in V23.0+. Replaced by [wallet_receivable](#wallet_receivable)
-
----
-
-### wallet_receivable
-
-_since V23.0, use [wallet_pending](#wallet_pending) for V22.1 and below_  
 _enable_control required_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
 
@@ -4022,7 +3992,7 @@ Returns a list of block hashes which have not yet been received by accounts in t
 **Request:**
 ```json
 {
-  "action": "wallet_receivable",
+  "action": "wallet_pending",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1"
 }
@@ -4043,7 +4013,7 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "wallet_receivable",
+  "action": "wallet_pending",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -4070,7 +4040,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "wallet_receivable",
+  "action": "wallet_pending",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "source": "true"
@@ -4103,7 +4073,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Request:**
 ```json
 {
-  "action": "wallet_receivable",
+  "action": "wallet_pending",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "include_active": "true"
