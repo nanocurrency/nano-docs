@@ -12,7 +12,7 @@ clang-format is used to enforce most of the formatting rules, such as:
 * Space before open parenthesis.
 * Space after comma.
 
-Running `ci/clang-format-all.sh` on \*nix systems is required before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. Visual studio for instance provides a way to automatically format on saving. The definition file `.clang-format` is located in the project root directory.
+Running `ci/clang-format-do.sh` on \*nix systems is required before pushing your code to ensure that the formatting is good. If you want to do formatting from the IDE, chances are there's a plugin available. Visual Studio for instance provides a way to automatically format on saving. The definition file `.clang-format` is located in the project root directory. For CMake changes, running `cmake-format-do.sh` is required as well.
 
 Make sure you set up your editor to use tabs. Use tabs for indentation, and spaces for alignment [^1]. That way, you can use any tab size you want in your favorite editor, but the code will still look good for people with different settings.
 
