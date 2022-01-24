@@ -214,9 +214,9 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
 }
 ```
 
-**Optional "representative", "weight", receivable"**
+**Optional "representative", "weight", "pending"**
 _version 9.0+_   
-Booleans, false by default. Additionally returns representative, voting weight, receivable balance for account   
+Booleans, false by default. Additionally returns representative, voting weight, pending/receivable balance for account   
 
 **Request:**
 ```json
@@ -225,7 +225,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "representative": "true",
   "weight": "true",
-  "receivable": "true"
+  "pending": "true"
 }
 ```
 
@@ -831,8 +831,8 @@ Using the optional `json_block` is recommended since v19.0.
 ```
 **Optional "pending", "source", "balance"**
 
-_pending, source: version 9.0+_
-_balance: version 12.0+_
+_pending, source: version 9.0+_  
+_balance: version 12.0+_  
 Booleans, false by default. Additionally checks if block is receivable, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
 
 --8<-- "deprecation-info-pending.md"
