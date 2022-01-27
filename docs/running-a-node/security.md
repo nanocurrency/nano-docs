@@ -47,6 +47,10 @@ Due to the node currently processing all transactions, keeping them running and 
 
 Using a variety of these control measures for server access can increase your resistance to unauthorized access to your host machine and help protect your node from interference.
 
+## Maintenance
+
+As always the machine hosting the node should have regular maintenance done such as security patches, updates, etc. See [Maintenance](overview.md#maintenance) for more details.
+
 ## Docker considerations
 
 When running a node in Docker there is an extra layer of port controls between the node in the Docker container and the host machine. The default node configuration provided with Docker images in [Docker hub](https://hub.docker.com/r/nanocurrency/nano), along with examples in our documentation [for commands such as `docker run`](/running-a-node/docker-management/#starting), result in allowing RPC access only to the machine hosting the container. This is the recommended setup for most nodes.
