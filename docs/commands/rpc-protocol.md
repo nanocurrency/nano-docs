@@ -469,7 +469,7 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -1997,7 +1997,7 @@ If used with "count" only sorts relative to the first receivable entries found u
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -2037,7 +2037,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -4088,7 +4088,7 @@ Boolean, false by default. Returns the minimum version (epoch) of a block which 
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, true by default (_version 22.0+_), previously false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing. If false, unconfirmed blocks will also be returned.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
