@@ -1117,12 +1117,12 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific root with [confirmation_info](#confirmation_info)  
+Returns list of active elections qualified roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific qualified root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
 
-    * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
+    * First account block (open): account public key + `0000000000000000000000000000000000000000000000000000000000000000`
     * Other blocks: previous hash + previous hash
 
 
