@@ -117,7 +117,7 @@ A transaction state where a block sending funds was published and confirmed by t
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
 
 #### root
-Ff the block is the first block on the account, the root is the account public key. Otherwise it is the previous hash included in the block. The root of a block can never be zero.
+If the block is the first block on the account, the root is the account public key. Otherwise it is the previous hash included in the block. The root of a block can never be zero.
 
 #### seed
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
