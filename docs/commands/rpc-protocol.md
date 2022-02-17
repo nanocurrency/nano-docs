@@ -606,12 +606,12 @@ Parameters for state block:
 
 * `balance`: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
 * `wallet` (optional): The wallet ID that the account the block is being created for is in.
-* `account` (optional): The account the block is being created for (nano_youraccount).
+* `account` (optional): The [account](../glossary.md#account) the block is being created for.
 * `key` (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
 * `source` (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
-* `destination` (optional): The account that the sent funds should be accessible to.
+* `destination` (optional): The [account](../glossary.md#account) that the sent funds should be accessible to.
 * `link` (optional): Instead of using "source" and "destination" parameters, you can directly pass "link". If the block is sending funds, set link to the public key of the destination account. If it is receiving funds, set link to the hash of the block to receive. If the block has no balance change but is updating representative only, set link to 0. See [Block format section](../integration-guides/the-basics.md#block-format) for more information
-* `representative`: The account that block account will use as its representative.
+* `representative`: The [account](../glossary.md#account) that block account will use as its representative.
 * `previous`: The block hash of the previous block on this account's block chain ("0" for first block).
 
 **Warning:** It is **critical** that `balance` is the balance of the account **after** created block!
