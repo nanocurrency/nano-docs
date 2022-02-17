@@ -610,7 +610,7 @@ Parameters for state block:
 * `key` (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
 * `source` (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
 * `destination` (optional): The account that the sent funds should be accessible to.
-* `link` (optional): Instead of using "source" & "destination" parameters, you can directly pass "link" (source to receive or destination public key to send).
+* `link` (optional): Instead of using "source" & "destination" parameters, you can directly pass "link". If block is a send type, set link to the public key of the destination account. If it is a receive block, set link to the hash of the block to receive
 * `representative`: The account that block account will use as its representative.
 * `previous`: The block hash of the previous block on this account's block chain ("0" for first block).
 
