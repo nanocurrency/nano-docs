@@ -104,6 +104,9 @@ A Nano account with >= 0.1% of the [online voting weight](#online-voting-weight)
 #### protocol version
 The version used to identify the set of protocol rules nodes are required to follow in order to properly communicate with peers. Nodes running older protocol versions are periodically de-peered on the network to keep communication efficient - see [Active Releases](/releases/node-releases/#active-releases) and [Inactive Releases](/releases/node-releases/#inactive-releases) for the latest versions allowed to peer with one another.
 
+#### qualified root
+The concatenation of the root and previous attributes of a block. For the first block on an account, this would be is the account public key following by 32 zero bytes. For the second or higher block on an account, this would be the previous field repeated twice (root + previous, where root == previous).
+
 #### quorum
 When the delta between the two successive blocks of a root is > 67% of the online voting weight.
 
@@ -114,7 +117,7 @@ A transaction state where a block sending funds was published and confirmed by t
 A Nano account with > 0 voting weight, but < 0.1% of the [online voting weight](#online-voting-weight), delegated to it. Unlike [Principal Representatives](#principal-representative), when configured on a node which is voting, the votes it produces and sends to directly connected peers won't be rebroadcasted by those peers.
 
 #### root
-The [account](#account) if the block is the first block on the account, otherwise it is the previous hash included in the block.
+If the block is the first block on the account, the root is the account public key. Otherwise it is the previous hash included in the block. The root of a block can never be zero.
 
 #### seed
 A 256-bit random value usually represented to the user as a 64 character hexidecimal (0-9 and A-F) value. Private keys are derived from a seed.
