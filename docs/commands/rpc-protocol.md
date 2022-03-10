@@ -832,7 +832,7 @@ Using the optional `json_block` is recommended since v19.0.
 **Optional "pending", "source"**
 
 _pending, source: version 9.0+_  
-Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
+Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks).
 
 --8<-- "deprecation-info-pending.md"
 
