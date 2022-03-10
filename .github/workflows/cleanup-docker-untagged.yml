@@ -2,7 +2,7 @@ name: cleanup-docker-untagged
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   OWNER: orgs/nanocurrency
