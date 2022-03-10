@@ -180,6 +180,7 @@ extra:
     property: G-RGP8S06PYJ
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
+edit_uri: 'edit/main/docs/'
 plugins:
     - search:
         separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
