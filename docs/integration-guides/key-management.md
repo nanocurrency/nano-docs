@@ -30,7 +30,9 @@ https://github.com/joltwallet/bip-mnemonic
 https://github.com/numsu/nanocurrency-web-js
 
 #### Test Vectors
-Given 24-Word Mnemonic:
+
+**24-Word Mnemonic**
+
 ```
 edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur
 ```
@@ -87,6 +89,65 @@ Derived BIP39 Seed:
     ```
     nano_3b5fnnerfrkt4me4wepqeqggwtfsxu8fai4n473iu6gxprfq4xd8pk9gh1dg
     ```
+
+**12-Word Mnemonic**
+
+```
+company public remove bread fashion tortoise ahead shrimp onion prefer waste blade
+```
+
+No Passphrase
+
+Derived BIP39 Seed:
+```
+924a962cae64448812be28a514093ebfeeed537d61a44318eb35f902961d21b2fccd30008d33c8d1d5327a34b9b73281c4b27a0a3d004c1c2e85e8dbb234cba8
+```
+
+??? success "Index 0 (`44'/165'/0'`)"
+
+    Derived Private Key:
+    ```
+    6f73d61ca0b56fcdb79d69d437f102348ad75ca971433eb92b2b003f8c99b48d
+    ```
+    Derived Public key:
+    ```
+    134d938215f68bcaa3a0e574fde325fc4b1abad9bd3d698bfef95633b54ffb57
+    ```
+    Derived Address:
+    ```
+    nano_16tfkg33dxndscjt3sdnzqjkdz4d5cxfmhbxf87zxycp8gtnzytqmcosi3zr
+    ```
+
+??? success "Index 1 (`44'/165'/1'`)"
+
+    Derived Private Key:
+    ```
+    7e104389811a0967ef574af1f3f423f23cbf7b614be17844f67fb6fd315f9a7e
+    ```
+    Derived Public key:
+    ```
+    71e6caac915affe836c3e822be6a5b3464f40c74bd2e5459d4e74205c6a7c0df
+    ```
+    Derived Address:
+    ```
+    nano_1wh8scpb4pqzx1ue9t34qso7pf56yi89bhbgcjexbst41q5chi8zqtwb74ih
+    ```
+
+??? success "Index 2 (`44'/165'/2'`)"
+
+    Derived Private Key:
+    ```
+    8b7250869207a277ac37068dbe32782c2ab9fc6a5342f0deabbfdfae1285196a
+    ```
+    Derived Public key:
+    ```
+    fcebc6554853ed01c242817abf1b5050b887002f8de8f55d00c7c6b5fe01075d
+    ```
+    Derived Address:
+    ```
+    nano_3z9drscninzf193671dtqwfo1n7riw14z5hayogi3jy8pqz143txaghe4gbk
+    ```
+
 
 ## External Management
 
