@@ -54,6 +54,9 @@ Throughout the development cycle and after releases official builds of the node 
 
 --8<-- "warning-unsupported-configuration.md"
 
+!!! tip "Alternate Windows setup"
+    Some users have trouble using the command line approach below for getting setup to build on Windows. An alternative setup is available further down for [Windows 10 & Visual Studio 2019](#windows-10-visual-studio-2019). Variations on these instructions with different versions of Windows, Visual Studio, Cmake, etc. may work as well, but may require adjustments.
+
 ### Boost
 
 The node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used for Windows as well, or you can optionally build from the downloaded source instead as follows:
@@ -295,6 +298,78 @@ This is only required when the Qt wallet with GUI is needed.
 This is only required for when the RPC server is being [run as a child process or outside the node process completely](advanced.md#running-nano-as-a-service).
 
 `make nano_rpc`
+
+---
+
+## Windows 10 & Visual Studio 2019
+
+An alternative node building process for Windows 10 using Visual Studio 2019 can be found below. As this uses GUI options, some of the steps and images may vary if using versions other than those indicated.
+
+**Windows updates**
+
+Ensure Windows 10 is running and the latest updates have been completed, restart Windows.
+
+**Visual Studio 2019**
+
+Install Visual Studio Community 2019 (version 16.11) https://visualstudio.microsoft.com/vs/older-downloads/. Make sure to tick `Desktop development with C++` and leave everything else at default.
+
+![Visual Studio 2019 Install](../images/windows-10-build-instructions/visual-studio-install.jpg)
+
+**Boost**
+
+Install Boost 1.74.0 binaries for msvc 14.2. Use default settings during install
+https://sourceforge.net/projects/boost/files/boost-binaries/1.74.0/boost_1_74_0-msvc-14.2-64.exe/download
+
+**CMake**
+
+Install Cmake windows installer, Latest Release (currently 3.22.3)
+https://cmake.org/download/.
+
+Check the option `Add cmake to system path for all users`
+
+**Git**
+Download a git tool of choice such as Github desktop https://desktop.github.com/. Clone the nano node develop branch from Github
+from URL https://github.com/nanocurrency/nano-node to your preferred path, such as: `C:\Users\YourUser\Documents\GitHub\nano-node`.
+
+**Restart Windows**
+
+**Setting up the solution**
+
+Run CMake GUI
+
+- Set `Where is the source code` to your preferred path: `C:\Users\YourUser\Documents\GitHub\nano-node`
+- Create a directory for the destination files such as: `C:\Users\YourUser\Documents\NanoSolution` and set in `Where to build the binaries`
+- Click `Configure` and select `Visual Studio 16 2019` as the generator for the project
+- Set any necessary [CMake variables](#cmake-variables) you need, such as the `ACTIVE_NETWORK` but leave `NANO_GUI` off because this requires QT to be installed
+- Click `Generate` and close Cmake
+
+![CMake Generator](../images/windows-10-build-instructions/cmake-generator.jpg)
+
+
+**Visual studio 2019**
+
+- Open project solution file in `C:/Users\YourUser\Documents\NanoSolution\nano-node-beta.sln`
+- At the top of the screen select the build type (`Debug` or `Release`) and architecture (`x64`)
+
+![Build type and architecture](../images/windows-10-build-instructions/debug-arch.jpg)
+
+- Go to the build menu and select `Build`
+- When build has finished you will find the compiled files at `C:/Users\YourUser\Documents\NanoBinaries\Debug` or `C:/Users\YourUser\Documents\NanoBinaries\Release` 
+
+**Optional: Setup debugging**
+
+You can setup the node to stop at code breakpoints and then inspect values during runtime.
+
+Find the nano_node project in the solution explorer on the right pane. Then right click it and select `Set as startup project`
+
+![Set as startup project](../images/windows-10-build-instructions/startup-project.jpg)
+
+Right click the nano_node project again and click `Properties`
+Go to `Configuration Properties` > `Debugging` and set the `Command Arguments` to `--daemon`, click OK
+
+![Set properties](../images/windows-10-build-instructions/set-properties.jpg)
+
+From Visual Studio hit `F5` to start debugging. When a breakpoint is hit, Visual Studio will halt the code and take focus.
 
 ---
 
