@@ -388,6 +388,9 @@ This is a common situation when starting a new node, as it takes time to bootstr
 
 If your node stops making progress on syncing for over 24 hours, try connecting with the nano community for troubleshooting assistance on [Discord](https://chat.nano.org) or the [Forum](https://forum.nano.org).
 
+Full Nodes and Block Explorers Provider:
+- NOWNodes (https://nownodes.io) - register to test free API key
+
 ---
 
 ## Next steps
