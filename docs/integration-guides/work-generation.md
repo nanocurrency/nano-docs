@@ -221,11 +221,13 @@ The mainnet's base difficulty threshold is currently `fffffff800000000` for all 
 
 Previous difficulty levels are outlined below as well for historical reference, but currently the epoch v2 thresholds are required when publishing new blocks to the network:
 
-| Epoch version | Block Type | Difficulty Threshold |
-|               |            |                      |
-| 1             | All        | `ffffffc000000000`   |
-| 2             | Send or change | `fffffff800000000` |
-| 2             | Receive        | `fffffe0000000000` |
+| Epoch version | Block Subtype          | Difficulty Threshold |
+|               |                        |                      |
+| 1             | All                    | `ffffffc000000000`   |
+| 2             | Send or change         | `fffffff800000000`   |
+| 2             | Receive, open or epoch | `fffffe0000000000`   |
+
+**Note:** A block is only considered a subtype `change` block if the only action it takes is changing the representative field (no balance change). So `receive` subtype blocks with a representative change will still have the lower `receive` difficulty threshold applied.
 
 For a block to be valid, its work field must satisfy the above work equations using this value for threshold.
 
