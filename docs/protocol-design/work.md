@@ -32,7 +32,7 @@ The work field is not used when signing a block. This design has two consequence
 
 1. A block can be securely signed locally, while the work is requested from a remote server, with larger resources. This is especially important for devices with low resources.
 
-2. Since all inputs are known before generating a block, a user can **precompute** the work for the next block, eliminating any time between creating and broadcasting a block. After a block is broadcasted, the next block's work can be computed immediately, using the last block's hash as input. 
+2. Since all inputs are known before generating a block, a user can **precompute** the work for the next block, eliminating any time between creating and broadcasting a block. After a block is created, the next block's work can be computed immediately, using the last block's hash as input. 
 
 ## Choosing an algorithm
 
