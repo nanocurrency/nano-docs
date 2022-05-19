@@ -12,7 +12,8 @@ There are no special considerations when upgrading from V22.X or V23.0 to V23.1.
 
 * Remove a message that is always logged during block processing that could be abused to fill log files
 * Clean up the node_id_handshake message handler which in some circumstances can fill memory
-* Bound the unchecked table and limit entries based on dependencies to ensure disk usage cannot be exploited
+* Bound the unchecked table size to ensure it cannot be abused to use up all available disk space
+* Limit entries into the unchecked table to two items per dependency
 * Add persistent node IDs to provide a method for removing spoof telemetry messages
 * Default to turn off inactive votes cache to avoid excessive vote relaying
 * Disable a vote processor flushing in the request loop which can block during heavy load
