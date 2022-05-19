@@ -53,9 +53,8 @@ To help with handle specific fork situations, the [final votes](https://github.c
 
 Because this is a consensus change, a network upgrade is required to activate. As noted above, this will be done using a canary block once at least 80% of voting weight on the network has been upgraded. After the canary block is distributed by the Nano Foundation, the final votes will be used for cementing going forward.
 
-### RocksDB for production use
-
-Originally introduced in V20.0, support for RocksDB as the backend to the node has been improved over time and is now ready for use in production nodes running V22.0. With disk IO being a potential bottleneck in performance on some machines, RocksDB has shown promise in reducing disk activity in some node scenarios. To upgrade, see the new command to migrate from LMDB to RocksDB in the [CLI Updates](#cli-updates) section below.
+!!! info "RocksDB remains experimental"
+    Previous communications related to RocksDB being approved for production use should be ignored. The RocksDB should still be considered experimental and not recommended for production use.
 
 ### Experimental ledger pruning
 
