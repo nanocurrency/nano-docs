@@ -118,9 +118,10 @@ In the event that you are unable to upgrade the ledger on another machine but wo
 
 ## RocksDB Ledger Backend
 
-	If you are testing RocksDB and want to discuss results, configurations, etc. please join the forum topic here: https://forum.nano.org/t/rocksdb-ledger-backend-testing/111
+!!! info ""
+    If you are testing RocksDB and want to discuss results, configurations, etc. please join the forum topic here: https://forum.nano.org/t/rocksdb-ledger-backend-testing/111
 
-The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB became available as an experimental option. In _v22+_ it is now suitable for production environments.
+The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB became available as an experimental option and should not be used in production.
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
 
 ### Enable RocksDB
