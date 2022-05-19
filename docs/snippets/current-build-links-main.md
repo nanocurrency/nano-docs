@@ -6,4 +6,4 @@
 | Windows (exe) | https://repo.nano.org/live/binaries/nano-node-V23.1-win64.exe | [SHA256 Checksum](https://repo.nano.org/live/binaries/nano-node-V23.1-win64.exe.sha256) |
 | Windows (zip) | https://repo.nano.org/live/binaries/nano-node-V23.1-win64.zip | [SHA256 Checksum](https://repo.nano.org/live/binaries/nano-node-V23.1-win64.zip.sha256) |
 | Docker | `docker pull nanocurrency/nano:V23.1`<br />See [Pulling the Docker Image](/running-a-node/node-setup/#pulling-the-docker-image) for more details. | |
-| RHEL/CentOS rpm | `sudo rpm -iUvh https://repo.nano.org/live/binaries/nanocurrency-23.1-26.el7.x86_64.rpm`<br />This installs `nano_node` and `nano_rpc` to `/usr/bin`. | [SHA256 Checksum](https://repo.nano.org/live/binaries/nanocurrency-23.1-26.el7.x86_64.rpm.sha256) |
+| RHEL/CentOS rpm | To be released soon |
