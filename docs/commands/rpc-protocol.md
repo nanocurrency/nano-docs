@@ -6,7 +6,7 @@ description: Reference for the RPC commands available for the Nano node
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
 
 | Section | Purpose |
-|         |         |
+|---------|---------|
 | <span class="no-break">**[Node RPCs](#node-rpcs)**</span>                        | For interacting with the node and ledger. |
 | <span class="no-break">**[Wallet RPCs](#wallet-rpcs)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
 | <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
