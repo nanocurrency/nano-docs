@@ -11,11 +11,10 @@ jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-      uses: actions/checkout@v3
+      - name: push
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.event.inputs.branch }}
-      - name: push
-        run: |
+      - run: |
           git remote add nano-docs-staging https://nano-infrastructure:${{ secrets.GH_TOKEN }}@github.com/nanocurrency/nano-docs-staging.git
           git push nano-docs-staging ${{ github.event.inputs.branch }}:staging
