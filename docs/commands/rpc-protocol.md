@@ -1,9 +1,12 @@
+title: RPC Protocol
+description: Reference for the RPC commands available for the Nano node
+
 # RPC Protocol
 
 The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands along with the responses that are expected. This page is split into the following sections:
 
 | Section | Purpose |
-|         |         |
+|---------|---------|
 | <span class="no-break">**[Node RPCs](#node-rpcs)**</span>                        | For interacting with the node and ledger. |
 | <span class="no-break">**[Wallet RPCs](#wallet-rpcs)**</span>                    | For interacting with the built-in, QT-based node wallet. **NOTE**: This wallet is only recommended for development and testing. |
 | <span class="no-break">**[Unit Conversion RPCs](#unit-conversion-rpcs)**</span> | For converting different units to and from raw. |
@@ -19,8 +22,7 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ### account_balance 
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
---8<-- "unconfirmed-information.md"
-    The pending balance is calculated from potentially unconfirmed blocks. The account's balance is obtained from its frontier. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json 
@@ -34,9 +36,14 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```json
 {
   "balance": "10000",
-  "pending": "10000"
+  "pending": "10000",
+  "receivable": "10000"
 }
 ```
+
+**Optional "include_only_confirmed"**
+_version 22.0+_   
+Boolean, true by default. Results in `balance` only including blocks on this account that have already been confirmed and `receivable` only including incoming send blocks that have already been confirmed on the sending account.
 
 ---
 
@@ -82,9 +89,9 @@ Get account number for the **public key**
 
 ### account_history  
 
-Reports send/receive information for an account. Returns only **send & receive** blocks by default (unless raw is set to true - see optional parameters below): change, state change & state epoch blocks are skipped, open & state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". **Note**: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0   
+Reports send/receive information for an account. Returns only **send & receive** blocks by default (unless raw is set to true - see optional parameters below): change, state change & state epoch blocks are skipped, open & state open blocks will appear as receive, state receive/send blocks will appear as receive/send entries. Response will start with the latest block for the account (the frontier), and will list all blocks back to the open block of this account when "count" is set to "-1". **Note**: "local_timestamp" returned since version 18.0, "height" field returned since version 19.0 and "confirmed" returned since version 23.0
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -106,7 +113,8 @@ Reports send/receive information for an account. Returns only **send & receive**
       "amount": "80000000000000000000000000000000000",
       "local_timestamp": "1551532723",
       "height": "60",
-      "hash": "80392607E85E73CC3E94B4126F24488EBDFEB174944B890C97E8F36D89591DC5"
+      "hash": "80392607E85E73CC3E94B4126F24488EBDFEB174944B890C97E8F36D89591DC5",
+      "confirmed": "true"
     }
   ],
   "previous": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"
@@ -131,6 +139,8 @@ Returns frontier, open block, change representative block, balance, last modifie
 --8<-- "unconfirmed-information.md"
     The balance is obtained from the frontier, which may be unconfirmed. As long as you follow the [guidelines](/integration-guides/key-management/#transaction-order-and-correctness), you can rely on the **balance** for the purposes of creating transactions for this account. If the frontier is never confirmed, then the blocks that proceed it will also never be confirmed.
 
+    If you need only details for confirmed blocks, use the `include_confirmed` option below and referenced the `confirmed_*` fields added in to the response.
+
 **Request:**
 ```json
 {
@@ -148,16 +158,65 @@ Returns frontier, open block, change representative block, balance, last modifie
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
+  "account_version": "1",
   "confirmation_height" : "28",
-  "account_version": "1"
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB"
 }
 ```
 
-In response `confirmation_height` only available for _version 19.0+_ 
+In response `confirmation_height` only available for _version 19.0+_  
+In response `confirmation_height_frontier` only available for _version 21.0+_ which is the block hash at that confirmation height.  
+
+**Optional "include_confirmed"**
+_version 22.0+_   
+Boolean, false by default. Adds new return fields with prefix of `confirmed_` for consistency:
+
+- `confirmed_balance`: balance for only blocks on this account that have already been confirmed
+- `confirmed_height`: matches `confirmation_height` value
+- `confirmed_frontier`: matches `confirmation_height_frontier` value
+- If `representative` option also `true`, `confirmed_representative` included: representative account from the confirmed frontier block
+- If `receivable` option also `true`, `confirmed_receivable` included: balance of all receivable amounts where the matching incoming send blocks have been confirmed on their account
+
+--8<-- "deprecation-info-pending.md"
+
+**Request:**
+```json
+{
+  "action": "account_info",  
+  "account": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+  "representative": "true",
+  "weight": "true",
+  "receivable": "true",
+  "include_confirmed": "true"
+}
+```
+
+**Response:**
+```json
+{
+    "frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "open_block": "0E3F07F7F2B8AEDEA4A984E29BFE1E3933BA473DD3E27C662EC041F6EA3917A0",
+    "representative_block": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "balance": "11999999999999999918751838129509869131",
+    "confirmed_balance": "11999999999999999918751838129509869131",
+    "modified_timestamp": "1606934662",
+    "block_count": "22966",
+    "account_version": "1",
+    "confirmed_height": "22966",
+    "confirmed_frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
+    "representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "confirmed_representative": "nano_1gyeqc6u5j3oaxbe5qy1hyz3q745a318kh8h9ocnpan7fuxnq85cxqboapu5",
+    "weight": "11999999999999999918751838129509869131",
+    "pending": "0",
+    "receivable": "0",
+    "confirmed_pending": "0",
+    "confirmed_receivable": "0"
+}
+```
 
 **Optional "representative", "weight", "pending"**
 _version 9.0+_   
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for account   
+Booleans, false by default. Additionally returns representative, voting weight, pending/receivable balance for account   
 
 **Request:**
 ```json
@@ -179,9 +238,13 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "balance": "235580100176034320859259343606608761791",
   "modified_timestamp": "1501793775",
   "block_count": "33",
+  "account_version": "1",
+  "confirmation_height" : "28",
+  "confirmation_height_frontier" : "34C70FCA0952E29ADC7BEE6F20381466AE42BD1CFBA4B7DFFE8BD69DF95449EB",
   "representative": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
   "weight": "1105577030935649664609129644855132177",
-  "pending": "2309370929000000000000000000000000"
+  "pending": "2309370929000000000000000000000000",
+  "receivable": "2309370929000000000000000000000000"
 }
 ```
 
@@ -248,28 +311,31 @@ Returns the voting weight for **account**
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
 
 --8<-- "unconfirmed-information.md"
-    The pending balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
+    The receivable balances are calculated from potentially unconfirmed blocks. Account balances are obtained from their frontiers. An atomic [account_info](#account_info) RPC call is recommended for the purposes of creating transactions.
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
 {
   "action": "accounts_balances",
-  "accounts": ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
+  "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
 }
 ```  
 **Response:**
 ```json
 {
   "balances" : {
-    "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":
-    {
-      "balance": "10000",
-      "pending": "10000"
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
+        "balance": "325586539664609129644855132177",
+        "pending": "2309372032769300000000000000000000",
+        "receivable": "2309372032769300000000000000000000"
     },
     "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":
     {
       "balance": "10000000",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }
   }
 }
@@ -280,7 +346,7 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ### accounts_frontiers  
 Returns a list of pairs of account and block hash representing the head block for **accounts list**  
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -302,7 +368,8 @@ Returns a list of pairs of account and block hash representing the head block fo
 ---
 
 ### accounts_pending  
-Returns a list of block hashes which have not yet been received by these **accounts**  
+
+Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
 ```json
@@ -323,7 +390,7 @@ Returns a list of block hashes which have not yet been received by these **accou
 ```  
 **Optional "threshold"**  
 _version 8.0+_   
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**   
 
 **Request:**
 ```json
@@ -349,7 +416,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```  
 **Optional "source"**  
 _version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
 ```json
@@ -402,58 +469,27 @@ Boolean, false by default. Additionally sorts each account's blocks by their amo
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns blocks which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
-### active_difficulty
-_version 19.0+_ 
-
-Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (`network_minimum`) as well as the current active difficulty seen on the network (`network_current`, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the `network_current` from the base difficulty of `network_minimum` is also provided for comparison.
+### accounts_representatives 
+Returns the representatives for given **accounts**  
 
 **Request:**
 ```json
 {
-  "action": "active_difficulty"
+  "action": "accounts_representatives",
+  "accounts": ["nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5","nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"]
 }
 ```  
-
 **Response:**
 ```json
 {
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffcdbf40aa45",
-  "multiplier": "1.273557846739298"
-}
-```
-
-**Optional "include_trend"**
-
-Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
-Note: Before v20, the sampling period was between 16 and 36 seconds.
-
-**Request:**
-```json
-{
-  "action": "active_difficulty",
-  "include_trend": "true"
-}
-```
-
-**Response:**
-```json
-{
-  "network_minimum": "ffffffc000000000",
-  "network_current": "ffffffc1816766f2",
-  "multiplier": "1.024089858417128",
-  "difficulty_trend": [
-    "1.156096135149775",
-    "1.190133894573061",
-    "1.135567138563921",
-    "1.000000000000000",
-    "...",
-    "1.000000000000000"
-  ]
+  "representatives" : {
+    "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5": "nano_3hd4ezdgsp15iemx7h81in7xz5tpxi43b6b41zn3qmwiuypankocw3awes5k",
+    "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
+  }
 }
 ```
 
@@ -484,13 +520,13 @@ Returns the account containing block
 ```json
 {
   "action": "block_account",
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+  "hash": "023B94B7D27B311666C8636954FE17F1FD2EAA97A8BAC27DE5084FBBD5C6B02C"
 }
 ```  
 **Response:**
 ```json
 {
-  "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
+  "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
 }
 ```
 
@@ -498,7 +534,7 @@ Returns the account containing block
 
 ### block_confirm   
 _version 12.2+_   
-Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).  
+Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).
 
 **Request:**
 ```json
@@ -513,6 +549,8 @@ Request confirmation for **block** from known online representative nodes. Check
   "started": "1"
 }
 ```
+
+**NOTE:** Unless there was an error encountered during the command, the response will always return `"started": "1"`. This response does not indicate the block was successfully confirmed, only that an error did not occur. This response happens even if the block has already been confirmed previously and notifications will be triggered for this block (via HTTP callbacks or WebSockets) in all cases. This behavior may change in a future release.
 
 ---
 
@@ -533,36 +571,14 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
   "cemented": "25"
 }
 ```
+**Note:** If the node is running the RocksDB backend the unchecked count may only be estimate.  
+
 **Optional "include_cemented"**
 
 _version 19.0+ (enable_control required in version 19.0, not required in version 20.0+)_  
 Default "true". If "true", "cemented" in the response will contain the number of cemented blocks. (In V19.0 default was "false")
 
---8<-- "enable-control-warning.md"
-
----
-
-### block_count_type  
-Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
-
-**Request:**
-```json
-{
-  "action": "block_count_type"
-}
-```  
-**Response:**
-```json
-{
-  "send": "5016664",
-  "receive": "4081228",
-  "open": "546457",
-  "change": "24193",
-  "state_v0": "4216537",
-  "state_v1": "10653709",
-  "state": "14870246"
-}
-```  
+--8<-- "warning-enable-control.md"
 
 ---
 
@@ -570,7 +586,7 @@ Reports the number of blocks in the ledger by type (send, receive, open, change,
 _enable_control required, version 9.0+_  
 Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. Using the optional `json_block` is recommended since v19.0.  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 
 **Request sample for state block:**  
@@ -590,12 +606,12 @@ Parameters for state block:
 
 * `balance`: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
 * `wallet` (optional): The wallet ID that the account the block is being created for is in.
-* `account` (optional): The account the block is being created for (nano_youraccount).
+* `account` (optional): The [account](../glossary.md#account) the block is being created for.
 * `key` (optional): Instead of using "wallet" & "account" parameters, you can directly pass in a private key.
 * `source` (optional): The block hash of the source of funds for this receive block (the send block that this receive block will pocket).
-* `destination` (optional): The account that the sent funds should be accessible to.
-* `link` (optional): Instead of using "source" & "destination" parameters, you can directly pass "link" (source to receive or destination public key to send).
-* `representative`: The account that block account will use as its representative.
+* `destination` (optional): The [account](../glossary.md#account) that the sent funds should be accessible to.
+* `link` (optional): Instead of using "source" and "destination" parameters, you can directly pass "link". If the block is sending funds, set link to the public key of the destination account. If it is receiving funds, set link to the hash of the block to receive. If the block has no balance change but is updating representative only, set link to 0. See [Block format section](../integration-guides/the-basics.md#block-format) for more information
+* `representative`: The [account](../glossary.md#account) that block account will use as its representative.
 * `previous`: The block hash of the previous block on this account's block chain ("0" for first block).
 
 **Warning:** It is **critical** that `balance` is the balance of the account **after** created block!
@@ -604,6 +620,22 @@ Parameters for state block:
 
 _version 19.0+_  
 Default "false". If "true", "block" in the response will contain a JSON subtree instead of a JSON string.
+ 
+**Optional "work"**
+
+Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option. Only used if optional **work** is not given.
+
+**Optional "difficulty"**
+
+_version 21.0+_  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Only used if optional **work** is not given.  
+
+If difficulty and work values are both not given, RPC processor tries to calculate difficulty for work generation based on ledger data: epoch from previous block or from link for receive subtype; block subtype from previous block balance.  
 
 **Examples**
 
@@ -611,6 +643,7 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",
+  "difficulty": "ffffffe1278b3dc6", // since V21.0
   "block": {
     "type": "state",
     "account": "nano_3qgmh14nwztqw4wmcdzy4xpqeejey68chx6nciczwn9abji7ihhum9qtpmdr",
@@ -624,10 +657,6 @@ Default "false". If "true", "block" in the response will contain a JSON subtree 
   }
 }
 ```  
- 
-**Optional "work"**
-
-Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block from external source  
 
 ---
 
@@ -672,6 +701,7 @@ Retrieves a json representation of the block in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
 * _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
+* _since version 23.0_: `successor` returned
 
 Using the optional `json_block` is recommended since v19.0.  
 
@@ -691,6 +721,7 @@ Using the optional `json_block` is recommended since v19.0.
   "balance": "5606157000000000000000000000000000000",
   "height": "58",
   "local_timestamp": "0",
+  "successor": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72",
   "confirmed": "true",
   "contents": {
     "type": "state",
@@ -707,7 +738,7 @@ Using the optional `json_block` is recommended since v19.0.
 }
 ```
 
-Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 Mnano](/protocol-design/distribution-and-units/)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
+Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded (like `0000000C9F2C9CD04674EDEA40000000` for [1 nano](../protocol-design/distribution-and-units.md#unit-dividers)) when the block is a legacy *Send Block*. If the block is a *State-Block*, the same `Balance` will be a numeric-string (like `1000000000000000000000000000000`).
 
 **Optional "json_block"**
 
@@ -758,6 +789,7 @@ Retrieves a json representations of `blocks` in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
 * _since version 19.0_: Whether block was `confirmed`, `subtype` (_for state blocks_) of `send`, `receive`, `change` or `epoch`
+* _since version 23.0_: `successor` returned
 
 Using the optional `json_block` is recommended since v19.0.  
 
@@ -779,6 +811,7 @@ Using the optional `json_block` is recommended since v19.0.
       "balance": "5606157000000000000000000000000000000",
       "height": "58",
       "local_timestamp": "0",
+      "successor": "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72",
       "confirmed": "true",
       "contents": {
         "type": "state",
@@ -796,11 +829,12 @@ Using the optional `json_block` is recommended since v19.0.
   }
 }
 ```
-**Optional "pending", "source", "balance"**
+**Optional "pending", "source"**
 
-_pending, source: version 9.0+_
-_balance: version 12.0+_
-Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks), and returns the balance of the account at the time of the block.
+_pending, source: version 9.0+_  
+Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks).
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -808,8 +842,7 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
   "action": "blocks_info",
   "hashes": ["E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"],
   "pending": "true",
-  "source": "true",
-  "balance": "true"
+  "source": "true"
 }
 ```  
 **Response:**
@@ -890,8 +923,12 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
 ```
 
 **Optional "bypass_frontier_confirmation"**  
-_version 20.0+_  
+_version 20.0-21.3_  
 Default "false". If "true", frontier confirmation will not be performed for this bootstrap. Normally not to be changed.
+
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
 
 ---
 
@@ -914,11 +951,19 @@ Initialize multi-connection bootstrap to random peers. Not compatible with launc
 _version 20.0+_  
 Boolean, false by default. Manually force closing of all current bootstraps  
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
+**Optional "account"**
+_version 22.0+_
+String, empty by default. Public address for targeting a specific account on bootstrap attempt
+
 ---
 
 ### bootstrap_lazy  
 _version 17.0+_   
-Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap)   
+Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap). As of _version 22.0_, response includes whether new election was `started` and whether a new lazy `key_inserted` was successful.
 
 **Request:**
 ```json
@@ -930,19 +975,24 @@ Initialize lazy bootstrap with given block **hash**. Not compatible with launch 
 **Response:**
 ```json
 {
-  "started": "1"
+  "started": "1",
+  "key_inserted": "0"
 }
 ```
 **Optional "force"**
 
 Boolean, false by default. Manually force closing of all current bootstraps  
 
+**Optional "id"**  
+_version 21.0+_  
+String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
 ---
 
 ### bootstrap_status  
 _version 17.0+_
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
 
 Returning status of current bootstrap attempt
 
@@ -953,31 +1003,82 @@ Returning status of current bootstrap attempt
 }
 ```  
 **Response:**
+_versions 21.0+_
 ```json
 {
-  "clients": "0",
-  "pulls": "0",
-  "pulling": "0",
-  "connections": "31",
-  "idle": "31",
-  "target_connections": "16",
-  "total_blocks": "13558",
-  "runs_count": "0",
-  "requeued_pulls": "31",
-  "frontiers_received": "true",
-  "frontiers_confirmed": "false",
-  "mode": "legacy",
-  "lazy_blocks": "0",
-  "lazy_state_backlog": "0",
-  "lazy_balances": "0",
-  "lazy_destinations": "0",
-  "lazy_undefined_links": "0",
-  "lazy_pulls": "32",
-  "lazy_keys": "32",
-  "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
-  "duration": "29"
+  "bootstrap_threads": "2",
+  "running_attempts_count": "2",
+  "total_attempts_count": "6",
+  "connections": {
+    "clients": "31",
+    "connections": "45",
+    "idle": "0",
+    "target_connections": "64",
+    "pulls": "1158514"
+  },
+  "attempts": [
+    {
+      "id": "EE778222D6407F94A666B8A9E03D242D",
+      "mode": "legacy",
+      "started": "true",
+      "pulling": "1158544",
+      "total_blocks": "4311",
+      "requeued_pulls": "7",
+      "frontier_pulls": "0",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "frontiers_confirmation_pending": "false",
+      "frontiers_age": "4294967295",
+      "last_account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
+      "duration": "133"
+    },
+    {
+      "id": "291D2CC32F44E004896C4215A6CDEDAFEF317F6AC802C244E8F4B4F2456175CB",
+      "mode": "lazy",
+      "started": "true",
+      "pulling": "1",
+      "total_blocks": "1878",
+      "requeued_pulls": "4",
+      "lazy_blocks": "1878",
+      "lazy_state_backlog": "1",
+      "lazy_balances": "4",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "13",
+      "lazy_keys": "2",
+      "lazy_key_1": "E6D0B5BD5EBDB3CEC7DBC32EDC3C2DBD5ABA17C54E34485A358BF8948039ED6A",
+      "duration": "17"
+    }
+  ]
 }
 ```
+
+??? abstract "Response V17.0-V20.0"
+    ```json
+    {
+      "clients": "0",
+      "pulls": "0",
+      "pulling": "0",
+      "connections": "31",
+      "idle": "31",
+      "target_connections": "16",
+      "total_blocks": "13558",
+      "runs_count": "0",
+      "requeued_pulls": "31",
+      "frontiers_received": "true",
+      "frontiers_confirmed": "false",
+      "mode": "legacy",
+      "lazy_blocks": "0",
+      "lazy_state_backlog": "0",
+      "lazy_balances": "0",
+      "lazy_destinations": "0",
+      "lazy_undefined_links": "0",
+      "lazy_pulls": "32",
+      "lazy_keys": "32",
+      "lazy_key_1": "36897874BDA3028DC8544C106BE1394891F23DDDF84DE100FED450F6FBC8122C",
+      "duration": "29"
+    }
+    ```
 
 ---
 
@@ -1014,12 +1115,12 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 
 ### confirmation_active  
 _version 16.0+_   
-Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with [confirmation_info](#confirmation_info)  
+Returns list of active elections qualified roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific qualified root with [confirmation_info](#confirmation_info)  
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
 
-    * First account block (open): `0000000000000000000000000000000000000000000000000000000000000000` + account public key
+    * First account block (open): account public key + `0000000000000000000000000000000000000000000000000000000000000000`
     * Other blocks: previous hash + previous hash
 
 
@@ -1034,7 +1135,9 @@ Returns list of active elections roots (excluding stopped & aborted elections). 
 {
  "confirmations": [
    "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"
- ]
+ ],
+ "unconfirmed": "133", // since V21.0
+ "confirmed": "5" // since V21.0
 }
 ```   
    
@@ -1047,7 +1150,7 @@ Number, 0 by default. Returns only active elections with equal or higher announc
 ### confirmation_height_currently_processing
 _version 19.0+_
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
 
 Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed.
 
@@ -1069,12 +1172,12 @@ Returns the hash of the block which is having the confirmation height set for, e
 ### confirmation_history  
 _version 12.0+_
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
  
 duration, time, confirmation_stats: version 17.0+_   
 Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners; since V20.0, the confirmation request count; since V21.0, the number of blocks and voters. Also returns stats: count of elections in history (limited to 2048) & average duration time.
 
-With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/advanced/#websocket-support) instead.
+With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/websockets) instead.
 
 **Request:**
 ```json
@@ -1130,7 +1233,7 @@ If the block is unknown on the node, the following error will be returned:
 
 ### confirmation_info 
 _version 16.0+_   
-Returns info about active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -1191,7 +1294,7 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 {
   "action": "confirmation_info",
   "json_block": "true",
-  "root": "F8BA8CBE61C679231EB06FA03A0CD7CFBE68746396CBBA169BD9E12725682B44",
+  "root": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44",
   "representatives": "true"
 }
 ```  
@@ -1230,7 +1333,15 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 
 ### confirmation_quorum  
 _version 16.0+_   
-Returns information about node elections settings & observed network state: delta tally required to rollback block, percentage of online weight for delta, minimum online weight to confirm block, currently observed online total weight, known peers total weight   
+Returns information about node elections settings & observed network state:
+
+- `quorum_delta`: Online weight times `online_weight_quorum_percent`
+- `online_weight_quorum_percent`: Percent of online vote weight required for confirmation
+- `online_weight_minimum`: When calculating online weight, the node is forced to assume at least this much voting weight is online, thus setting a floor for voting weight to confirm transactions at `online_weight_minimum` * `quorum_delta`
+- `online_stake_total`: Total online weight from gossip vote traffic
+- `peers_stake_total`: Total online weight from direct node connections
+- `trended_stake_total`: Median of online weight samples taken every 5 minutes over previous 2 week period
+- Removed in _version 22.0_: `peers_stake_required`
 
 **Request:**
 ```json
@@ -1246,7 +1357,7 @@ Returns information about node elections settings & observed network state: delt
   "online_weight_minimum": "60000000000000000000000000000000000000",
   "online_stake_total": "82939414347555434636491651871033324568",
   "peers_stake_total": "69026910610720098597176027400951402360",
-  "peers_stake_required": "60000000000000000000000000000000000000"
+  "trended_stake_total": "81939414347555434636491651871033324568"
 }   
 ```   
 
@@ -1267,7 +1378,7 @@ The effective stake needed from directly connected peers for quorum. Per v19, th
 ### database_txn_tracker
 _v19.0+_  
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
   
 Returns a list of open database transactions which are equal or greater than the `min_read_time` or `min_write_time` for reads and read-writes respectively.  
 
@@ -1318,7 +1429,7 @@ Returns a list of open database transactions which are equal or greater than the
 
 ### delegators  
 _version 8.0+_   
-Returns a list of pairs of delegator names given **account** a representative and its balance  
+Returns a list of pairs of delegator accounts and balances given a representative **account**
 
 **Request:**
 ```json
@@ -1336,6 +1447,13 @@ Returns a list of pairs of delegator names given **account** a representative an
   }
 }
 ```   
+
+**Optional parameters:**  
+_since V23.0_  
+
+* `threshold`: minimum required balance for a delegating account to be included in the response
+* `count`: number of delegators to return
+* `start`: account in the list you would like to start after, to allow for paging responses
 
 ---
 
@@ -1384,11 +1502,11 @@ Derive deterministic keypair from **seed** based on **index**
 ### epoch_upgrade  
 _enable_control required, version 20.0+_ 
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
 
-Upgrade network to new **epoch** with epoch signer private **key**  
+Upgrade network to new **epoch** with epoch signer private **key**. This spawns a background task to iterate over all accounts and add the epoch block to any accounts that do not have it. It will return `{ "started" = "1" }` if the background task was spawned successfully or `{ "started" = "0" }` if the operation could not be started. Reasons for not being able to start the operations include the node being stopped and a previous being in progress. `epoch` can be set to either 1 (representing the [network upgrade to state blocks](../releases/network-upgrades.md#state-blocks)) or 2 (representing the [network upgrade for increase work difficulty](../releases/network-upgrades.md#increased-work-difficulty)).
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1406,6 +1524,10 @@ Upgrade network to new **epoch** with epoch signer private **key**
 ```  
 **Optional "count"**  
 Number. Determines limit of number of accounts to upgrade.
+
+**Optional "threads"**  
+_version 21.0+_  
+Number. Determines limit of work threads to use for concurrent upgrade processes (useful with multiple work peers or high work peer latency).
 
 ---
 
@@ -1453,7 +1575,7 @@ Returns a list of pairs of account and block hash representing the head block st
 _enable_control required_  
 Tells the node to send a keepalive packet to **address**:**port**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1517,9 +1639,9 @@ Derive public key and account number from **private key**
 _enable_control required, version 9.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count starting at **account** up to **count**   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -1544,8 +1666,8 @@ Returns frontier, open block, change representative block, balance, last modifie
   }
 }
 ```  
-**Optional "representative", "weight", "pending"**  
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
+**Optional "representative", "weight", "receivable"**  
+Booleans, false by default. Additionally returns representative, voting weight, receivable balance for each account   
 
 **Request:**
 ```json
@@ -1555,7 +1677,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "count": "1",
   "representative": "true",
   "weight": "true",
-  "pending": "true"
+  "receivable": "true"
 }
 ```  
 **Response:**
@@ -1571,7 +1693,8 @@ Booleans, false by default. Additionally returns representative, voting weight, 
       "block_count": "2",
       "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
       "weight": "0",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }   
   }   
 }
@@ -1586,19 +1709,19 @@ NOTE: The "count" option is ignored if "sorting" is specified
 
 **Optional "threshold"**  
 _version 19.0+_  
-Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **pending** is also given, the number compared with the threshold is the sum of account balance and pending balance.
+Number (128 bit, decimal), default 0. Return only accounts with balance above **threshold**. If **receivable** is also given, the number compared with the threshold is the sum of account balance and receivable balance.
 
 ---
 
 ### node_id
 _enable_control required, version 17.0+_ 
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
  
-Derive private key, public key and node ID number with checksum (similar to account representation). "as_account" field is **deprecated**  
+Returns private key, public key and node ID number with checksum (similar to account representation) from the existing node ID created on startup. "as_account" field is **deprecated**  
 _version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1621,11 +1744,11 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ### node_id_delete
 _enable_control required, version 17.0+_
 
---8<-- "debug-only-command.md"
+--8<-- "warning-debug-only-command.md"
 
 Removing node ID (restart required to take effect)
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1672,18 +1795,27 @@ Returns a list of pairs of online peer IPv6:port and its node protocol network v
 **Optional "peer_details"**
 
 _version 18.0+_   
-Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. `type` returned in version 19.0+ as either `tcp` (preferred) or `udp` (fallback) used for peering with that node.  
+Boolean, false by default. Returns a list of peers IPv6:port with its node protocol network version and node ID. The node ID is random and is not a Nano address. As of Version V21+ `type` returns `tcp`, as `udp` was **deprecated** and is not longer used for peering with that node.
 
 _version 20.0 will generate the node_id with `node_` prefix, earlier versions will generate with `nano_` prefix_  
+
+**Request:**
+```json
+
+{
+  "action": "peers",
+  "peer_details": "true"
+}
+```
 
 **Response:**
 ```json
 {
   "peers": {
-    "[::ffff:172.17.0.1]:32841": {
-      "protocol_version": "16",
+    "[::ffff:172.17.0.1]:7075": {
+      "protocol_version": "18",
       "node_id": "node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
-      "type": "udp"
+      "type": "tcp"
     }
   }
 }
@@ -1692,12 +1824,86 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ---
 
 ### pending  
+
+Deprecated in V23.0+. Replaced by [receivable](#receivable)
+
+---
+
+### pending_exists  
+
+Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
+
+---
+
+### process  
+Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
+
+--8<-- "warning-process-sub-type-recommended.md"
+
+**Request:**
+```json
+{
+  "action": "process",
+  "json_block": "true",
+  "subtype": "send",
+  "block": {
+    "type": "state",
+    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+    "previous": "6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766",
+    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
+    "balance": "40200000001000000000000000000000000",
+    "link": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9",
+    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
+    "signature": "A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07",
+    "work": "000bc55b014e807d"
+  }
+}
+```  
+**Response:**
+```json
+{
+  "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
+}
+```
+**Optional "force"**  
+_version 13.1+_  
+Boolean, false by default. Manually forcing fork resolution if processed block is not accepted as fork
+
+**Optional "subtype"**  
+_version 18.0+_  
+String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving receivable blocks. Options:
+
+* `send` - account balance is reduced
+* `receive` - account balance is increased
+* `open` - first block on account with account balance initially set higher than 0
+* `change` - account balance is unchanged, representative field value changed to valid public address
+* `epoch` - block signed with epoch signer private key (does not allow balance or representative changes)
+
+**Optional "json_block"**  
+_version 19.0+_  
+Boolean, default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
+
+**Optional "watch_work"**  
+_added in version 20.0+_  
+_removed in version 22.0_  
+Boolean, default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+
+**Optional "async"**  
+_version 22.0+_  
+Boolean, default "false". If "true", requests will add the blocks to the block processor queue and `{"started":"1"}` will be immediately returned, instead of waiting for block process completion to return. To know if the block was properly processed, monitor the [WebSocket topic `new_unconfirmed_block`](../integration-guides/websockets.md#new-unconfirmed-blocks) and a notification for that successful block will be sent.
+
+
+---
+
+### receivable
+
+_since V23.0, use [pending](#pending) for V22.1 and below_  
 Returns a list of block hashes which have not yet been received by this account.
 
 **Request:**
 ```json
 {
-  "action": "pending",
+  "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1"
 }
@@ -1713,12 +1919,12 @@ Number. Determines limit of number of blocks to return.
 
 **Optional "threshold"**  
 _version 8.0+_   
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**  
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**  
 
 **Request:**
 ```json
 {
-  "action": "pending",
+  "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -1734,12 +1940,12 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 ```  
 **Optional "source"**  
 _version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
 ```json
 {
-  "action": "pending",
+  "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "source": "true"
@@ -1764,7 +1970,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Request:**
 ```json
 {
-  "action": "pending",
+  "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "include_active": "true"
@@ -1774,28 +1980,34 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "min_version"**
 
 _version 15.0+_   
-Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this receivable block.
 
 **Optional "sorting"**
 
-_version 19.0+_   
 Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.   
+
+_version 22.0+_   
+If used with "count" returns the absolute sorted values.
+
+_version 19.0+_   
+If used with "count" only sorts relative to the first receivable entries found up to count so not necessarily the ones with the largest receivable balance.   
 
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
-### pending_exists  
-_version 8.0+_   
-Check whether block is pending by **hash**  
+### receivable_exists
+
+_since V23.0, use [pending_exists](#pending_exists) for V22.1 and below_  
+Check whether block is receivable by **hash**  
 
 **Request:**
 ```json
 {
-  "action": "pending_exists",
+  "action": "receivable_exists",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
@@ -1814,7 +2026,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Request:**
 ```json
 {
-  "action": "pending_exists",
+  "action": "receivable_exists",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "include_active": "true"
 }
@@ -1823,56 +2035,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "include_only_confirmed"**
 
 _version 19.0+_  
-Boolean, false by default. Only returns hashes which have their confirmation height set or are undergoing confirmation height processing.
-
----
-
-### process  
-Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. Since v20.0, blocks are watched for confirmation by default (see optional `watch_work`).  
-
-**Request:**
-```json
-{
-  "action": "process",
-  "json_block": "true",
-  "block": {
-    "type": "state",
-    "account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
-    "previous": "6CDDA48608C7843A0AC1122BDD46D9E20E21190986B19EAC23E7F33F2E6A6766",
-    "representative": "nano_3pczxuorp48td8645bs3m6c3xotxd3idskrenmi65rbrga5zmkemzhwkaznh",
-    "balance": "40200000001000000000000000000000000",
-    "link": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9",
-    "link_as_account": "nano_33t5by1653nt196hfwm5q3wq7oxtaix97r7bhox5zn8eratrzoqsny49ftsd",
-    "signature": "A5DB164F6B81648F914E49CAB533900C389FAAD64FBB24F6902F9261312B29F730D07E9BCCD21D918301419B4E05B181637CF8419ED4DCBF8EF2539EB2467F07",
-    "work": "000bc55b014e807d"
-  }
-}
-```  
-**Response:**
-```json
-{
-  "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
-}
-```
-**Optional "force"**
-
-_version 13.1+_  
-Boolean, false by default. Manually forcing fork resolution if processed block is not accepted as fork
-
-**Optional "subtype"**
-
-_version 18.0+_  
-String, empty by default. Additional check for state blocks subtype (send/receive/open/change/epoch). I.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks   
-
-**Optional "json_block"**
-
-_version 19.0+_  
-Default "false". If "true", "block" must contain a JSON subtree instead of a JSON string.
-
-**Optional "watch_work"**
-
-_version 20.0+_  
-Default "true". If "true", **block** will be placed on watch for confirmation, with equivalent functionality to in-wallet transactions using [send](#send), [receive](#receive) and [account_representative_set](#account_representative_set), including republishing and rework if confirmation is delayed (default is 5 seconds, set by `work_watcher_period` config entry) and if [active_difficulty](#active_difficulty) is higher than the block's PoW difficulty.
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -1952,6 +2115,25 @@ Boolean, false by default. Returns voting weight for each representative.
       "weight": "150462654614686936429917024683496890"
     }
   }
+}
+```
+
+**Optional "accounts"**  
+Array of accounts. Returned list is filtered for only these accounts.
+
+**Request:**
+```json
+{
+  "action": "representatives_online",
+  "accounts": ["nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p", "nano_1111111111111111111111111111111111111111111111111117353trpda"]
+}
+```  
+**Response:**
+```json
+{
+  "representatives": [
+    "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p"
+  ]
 }
 ```
 
@@ -2224,6 +2406,44 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
 }
 ```
 
+_version 22.0+_  
+NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed and will be different depending on the ledger backend.
+
+**Request database:**
+```json
+{
+  "action": "stats",
+  "type": "database"
+}
+```
+
+**Database response:**  
+**LMDB:**
+```json
+{
+    "branch_pages": "0",
+    "depth": "1",
+    "entries": "11",
+    "leaf_pages": "1",
+    "overflow_pages": "0",
+    "page_size": "4096"
+}
+```
+**RocksDB:**  
+```json
+{
+    "cur-size-all-mem-tables": "74063072",
+    "size-all-mem-tables": "487744504",
+    "estimate-table-readers-mem": "113431016",
+    "estimate-live-data-size": "17756425993",
+    "compaction-pending": "0",
+    "estimate-num-keys": "81835964",
+    "estimate-pending-compaction-bytes": "0",
+    "total-sst-files-size": "20350606013",
+    "block-cache-capacity": "318767104",
+    "block-cache-usage": "150310696"
+}
+```
 ---
 
 ### stats_clear
@@ -2251,7 +2471,7 @@ Clears all collected statistics. The "stat_duration_seconds" value in the "stats
 _enable_control required_  
 Method to safely shutdown node  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2296,6 +2516,108 @@ Number, 0 by default. Return the account chain block hashes **offset** by the sp
 
 _version 18.0+_   
 Boolean, false by default. Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Equal to [chain](#chain)    
+
+---
+
+### telemetry
+_version 21.0+_  
+Return metrics from other nodes on the network. By default, returns a summarized view of the whole network. See below for details on obtaining local telemetry data.  
+[Networking - node telemetry](/protocol-design/networking#node-telemetry) contains more detailed information on the protocol implementation of telemetry.  
+**Request:**
+```json
+{
+  "action": "telemetry"
+}
+```
+**Response:**
+```json
+{
+    "block_count": "5777903",
+    "cemented_count": "688819",
+    "unchecked_count": "443468",
+    "account_count": "620750",
+    "bandwidth_cap": "1572864",
+    "peer_count": "32",
+    "protocol_version": "18",
+    "uptime": "556896",
+    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
+    "major_version": "21",
+    "minor_version": "0",
+    "patch_version": "0",
+    "pre_release_version": "0",
+    "maker": "0",
+    "timestamp": "1587055945990",
+    "active_difficulty": "fffffff800000000"
+}
+```
+
+This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
+
+| Field Name | Response details |
+|------------|------------------------------------|
+| **block_count**       | average count of blocks in ledger (including unconfirmed) |
+| **cemented_count**    | average count of blocks cemented in ledger (only confirmed) |
+| **unchecked_count**   | average count of unchecked blocks. This should only be considered an estimate as nodes running RocksDB may not return exact counts. |
+| **account_count**     | average count of accounts in ledger |
+| **bandwidth_cap**     | `0` = unlimited; the mode is chosen if there is more than 1 common result otherwise the results are averaged (excluding `0`) |
+| **peer_count**        | average count of peers nodes are connected to |
+| **\*_version**        | mode (most common) of (protocol, major, minor, patch, pre_release) versions |
+| **uptime**            | average number of seconds since the UTC epoch at the point where the response is sent from the peer |
+| **genesis_block**     | mode (most common) of genesis block hashes |
+| **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
+| **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
+| **active_difficulty** | _V22.0+_ returns minimum network difficulty due to deprecated active difficulty measurements<br><br> _up to V21.3_ returns average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+
+This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
+
+**Optional "raw"**  
+When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+
+**Request:**
+```json
+{
+  "action": "telemetry",
+  "raw" : "true"
+}
+```
+
+**Response:**
+```json
+{
+  "metrics": [
+    {
+      "block_count": "5777903",
+      ...
+      "node_id": "node_1cmi8difuruopgzpnb4ybrnnj5rproxwuwe5mad7ucbsekakiwn37qqg1zo5",
+      "signature": "5F8DEE5F895D53E122FDEB4B1B4118A41F9DDB818C6B299B09DF59131AF9F201BB7057769423F6B0C868B57509177B54D5D2C731405FE607527F5E2B6B2E290F",
+      "address": "::ffff:152.89.106.89",
+      "port": "54000"
+    },
+    {
+      "block_count": "5777902",
+      ...    
+      "node_id": "node_3ipxdjrha3rfg9h3spiz5jkprw8kdj7bph9fir51kf6pmryzznsyhakqznk3",
+      "signature": "D691B855D9EC70EA6320DE609EB379EB706845433E034AD22721E8F91BF3A26156F40CCB2E98653F1E63D4CE5F10F530A835DE1B154D1213464E3B9BB9BE4908",
+      "address": "::ffff:95.216.205.215",
+      "port": "54006"
+    }
+    ...
+  ]
+}
+```
+
+**Optional "address" & "port"**  
+Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
+```json
+{
+  "action": "telemetry",
+  "address": "246.125.123.456",
+  "port": "7075"
+}
+```
+
+!!!tip "Requesting telemetry data from the local node"
+    Metrics for the local node can be requested using the peering port and any loopback address **127.0.0.1**, **::1** or **[::1]**
 
 ---
 
@@ -2382,7 +2704,7 @@ Returns a list of pairs of unchecked block hashes and their json representation 
 _enable_control required, version 8.0+_     
 Clear unchecked synchronizing blocks   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2437,7 +2759,9 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 ### unchecked_keys   
 _version 8.0+_   
-Retrieves unchecked database keys, blocks hashes & a json representations of unchecked pending blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
+Retrieves unchecked database keys, blocks hashes & a json representations of unchecked receivable blocks starting from **key** up to **count**. Using the optional `json_block` is recommended since v19.0.   
+
+--8<-- "known-issue-unchecked-keys-rpc-rocksdb.md"
 
 **Request:**
 ```json
@@ -2483,9 +2807,9 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 
 _enable_control required, version 19.0+_   
 
-Returns the total pending balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
+Returns the total receivable balance for unopened accounts in the local database, starting at **account** (optional) up to **count** (optional), sorted by account number. _**Notes:**_ By default excludes the burn account.   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2506,7 +2830,7 @@ Returns the total pending balance for unopened accounts in the local database, s
 ```   
 
 **Optional "threshold"**  
-Number (128 bit, decimal), default 0. Return only accounts with total pending balance above **threshold**.
+Number (128 bit, decimal), default 0. Return only accounts with total receivable balance above **threshold**.
 
 ---
 
@@ -2533,7 +2857,7 @@ Return node uptime in seconds
 _enable_control required_  
 Stop generating **work** for block  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2545,6 +2869,7 @@ Stop generating **work** for block
 **Response:**
 ```json
 {
+  "success": ""
 }
 ```  
 
@@ -2552,24 +2877,23 @@ Stop generating **work** for block
 
 ### work_generate
 _enable_control required_  
-Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key)  
+Generates **work** for block. **hash** is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with [account_key](#account_key).  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
 {
   "action": "work_generate",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
 **Response:**
 ```json
 {
-  "work": "2bf29ef00786a6bc",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647",
+  "work": "2b3d689bbcb21dca",
+  "difficulty": "fffffff93c41ec94", // of the resulting work
+  "multiplier": "1.182623871097636", // since v19.0, calculated from default base difficulty
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
 ```  
@@ -2582,10 +2906,16 @@ Without this parameter, the node will only generate work locally.
 
 **Optional "difficulty"**
 
+!!! info "Difficulty no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher difficulty thresholds on work generation is not useful. However, this can still be used for targeting a lower difficulty for receive blocks. This option may be removed in a future release.
+
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work.  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to generate work. Defaults to the network base difficulty.
 
 **Optional "multiplier"**
+
+!!! info "Multiplier no longer useful"
+    With _version 22.0+_ the difficulty is no longer used for prioritization so targeting higher multipliers on work generation is not useful. This option will be removed in a future release.
 
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to generate work.  
@@ -2596,13 +2926,29 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 _version 20.0+_  
 A valid Nano account. If provided and `use_peers` is set to `true`, this information will be relayed to work peers.
 
+**Optional "version"**
+
+_version 21.0+_  
+Work version string. Currently "work_1" is the default and only valid option.
+
+**Optional "block"**
+
+_version 21.0+_  
+A valid Nano block (string or JSON). Using the optional `json_block` is recommended. If provided and `difficulty` or `multiplier` are both not given, RPC processor tries to calculate the appropriate difficulty threshold based on ledger data.  
+***Note:*** block should be the one where the resulting work value will be used, not the previous block.
+
+**Optional "json_block"**
+
+_version 21.0+_  
+Default "false". If "true", `block` in the request should contain a JSON subtree instead of a JSON string.
+
 ---
 
 ### work_peer_add  
 _enable_control required, version 8.0+_     
 Add specific **IP address** and **port** as work peer for node until restart   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2624,7 +2970,7 @@ Add specific **IP address** and **port** as work peer for node until restart
 ### work_peers   
 _enable_control required, version 8.0+_     
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2647,7 +2993,7 @@ _enable_control required, version 8.0+_
 _enable_control required, version 8.0+_     
 Clear work peers node list until restart   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2665,38 +3011,80 @@ Clear work peers node list until restart
 ---
 
 ### work_validate 
-Check whether **work** is valid for block  
+Check whether **work** is valid for block. Provides two values: **valid_all** is `true` if the work is valid at the current network difficulty (work can be used for any block). **valid_receive** is `true` if the work is valid for use in a receive block.
+
+**Read the details below when using this RPC in V21**.
+
+!!! warning "Semantics change in V21.0"
+    In V21.0, when the optional **difficulty** is *not* given, **valid** is no longer included in the response.
+
+    Use the new response fields **"valid_all"** and **"valid_receive"** taking into account the subtype of the block using this work value:
+
+    - **valid_all** validates at the current network difficulty. As soon as the node processes the first [epoch_2 block](/releases/network-upgrades#increased-work-difficulty), this difficulty is increased.
+    - **valid_receive** is completely accurate **only once the [epoch_2 upgrade](/releases/network-upgrades#increased-work-difficulty) is finished.** Until the upgrade is finished, it is only accurate if the account where this work will be used is already upgraded. The upgrade status of an account can be obtained from [account_info](#account_info). The account is upgraded if "account_version" is `"2"`.
 
 **Request:**
 ```json
 {
   "action": "work_validate",
   "work": "2bf29ef00786a6bc",
-  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2",
-  "difficulty": "ffffffd21c3933f3"
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
 ```  
-**Response:**
+**Response since v21.0:**
 ```json
 {
-  "valid": "1",
-  "difficulty": "ffffffd21c3933f4",
-  "multiplier": "1.394647"
+  "valid_all": "1",
+  "valid_receive": "1",
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636" // calculated from the default base difficulty
 }
 ```
 
-*Since version 19.0+:* The response also includes the work `value` in hexadecimal format, and a `multiplier` from the base difficulty (not from the optionally given difficulty).
+??? abstract "Response up to v20.0"
+    ```json
+    {
+      "valid": "1",
+      "difficulty": "fffffff93c41ec94", // since v19.0
+      "multiplier": "9.4609" // since v19.0
+    }
+    ```
 
 **Optional "difficulty"**
 
 _version 19.0+_  
-Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work  
+Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** value to validate work. Defaults to the network base difficulty. Response includes extra field **valid** signifying validity at the given difficulty.  
+
+**Request with given "difficulty"**  
+```json
+{
+  "action": "work_validate",
+  "difficulty": "ffffffffffffffff",
+  "work": "2bf29ef00786a6bc",
+  "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
+}
+```
+**Response with given "difficulty:**
+```json
+{
+  "valid": "0",
+  "valid_all": "1", // since v21.0
+  "valid_receive": "1", // since v21.0
+  "difficulty": "fffffff93c41ec94",
+  "multiplier": "1.182623871097636"
+}
+```
 
 **Optional "multiplier"**
 
 _version 20.0+_  
 Multiplier from base difficulty (positive number). Uses equivalent difficulty as **multiplier** from base difficulty to validate work.  
 ***Note:*** overrides the `difficulty` parameter.  
+
+**Optional "version"**
+
+_version 21.0+_
+Work version string. Currently "work_1" is the default and only valid option.
 
 ---
 
@@ -2711,7 +3099,7 @@ Multiplier from base difficulty (positive number). Uses equivalent difficulty as
 _enable_control required_  
 Creates a new account, insert next deterministic key in **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2782,7 +3170,7 @@ Lists all the accounts inside **wallet**
 _enable_control required_  
 Moves **accounts** from **source** to **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2808,7 +3196,7 @@ Moves **accounts** from **source** to **wallet**
 _enable_control required_  
 Remove **account** from **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2831,7 +3219,7 @@ Remove **account** from **wallet**
 _enable_control required_  
 Sets the representative for **account** in **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2859,7 +3247,7 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 _enable_control required, version 9.0+_  
 Creates new accounts, insert next deterministic keys in **wallet** up to **count**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2904,7 +3292,7 @@ See [block_create](#block_create) Node RPC command above
 _enable_control required_  
 Changes the password for **wallet** to **password**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2964,9 +3352,9 @@ Checks whether the password entered for **wallet** is valid
 
 ### receive  
 _enable_control required_  
-Receive pending **block** for **account** in **wallet**. If receiving the block opens the account, sets the account representative to a [wallet representative](#wallet_representative). Before v21, the representative is set to the account itself.  
+Receive receivable **block** for **account** in **wallet**. If receiving the block opens the account, sets the account representative to a [wallet representative](#wallet_representative). Before v21, the representative is set to the account itself.  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2994,7 +3382,7 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 _enable_control required, version 8.0+_   
 Returns receive minimum for node wallet  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3015,7 +3403,7 @@ Returns receive minimum for node wallet
 _enable_control required, version 8.0+_   
 Set **amount** as new receive minimum for node wallet until restart  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3033,11 +3421,12 @@ Set **amount** as new receive minimum for node wallet until restart
 
 ---
 
-### search_pending  
-_enable_control required_  
-Tells the node to look for pending blocks for any account in **wallet**  
+### search_pending
 
---8<-- "enable-control-warning.md"
+_enable_control required_  
+Tells the node to look for receivable blocks for any account in **wallet**  
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3053,14 +3442,14 @@ Tells the node to look for pending blocks for any account in **wallet**
 }
 ```
 
-
 ---
 
 ### search_pending_all  
-_enable_control required, version 8.0+_  
-Tells the node to look for pending blocks for any account in all available wallets  
 
---8<-- "enable-control-warning.md"
+_enable_control required, version 8.0+_  
+Tells the node to look for receivable blocks for any account in all available wallets  
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3081,7 +3470,10 @@ Tells the node to look for pending blocks for any account in all available walle
 _enable_control required_  
 Send **amount** from **source** in **wallet** to **destination**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
+
+!!! success "Use of `id` option is highly recommended"
+    Integrations using the node wallet must ensure idempotency for transactions and this can be done externally if preferred. Using the `id` field provides this option internally and is highly recommended for all node wallet uses.
 
 **Request:**
 ```json
@@ -3090,7 +3482,8 @@ Send **amount** from **source** in **wallet** to **destination**
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "source": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "destination": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
-  "amount": "1000000"
+  "amount": "1000000",
+  "id": "your-unique-id"
 }
 ```  
 **Response:**
@@ -3162,7 +3555,7 @@ See [sign](#sign) Node RPC command above
 _enable_control required_  
 Add an adhoc private key **key** to **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3199,7 +3592,7 @@ Boolean, false by default. Disables work generation after adding account
 _enable_control required, version 11.0+_  
 Add watch-only **accounts** to **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3224,7 +3617,9 @@ Add watch-only **accounts** to **wallet**
 ### wallet_balances  
 Returns how many raw is owned and how many have not yet been received by all accounts in **wallet**  
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -3239,7 +3634,8 @@ Returns how many raw is owned and how many have not yet been received by all acc
   "balances" : {
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {
       "balance": "10000",
-      "pending": "10000"
+      "pending": "10000",
+      "receivable": "10000"
     }
   }
 }
@@ -3256,7 +3652,7 @@ _enable_control required_
 Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic accounts in wallet! To restore account from new seed use RPC [accounts_create](#accounts_create).  
 `last_restored_account` and `restored_count` fields in response returned since _version 19.0+_  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3306,7 +3702,7 @@ Check whether **wallet** contains **account**
 _enable_control required_  
 Creates a new random wallet id  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3331,7 +3727,7 @@ Seed value (64 hexadecimal digits string, 256 bit). Changes seed for a new walle
 _enable_control required_  
 Destroys **wallet** and all contained accounts  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3393,7 +3789,7 @@ Returns a list of pairs of account and block hash representing the head block st
 _version 18.0+_   
 Reports send/receive information for accounts in wallet. Change blocks are skipped, open blocks will appear as receive. Response will start with most recent blocks according to local ledger.
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
 ```json
@@ -3434,9 +3830,19 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 
 ### wallet_info  
 _version 15.0+_   
-Returns the sum of all accounts balances in **wallet**, number of accounts in wallet, number of deterministic & adhoc (non-deterministic) accounts, deterministic index (index of last account derived from seed. Equal to deterministic accounts number if no accounts were removed)   
+Given a **wallet** id, from all of the accounts in the wallet, returns:
 
---8<-- "includes-unconfirmed.md"
+* Sum of their **balance** amounts
+* Total number of accounts as **accounts_count**
+* Number of deterministic accounts as **deterministic_count**
+* Number of adhoc (non-deterministic) accounts as **adhoc_count**
+* Index of last account derived from the walet seed as **deterministic_index** (equal to deterministic accounts number if no accounts were removed)
+* Sum of all frontier block heights as **accounts_block_count**
+* Sum of confirmed block heights as **accounts_cemented_block_count**
+
+--8<-- "warning-includes-unconfirmed.md"
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -3450,10 +3856,13 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
 {
   "balance": "10000",
   "pending": "10000",
+  "receivable": "10000",
   "accounts_count": "3",
   "adhoc_count": "1",
   "deterministic_count": "2",
-  "deterministic_index": "2"
+  "deterministic_index": "2",
+  "accounts_block_count": "14",
+  "accounts_cemented_block_count": "13"
 }
 ```
 
@@ -3463,9 +3872,11 @@ Returns the sum of all accounts balances in **wallet**, number of accounts in wa
 _enable_control required, version 11.0+_   
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for accounts from **wallet**   
 
---8<-- "includes-unconfirmed.md"
+--8<-- "warning-includes-unconfirmed.md"
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
+
+--8<-- "deprecation-info-pending.md"
 
 **Request:**
 ```json
@@ -3489,9 +3900,9 @@ Returns frontier, open block, change representative block, balance, last modifie
   }
 }
 ```  
-**Optional "representative", "weight", "pending"**
+**Optional "representative", "weight", "receivable"**
 
-Booleans, false by default. Additionally returns representative, voting weight, pending balance for each account   
+Booleans, false by default. Additionally returns representative, voting weight, receivable balance for each account   
 
 **Request:**
 ```json
@@ -3500,7 +3911,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "representative": "true",
   "weight": "true",
-  "pending": "true"
+  "receivable": "true"
 }
 ```  
 **Response:**
@@ -3516,7 +3927,8 @@ Booleans, false by default. Additionally returns representative, voting weight, 
       "block_count": "2",
       "representative": "nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs",
       "weight": "0",
-      "pending": "0"
+      "pending": "0",
+      "receivable": "0"
     }
   }
 }
@@ -3531,7 +3943,7 @@ UNIX timestamp (number), 0 by default. Return only accounts modified in local da
 _enable_control required, version 9.0+_  
 Locks **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3568,11 +3980,12 @@ Checks whether **wallet** is locked
 
 ---
 
-### wallet_pending  
-_enable_control required, version 8.0+_   
+### wallet_pending
+
+_enable_control required_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3593,7 +4006,7 @@ Returns a list of block hashes which have not yet been received by accounts in t
 ```  
 **Optional "threshold"**
 
-Number (128 bit, decimal). Returns a list of pending block hashes with amount more or equal to **threshold**   
+Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**   
 
 **Request:**
 ```json
@@ -3620,7 +4033,7 @@ Number (128 bit, decimal). Returns a list of pending block hashes with amount mo
 **Optional "source"**
 
 _version 9.0+_   
-Boolean, false by default. Returns a list of pending block hashes with amount and source accounts   
+Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
 ```json
@@ -3668,12 +4081,12 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Optional "min_version"**
 
 _version 15.0+_   
-Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this pending block.
+Boolean, false by default. Returns the minimum version (epoch) of a block which can pocket this receivable block.
 
 **Optional "include_only_confirmed"**
 
-_version 19.0+_
-Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
+_version 19.0+_  
+Boolean, true by default (_version 22.0+_), previously false by default. Only returns confirmed blocks but with the caveat that their confirmation height might not be up-to-date yet. If false, unconfirmed blocks will also be returned.
 
 ---
 
@@ -3700,7 +4113,7 @@ Returns the default representative for **wallet**
 _enable_control required_  
 Sets the default **representative** for **wallet** _(used only for new accounts, already existing accounts use already set representatives)_  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3728,7 +4141,7 @@ Boolean, false by default. Change representative for existing accounts in wallet
 _enable_control required, version 8.0+_   
 Rebroadcast blocks for accounts from **wallet** starting at frontier down to **count** to the network     
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3755,7 +4168,7 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
 _enable_control required, version 8.0+_     
 Returns a list of pairs of account and work from **wallet**   
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3779,7 +4192,7 @@ Returns a list of pairs of account and work from **wallet**
 _enable_control required, version 8.0+_     
 Retrieves work for **account** in **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3802,7 +4215,7 @@ Retrieves work for **account** in **wallet**
 _enable_control required, version 8.0+_     
 Set **work** for **account** in **wallet**  
 
---8<-- "enable-control-warning.md"
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -3823,6 +4236,119 @@ Set **work** for **account** in **wallet**
 ---
 
 ## Unit Conversion RPCs
+
+---
+
+### nano_to_raw    
+Convert `nano` amount (10^30 raw) into `raw` (10^0) 
+
+**Request:**
+```json
+{
+  "action": "nano_to_raw",
+  "amount": "1"
+}
+```  
+**Response:**
+```json
+{
+  "amount": "1000000000000000000000000000000"
+}
+```
+
+### raw_to_nano    
+Convert `raw` amount (10^0) into `nano` (10^30 raw)
+
+**Request:**
+```json
+{
+  "action": "raw_to_nano",
+  "amount": "1000000000000000000000000000000"
+}
+```  
+**Response:**
+```json
+{
+  "amount": "1"
+}
+```
+
+---
+
+## Deprecated RPCs
+
+---
+
+
+### active_difficulty
+_added in version 19.0+_  
+_deprecated in version 22.0_
+
+Returns the difficulty values (16 hexadecimal digits string, 64 bit) and related multiplier from base difficulty.
+
+| Field Name                | Response Details |
+|---------------------------|------------------|
+| `multiplier`              | Multiplier of the `network_current` from the base difficulty of `network_minimum` for comparison. Note that in V22.0+ this will always be 1 (see below for details). |
+| `network_minimum`         | Minimum difficulty required for the network for all block types |
+| `network_current`         | _V22.0+_ same minimum difficulty above due to the deprecation of active difficulty calculations used for prioritization in previous versions; _up to V21.3_ 10 second trended average of adjusted difficulty seen on prioritized transactions, refreshed every 500ms |
+| `network_receive_minimum` | Lower difficulty threshold exclusively for receive blocks |
+| `network_receive_current` | _V22.0+_ same minimum receive difficulty above due to the deprecation of active difficulty calculations used for prioritization in previous versions; _up to V21.3_ 10 second trended average of adjusted difficulty seen on prioritized receive transactions, refreshed every 500ms |
+
+!!! info "Constant values returned"
+    Due to the deprecation of active difficulty calculations as of V22.0, this RPC call will return constant values as seen below. These values can be used as difficulty thresholds for the respective block types, but this RPC call should not be used for retrieving these values going forward.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty"
+}
+```  
+
+**Response:**
+```json
+{
+    "deprecated": "1",
+    "network_minimum": "fffffff800000000",
+    "network_receive_minimum": "fffffe0000000000", // since V21.2
+    "network_current": "fffffff800000000",
+    "network_receive_current": "fffffe0000000000", // since V21.2
+    "multiplier": "1"
+}
+```
+
+**Optional "include_trend"**
+
+Boolean, false by default. Also returns the trend of difficulty seen on the network as a **list of multipliers**. Sampling occurs every 500ms. The list is ordered such that the first value is the most recent sample.  
+Note: Before v20, the sampling period was between 16 and 36 seconds.
+
+**Request:**
+```json
+{
+  "action": "active_difficulty",
+  "include_trend": "true"
+}
+```
+
+**Response:**
+```json
+{
+  ...,
+  "difficulty_trend": [
+    "1.156096135149775",
+    "1.190133894573061",
+    "1.135567138563921",
+    "1.000000000000000",
+    "...",
+    "1.000000000000000"
+  ]
+}
+```
+
+---
+
+### history  
+
+**Deprecated**: please use `account_history` instead. It provides a `head` option which is identical to the history `hash` option.
 
 ---
 
@@ -3940,18 +4466,37 @@ Multiply an rai amount by the rai ratio.
 
 ---
 
-## Deprecated RPCs
+## Removed RPCs
 
 ---
 
-### history  
+#### Removed in _v22_
 
-**Deprecated**: please use `account_history` instead. It provides a `head` option which is identical to the history `hash` option.
+### block_count_type  
+Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
+
+**Request:**
+```json
+{
+  "action": "block_count_type"
+}
+```  
+**Response:**
+```json
+{
+  "send": "5016664",
+  "receive": "4081228",
+  "open": "546457",
+  "change": "24193",
+  "state_v0": "4216537",
+  "state_v1": "10653709",
+  "state": "14870246"
+}
+```  
 
 ---
 
 ### payment_begin   
-**_Deprecated_**, to be removed in version 22  
 Begin a new payment session. Searches wallet for an account that's marked as available and has a 0 balance. If one is found, the account number is returned and is marked as unavailable. If no account is found, a new account is created, placed in the wallet, and returned.  
 
 **Request:**
@@ -3971,7 +4516,6 @@ Begin a new payment session. Searches wallet for an account that's marked as ava
 ---
 
 ### payment_end  
-**_Deprecated_**, to be removed in version 22  
 End a payment session.  Marks the account as available for use in a payment session. 
 
 **Request:**
@@ -3991,7 +4535,6 @@ End a payment session.  Marks the account as available for use in a payment sess
 ---
 
 ### payment_init  
-**_Deprecated_**, to be removed in version 22  
 Marks all accounts in wallet as available for being used as a payment session.  
 
 **Request:**
@@ -4011,7 +4554,6 @@ Marks all accounts in wallet as available for being used as a payment session.
 ---
 
 ### payment_wait  
-**_Deprecated_**, to be removed in version 22  
 Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseconds have elapsed.  
 
 **Request:**

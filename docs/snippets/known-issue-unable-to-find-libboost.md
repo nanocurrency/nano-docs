@@ -1,0 +1,2 @@
+??? warning "Known Issue Linux V21: 'unable to find libboost'"
+	If you are on Linux and unable to get V21.0 to start, `unable to find libboost...` https://github.com/nanocurrency/nano-node/releases/download/V21.0/nano-node-V21.0.1-Linux.tar.bz2 has been added to the release artifacts with the correct lib rpath. Please use this if you do not wish to move the lib folder into the bin folder after extraction.

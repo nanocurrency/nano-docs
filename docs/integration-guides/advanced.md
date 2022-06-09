@@ -1,4 +1,7 @@
-# Integration Guides - Advanced
+title: Advanced Integration Guide
+description: More advanced guides to integrating with nano including cold wallets, private key management and more
+
+# Advanced Integrations
 
 ## Cold Wallets
 
@@ -30,6 +33,8 @@ This guide extends the concepts covered in [External Private Key Management](/in
 	1. `(HOT)` Publish the signed transaction to the Nano Network.
 
 
+<div class="mermaid-wrapper">
+
 ```mermaid
 sequenceDiagram
   participant Network
@@ -42,8 +47,10 @@ sequenceDiagram
   COLD-->>COLD: Generate & Sign
   COLD-->>HOT: Return Signed
   HOT->>Network: Publish Signed
-  Note over COLD,HOT: Cold/Hot Wallet transfers are done<br />offline using USB Stick or similar.
+  Note over COLD,HOT: Cold/Hot Wallet transfers are done <br />offline using USB Stick or similar.
 ```
+
+</div>
 
 ---
 
@@ -192,455 +199,14 @@ Once the block is created and signed on the `(COLD)` computer, transfer the cont
 
 ---
 
-## WebSocket Support
-
-!!! note ""
-    Available in version 19.0+ only. When upgrading from version 18 or earlier, the node performs a confirmation height upgrade. During this process, the WebSocket notifications may include confirmations for old blocks. Services must handle duplicate notifications, as well as missed blocks as WebSockets do not provide guaranteed delivery. Reasons for missed blocks include intermittent network issues and internal containers (in the node or clients) reaching capacity.
-
---8<-- "multiple-confirmation-notifications.md"
-
-The Nano node offers notification of confirmed blocks over WebSockets. This offers higher throughput over the HTTP callback, and uses a single ingoing connection instead of an outgoing connection for every block.
-
-The HTTP callback is still available and both mechanisms can be used at the same time.
-
-**Example**
-
-Sample clients are available:
-
-* Node.js: https://github.com/cryptocode/nano-websocket-sample-nodejs
-* Python: https://github.com/guilhermelawless/nano-websocket-sample-py
-
-**Configuration**
-
-For details on configuring websockets within a node, see the [websocket section of Running a Node Configuration](/running-a-node/configuration#websocket).
-
-With the default configuration, localhost clients should connect to `ws://[::1]:7078`.
-
-### Acknowledgement
-
-All WebSocket actions can optionally request an acknowledgement. The following is an example for the *subscribe* action.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "ack": true,
-  "id": "<optional unique id>"
-}
-```
-
-If the action succeeds, the following message will be sent back (note that no message ordering is guaranteed):
-
-```json
-{
-  "ack": "subscribe",
-  "time": "<milliseconds since epoch>",
-  "id": "<optional unique id>"
-}
-```
-
-
-### Subscribe/Unsubscribe
-
-To receive notifications through the websocket you must subscribe to the specific topic and a standard subscription without filters looks like this:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation"
-}
-```
-
-Unsubscribing also has the format:
-
-To unsubscribe:
-```json
-{
-  "action": "unsubscribe",
-  "topic": "confirmation"
-}
-```
-
-**Optional Filters**
-
-Some topics support filters as well. Details of the subscription filter options for each topic are included in examples below.
-
-!!! note
-    Note that, if **empty** `options` are supplied (see examples below), an empty filter will be used and nothing will be broadcasted.
-
-**Available Topics**
-
-Current topics available for subscribing to include:
-
-* `confirmation`
-* `vote` (experimental, unfinished)
-* `stopped_election`
-* `active_difficulty`
-
----
-
-#### Confirmations
-
---8<-- "multiple-confirmation-notifications.md"
-
-##### Subscribing
-
-To subscribe to all confirmed blocks:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation"
-}
-```
-
-##### Filtering options
-
-###### Confirmation types
-
-The node classifies block confirmations into the following categories:
-
-* **Active quorum**: a block is confirmed through voting (including `block_confirm` RPC if block is previously unconfirmed)
-* **Active confirmation height**: a block which is confirmed as a dependent election from a successor through voting (or by `block_confirm` RPC if the block is already confirmed)
-* **Inactive**: a block that is not in active elections is implicitly confirmed by a successor.
-
-By default, the node emits **all** confirmations to WebSocket clients. However, the following filtering option is available:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "confirmation_type": "<type>"
-  }
-}
-```
-
-The most common values for `confirmation_type` are `all` (default), `active` and `inactive`.
-
-If more fine-grained filtering is needed, `active` can be replaced with `active_quorum` or `active_confirmation_height` per the definitions above.
-
-###### Accounts
-
-Filters for **confirmation** can be used to subscribe only to selected accounts. Once filters are given, blocks from accounts that do not match the options are not broadcasted.
-
-!!! warning "Legacy blocks never broadcasted"
-    Note that [legacy blocks](/glossary#legacy-blocks) are never broadcasted if filters are given, even if they match the accounts.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "all_local_accounts": true,
-    "accounts": [
-      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
-    ]
-  }
-}
-```
-
-* When `all_local_accounts` is set to **`true`**, blocks that mention accounts in any wallet will be broadcasted.
-* `accounts` is a list of additional accounts to subscribe to. Both prefixes are supported.
-
-##### Response Options
-
-###### Type field
-
-Confirmations sent through WebSockets, whether filtering is used or not, contains a `confirmation_type` field with values `active_quorum`, `active_confirmation_height` or `inactive`.
-
-###### Block content inclusion
-
-By setting `include_block` to `false`, the block content will not be present. Default is `true`.
-Because account filtering needs block content to function, setting this flag to false is currently incompatible with account filtering. This restriction may be lifted in future releases.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "include_block": "false",
-  }
-}
-```
-
-###### Election info
-
-Details about the election leading to the confirmation can be obtained by setting the `include_election_info` option to true:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "confirmation",
-  "options": {
-    "include_election_info": "true"
-  }
-}
-```
-
-Including the election info option results in the following fields being included:
-
-* election `duration` in milliseconds
-* end of election `time` as milliseconds since epoch
-* weight `tally` in raw unit
-* the confirmation `request_count` (_version 20.0+_)
-* number of blocks and voters (_version 21.0+_)
-
-##### Sample Results
-
-!!! note "Differences from the HTTP callback"
-    * The "block" contains JSON instead of an escaped string. This makes parsing easier.
-    * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
-    * Subtype is part of block (if it's a state block)
-    * There is no "is_send" property since "subtype" signifies the intent for state blocks.
-    * A confirmation type is added, which can be filtered.
-
-```json
-{
-  "topic": "confirmation",
-  "time": "1564935350664",
-  "message": {
-    "account": "nano_1tgkjkq9r96zd3pkr7edj8e4qbu3wr3ps6ettzse8hmoa37nurua7faupjhc",
-    "amount": "15621963968634827029081574961",
-    "hash": "0E889F83E28152A70E87B92D846CA3D8966F3AEEC65E11B25F7B4E6760C57CA3",
-    "confirmation_type": "active_quorum",
-    "election_info": {
-      "duration": "546",
-      "time": "1564935348219",
-      "tally": "42535295865117307936387010521258262528",
-      "request_count": "1", // since V20.0
-      "blocks": "1", // since V21.0
-      "voters": "52" // since V21.0
-    },
-    "block": {
-      "type": "state",
-      "account": "nano_1tgkjkq9r96zd3pkr7edj8e4qbu3wr3ps6ettzse8hmoa37nurua7faupjhc",
-      "previous": "4E9003ABD469D1F58A70518234016797FA654B494A2627B8583052629A91689E",
-      "representative": "nano_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or",
-      "balance": "0",
-      "link": "3098F4C0D1D8BD889AF078CDFF81E982B8EFA6D6D8FAE954CF0CDC7A256C3F8B",
-      "link_as_account": "nano_1e6rym1f5p7xj4fh1y8fzy1ym1orxymffp9tx7cey58whakprhwdzuk533th",
-      "signature": "D5C332587B1A4DEA35B6F03B0A9BEB45C5BBE582060B0252C313CF411F72478721F8E7DA83A779BA5006D571266F32BDE34C1447247F417F8F12101D3ADAF705",
-      "work": "c950fc037d61e372",
-      "subtype": "send"
-    }
-  }
-}
-```
-
----
-
-#### Votes
-
-!!! warning "Experimental, unfinished"
-    This subscription is experimental and not all votes are broadcasted. The message format might change in the future.
-
-##### Subscribing
-
-To subscribe to all votes notifications:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "vote"
-}
-```
-
-##### Filtering options
-
-Filters for **votes** can be used to subscribe only to votes from selected representatives. Once filters are given, votes from representatives that do not match the options are not broadcasted.
-
-```json
-{
-  "action": "subscribe",
-  "topic": "vote",
-  "options": {
-    "representatives": [
-      "nano_16c4ush661bbn2hxc6iqrunwoyqt95in4hmw6uw7tk37yfyi77s7dyxaw8ce",
-      "nano_3dmtrrws3pocycmbqwawk6xs7446qxa36fcncush4s1pejk16ksbmakis32c"
-    ]
-  }
-}
-```
-
-##### Sample Results
-
-```json
-{
-  "topic": "vote",
-  "time": "1554995525343",
-  "message": {
-    "account": "nano_1n5aisgwmq1oibg8c7aerrubboccp3mfcjgm8jaas1fwhxmcndaf4jrt75fy",
-    "signature": "1950700796914893705657789944906107642480343124305202910152471520450456881722545967829502369630995363643731706156278026749554294222131169148120786048025353",
-    "sequence": "855471574",
-    "blocks": [
-      "6FB9DE5D7908DEB8A2EA391AEA95041587CBF3420EF8A606F1489FECEE75C869"
-    ]
-  }
-}
-```
-
----
-
-#### Stopped elections
-
-If an election is stopped for any reason, the corresponding block hash is sent on the `"stopped_election"` topic. Reasons for stopping elections include low priority elections being dropped due to processing queue capacity being reached, and forced processing via [`process`](/commands/rpc-protocol/#process) RPC when there's a fork.
-
-##### Subscribing
-
-To subscribe to all stopped elections notifications:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "stopped_election"
-}
-```
-
-##### Filtering options
-
-No filters are currently available for the `stopped_election` topic.
-
-##### Sample Results
-
-```json
-{
-  "topic": "stopped_election",
-  "time": "1560437195533",
-  "message": {
-    "hash": "FA6D344ECAB2C5E1C04E62B2BC6EE072938DD47530AB26E0D5A9A384302FBEB3"
-  }
-}
-```
-
----
-
-#### Active difficulty
-
-##### Subscribing
-
-To subscribe to all active difficulty notifications:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "active_difficulty"
-}
-```
-
-##### Filtering options
-
-No filters are currently available for the `active_difficulty` topic.
-
-##### Sample Results
-
-```json
-{
-  "topic": "active_difficulty",
-  "time": "1561661736065",
-  "message": {
-    "network_minimum": "ffffffc000000000",
-    "network_current": "ffffffc81644d01f",
-    "multiplier": "1.144635159892734"
-  }
-}
-```
-
-#### Proof of work
-
-This subscription is available since _v20.0_
-
-##### Subscribing
-
-To subscribe to PoW generation notifications:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "work"
-}
-```
-
-##### Filtering options
-
-No filters are currently available for the `work` topic.
-
-##### Sample Results
-
-Successful work generation:
-
-```json
-{
-  "success": "true",
-  "reason": "",
-  "duration": "306",
-  "request": {
-    "hash": "3ECE2684044C0EAF2CA6B1C72F11AFC5B5A75C00CFF993FB17B6E75F78ABF175",
-    "difficulty": "ffffff999999999a",
-    "multiplier": "10.000000000009095"
-  },
-  "result": {
-    "source": "192.168.1.101:7000",
-    "work": "4352c6e222703c57",
-    "difficulty": "ffffffd2ca03b921",
-    "multiplier": "22.649415016750655"
-  },
-  "bad_peers": ""
-}
-```
-
-Work generation cancelled with one bad peer (unresponsive or provided invalid work):
-
-```json
-{
-  "success": "false",
-  "reason": "cancelled",
-  "duration": "539",
-  "request": {
-    "hash": "3ECE2684044C0EAF2CA6B1C72F11AFC5B5A75C00CFF993FB17B6E75F78ABF175",
-    "difficulty": "ffffff999999999a",
-    "multiplier": "10.000000000009095"
-  },
-  "bad_peers": [
-    "192.168.1.101:7000"
-  ]
-}
-```
-
-Notes:
-
-- The duration is in milliseconds
-- If work generation fails, the notification is similar to the work cancelled notification, except `"reason": "failure"`
-- When work generation is done locally it will show `"source": "local"`
-
-### Keepalive
-
-This action is available since _v20.0_
-
-Keepalive allows checking the liveliness of the websocket without refreshing it or changing a subscription. Use the format:
-
-```json
-{
-  "action": "ping"
-}
-```
-
-The expected response is:
-
-```json
-{
-  "ack": "pong",
-  "time": "<milliseconds since epoch>"
-}
-```
-
----
-
 ## HTTP callback
+
+!!! info "WebSockets recommended"
+    The node supports [WebSockets](websockets.md) and these are recommended over the HTTP callbacks whenever possible.
+
 Send JSON POST requests with every confirmed block to callback server configured for the node.
 
---8<-- "multiple-confirmation-notifications.md"
+--8<-- "warning-multiple-confirmation-notifications.md"
 
 **Configuration**
 
@@ -729,11 +295,21 @@ The choice depends on the setup and security that you want. The easiest way is t
 
 **Check if RPC is enabled with curl (use different terminal or session)**   
 
-    curl -g -d '{ "action": "block_count" }' '[::1]:7076'
+```bash
+curl -d '{
+  "action": "block_count"
+}' http://127.0.0.1:7076
+```
+
+--8<-- "docker-ipv6-tip.md"
 
 **To stop node, use**   
 
-    curl -g -d '{ "action": "stop" }' '[::1]:7076'
+```bash
+curl -d '{
+  "action": "stop"
+}' http://127.0.0.1:7076
+```
 
 **Launch nano_node as a service with systemd**   
 
@@ -772,57 +348,51 @@ The choice depends on the setup and security that you want. The easiest way is t
 
 **Error initiating bootstrap ... Too many open files**
 
-Increase max open files limit. Edit `/etc/security/limits.conf` & add    
+This issue has been seen on some versions of macOS and Linux. The node will detect when the file descriptor limit is considered too low and log a warning similar to:
+
+```
+WARNING: The file descriptor limit on this system may be too low (512) 
+and should be increased to at least 16384.
+```
+
+To resolve this on Linux increase max open files limit by editing `/etc/security/limits.conf` and adding or updating:    
 ```
     *               soft    nofile          65535    
     *               hard    nofile          65535    
     root            soft    nofile          65535    
     root            hard    nofile          65535    
 ```
-Then restart session & nano_node service. Check changes with `ulimit -n`
+Then restart session & `nano_node` service. Check changes with `ulimit -n`.
 
-## IPC Integration
+For macOS the version impacts the steps necessary, but some people had success with the recipe in [https://superuser.com/a/1171028](https://superuser.com/a/1171028).
 
-As of v18, the Nano node exposes a low level IPC interface over which multiple future APIs can be marshalled. Currently, the IPC interface supports the legacy RPC JSON format. The HTTP based RPC server is still available. Because the only IPC encoding is currently "legacy RPC", RPC config options like "enable_control" still apply.
+**Increasing max open file descriptors on a Droplet w/Ubuntu**
 
-### Transports 
-TCP and unix domain sockets are supported. Named pipes and shared memory may be supported in future releases.
-
-### IPC clients
-
-A demo web server written in Go is available at https://github.com/nanocurrency/rpc-go. This allows HTTP clients to make JSON requests via IPC, which is compatible with the existing format. The web server can communicate with a node over domain sockets or TCP.
-
-A NodeJS client is available at https://github.com/meltingice/nano-ipc-js
-
-A Python client is being developed at https://github.com/guilhermelawless/nano-ipc-py
-
-### Configuration
-
-IPC is configured in the `node.ipc.tcp` and `node.ipc.local` sections of the node configuration file. A documented configuration file can be generated by following the instructions in [Configuration](/running-a-node/configuration/#ipc).
-
-### IPC request/response format
-
-A client must make requests using the following framing format:
+Add `session required pam_limits.so` to these two files:
 
 ```
-REQUEST  ::= HEADER PAYLOAD
-HEADER   ::= u8('N') ENCODING u8(0) u8(0)
-ENCODING ::= u8(1)
-PAYLOAD  ::= <encoding specific>
+/etc/pam.d/common-session
+/etc/pam.d/common-session-noninteractive
 ```
 
-Two encodings currently exist:
+Next, edit
+`/etc/security/limits.conf`
 
-* 1: legacy RPC [_since v18.0_]
-* 2: legacy RPC allowing unsafe operations if node is configured so [_since v19.0_]
-
-The encoding is followed by two reserved zero-bytes. These allow for future extensions, such as versioning and extended headers.
-
-Note that the framing format does not include a length field - this is optionally placed in the respective payloads. The reason is that some encodings might want to be "streamy", sending responses in chunks, or end with a sentinel.
+... and add the following lines:
 
 ```
-LEGACY_RPC_PAYLOAD  ::= be32(length) JSON request
-LEGACY_RPC_RESPONSE ::= be32(length) JSON response
+* soft nofile 20000
+* hard nofile 30000
+root hard nofile 16384
+root soft nofile 16384
 ```
 
-In short, JSON requests and responses are 32-bit big-endian length-prefixed.
+The last two lines can be skipped if you're not running the node as root.
+
+Log out and back in or reboot and see if `ulimit -n` picked it up
+
+On some systems, you may need to change systemd files, etc.
+
+**Docker**
+
+Once the host is updated, pass `--ulimit nofile=16384:16384`

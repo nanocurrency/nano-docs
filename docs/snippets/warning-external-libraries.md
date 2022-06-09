@@ -1,0 +1,2 @@
+!!! warning "External libraries, review before using"
+    The linked resources below contain code dealing with private key management and/or execution of transactions. The Nano Foundation does not control this code, does not endorse it and is not responsible for its use. Use of this code requires review and is at your own discretion.

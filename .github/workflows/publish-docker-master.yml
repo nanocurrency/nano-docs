@@ -1,0 +1,20 @@
+name: publish-docker-master
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_publish:
+    runs-on: ubuntu-latest
+    env:
+      PRODUCTION: TRUE
+    steps:
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      # Build and test Docker image
+      - run: |
+          echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u nanocurrency --password-stdin
+          docker pull ghcr.io/nanocurrency/mkdocs-material-insiders:latest
+          docker build -t ghcr.io/nanocurrency/nano-docs:latest .
+          docker push ghcr.io/nanocurrency/nano-docs:latest

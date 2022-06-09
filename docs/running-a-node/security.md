@@ -1,9 +1,11 @@
-title: Node Security | Nano Documentation
-description: Information about how to properly secure your Nano node when getting setup on the network.
+title: Node Security
+description: Information about how to properly secure your nano node when getting setup on the network
 
 # Node Security
 
 There are [many reasons to run a Nano node](/running-a-node/overview/#why-run-a-node) on the network. Nodes are the participants that help vote on transaction validity, assist other nodes with bootstrapping blocks in the ledger and providing an access point to all accounts. But those who choose to run them should be making a long-term commitment to [run them on proper hardware](/running-a-node/node-setup/#hardware-recommendations), keep them updated with the [latest release](/releases/node-releases/) and, most importantly, keep their setup as secure as possible.
+
+--8<-- "join-technical-mailing-list.md"
 
 The details below are guidelines on things to watch out for when setting up and securing your Nano node. As the node can be run on many different operating systems, some of these guidelines have been kept more general. There are plenty of resources online for learning how to apply these guidelines to more specific setups and additional details will be included in the docs here as they are appropriate.
 
@@ -20,7 +22,7 @@ By turning `enable_control` on, anyone with access to your RPC can run these pot
 
 ### Port configuration
 
-Opening default port `7075` on UDP and TCP is required for the node to participate on the main network and this should be done unrestricted. The default port for RPC access is `7076` and should only be available to those you wish to have control of the node. Verifying the configuration in `config-rpc.toml` file for `address` and `enable_control` should be done on all nodes, alonside other access verifications outlined below.
+Opening default port `7075` on TCP is required for the node to participate on the main network and this should be done unrestricted. The default port for RPC access is `7076` and should only be available to those you wish to have control of the node. Verifying the configuration in `config-rpc.toml` file for `address` and `enable_control` should be done on all nodes, alonside other access verifications outlined below.
 
 !!! danger "Opening RPC port externally and enabling control is potentially dangerous"
 	As mentioned above, enabling control allows anyone with RPC access to make potentially dangerous calls to your node. If turning on `enable_control`, you must carefully review any access granted to the RPC port (default `7076`) to ensure it is as secure as possible.
@@ -45,8 +47,12 @@ Due to the node currently processing all transactions, keeping them running and 
 
 Using a variety of these control measures for server access can increase your resistance to unauthorized access to your host machine and help protect your node from interference.
 
+## Maintenance
+
+As always the machine hosting the node should have regular maintenance done such as security patches, updates, etc. See [Maintenance](overview.md#maintenance) for more details.
+
 ## Docker considerations
 
 When running a node in Docker there is an extra layer of port controls between the node in the Docker container and the host machine. The default node configuration provided with Docker images in [Docker hub](https://hub.docker.com/r/nanocurrency/nano), along with examples in our documentation [for commands such as `docker run`](/running-a-node/docker-management/#starting), result in allowing RPC access only to the machine hosting the container. This is the recommended setup for most nodes.
 
-To make sure Docker security is understood by any node operator and the setup used is as secure as possible, we recommend reading up on general best practices for using Docker, consider [running Docker with non-root USER](/running-a-node/docker-management.md#docker-user-support) and verifying external access to RPC calls are controlled sufficiently by the Docker host machine.
+To make sure Docker security is understood by any node operator and the setup used is as secure as possible, we recommend reading up on general best practices for using Docker, consider [running Docker with non-root USER](/running-a-node/docker-management/#docker-user-support) and verifying external access to RPC calls are controlled sufficiently by the Docker host machine.

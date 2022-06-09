@@ -1,0 +1,2 @@
+!!! info ""
+	The term `pending` is being deprecated in favor of [`receivable`](/glossary/#receivable). For compatibility reasons both terms are still available for many calls and in responses. For more details see: https://docs.nano.org/releases/release-v23-0/#pendingreceivable-term-rpc-updates.

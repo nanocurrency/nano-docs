@@ -1,0 +1,4 @@
+??? info "Part of work in progress Living Whitepaper"
+	This page is part of the Living Whitepaper revisions currently underway to replace the original static whitepaper. These efforts include the [Protocol Design](/protocol-design/introduction) and [Node Implementation](/node-implementation/introduction) sections of the docs, which will cover and expand on details and topics covered in the [original whitepaper](/whitepaper/english).
+
+	See the bottom of the page for related whitepaper sections and other related details. Some of the sections and headers on this page may be in draft form or just suggestions/framework for later consideration. If you are interested in helping with revisions please connect with us on the `#documentation` channel on our [Discord server](https://chat.nano.org).

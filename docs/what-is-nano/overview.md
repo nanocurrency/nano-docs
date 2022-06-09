@@ -1,6 +1,12 @@
-Title: What is Nano?
+---
+title: What is nano?
+description: A broad introduction to nano - the instant, fee-less and eco-friendly digital money available across the world
+hide:
+  - navigation
+  - toc
+---
 
-# What is Nano?
+# What is nano?
 
 Nano is a digital payment protocol designed to be accessible and lightweight, with a focus on removing inefficiencies present in other cryptocurrencies. With ultrafast transactions and zero fees on a secure, green and decentralized network, this makes Nano ideal for everyday transactions.
 
@@ -13,7 +19,7 @@ Transactions occur between accounts with two separate actions:
 1. The sender publishes a block debiting their own account for the amount to be sent to the receiving account
 1. The receiver publishes a matching block crediting their own account for the amount sent
 
-Once a block sending funds is confirmed by the network, the transaction goes into a [pending](/glossary#pending) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching block receiving the funds to their account.
+Once a block sending funds is confirmed by the network, the transaction goes into a [receivable](/glossary#receivable) state and cannot be reversed. The receiver can be offline and safely leave the funds in this state until they are ready to publish a matching block receiving the funds to their account.
 
 ### Lightweight, stateful blocks
 
@@ -37,6 +43,13 @@ Nano was designed with new data structures, consensus mechanisms and other featu
 * Without traditional Proof-of-Work and mining, nodes use significantly less energy per transaction than other popular networks
 * Emergent centralization forces for node operators are reduced due to the near zero marginal cost of producing consensus in Nano [^1]
 
-For a more detailed look at the design of various protocol features, head to over to the [Protocol Design Overview](/protocol-design/overview).
+---
+
+### Exploring More
+
+* Looking for technical details of the protocol and node design? Check out the [Living Whitepaper](../living-whitepaper/index.md)
+* Ready to participate on the network? Try [running a node](/running-a-node/overview), [review integration options](/integration-guides/the-basics) or find commands via [RPC](/commands/rpc-protocol) and [CLI](/commands/command-line-interface)
+* Want to know the future of Nano? See the [upcoming features](/releases/upcoming-features/) for the node or help shape the future by [contributing to the development of the protocol](/node-implementation/contributing) if you can!
+* Want to explore less technical aspects of Nano or join our community? Head over to [Nano.org](https://nano.org)
 
 [^1]: https://medium.com/@clemahieu/emergent-centralization-due-to-economies-of-scale-83cc85a7cbef

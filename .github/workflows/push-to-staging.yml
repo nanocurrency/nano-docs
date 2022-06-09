@@ -1,0 +1,22 @@
+name: push-to-staging
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "nano-docs branch to push to staging"
+        default: "staging"
+        required: true
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: push
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.branch }}
+          token: ${{ secrets.GH_TOKEN }}
+      - run: |
+          git remote add nano-docs-staging https://github.com/nanocurrency/nano-docs-staging.git
+          git push nano-docs-staging ${{ github.event.inputs.branch }}:staging

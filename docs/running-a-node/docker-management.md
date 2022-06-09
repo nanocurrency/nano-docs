@@ -1,14 +1,17 @@
+title: Docker Management
+description: Learn how to use Docker to manage your nano node - starting, stopping, upgrading, RPC and more
+
 # Docker Management
 
 Docker greatly simplifies node management.  Below we will go over some of the best practices for managing your Docker Image.
 
---8<-- "docker-limitations.md"
+--8<-- "warning-docker-limitations.md"
 
-### Nano Folder
+### Nano Directory
 
---8<-- "folder-contents.md"
+--8<-- "directory-contents.md"
 
-For Docker setups, the `${NANO_HOST_FOLDER}` indicated in the steps below will be the location of these files on your host machine.
+For Docker setups, the `${NANO_HOST_DIR}` indicated in the steps below will be the location of these files on your host machine.
 
 ### Managing the Container
 
@@ -20,19 +23,18 @@ The following command will start the node container. Either set the specified en
 
 * `${NANO_NAME}` - The name that you would like to assign to the docker container.
 
-* `${NANO_TAG}` - The version of docker image you will be running. For consumers, `latest` is acceptable, but for enterprise use, a manually set tag to the latest version number is recommended.
+* `${NANO_TAG}` - The version of docker image you will be running.
 
-* `${NANO_HOST_FOLDER}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
+* `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as [config-node.toml](/running-a-node/configuration) and `data.ldb` into this directory.
 
 ---
 
 ```bash
 docker run --restart=unless-stopped -d \
-  -p 7075:7075/udp \
   -p 7075:7075 \
-  -p [::1]:7076:7076 \
-  -p [::1]:7078:7078 \
-  -v ${NANO_HOST_FOLDER}:/root \
+  -p 127.0.0.1:7076:7076 \
+  -p 127.0.0.1:7078:7078 \
+  -v ${NANO_HOST_DIR}:/root \
   --name ${NANO_NAME} \
   nanocurrency/nano:${NANO_TAG}
 ```
@@ -40,13 +42,12 @@ docker run --restart=unless-stopped -d \
 | Option                                                | Purpose |
 |                                                       |         |
 | `-d`                                                  | Starts the docker container as a daemon |
-| `-p 7075:7075/udp`                                    | Maps the network activity port |
 | `-p 7075:7075`                                        | Maps the bootstrapping TCP port |
-| `-v ${NANO_HOST_FOLDER}:/root`                        | Maps the host's Nano directory to the guest `/root` directory |
+| `-v ${NANO_HOST_DIR}:/root`                           | Maps the host's Nano directory to the guest `/root` directory |
 | `--restart=unless-stopped`                            | Restarts the container if it crashes |
 | `nanocurrency/nano:${NANO_TAG}`                       | Specifies the container to execute with tag |
-| `-p [::1]:7076:7076`<br />or `-p 127.0.0.1:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
-| `-p [::1]:7078:7078`<br />or `-p 127.0.0.1:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/advanced/#websocket-support). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
+| `-p 127.0.0.1:7076:7076`<br />or `-p[::1]:7076:7076` | Indicates that only RPC commands originating from the host will be accepted. **WARNING: Without the proper IP configured here, anyone with access to your system's IP address can control your nano\_node.** |
+| `-p 127.0.0.1:7078:7078`<br />or `-p[::1]:7078:7078` | Indicates that only the host can create a connection to the [websocket server](/integration-guides/websockets). Data throughput can be very high depending on configuration, which could slow down the node if available outside the host.
 
 If you wish to use different ports, change the host ports in the `docker run` command; do not change the ports in the [config-node.toml](/running-a-node/configuration) file.
 
@@ -57,12 +58,12 @@ This will start the docker container using host ports 7075 and 7076 and put the 
 ```
 
 !!! note
-    TCP is used for bootstrapping and UDP is used to stream live transactions on the network.  For more information, see the [network details](/running-a-node/configuration/#network-details).
+    As of V21 peering and communicating via UDP has been disabled by default and is deprecated. The ability to use UDP will be removed from the node in a future release yet to be determined.  For more information, see the [network details](/running-a-node/configuration/#network-details).
 
-    On port 7075, both TCP and UDP are required.
+    On port 7075, only TCP is required since V21.
 
 !!! warning
-    If you are running multiple nano\_node Docker containers, **DO NOT** share the same `${NANO_HOST_FOLDER}`, each nano\_node requires its own independent files.
+    If you are running multiple nano\_node Docker containers, **DO NOT** share the same `${NANO_HOST_DIR}`, each nano\_node requires its own independent files.
 
 ---
 
@@ -109,19 +110,15 @@ First, [stop the container](#stopping) if it is running.
 docker stop ${NANO_NAME}
 ```
 
-Then we can download the latest version with `docker pull` (or [whichever version](https://hub.docker.com/r/nanocurrency/nano/tags/) we need).
+Then we can download the [specific version](https://hub.docker.com/r/nanocurrency/nano/tags/) we need.
 
-Pull latest release of the Nano Node
+Pull a version of the nano node
 ```bash
-docker pull nanocurrency/nano
+docker pull nanocurrency/nano:V22.0
 ```
 
-Or pull the Nano Node tagged with "V19.0" from Dockerhub
-```bash
-docker pull nanocurrency/nano:V19.0
-```
-
-Lastly, we [start up the docker container again](#starting) using the same command.
+Lastly, we [start up the docker container again](#starting) using the same command but the with new version tag.
+Alteratively, you can use [`docker-compose`](#docker-compose).
 
 ---
 
@@ -136,11 +133,32 @@ docker stop ${NANO_NAME}
 !!! warning
 	Modifications made to configuration files while the Docker container is running have no effect until the container is restarted.
 
-You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_FOLDER}` using your preferred text editor.
+You may now edit the [configuration files](/running-a-node/configuration) located in `${NANO_HOST_DIR}` using your preferred text editor.
 
 Once modifications are complete, [start up the docker container again](#starting) using the same command.
 
 --8<-- "enable-voting.md"
+
+---
+
+### Docker Compose
+
+A sample docker-compose.yml is provided to model the same behavior as the docker cli examples above
+
+```yml
+version: '3'
+services:
+  node:
+    image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull
+    restart: "unless-stopped"
+    ports:
+     - "7075:7075/udp"   #udp network traffic (deprecated since V21)
+     - "7075:7075"       #tcp network traffic
+     - "127.0.0.1:7076:7076" #rpc to localhost only
+     - "127.0.0.1:7078:7078" #websocket to localhost only
+    volumes:
+     - "${NANO_HOST_DIR}:/root" #path to host directory
+```
 
 ---
 
@@ -190,13 +208,29 @@ You can use the RPC interface on the local host via `curl` to interact with the 
 For example the version of the node:
 
 ```bash
-curl -d '{ "action" : "version" }' [::1]:7076
+curl -d '{
+  "action": "version"
+}' http://127.0.0.1:17076
 ```
 
 Or the blockcount:
 
 ```bash
-curl -d '{ "action" : "block_count" }' [::1]:7076
+curl -d '{
+  "action": "block_count"
+}' http://127.0.0.1:17076
+```
+
+--8<-- "docker-ipv6-tip.md"
+
+In addition, you can make use of command-line JSON utilities such as [jq](https://stedolan.github.io/jq/) to parse and manipulate the structured data retrieved from `curl`. For example the account information associated with certain block:
+
+```bash
+curl -s -d '{
+  "action": "blocks_info",
+  "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"],
+  "json_block": "true" 
+}' http://127.0.0.1:7076 | jq ".blocks[].block_account"
 ```
 
 For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
@@ -205,6 +239,6 @@ For other commands, review the [RPC Protocol](/commands/rpc-protocol) details.
 
 ### Troubleshooting
 
-If you get `Error starting userland proxy: port is not a proto:IP:port: 'tcp:[:'.` or want to expose IPv4 port, use `-p 127.0.0.1:7076:7076`.
+If you get `Error starting userland proxy: port is not a proto:IP:port: 'tcp:[:'.` or want to expose IPv4 port, use `-p 127.0.0.1:7076:7076`. Likewise, if you get `curl: (7) Couldn't connect to server` when interacting with the node, replace `[::1]:7076` with `127.0.0.1:7076`.
 
 If you get `create ~: volume name is too short, names should be at least two alphanumeric characters.` replace the `~` with the full pathname such as `/Users/someuser`.

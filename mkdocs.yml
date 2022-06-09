@@ -1,66 +1,115 @@
-site_name: Documentation
+site_name: Nano Documentation
 site_url: https://docs.nano.org/
 theme:
   name: 'material'
   palette:
-    primary: '#4a90e2'
-    accent: '#131121'
+    - scheme: nano
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
     text: 'Noto Sans'
     code: 'Roboto Mono'
-  logo: 'images/nano.svg'
-  feature:
-    tabs: false
+  icon:
+    repo: 'fontawesome/brands/github'
+  logo: 'images/nano-logo.svg'
   favicon: 'images/favicon.png'
-  custom_dir: 'theme'
+  custom_dir: 'theme-overrides'
+  features:
+    - content.tabs.link
+    - navigation.indexes
+    - navigation.expand
+    - navigation.tabs
+    - navigation.top
+    - search.share
+    - search.suggest
+    - content.tabs.link
+    - navigation.indexes
+    - navigation.expand
 nav:
   - Home: index.md
-  - What is Nano?:
-    - Overview: what-is-nano/overview.md
-    - Contributing: what-is-nano/contributing.md
-    - Exploring More: what-is-nano/exploring-more.md
+  - What is Nano?: what-is-nano/overview.md
   - Running a Node:
     - Overview: running-a-node/overview.md
-    - Node Setup: running-a-node/node-setup.md
     - Security: running-a-node/security.md
+    - Node Setup: running-a-node/node-setup.md
+    - Wallet Setup: running-a-node/wallet-setup.md
     - Docker Management: running-a-node/docker-management.md
-    - Beta Network: running-a-node/beta-network.md
     - Configuration: running-a-node/configuration.md
+    - Ledger Management: running-a-node/ledger-management.md
+    - Voting as a Representative: running-a-node/voting-as-a-representative.md
+    - Advanced Monitoring: running-a-node/advanced-monitoring.md
+    - Beta Network: running-a-node/beta-network.md
+    - Test Network: running-a-node/test-network.md
     - Troubleshooting: running-a-node/troubleshooting.md
-    - RocksDB Ledger Backend: running-a-node/rocksdb-ledger-backend.md
     - Beyond the Node: running-a-node/beyond-the-node.md
   - Integration Guides: 
+    - integration-guides/index.md
     - The Basics: integration-guides/the-basics.md
     - Key Management: integration-guides/key-management.md
     - Block Confirmation Tracking: integration-guides/block-confirmation-tracking.md
+    - Work Generation: integration-guides/work-generation.md
     - Build Options: integration-guides/build-options.md
+    - WebSockets: integration-guides/websockets.md
+    - IPC Integration: integration-guides/ipc-integration.md
     - Advanced: integration-guides/advanced.md
+  - Living Whitepaper:
+      - living-whitepaper/index.md
+      - Protocol Design:
+        - Introduction: protocol-design/introduction.md
+        - Ledger: protocol-design/ledger.md
+        - Blocks: protocol-design/blocks.md
+        - Work: protocol-design/work.md
+        - Networking: protocol-design/networking.md
+        - ORV Consensus: protocol-design/orv-consensus.md
+        - Attack Vectors: protocol-design/attack-vectors.md
+        - Resource Usage: protocol-design/resource-usage.md
+        - Distribution and Units: protocol-design/distribution-and-units.md
+        - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
+        - Original whitepaper: whitepaper/english.md
+      - Node Implementation:
+        - Introduction: node-implementation/introduction.md
+        - Components: node-implementation/components.md
+        - Database: node-implementation/database.md
+        - Blocks: node-implementation/blocks.md
+        - Networking: node-implementation/networking.md
+        - Voting: node-implementation/voting.md
+        - Work: node-implementation/work.md
+  - Core Development:
+    - Overview: core-development/overview.md
+    - Collaboration Process: core-development/collaboration-process.md
+    - Code Standards: core-development/code-standards.md
+    - Understanding the Code: core-development/understanding-the-code.md
   - Commands:
     - RPC Protocol: commands/rpc-protocol.md
     - Command Line Interface: commands/command-line-interface.md
-  - Protocol Design:
-    - Overview: protocol-design/overview.md
-    - Distribution and Units: protocol-design/distribution-and-units.md
-    - Networking: protocol-design/networking.md
-    - Network Attacks: protocol-design/network-attacks.md
-    - Signing, Hashing and Key Derivation: protocol-design/signing-hashing-and-key-derivation.md
-    - Original whitepaper: whitepaper/english.md
   - Releases:
     - Node Releases: releases/node-releases.md
+    - Release Notes:
+      - V23.1 (Latest): releases/release-v23-1.md
+      - V23.0: releases/release-v23-0.md
+      - V22.1: releases/release-v22-1.md
+      - V22.0: releases/release-v22-0.md
+      - V21.3: releases/release-v21-3.md
+      - V21.2: releases/release-v21-2.md
+      - V21.1: releases/release-v21-1.md
+      - V21.0: releases/release-v21-0.md
+      - V20.0: releases/release-v20-0.md
+      - V19.0: releases/release-v19-0.md
     - Network Upgrades: releases/network-upgrades.md
-    - Upcoming Features: releases/upcoming-features.md
     - Roadmap: releases/roadmap.md
   - Glossary: glossary.md
-google_analytics:
-  - 'UA-140489311-1'
-  - 'auto'
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite:
       guess_lang: false
-  - toc:
-      permalink: true
-      toc_depth: 4
+  - footnotes
+  - meta
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
@@ -68,7 +117,9 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink
@@ -77,45 +128,75 @@ markdown_extensions:
   - pymdownx.snippets:
       check_paths: true
       base_path: 'docs/snippets'
+  - pymdownx.striphtml:
+      strip_comments: true
+      strip_attributes: ''
   - pymdownx.superfences:
       custom_fences:
       - name: mermaid
         class: mermaid
         format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed:
+      alternate_style: true 
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - footnotes
-  - pymdownx.striphtml:
-      strip_comments: true
-      strip_attributes: ''
-  - meta
+  - toc:
+      permalink: true
+      toc_depth: 4
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
-  - 'https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'
+  - 'https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js'
+  - 'javascript/mermaid-loose-security.js'
 extra_css:
   - 'stylesheets/extras.css'
 extra:
-  search:
-  - tokenizer: '[\s\-\.]+'
   social:
-  - type: 'github'
+  - icon: 'fontawesome/brands/github'
     link: 'https://github.com/nanocurrency'
-  - type: 'twitter'
+  - icon: 'fontawesome/brands/twitter'
     link: 'https://twitter.com/nano'
-  - type: 'comments'
+  - icon: 'material/comment-multiple'
     link: 'https://chat.nano.org'
-  - type: 'reddit'
+  - icon: 'fontawesome/brands/reddit'
     link: 'https://reddit.com/r/nanocurrency'
-  - type: 'medium'
+  - icon: 'fontawesome/brands/medium'
     link: 'https://medium.com/nanocurrency'
-  - type: 'facebook'
+  - icon: 'fontawesome/brands/facebook'
     link: 'https://facebook.com/nanofoundation'
-  - type: 'linkedin'
+  - icon: 'fontawesome/brands/linkedin'
     link: 'https://linkedin.com/company/nano-foundation'
-  - type: 'youtube'
+  - icon: 'fontawesome/brands/youtube'
     link: 'https://www.youtube.com/nanocurrency/'
-  - type: 'instagram'
+  - icon: 'fontawesome/brands/instagram'
     link: 'https://www.instagram.com/nanocurrency/'
+  consent:
+    title: Cookie consent
+    description: >-
+      We use necessary cookies to make our site work. By using this and related Nano.org sites, 
+      you are accepting these cookies. For more detailed information, see the Cookies section 
+      in our <a href="https://nano.org/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
+  analytics:
+    provider: google
+    property: G-RGP8S06PYJ
 repo_name: 'nanocurrency/nano-docs'
 repo_url: 'https://github.com/nanocurrency/nano-docs'
+edit_uri: 'edit/main/docs/'
+plugins:
+    - search:
+        separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+    - social:
+        cards: !ENV [ PRODUCTION, FALSE ]
+        cards_color:
+            fill: "#20204c"
+            text: "#FFFFFF"
+    - redirects:
+        redirect_maps:
+            'running-a-node/rocksdb-ledger-backend.md': 'running-a-node/ledger-management.md'
+            'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
+            'what-is-nano/contributing.md': 'core-development/overview.md'
+            'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
+            'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
+            'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
+            'releases/current-release-notes.md': 'releases/release-v23-1.md'
+            'node-implementation/contributing.md': 'core-development/overview.md'

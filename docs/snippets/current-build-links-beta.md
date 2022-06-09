@@ -1,0 +1,1 @@
+Join the [nano Discord server](https://chat.nano.org) and head to the `#beta-announcements` channel for the latest build details.
