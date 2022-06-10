@@ -85,7 +85,7 @@ In addition to the Docker details above, the latest binary builds of the node fo
 
 ### Beta fund distribution
 
-The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `argakiig#1783` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
+The funds used for testing transactions on the beta network are generated from a new genesis block and distributed in bulk to various testers running nodes on the network. For small amounts suitable for most basic integration, you can get beta Nano from the `#beta-faucet` channel on Discord. If you plan to consistently run a node on beta and want to participate in consensus as a Representative, please connect with `ThiagoSFS#1554` in the `#beta-net` channel on our [Discord server](https://chat.nano.org).
 
 ### Beta ledger file
 
