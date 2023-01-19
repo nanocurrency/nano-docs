@@ -11,7 +11,7 @@ Updates to the Nano protocol are done through major node releases, occurring app
 ## Current Release
 The following release is the latest and only release actively supported by the Nano Foundation. This release and the [Active Releases](#active-releases) below represent the only node versions that will participate on the main network. More details can be found on the [Current Release Notes page](/releases/current-release-notes).
 
---8<-- "release-details-v23-3.md"
+--8<-- "release-details-v24-0.md"
 
 **Builds and Commands**
 
@@ -22,7 +22,7 @@ The following release is the latest and only release actively supported by the N
 ## Next Planned Release
 The following release is currently under development. Details about potential features to be included can be found in the [Nano Roadmap GitHub Project](https://github.com/orgs/nanocurrency/projects/5).
 
---8<-- "release-details-v24-0.md"
+--8<-- "release-details-v25-0.md"
 
 --8<-- "setup-beta-test-testing.md"
 
@@ -30,6 +30,10 @@ The following release is currently under development. Details about potential fe
 
 ## Active Releases
 The following releases can still actively participate on the network by peering with other nodes of the same versions. Any nodes running versions earlier than these will no longer peer with the latest and fall out of sync with the network.
+
+--8<-- "release-details-v24-0.md"
+
+---
 
 --8<-- "release-details-v23-3.md"
 
