@@ -1837,7 +1837,7 @@ Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ### populate_backlog
 
-Scans all accounts, checks for unconfirmed blocks in account chains, and then queues those blocks for confirmation via the election scheduler. Useful for local test networks, where default backlog population is done in 5 minute intervals.
+Scans all accounts, checks for unconfirmed blocks in account chains, and then queues those blocks for confirmation via the election scheduler. Useful for local test networks, since default backlog population is normally done over longer intervals (e.g. 5 minutes).
 
 **Request**
 ```json
