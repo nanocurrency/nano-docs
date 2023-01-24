@@ -831,7 +831,7 @@ Using the optional `json_block` is recommended since v19.0.
 ```
 **Optional "pending", "source"**
 
-_pending, source: version 9.0+_  
+_pending, source: version 9.0+_
 Booleans, false by default. Additionally checks if block is pending, returns source account for receive & open blocks (0 for send & change blocks).
 
 --8<-- "deprecation-info-pending.md"
@@ -860,6 +860,41 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
       "balance": "40200000001000000000000000000000000"
     }
   }
+}
+```
+**Optional "receive_hash"**
+
+_version 24.0+_  
+Boolean, default false. If "true", displays the hash of the send block's corresponding receive (if any). Returns 0 for non-send blocks, and for receivable blocks that do not yet have a corresponding receive.
+
+**Request:**
+```json
+{
+  "action": "blocks_info",
+  "hashes": ["67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D"], 
+  "receive_hash": "true" 
+}
+```
+
+**Response**
+```json
+{
+    "blocks": {
+        "67D9F9F03566D22926159193BD5BDE549FBE8308807C666BCCD3CEA098FBF49D": {
+            "block_account": "nano_1pnano6m6o1ix3eshr6fj9rryd4ckziyii1mf3ychqno9t3soz638dc9fj9a",
+            "amount": "1240000000000000000000000000",
+            "balance": "11017588042701000000000000000000",
+            "height": "271199",
+            "local_timestamp": "1674588370",
+            "successor": "0000000000000000000000000000000000000000000000000000000000000000",
+            "confirmed": "true",
+            "contents": {
+              ...
+            },
+            "subtype": "send",
+            "receive_hash": "4DCA5A5E2C732A6899292B9091B7A90CE87E8063954498DF30F469416E6DD6C0"
+        }
+    }
 }
 ```
 
