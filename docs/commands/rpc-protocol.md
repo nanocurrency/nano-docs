@@ -367,14 +367,22 @@ Returns a list of pairs of account and block hash representing the head block fo
 
 ---
 
-### accounts_pending  
+### accounts_pending
+
+Deprecated in V24.0+. Replaced by [accounts_receivable](#accounts_receivable)
+
+---
+
+### accounts_receivable  
+
+_since V24.0, use [accounts_pending](#accounts_pending) for V23.3 and below_
 
 Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1"
 }
@@ -395,7 +403,7 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -421,7 +429,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "source": "true"
@@ -454,7 +462,7 @@ Boolean, false by default. Include active (not confirmed) blocks
 **Request:**
 ```json
 {
-  "action": "accounts_pending",
+  "action": "accounts_receivable",
   "accounts": ["nano_1111111111111111111111111111111111111111111111111117353trpda", "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"],
   "count": "1",
   "include_active": "true"
@@ -3423,6 +3431,14 @@ Set **amount** as new receive minimum for node wallet until restart
 
 ### search_pending
 
+Deprecated in V24.0+. Replaced by [search_receivable](#search_receivable)
+
+---
+
+### search_receivable
+
+_since V24.0, use [search_pending](#search_pending) for V23.3 and below_
+
 _enable_control required_  
 Tells the node to look for receivable blocks for any account in **wallet**  
 
@@ -3431,7 +3447,7 @@ Tells the node to look for receivable blocks for any account in **wallet**
 **Request:**
 ```json
 {
-  "action": "search_pending",
+  "action": "search_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
@@ -3441,10 +3457,17 @@ Tells the node to look for receivable blocks for any account in **wallet**
   "started": "1"
 }
 ```
+---
+
+### search_pending_all
+
+Deprecated in V24.0+. Replaced by [search_receivable_all](#search_receivable_all)
 
 ---
 
-### search_pending_all  
+### search_receivable_all  
+
+_since V24.0, use [search_pending_all](#search_pending_all) for V23.3 and below_
 
 _enable_control required, version 8.0+_  
 Tells the node to look for receivable blocks for any account in all available wallets  
@@ -3454,7 +3477,7 @@ Tells the node to look for receivable blocks for any account in all available wa
 **Request:**
 ```json
 {
-  "action": "search_pending_all"
+  "action": "search_receivable_all"
 }
 ```  
 **Response:**
@@ -3977,10 +4000,17 @@ Checks whether **wallet** is locked
   "locked": "0"
 }
 ```
-
 ---
 
 ### wallet_pending
+
+Deprecated in V24.0+. Replaced by [wallet_receivable](#wallet_receivable)
+
+---
+
+### wallet_receivable
+
+_since V24.0, use [wallet_pending](#wallet_pending) for V23.3 and below_
 
 _enable_control required_   
 Returns a list of block hashes which have not yet been received by accounts in this **wallet**  
@@ -3990,7 +4020,7 @@ Returns a list of block hashes which have not yet been received by accounts in t
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1"
 }
@@ -4011,7 +4041,7 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "threshold": "1000000000000000000000000"
@@ -4038,7 +4068,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "source": "true"
@@ -4071,7 +4101,7 @@ Boolean, false by default. Include active blocks without finished confirmations
 **Request:**
 ```json
 {
-  "action": "wallet_pending",
+  "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "include_active": "true"
