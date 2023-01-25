@@ -458,6 +458,7 @@ If running on a debugger, add the argument `--gtest_break_on_failure` break at t
 * `TEST_KEEP_TMPDIRS=1` - Setting this to anything will prevent the tests deleting any files it creates, useful for debugging log files. 
 * `TEST_USE_ROCKSDB=1` - Use the RocksDB ledger backend for the tests instead of LMDB. The tests must be built with [RocksDB](/running-a-node/rocksdb-ledger-backend/#rocksdb-ledger-backend) support.
 * `TEST_BASE_PORT=26000` - The base port used in tests, the range of ports used in this case would be 26000 - 26199. This is useful if wanting to run multiple tests at once without port conflicts, the default base port used is 24000. 
+* `NANO_DEFAULT_PEER=peering.nano.org` - Setting this overrides `preconfigured_peers` from config-node.toml, & allows manually setting initial peering DNS. Setting it to an unresolvable address will prevent the node from contacting peers (after wiping peer table).
 
 ### Sanitizers
 
