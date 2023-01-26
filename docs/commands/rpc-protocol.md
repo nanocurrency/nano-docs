@@ -344,6 +344,7 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 !!! info "Error handling"
     With _version 24.0+_, `accounts_balances` response errors are also returned per entry.
     If an account does not exist, zero balance and zero receivables are returned.
+    Version V24.0 has a bug: unopened accounts with receivables return an error instead of the receivables.
     ```json
     {
       "balances": {
