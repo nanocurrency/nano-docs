@@ -80,7 +80,7 @@ There are two main types of changes: RPC call name changes and updates to keys i
 
 * [`search_pending`](../commands/rpc-protocol.md#search_pending) replaced by [`search_receivable`](../commands/rpc-protocol.md#search_receivable)
 * [`search_pending_all`](../commands/rpc-protocol.md#search_pending_all) replaced by [`search_receivable_all`](../commands/rpc-protocol.md#search_receivable_all)
-* [`wallet_pending`](../commands/rpc-protocol.md#wallet_pending) replaced by [`wallet_receivable`]((../commands/rpc-protocol.md#wallet_receivable))
+* [`wallet_pending`](../commands/rpc-protocol.md#wallet_pending) replaced by [`wallet_receivable`](../commands/rpc-protocol.md#wallet_receivable)
 * [`accounts_pending`](../commands/rpc-protocol.md#accounts_pending) replaced by [`accounts_receivable`](../commands/rpc-protocol.md#accounts_receivable)
 
 **Response/request key changes only**
