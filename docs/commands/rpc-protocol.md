@@ -341,6 +341,26 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 }
 ```  
 
+!!! info "Error handling"
+    With _version 24.0+_, `accounts_balances` response errors are also returned per entry.
+    If an account does not exist, zero balance and zero receivables are returned.
+    Version V24.0 has a bug: unopened accounts with receivables return an error instead of the receivables.
+    ```json
+    {
+      "balances": {
+        "nano_3wfddg7a1paogrcwi3yhwnaerboukbr7rs3z3ino5toyq3yyhimo6f6egij6": {
+          "balance": "442000000000000000000000000000",
+          "pending": "0",
+          "receivable": "0"
+        },
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": {
+          "error": "Account not found"
+        }
+      }
+    }
+    ```
+
+
 ---
 
 ### accounts_frontiers  
@@ -364,6 +384,18 @@ Returns a list of pairs of account and block hash representing the head block fo
   }
 }
 ```  
+
+!!! info "Error handling"
+    With _version 24.0+_, `accounts_frontiers` response errors are also returned per entry.
+    ```json
+    {
+      "frontiers": {
+        "nano_3wfddg7a1paogrcwi3yhwnaerboukbr7rs3z3ino5toyq3yyhimo6f6egij6": "75BD65296241EB871918EBE3E99E9A191970A2724B3214B27F8AB205FF4FC30A",
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "error: Bad account number",
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "error: Account not found"
+      }
+    }
+    ```
 
 ---
 
@@ -492,6 +524,18 @@ Returns the representatives for given **accounts**
   }
 }
 ```
+
+!!! info "Error handling"
+    With _version 24.0+_, `accounts_representatives` response errors are also returned per entry.
+    ```json
+    {
+      "representatives": {
+        "nano_3wfddg7a1paogrcwi3yhwnaerboukbr7rs3z3ino5toyq3yyhimo6f6egij6": "nano_3wfddg7a1paogrcwi3yhwnaerboukbr7rs3z3ino5toyq3yyhimo6f6egij6",
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "error: Bad account number",
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "error: Account not found"
+      }
+    }
+    ```
 
 ---
 
