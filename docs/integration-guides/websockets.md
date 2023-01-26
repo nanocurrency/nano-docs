@@ -279,6 +279,25 @@ Including the election info option results in the following fields being include
 * the confirmation `request_count` (_version 20.0+_)
 * number of blocks and voters (_version 21.0+_)
 
+###### Sideband info
+
+Sideband details for the confirmed blocks can be obtained by setting the `"include_sideband_info"` option to true:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "confirmation",
+  "options": {
+    "include_sideband_info": "true"
+  }
+}
+```
+
+The sideband fields when its option is set to true are:
+
+* `height`
+* `local_timestamp`
+
 ##### Sample Results
 
 !!! note "Differences from the HTTP callback"
