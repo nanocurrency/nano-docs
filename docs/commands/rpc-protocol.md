@@ -1835,6 +1835,25 @@ Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ---
 
+### populate_backlog
+
+Scans all accounts, checks for unconfirmed blocks in account chains, and then queues those blocks for confirmation via the election scheduler. Useful for local test networks, since default backlog population is normally done over longer intervals (e.g. 5 minutes).
+
+**Request**
+```json
+{ 
+  "action": "populate_backlog"   
+}
+```
+**Response**
+```json
+{
+  "success": "" 
+}
+```
+
+---
+
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
 
@@ -1891,7 +1910,6 @@ Boolean, default "true". If "true", **block** will be placed on watch for confir
 **Optional "async"**  
 _version 22.0+_  
 Boolean, default "false". If "true", requests will add the blocks to the block processor queue and `{"started":"1"}` will be immediately returned, instead of waiting for block process completion to return. To know if the block was properly processed, monitor the [WebSocket topic `new_unconfirmed_block`](../integration-guides/websockets.md#new-unconfirmed-blocks) and a notification for that successful block will be sent.
-
 
 ---
 
