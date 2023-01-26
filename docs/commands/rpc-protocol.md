@@ -351,9 +351,6 @@ Returns how many RAW is owned and how many have not yet been received by **accou
           "pending": "0",
           "receivable": "0"
         },
-        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": {
-          "error": "Bad account number"
-        },
         "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": {
           "error": "Account not found"
         }
