@@ -36,7 +36,10 @@ _Valid for both nano_node and nano_wallet processes_
 Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times.
 
 ### --confirmation_height_clear
-_version 19.0+_  
+_version 24.0+_  
+It requires the argument `--account` and sets the confirmation heights of the specified account to 0. It may also be passed the value `all` to reset all the accounts. Do not use while the node is running.
+
+_since version 19.0 up to 23.3_  
 Sets the confirmation heights of all accounts to 0. Optional `--account` to only reset a single account. Do not use while the node is running.
 
 ### --daemon
