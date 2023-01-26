@@ -437,6 +437,39 @@ No filters are currently available for the `stopped_election` topic.
 
 ---
 
+### Started elections
+
+When an election is started, the corresponding block hash is sent on the `"started_election"` topic.
+
+##### Subscribing
+
+To subscribe to all started elections notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "started_election"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `started_election` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "started_election",
+  "time": "1674765709226",
+  "message": {
+    "hash": "FD8639F0AD19895B1A3A430DD5B4DCA5A2F713E7DD1CC8DCD5E90D5AE2BCA835"
+  }
+}
+```
+
+---
+
 ### Active difficulty
 
 ##### Subscribing
