@@ -281,7 +281,7 @@ Including the election info option results in the following fields being include
 
 ###### Sideband info
 
-Sideband details for the confirmed blocks can be obtained by setting the `"include_sideband_info"` option to true:
+Since version 24.0 the sideband details for the confirmed blocks can be obtained by setting the `"include_sideband_info"` option to true:
 
 ```json
 {
@@ -295,8 +295,8 @@ Sideband details for the confirmed blocks can be obtained by setting the `"inclu
 
 The sideband fields when its option is set to true are:
 
-* `height`
-* `local_timestamp`
+* `height` is the block height
+* `local_timestamp` is the local time the block was inserted in to the ledger 
 
 ##### Sample Results
 
