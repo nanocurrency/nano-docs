@@ -78,10 +78,10 @@ There are two main types of changes: RPC call name changes and updates to keys i
 
 **RPC call name changes**
 
-* [`search_pending`](../commands/rpc-protocol.md#searchpending) replaced by `search_receivable`
-* [`search_pending_all`](../commands/rpc-protocol.md#searchpendingall) replaced by `search_receivable_all`
-* [`wallet_pending`](../commands/rpc-protocol.md#walletpending) replaced by `wallet_receivable`
-* [`accounts_pending`](../commands/rpc-protocol.md#accountspending) replaced by `accounts_receivable`
+* [`search_pending`](../commands/rpc-protocol.md#search_pending) replaced by [`search_receivable`](../commands/rpc-protocol.md#search_receivable)
+* [`search_pending_all`](../commands/rpc-protocol.md#search_pending_all) replaced by [`search_receivable_all`](../commands/rpc-protocol.md#search_receivable_all)
+* [`wallet_pending`](../commands/rpc-protocol.md#wallet_pending) replaced by [`wallet_receivable`](../commands/rpc-protocol.md#wallet_receivable)
+* [`accounts_pending`](../commands/rpc-protocol.md#accounts_pending) replaced by [`accounts_receivable`](../commands/rpc-protocol.md#accounts_receivable)
 
 **Response/request key changes only**
 
@@ -89,7 +89,7 @@ There are two main types of changes: RPC call name changes and updates to keys i
 * [`wallet_ledger`](../commands/rpc-protocol.md#wallet_ledger) now supports the `receivable` option
 * [`ledger`](../commands/rpc-protocol.md#ledger) now supports the `receivable` option
 * [`block_info`](../commands/rpc-protocol.md#block_info) now supports the `receivable` option
-* [`account_info`](../commands/rpc-protocol.md#accountinfo) replies the `confirmed_receivable` field when `include_confirmed` is set
+* [`account_info`](../commands/rpc-protocol.md#account_info) replies the `confirmed_receivable` field when `include_confirmed` is set
 
 !!! success ""
     _There are no breaking changes with this update, but switching to `receivable` terms is advised._
