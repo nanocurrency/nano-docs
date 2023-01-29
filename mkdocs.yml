@@ -63,7 +63,7 @@ nav:
         - Introduction: protocol-design/introduction.md
         - Ledger: protocol-design/ledger.md
         - Blocks: protocol-design/blocks.md
-        - Work: protocol-design/work.md
+        - Spam, Work, & Prioritization: protocol-design/spam-work-and-prioritization.md
         - Networking: protocol-design/networking.md
         - ORV Consensus: protocol-design/orv-consensus.md
         - Attack Vectors: protocol-design/attack-vectors.md
