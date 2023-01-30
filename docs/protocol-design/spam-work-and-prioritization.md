@@ -56,7 +56,7 @@ Prior to V24, there were 129 balance buckets[^4], with the majority (89) of thos
 
 ## Prioritization buckets
 
-Here are the 62 balance buckets in the reference node implementation (as of V24), based on the V24 source code[^3].
+Here are the 62 balance buckets in the reference node implementation, based on the V24 source code[^3].
 
 | **Bucket Number** | **Bucket Range (uint128)** | **Bucket Range (Nano)** | **Bucket Range (Raw)** |
 | - | - | - | - |
