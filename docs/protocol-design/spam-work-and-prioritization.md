@@ -26,7 +26,7 @@ where $H$ is an algorithm, usually in the form of a hash function, $||$ is the c
 
 The following image illustrates the process by which valid work is obtained for **Block 2**.
 
-![generate-work](/images/whitepaper/generate-work.svg)
+![generate-work](../images/whitepaper/generate-work.svg)
 
 The work field is not used when signing a block. This design has two consequences:
 
