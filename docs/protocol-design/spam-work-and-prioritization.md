@@ -58,7 +58,7 @@ Prior to V24, there were 129 balance buckets[^4], with the majority (89) of thos
 
 Here are the 62 balance buckets in the reference node implementation, based on the V24 source code[^3].
 
-| **Bucket Number** | **Bucket Range (uint128)** | **Bucket Range (Nano)** | **Bucket Range (Raw)** |
+| **Bucket Number** | **Bucket Region (uint128)** | **Bucket Range (Nano)** | **Bucket Range (Raw)** |
 | - | - | - | - |
 | Bucket 0 | 0 - 2^88 |0.0 - 0.0003094850098213451 | 0 - 309485009821345068724781056 |
 | Bucket 1 | 2^88 - 2^92 | 0.0003094850098213451 - 0.002630622583481433 | 309485009821345068724781056 - 2630622583481433084160638976 |
