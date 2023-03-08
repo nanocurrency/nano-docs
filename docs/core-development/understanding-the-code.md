@@ -8,12 +8,12 @@ This guide is designed to give an overall structure of the core nano protocol co
 Items required include:
 
 - Windows/MacOS/Linux
-- C++17 compiler
+- C++20 compiler
 - Boost
 - Git
 - CMake
 
-Useful experience includes modern C++ knowledge (up to C++17) including multithreading primitives (mutex, condition variables, atomics) & templates, Boost (asio & beast), RocksDB, LMDB, FlatBuffers, JSON-RPC, IPC, networking communication (ip/tcp, message passing, broadcasting algorithms), QT, signal handling, PKI cryptography, git & cross-platform development.
+Useful experience includes modern C++ knowledge (up to C++20) including multithreading primitives (mutex, condition variables, atomics) & templates, Boost (asio & beast), RocksDB, LMDB, FlatBuffers, JSON-RPC, IPC, networking communication (ip/tcp, message passing, broadcasting algorithms), QT, signal handling, PKI cryptography, git & cross-platform development.
 
 The main Nano projects are located inside the `/nano` subdirectory.  
 
@@ -185,7 +185,7 @@ When the node is run it prints out some information about the database used, com
 
 ## CMake 
 
-CMake is used as the build system, and git submodules for any third party dependencies. In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
+CMake is used as the build system, and git submodules for any third party dependencies (except boost which must be installed separately by the developer). In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
 
 ### Developer build options
 
@@ -228,7 +228,7 @@ In `nano/lib/memory.hpp` a `nano::make_shared` function is defined which checks 
 ## Libraries and submodules
 
 ### Boost
-We use the Boost library where possible, such as coroutine, filesystem, endian converter, lexical_cast, multi_index_container etc.. if there is a static/dynamic Boost library which is not used, there are generally no issues in adding it. Just make sure the build scripts and documentation are updated.
+We use the Boost library where possible, such as coroutine, filesystem, endian converter, lexical_cast, multi_index_container etc. If there is a static/dynamic Boost library which is not used, there are generally no issues in adding it. Just make sure the build scripts and documentation are updated.
 
 **nano/boost**
 Use `nano/boost/asio` `nano/boost/beast` for includes, this wraps up various includes and prevents warnings being shown (particularly on Windows builds).
@@ -402,7 +402,7 @@ If the node has not been run in a long time (1 week), the peers list is cleared 
 	});
 	```
  
-- Currently using C++17 with Boost 1.70, at the time of writing C++20 is still not fully implemented by any of the major standards compliant compilers. It may be considered for inclusion no earlier than 2022 at which point Linux LTS versions should support it through the default repositories.
+- Currently (as of V25) using C++20 with Boost 1.81.
 - There are known exceptions triggered when `consume_future` is called do not be alarmed when seeing this.
 
 ## Areas of future improvement
