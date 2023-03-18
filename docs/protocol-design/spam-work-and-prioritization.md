@@ -56,7 +56,7 @@ Prior to V24, there were 129 balance buckets[^4], with the majority (89) of thos
 
 The following image illustrates the balance bucket & least-recently-used prioritization process:
 
-![balance-lru-prioritization](../images/whitepaper/balance-lru-prioritization.svg)
+![balance-lru-prio](../images/whitepaper/balance-lru-prio.svg)
 
 ## Prioritization buckets
 
