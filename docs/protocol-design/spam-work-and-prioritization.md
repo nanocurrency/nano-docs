@@ -54,6 +54,10 @@ As of V24, Nano representatives rotate (round-robin) through 62 balance-based bu
 
 Prior to V24, there were 129 balance buckets[^4], with the majority (89) of those buckets being for balances under 0.0003. Since most legitimate users tend to have balances larger than that, this meant that most of the balance buckets were minimally used. In V24 however, there are now 62 balance buckets[^3][^5], & account balances under 0.0003 all share the same bucket. This means that there are a lot more buckets for typical real-world account balances now, which helps prioritize legitimate transactions over spam.
 
+The following image illustrates the balance bucket & least-recently-used prioritization process:
+
+![balance-lru](../images/whitepaper/balance-lru.svg)
+
 ## Prioritization buckets
 
 Here are the 62 balance buckets in the reference node implementation, based on the V24 source code[^3].
