@@ -57,9 +57,9 @@ Throughout the development cycle and after releases official builds of the node 
 !!! tip "Alternate Windows setup"
     Some users have trouble using the command line approach below for getting setup to build on Windows. An alternative setup is available further down for [Windows 10 & Visual Studio 2019](#windows-10-visual-studio-2019). Variations on these instructions with different versions of Windows, Visual Studio, Cmake, etc. may work as well, but may require adjustments.
 
-### Boost
+### Boost (before V25.0)
 
-The node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used for Windows as well, or you can optionally build from the downloaded source instead as follows:
+If you are building a version before V25.0, the node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used for Windows as well, or you can optionally build from the downloaded source instead as follows:
 
 * Download [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html)
 * Extract to \[boost.src\]
@@ -87,7 +87,7 @@ If using this option, remove `bash util/build_prep/bootstrap_boost.sh -m` from t
 
 ### Qt wallet
 
-If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source edition](https://www.qt.io/download) and extract to [qt.src]. In [qt.build] execute:
+If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source edition](https://www.qt.io/download) and extract to [qt.src]. In [qt.build] execute:
 
 === "*nix"
     ```bash
@@ -116,27 +116,40 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source ed
     **Required build tools**
 
     * CMake >= 3.8
-    * Clang >= 5 or GCC >= 7
-
+    * Clang >= 11 or GCC >= 11.3
 
     === "Debian"
         **Version**
 
-        * Debian 8 Jessie (Debian 8 requires Cmake 3.8+)
-        * Debian 9 Stretch
+        * Debian 11 Bullseye (requires Clang 11)
 
         **Install dependencies**
 
         ```bash
         sudo apt-get update && sudo apt-get upgrade
-        sudo apt-get install git cmake g++ curl wget
+        sudo apt-get install git cmake build-essential libc++-dev libc++abi-dev clang clang++11 curl wget
+        sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+        ```
+    
+        **Qt wallet dependencies**
+
+        ```bash
+        sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+        ```
+
+        **Before build**
+
+        ```bash
+        export CC=/usr/bin/clang-11
+        export CXX=/usr/bin/clang++-11
+        cmake ...
         ```
 
     === "Ubuntu"
         **Version**
         
-        * Ubuntu 18.04 LTS Server
-        * Ubuntu 18.10+
+        * Ubuntu 22.04 LTS Server
+        * Ubuntu 22.10+
 
         **Install dependencies**
 
@@ -145,33 +158,28 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source ed
         sudo apt-get install git cmake g++ curl wget
         ```
 
-    === "CentOS"
+        **Qt wallet dependencies**
+
+        ```bash
+        sudo apt-get install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+        ```
+
+    === "Rocky Linux"
         **Version**
         
-        * CentOS 7
+        * Rocky Linux 8
 
         **Install dependencies**
 
         ```bash
         sudo yum check-update
-        sudo yum install git libstdc++-static curl wget
+        sudo yum install git curl wget cmake
         ```
 
         **Configure repository with modern GCC**
         ```bash
-        sudo yum install centos-release-scl
-        sudo yum install devtoolset-7-gcc*
-        scl enable devtoolset-7 bash
-        ```
-
-        **Modern Cmake**
-        ```bash
-        wget https://cmake.org/files/v3.12/cmake-3.12.1.tar.gz
-        tar zxvf cmake-3.12.1.tar.gz && cd cmake-3.12.1
-        ./bootstrap --prefix=/usr/local
-        make -j$(nproc)
-        sudo make install
-        cd ..
+        sudo yum install gcc-toolset-12
+        scl enable gcc-toolset-12 bash
         ```
 
     === "Arch Linux"
@@ -187,14 +195,14 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.9.5+ open source ed
     **Required build tools**
     
     * CMake >= 3.8
-    * XCode >= 9
+    * XCode >= 13.1
 
 === "Windows"
     **Required build tools**
 
     * CMake >= 3.8
     * NSIS package builder
-    * [Visual Studio 2017 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202017&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise)
+    * [Visual Studio 2019 Community](https://my.visualstudio.com/Downloads?q=visual%20studio%202019&wt.mc_id=o~msft~vscom~older-downloads) (or higher edition, if you have a valid license. eg. Professional or Enterprise)
         * Select **Desktop development with C++**
         * Select the latest Windows 10 SDK
 
@@ -208,10 +216,11 @@ The process below will create a release build of the node for the main network. 
 
 === "*nix"
     ```bash
-    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    git clone --branch V24.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
-    export BOOST_ROOT=`pwd`/../boost_build
-    bash util/build_prep/bootstrap_boost.sh -m
+    # Boost is not required for building V25.0 or earlier versions
+    # export BOOST_ROOT=`pwd`/../boost_build
+    # bash util/build_prep/bootstrap_boost.sh -m
     cmake -G "Unix Makefiles" .
     make nano_node
     cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
@@ -219,10 +228,11 @@ The process below will create a release build of the node for the main network. 
 
 === "macOS"
     ```bash
-    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    git clone --branch V24.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
-    export BOOST_ROOT=`pwd`/../boost_build
-    bash util/build_prep/bootstrap_boost.sh -m
+    # Boost is not required for building V25.0 or earlier versions
+    # export BOOST_ROOT=`pwd`/../boost_build
+    # bash util/build_prep/bootstrap_boost.sh -m
     cmake -G "Unix Makefiles" .
     make nano_node
     cp nano_node ../nano_node && cd .. && ./nano_node --diagnostics
@@ -236,7 +246,7 @@ The process below will create a release build of the node for the main network. 
 
     Using git_bash:
     ```bash
-    git clone --branch V22.1 --recursive https://github.com/nanocurrency/nano-node
+    git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node
     cd nano-node
     ```
 
@@ -253,17 +263,23 @@ The process below will create a release build of the node for the main network. 
 
     Using Powershell:
     ```bash
-    Invoke-WebRequest -Uri https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
+    Invoke-WebRequest -Uri https://aka.ms/vs/16/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
     ```
 
     *Generate the build configuration.*
 
     Using 64 Native Tools Command Prompt:
 
-    * Ensure the Qt, Boost, and Windows SDK paths match your installation.
+    * Ensure the Qt, Boost (if < V25.0), and Windows SDK paths match your installation.
 
     ```bash
-    cmake -DNANO_GUI=ON -DQt5_DIR="C:\Qt\5.9.5\msvc2017_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 15 2017 Win64" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.17763.0/um/x64/WS2_32.lib" ..\.
+    cmake -DNANO_GUI=ON -DQt5_DIR="C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -DBoost_COMPILER="-vc141" -DBOOST_ROOT="C:/local/boost_1_70_0" -DBOOST_LIBRARYDIR="C:/local/boost_1_70_0/lib64-msvc-14.1" -G "Visual Studio 16 2019" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64/WS2_32.lib" ..\.
+    ```
+    
+    * If you are building V25.0 or any earlier version, you do not need to specify the Boost library.
+
+    ```bash
+    cmake -DNANO_GUI=ON -DQt5_DIR="C:\Qt\5.15.2\msvc2019_64\lib\cmake\Qt5" -DNANO_SIMD_OPTIMIZATIONS=TRUE -G "Visual Studio 16 2019" -DIPHLPAPI_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64/iphlpapi.lib" -DWINSOCK2_LIBRARY="C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64/WS2_32.lib" ..\.
     ```
 
     **Build**
@@ -315,14 +331,14 @@ Install Visual Studio Community 2019 (version 16.11) https://visualstudio.micros
 
 ![Visual Studio 2019 Install](../images/windows-10-build-instructions/visual-studio-install.jpg)
 
-**Boost**
+**Boost** (before V25.0)
 
 Install Boost 1.74.0 binaries for msvc 14.2. Use default settings during install
 https://sourceforge.net/projects/boost/files/boost-binaries/1.74.0/boost_1_74_0-msvc-14.2-64.exe/download
 
 **CMake**
 
-Install Cmake windows installer, Latest Release (currently 3.22.3)
+Install Cmake windows installer, Latest Release
 https://cmake.org/download/.
 
 Check the option `Add cmake to system path for all users`
