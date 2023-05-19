@@ -58,7 +58,7 @@ This will start the docker container using host ports 7075 and 7076 and put the 
 ```
 
 !!! note
-    As of V21 peering and communicating via UDP has been disabled by default and is deprecated. The ability to use UDP will be removed from the node in a future release yet to be determined.  For more information, see the [network details](/running-a-node/configuration/#network-details).
+    The ability to use UDP is now fully removed from the node. For more information, see the [network details](/running-a-node/configuration/#network-details).
 
     On port 7075, only TCP is required since V21.
 
@@ -97,7 +97,7 @@ docker ps
 
 ```bash
 CONTAINER ID        IMAGE               COMMAND                 CREATED             STATUS              PORTS                                                                      NAMES
-0118ad5b4848        nanocurrency/nano   "/bin/bash /entry.sh"   41 seconds ago      Up 56 seconds       0.0.0.0:7075->7075/tcp, 0.0.0.0:7075->7075/udp, 127.0.0.1:7076->7076/tcp   nano_node_1
+0118ad5b4848        nanocurrency/nano   "/bin/bash /entry.sh"   41 seconds ago      Up 56 seconds       0.0.0.0:7075->7075/tcp 127.0.0.1:7076->7076/tcp                            nano_node_1
 ```
 
 ---
@@ -152,7 +152,6 @@ services:
     image: "nanocurrency/nano:${NANO_TAG}" # tag you wish to pull
     restart: "unless-stopped"
     ports:
-     - "7075:7075/udp"   #udp network traffic (deprecated since V21)
      - "7075:7075"       #tcp network traffic
      - "127.0.0.1:7076:7076" #rpc to localhost only
      - "127.0.0.1:7078:7078" #websocket to localhost only
