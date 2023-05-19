@@ -126,8 +126,7 @@ The class definition for `thread_pool` is defined inside `nano/lib/threading.cpp
 
 There are 2 logical areas where a persistent file is needed: the ledger and wallets. For this 2 NoSQL databases which store binary data are used, namely LMDB & RocksDB. The ledger database is comprised of a few files:
 
-- `nano/secure/blockstore.hpp`: interface
-- `nano/secure/blockstore_partial.hpp`: partial implementation of the interface, it allows CRTP for derived classes
+- `nano/secure/store.hpp`: database interfaces, value object conversions, visitors, and high-level implementations
 - `nano/node/lmdb/`: anything specific to LMDB goes here
 - `nano/node/rocksdb/`: anything specific to RocksDB goes here
 
@@ -135,7 +134,7 @@ The wallets database uses the wallets_store which only has an LMDB backend.
 
 ### Database upgrades
 
-`nano::mdb_store::do_upgrades ()` is where LMDB database upgrades are done. For instance `void nano::mdb_store::upgrade_v18_to_v19 ()` combines all block databases into a single one. Raw mdb functions are normally required as `blockstore::block_get ()` and other functions normally can’t be used because they are updated to the latest db spec. There are currently no rocksdb upgrades but this will follow a similar approach when required. A corresponding test should be added, https://github.com/nanocurrency/nano-node/pull/2429/files is a simple example of adding an upgrade. There are sometimes multiple upgrades during a release if a beta build goes out and a subsequent upgrade is desired. Previously a ledger reset was done and the version was re-used but this was deemed too inconvenient.
+`nano::lmdb::store::do_upgrades ()` is where LMDB database upgrades are done. For instance `void nano::lmdb::store::upgrade_v21_to_v22 ()` combines all block databases into a single one. Raw mdb functions are normally required as `block_store::get ()` and other functions normally can’t be used because they are updated to the latest db spec. The RocksDB upgrades were introduced by V25.0. It follows a similar approach implemented for LMDB. There were in the past multiple upgrades during a release when a beta build went out and a subsequent upgrade was desired. Previously a ledger reset was done and the version was re-used but this was deemed too inconvenient.
 
 ### write_database_queue
 This was introduced to reduce LMDB write lock contention between the block processor and the confirmation height processor. As during bootstrapping or high TPS the block processor can hold onto the lock up to 5s (by default), before the lock is held by the blockprocessor it signals that it is about to get the LMDB lock, the confirmation height processor can make use of this information and continue processing where it would otherwise be stalled. Ongoing pruning also makes use of this.
