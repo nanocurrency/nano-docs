@@ -7,11 +7,14 @@ description: Details of the V24.0 nano node release including upgrade notices, m
 
 ## Upgrade notices
 
-There are no breaking changes, database migrations or other upgrade considerations for this release.
+There are no database migrations or other upgrade considerations for this release.
 
 Exchanges who have not faced issues with their nano nodes are recommended to await the arrival of V25.0.
 
 In general, exchanges, services and integrations are encouraged to join [the test network](../running-a-node/test-network.md) for performing integration testing. This network mimics the live network in work requirements but has a smaller number of nodes and a lower block count for easier setup.
+
+### Minor RPC breaking changes
+There are three RPC calls with such changes: `accounts_balances`, `accounts_frontiers`, and `accounts_representatives`. For integrations using them, carefully review the additional details on these changes included in the [RPC Updates](#rpc-updates) section below.
 
 ---
 
@@ -66,10 +69,10 @@ There were more updates on switching from the old term `pending` to `receivable`
 ## RPC updates
 
 * **NEW** `populate_backlog` is a RPC command for populating backlog. Populating backlog is a process in the node that scans all accounts, checks for unconfirmed blocks in that account's chain and queues those blocks for confirmation via election scheduler.
-* [`account_balances`](https://docs.nano.org/commands/rpc-protocol/#accounts_balances), [`accounts_frontiers`](https://docs.nano.org/commands/rpc-protocol/#accounts_frontiers), and [`accounts_representatives`](https://docs.nano.org/commands/rpc-protocol/#accounts_representatives) RPCs now return per account results making possible to them to retrieve partial data in case there is any error in one of the accounts.
+* [`accounts_balances`](https://docs.nano.org/commands/rpc-protocol/#accounts_balances), [`accounts_frontiers`](https://docs.nano.org/commands/rpc-protocol/#accounts_frontiers), and [`accounts_representatives`](https://docs.nano.org/commands/rpc-protocol/#accounts_representatives) RPCs now return per account results making possible to them to retrieve partial data in case there is any error in one of the accounts. **NOTE:** There is a bug in the `accounts_balances` feature, where it does not return zero balance or zero receivable for accounts that are not found. Instead, it returns an error. Additionally, returning an error message instead of the account details may disrupt the JSON parsing. The `accounts_frontiers` and `accounts_representatives` contain the same bug by mixing error data with the details. This issue will be addressed in a future release.
 * [`blocks_info`](https://docs.nano.org/commands/rpc-protocol/#block_info) RPC now has a `receive_hash` option. This field facilitates retrieving the receive block of a specific send block.
 * [`receivable`](https://docs.nano.org/commands/rpc-protocol/#receivable) RPC now as an `offset` parameter that enables retrieving receivable blocks in chunks.
-
+ 
 ### Pending/Receivable term RPC updates
 
 There are various changes related to the switch from `pending` to `receivable` in RPC calls as noted above. **Although all changes are backwards compatible, switching to the term `receivable` in these cases is advised**.
