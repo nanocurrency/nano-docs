@@ -341,6 +341,10 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 }
 ```  
 
+**Optional "include_only_confirmed"**
+_version 25.0+_   
+Boolean, true by default. Results in `balance` only including blocks on the provided account that have already been confirmed and `receivable` only including incoming send blocks that have already been confirmed on the sending account.
+
 !!! info "Error handling"
     With _version 25.0+_, `accounts_balances` response errors come in a different entry, named as `errors`. This
     fixes the breaking change added in V24.0. Please notice that when an account is not found in the ledger, no error
