@@ -342,9 +342,48 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```  
 
 !!! info "Error handling"
-    With _version 24.0+_, `accounts_balances` response errors are also returned per entry.
-    If an account does not exist, zero balance and zero receivables are returned.
-    Version V24.0 has a bug: unopened accounts with receivables return an error instead of the receivables.
+    With _version 25.0+_, `accounts_balances` response errors come in a different entry, named as `errors`. This
+    fixes the breaking change added in V24.0. Please notice that when an account is not found in the ledger, no error
+    is returned anymore. It now returns a zero balance and zero as receivable.
+    ```json
+    {
+      "balances": {
+        "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
+          "balance": "325586539664609129644855132177",
+          "pending": "2309370929000000000000000000000000",
+          "receivable": "2309370929000000000000000000000000"
+        },
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": {
+          "balance": "0",
+          "pending": "0",
+          "receivable": "0"
+        }
+      },
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number"
+      }
+    }
+    ```
+    If all requested entries result in errors, no entry will be added in the response for `balances`. Similarly,
+    if there are no errors, no entry will be added for `errors`.  
+    Request:
+    ```json
+    {  
+      "action": "accounts_balances",  
+      "accounts": ["nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz"]  
+    }
+    ```
+    Response:
+    ```json
+    {
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number"
+      }
+    }
+    ```
+    In _version 24.0+_, `accounts_balances` response errors are returned per account entry in `balances` object.
+    If an account does not exist, zero balance and zero receivables should be returned, but V24.0 has a bug: unopened
+    accounts with receivables return an error instead of the receivables.
     ```json
     {
       "balances": {
