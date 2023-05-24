@@ -216,7 +216,7 @@ The process below will create a release build of the node for the main network. 
 
 === "*nix"
     ```bash
-    git clone --branch V24.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
     # Boost is not required for building V25.0 or earlier versions
     # export BOOST_ROOT=`pwd`/../boost_build
@@ -228,7 +228,7 @@ The process below will create a release build of the node for the main network. 
 
 === "macOS"
     ```bash
-    git clone --branch V24.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
+    git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
     # Boost is not required for building V25.0 or earlier versions
     # export BOOST_ROOT=`pwd`/../boost_build
