@@ -61,7 +61,7 @@ Throughout the development cycle and after releases official builds of the node 
 
 If you are building a version before V25.0, the node build commands further down include bootstrapping Boost, but [pre-built binaries](https://sourceforge.net/projects/boost/files/boost-binaries/) can be used for Windows as well, or you can optionally build from the downloaded source instead as follows:
 
-* Download [Boost 1.70+](http://www.boost.org/users/history/version_1_70_0.html)
+* Download [Boost 1.81+](https://www.boost.org/users/history/version_1_81_0.html)
 * Extract to \[boost.src\]
 * From inside [boost.src] run:
 
@@ -333,8 +333,8 @@ Install Visual Studio Community 2019 (version 16.11) https://visualstudio.micros
 
 **Boost** (before V25.0)
 
-Install Boost 1.74.0 binaries for msvc 14.2. Use default settings during install
-https://sourceforge.net/projects/boost/files/boost-binaries/1.74.0/boost_1_74_0-msvc-14.2-64.exe/download
+Install Boost 1.81.0 binaries for msvc 14.2. Use default settings during install 
+https://sourceforge.net/projects/boost/files/boost-binaries/1.81.0/boost_1_81_0-msvc-14.2-64.exe/download
 
 **CMake**
 
