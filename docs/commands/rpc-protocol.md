@@ -341,10 +341,53 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 }
 ```  
 
+**Optional "include_only_confirmed"**
+_version 25.0+_   
+Boolean, true by default. Results in `balance` only including blocks on the provided account that have already been confirmed and `receivable` only including incoming send blocks that have already been confirmed on the sending account.
+
 !!! info "Error handling"
-    With _version 24.0+_, `accounts_balances` response errors are also returned per entry.
-    If an account does not exist, zero balance and zero receivables are returned.
-    Version V24.0 has a bug: unopened accounts with receivables return an error instead of the receivables.
+    With _version 25.0+_, `accounts_balances` response errors come in a different entry, named as `errors`. This
+    fixes the breaking change added in V24.0. Please notice that when an account is not found in the ledger, no error
+    is returned anymore. It now returns a zero balance and zero as receivable.
+    ```json
+    {
+      "balances": {
+        "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": {
+          "balance": "325586539664609129644855132177",
+          "pending": "2309370929000000000000000000000000",
+          "receivable": "2309370929000000000000000000000000"
+        },
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": {
+          "balance": "0",
+          "pending": "0",
+          "receivable": "0"
+        }
+      },
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number"
+      }
+    }
+    ```
+    If all requested entries result in errors, no entry will be added in the response for `balances`. Similarly,
+    if there are no errors, no entry will be added for `errors`.  
+    Request:
+    ```json
+    {  
+      "action": "accounts_balances",  
+      "accounts": ["nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz"]  
+    }
+    ```
+    Response:
+    ```json
+    {
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number"
+      }
+    }
+    ```
+    In _version 24.0+_, `accounts_balances` response errors are returned per account entry in `balances` object.
+    If an account does not exist, zero balance and zero receivables should be returned, but V24.0 has a bug: unopened
+    accounts with receivables return an error instead of the receivables.
     ```json
     {
       "balances": {
@@ -386,7 +429,37 @@ Returns a list of pairs of account and block hash representing the head block fo
 ```  
 
 !!! info "Error handling"
-    With _version 24.0+_, `accounts_frontiers` response errors are also returned per entry.
+    With _version 25.0+_, `accounts_frontiers` response errors come in a different entry, named `errors`.
+    ```json
+    {
+      "frontiers": {
+        "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "023B94B7D27B311666C8636954FE17F1FD2EAA97A8BAC27DE5084FBBD5C6B02C"
+      },
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number",
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "Account not found"
+      }
+    }
+    ```
+    If all requested entries result in errors, no entry will be added in the response for `frontiers`. Similarly,
+    if there are no errors, no entry will be added for `errors`.  
+    Request:
+    ```json
+    {  
+      "action": "accounts_frontiers",  
+      "accounts": ["nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy"]  
+    }
+    ```
+    Response:  
+    ```json
+    {
+      "errors": {
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "Account not found"
+      }
+    }
+    ```
+    In _version 24.0+_, `accounts_frontiers` response errors were returned per account entry in the
+    `frontiers` object.
     ```json
     {
       "frontiers": {
@@ -534,7 +607,37 @@ Returns the representatives for given **accounts**
 ```
 
 !!! info "Error handling"
-    With _version 24.0+_, `accounts_representatives` response errors are also returned per entry.
+    With _version 25.0+_, `accounts_representatives` response errors come in a different entry, named `errors`.
+    ```json
+    {
+      "representatives": {
+      "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3":   "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
+      },
+      "errors": {
+        "nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz": "Bad account number",
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "Account not found"
+      }
+    }
+    ```
+    If all requested entries result in errors, no entry will be added in the response for `representatives`. Similarly,
+    if there are no errors, no entry will be added for `errors`.  
+    Request:
+    ```json
+    {  
+      "action": "accounts_representatives",  
+      "accounts": ["nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy"]  
+    }
+    ```
+    Response:  
+    ```json
+    {
+      "errors": {
+        "nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy": "Account not found"
+      }
+    }
+    ```
+    In _version 24.0+_, `accounts_representatives` response errors were returned per account entry in the
+    `representatives` object.
     ```json
     {
       "representatives": {
