@@ -149,18 +149,16 @@ Ledger backend comparison:
 | Tested with the node for many years | Recently implemented |
 | 1 file (data.ldb) | 100+ SST files |
 | Ledger size won't shrink without manual vacuum | Will shrink automatically when using pruning |
-| Unlikely to be further optimized | More likely to be optimized in future |
 | - | Less file I/O (writes are flushed in bulk) |
 | - | More CPU heavy |
 
-\* At the time of writing (Oct 2019)
+\* At the time of last reviewed (May 2023)
 
 ### RocksDB Limitations:
 
 * Automatic backups not currently supported
 * Database transaction tracker is not supported
 * Cannot execute CLI commands which require writing to the database while a node is running, such as `nano_node --peer_clear`, these must be executed when the node is stopped
-* The `unchecked_count` from the `block_count` RPC & telemetry from RocksDB nodes will only be an estimate.
 
 !!! note "Snapshotting with RocksDB"
 	When backing up using the --snapshot CLI option, it is currently set up to do incremental backups, which reduces the need to copy the whole database. However if the original files are deleted, then the backup directory should also be deleted otherwise there can be inconsistencies.
