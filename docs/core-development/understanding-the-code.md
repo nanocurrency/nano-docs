@@ -90,17 +90,17 @@ The test itself needs to be wrapped with the nano { } namespace for this to work
 ## Bootstrapping
 
 There are 2 bootstrapping methods, legacy and lazy. See https://medium.com/nanocurrency/nano-explainer-lazy-bootstrapping-6f091e1eae8c for more information. 
-`node/bootstrap/boostrap_attempt.hpp` contains the base class definition for bootstrap attempts.
+`node/bootstrap/bootstrap_attempt.hpp` contains the base class definition for bootstrap attempts.
 
 ### Legacy
 
-`node/bootstrap/boostrap_legacy.cpp`
+`node/bootstrap/bootstrap_legacy.cpp`
 
 Legacy bootstrapping works by requesting frontiers periodically (every 5 minutes) from a random selection of peers, this is done in `nano::node::ongoing_bootstrap ()`. `bootstrap_frontier.cpp` contains the frontier req client and server. A `frontier_req` message is send from `frontier_req_client` to get a list of frontiers from a peer’s `frontier_req_server` starting at `frontier_req.start` which is done as `accounts_begin (transaction, current + 1);`. The accounts are sorted by their hash.
 
 ### Lazy
 
-`node/bootstrap/boostrap_lazy.hpp` 
+`node/bootstrap/bootstrap_lazy.hpp` 
 
 TODO
 
@@ -175,7 +175,7 @@ When the node is run it prints out some information about the database used, com
 
 ## CMake 
 
-CMake is used as the build system, and git submodules for any third party dependencies (except boost which must be installed separately by the developer). In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
+CMake is used as the build system, and git submodules for any third party dependencies. In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
 
 ### Developer build options
 
