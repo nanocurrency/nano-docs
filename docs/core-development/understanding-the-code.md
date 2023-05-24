@@ -185,7 +185,7 @@ When the node is run it prints out some information about the database used, com
 
 ## CMake 
 
-CMake is used as the build system, and git submodules for any third party dependencies (except boost which must be installed separately by the developer). In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
+CMake is used as the build system, and git submodules for any third party dependencies. In `CMakeLists.txt` header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.
 
 ### Developer build options
 
@@ -288,6 +288,12 @@ Every vote that is added to the election triggers a check for whether quorum has
 After an election is confirmed it can stay in the active elections container up to `confirmed_duration_factor` in order to continue to process votes and republish votes to other nodes, after which is it is removed.
 
 If an election lasts longer than 5 minutes and has not been confirmed it is transitioned to `expired_unconfirmed` and removed from the queue.  This most often happens during high saturation when the active elections container reaches capacity.
+
+### optimistic elections
+
+Instead of confirming every block in every account-chain one-by-one, the optimistic scheduler randomly samples accounts with unconfirmed blocks and activates an election for the account's head block (the latest _unconfirmed_ block in the account-chain). Once the head block is confirmed, all previous dependent blocks (within the account-chain _and_ in other dependent account-chains; i.e. cross-chain) are considered confirmed. The number of optimistic elections is limited, so it doesn't replace or impact the default election scheduling behavior.
+
+See [here](https://github.com/nanocurrency/nano-node/pull/4111) for more details.
 
 ### Confirmation height processor
 When a block is confirmed `void nano::node::process_confirmed ()` the block is added to the confirmation height processor. This begins the process of cementing it and all of its dependents, once this occurs these blocks can never be rolled back. There are 2 confirmation height algorithms bounded and unbounded. Originally only the unbounded one existed, this would store the block hash for the original block confirmed, all its previous blocks, and recurse the bottom most receive block to the source and repeat the process. If this hit something like the binance chain or (any long chain) it could use a lot of memory (unbounded amount). So this brought about the bounded confirmation height processor algorithm which starts at the very bottom of the account chains but does the same recursion when a receive block is hit. This limits the amount of block hashes needing to be stored in memory to be able to cement the bottom most blocks. Checkpoints are used if there are a lot of accounts which need to be traversed to reach which exceeds the maximum amount of memory . It does mean in certain cases the same iteration will need to be done more than once but this should be a rare case only during initial cementing.  
