@@ -89,20 +89,30 @@ The test itself needs to be wrapped with the nano { } namespace for this to work
 
 ## Bootstrapping
 
-There are 2 bootstrapping methods, legacy and lazy. See https://medium.com/nanocurrency/nano-explainer-lazy-bootstrapping-6f091e1eae8c for more information. 
+When you first start a Nano node, it must download & validate transactions until its ledger (account & transaction history) is in sync with the other nodes on the network. This process is called bootstrapping. There are 3 bootstrapping methods, ascending, legacy, and lazy. See [here](https://github.com/nanocurrency/nano-node/issues/3837) and [here](https://medium.com/nanocurrency/nano-explainer-lazy-bootstrapping-6f091e1eae8c) for more information. 
 `node/bootstrap/boostrap_attempt.hpp` contains the base class definition for bootstrap attempts.
+
+### Ascending
+
+`node/bootstrap/bootstrap.cpp`
+
+Nano node versions V24 & V25 introduced ascended bootstrapping - a complete rewrite of how Nano nodes sync account & transaction history from scratch.  Prior to V24, the bootstrap mechanism served transactions (blocks) in a top down format (i.e. newest to oldest / frontier to genesis), but since the blocks must be added to the local ledger from the bottom up (i.e. oldest to newest / genesis to frontier), the node spent a lot of time reordering transactions. This consumed a significant amount of disk space and disk IO (disk reads/writes), both of which contribute to long bootstrapping times (i.e. days or weeks).
+
+Ascending bootstrapping sends & processes transactions from the bottom up, allowing nodes to easily trace transaction order without a complicated (and time consuming) re-ordering process. This significantly improves the speed of bootstrapping, removes complexity from the codebase, & reduces overall resource usage.
+
+For more technical details, see [here](https://github.com/nanocurrency/nano-node/issues/3837).
 
 ### Legacy
 
-`node/bootstrap/boostrap_legacy.cpp`
+`node/bootstrap/bootstrap_legacy.cpp`
 
 Legacy bootstrapping works by requesting frontiers periodically (every 5 minutes) from a random selection of peers, this is done in `nano::node::ongoing_bootstrap ()`. `bootstrap_frontier.cpp` contains the frontier req client and server. A `frontier_req` message is send from `frontier_req_client` to get a list of frontiers from a peer’s `frontier_req_server` starting at `frontier_req.start` which is done as `accounts_begin (transaction, current + 1);`. The accounts are sorted by their hash.
 
 ### Lazy
 
-`node/bootstrap/boostrap_lazy.hpp` 
+`node/bootstrap/bootstrap_lazy.hpp` 
 
-TODO
+Lazy bootstrapping works by having nodes monitor the real-time network and observing live block confirmation. In combination with [optimistic elections](https://github.com/nanocurrency/nano-node/pull/4111), when a node sees confirmation for a new block, all previous blocks in the newly confirmed block's account-chain are also considered valid & confirmed, and are then inserted into node's local ledger.
 
 ### Wallet lazy
 
