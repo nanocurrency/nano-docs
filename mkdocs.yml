@@ -90,7 +90,8 @@ nav:
   - Releases:
     - Node Releases: releases/node-releases.md
     - Release Notes:
-      - V24.0 (Latest): releases/release-v24-0.md
+      - V25.0 (Latest): releases/release-v25-0.md
+      - V24.0: releases/release-v24-0.md
       - V23.3: releases/release-v23-3.md
       - V23.1: releases/release-v23-1.md
       - V23.0: releases/release-v23-0.md
