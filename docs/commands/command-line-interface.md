@@ -231,7 +231,7 @@ Prevent drop of all unchecked entries at node/wallet start
 Turn off use of wallet-based bootstrap
 
 ### --enable_udp
-_version 21.0+_  
+_versions 21.0 up to 23.3_  
 Turn on use of the UDP live network.
 
 ### --fast_bootstrap
@@ -343,7 +343,7 @@ Profile signature verification
 ### Launch options
 
 ##### --disable_udp
-_version 21.0+_  
+_versions 21.0 up to 23.3_  
 This option has been deprecated and will be removed in future versions. It has no effect because it is now the default.
 
 _version 19.0+_  
