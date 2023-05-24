@@ -2047,6 +2047,8 @@ Scans all accounts, checks for unconfirmed blocks in account chains, and then qu
 ### process  
 Publish **block** to the network. Using the optional `json_block` is recommended since v19.0. In v20.0-v21.3, blocks are watched for confirmation by default (see optional `watch_work`).  If `enable_control` is not set to `true` on the node, then the optional `watch_work` must be set to `false`. In V22.0+ the work watcher has been removed.
 
+Note: after v25.0, it is possible that the block processing queue can internally drop a block if the queue gets full. This stat can be checked for `blockprocessor` type, and `drop` details.
+
 --8<-- "warning-process-sub-type-recommended.md"
 
 **Request:**
