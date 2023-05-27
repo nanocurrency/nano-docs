@@ -288,6 +288,14 @@ After an election is confirmed it can stay in the active elections container up 
 
 If an election lasts longer than 5 minutes and has not been confirmed it is transitioned to `expired_unconfirmed` and removed from the queue.  This most often happens during high saturation when the active elections container reaches capacity.
 
+### continuous backlog population
+
+Backlog population is a process in which a node scans all accounts in its ledger, with or without confirmed blocks, and forwards (activates) the accounts which do not have all their blocks confirmed to the election scheduler for prioritization and eventual queuing in the proper bucket. It is necessary to do this periodically because the amount of space in each bucket is limited, and the number of accounts needing confirmations can be much higher than that (especially during bootstrap or network spam attack). 
+
+Continuous backlog population changes the ledger scan interval from every 5 minutes to constant, with population rate & frequency controlled by `backlog_scan_batch_size` and `backlog_scan_frequency`.
+
+See [here](https://github.com/nanocurrency/nano-node/pull/3999) for more details.
+
 ### optimistic elections
 
 Instead of confirming every block in every account-chain one-by-one, the optimistic scheduler randomly samples accounts with unconfirmed blocks and activates an election for the account's head block (the latest _unconfirmed_ block in the account-chain). Once the head block is confirmed, all previous dependent blocks (within the account-chain _and_ in other dependent account-chains; i.e. cross-chain) are considered confirmed. The number of optimistic elections is limited, so it doesn't replace or impact the default election scheduling behavior.
