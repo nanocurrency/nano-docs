@@ -86,19 +86,19 @@ The Docker image can be downloaded via `docker pull` for a specific version/tag.
 === "Test network"
 
 	```bash
-	docker pull nanocurrency/nano-test:V22.1
+	docker pull nanocurrency/nano-test:V25.1
 	```
 
 === "Main network"
 
 	```bash
-	docker pull nanocurrency/nano:V22.1
+	docker pull nanocurrency/nano:V25.1
 	```
 
 === "Beta network"
 
 	```bash
-	docker pull nanocurrency/nano-beta:V22.1
+	docker pull nanocurrency/nano-beta:V25.1
 	```
 
 	Please see the [Beta Network](beta-network.md) page if you plan to join this network.
@@ -113,7 +113,7 @@ The following command will start the node container. Either set the specified en
 
 `${NANO_NAME}` - The name that you would like to assign to the docker container, `nano_node_container` can be used to avoid ambiguity with the commands made to the `nano_node` process.
 
-`${NANO_TAG}` - The version you will be running from the Docker tag section above (i.e. `V22.1`).
+`${NANO_TAG}` - The version you will be running from the Docker tag section above (i.e. `V25.1`).
 
 `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as `config-node.toml`, `config-rpc.toml` and `data.ldb` into this directory.
 
@@ -141,7 +141,7 @@ The following command will start the node container. Either set the specified en
 When the node starts up it will generate log files in the `${NANO_HOST_DIR}` defined in the `docker run` command above. All lines will have a date and time prefix such as `[2021-Jun-24 08:26:49.331844]:`. Below are some common messages seen on startup with brief descriptions of their meanings. The date and time prefixes have been removed from examples below for simplicity.
 
 ```
-Node starting, version: V22.1
+Node starting, version: V25.1
 ```
 :exclamation: Verify you are running the correct version  
 Appears at each startup to indicate version number
@@ -308,7 +308,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	    "protocol_version": "18",
 	    "uptime": "928162",
 	    "genesis_block": "B1D60C0B886B57401EF5A1DAA04340E53726AA6F4D706C085706F31BBD100CEE",
-	    "major_version": "22",
+	    "major_version": "25",
 	    "minor_version": "1",
 	    "patch_version": "0",
 	    "pre_release_version": "0",
@@ -340,7 +340,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	    "protocol_version": "18",
 	    "uptime": "1234166",
 	    "genesis_block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
-	    "major_version": "22",
+	    "major_version": "25",
 	    "minor_version": "1",
 	    "patch_version": "0",
 	    "pre_release_version": "0",
@@ -372,7 +372,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	    "protocol_version": "18",
 	    "uptime": "2186034",
 	    "genesis_block": "01A92459E69440D5C1088D3B31F4CA678BE944BAB3776C2E6B7665E9BD99BD5A",
-	    "major_version": "22",
+	    "major_version": "25",
 	    "minor_version": "1",
 	    "patch_version": "0",
 	    "pre_release_version": "1",
