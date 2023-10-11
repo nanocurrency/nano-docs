@@ -84,6 +84,7 @@ nav:
     - Collaboration Process: core-development/collaboration-process.md
     - Code Standards: core-development/code-standards.md
     - Understanding the Code: core-development/understanding-the-code.md
+    - Developer Discussions: core-development/developer-discussions.md
   - Commands:
     - RPC Protocol: commands/rpc-protocol.md
     - Command Line Interface: commands/command-line-interface.md
