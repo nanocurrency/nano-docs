@@ -6,7 +6,9 @@ description: Links & notes for recurring live discussions about Nano development
 Links & notes for recurring live discussions about Nano development. Includes discussion between community developers and the Nano Foundation. Technical, developer-focused.
 
 !!! note
-    These developer discussions are best effort, live discussions, and may not contain the most accurate (or most recent) information. The intent of these discussions is to promote transparency, collaboration, & community-driven efforts, but development plans may change at any time. The below notes are also best effort, and may not be 100% accurate.
+    These developer discussions are best effort, live discussions, and may not contain the most accurate (or most recent) information. The intent of these discussions is to promote transparency, collaboration, & community-driven efforts, but development plans may change at any time. 
+    
+    The below notes are also best effort, and may not be 100% accurate.
 
 ## October 10th, 2023
 
