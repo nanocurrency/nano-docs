@@ -1,19 +1,22 @@
 title: Developer Discussions
-description: Learn about the nano code for better development practices
+description: Links & notes for recurring live discussions about Nano development. Includes discussion between community developers and the Nano Foundation. Technical, developer-focused.
 
 # Developer Discussions
 
-Looking for technical development-focused discussions? Recurring Nano developer talks are hosted on Twitter, and include discussions between community developers and the Nano Foundation.
+Links & notes for recurring live discussions about Nano development. Includes discussion between community developers and the Nano Foundation. Technical, developer-focused.
+
+!!! note
+    These developer discussions are best effort, live discussions, and may not contain the most accurate (or most recent) information. The intent of these discussions is to promote transparency, collaboration, & community-driven efforts, but development plans may change at any time. The below notes are also best effort, and may not be 100% accurate.
 
 ## October 10th, 2023
 
-Twitter link: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
+Source: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
 
 **Q&A**
 
 - When do you expect the first V26 beta version to be released?
 
-  - Once Piotr's hinted election scheduler pull request gets merged. It's posted, just waiting for review and any additional changes
+  - Once Piotr's hinted election scheduler pull request gets merged. It's been submitted, it's just waiting for review and merging.
 
 - Why does CPS drop when blocks are actively being published (i.e. when BPS is high)? Multiple possibilities:
 
@@ -23,7 +26,7 @@ Twitter link: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
 
   - We don't do much with prioritizing what stuff the node should be working on (votes, writing to disk, etc). That will need to be looked at in the future
 
-  - Bob's graphs shows CPS drop when publishing, but usually in a heavily CPU-limited scenario. When CPU is in abundance, confirmation & publishing rate is the same. When the CPU is limited, confirmation drops until publishing is completed. So Bob thinks possibility 1 is most likely
+  - Bob's graphs shows CPS drop when publishing, but usually in a heavily CPU-limited scenario. When CPU is in abundance, confirmation & publishing rate is the same. When the CPU is limited, confirmation drops until publishing is completed. So Bob thinks possibility one is most likely (i.e. reduced performance when doing multiple activities at once)
 
   - Piotr wonders if the same behavior is visible on RocksDB, because LMDB does a whole database lock (vs a single table) when you write-lock. Bob will test this
 
@@ -82,7 +85,7 @@ Twitter link: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
 
 - Worked closely with Piotr on the hinted scheduler improvements: There are two key changes that were tested/implemented (resolving unconfirmed dependencies & sorting by final tally). See the notes in Piotr's section for more details
 
-- **Piotr**
+**Piotr**
 
 - Encountered some problems in the election class when working on the hinted scheduler optimization. Optimizing hinting uncovered some bugs in our tests, so Piotr submitted a short PR that plans to address some of the issues. The code for election and active election container tries to be too smart. It's using some atomic variables where there should be mutexes, which makes it difficult to implement some things fully correctly
 
@@ -114,7 +117,7 @@ Twitter link: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
 
 ## October 3rd, 2023
 
-Twitter link: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
+Source: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
 
 **Overall**
 
@@ -188,7 +191,7 @@ Twitter link: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
 
 ## September 26th, 2023
 
-Twitter link: https://twitter.com/i/spaces/1YqxoDeyNVbKv?s=20
+Source: https://twitter.com/i/spaces/1YqxoDeyNVbKv?s=20
 
 **Introduction**
 
