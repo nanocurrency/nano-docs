@@ -7,6 +7,7 @@ FROM ghcr.io/nanocurrency/mkdocs-material-insiders:latest
 COPY ./ /docs
 
 RUN \
+  pip install --upgrade pip
   pip install -r /docs/requirements.txt
 
 # Set working directory
