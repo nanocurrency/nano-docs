@@ -1,4 +1,4 @@
-FROM ghcr.io/nanocurrency/mkdocs-material-insiders:latest
+FROM squidfunk/mkdocs-material:latest
 
 # Set build directory
 #WORKDIR /docs
