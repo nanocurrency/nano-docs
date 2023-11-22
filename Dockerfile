@@ -1,4 +1,4 @@
-FROM squidfunk/mkdocs-material:latest
+FROM squidfunk/mkdocs-material:9.4.10@sha256:01605a03397a654b74b9de3157f56915d1e075e2d3bd22fcf3fb82c443553c25
 
 # Set build directory
 #WORKDIR /docs
