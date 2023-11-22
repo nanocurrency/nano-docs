@@ -15,6 +15,6 @@ jobs:
       # Build and test Docker image
       - run: |
           echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u nanocurrency --password-stdin
-          docker pull ghcr.io/nanocurrency/mkdocs-material-insiders:latest
+          docker pull squidfunk/mkdocs-material:9.4.10@sha256:01605a03397a654b74b9de3157f56915d1e075e2d3bd22fcf3fb82c443553c25
           docker build -t ghcr.io/nanocurrency/nano-docs:latest .
           docker push ghcr.io/nanocurrency/nano-docs:latest
