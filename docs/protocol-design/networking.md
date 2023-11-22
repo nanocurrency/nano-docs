@@ -18,7 +18,7 @@ In _v21_ node telemetry was added to node. This allows peers to communicate tele
 
 The nodes are designed to reply to `telemetry_req` messages. They avoid replying if messages are received from the same peer in quick succession; the minimum time until another reply is 60 seconds on the main network, 15 seconds on beta. This is done to reduce bandwidth.
 
-Telemetry messsages bypass the node's bandwidth limiter so that services monitoring the network can still do so during when the network is heavily used. Sending `telemetry_req` frequently within this exclusion zone could see your ip blacklisted by other peers. The node safely handles this for you by doing ongoing requests periodically and only sent when valid to do so.
+Telemetry messages bypass the node's bandwidth limiter so that services monitoring the network can still do so during when the network is heavily used. Sending `telemetry_req` frequently within this exclusion zone could see your ip blacklisted by other peers. The node safely handles this for you by doing ongoing requests periodically and only sent when valid to do so.
 
 ### Signing
 `Telemetry_ack` messages are signed using [ED25519](/protocol-design/signing-hashing-and-key-derivation/#signing-algorithm-ed25519) as follows:
