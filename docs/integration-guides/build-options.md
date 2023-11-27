@@ -317,21 +317,24 @@ This is only required for when the RPC server is being [run as a child process o
 
 ---
 
-## Windows 10 & Visual Studio 2019
+## Windows & Visual Studio
 
-An alternative node building process for Windows 10 using Visual Studio 2019 can be found below. As this uses GUI options, some of the steps and images may vary if using versions other than those indicated.
+An alternative node building process using Windows and Visual Studio can be found below. As this uses GUI options, some of the steps and images may vary if using versions other than those indicated.
 
-**Windows updates**
+**Windows**
 
-Ensure Windows 10 is running and the latest updates have been completed, restart Windows.
+Ensure Windows 10 or Windows 11 is running and the latest updates have been completed, restart Windows.
 
-**Visual Studio 2019**
+**Visual Studio**
 
-Install Visual Studio Community 2019 (version 16.11) https://visualstudio.microsoft.com/vs/older-downloads/. Make sure to tick `Desktop development with C++` and leave everything else at default.
+Use Visual Studio 2019 or 2022
+Visual Studio Community 2019 https://visualstudio.microsoft.com/vs/older-downloads/ 
+Visual Studio Community 2022 https://visualstudio.microsoft.com/vs/community/ 
+Run the installer and make sure to tick `Desktop development with C++` and leave everything else at default.
 
 ![Visual Studio 2019 Install](../images/windows-10-build-instructions/visual-studio-install.jpg)
 
-**Boost** (before V25.0)
+**Boost** (Only needed when building versions before V25.0)
 
 Install Boost 1.81.0 binaries for msvc 14.2. Use default settings during install 
 https://sourceforge.net/projects/boost/files/boost-binaries/1.81.0/boost_1_81_0-msvc-14.2-64.exe/download
@@ -362,15 +365,15 @@ Run CMake GUI
 ![CMake Generator](../images/windows-10-build-instructions/cmake-generator.jpg)
 
 
-**Visual studio 2019**
+**Visual studio**
 
-- Open project solution file in `C:/Users\YourUser\Documents\NanoSolution\nano-node-beta.sln`
-- At the top of the screen select the build type (`Debug` or `Release`) and architecture (`x64`)
+- Open project solution file in `C:\Users\YourUser\Documents\NanoSolution\nano-node-beta.sln`
+- At the top of the screen select the build type and architecture. `Release` and `x64` are recommended settings
 
 ![Build type and architecture](../images/windows-10-build-instructions/debug-arch.jpg)
 
 - Go to the build menu and select `Build`
-- When build has finished you will find the compiled files at `C:/Users\YourUser\Documents\NanoBinaries\Debug` or `C:/Users\YourUser\Documents\NanoBinaries\Release` 
+- When build has finished you will find the compiled files at `C:\Users\YourUser\Documents\NanoBinaries\` 
 
 **Optional: Setup debugging**
 
