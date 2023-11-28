@@ -10,9 +10,38 @@ Links & notes for recurring live discussions about Nano development. Includes di
     
     The below notes are also best effort, and may not be 100% accurate.
 
+## November 21st, 2023
+
+- [Developer call](https://twitter.com/gr0vity_dev/status/1726978836074742207)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/180p7jf/weekly_nano_developer_space_nov_21_2023/)
+
+## November 14th, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1724442197179650478)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/17v5uat/weekly_nano_developer_space_november_14_2023/)
+
+## November 7th, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1721905435056488743)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/17pwaa2/weekly_nano_developer_space_nov_7_2023/)
+
+## October 31st, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1719368918895088121)
+
+## October 24th, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1716817097408524743)
+
+## October 17th, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1714280349738701183)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/17a344v/weekly_nano_developer_space_oct_17_2023/)
+
 ## October 10th, 2023
 
-Source: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1711743518576672943)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/174yxtu/weekly_nano_developer_space_oct_10_2023/)
 
 **Q&A**
 
@@ -119,7 +148,7 @@ Source: https://twitter.com/i/spaces/1LyGBneNWayGN?s=20
 
 ## October 3rd, 2023
 
-Source: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1709206677633782029)
 
 **Overall**
 
@@ -127,7 +156,7 @@ Source: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
 
 **Colin**
 
-- Mostly worked on smaller things this week - still working on the block table refactor (loading blocks only through the ledger classes)
+- Mostly worked on smaller things this week - still worki****ng on the block table refactor (loading blocks only through the ledger classes)
 
 - Continued work on the block split table. Bob needed some changes to get his tests to work with the block split draft. The changes should allow the node to reload, which should hopefully fix some of the testing issues. Previously Colin also cut out some sections of the code (e.g. the random block selection), so he'll work on re-implementing those (should be doable via random integer selection instead of random hash). The more difficult part will be the DB upgrade path
 
@@ -193,7 +222,8 @@ Source: https://twitter.com/i/spaces/1LyxBneZBQnxN?s=20
 
 ## September 26th, 2023
 
-Source: https://twitter.com/i/spaces/1YqxoDeyNVbKv?s=20
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1706669851912151247?t=YTMabUbEfkQgjIoVtGSKKg&s=19)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/16spnl2/colin_lemahieu_hosting_live_twitter_space_about/)
 
 **Introduction**
 
