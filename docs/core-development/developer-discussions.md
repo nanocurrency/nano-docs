@@ -10,6 +10,31 @@ Links & notes for recurring live discussions about Nano development. Includes di
     
     The below notes are also best effort, and may not be 100% accurate.
 
+## January 16, 2024
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1747272701008634175)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/198wdac/weekly_nano_developer_call_jan_16_2023/)
+
+## January 9, 2024
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1744735898879811779)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/192my3t/weekly_nano_developer_space_jan_9_2024/)
+
+## December 12, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1734588963585728526)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/18gs1kr/weekly_nano_developer_space_dec_12_2023_last_one/)
+
+## December 5, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1732052255103221870)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/18bdsq8/weekly_nano_developer_talk_dec_5_2023/)
+
+## November 28, 2023
+
+- [Developer call](https://twitter.com/ColinLeMahieu/status/1729515603529023585)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/185xrqi/weekly_nano_developer_call_nov_28_2023/)
+
 ## November 21, 2023
 
 - [Developer call](https://twitter.com/gr0vity_dev/status/1726978836074742207)
