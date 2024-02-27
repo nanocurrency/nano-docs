@@ -1,9 +1,9 @@
-| OS                  | Download link/command                                                                                     |
-|---------------------|-----------------------------------------------------------------------------------------------------------|
-| Universal Linux     | https://repo.nano.org/test/binaries/nano-node-V25.0-Linux.tar.bz2                                         |
-| Debian              | https://repo.nano.org/test/binaries/nano-node-V25.0-Linux.deb                                             |
-| macOS               | https://repo.nano.org/test/binaries/nano-node-V25.0-Darwin.dmg                                            |
-| Windows (exe)       | V25.0 is not available yet. Link for V24.0: https://repo.nano.org/test/binaries/nano-node-V24.0-win64.exe |
-| Windows (zip)       | V25.0 is not available yet. Link for V24.0: https://repo.nano.org/test/binaries/nano-node-V24.0-win64.zip |
-| Docker              | `docker pull nanocurrency/nano-test:V25.0`                                                                |
-| RHEL/RockyLinux rpm | Not available for the test network                                                                        |
+| OS                  | Download link/command                                             |
+|---------------------|-------------------------------------------------------------------|
+| Universal Linux     | https://repo.nano.org/test/binaries/nano-node-V26.1-Linux.tar.bz2 |
+| Debian              | https://repo.nano.org/test/binaries/nano-node-V26.1-Linux.deb     |
+| macOS               | https://repo.nano.org/test/binaries/nano-node-V26.1-Darwin.dmg    |
+| Windows (exe)       | V26.1 is not available yet.                                       |
+| Windows (zip)       | V26.1 is not available yet.                                       |
+| Docker              | `docker pull nanocurrency/nano-test:V26.1`                        |
+| RHEL/RockyLinux rpm | Not available for the test network                                |
