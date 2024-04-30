@@ -59,9 +59,9 @@ Run internal diagnostics and validate existing config file (or create default co
 ### --final_vote_clear
 Either specify a single `--root` to clear or `--all` to clear all final votes (not recommended)
 
-### --generate_config node|rpc
+### --generate_config node|rpc|log
 _version 20.0+_  
-Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node` or `rpc`.
+Write configuration to stdout, populated with commented-out defaults suitable for this system. Pass the configuration type, `node`, `rpc` or `log`
 If `--use_defaults` is passed, the generated config will not have values commented-out. This is not recommended except for testing and debugging.
 
 The output can be piped to a file, using the locations defined in [configuration](/running-a-node/configuration#configuration-file-locations).
