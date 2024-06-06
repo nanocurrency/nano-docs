@@ -66,6 +66,12 @@ If `--use_defaults` is passed, the generated config will not have values comment
 
 The output can be piped to a file, using the locations defined in [configuration](/running-a-node/configuration#configuration-file-locations).
 
+### --update_config
+_version 27.0+_  
+Writes an updated node configuration to stdout, populated with the non-default values from the current node config, merged with commented-out defaults suitable for this system
+
+The output can be piped to a file, using the locations defined in [configuration](/running-a-node/configuration#configuration-file-locations).
+
 ### --help
 Print out options
 
