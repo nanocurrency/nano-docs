@@ -10,6 +10,86 @@ Links & notes for recurring live discussions about Nano development. Includes di
     
     The below notes are also best effort, and may not be 100% accurate.
 
+## June 11, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1800528535251267598?t=b7_ZOImygrwAW8yiRw8cdw&s=19)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1ddgvyj/weekly_nano_developer_talk_june_11_2024/)
+ 
+## May 21, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1792897054726824333)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1cx7jqw/weekly_nano_developer_space_may_21_2024/)
+ 
+## May 14, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1790381641107439731?t=Ms5Dy0bBFVqx8GbkOy8lGA)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1crv7i1/weekly_nano_developer_space_may_14_2024/)
+ 
+## April 30, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1785308297924432315)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1ch55iu/weekly_nano_developer_space_apr_30_2024/)
+
+## April 23, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1782771656408158483)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1cbhe9x/weekly_nano_developer_space_apr_23_2024/)
+  
+## April 16, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1780234655565746684?t=FGvjQKPRKAbxGRSIfCHR4A)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1c5gwux/weekly_nano_developer_space_apr_16_2024/)
+ 
+## April 9, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1777697905698107554)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1c0268f/weekly_nano_developer_space_apr_9_2024/)
+ 
+## March 26, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1772639556455567629?t=RTr-oEgf8ZoM1tEcfInxBw)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1bobrah/weekly_nano_developer_space_mar_26_2024/)
+ 
+## March 19, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1770091771541828085)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1bin1m6/weekly_nano_developer_space_mar_19_2024/)
+ 
+## March 12, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1767566192103825707)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1bd25p2/weekly_nano_developer_talk_mar_12_2024/)
+ 
+## March 5, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1765029691398734023?t=r6mG_OO6tKdnu32F5dhjnQ)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1b79viz/weekly_nano_developer_space_mar_5_2024/)
+ 
+## February 20, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1759956505606971745?t=98X_E9aTopR6qVaps1BEpw)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1avmgtd/weekly_nano_developer_space_feb_20_2024/)
+ 
+## February 13, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1757414995858526559)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1apv3i4/weekly_nano_developer_space_feb_13_2024/)
+  
+## February 6, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1754882713926926420?t=3KncD_dJcwZeI07_JXuNdg)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1akexw7/weekly_nano_developer_space_feb_6_2024/)
+  
+## January 30, 2024
+
+- [Developer call](https://x.com/gr0vity_dev/status/1752345979024490835)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1af3o40/weekly_nano_developer_call_jan_30_2024/)
+  
+## January 23, 2024
+
+- [Developer call](https://x.com/ColinLeMahieu/status/1749804269925232822)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/19dv1ca/weekly_nano_developer_call_jan_23_2024/)
+  
 ## January 16, 2024
 
 - [Developer call](https://twitter.com/ColinLeMahieu/status/1747272701008634175)
