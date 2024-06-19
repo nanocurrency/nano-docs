@@ -9,7 +9,12 @@ Links & notes for recurring live discussions about Nano development. Includes di
     These developer discussions are best effort, live discussions, and may not contain the most accurate (or most recent) information. The intent of these discussions is to promote transparency, collaboration, & community-driven efforts, but development plans may change at any time. 
     
     The below notes are also best effort, and may not be 100% accurate.
+    
+## June 18, 2024
 
+- [Developer call](https://x.com/ColinLeMahieu/status/1803065216919273931)
+- [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1dj46ct/weekly_nano_developer_space_june_18_2024/)
+  
 ## June 11, 2024
 
 - [Developer call](https://x.com/ColinLeMahieu/status/1800528535251267598?t=b7_ZOImygrwAW8yiRw8cdw&s=19)
