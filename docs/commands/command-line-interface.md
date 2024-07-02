@@ -3,25 +3,6 @@ description: Reference for the CLI commands available for the nano node
 
 # Command Line Interface
 ## nano_node commands
-
-<!-- <table>
-    <tr>
-        <td>Command</td> <td>Description</td>
-    </tr>
-    <tr>
-        <td>
-
-        ```json
-        --wallet_add_adhoc
-          --wallet=<wallet>
-          --key=<key>
-        ```
-        
-        </td> 
-        <td>Insert <key> into <wallet>.</td>
-    </tr>
-</table>-->
-
 | Command | Description |
 |---------|-------------|      
 | `--account_create --wallet=<wallet>` | Insert next deterministic key into `<wallet>` |
