@@ -839,8 +839,15 @@ or via cli flag
 ```
 
 ### Enable UPnP logging
-Appending this to your launch command will enable upnp logging.
+Appending this to your launch command will enable upnp debug logging.
+
 ```bash
+#V27 or later
+--config log.console.upnp=debug
+```
+
+```bash
+# V26 or before
 --config node.logging.upnp_details=true
 ```
 ### Error UPnP Messages
