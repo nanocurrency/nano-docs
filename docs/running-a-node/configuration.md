@@ -236,36 +236,6 @@ enable_control = false
 
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
-#### logging.stable_log_filename
-
---8<-- "known-issue-windows-logging-stable.md"
-
-This configuration option is set in the [`config-node.toml` file](../running-a-node/configuration.md#configuration-file-locations).
-
-By default this option is set to `false` which results in all log files having a timestamp appended to them, even the currently active file. If set to `true` the currently active log file will have a static name at `log/node.log` for easier management.
-
-```toml
-[node.logging]
-
-# Append to log/node.log without a timestamp in the filename.
-# The file is not emptied on startup if it exists, but appended to.
-# type:bool
-stable_log_filename = true
-```
-
-#### logging.log_rpc
-This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
-
-By default, all RPC calls and the time spent handling each one are [logged](../running-a-node/troubleshooting.md#log-files). This can be optionally turned off by switching option `logging.log_rpc` to `false`
-
-```toml
-[logging]
-
-# Whether to log RPC calls.
-# type:bool
-log_rpc = true
-```
-
 ### IPC
 See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
 
