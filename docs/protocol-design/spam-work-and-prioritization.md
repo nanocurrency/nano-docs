@@ -95,7 +95,7 @@ The following image illustrates the balance bucket & least-recently-used priorit
 Here are the 63 balance buckets in the reference node implementation, based on the V27 source code[^6]. Table values truncated for readability:
 
 | **Bucket Number** | **Bucket Region (uint128)** | **Bucket Range (Nano)** | **Bucket Range (Raw)** |
-| - | - | - | - |
+|:-:|:-:| - | - |
 | 0 | 0 - 2^79 | 0.0000000000000 - 0.0000006044629 | 0 - 604462909807314587353088 |
 | 1 | 2^79 - 2^88 | 0.0000006044629 - 0.0003094850098 | 604462909807314587353088 - 309485009821345068724781056 |
 | 2 | 2^88 - 2^92 | 0.0003094850098 - 0.0026306225834 | 309485009821345068724781056 - 2630622583481433084160638976 |
