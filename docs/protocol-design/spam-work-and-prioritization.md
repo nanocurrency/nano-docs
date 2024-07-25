@@ -15,7 +15,7 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 
 | **Feature** | **Description** | **Version** |
 | - | - | - |
-| Ascended bootstrapping limits via: requests_limit, database_requests_limit, pull_count, timeout | - | V25+ |
+| Ascended bootstrapping limits | Configurable ascended bootstrapper limits via requests_limit, database_requests_limit, pull_count, timeout | V25+ |
 | bandwidth_limit | - | - |
 | Balance buckets | - | - |
 | Bootstrap_bandwidth_limit | - | V25+ |
@@ -32,6 +32,7 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 | Lazy bootstrapping  | Similar to optimistic elections, but for bootstrapping | - |
 | Least-Recently Used (LRU) Prioritization | - | - |
 | [Local block broadcaster](https://github.com/nanocurrency/nano-node/pull/4454) | Only rebroadcast blocks during active elections. Move initial block gossip responsibility to the block originator | V27+ |
+| message_deserializer checks | Check for correct message formats before full processing (valid work, valid header, valid message type, valid version, valid network bytes (magic bytes), etc) | - |
 | Multi-threaded vote processor & request aggregator | Greatly improves vote processing & signature verification | V27+ |
 | Optimistic elections | If a more recent block is confirmed, all of its dependencies are also confirmed | - |
 | Proof-of-Work | Each Nano transaction requires a small Proof-of-Work | All
@@ -39,9 +40,8 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 | Vote by hash | Increased to 255 hashes/vote in V27 | V27+ |
 | Bounded unchecked memory table | - | - |
 | Unchecked table limited to two items per dependency | - | - |
-| Check for correct message formats via message_deserializer (valid work, valid header, valid message type, valid version, valid network bytes (magic bytes), etc) | - | - |
 | Don't requeue blocks with invalid signatures | - | - |
-| (Future) See list of [potential performance improvements]([url](https://github.com/nanocurrency/nano-node/issues/4262)) | - | Future |
+| [(Future) Additional improvements](https://github.com/nanocurrency/nano-node/issues/4262) | See list of potential future improvements that have been noted for additional research | Future |
   
 ## Work algorithm details
 
@@ -79,12 +79,12 @@ Additional requirements of parameter flexibility, constrained parallelism, and b
 
 ## Prioritization details
 
-As of V24, Nano representatives rotate (round-robin) through 62 balance-based buckets when voting on transactions, and the least-recently-used (LRU) accounts in each bucket have the most priority (within their bucket). For example, if an account with 1 XNO and another account with 5 XNO both make two transactions, Nano representatives will vote on one transaction from the 1 XNO bucket, and one transaction from the 5 XNO bucket, before voting on a second transaction from the same bucket. Furthermore, the least-recently-used account within a bucket has the most priority (in that bucket), so after an account makes a transaction it gets moved to the back of the line behind everyone else (in that bucket). This means that if an attacker tries to send thousands of transactions from an account that only has 0.00001 Nano (for example), other accounts in the 0.00001 bucket that don't make frequent transactions will have priority over the spam, and the 0.00001 bucket spam will have no impact on accounts in other balance-buckets (e.g. 1 XNO).
+As of V27, Nano representatives rotate (round-robin) through 63 balance-based buckets when voting on transactions, and the least-recently-used (LRU) accounts in each bucket have the most priority (within their bucket). For example, if an account with 1 XNO and another account with 5 XNO both make two transactions, Nano representatives will vote on one transaction from the 1 XNO bucket, and one transaction from the 5 XNO bucket, before voting on a second transaction from the same bucket. Furthermore, the least-recently-used account within a bucket has the most priority (in that bucket), so after an account makes a transaction it gets moved to the back of the line behind everyone else (in that bucket). This means that if an attacker tries to send thousands of transactions from an account that only has 0.00001 Nano (for example), other accounts in the 0.00001 bucket that don't make frequent transactions will have priority over the spam, and the 0.00001 bucket spam will have no impact on accounts in other balance-buckets (e.g. 1 XNO).
 
 !!! info "Balance-based Buckets"
 	Prioritization buckets are split by _account balances_, not transaction amounts
 
-Prior to V24, there were 129 balance buckets[^4], with the majority (89) of those buckets being for balances under 0.0003. Since most legitimate users tend to have balances larger than that, this meant that most of the balance buckets were minimally used. In V24 however, there are now 62 balance buckets[^3][^5], & account balances under 0.0003 all share the same bucket. This means that there are a lot more buckets for typical real-world account balances now, which helps prioritize legitimate transactions over spam.
+Prior to V24, there were 129 balance buckets[^4], with the majority (89) of those buckets being for balances under 0.0003. Since most legitimate users tend to have balances larger than that, this meant that most of the balance buckets were minimally used. In V24  there were 62 balance buckets[^3][^5], & account balances under 0.0003 shared the same bucket. This means that there were a lot more buckets for typical real-world account balances now, which helps prioritize legitimate transactions over spam. V27 added an additional bucket (Ӿ0.000001 to Ӿ0.0003) to account for common wallet and faucet minimums[^6].
 
 The following image illustrates the balance bucket & least-recently-used prioritization process:
 
@@ -177,3 +177,4 @@ Existing content related to this page:
 [^3]: C. LeMahieu et al, "Nanocurrency/Nano-Node - Prioritization.cpp". [Online]. Available: https://github.com/clemahieu/nano-node/blob/releases/v24/nano/node/prioritization.cpp#L46-L73
 [^4]: A. Titan, "All 129 prioritization buckets in Nano", 2021. [Online]. Available: https://www.reddit.com/r/nanocurrency/comments/myf9c2/all_129_prioritization_buckets_in_nano/
 [^5]: P. Luberus, "Visualizing the updated V24 balance buckets (62 prioritization buckets)", 2022. [Online]. Available: https://www.reddit.com/r/nanocurrency/comments/zydm1w/visualizing_the_updated_v24_balance_buckets_62/
+[^6]: Bob, "Add New Bucket for Specific Amount Range", 2024. [Online]. Available: https://github.com/nanocurrency/nano-node/pull/4661
