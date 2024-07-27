@@ -14,23 +14,25 @@ Links & notes for recurring live discussions about Nano development. Includes di
 
 - [Developer call](https://x.com/ColinLeMahieu/status/1815748878320189616?t=L8QhI04wdbx87MQIJYoxug&s=19)
 - [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1eaa9i0/weekly_nano_developer_space_jul_23_2024/)
+- [YouTube](https://www.youtube.com/watch?v=cMK_Q50uWHk)
 
 ## July 16, 2024
 
 - [Developer call](https://x.com/ColinLeMahieu/status/1813204252380070206)
 - [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1e54dvm/weekly_nano_developer_space_july_16_2024/)
-  
+- [YouTube](https://www.youtube.com/watch?v=Dx5ZEYwdbyw)
+    
 ## July 9, 2024
 
 - [Developer call](https://x.com/ColinLeMahieu/status/1810675179137192279?t=hEmkKBHOxRK9RofyNnUwVg&s=19)
 - [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1dz36p3/weekly_nano_developer_space_jul_9_2024/)
-- [YouTube](https://www.youtube.com/watch?v=Z7n75b8i9sI&t=5s)
+- [YouTube](https://www.youtube.com/watch?v=Z7n75b8i9sI)
   
 ## July 2, 2024
 
 - [Developer call](https://x.com/ColinLeMahieu/status/1808138726742065452?t=eqerZHL7ApiqRzFOs91V5g&s=19)
 - [Reddit discussion](https://www.reddit.com/r/nanocurrency/comments/1dtmuk4/weekly_nano_developer_space_jul_2_2024/)
-- [YouTube](https://www.youtube.com/watch?v=JSEBA5HNqgE&t=5s)
+- [YouTube](https://www.youtube.com/watch?v=JSEBA5HNqgE)
 
 ## June 18, 2024
 
