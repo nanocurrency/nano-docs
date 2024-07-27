@@ -20,28 +20,28 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 | Balance buckets | - | - |
 | Bootstrap_bandwidth_limit | - | V25+ |
 | bootstrap_connections_max | - | <V25 |
-| Bounded active election buckets | Allows for dynamically dropping and scheduling higher priority elections, and buckets can be configured to opportunistically use more available space if AEC is underutilized | V27+ |
+| Bounded active election buckets | Allows for dynamically dropping and scheduling higher priority elections, and buckets can be configured to opportunistically use more available space if AEC is underutilized. | V27+ |
 | [Fair queueing for block processor](https://github.com/nanocurrency/nano-node/pull/4476) | - | V27+ |
 | [Fair queueing for vote processor](https://github.com/nanocurrency/nano-node/pull/4536) | - | V27+ |
 | [Fair queueing for bootstrap server](https://github.com/nanocurrency/nano-node/pull/4584) | - | V27+ |
 | [Fair queueing for request aggregator](https://github.com/nanocurrency/nano-node/pull/4598) | - | V27+ |
 | [Final vote replies](https://github.com/nanocurrency/nano-node/pull/4648) | - | V27+ |
-| Hinted elections | A percentage of election slots are reserved for hinted elections, meaning that nodes start elections for transactions with a high vote weight, regardless of individual node priority. This allows the network to progress forward on confirmations, keeping the network in sync. | - |
-| Hinted elections for dependencies | - | V26+ |
-| [is_originator flag](https://github.com/nanocurrency/nano-node/pull/4654) | Helps ensure original blocks get priority over republished blocks | V27+ |
-| Lazy bootstrapping  | Similar to optimistic elections, but for bootstrapping | - |
+| [Hinted elections](https://github.com/nanocurrency/nano-node/pull/3944) | A percentage of election slots are reserved for hinted elections, meaning that nodes start elections for transactions with a high vote weight, regardless of individual node priority. This allows the network to progress forward on confirmations, keeping the network in sync. | - |
+| [Hinted elections for dependencies](https://github.com/nanocurrency/nano-node/pull/4312) | The hinted election scheduler now detects cases when the node falls behind the network and is missing confirmations for block dependencies, and then activates elections for the blocks that were missed. | V26+ |
+| [is_originator flag](https://github.com/nanocurrency/nano-node/pull/4654) | Adds a flag to publish messages that identifies if a block is from a node that performed the initial flooding. Helps ensure original blocks get priority over republished blocks. | V27+ |
+| [Lazy bootstrapping](https://github.com/nanocurrency/nano-node/pull/1332) | Similar to optimistic elections, but for bootstrapping. Passively listens for votes on the real-time network, and confirms block dependencies if the (more recent) block is confirmed. | V17+ |
 | Least-Recently Used (LRU) Prioritization | - | - |
-| [Local block broadcaster](https://github.com/nanocurrency/nano-node/pull/4454) | Only rebroadcast blocks during active elections. Move initial block gossip responsibility to the block originator | V27+ |
-| message_deserializer checks | Check for correct message formats before full processing (valid work, valid header, valid message type, valid version, valid network bytes (magic bytes), etc) | - |
-| Multi-threaded vote processor & request aggregator | Greatly improves vote processing & signature verification | V27+ |
-| Optimistic elections | If a more recent block is confirmed, all of its dependencies are also confirmed | - |
-| Proof-of-Work | Each Nano transaction requires a small Proof-of-Work | All
+| [Local block broadcaster](https://github.com/nanocurrency/nano-node/pull/4454) | Only rebroadcast blocks during active elections. Move initial block gossip responsibility to the block originator. | V27+ |
+| message_deserializer checks | Check for correct message formats before full processing (valid work, valid header, valid message type, valid version, valid network bytes (magic bytes), etc). | - |
+| Multi-threaded vote processor & request aggregator | Greatly improves vote processing & signature verification. | V27+ |
+| [Optimistic elections](https://github.com/nanocurrency/nano-node/pull/4111) | If a more recent block is confirmed, all of its dependencies are also confirmed. | V25+ |
+| Proof-of-Work | Each Nano transaction requires a small Proof-of-Work. | All
 | [Rep crawler overhaul](https://github.com/nanocurrency/nano-node/pull/4449#issuecomment-1968919321) | Consistently find representatives, even when vote requests are unreliable | V27+ |
-| Vote by hash | Increased to 255 hashes/vote in V27 | V27+ |
+| Vote by hash | Increased to 255 hashes/vote in V27. | V27+ |
 | Bounded unchecked memory table | - | - |
 | Unchecked table limited to two items per dependency | - | - |
 | Don't requeue blocks with invalid signatures | - | - |
-| [(Future) Additional improvements](https://github.com/nanocurrency/nano-node/issues/4262) | See list of potential future improvements that have been noted for additional research | Future |
+| [(Future) Additional improvements](https://github.com/nanocurrency/nano-node/issues/4262) | See list of potential future improvements that have been noted for additional research. | Future |
   
 ## Work algorithm details
 
