@@ -13,6 +13,8 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 
 ## Spam resistance features
 
+Below is a list of some of Nano's key spam mitigation features.
+
 | **Feature** | **Description** | **Version** |
 | - | - | - |
 | [bandwidth_limit](https://github.com/nanocurrency/nano-node/pull/2035) | Restricts outbound bandwidth to a user-configurable limit. 10 MB/s by default. | V19+ |
