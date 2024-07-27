@@ -37,7 +37,7 @@ In addition to proof-of-work, another key component of Nano's defense against sp
 | [Optimistic elections](https://github.com/nanocurrency/nano-node/pull/4111) | If a more recent block is confirmed, all of its dependencies are also confirmed. | V25+ |
 | Proof-of-Work | Each Nano transaction requires a small Proof-of-Work. | All
 | [Rep crawler overhaul](https://github.com/nanocurrency/nano-node/pull/4449#issuecomment-1968919321) | Consistently find representatives, even when vote requests are unreliable | V27+ |
-| Vote by hash | Increased to 255 hashes/vote in V27. | V27+ |
+| [Vote by hash](https://github.com/nanocurrency/nano-node/pull/1025) | Instead of voting with a full block (256 bytes), representatives vote with block hashes (32 bytes), and batch these hashes. As of V27, nodes can vote for up to [255 hashes](https://github.com/nanocurrency/nano-node/pull/4683) in a single vote. | V15+ |
 | Bounded unchecked memory table | - | - |
 | Unchecked table limited to two items per dependency | - | - |
 | Don't requeue blocks with invalid signatures | - | - |
