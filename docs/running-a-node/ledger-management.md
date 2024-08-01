@@ -105,7 +105,7 @@ In order to minimize downtime, consider performing the update in a different mac
 	* Copy [`data.ldb`](#ledger-file) from Machine A to `/home/<user>/Nano_Update/data.ldb` on Machine B.
 	* Start the node again on Machine A, resuming operation.
 1. Download the [latest node version](/releases/node-releases/#current-release) to Machine B. For the purposes of this guide, using a binary is easier.
-1. Run the following command on Machine B (varies based on your operating system): `./nano_node --debug_block_count --data_path /home/<user>/Nano_Update --config node.logging.log_to_cerr=true`
+1. Run the following command on Machine B (varies based on your operating system): `./nano_node --debug_block_count --data_path /home/<user>/Nano_Update --config log.console.to_cerr=true`
 1. The message *"Upgrade in progress..."* will be displayed if a ledger upgrade is required. Wait until the command finishes and **do not stop the upgrade preemptively**.
 1. Copy `/home/<user>/Nano_Update/data.ldb` from Machine B to a temporary location on Machine A. **do not overwrite data.ldb on Machine A while the node is running**.
 1. **Stop** the node on Machine A.
