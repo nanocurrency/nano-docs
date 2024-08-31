@@ -31,15 +31,15 @@ The following release is currently under development. Details about potential fe
 ## Active Releases
 The following releases can still actively participate on the network by peering with other nodes of the same versions. Any nodes running versions earlier than these will no longer peer with the latest and fall out of sync with the network.
 
+--8<-- "release-details-v27-0.md"
+
+---
+
+--8<-- "release-details-v26-1.md"
+
+---
+
 --8<-- "release-details-v26-0.md"
-
----
-
---8<-- "release-details-v25-1.md"
-
----
-
---8<-- "release-details-v25-0.md"
 
 ---
 
@@ -50,6 +50,8 @@ The following versions are no longer peered with by nodes running the active ver
 
 	| Node | Protocol | Database | Release Date | Release Notes | GitHub Links |
 	|              |   |               |              |               |              |
+ 	| 25.1 |  |  | | [V25.1](/releases/release-v25-1.md) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V25.1) - Milestone - [Changelog](https://github.com/nanocurrency/nano-node/compare/V25.0...V25.1) |
+ 	| 25.0 |  |  | | [V25.0](/releases/release-v25-0.md) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V25.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/27) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V24.0...V25.0) |
  	| 24.0 |  |  | | [V24.0](/releases/release-v24-0.md) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V24.0) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V23.3...V24.0) |
   	| 23.3 |  |  |  | [V23.3](/releases/release-v23-3.md) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V23.3) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V23.1...V23.3) |
    	| 23.1 |  |  |  | [V23.1](/releases/release-v23-1.md) | [Release](https://github.com/nanocurrency/nano-node/releases/tag/V23.1) - [Milestone](https://github.com/nanocurrency/nano-node/milestone/10) - [Changelog](https://github.com/nanocurrency/nano-node/compare/V23.0...V23.1) |
