@@ -15,11 +15,11 @@ In general, exchanges, services and integrations are encouraged to join [the tes
 
 ### Database upgrade
 
-V27 has a one-way database upgrade that takes a few minutes to run.
+V27 includes a one-way database upgrade that takes a few minutes to run.
 
 ### RPC changes
 
-V27 RPC changes are  minor and non-breaking
+V27 RPC changes are  minor and non-breaking.
 
 ---
 
@@ -32,16 +32,16 @@ Designed by Piotr Wójcik, the fair queue has been integrated into the nano node
 Significant portions of the networking stack have been rewritten and simplified. Legacy code that handled half-duplex TCP channels has been removed and all TCP connections now operate full-duplex. Asynchronous callback-style code has been replaced with coroutines in several places simplifying code flow.
 
 ### Network Flow Control Improvements
-The nano protocol was originally written using UDP and later transitioned to TCP. In the V24 release, most of the UDP protocol code was already removed. In V25, the remaining of it has been removed from the network channels, leaving the only implemented transport layer to be the TCP protocol. It enabled some other removals like the message buffer class and other code that was already unuseful since the UDP deprecation.
+This suite of features optimises transaction processing, guards against spam and denial-of-service attacks, and ensures equitable resource distribution.
 
 ### Up to 255 votes per message
 V27 allows voting messages to contain up to 255 votes per message, an increase from the previous limit of 12. This enhancement reduces network congestion and voting traffic, improving consensus efficiency and robustness. Note that this change de-peers nodes older than V26.0.
 
 ### Configurable Logging
-Acknowledging the pivotal role that effective logging plays in the realms of network diagnostics and monitoring, V27 is set to unveil a logging system that boasts efficiency and high configurability. This system empowers node operators with the capability to custom-tailor logging levels and outputs, simplifying the process of debugging and health monitoring of nodes. This method is designed to balance the need for detailed logs with keeping disk space use low and avoiding log clutter, marking a vast improvement in how the system works.
+A new, highly configurable logging system allows node operators to tailor logging levels and outputs, enhancing debugging and health monitoring without excessive disk space use.
 
 ### Bug fixes
-Several bugs were fixed, including a few race conditions, missing notifications, & dependency issues.
+Several bugs were fixed, including race conditions, missing notifications, & dependency issues.
 
 ---
 
