@@ -40,6 +40,7 @@ nav:
     - Wallet Setup: running-a-node/wallet-setup.md
     - Docker Management: running-a-node/docker-management.md
     - Configuration: running-a-node/configuration.md
+    - Logging & Tracing: running-a-node/logging-tracing.md
     - Ledger Management: running-a-node/ledger-management.md
     - Voting as a Representative: running-a-node/voting-as-a-representative.md
     - Advanced Monitoring: running-a-node/advanced-monitoring.md
