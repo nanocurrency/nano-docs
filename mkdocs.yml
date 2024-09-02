@@ -92,7 +92,8 @@ nav:
   - Releases:
     - Node Releases: releases/node-releases.md
     - Release Notes:
-      - V26.1 (Latest): releases/release-v26-1.md
+      - V27.0 (Latest): releases/release-v27-0.md
+      - V26.1: releases/release-v26-1.md
       - V26.0: releases/release-v26-0.md
       - V25.1: releases/release-v25-1.md
       - V25.0: releases/release-v25-0.md
@@ -204,7 +205,7 @@ plugins:
             'protocol-design/network-attacks.md': 'protocol-design/attack-vectors.md'
             'what-is-nano/contributing.md': 'core-development/overview.md'
             'what-is-nano/exploring-more.md': 'what-is-nano/overview.md'
-            'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/5'
-            'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/5'
-            'releases/current-release-notes.md': 'releases/release-v26-1.md'
+            'releases/roadmap.md': 'https://github.com/orgs/nanocurrency/projects/27'
+            'releases/upcoming-features.md': 'https://github.com/orgs/nanocurrency/projects/27'
+            'releases/current-release-notes.md': 'releases/release-v27-0.md'
             'node-implementation/contributing.md': 'core-development/overview.md'
