@@ -17,6 +17,12 @@ In general, exchanges, services and integrations are encouraged to join [the tes
 
 V27 includes a one-way database upgrade that takes a few minutes to run.
 
+### gcc-12 users
+
+If your system uses gcc-12 there is a known bug in the compiler optimiser that has problems compiling c++20 code.
+
+If you get a compiler error related to -Wrestrict, it's recomended to either downgrade to gcc-11 or upgrade to gcc-13 to compile the node. See more [detail here](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105329). Debian 12 (bookworm) ships with gcc-12 by default, but has a package for gcc-11.
+
 ### RPC changes
 
 V27 RPC changes are  minor and non-breaking.
@@ -45,17 +51,6 @@ A new, highly configurable logging system allows node operators to tailor loggin
 
 ### Bug fixes
 Several bugs were fixed, including race conditions, missing notifications, & dependency issues.
-
----
-
-## Deprecations/Removals
-
-* tbd
-
----
-
-## Ledger & Database
-* tbd
 
 ---
 
