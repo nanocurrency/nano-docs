@@ -1,5 +1,5 @@
 title: Release notes - V27.0 nano node
-description: Details of the V7.0 nano node release.
+description: Details of the V27.0 nano node release.
 
 # V27.0
 
