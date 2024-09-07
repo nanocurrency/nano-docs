@@ -29,7 +29,7 @@ If you get a compiler error related to -Wrestrict, it's recomended to either dow
 
 ## Major updates
 
-See the [V27.0 release notes](../release-v27-0.md) for the major updates list.
+See the [V27.0 release notes](release-v27-0.md) for the major updates list.
 
 ---
 
