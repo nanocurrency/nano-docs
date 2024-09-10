@@ -276,7 +276,8 @@ See the [Voting as a Representative guide](voting-as-a-representative.md).
 See the [Ledger Management guide](ledger-management.md).
 
 ### HTTPS support
-See the [HTTPS Support guide](configuration-https.md).
+Support for TLS is deprecated from V27.
+Secure RPC/Websockets can be achieved by using a reverse proxy.
 
 ### HTTP callback
 
