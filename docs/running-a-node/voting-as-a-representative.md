@@ -62,7 +62,7 @@ Open the account - until you do [account_info](../commands/rpc-protocol.md#accou
 
 Before the node will vote, the representative account configured above must have at least 1000 Nano delegated to it. This is done by changing the representative of other accounts in your wallet with [account_representative_set](../commands/rpc-protocol.md#account_representative_set). If you do not control over 1000 Nano, you will need to have others delegate their weight to your representative.
 
-Once you have enough weight, after a few minutes you can search for your representative account on [BlockLattice.io](https://blocklattice.io/) or [Nano.community](https://nano.community/) to verify it is voting.
+Once you have enough weight, after a few minutes you can search for your representative account on [BlockLattice.io](https://blocklattice.io/), [Nano.community](https://nano.community/), or [NanoCharts.info](https://nanocharts.info/) to verify it is voting.
 
 --8<-- "warning-multiple-node-setups.md"
 
@@ -80,7 +80,7 @@ Once you are comfortable with your node setup and want to connect it to the broa
 
 ### Setup monitoring
 
-Details for setting up a popular monitoring service for the node can be found at https://github.com/NanoTools/nanoNodeMonitor. Not only can this provide a website for viewing the status and promoting your representative, but it also provides metrics to popular services in the ecosystem who help monitor the broader network status and performance, such as [BlockLattice.io](https://blocklattice.io/) & [Nano.community](https://nano.community/).
+Details for setting up a popular monitoring service for the node can be found at https://github.com/NanoTools/nanoNodeMonitor. Not only can this provide a website for viewing the status and promoting your representative, but it also provides metrics to popular services in the ecosystem who help monitor the broader network status and performance, such as [BlockLattice.io](https://blocklattice.io/), [Nano.community](https://nano.community/), and [NanoCharts.info](https://nanocharts.info/). 
 
 ### Connect with community services
 
