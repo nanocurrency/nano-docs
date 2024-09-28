@@ -4613,6 +4613,12 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 
 ---
 
+## Removed RPCs
+
+---
+
+#### Removed in _v28_
+
 ### krai_from_raw   
 Divide a raw amount down by the krai ratio.  
 
@@ -4724,10 +4730,6 @@ Multiply an rai amount by the rai ratio.
   "amount": "1000000000000000000000000"
 }
 ```
-
----
-
-## Removed RPCs
 
 ---
 
