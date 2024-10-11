@@ -22,7 +22,7 @@ Since Bitcoin's release in 2009, there has been a growing shift away from tradit
 
 Nano is a low-latency, feeless, scalable, and environmentally friendly cryptocurrency that improves on many of Bitcoin's core properties via unique design decisions. For example, each Nano user has their own blockchain, allowing them to update their chain asynchronously vs other transactions on the network, resulting in fast transactions with minimal overhead. Transactions keep track of account balances rather than transaction amounts, allowing aggressive database pruning without compromising security. Consensus is maintained by [Open Representative Voting (ORV)](../protocol-design/orv-consensus.md), which facilitates irreversible finality (full-settlement). User-selected representative nodes vote on each transaction, and every node independently [cements](../glossary.md#cementing) each transaction after seeing enough representative votes to achieve [quorum](../glossary.md#quorum).
 
-As of October 2024, the Nano network has processed more than 200 million transactions. Average transaction confirmation time during typical network conditions is <0.5 seconds [^2]. The production network has seen traffic as high as 161 CPS (80.5-161 TPS), while the beta network has achieved >1800 CPS (900-1800 TPS) [^3]. Nano’s feeless, split-second transactions make it an ideal cryptocurrency for consumer transactions, while also maintaining decentralization, censorship-resistance, and self-sovereignty.
+As of October 2024, the Nano network has processed more than 200 million transactions [^13]. Average transaction confirmation time during typical network conditions is <0.5 seconds [^2]. The production network has seen traffic as high as 161 CPS (80.5-161 TPS), while the beta network has achieved >1800 CPS (900-1800 TPS) [^3]. Nano’s feeless, split-second transactions make it an ideal cryptocurrency for consumer transactions, while also maintaining decentralization, censorship-resistance, and self-sovereignty.
 
 ## Background
 
@@ -55,6 +55,7 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 [^10]: S. D. Lerner, “DagCoin Draft”, 2015. Available: https://bitslog.files.wordpress.com/2015/09/dagcoin-v41.pdf
 [^11]: A. Churyumov, “Byteball: A Decentralized System for Storage and Transfer of Value”, 2016. Available: https://obyte.org/Byteball.pdf
 [^12]: S. Popov, “The tangle”, 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
+[^13]: BlockLattice.io, "Nano Network Status" 2024. [Online]. Available: https://blocklattice.io/network-status
 
 ---
 
