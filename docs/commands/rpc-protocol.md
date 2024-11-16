@@ -472,12 +472,6 @@ Returns a list of pairs of account and block hash representing the head block fo
 
 ---
 
-### accounts_pending
-
-Deprecated in V24.0+. Replaced by [accounts_receivable](#accounts_receivable)
-
----
-
 ### accounts_receivable  
 
 _since V24.0, use [accounts_pending](#accounts_pending) for V23.3 and below_
@@ -2039,18 +2033,6 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
   }
 }
 ```
-
----
-
-### pending  
-
-Deprecated in V23.0+. Replaced by [receivable](#receivable)
-
----
-
-### pending_exists  
-
-Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ---
 
@@ -4607,6 +4589,12 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 
 ---
 
+### accounts_pending
+
+Deprecated in V24.0+. Replaced by [accounts_receivable](#accounts_receivable)
+
+---
+
 ### history  
 
 **Deprecated**: please use `account_history` instead. It provides a `head` option which is identical to the history `hash` option.
@@ -4724,6 +4712,18 @@ Multiply an rai amount by the rai ratio.
   "amount": "1000000000000000000000000"
 }
 ```
+
+---
+
+### pending
+
+Deprecated in V23.0+. Replaced by [receivable](#receivable)
+
+---
+
+### pending_exists
+
+Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ---
 
