@@ -158,6 +158,8 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js'
   - 'javascript/mermaid-loose-security.js'
+  - 'https://dashboard.letmeexplain.ai/embed/lme_chatbot_widget.js'
+  - 'enable_lme_chatbot.js'
 extra_css:
   - 'stylesheets/extras.css'
 extra:
