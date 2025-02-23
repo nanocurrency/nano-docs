@@ -86,19 +86,19 @@ The Docker image can be downloaded via `docker pull` for a specific version/tag.
 === "Test network"
 
 	```bash
-	docker pull nanocurrency/nano-test:V25.1
+	docker pull nanocurrency/nano-test:V27.1
 	```
 
 === "Main network"
 
 	```bash
-	docker pull nanocurrency/nano:V25.1
+	docker pull nanocurrency/nano:V27.1
 	```
 
 === "Beta network"
 
 	```bash
-	docker pull nanocurrency/nano-beta:V25.1
+	docker pull nanocurrency/nano-beta:V27.1
 	```
 
 	Please see the [Beta Network](beta-network.md) page if you plan to join this network.
@@ -113,7 +113,7 @@ The following command will start the node container. Either set the specified en
 
 `${NANO_NAME}` - The name that you would like to assign to the docker container, `nano_node_container` can be used to avoid ambiguity with the commands made to the `nano_node` process.
 
-`${NANO_TAG}` - The version you will be running from the Docker tag section above (i.e. `V25.1`).
+`${NANO_TAG}` - The version you will be running from the Docker tag section above (i.e. `V27.1`).
 
 `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as `config-node.toml`, `config-rpc.toml` and `data.ldb` into this directory.
 
@@ -141,7 +141,7 @@ The following command will start the node container. Either set the specified en
 When the node starts up it will generate log files in the `${NANO_HOST_DIR}` defined in the `docker run` command above. All lines will have a date and time prefix such as `[2021-Jun-24 08:26:49.331844]:`. Below are some common messages seen on startup with brief descriptions of their meanings. The date and time prefixes have been removed from examples below for simplicity.
 
 ```
-Node starting, version: V25.1
+Node starting, version: V27.1
 ```
 :exclamation: Verify you are running the correct version  
 Appears at each startup to indicate version number
