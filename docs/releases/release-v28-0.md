@@ -44,6 +44,8 @@ The following deprecated RPC endpoints for conversion have been removed:
 * `rai_from_raw`
 * `rai_to_raw`
 
+For alternatives, see [Unit Conversion RPCs](../commands/rpc-protocol.md#unit-conversion-rpcs)
+
 ---
 
 ## Major updates
