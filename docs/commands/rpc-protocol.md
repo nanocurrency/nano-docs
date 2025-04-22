@@ -4602,6 +4602,9 @@ Deprecated in V24.0+. Replaced by [accounts_receivable](#accounts_receivable)
 ---
 
 ### krai_from_raw   
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the krai ratio.  
 
 **Request:**
@@ -4621,6 +4624,9 @@ Divide a raw amount down by the krai ratio.
 ---
 
 ### krai_to_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an krai amount by the krai ratio.  
 
 **Request:**
@@ -4640,6 +4646,9 @@ Multiply an krai amount by the krai ratio.
 ---
 
 ### mrai_from_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the Mrai ratio.  
 
 **Request:**
@@ -4659,6 +4668,9 @@ Divide a raw amount down by the Mrai ratio.
 ---
 
 ### mrai_to_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an Mrai amount by the Mrai ratio.  
 
 **Request:**
@@ -4678,6 +4690,9 @@ Multiply an Mrai amount by the Mrai ratio.
 ---
 
 ### rai_from_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the rai ratio.  
 
 **Request:**
@@ -4697,6 +4712,9 @@ Divide a raw amount down by the rai ratio.
 ---
 
 ### rai_to_raw   
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an rai amount by the rai ratio.  
 
 **Request:**
