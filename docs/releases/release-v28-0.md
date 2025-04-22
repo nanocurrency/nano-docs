@@ -9,15 +9,40 @@ description: Details of the V28.0 nano node release.
 
 ## Upgrade notices
 
-(Known issue) Bootstrapping from scratch with pruning enabled causes the node to crash. As a temporary workaround, node operators can bootstrap with pruning disabled, and then enable pruning after bootstrapping is complete.
+### Known Issues
 
-### Database upgrade
-
-tbd
+Bootstrapping from scratch with pruning enabled causes the node to crash. As a potential workaround, node operators may be able to bootstrap with pruning disabled, and then enable pruning after bootstrapping is complete. A higher max_pruning_depth may also reduce the frequency of crashes. Pruning is considered experimental, so use it at your own risk - pruning is not currently recommended for important production services.
 
 ### RPC changes
 
-tbd
+#### Bootstrap RPCs
+
+The following bootstrap related RPC commands have been extended, modified, or added:
+
+* `bootstrap_status`: previously this returned the status of legacy bootstrap; modified to return the status of ascending bootstrap
+* `bootstrap_reset`: resets ascending bootstrap state, both priority and blocking sets are cleared
+* `bootstrap_priorities`: dumps info about priority and blocking sets to aid in debugging any potential problems
+
+Please note that the above bootstrap RPC commands are internal/diagnostic RPCs, & may not be stable.
+
+#### Ratio & Conversion related RPCs
+
+Xrb_ratio has been removed and replaced with nano_ratio:
+
+| Existing name | ratio | Value | New name |
+|---------------|-------|-------|----------|
+| Gxrb_ratio | 10^33 | 1000 nano | Knano_ratio |
+| Mxrb_ratio | 10^30 | 1 nano | nano_ratio |
+| kxrb_ratio | 10^27 | 0.001 nano | __removed__ |
+| xrb_ratio | 10^24 | 0.000001 | __removed__ |
+ 
+The following deprecated RPC endpoints for conversion have been removed:
+* `krai_from_raw`
+* `krai_to_raw`
+* `mrai_from_raw`
+* `mrai_to_raw`
+* `rai_from_raw`
+* `rai_to_raw`
 
 ---
 
