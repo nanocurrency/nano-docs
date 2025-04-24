@@ -40,6 +40,7 @@ Below is a list of some of Nano's key spam mitigation features.
 | [Vote by hash](https://github.com/nanocurrency/nano-node/pull/1025) | Instead of voting with a full block (256 bytes), representatives vote with block hashes (32 bytes), and batch these hashes. As of V27, nodes can vote for up to [255 hashes](https://github.com/nanocurrency/nano-node/pull/4683) in a single vote. | V15+ |
 | [Vote Distribution Optimization](https://github.com/nanocurrency/nano-node/pull/4766) | Separate vote flooding patterns for PRs and non-PRs, to ensure votes are distributed more efficiently. | V28+ |
 | [Vote Filtering](https://github.com/nanocurrency/nano-node/pull/4735) | Filters out vote duplicates early on during packet processing. | V28+ |
+| [Vote Rebroadcaster Filtering](https://github.com/nanocurrency/nano-node/pull/4849) | An index that tracks and filters vote rebroadcasts. Includes: tracking the top 100 reps by weight, per-rep history of recent votes & block hashes, deduplicating by vote hash, minimum time interval between rebroadcasts of the same hash from the same rep. | V28+ |
 | [(Future) Additional improvements](https://github.com/nanocurrency/nano-node/issues/4262) | See list of potential future improvements that have been noted for additional research. | Future |
   
 ## Work algorithm details
