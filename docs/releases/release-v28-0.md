@@ -25,6 +25,10 @@ The following bootstrap related RPC commands have been extended, modified, or ad
 
 Please note that the above bootstrap RPC commands are internal/diagnostic RPCs, & may not be stable.
 
+#### Confirmation_info RPC
+
+This is a backwards compatible change that updated the `confirmation_info` RPC call to include a list of `representatives_final` (representatives that have voted with final votes). Thanks to MajorChump for submitting this PR!
+
 #### Ratio & Conversion related RPCs
 
 Xrb_ratio has been removed and replaced with nano_ratio:
@@ -45,6 +49,10 @@ The following deprecated RPC endpoints for conversion have been removed:
 * `rai_to_raw`
 
 For alternatives, see [Unit Conversion RPCs](../commands/rpc-protocol.md#unit-conversion-rpcs)
+
+#### Other RPC Changes
+
+An optional `include_linked_account` parameter was added to the `account_history`, `block_info`, and `blocks_info` RPC endpoints. When enabled, the response will include a new field `linked_account`, which returns the linked account associated with the block (or "0" if no linked account exists/was found e.g. due to pruning). Thanks to Exxenoz for submitting this PR!
 
 ---
 
@@ -70,9 +78,13 @@ The vote generation system has been redesigned to be more resource-efficient, re
 
 A new vote filter implements sophisticated deduplication and relevancy checks, eliminating redudant votes, reducing bandwidth usage, lowering memory usage, & reducing overall network load. 
 
+### Vote Rebroadcasting Overhaul
+
+The vote_rebroadcaster component was overhauled, making vote rebroadcasting smarter & more efficient. Previously we used a simple queue with a naive filter which rebroadcasted all processed votes. Since a vote can contain up to 255 hashes and the same vote can be processed multiple times depending on the exact timing of election activation, this introduced a rather significant inefficiency where we could rebroadcast the same vote multiple times, wasting bandwidth. The vote rebroadcaster overhaul significantly improves this by improving tracking & filtering of vote rebroadcasts.
+
 ### Bootstrap & Database Optimizations
 
-Bulk frontier scanning has been added to the ascending bootstrapper, processing up to 1,000 accounts simultaneously. I/O overhead has also been reduced through smart caching and optimised database queries. 
+Bulk frontier scanning has been added to the ascending bootstrapper, processing up to 1,000 accounts simultaneously. I/O overhead has also been reduced through smart caching and optimised database queries. Additionally, a new `fork_cache` & block bootstrapping improvements were added, speeding up fork resolution during certain bootstrap scenarios.
 
 ### Legacy Code Removal
 
