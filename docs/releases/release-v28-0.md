@@ -13,6 +13,12 @@ description: Details of the V28.0 nano node release.
 
 Bootstrapping from scratch with pruning enabled causes the node to crash. As a potential workaround, node operators may be able to bootstrap with pruning disabled, and then enable pruning after bootstrapping is complete. A higher max_pruning_depth may also reduce the frequency of crashes. Pruning is considered experimental, so use it at your own risk - pruning is not currently recommended for important production services.
 
+### Config changes
+
+While the previous toml for database backend configuration is still supported for now, it is being replaced by `database_backend = "lmdb"` or `database_backend = "rocksdb"` under `[node]`.
+
+Consider reviewing and updating your configuration files with the `--update_config` or `--generate_config` CLI parameters. See [here](../snippets/toml-config-commands) for additional information.
+
 ### RPC changes
 
 #### Bootstrap RPCs
