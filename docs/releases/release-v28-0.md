@@ -17,7 +17,7 @@ Bootstrapping from scratch with pruning enabled causes the node to crash. As a p
 
 While the previous toml for database backend configuration is still supported for now, it is being replaced by `database_backend = "lmdb"` or `database_backend = "rocksdb"` under `[node]`.
 
-Consider reviewing and updating your configuration files with the `--update_config` or `--generate_config` CLI parameters. See [here](../snippets/toml-config-commands) for additional information.
+Consider reviewing and updating your configuration files with the `--update_config` or `--generate_config` CLI parameters. See [here](../snippets/toml-config-commands.md) for additional information.
 
 ### RPC changes
 
