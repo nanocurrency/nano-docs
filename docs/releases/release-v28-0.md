@@ -94,7 +94,7 @@ An optional `include_linked_account` parameter was added to the `account_history
 
 While the previous toml for database backend configuration is still supported for now, it is being replaced by `database_backend = "lmdb"` or `database_backend = "rocksdb"` under `[node]`.
 
-Consider reviewing and updating your configuration files with the `--update_config` or `--generate_config` CLI parameters. See [here](../snippets/toml-config-commands.md) for additional information.
+Consider reviewing and updating your configuration files with the `--update_config` or `--generate_config` CLI parameters. Review the [toml config quick reference](../snippets/toml-config-commands.md), or the [CLI documentation](../commands/command-line-interface.md#nano_node-commands) for additional details.
 
 ### Known Issues
 
