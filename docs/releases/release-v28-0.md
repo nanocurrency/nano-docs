@@ -11,7 +11,7 @@ description: Details of the V28.0 nano node release.
 
 ### Bounded Block Backlog
 
-Designed by Piotr Wójcik, the Bounded Block Backlog (BBB) adds a maximum limit for unconfirmed transactions (currently 100,000), helping prevent resource exhaustion attacks & ensuring more consistent confirmation rates during high network load.
+The Bounded Block Backlog (BBB) adds a maximum limit for unconfirmed transactions (currently 100,000), helping prevent resource exhaustion attacks & ensuring more consistent confirmation rates during high network load.
 
 ### Traffic Shaping
 
