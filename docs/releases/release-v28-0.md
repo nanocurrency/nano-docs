@@ -103,7 +103,7 @@ Bootstrapping from scratch with pruning enabled causes the node to crash. As a p
 ---
 
 ## Official V28 Blog Post
-See [here](https://nano.org/en/blog/v27-denarius-preview--eb8bceac) for the official V28 blog post.
+See [here](https://nano.org/en/blog/v28-electrum-the-start-of-commercial-grade--1b8adb83) for the official V28 blog post.
 
 ---
 
