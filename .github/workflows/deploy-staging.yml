@@ -10,14 +10,10 @@ jobs:
       PRODUCTION: TRUE
     if: github.repository == 'nanocurrency/nano-docs-staging'
     steps:
-      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 #v3.1.0
-      - uses: actions/setup-python@13ae5bb136fac2878aff31522b9efb785519f984 #v4.3.0
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 #v3
-        with:
-          key: ${{ github.ref }}
-          path: .cache
       - run: pip install -r requirements.txt
       - run: mkdocs gh-deploy --force
 env:
