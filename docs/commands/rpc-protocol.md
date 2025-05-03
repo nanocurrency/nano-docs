@@ -126,7 +126,8 @@ If the `count` limit results in stopping before the end of the account chain, th
 **Optional parameters:**
 
 - `raw` (bool): if set to `true` instead of the default `false`, instead of outputting a simplified send or receive explanation of blocks (intended for wallets), output all parameters of the block itself as seen in block_create or other APIs returning blocks. It still includes the "account" and "amount" properties you'd see without this option.  State/universal blocks in the raw history will also have a `subtype` field indicating their equivalent "old" block. Unfortunately, the "account" parameter for open blocks is the account of the source block, not the account of the open block, to preserve similarity with the non-raw history.   
-- `head` (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.   
+- `head` (64 hexadecimal digits string, 256 bit): instead of using the latest block for a specified account, use this block as the head of the account instead. Useful for pagination.
+- `include_linked_account` (bool): _version 28.0+._ When set to `true`, the response will include a new field `linked_account`, which returns the linked account associated with the block (or "0" if no linked account exists/was found e.g. due to pruning).
 - `offset` (decimal integer): skips a number of blocks starting from `head` (if given). Not often used. _Available since version 11.0_    
 - `reverse` (bool): if set to `true` instead of the default `false`, the response starts from `head` (if given, otherwise the first block of the account), and lists blocks up to the frontier (limited by "count"). **Note**: the field `previous` in the response changes to `next`. _Available since version 19.0_  
 - `account_filter` (array of public addresses): results will be filtered to only show sends/receives connected to the provided account(s). _Available since version 19.0_. **Note:** In v19.0, this option does not handle receive blocks; fixed in v20.0.
@@ -894,6 +895,13 @@ Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded 
 _version 19.0+_  
 Default "false". If "true", "contents" will contain a JSON subtree instead of a JSON string.
 
+
+**Optional `include_linked_account`**
+
+_version 28.0+_
+(bool):  When set to `true`, the response will include a new field `linked_account`, which returns the linked account associated with the block (or "0" if no linked account exists/was found e.g. due to pruning).
+
+
 ---
 
 ### blocks  
@@ -978,6 +986,11 @@ Using the optional `json_block` is recommended since v19.0.
   }
 }
 ```
+**Optional `include_linked_account`**
+
+_version 28.0+_
+(bool): When set to `true`, the response will include a new field `linked_account`, which returns the linked account associated with the block (or "0" if no linked account exists/was found e.g. due to pruning).
+  
 **Optional "pending", "source"**
 
 _pending, source: version 9.0+_  
@@ -1170,6 +1183,32 @@ Boolean, false by default. Manually force closing of all current bootstraps
 **Optional "id"**  
 _version 21.0+_  
 String, empty by default. Set specific ID for new bootstrap attempt for better tracking.
+
+---
+
+### bootstrap_priorities  
+_version 28.0+_   
+Dumps info about priority and blocking sets to aid in debugging any potential problems
+
+**Request:**
+```json
+{
+  "action": "bootstrap_priorities"
+}
+```  
+
+---
+
+### bootstrap_reset  
+_version 28.0+_   
+Resets ascending bootstrap state - both priority and blocking sets are cleared.
+
+**Request:**
+```json
+{
+  "action": "bootstrap_reset"
+}
+```  
 
 ---
 
@@ -1417,7 +1456,7 @@ If the block is unknown on the node, the following error will be returned:
 
 ### confirmation_info 
 _version 16.0+_   
-Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+Returns info about an unconfirmed active election by **root**. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0. Updated in v28.0 to include a list of representatives_final (representatives that have voted with final votes). 
 
 !!! note
     The roots provided are two parts and differ between the first account block and subsequent blocks:
@@ -4602,6 +4641,9 @@ Deprecated in V24.0+. Replaced by [accounts_receivable](#accounts_receivable)
 ---
 
 ### krai_from_raw   
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the krai ratio.  
 
 **Request:**
@@ -4621,6 +4663,9 @@ Divide a raw amount down by the krai ratio.
 ---
 
 ### krai_to_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an krai amount by the krai ratio.  
 
 **Request:**
@@ -4640,6 +4685,9 @@ Multiply an krai amount by the krai ratio.
 ---
 
 ### mrai_from_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the Mrai ratio.  
 
 **Request:**
@@ -4659,6 +4707,9 @@ Divide a raw amount down by the Mrai ratio.
 ---
 
 ### mrai_to_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an Mrai amount by the Mrai ratio.  
 
 **Request:**
@@ -4678,6 +4729,9 @@ Multiply an Mrai amount by the Mrai ratio.
 ---
 
 ### rai_from_raw    
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Divide a raw amount down by the rai ratio.  
 
 **Request:**
@@ -4697,6 +4751,9 @@ Divide a raw amount down by the rai ratio.
 ---
 
 ### rai_to_raw   
+
+Deprecated in V28.0+. For alternatives, see [Unit Conversion RPCs](#unit-conversion-rpcs)
+
 Multiply an rai amount by the rai ratio.  
 
 **Request:**
