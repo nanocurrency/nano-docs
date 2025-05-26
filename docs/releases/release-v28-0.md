@@ -98,7 +98,12 @@ Consider reviewing and updating your configuration files with the `--update_conf
 
 ### Known Issues
 
+#### Pruned Bootstrap
+
 Bootstrapping from scratch with pruning enabled causes the node to crash. As a potential workaround, node operators may be able to bootstrap with pruning disabled, and then enable pruning after bootstrapping is complete. A higher max_pruning_depth may also reduce the frequency of crashes. Pruning is considered experimental, so use it at your own risk - pruning is not currently recommended for important production services.
+
+#### Sideband Crashes
+Some nodes may experience occasional crashes due to missing sideband in election blocks. Please upgrade to v28.1 to resolve this issue.
 
 ---
 
