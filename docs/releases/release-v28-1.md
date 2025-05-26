@@ -9,9 +9,14 @@ description: Details of the V28.1 nano node release.
 
 ## Major updates
 
+### V28.0 Feature List
+
+See the [V28.0 release notes](../releases/release-v28-0.md#major-updates) for the full feature list.
+
 ### Bug fixes
 
-tbd
+Some v28.0 users experienced occasional node crashes due to missing sideband in election blocks. This has been resolved in v28.1.
+
 
 ---
 
