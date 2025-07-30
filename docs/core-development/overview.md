@@ -13,7 +13,7 @@ It is recommended to have an understanding of how the nano protocol is designed 
 - Read through (or try out) the [running a node guides](../running-a-node/overview.md)
 - Understand [the basics](../integration-guides/the-basics.md) and maybe even some [advanced details](../integration-guides/advanced.md) about integrations
 - Learn how to [build the node yourself](../integration-guides/build-options.md)
-- Participate in the community through [Discord](https://chat.nano.org) and the [Forum](https://forum.nano.org)
+- Participate in the community through [Discord](https://chat.nano.org)
 - Start perusing the code in the repositories below and don't be afraid to ask questions
 
 
@@ -24,6 +24,7 @@ The Nano Foundation manages the [`nanocurrency`](https://github.com/nanocurrency
 | Name | Language | Purpose |
 |------|----------|---------|
 | [nanocurrency/nano-node](https://github.com/nanocurrency/nano-node) | C++| Primary node implementation used on the nano network |
+| [rs-nano-node](https://github.com/rsnano-node/rsnano-node) | Rust| Alternative node implementation by Gustav |
 | [nanocurrency/nano-work-server](https://github.com/nanocurrency/nano-work-server) | Rust | Standalone server for generating work values for blocks |
 | [nanocurrency/protocol](https://github.com/nanocurrency/protocol) | Kaitai Struct | Specification for nano network message protocol |
 | [nanocurrency/nanodb-specification](https://github.com/nanocurrency/nanodb-specification) | Kaitai Struct | Specification for database tables and fields used by the `nano-node` implementation |
