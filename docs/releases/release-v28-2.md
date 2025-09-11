@@ -6,6 +6,11 @@ description: Details of the V28.2 nano node release.
 --8<-- "release-details-v28-2.md"
 
 ---
+## Upgrade notice
+
+This release introduces a ledger consistency check at startup.
+If your ledger database is corrupted, the node will stop and require a full resync to restore a valid ledger.
+Previously, such corruptions could go undetected.
 
 ### Bug fixes
 
@@ -20,8 +25,6 @@ description: Details of the V28.2 nano node release.
 
 * [Verify ledger balance consistency on startup](https://github.com/nanocurrency/nano-node/pull/4916)
 * [Unlimited backlog when bootstrapping](https://github.com/nanocurrency/nano-node/pull/4922)
-
-## Upgrade notices
 
 ### Known Issues
 
