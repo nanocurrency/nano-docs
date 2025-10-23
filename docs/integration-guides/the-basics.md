@@ -186,6 +186,9 @@ Order of data:
 5. balance (16-Bytes)
 6. link (32-Bytes)
 
+!!! question "What is the preamble?"
+    As of v15.0 **the Nano node only supports state blocks**, but prior versions used block types to distinguish different kinds of transactions. The preamble is a relic of those blocks, and now it is a constant value since all blocks are the same `state` type.
+
 The digital signing algorithm (which internally applies another Blake2b hashing) is applied on the resulting digest.
 
 !!! warning "Private/public key usage"
