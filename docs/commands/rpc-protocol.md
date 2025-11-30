@@ -1370,28 +1370,6 @@ Number, 0 by default. Returns only active elections with equal or higher announc
 
 ---
 
-### confirmation_height_currently_processing
-_version 19.0+_
-
---8<-- "warning-debug-only-command.md"
-
-Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed.
-
-**Request:**
-```json
-{
-  "action": "confirmation_height_currently_processing"
-}
-```  
-**Response:**
-```json
-{
-  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
-}
-```
-
----
-
 ### confirmation_history  
 _version 12.0+_
 
@@ -4788,7 +4766,28 @@ Deprecated in V23.0+. Replaced by [receivable_exists](#receivable_exists)
 
 ---
 
-#### Removed in _v22_
+### confirmation_height_currently_processing
+_added in version 19.0+_  
+_removed in version 27.0_
+
+--8<-- "warning-debug-only-command.md"
+
+Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed.
+
+**Request:**
+```json
+{
+  "action": "confirmation_height_currently_processing"
+}
+```  
+**Response:**
+```json
+{
+  "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+}
+```
+
+---
 
 ### block_count_type  
 Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)   
