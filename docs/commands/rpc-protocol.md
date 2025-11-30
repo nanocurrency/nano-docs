@@ -2915,7 +2915,7 @@ Returns a list of pairs of unchecked block hashes and their json representation 
 {
   "action": "unchecked",
   "json_block": "true",
-  "count": "1",
+  "count": "1"
 }
 ```  
 **Response:**
