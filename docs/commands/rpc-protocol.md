@@ -2771,22 +2771,24 @@ Return metrics from other nodes on the network. By default, returns a summarized
 **Response:**
 ```json
 {
-    "block_count": "5777903",
-    "cemented_count": "688819",
-    "unchecked_count": "443468",
-    "account_count": "620750",
-    "bandwidth_cap": "1572864",
-    "peer_count": "32",
-    "protocol_version": "18",
-    "uptime": "556896",
-    "genesis_block": "F824C697633FAB78B703D75189B7A7E18DA438A2ED5FFE7495F02F681CD56D41",
-    "major_version": "21",
-    "minor_version": "0",
+    "block_count": "214104509",
+    "cemented_count": "214104509",
+    "unchecked_count": "5161",
+    "account_count": "37186909",
+    "bandwidth_cap": "10485760",
+    "peer_count": "176",
+    "protocol_version": "21",
+    "uptime": "3188200",
+    "genesis_block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
+    "major_version": "28",
+    "minor_version": "2",
     "patch_version": "0",
     "pre_release_version": "0",
     "maker": "0",
-    "timestamp": "1587055945990",
-    "active_difficulty": "fffffff800000000"
+    "timestamp": "1765074100220",
+    "active_difficulty": "fffffff800000000",
+    "node_id": "node_3odec59q6i9qarh5txyrxmu3aqhfzm54mxoxgtumwpzyq6obxqktdzcxkfag",
+    "signature": "067523993D0B4C07525DF4C5AA814FBCC40875F868C2A04A85AC288F75E152763196B7DCB11240921F6D8BA92E3E9F094D8F2F9D8B0970114CDAD48838372100"
 }
 ```
 
@@ -2806,11 +2808,13 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
 | **active_difficulty** | _V22.0+_ returns minimum network difficulty due to deprecated active difficulty measurements<br><br> _up to V21.3_ returns average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **node_id**           | _V21.0+_ returns the node identifier used to sign the telemetry message. This allows receivers to verify which peer the telemetry originated from. |
+| **signature**         | _V21.0+_ returns the signature of the telemetry payload, created using the node's private key. It enables verification that the data was produced by the reported `node_id` and has not been altered. |
 
 This only returns values which have been cached by the ongoing polling of peer metric data. Each response is cached for 60 seconds on the main network and 15 seconds on beta; a few additional seconds are added on for response delays.
 
 **Optional "raw"**  
-When setting raw to true metrics from all nodes are displayed. It additionally contains **signature**, **node_id**, **address** and **port** from each peer.
+When setting raw to true metrics from all nodes are displayed. It additionally contains **address** and **port** from each peer.
 
 **Request:**
 ```json
