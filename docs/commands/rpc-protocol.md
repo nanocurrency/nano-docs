@@ -1974,30 +1974,6 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 
 ---
 
-### node_id_delete
-_enable_control required, version 17.0+_
-
---8<-- "warning-debug-only-command.md"
-
-Removing node ID (restart required to take effect)
-
---8<-- "warning-enable-control.md"
-
-**Request:**
-```json
-{
-  "action": "node_id_delete"
-}
-```  
-**Response:**
-```json
-{
-  "deprecated": "1"
-}
-```  
-
----
-
 ### peers  
 Returns a list of pairs of online peer IPv6:port and its node protocol network version    
 
@@ -4710,6 +4686,31 @@ Multiply an Mrai amount by the Mrai ratio.
   "amount": "1000000000000000000000000000000"
 }
 ```
+
+---
+
+### node_id_delete
+_enable_control required, _added in version 17.0+_  
+_deprecated in version 19.0_
+
+--8<-- "warning-debug-only-command.md"
+
+Removing node ID (restart required to take effect)
+
+--8<-- "warning-enable-control.md"
+
+**Request:**
+```json
+{
+  "action": "node_id_delete"
+}
+```  
+**Response:**
+```json
+{
+  "deprecated": "1"
+}
+```  
 
 ---
 
