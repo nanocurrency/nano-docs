@@ -1159,8 +1159,10 @@ String, empty by default. Public address for targeting a specific account on boo
 ---
 
 ### bootstrap_lazy  
-_version 17.0+_   
+_enable_control required, version 17.0+_   
 Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap). As of _version 22.0_, response includes whether new election was `started` and whether a new lazy `key_inserted` was successful.
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1187,8 +1189,10 @@ String, empty by default. Set specific ID for new bootstrap attempt for better t
 ---
 
 ### bootstrap_priorities  
-_version 28.0+_   
+_enable_control required, version 28.0+_   
 Dumps info about priority and blocking sets to aid in debugging any potential problems
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1200,8 +1204,10 @@ Dumps info about priority and blocking sets to aid in debugging any potential pr
 ---
 
 ### bootstrap_reset  
-_version 28.0+_   
+_enable_control required, version 28.0+_   
 Resets ascending bootstrap state - both priority and blocking sets are cleared.
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -1580,11 +1586,13 @@ The effective stake needed from directly connected peers for quorum. Per v19, th
 ---
 
 ### database_txn_tracker
-_v19.0+_  
+_enable_control required, v19.0+_  
 
 --8<-- "warning-debug-only-command.md"
   
 Returns a list of open database transactions which are equal or greater than the `min_read_time` or `min_write_time` for reads and read-writes respectively.  
+
+--8<-- "warning-enable-control.md"
 
 **Request:**
 ```json
@@ -2033,8 +2041,10 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 ---
 
 ### populate_backlog
-
+_enable_control required_ 
 Scans all accounts, checks for unconfirmed blocks in account chains, and then queues those blocks for confirmation via the election scheduler. Useful for local test networks, since default backlog population is normally done over longer intervals (e.g. 5 minutes).
+
+--8<-- "warning-enable-control.md"
 
 **Request**
 ```json
