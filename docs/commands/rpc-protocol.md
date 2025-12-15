@@ -1399,6 +1399,7 @@ With version 19.0+ `confirmation_history_size` can be managed in the configurati
       "duration": "4000",
       "time": "1544819986",
       "tally": "80394786589602980996311817874549318248",
+      "final": "80394786589602980996311817874549318248", // since V22.0
       "blocks": "1", // since V21.0
       "voters": "37", // since V21.0
       "request_count": "2" // since V20.0
@@ -1408,6 +1409,7 @@ With version 19.0+ `confirmation_history_size` can be managed in the configurati
       "duration": "6000",
       "time": "1544819988",
       "tally": "68921714529890443063672782079965877749",
+      "final": "68921714529890443063672782079965877749", // since V22.0
       "blocks": "1", // since V21.0
       "voters": "64", // since V21.0
       "request_count": "7" // since V20.0
