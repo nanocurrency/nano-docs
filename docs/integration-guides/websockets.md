@@ -660,18 +660,19 @@ No filters are currently available for the `new_unconfirmed_block` topic.
 ```json
 {
   "topic": "new_unconfirmed_block",
-  "time": "1587109495082",
+  "time": "1766522219507",
+  "hash": "8FFD259D1C512D950EE6478C80EF01BE72DCF6AABAE3CFAECAE69BCF40BB4C02",
   "message": {
     "type": "state",
-    "account": "nano_1unw379kgu1iub1caswn5khfk4b6tzinku8ww7uds9z7nwubj3dgt6yzjpiw",
-    "previous": "A01B96AFE86DC82FECD13F8C3A4F1AC779DCDAF60166F94F1A2CD3987F4609F0",
-    "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
-    "balance": "2345399869764044123018481994",
-    "link": "E0049F6D5D5661A714D8928D287285A0105B07720661F8C8B1FC8EE5B15FC067",
-    "link_as_account": "nano_3r16mxpotom3nwcfj6nf73sada1ide5q63m3z56d5z6gwprozi59ocyuoxc1",
-    "signature": "7BDD77BE14552263F9AF5130229A3BBB9038EE4B9C29E66D3D58280EF43B7FAF2DBC7070BD9CA39C844B7068E3AF40B04CE1D5CEEEA142C8FE20EE091A3C320E",
-    "work": "8ebdd4aa0bf1263e",
-    "subtype": "receive"
+    "account": "nano_1tipnanogsu7q59pnie3qfc4w378wm43fg4ksqc8wmnnfnizrq1xrpt5geho",
+    "previous": "C05B995C518530876CF8AB876FD93577955A51D05971A19CDE243514B5A25F47",
+    "representative": "nano_1tipnanogsu7q59pnie3qfc4w378wm43fg4ksqc8wmnnfnizrq1xrpt5geho",
+    "balance": "117650323123112288832984294209891",
+    "link": "B5BE5A8ECFA6B37EF72B871A78522C7D70AB1163CC21818C017FB8FDC1C8181A",
+    "link_as_account": "nano_3ffydc9ezbomhuukq3rth3b4rzdioeap9m33i8814zxrzq1wi81t5zjighc1",
+    "signature": "1908E09F34F5132442761E02A2FBB52516881DD3063434327DE5C1C78ECD2E50DBD83B7DE029D72330E32E0DA4D468E66B12788E773EE1B85199A02B5E996009",
+    "work": "64277ffb135de20c",
+    "subtype": "send"
   }
 }
 ```
