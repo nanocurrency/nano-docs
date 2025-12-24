@@ -1727,7 +1727,7 @@ Values in `max_election_age` and `average_election_age` are in milliseconds.
 **Response sample:**
 ```json
 {
-    "normal": "152",
+    "manual": "152",
     "priority": "1",
     "hinted": "0",
     "optimistic": "19",
