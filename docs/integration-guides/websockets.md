@@ -478,39 +478,6 @@ No filters are currently available for the `started_election` topic.
 
 ---
 
-### Active difficulty
-
-##### Subscribing
-
-To subscribe to all active difficulty notifications:
-
-```json
-{
-  "action": "subscribe",
-  "topic": "active_difficulty"
-}
-```
-
-##### Filtering options
-
-No filters are currently available for the `active_difficulty` topic.
-
-##### Sample Results
-
-```json
-{
-  "topic": "active_difficulty",
-  "time": "1561661736065",
-  "message": {
-    "multiplier": "1.5",
-    "network_current": "fffffffaaaaaaaab",
-    "network_minimum": "fffffff800000000",
-    "network_receive_current": "fffffff07c1f07c2", // since V21.2
-    "network_receive_minimum": "fffffe0000000000" // since V21.2
-  }
-}
-```
-
 ### Proof of work
 
 This subscription is available since _v20.0_
@@ -727,3 +694,41 @@ No filters are currently available for the `bootstrap` topic.
 Notes:
 
 - The duration is in seconds
+
+---
+
+## Removed Topics
+
+### Active difficulty
+_removed in version 22.0_
+
+##### Subscribing
+
+To subscribe to all active difficulty notifications:
+
+```json
+{
+  "action": "subscribe",
+  "topic": "active_difficulty"
+}
+```
+
+##### Filtering options
+
+No filters are currently available for the `active_difficulty` topic.
+
+##### Sample Results
+
+```json
+{
+  "topic": "active_difficulty",
+  "time": "1561661736065",
+  "message": {
+    "multiplier": "1.5",
+    "network_current": "fffffffaaaaaaaab",
+    "network_minimum": "fffffff800000000",
+    "network_receive_current": "fffffff07c1f07c2", // since V21.2
+    "network_receive_minimum": "fffffe0000000000" // since V21.2
+  }
+}
+```
