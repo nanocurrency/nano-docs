@@ -1,0 +1,5504 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Learn about the nano code for better development practices">
+      
+      
+      
+        <link rel="canonical" href="https://docs.nano.org/core-development/understanding-the-code/">
+      
+      
+        <link rel="prev" href="../code-standards/">
+      
+      
+        <link rel="next" href="../developer-discussions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Understanding the code - Nano Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extras.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-RGP8S06PYJ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-RGP8S06PYJ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-RGP8S06PYJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+  <!-- Extra Twitter Card data (other data comes from MKDocs Material Social Cards integration)-->
+  <meta name="twitter:site" content="@nano">
+
+  <!-- Extra Open Graph data (other data comes from MKDocs Material Social Cards integration)-->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nano Docs" />
+
+  <!-- Robots meta -->
+  
+    <meta property="robots" content="index, follow" />
+  
+
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Understanding the code - Nano Documentation" />
+<meta property="og:description" content="Learn about the nano code for better development practices" />
+<meta property="og:image" content="https://docs.nano.org/assets/images/social/core-development/understanding-the-code.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://docs.nano.org/core-development/understanding-the-code/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Understanding the code - Nano Documentation" />
+<meta property="twitter:description" content="Learn about the nano code for better development practices" />
+<meta property="twitter:image" content="https://docs.nano.org/assets/images/social/core-development/understanding-the-code.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="nano" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-the-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<a href="/releases/current-release-notes/" height="100">
+  <span class="iconify" data-icon="octicon-tag-16" data-inline="false"></span>
+  <span style="padding-left: 0.3em;"><strong>Nano node V28.2 now available!</strong>&nbsp;We highly recommend upgrading to
+    this version for improved network operation: efficiency and security.</span> ⭢
+  </div>
+</a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Nano Documentation" class="md-header__button md-logo" aria-label="Nano Documentation" data-md-component="logo">
+      
+  <img src="../../images/nano-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Nano Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understanding the code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="nano" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nanocurrency/nano-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../what-is-nano/overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  What is Nano?
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../running-a-node/overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Running a Node
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../integration-guides/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Integration Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../living-whitepaper/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Living Whitepaper
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Core Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../commands/rpc-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Commands
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../releases/node-releases/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Releases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Nano Documentation" class="md-nav__button md-logo" aria-label="Nano Documentation" data-md-component="logo">
+      
+  <img src="../../images/nano-logo.svg" alt="logo">
+
+    </a>
+    Nano Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nanocurrency/nano-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nanocurrency/nano-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../what-is-nano/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Nano?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running a Node
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Running a Node
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/node-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/wallet-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wallet Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/docker-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/logging-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/ledger-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ledger Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/voting-as-a-representative/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voting as a Representative
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/advanced-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/beta-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beta Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/test-network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-a-node/beyond-the-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Beyond the Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integration-guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Integration Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/the-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/key-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/block-confirmation-tracking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Confirmation Tracking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/work-generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/build-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/websockets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebSockets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/ipc-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPC Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integration-guides/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../living-whitepaper/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Living Whitepaper
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Living Whitepaper
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/ledger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ledger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blocks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/spam-work-and-prioritization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spam, Work, & Prioritization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/orv-consensus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORV Consensus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/attack-vectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attack Vectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/resource-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resource Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/distribution-and-units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distribution and Units
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol-design/signing-hashing-and-key-derivation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signing, Hashing and Key Derivation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../whitepaper/english/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Original whitepaper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node Implementation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Node Implementation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/blocks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blocks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/voting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../node-implementation/work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collaboration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collaboration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Standards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Code
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executable-binaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executable binaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worksig-verification-modifying-for-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work/Sig verification modifying for tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuzzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuzzer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing implementation details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-pre-release-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional pre-release testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bootstrapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ascending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ascending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wallet lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-messages-are-handled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How messages are handled
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workers-thread-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workers (thread pool)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database upgrades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_database_queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_database_queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block processing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ledger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Node initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keeping-build-times-low" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping build times low
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_initialized_latch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node_initialized_latch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-build-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developer build options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Websockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-allocators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory allocators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries-and-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libraries and submodules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Libraries and submodules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanocrypto_lib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nano/crypto_lib/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testcommon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test/common/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanolib-vs-nanosecure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nano/lib vs. nano/secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git submodules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assertions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assertions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#votingconsensus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting/Consensus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Voting/Consensus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        voting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vote_processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vote_processor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        active_transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_solicitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        confirmation_solicitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_aggregator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request_aggregator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#election" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        election
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-backlog-population" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        continuous backlog population
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-elections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimistic elections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation-height-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confirmation height processor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontiers-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontiers confirmation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-nodetoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        config-node.toml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other config files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#areas-of-future-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Areas of future improvement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer-discussions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Discussions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/rpc-protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RPC Protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/command-line-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Line Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/node-releases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Node Releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v28-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V28.2 (Latest)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v28-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V28.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v28-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V28.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v27-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V27.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v27-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V27.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v26-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V26.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v26-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V26.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v25-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V25.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v25-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V25.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v24-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V24.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v23-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V23.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v23-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V23.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v23-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V23.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v22-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V22.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v22-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V22.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v21-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V21.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v21-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V21.2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v21-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V21.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v21-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V21.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v20-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V20.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/release-v19-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V19.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/network-upgrades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Upgrades
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executable-binaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executable binaries
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worksig-verification-modifying-for-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work/Sig verification modifying for tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuzzer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuzzer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-implementation-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing implementation details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-pre-release-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional pre-release testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bootstrapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ascending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ascending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wallet-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wallet lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-messages-are-handled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How messages are handled
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workers-thread-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workers (thread pool)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-upgrades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database upgrades
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_database_queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_database_queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block processing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ledger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Node initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keeping-build-times-low" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping build times low
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node_initialized_latch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node_initialized_latch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmake" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMake
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CMake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-build-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Developer build options
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APIs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Websockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signal-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signal handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-allocators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory allocators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries-and-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libraries and submodules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Libraries and submodules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanocrypto_lib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nano/crypto_lib/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testcommon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test/common/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanolib-vs-nanosecure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nano/lib vs. nano/secure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git submodules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assertions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assertions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#votingconsensus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Voting/Consensus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Voting/Consensus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        voting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vote_processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vote_processor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        active_transactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation_solicitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        confirmation_solicitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request_aggregator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request_aggregator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#election" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        election
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-backlog-population" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        continuous backlog population
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-elections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        optimistic elections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmation-height-processor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Confirmation height processor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontiers-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontiers confirmation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telemetry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pruning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Config files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-nodetoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        config-node.toml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-config-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other config files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#areas-of-future-improvement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Areas of future improvement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="understanding-the-code">Understanding the code<a class="headerlink" href="#understanding-the-code" title="Permanent link">&para;</a></h1>
+<p>This guide is designed to give an overall structure of the core nano protocol codebase to help new developers get a better understanding of the different areas and how they interoperate. Due to the rapid changing nature of the protocol it’s possible some of the features are moved to different places or have changed entirely. Working on the protocol requires a very multi-disciplined and wide area of knowledge, none of it is particularly mandatory to get started but a good C++ understanding will help prevent being too overwhelmed initially:  </p>
+<p>Items required include:</p>
+<ul>
+<li>Windows/MacOS/Linux</li>
+<li>C++20 compiler</li>
+<li>Boost</li>
+<li>Git</li>
+<li>CMake</li>
+</ul>
+<p>Useful experience includes modern C++ knowledge (up to C++20) including multithreading primitives (mutex, condition variables, atomics) &amp; templates, Boost (asio &amp; beast), RocksDB, LMDB, FlatBuffers, JSON-RPC, IPC, networking communication (ip/tcp, message passing, broadcasting algorithms), QT, signal handling, PKI cryptography, git &amp; cross-platform development.</p>
+<p>The main Nano projects are located inside the <code>/nano</code> subdirectory.  </p>
+<h2 id="executable-binaries">Executable binaries<a class="headerlink" href="#executable-binaries" title="Permanent link">&para;</a></h2>
+<p>All executables have <code>nano_</code> prefix and projects have a <code>main</code> function inside <code>entry.cpp</code></p>
+<p><strong>nano_node</strong> – The standard way to start a node. There are 2 source files in here, <code>entry.cpp</code> and <code>daemon.cpp</code>. <code>nano_daemon::daemon::run()</code> is always called so is a good place to put a breakpoint if there are any issues during node operation (especially errors when launching initially).</p>
+<p><strong>nano_rpc</strong> – This executable does not need to be run explicitly unless out of process RPC is selected. <a href="https://docs.nano.org/integration-guides/advanced/?h=+nano_rpc#running-nano-as-a-service">https://docs.nano.org/integration-guides/advanced/?h=+nano_rpc#running-nano-as-a-service</a> Because this project is quite small it is all done inside the <code>entry.cpp</code> file and is probably an easier starting point template should anything else need to be moved out of process in the future.</p>
+<p><strong>nano_wallet</strong> – This essentially does the same as <code>nano_node</code> but doesn’t support all CLI commands and has a graphical user interface for the wallet.</p>
+<hr />
+<h2 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h2>
+<p>The googletest (gtest) framework is used to validate a variety of functionality in the node, we do not currently use gmock in the codebase.  </p>
+<h3 id="running-tests">Running tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h3>
+<p>The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
+Build with <code>cmake -DNANO_TEST=ON ..</code>
+See docs.nano.org for more information. There may be intermittent failures, if so add them here <a href="https://github.com/nanocurrency/nano-node/issues/1121">https://github.com/nanocurrency/nano-node/issues/1121</a> and fix if possible.</p>
+<h3 id="executables">Executables<a class="headerlink" href="#executables" title="Permanent link">&para;</a></h3>
+<p><strong>core_test</strong> – This is where the majority of tests should go. If there is any new functionality added or something has changed, it more often than not should have a test here! Any new core areas should have their own separate test file to encapsulate the logic.   </p>
+<p><strong>ipc_flatbuffers_test</strong> – This actually doesn’t use the <code>gtest</code> library and has its own main file which just contains a simple example of using flatbuffers.  </p>
+<p><strong>load_test</strong> – This creates a dynamic number of nodes, sends blocks from 1 of the nodes (primary) and waits until all other nodes have the same number of blocks. This does not normally need to be modified but is run as part CI at the end.  </p>
+<p><strong>rpc_test</strong> – All RPC tests go here. There is some boilerplate to follow which creates an <code>ipc_server</code> for the node which mimics out of process rpc commands communicating with it. Care must be taken when creating write transactions as they are not allowed on io-threads (<a href="https://github.com/nanocurrency/nano-node/pull/1264">https://github.com/nanocurrency/nano-node/pull/1264</a>). To make sure this is adhered to when calling the RPC commands, there is an RAII object <code>scoped_io_thread_name_change</code> which changes the current thread (normally the main one) to be <code>io</code>, and restores it when the object goes out of scope. For instance
+<div class="highlight"><pre><span></span><code>...
+scoped_thread_name_io.reset ();
+node.process (state_block);
+scoped_thread_name_io.renew ();
+</code></pre></div>
+<strong>slow_test</strong> – Any core tests which are not suitable for CI because they take a long time (&gt; a few seconds) should go here. There is a desire to make this file run once per night, but until then should be periodically run by developers.</p>
+<h3 id="worksig-verification-modifying-for-tests">Work/Sig verification modifying for tests<a class="headerlink" href="#worksig-verification-modifying-for-tests" title="Permanent link">&para;</a></h3>
+<p>A common mistake is to request work for the hash of the block to be added, but it should happen on the root (previous one). The work difficulty is different for the live/beta/dev networks and are set using the <code>work_thresholds</code> class. During any local testing, where a lot of blocks are processed, work generation and signature verification can take the majority of the time. To speed this up it can make sense to manually lower the work difficulty even further and change the sig verification to always return <code>true</code>.</p>
+<h3 id="helpers">Helpers<a class="headerlink" href="#helpers" title="Permanent link">&para;</a></h3>
+<p><strong>test_common</strong> – This is a helper library which contains test specific (not node related) things which can be used by all test projects. This project should not have a <code>node</code> dependency. Anything which does should be put into <code>nano/node/testing.cpp</code>.</p>
+<h3 id="fuzzer">Fuzzer<a class="headerlink" href="#fuzzer" title="Permanent link">&para;</a></h3>
+<p>The fuzzer uses libfuzzer which inputs arbitrary data continuously trying to find catch edge cases missed in traditional testing on specific examples. This is not currently supported on Windows. The executables are found in fuzzer_test/*. The node must be built with the CMake option <code>-DNANO_FUZZER_TEST=ON</code>, this does not require that <code>NANO_TEST</code> be set. Currently there are 3 executables built: fuzz_bignum, fuzz_buffer, fuzz_endpoint_parsing.</p>
+<p><strong>Notes:</strong><br />
+There aren’t currently tests for specific CLIs so it’s recommended to abstract the functionality so that it can be tested in <code>core_test</code>.</p>
+<h3 id="testing-implementation-details">Testing implementation details<a class="headerlink" href="#testing-implementation-details" title="Permanent link">&para;</a></h3>
+<p>Sometimes it is necessary to be able to change something about a class only for a test. Rather than make this the class interface public just for tests, the specific tests can be added as friends to the class, this is done like so for a test named like so TEST (node, example);
+<div class="highlight"><pre><span></span><code>class my_class
+{
+private:
+   int private_member; // the Test (node, example); test can access this member
+   friend class node_example_Test;
+};
+</code></pre></div>
+The test itself needs to be wrapped with the nano { } namespace for this to work correctly, if the class itself is in the nano namespace which is normally the case.</p>
+<h3 id="additional-pre-release-testing">Additional pre-release testing<a class="headerlink" href="#additional-pre-release-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Run tests with TSAN/ASAN/Valgrind. All errors should be fixed before launch unless these are determined to be test related or false positives. We currently have some errors with using coroutines. There are blacklist files for the sanitizers which remove some errors caused by lmdb &amp; rocksdb.</li>
+</ul>
+<hr />
+<h2 id="bootstrapping">Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permanent link">&para;</a></h2>
+<p>When you first start a Nano node, it must download &amp; validate transactions until its ledger (account &amp; transaction history) is in sync with the other nodes on the network. This process is called bootstrapping. There are 3 bootstrapping methods, ascending, legacy, and lazy. See <a href="https://github.com/nanocurrency/nano-node/issues/3837">here</a> and <a href="https://medium.com/nanocurrency/nano-explainer-lazy-bootstrapping-6f091e1eae8c">here</a> for more information. 
+<code>node/bootstrap/boostrap_attempt.hpp</code> contains the base class definition for bootstrap attempts.</p>
+<h3 id="ascending">Ascending<a class="headerlink" href="#ascending" title="Permanent link">&para;</a></h3>
+<p><code>node/bootstrap/bootstrap.cpp</code></p>
+<p>Nano node versions V24 &amp; V25 introduced ascended bootstrapping - a complete rewrite of how Nano nodes sync account &amp; transaction history from scratch.  Prior to V24, the bootstrap mechanism served transactions (blocks) in a top down format (i.e. newest to oldest / frontier to genesis), but since the blocks must be added to the local ledger from the bottom up (i.e. oldest to newest / genesis to frontier), the node spent a lot of time reordering transactions. This consumed a significant amount of disk space and disk IO (disk reads/writes), both of which contribute to long bootstrapping times (i.e. days or weeks).</p>
+<p>Ascending bootstrapping sends &amp; processes transactions from the bottom up, allowing nodes to easily trace transaction order without a complicated (and time consuming) re-ordering process. This significantly improves the speed of bootstrapping, removes complexity from the codebase, &amp; reduces overall resource usage.</p>
+<p>For more technical details, see <a href="https://github.com/nanocurrency/nano-node/issues/3837">here</a>.</p>
+<h3 id="legacy">Legacy<a class="headerlink" href="#legacy" title="Permanent link">&para;</a></h3>
+<p><code>node/bootstrap/bootstrap_legacy.cpp</code></p>
+<p>Legacy bootstrapping works by requesting frontiers periodically (every 5 minutes) from a random selection of peers, this is done in <code>nano::node::ongoing_bootstrap ()</code>. <code>bootstrap_frontier.cpp</code> contains the frontier req client and server. A <code>frontier_req</code> message is send from <code>frontier_req_client</code> to get a list of frontiers from a peer’s <code>frontier_req_server</code> starting at <code>frontier_req.start</code> which is done as <code>accounts_begin (transaction, current + 1);</code>. The accounts are sorted by their hash.</p>
+<h3 id="lazy">Lazy<a class="headerlink" href="#lazy" title="Permanent link">&para;</a></h3>
+<p><code>node/bootstrap/bootstrap_lazy.hpp</code> </p>
+<p>Lazy bootstrapping works by having nodes monitor the real-time network and observing live block confirmation. In combination with <a href="https://github.com/nanocurrency/nano-node/pull/4111">optimistic elections</a>, when a node sees confirmation for a new block, all previous blocks in the newly confirmed block's account-chain are also considered valid &amp; confirmed, and are then inserted into node's local ledger.</p>
+<h3 id="wallet-lazy">Wallet lazy<a class="headerlink" href="#wallet-lazy" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="how-messages-are-handled">How messages are handled<a class="headerlink" href="#how-messages-are-handled" title="Permanent link">&para;</a></h3>
+<p><code>node/bootstrap/bootstrap_server.cpp</code> </p>
+<p>When a message is received through the bootstrap server, its header is first checked inside <code>nano::bootstrap_server::receive_header_action ()</code>. The message is deserialized and added in <code>add_request ()</code> to the <code>std::queue&lt;std::unique_ptr&lt;nano::message&gt;&gt; requests</code> collection which holds a queue of messages. <code>run_next ()</code> is then called (and will be called after the request is finished if there are more messages to process), this runs the message through a <code>request_response_visitor</code> object which creates a <code>tcp_message_item</code> and adds it to the <code>tcp_message_manager</code> to be processed. The newest set of messages added were for telemetry. If new messages need adding that can be used as a guide: <a href="https://github.com/nanocurrency/nano-node/pull/2446">https://github.com/nanocurrency/nano-node/pull/2446</a></p>
+<hr />
+<h2 id="workers-thread-pool">Workers (thread pool)<a class="headerlink" href="#workers-thread-pool" title="Permanent link">&para;</a></h2>
+<p>The class definition for <code>thread_pool</code> is defined inside <code>nano/lib/threading.cpp</code>, which allows tasks to be added to a queue for execution as well as executed at a specific time. Previously there were worker/alarm classes, which were combined in <a href="https://github.com/nanocurrency/nano-node/pull/2871">https://github.com/nanocurrency/nano-node/pull/2871</a>. Its primary purpose was to schedule write transactions off the io threads. It is generally recommended to push other tasks onto the io threads though to avoid bottlenecking these threads.</p>
+<hr />
+<h2 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
+<p>There are 2 logical areas where a persistent file is needed: the ledger and wallets. For this 2 NoSQL databases which store binary data are used, namely LMDB &amp; RocksDB. The ledger database is comprised of a few files:</p>
+<ul>
+<li><code>nano/secure/store.hpp</code>: database interfaces, value object conversions, visitors, and high-level implementations</li>
+<li><code>nano/node/lmdb/</code>: anything specific to LMDB goes here</li>
+<li><code>nano/node/rocksdb/</code>: anything specific to RocksDB goes here</li>
+</ul>
+<p>The wallets database uses the wallets_store which only has an LMDB backend.</p>
+<h3 id="database-upgrades">Database upgrades<a class="headerlink" href="#database-upgrades" title="Permanent link">&para;</a></h3>
+<p><code>nano::lmdb::store::do_upgrades ()</code> is where LMDB database upgrades are done. For instance <code>void nano::lmdb::store::upgrade_v21_to_v22 ()</code> combines all block databases into a single one. Raw mdb functions are normally required as <code>block_store::get ()</code> and other functions normally can’t be used because they are updated to the latest db spec. The RocksDB upgrades were introduced by V25.0. It follows a similar approach implemented for LMDB. There were in the past multiple upgrades during a release when a beta build went out and a subsequent upgrade was desired. Previously a ledger reset was done and the version was re-used but this was deemed too inconvenient.</p>
+<h3 id="write_database_queue">write_database_queue<a class="headerlink" href="#write_database_queue" title="Permanent link">&para;</a></h3>
+<p>This was introduced to reduce LMDB write lock contention between the block processor and the confirmation height processor. As during bootstrapping or high TPS the block processor can hold onto the lock up to 5s (by default), before the lock is held by the blockprocessor it signals that it is about to get the LMDB lock, the confirmation height processor can make use of this information and continue processing where it would otherwise be stalled. Ongoing pruning also makes use of this.</p>
+<hr />
+<h2 id="block-processing">Block processing<a class="headerlink" href="#block-processing" title="Permanent link">&para;</a></h2>
+<p>There are 4 types of legacy blocks: open, receive, send &amp; change. There are the state blocks which encompass traits from the legacy subtypes as well as support epochs. In various places an <code>epoch_link</code> is checked, this indicates that the link field is set to one of the epoch accounts (for v1 state blocks), or possibly self for v2 state blocks upgrade blocks. No new legacy blocks can be created (there are about 10million), but they still need to be handled in any algorithm which deals with blocks because users can still be bootstrap from scratch. When a node is first launched without a ledger <code>block_store_partial::init ()</code> is called, this creates the genesis block. Blocks are then bootstrapped.</p>
+<hr />
+<h2 id="ledger">Ledger<a class="headerlink" href="#ledger" title="Permanent link">&para;</a></h2>
+<p><code>nano/secure/ledger.cpp</code> is where blocks are added and deleted to the ledger database.</p>
+<p>The ledger cache is used when it may be expensive to try and determine the count of something in the ledger. It was originally used for the cemented count, because this is determined by adding the confirmation height from all accounts. This does mean that any external write operations from LMDB (such as CLI command <code>--confirmation_height_clear</code>) will cause this number to get out of sync. This is not possible with RocksDB backend because it does not allow multi-process write transactions.</p>
+<hr />
+<h2 id="node-initialization">Node initialization<a class="headerlink" href="#node-initialization" title="Permanent link">&para;</a></h2>
+<p>The biggest bottleneck for node start-up is caused by setting up the ledger cache. This requires scanning all accounts &amp; conf height databases. A multi-threaded process (added in <a href="https://github.com/nanocurrency/nano-node/pull/2876">https://github.com/nanocurrency/nano-node/pull/2876</a>) splits the account space into equal partitions (as accounts should be randomly distributed) and does sequential sorted reads in each partition; this is the most efficient way to search through any of the databases. Point/Random reads are very slow in comparison.</p>
+<h3 id="keeping-build-times-low">Keeping build times low<a class="headerlink" href="#keeping-build-times-low" title="Permanent link">&para;</a></h3>
+<p><code>nano/node/node.hpp</code> is the largest build bottleneck, it can increase build times of files by up to 10 seconds on some systems! Some boost files tend to be large too, they offer forward declaration headers such as <code>&lt;boost/property_tree/ptree_fwd.hpp&gt;</code> &amp; <code>&lt;boost/stacktrace/stacktrace_fwd.hpp&gt;</code> worth checking if they exist for any you are using in header files.</p>
+<h3 id="node_initialized_latch">node_initialized_latch<a class="headerlink" href="#node_initialized_latch" title="Permanent link">&para;</a></h3>
+<p>Some classes use <code>node_initialized_latch.wait ();</code> The latch was added in <a href="https://github.com/nanocurrency/nano-node/pull/2042">https://github.com/nanocurrency/nano-node/pull/2042</a> this is to prevent some of the issues in the node constructor initializer list where the <code>node</code> object is passed and a child constructor is wants to use a node member which is not yet initialized. This makes it resume operation once the latch is incremented at the beginning of the <code>node</code> constructor.</p>
+<h3 id="initial-output">Initial output<a class="headerlink" href="#initial-output" title="Permanent link">&para;</a></h3>
+<p>When the node is run it prints out some information about the database used, compiler etc. An example of appending to the output is here: <a href="https://github.com/nanocurrency/nano-node/pull/2807">https://github.com/nanocurrency/nano-node/pull/2807</a></p>
+<hr />
+<h2 id="cmake">CMake<a class="headerlink" href="#cmake" title="Permanent link">&para;</a></h2>
+<p>CMake is used as the build system, and git submodules for any third party dependencies (except boost which must be installed separately by the developer). In <code>CMakeLists.txt</code> header files (.hpp) are above source files (.cpp), no particular reason but consistency is important.</p>
+<h3 id="developer-build-options">Developer build options<a class="headerlink" href="#developer-build-options" title="Permanent link">&para;</a></h3>
+<p><code>-DNANO_TIMED_LOCKS=10</code> </p>
+<p>Added: <a href="https://github.com/nanocurrency/nano-node/pull/2267">https://github.com/nanocurrency/nano-node/pull/2267</a>. In <code>nano/lib/locks.hpp(.cpp)</code>, <code>std::mutex</code>, <code>std::condition_variable</code>, <code>std::unique_lock</code> &amp; <code>std::lock_guard</code> are wrapped in custom classes (with the same interface) which adds some extra timing functionality to check if a mutex was help for a time longer than <code>NANO_TIMED_LOCKS</code> in milliseconds. This is useful to see if mutex contention is a cause of any performance loss. To pinpoint a specific mutex <a href="https://github.com/nanocurrency/nano-node/pull/2765">https://github.com/nanocurrency/nano-node/pull/2765</a> added <code>NANO_TIMED_LOCKS_FILTER=confirmation_height_processor</code>. The full list of mutexes is available in <code>nano/lib/locks.cpp</code> - <code>mutex_identifier()</code> .</p>
+<hr />
+<h2 id="apis">APIs<a class="headerlink" href="#apis" title="Permanent link">&para;</a></h2>
+<h3 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h3>
+<p>There are 2 places that CLI commands can be added for use with <code>nano_node</code>, <code>nano/node/cli.cpp</code> &amp; <code>nano/nano_node/entry.cpp</code>. The <code>nano/node/cli.cpp</code> CLI commands are also shared with <code>nano_wallet</code> so this is the place to put shared logic which can be used by both. CLI commands prefixed with <code>debug_*</code> shouldn’t really be used by end users unless they are diagnosing issues. Sometimes it can be useful to compare the RPC output with CLI, and rpc results such as <code>block_count</code> will return cached results.</p>
+<h3 id="ipc">IPC<a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h3>
+<p>When using the <code>nano_rpc</code> as a separate process (either child or manually starting it), there needs to be a way of communicating between processes. IPC supports tcp and unix domain sockets, <code>nano_rpc</code> only supports tcp as it can be run on a different computer. IPC 2.0 adds flatbuffer support (<a href="https://github.com/nanocurrency/nano-node/pull/2487">https://github.com/nanocurrency/nano-node/pull/2487</a>) which can be used for the new RPC 2.0 (TBA).</p>
+<h3 id="websockets">Websockets<a class="headerlink" href="#websockets" title="Permanent link">&para;</a></h3>
+<p>Websockets were introduced in <a href="https://github.com/nanocurrency/nano-node/pull/1840">https://github.com/nanocurrency/nano-node/pull/1840</a>. Previously a HTTP callback had to be used, but websockets provides a more efficient 2 way communication protocol. Websocket events are available for various topics. For an example of adding a websocket topic look at: <a href="https://github.com/nanocurrency/nano-node/pull/2634">https://github.com/nanocurrency/nano-node/pull/2634</a>. <code>observers.notify (message_a.data, endpoint);</code> is what ultimately invokes the websocket server to send a message which is deserialized inside <code>nano::websocket::message_builder</code>.</p>
+<hr />
+<h2 id="signal-handling">Signal handling<a class="headerlink" href="#signal-handling" title="Permanent link">&para;</a></h2>
+<p>There are 2 sets of signal handlers registered (both are only set when the <code>nano_node</code> is run as a daemon. <code>SIGSEGV</code> &amp; <code>SIGABRT</code> are set at the beginning which will create dump files if there is a segmentation fault during program execution (added in <a href="https://github.com/nanocurrency/nano-node/pull/1921/">https://github.com/nanocurrency/nano-node/pull/1921/</a>). <code>SIGINT</code> &amp; <code>SIGTERM</code> signals catch non-kill intentional closing of the executable, such as pressing ctrl+c (added in <a href="https://github.com/nanocurrency/nano-node/pull/2018">https://github.com/nanocurrency/nano-node/pull/2018</a>). This shuts down the node allows any running write transactions to finish. Only async signal safe functions should be used in signal handlers, this limits it to very specific functions.</p>
+<hr />
+<h2 id="memory-allocators">Memory allocators<a class="headerlink" href="#memory-allocators" title="Permanent link">&para;</a></h2>
+<p>A lot of our heap usage is from deserializing block/votes off the wire and ledger database. To solve this we use a memory pool allocator which reuses memory in a freelist: <a href="https://github.com/nanocurrency/nano-node/pull/2047">https://github.com/nanocurrency/nano-node/pull/2047</a></p>
+<p>In <code>nano/lib/memory.hpp</code> a <code>nano::make_shared</code> function is defined which checks if the global variable <code>use_memory_pool</code> is set (initialized during node startup reading the config <code>node.use_memory_pools</code>, which defaults to true). The memory is never reclaimed, this is a performance optimization.</p>
+<hr />
+<h2 id="libraries-and-submodules">Libraries and submodules<a class="headerlink" href="#libraries-and-submodules" title="Permanent link">&para;</a></h2>
+<h3 id="boost">Boost<a class="headerlink" href="#boost" title="Permanent link">&para;</a></h3>
+<p>We use the Boost library where possible, such as coroutine, filesystem, endian converter, lexical_cast, multi_index_container etc. If there is a static/dynamic Boost library which is not used, there are generally no issues in adding it. Just make sure the build scripts and documentation are updated.</p>
+<p><strong>nano/boost</strong>
+Use <code>nano/boost/asio</code> <code>nano/boost/beast</code> for includes, this wraps up various includes and prevents warnings being shown (particularly on Windows builds).</p>
+<h3 id="nanocrypto_lib"><code>nano/crypto_lib/</code><a class="headerlink" href="#nanocrypto_lib" title="Permanent link">&para;</a></h3>
+<p>This is a small library which has no dependency to anything in the nano core, which is needed as it is included by the ed25519 library as well. More info here: <a href="https://github.com/nanocurrency/nano-node/pull/1870">https://github.com/nanocurrency/nano-node/pull/1870</a></p>
+<h3 id="testcommon"><code>test/common/</code><a class="headerlink" href="#testcommon" title="Permanent link">&para;</a></h3>
+<p>Any functionality which is shared between test projects and may also use gtest library. There is also <code>nano/node/testing.cpp</code> which has no gtest dependency because it is also used in CLI commands too.</p>
+<h3 id="nanolib-vs-nanosecure"><code>nano/lib</code> vs. <code>nano/secure</code><a class="headerlink" href="#nanolib-vs-nanosecure" title="Permanent link">&para;</a></h3>
+<p>The<code>nano/lib</code> library was originally intended to be used by other programs wanting some of the nano functionality, but those specific external C functions were removed and it has now become the place to put all commonly used code. As such anything which doesn’t depend on the node should go here, and the <code>secure</code> library is now mostly for ledger specific things.</p>
+<h3 id="git-submodules">git submodules<a class="headerlink" href="#git-submodules" title="Permanent link">&para;</a></h3>
+<p>We have a variety of submodules <a href="https://docs.nano.org/node-implementation/contributing/?h=+submodule#about-the-code-base">https://docs.nano.org/node-implementation/contributing/?h=+submodule#about-the-code-base</a> third party dependencies are to be kept as minimal as possible in order to keep build times lean, but if there is a suitable one it can be added a submodule.</p>
+<hr />
+<h2 id="assertions">Assertions<a class="headerlink" href="#assertions" title="Permanent link">&para;</a></h2>
+<p><code>debug_assert</code> is essentially the same as the traditional C++ assert but also outputs a stacktrace. Added in <a href="https://github.com/nanocurrency/nano-node/pull/2568">https://github.com/nanocurrency/nano-node/pull/2568</a>. This should be used to check programmer logic.</p>
+<p><code>debug_assert (!mutex.try_lock ());</code> When functions require that a mutex is required before being called we often check that the mutex is locked. Although this is technically undefined behaviour to be called by a thread which already owns the mutex we have been using this idiom for years and found no issues with the major compilers.</p>
+<p><code>release_assert</code> this is an assert which is triggered in both release/debug build, it also outputs a stacktrace. This was added <a href="https://github.com/nanocurrency/nano-node/pull/1114">https://github.com/nanocurrency/nano-node/pull/1114</a>. This should be used if some invariant doesn’t hold and there is no suitable way to recover from this. Such as reading something from the ledger which is meant to exist but doesn’t, can indicate ledger corruption.</p>
+<hr />
+<h2 id="votingconsensus">Voting/Consensus<a class="headerlink" href="#votingconsensus" title="Permanent link">&para;</a></h2>
+<p>To confirm a block a sufficient number of votes which are taken from <code>confirm_ack</code> messages are tallied up. If the tally is above the delta inside <code>nano::election::have_quorum ()</code> it returns true and the block is considered confirmed. <code>confirm_ack</code> messages can either contain the whole block or a hash (vote by hash). <code>confirm_req</code> message header as well as <code>confirm_ack</code> indicate what the type of the contents is in the header, either <code>not_a_block</code> which means dealing with block hashes or the block type. <code>nano/node/common.cpp</code> contains these messages (among others) and (de)serializing functions.</p>
+<h3 id="voting">voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h3>
+<p>The vote generator <code>nano::vote_generator::vote_generator</code> is responsible for collecting hashes that need a vote generated, combining them into a single <code>vote by hash</code> message, signing the package with the representative key and publishing the votes to the network.  A maximum of <code>nano::network::confirm_ack_hashes_max</code> hashes can be combined into a single vote <code>confirm_ack</code> message, this provides a decent tradeoff between optimizing vote signatures and reducing bandwidth.  While the process is running it waits for <code>config.vote_generator_delay</code> time in order to pack more hashes into a single vote message.  If there are more than <code>config.vote_generator_threshold</code> after waiting then it will wait for one additional <code>config.vote_generator_delay</code> before broadcasting the message.  This allows for fast vote publishing at lower rates while enabling more hashes to be combined together at higher rates.</p>
+<h3 id="vote_processor">vote_processor<a class="headerlink" href="#vote_processor" title="Permanent link">&para;</a></h3>
+<p>Votes are signed by the representative and the vote processor schedules checking these votes through the <code>signature_checker</code> inside <code>nano::vote_processor::verify_votes ()</code>.  Once a vote signature has been verified, the hashes within the vote packet are passed to active_elections where they are either added to an active election or added to the inactive votes cache if an election does not exist.</p>
+<h3 id="active_transactions">active_transactions<a class="headerlink" href="#active_transactions" title="Permanent link">&para;</a></h3>
+<p>The active transactions class handles election management and prioritization.  When a block is processed and <code>nano::active_transactions::insert</code> called, a new election is started for the block hash if one does not already exist.  In addition to starting elections there is a 500ms <code>request_loop</code> that handles election management.  This process assists with moving elections through the different transition states as well as moving elections to a prioritized status if there is a backlog of elections.  During the requst loop the current network difficulty is updated through <code>update_active_multiplier</code> which takes the top <code>prioritized_cutoff</code> number of active elections that have not been confirmed and samples their difficulty multiplier.</p>
+<p>Finally, the active transactions class also handles frontiers that have not been confirmed.  Most commonly this is from bootstrapping, where the frontier of an account is added to the active elections and vote requests are sent to other nodes to confirm the frontier and thereby the rest of the account and ancestors through confirmation height processing.</p>
+<h3 id="confirmation_solicitor">confirmation_solicitor<a class="headerlink" href="#confirmation_solicitor" title="Permanent link">&para;</a></h3>
+<p>During the <code>request_loop</code> of the active transactions process, any election that is in the <code>active</code> state for more than 5 seconds will request votes from Principle Representative nodes that it has not seen a vote from yet.  These requests are added to the <code>confirmation_solicitor</code> which aggregates the hashes up to <code>nano::network::confirm_req_hashes_max</code> into a single <code>confirm_req</code> message and publishes it to select PR nodes that have not voted.  This helps fill any gaps in network communication failures where a vote may have been dropped which helps reach quorum on the highest priority elections.</p>
+<h3 id="request_aggregator">request_aggregator<a class="headerlink" href="#request_aggregator" title="Permanent link">&para;</a></h3>
+<p>The request aggregator is responsible for collecting vote requests <code>confirm_req</code> messages from other nodes and finding the optimal responses.  A local vote cache is used for recently generated votes, if the block hash in the request exists in the cache then a cached vote is returned, if the hash does not exist then the hash is added to the vote generator and a new vote is generated and published to the requesting node.  The request aggregator also handles publishing forks if the request is for a competing fork.  If the local node has a different winning hash it will publish a vote for the winning hash instead of the requested hash in addition to sending the requesting node the winning block as well.</p>
+<h3 id="election">election<a class="headerlink" href="#election" title="Permanent link">&para;</a></h3>
+<p>An election is created when a new block is processed.  The primary purpose of the election class is to tally the vote weight and ensure consensus between any competing forks. In order to efficiently move an election through the process it can have several states.  Initially <code>passive</code> where it is waiting for votes from other nodes, then after 5 seconds if it has not been confirmed it will transition to <code>active</code> where vote requests to other nodes are made.  After <code>active_request_count_min</code> rounds of requesting votes are complete if the election is still not confirmed it moves to <code>broadcasting</code> where it will publish the block to PR nodes that have not voted in an attempt to ensure the block has been propagated throughout the network.  Under low load the <code>active</code> and <code>broadcasting</code> states are rarely used as all elections are complete within the <code>passive</code> window.</p>
+<p>Every vote that is added to the election triggers a check for whether quorum has been reached on the election.  Quorum requires that the winning hash has <code>node.online_reps.delta</code> more weight than any competing forks.  If quorum is reached the election is marked confirmed, transitions to the <code>confirmed</code> state and is added to the confirmation height procesor which updates the ledger.</p>
+<p>After an election is confirmed it can stay in the active elections container up to <code>confirmed_duration_factor</code> in order to continue to process votes and republish votes to other nodes, after which is it is removed.</p>
+<p>If an election lasts longer than 5 minutes and has not been confirmed it is transitioned to <code>expired_unconfirmed</code> and removed from the queue.  This most often happens during high saturation when the active elections container reaches capacity.</p>
+<h3 id="continuous-backlog-population">continuous backlog population<a class="headerlink" href="#continuous-backlog-population" title="Permanent link">&para;</a></h3>
+<p>Backlog population is a process in which a node scans all accounts in its ledger, with or without confirmed blocks, and forwards (activates) the accounts which do not have all their blocks confirmed to the election scheduler for prioritization and eventual queuing in the proper bucket. It is necessary to do this periodically because the amount of space in each bucket is limited, and the number of accounts needing confirmations can be much higher than that (especially during bootstrap or network spam attack). </p>
+<p>Continuous backlog population changes the ledger scan interval from every 5 minutes to constant, with population rate &amp; frequency controlled by <code>backlog_scan_batch_size</code> and <code>backlog_scan_frequency</code>.</p>
+<p>See <a href="https://github.com/nanocurrency/nano-node/pull/3999">here</a> for more details.</p>
+<h3 id="optimistic-elections">optimistic elections<a class="headerlink" href="#optimistic-elections" title="Permanent link">&para;</a></h3>
+<p>Instead of confirming every block in every account-chain one-by-one, the optimistic scheduler randomly samples accounts with unconfirmed blocks and activates an election for the account's head block (the latest <em>unconfirmed</em> block in the account-chain). Once the head block is confirmed, all previous dependent blocks (within the account-chain <em>and</em> in other dependent account-chains; i.e. cross-chain) are considered confirmed. The number of optimistic elections is limited, so it doesn't replace or impact the default election scheduling behavior.</p>
+<p>See <a href="https://github.com/nanocurrency/nano-node/pull/4111">here</a> for more details.</p>
+<h3 id="confirmation-height-processor">Confirmation height processor<a class="headerlink" href="#confirmation-height-processor" title="Permanent link">&para;</a></h3>
+<p>When a block is confirmed <code>void nano::node::process_confirmed ()</code> the block is added to the confirmation height processor. This begins the process of cementing it and all of its dependents, once this occurs these blocks can never be rolled back. There are 2 confirmation height algorithms bounded and unbounded. Originally only the unbounded one existed, this would store the block hash for the original block confirmed, all its previous blocks, and recurse the bottom most receive block to the source and repeat the process. If this hit something like the binance chain or (any long chain) it could use a lot of memory (unbounded amount). So this brought about the bounded confirmation height processor algorithm which starts at the very bottom of the account chains but does the same recursion when a receive block is hit. This limits the amount of block hashes needing to be stored in memory to be able to cement the bottom most blocks. Checkpoints are used if there are a lot of accounts which need to be traversed to reach which exceeds the maximum amount of memory . It does mean in certain cases the same iteration will need to be done more than once but this should be a rare case only during initial cementing.  </p>
+<p>Once the uncemented count (block count – cemented count) is less than 16K the unbounded processor is used. As mentioned above this instead starts from the top (original confirmed block) and works downwards and saves all the blocks hit (not just hash) which means they don’t need to be re-read during writing  later. This does use a lot more memory though which is why this is limited to a certain number of blocks, once the unbounded cutoff is exceeded the bounded processor resumes.  </p>
+<p>Both algorithms operate with a read transaction first which reduces write lock held time as it can do a lot of iterating. This does mean that there can be some inconsistency by the time the writing is done, but this shouldn’t be an issue because once a block is confirmed by the network it will stay confirmed by <code>debug_assert</code> checks are added to catch any programming mistakes. While it is more effort to maintain 2 algorithms the unbounded one largely existed before so it made sense to re-use it, given the performance improvements in almost cemented ledgers.</p>
+<h3 id="frontiers-confirmation">Frontiers confirmation<a class="headerlink" href="#frontiers-confirmation" title="Permanent link">&para;</a></h3>
+<p><code>nano/node/frontiers_confirmation.cpp</code> contains code which starts at the beginning of the accounts database (<code>nano::blockstore_partial::accounts_begin</code>) and iterates in ascending order and prioritises accounts based on the number of uncemented blocks (stores up to 100k) and requests confirmation for a limited number of these accounts. When the cemented count is above the hardcoded bootstrap weights this is limited to the number of optimistic elections which is 50 in this case so it is expected to be quite slow in this case. Accounts in wallets are also checked.</p>
+<hr />
+<h2 id="telemetry">Telemetry<a class="headerlink" href="#telemetry" title="Permanent link">&para;</a></h2>
+<p>nano/node/telemetry.cpp contains the logic for telemetry processing. This sets up an ongoing telemetry request round (every 60 seconds on the live network) where a telemetry_req message is sent to every peer. There is an <code>alarm</code> timeout of about 10 seconds in which we require the response (telemetry_ack) to be received otherwise it is rejected. Any calls to get_metrics_* return a cached result. To add a new definition to the telemetry_ack message this can be used as a guide which added the <code>active_multiplier</code>: <a href="https://github.com/nanocurrency/nano-node/pull/2728">https://github.com/nanocurrency/nano-node/pull/2728</a>
+<code>telemetry_ack</code> messages are signed and are backwards compatible with older nodes (from v22 onwards). Those nodes will verify the whole message including any extra unknown data which is appended at the end is just ignored. To prevent ddosing by <code>telemetry_req</code> messages, nodes ignore messages received within that 60second (on live) boundary. This is done in <code>void nano::bootstrap_server::receive_header_action ()</code></p>
+<hr />
+<h2 id="stats">Stats<a class="headerlink" href="#stats" title="Permanent link">&para;</a></h2>
+<h3 id="counters">Counters<a class="headerlink" href="#counters" title="Permanent link">&para;</a></h3>
+<p>The <code>stats</code> object is used to keep a count of events that have happened, this is a useful idiom for checking values in tests and is aggregated in the stats-&gt;counts RPC. There are main stat types and then details for that type. A simple example of adding new details and incrementing the stats can be seen here: <a href="https://github.com/nanocurrency/nano-node/pull/2515">https://github.com/nanocurrency/nano-node/pull/2515</a> Adding a type for a stat is a similar procedure just using the <code>nano::stat::type</code> enumerator.</p>
+<h3 id="objects">Objects<a class="headerlink" href="#objects" title="Permanent link">&para;</a></h3>
+<p>Most classes which have a member variable of container of multiple items (map, vector, list etc..) should have a function with a prototype of:
+<code>std::unique_ptr&lt;container_info_component&gt; collect_container_info (my_class &amp; my_class, std::string const &amp; name);</code>
+And then call this in an owning object which should itself be called recursively until it reaches the <code>node</code> object <code>collect_container_info</code>. They are typically not made as part of the class itself because it’s a very specialised function which is only called as part of the stats-&gt;object RPC, like so:
+<code>{"action":"stats","type":"objects"}</code></p>
+<hr />
+<h2 id="pruning">Pruning<a class="headerlink" href="#pruning" title="Permanent link">&para;</a></h2>
+<p>Pruning occurs periodically inside <code>nano::node::ongoing_ledger_pruning ()</code>. Pruning currently requires a full ledger to be bootstrapped and when an account frontier is confirmed it can then be pruned. The hashes of the pruned blocks are put into the pruned database so that we know to ignore any of these old blocks should the node bootstrap them again. Pending blocks cannot be pruned currently.</p>
+<hr />
+<h2 id="config-files">Config files<a class="headerlink" href="#config-files" title="Permanent link">&para;</a></h2>
+<p>TOML config files are used, previously we used json files but TOML config files have the benefit of providing comments inside. There are no versions or upgrades done here, instead any defaults not explicitly overridden in the toml file get updated implicitly. There are few config files:</p>
+<h3 id="config-nodetoml">config-node.toml<a class="headerlink" href="#config-nodetoml" title="Permanent link">&para;</a></h3>
+<p>This is actually called <code>daemonconfig.cpp</code> in the code base, but it wraps a <code>node_config</code> object.</p>
+<h3 id="other-config-files">Other config files<a class="headerlink" href="#other-config-files" title="Permanent link">&para;</a></h3>
+<p><code>config-rpc.toml</code> &amp; <code>config-wallet.toml</code> contain settings which can be modified by the user to override the defaults. The most common ones are enabling rpc/websocket &amp; rocksdb.</p>
+<p>The <code>nano/node/node_rpc_config.cpp</code> are the rpc settings for the node.</p>
+<hr />
+<h2 id="key-resources">Key resources<a class="headerlink" href="#key-resources" title="Permanent link">&para;</a></h2>
+<p><strong>nanodb-specification &amp; protocol repositories</strong></p>
+<p>There are 2 repositories which use kaitai specifications which should be updated (normally near the end of the release) if there are any changes to the <a href="https://github.com/nanocurrency/nanodb-specification">https://github.com/nanocurrency/nanodb-specification</a> or <a href="https://github.com/nanocurrency/protocol">https://github.com/nanocurrency/protocol</a> message</p>
+<p><strong>nano-docs</strong></p>
+<p>All RPC/CLI changes should have a documentation update specifying the version that they work. There is a documentation label in the nano-node repository which is useful as a reminder that they should be added, documentation updates are often overlooked.</p>
+<p><strong>nano.community</strong></p>
+<p>A great community built resource for developers is <a href="https://nano.community/getting-started-devs/getting-started">https://nano.community/getting-started-devs/getting-started</a> where broad details of the design are outlined along with code-level insights.</p>
+<hr />
+<h2 id="other-notes">Other notes<a class="headerlink" href="#other-notes" title="Permanent link">&para;</a></h2>
+<p><strong>All threads should have a name set</strong></p>
+<p>An easy example to follow is <a href="https://github.com/nanocurrency/nano-node/pull/2987/files">https://github.com/nanocurrency/nano-node/pull/2987/files</a> This is so that debuggers/viewers which show threads can pick up the name to make it easier to navigate. It’s been known not to work in the Visual Studio Concurrency visualizer.</p>
+<p><strong>(de)serializing</strong></p>
+<p>Where possible we try and store primitives in big-endian. As most systems are little-endian this means using <code>boost::endian::native_to_big</code> on primitives when serializing and <code>boost::endian::big_to_native</code> when deserializing.</p>
+<p><strong>Signature checker</strong></p>
+<p>This is used by both blocks/votes and creates (total threads / 2) to perform signature verification of set batches; this is the biggest compute resource. Being able to lower this would be very beneficial, such as out of process sig verification and/or via GPU.</p>
+<p><strong>peers</strong></p>
+<p>Peers are written to disk periodically. This was added in <a href="https://github.com/nanocurrency/nano-node/pull/1608">https://github.com/nanocurrency/nano-node/pull/1608</a> 
+If the node has not been run in a long time (1 week), the peers list is cleared and the preconfigured peers list is used, this was added in <a href="https://github.com/nanocurrency/nano-node/pull/2506">https://github.com/nanocurrency/nano-node/pull/2506</a></p>
+<ul>
+<li>Do not use the <code>node</code> object or include <code>node.hpp</code> in new core source files unless necessary, instead include the dependencies that it requires. We are still in the process of removing this idiom from other files because it adds circular dependencies, potentially ordering bugs and increases the build time.</li>
+<li>
+<p>Take care not to have nested <code>tx_begin_write ()</code>, it is quite easy to forget about this in tests, it will just cause a deadlock. To solve it, limit the scope:</p>
+<ul>
+<li>Pass <code>std::shared_ptr</code> parameters by reference where possible, <a href="https://github.com/nanocurrency/nano-node/pull/3029">https://github.com/nanocurrency/nano-node/pull/3029</a></li>
+<li>Be cautious with random DB reads, they are much slower than sequential reads. This PR sped up the delegators by a factor of 100 RPC by removing the block_get call needed in the loop. <a href="https://github.com/nanocurrency/nano-node/pull/2283">https://github.com/nanocurrency/nano-node/pull/2283</a>
+<div class="highlight"><pre><span></span><code>{ // Limit scope
+auto transaction = store-&gt;tx_begin_write ();
+block_put (store.tx_begin_write (), block);
+}
+…
+auto transaction = store-&gt;tx_begin_write ();
+</code></pre></div>
+or if it’s a single write can create a temporary just for that use:
+<code>block_put (store.tx_begin_write (), block);</code>
+Be cautious with callback lifetimes with asynchronous callbacks, such as the worker, alarm and asio. The following issue was because of them:
+<div class="highlight"><pre><span></span><code>int x = 4;
+worker.push_back ([&amp;x]() { 
+  std::cout &lt;&lt; x; // x might not be valid by the time this is called, should have been a copy.
+});
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Currently (as of V25) using C++20 with Boost 1.81.</p>
+</li>
+<li>There are known exceptions triggered when <code>consume_future</code> is called do not be alarmed when seeing this.</li>
+</ul>
+<h2 id="areas-of-future-improvement">Areas of future improvement<a class="headerlink" href="#areas-of-future-improvement" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A lot of tests still use legacy blocks, any new ones should use state blocks.</li>
+<li>Minimise heap allocation. This can lead to fragmentation which affects long running processes.</li>
+<li><code>slow_test</code> is not run as part of CI</li>
+</ul>
+<h2 id="faqs">FAQs<a class="headerlink" href="#faqs" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Where are blocks added to the ledger? <code>nano::ledger::process ()</code></p>
+</li>
+<li>
+<p>Where are rpc calls handled? <code>nano/node/json_handler.cpp</code></p>
+</li>
+<li>
+<p>Where is the genesis block created? <code>nano::blockstore_partial::init ()</code>  </p>
+</li>
+<li>
+<p>How to stop the node effectively? <code>rpc-&gt;stop ();</code></p>
+</li>
+<li>
+<p>How to use RocksDB in tests? Set the environment variable: <code>TEST_USE_ROCKSDB=1</code></p>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <!-- Application footer -->
+<footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="footer.title"
+    >
+
+      <!-- Link to previous page -->
+      
+        <a
+          href="../code-standards/"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Code Standards
+            </div>
+          </div>
+        </a>
+      
+
+      <!-- Link to next page -->
+      
+        <a
+          href="../developer-discussions/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Developer Discussions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+          <div class="md-footer-copyright">
+              © Nano Foundation |
+              <a href="https://nano.org/terms" target="_blank">
+                  Terms of Use
+              </a>
+               | 
+              <a href="https://nano.org/privacy">
+                  Privacy Policy
+              </a>
+          </div>
+          
+          <!-- Social links -->
+          
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/nanocurrency" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/nano" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://chat.nano.org" target="_blank" rel="noopener" title="chat.nano.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 23a1 1 0 0 1-1-1v-3H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4.1l-3.7 3.71c-.2.18-.44.29-.7.29zm-9-8H1V3a2 2 0 0 1 2-2h16v2H3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://reddit.com/r/nanocurrency" target="_blank" rel="noopener" title="reddit.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 256C0 114.6 114.6 0 256 0s256 114.6 256 256-114.6 256-256 256H37.1c-13.7 0-20.5-16.5-10.9-26.2L75 437C28.7 390.7 0 326.7 0 256m349.6-102.4c23.6 0 42.7-19.1 42.7-42.7s-19.1-42.7-42.7-42.7c-20.6 0-37.8 14.6-41.8 34-34.5 3.7-61.4 33-61.4 68.4v.2c-37.5 1.6-71.8 12.3-99 29.1-10.1-7.8-22.8-12.5-36.5-12.5-33 0-59.8 26.8-59.8 59.8 0 24 14.1 44.6 34.4 54.1 2 69.4 77.6 125.2 170.6 125.2s168.7-55.9 170.6-125.3c20.2-9.6 34.1-30.2 34.1-54 0-33-26.8-59.8-59.8-59.8-13.7 0-26.3 4.6-36.4 12.4-27.4-17-62.1-27.7-100-29.1v-.2c0-25.4 18.9-46.5 43.4-49.9 4.4 18.8 21.3 32.8 41.5 32.8zm-172.5 93.3c16.7 0 29.5 17.6 28.5 39.3s-13.5 29.6-30.3 29.6-31.4-8.8-30.4-30.5S160.3 247 177 247zm190.1 38.3c1 21.7-13.7 30.5-30.4 30.5s-29.3-7.9-30.3-29.6 11.8-39.3 28.5-39.3 31.2 16.6 32.1 38.3zm-48.1 56.7c-10.3 24.6-34.6 41.9-63 41.9s-52.7-17.3-63-41.9c-1.2-2.9.8-6.2 3.9-6.5 18.4-1.9 38.3-2.9 59.1-2.9s40.7 1 59.1 2.9c3.1.3 5.1 3.6 3.9 6.5"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://medium.com/nanocurrency" target="_blank" rel="noopener" title="medium.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M369.4 32c43.4 0 78.6 35.2 78.6 78.6v83.8c-1.9-.1-3.8-.2-5.7-.2h-.4c-10 0-22.3 2.4-31.1 6.8-10 4.6-18.7 11.5-26 20.6-11.8 14.6-18.9 34.3-20.6 56.4-.1.7-.1 1.3-.2 2s-.1 1.2-.1 1.9c-.1 1.2-.1 2.4-.1 3.6 0 1.9-.1 3.8 0 5.8 1.2 50.1 28.2 90.2 76.3 90.2 2.7 0 5.3-.1 7.9-.4v20.4c0 43.4-35.2 78.6-78.6 78.6L78.6 480C35.2 480 0 444.8 0 401.4V110.6C0 67.2 35.2 32 78.6 32zM82.3 138.9l.3.1c13.2 3 19.8 7.4 19.8 23.4v187.2c0 16-6.7 20.4-19.9 23.4l-.3.1v2.8H135v-2.8l-.3-.1c-13.2-3-19.9-7.4-19.9-23.4V173.3l86.1 202.5h4.9l88.6-208.2v186.6c-1.1 12.6-7.8 16.5-19.7 19.2l-.3.1v2.7h91.9v-2.7l-.3-.1c-11.9-2.7-18.7-6.6-19.9-19.2l-.1-191.8h.1c0-16 6.7-20.4 19.9-23.4l.3-.1v-2.7h-72.2l-67 157.4-67-157.4H82.3zM448 340.3c-25.1-7.4-43-35.1-41.2-67.8h41.1v67.8zm-6.4-135.6c2.3 0 4.4.3 6.4.9V263h-40.2c1.5-33.6 13.6-57.9 33.8-58.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://facebook.com/nanofoundation" target="_blank" rel="noopener" title="facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/company/nano-foundation" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/nanocurrency/" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/nanocurrency/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+</div>
+      </div>
+      <div class="md-footer-meta__inner md-grid md-grid-disclaimer">
+      <div class="md-footer-disclaimer md-footer-copyright">
+        This site uses cookies, see our <a href="https://nano.org/privacy#cookies" target="_blank">Cookie policy</a> for details. The Nano Foundation is not responsible for the content of external sites and services. 
+        <a href="https://nano.org/terms#linked-websites" target="_blank">Learn more</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use necessary cookies to make our site work. By using this and related Nano.org sites,  you are accepting these cookies. For more detailed information, see the Cookies section  in our <a href="https://nano.org/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="analytics" checked>
+      <span class="task-list-indicator"></span>
+      Google Analytics
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.indexes", "navigation.expand", "navigation.tabs", "navigation.top", "search.share", "search.suggest", "content.tabs.link", "navigation.indexes", "navigation.expand"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascript/mermaid-loose-security.js"></script>
+      
+    
+  </body>
+</html>
