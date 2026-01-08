@@ -914,7 +914,7 @@ On success, the nano\_node returns the hash of the transaction's block.
 
 ### Republishing Transactions
 
-It may take a few seconds for the transaction to appear on the Nano Network. If the transaction fails to appear, you may call the [`republish`](/commands/rpc-protocol#republish) RPC command with the oldest missing transaction's hash. Account-chains must be **continuous and unbroken**. If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain will not be accepted by the network since the `"previous"` field in the transaction data refers to a block  unknown to to other nodes on the network.
+It may take a few seconds for the transaction to appear on the Nano Network. If the transaction fails to appear, you may call the [`republish`](/commands/rpc-protocol#republish) RPC command with the oldest missing transaction's hash. Account-chains must be **continuous and unbroken**. If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain will not be accepted by the network since the `"previous"` field in the transaction data refers to a block  unknown to other nodes on the network.
 
 !!! tip
     Republishing the missing transaction(s) will make all the subsequent blocks valid in the network's ledger. Republishing does not create new transactions.
