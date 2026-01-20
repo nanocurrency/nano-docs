@@ -54,6 +54,9 @@ A number stored in the local node database that represents the highest (most rec
 #### Confirmations Per Second (CPS)
 The rate of [confirmed](#confirmation) [blocks](#blocks).
 
+#### Deterministic Finality
+Deterministic finality occurs when a transaction is immediately considered to be final once it is added to the blockchain. Because Nano cements transactions that have occurred, transactions can never be rolled back and are therefore final.
+
 #### election
 
 #### frontier
