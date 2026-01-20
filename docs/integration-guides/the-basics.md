@@ -99,13 +99,51 @@ This is also a 32 byte value, usually represented as a 64 character, uppercase h
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from an *account private key* by using the ED25519 curve using Blake2b-512 as the hash function (instead of SHA-512). Usually account public keys will not be passed around in this form, rather the below address is used.
 
 ### Account public address
-This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are Blake2b-40 checksum of the account public key to aid in discovering typos, also encoded with the same base32 scheme (5 bytes).
+This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are Blake2b-40 checksum *in reverse* of the account public key to aid in discovering typos, also encoded with the same base32 scheme (5 bytes).
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
 
 | Prefix  | Encoded Account Public Key                             | Checksum   |
 |         |                                                        |            |
 | `nano_` | `1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjt` | `wnqposrs` |
+
+**Code Samples**
+
+=== "Python"
+	
+	A function that converts from account public key to public address using a custom base32 encoding used for Nano
+
+	```python
+	from base64 import b32encode
+    from hashlib import blake2b
+
+	def to_account_addr(account_public_key: bytes) -> str:
+		"""
+		Parameters
+		----------
+		account_public_key: bytes
+			Derived from an "account private key" using ED25519 curve
+			with Blake2b-512 as the hash function instead of SHA-512
+		"""
+		assert (len(account_public_key) == 32)
+
+		RFC_3548 = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+		ENCODING = b"13456789abcdefghijkmnopqrstuwxyz"
+
+		checksum = blake2b(account_public_key, digest_size=5).digest()
+
+		# prefix account to make it even length for base32, add checksum in reverse byte order
+		account2 = b'\x00\x00\x00' + account_public_key + checksum[::-1]
+
+		# use the optimised base32 lib to speed this up
+		encode_account = b32encode(account2)
+
+		# simply translate the result from RFC3548 to Nano's encoding, snip off the leading useless bytes
+		encode_account = encode_account.translate(bytes.maketrans(RFC_3548, ENCODING))[4:]
+
+		# add prefix, label and return
+		return "nano_" + encode_account.decode()
+	```
 
 For basic address validation, the following regular expression can be used: `^(nano|xrb)_[13]{1}[13456789abcdefghijkmnopqrstuwxyz]{59}$`. Validation of the checksum is also recommended, depending on the integration.
 
