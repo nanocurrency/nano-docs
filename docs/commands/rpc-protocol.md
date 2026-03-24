@@ -2775,6 +2775,11 @@ Return metrics from other nodes on the network. By default, returns a summarized
     "maker": "0",
     "timestamp": "1765074100220",
     "active_difficulty": "fffffff800000000",
+    "database_backend": "lmdb",
+    "confirmation_latency_ms_p50": "254",
+    "confirmation_latency_ms_p90": "510",
+    "confirmation_latency_ms_p99": "1205",
+    "bootstrap_status": "idle",
     "node_id": "node_3odec59q6i9qarh5txyrxmu3aqhfzm54mxoxgtumwpzyq6obxqktdzcxkfag",
     "signature": "067523993D0B4C07525DF4C5AA814FBCC40875F868C2A04A85AC288F75E152763196B7DCB11240921F6D8BA92E3E9F094D8F2F9D8B0970114CDAD48838372100"
 }
@@ -2796,6 +2801,11 @@ This contains a summarized view of the network with 10% of lower/upper bound res
 | **maker**             | mode (most common), meant for third party node software implementing the protocol so that it can be distinguished, `0` = Nano Foundation, `1` = Nano Foundation pruned node |
 | **timestamp**         | number of milliseconds since the UTC epoch at the point where the response is sent from the peer |
 | **active_difficulty** | _V22.0+_ returns minimum network difficulty due to deprecated active difficulty measurements<br><br> _up to V21.3_ returns average of the current network difficulty, see [active_difficulty](/commands/rpc-protocol/#active_difficulty) "network_current" |
+| **database_backend**  | the database backend used by the node: `lmdb` or `rocksdb` |
+| **confirmation_latency_ms_p50** | 50th percentile (median) confirmation latency in milliseconds, based on recently confirmed elections |
+| **confirmation_latency_ms_p90** | 90th percentile confirmation latency in milliseconds, based on recently confirmed elections |
+| **confirmation_latency_ms_p99** | 99th percentile confirmation latency in milliseconds, based on recently confirmed elections |
+| **bootstrap_status**  | current bootstrap status of the node: `idle` or `active` |
 | **node_id**           | _V21.0+_ returns the node identifier used to sign the telemetry message. This allows receivers to verify which peer the telemetry originated from. |
 | **signature**         | _V21.0+_ returns the signature of the telemetry payload, created using the node's private key. It enables verification that the data was produced by the reported `node_id` and has not been altered. |
 
