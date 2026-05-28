@@ -14,6 +14,7 @@ Exchanges who have not faced issues with their nano nodes are recommended to awa
 In general, exchanges, services and integrations are encouraged to join [the test network](../running-a-node/test-network.md) for performing integration testing. This network mimics the live network in work requirements but has a smaller number of nodes and a lower block count for easier setup.
 
 ### Minor RPC breaking changes
+
 There are three RPC calls with such changes: `accounts_balances`, `accounts_frontiers`, and `accounts_representatives`. For integrations using them, carefully review the additional details on these changes included in the [RPC Updates](#rpc-updates) section below.
 
 ---

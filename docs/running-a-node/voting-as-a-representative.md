@@ -10,6 +10,7 @@ The default [node setup](node-setup.md) guide provides instructions for getting 
 Before getting into the setup instructions, there are a few important considerations:
 
 ## Commitment, security and maintenance
+
 Running a Nano Representative is a commitment to helping secure the network. This can only be done if the operation of the node is taken seriously.
 
 * Prepare for the necessary [maintenance](overview.md#maintenance) on the node and host machine
@@ -21,11 +22,13 @@ Running a Nano Representative is a commitment to helping secure the network. Thi
 --8<-- "hardware-recommendations.md"
 
 ## Synced ledger
+
 In order to open a new account to become a representative, the local node ledger must be in sync with the rest of the network. If you are starting a fresh node and bootstrapping, this process can take days to complete, depending on the network conditions, hardware specifications, etc. To speed this up, a [downloaded ledger](ledger-management.md#downloaded-ledger-files) can be used if necessary.
 
 ---
 
 ## Step 1: Enable voting
+
 For the node to start voting, the following [configuration](configuration.md) options need to be updated:
 
 --8<-- "config-node-option-node-enable-voting-true.md"
@@ -47,7 +50,6 @@ Add a representative account to a wallet:
     - [wallet_add](../commands/rpc-protocol.md#wallet_add) RPC, if you have a private key and didn’t have a seed before
     - [account_create](../commands/rpc-protocol.md#account_create) RPC if you had a seed or are creating a new representative account
 1. Verify the account is in the wallet with [account_list](../commands/rpc-protocol.md#account_list)
-
 
 Open the account - until you do [account_info](../commands/rpc-protocol.md#account_info) and others will fail:
 

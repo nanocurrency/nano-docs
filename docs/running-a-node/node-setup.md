@@ -117,7 +117,6 @@ The following command will start the node container. Either set the specified en
 
 `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as `config-node.toml`, `config-rpc.toml` and `data.ldb` into this directory.
 
-
 === "Test network"
 
 	--8<-- "docker-run-command-test.md"
@@ -143,43 +142,51 @@ When the node starts up it will generate log files in the `${NANO_HOST_DIR}` def
 ```
 Node starting, version: V25.1
 ```
+
 :exclamation: Verify you are running the correct version  
 Appears at each startup to indicate version number
 
 ```
 Build information: d91016b "Clang version " "12.0.0 (clang-1200.0.32.29)" "BOOST 107000" BUILT "Jun 21 2021"
 ```
+
 Various build information starting with the abbreviated git hash of latest commit, Clang and BOOST version information and build date.
 
 ```
 Database backend: LMDB 0.9.25
 ```
+
 Database used for the backend - default LMDB but [RocksDB](ledger-management.md#rocksdb-ledger-backend) can also be configured.
 
 ```
 Active network: test
 ```
+
 :exclamation: Verify you are running on the correct network  
 Indicates which of the three network (test, main, beta) the node is running on.
 
 ```
 Work pool running 12 threads 
 ```
+
 Number of threads available for generating Proof of Work.
 
 ```
 0 work peers configured
 ```
+
 Work peers setup in the `config-node.toml` file, option `node.work_peers`. This is not required if doing local work generation, but is encouraged if planning to do large transaction volumes. See the [work generation integration guide](../integration-guides/work-generation.md) for further details.
 
 ```
 Outbound Voting Bandwidth limited to 10485760 bytes per second, burst ratio 3
 ```
+
 Bandwidth limit set in the `config-node.toml` file, options `node.bandwidth_limit` and `node.bandwidth_limit_burst_ratio`.
 
 ```
 Node ID: node_1gh7ghwwquxp9kw7r3p5634p3n8goyf49a3xyzcnbykxge44gjjonmhexd6h
 ```
+
 Ephemeral and unique node ID created on each startup and only used for network communications with other nodes. This is not a valid nano address (notice prefix of `node_`).
 
 ```
@@ -187,6 +194,7 @@ Starting legacy bootstrap attempt with ID auto_bootstrap_0
 ...
 Exiting legacy bootstrap attempt with ID auto_bootstrap_0
 ```
+
 Indicates attempts at starting [bootstrap](ledger-management.md#bootstrapping) activities from other nodes on the network.
 
 ```
@@ -195,16 +203,19 @@ UPNP_GetSpecificPortMappingEntry failed 714: NoSuchEntryInArray
 UPnP leasing time getting old, remaining time: 0, lease time: 1787, below the threshold: 893
 UPnP TCP 24.17.20.184:17075 mapped to 17075
 ```
+
 Details of UPnP attempts at mapping ports. See [UPnP troubleshooting](troubleshooting.md#troubleshooting-upnp) for further details.
 
 ```
 Found a representative at [::ffff:168.119.169.220]:17075
 ```
+
 Indicates the IP address of a new representative discovered on the network.
 
 ```
 Wallet unlocked
 ```
+
 Certain activities performed by the node, including signing votes, requires unlocking the wallet during operation.
 
 The above examples are subset of potential entries in logging.
@@ -226,6 +237,7 @@ Once the node is up and running you can query via RPC. Below is a basic command 
 	```
 
 	**Response**
+
 	```json
 	{
 	    "count": "16599",
@@ -297,6 +309,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```
 
 	**Response**
+
 	```json
 	{
 	    "block_count": "16599",
@@ -329,6 +342,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```
 
 	**Response**
+
 	```json
 	{
 	    "block_count": "122270697",
@@ -361,6 +375,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	```
 
 	**Response**
+
 	```json
 	{
 	    "block_count": "48983527",
@@ -403,4 +418,3 @@ Below are resources to help you take the next step to use your node to interact 
 - Update your [node configuration options](configuration.md) to enable various features
 - Start [voting as a representative](voting-as-a-representative.md)
 - Find out how to best [manage your ledger file](ledger-management.md)
-

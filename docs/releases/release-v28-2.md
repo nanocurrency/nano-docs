@@ -6,6 +6,7 @@ description: Details of the V28.2 nano node release.
 --8<-- "release-details-v28-2.md"
 
 ---
+
 ## Upgrade notice
 
 This release introduces a ledger consistency check at startup.

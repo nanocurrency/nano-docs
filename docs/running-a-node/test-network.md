@@ -23,26 +23,26 @@ ___
 
 ---
 
-
 ### Binaries
 
 In addition to the Docker details above, the latest binary builds of the node for the test network can be found below. These will only change when Release Candidates (RC) builds are ready, or when final releases are done. However, the first build available today is actually a development build since the changes to enable this network were recently introduced.
 
 --8<-- "current-build-links-test.md"
 
-
 If manual builds are needed, see the [build options](../integration-guides/build-options.md) page for details.
 
-
 ### Pulling the Docker image
+
 [![Docker Pulls](https://img.shields.io/docker/pulls/nanocurrency/nano.svg)](https://hub.docker.com/r/nanocurrency/nano-test)
 
 Pulls the latest test release of the nano Node:
+
 ```bash
 docker pull nanocurrency/nano-test
 ```
 
 Pulls a specific test version of the nano node:
+
 ```bash
 docker pull nanocurrency/nano-test:<tag>
 ```
@@ -54,6 +54,7 @@ A list of test tags can be found at the official [Nano Currency Docker Hub](http
 --8<-- "docker-run-command-test.md"
 
 !!! tip
+
 	* For an explanation of the options included in the Docker `run` command, see [Starting the Container](/running-a-node/docker-management/#starting) details for the main network.
 	* See [Docker management](/running-a-node/docker-management/) for other related commands
 

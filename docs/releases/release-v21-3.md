@@ -3,7 +3,6 @@ description: Details of the V21.3 nano node release including upgrade notices, m
 
 # V21.3
 
-
 --8<-- "release-details-v21-3.md"
 
 !!! success "No special upgrade considerations"

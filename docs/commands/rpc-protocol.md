@@ -20,11 +20,13 @@ The RPC protocol accepts JSON HTTP POST requests. The following are RPC commands
 ---
 
 ### account_balance 
+
 Returns how many RAW is owned and how many have not yet been received by **account**  
 
 --8<-- "deprecation-info-pending.md"
 
 **Request:**
+
 ```json 
 {
   "action": "account_balance",
@@ -33,6 +35,7 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 ```
 
 **Response:**
+
 ```json
 {
   "balance": "10000",
@@ -48,9 +51,11 @@ Boolean, true by default. Results in `balance` only including blocks on this acc
 ---
 
 ### account_block_count
+
 Get number of blocks for a specific **account**  
 
 **Request:**
+
 ```json
 {
   "action": "account_block_count",
@@ -59,6 +64,7 @@ Get number of blocks for a specific **account**
 ```
 
 **Response:**
+
 ```json
 {
   "block_count" : "19"
@@ -68,9 +74,11 @@ Get number of blocks for a specific **account**
 ---
 
 ### account_get
+
 Get account number for the **public key**  
 
 **Request:**
+
 ```json
 {
   "action": "account_get",
@@ -79,6 +87,7 @@ Get account number for the **public key**
 ```
 
 **Response:**
+
 ```json
 {
   "account" : "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
@@ -94,6 +103,7 @@ Reports send/receive information for an account. Returns only **send & receive**
 --8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
+
 ```json
 {
   "action": "account_history",
@@ -103,6 +113,7 @@ Reports send/receive information for an account. Returns only **send & receive**
 ```
 
 **Response:**
+
 ```json
 {
   "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
@@ -135,6 +146,7 @@ If the `count` limit results in stopping before the end of the account chain, th
 ---
 
 ### account_info
+
 Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have received their first transaction and have an entry on the ledger, will return "Account not found" otherwise. To open an account, use [receive](#receive).  
 
 --8<-- "unconfirmed-information.md"
@@ -143,6 +155,7 @@ Returns frontier, open block, change representative block, balance, last modifie
     If you need only details for confirmed blocks, use the `include_confirmed` option below and referenced the `confirmed_*` fields added in to the response.
 
 **Request:**
+
 ```json
 {
   "action": "account_info",
@@ -151,6 +164,7 @@ Returns frontier, open block, change representative block, balance, last modifie
 ```
 
 **Response:**
+
 ```json
 {
   "frontier": "FF84533A571D953A596EA401FD41743AC85D04F406E76FDE4408EAED50B473C5",
@@ -181,6 +195,7 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
 --8<-- "deprecation-info-pending.md"
 
 **Request:**
+
 ```json
 {
   "action": "account_info",  
@@ -193,6 +208,7 @@ Boolean, false by default. Adds new return fields with prefix of `confirmed_` fo
 ```
 
 **Response:**
+
 ```json
 {
     "frontier": "80A6745762493FA21A22718ABFA4F635656A707B48B3324198AC7F3938DE6D4F",
@@ -220,6 +236,7 @@ _version 9.0+_
 Booleans, false by default. Additionally returns representative, voting weight, pending/receivable balance for account   
 
 **Request:**
+
 ```json
 {
   "action": "account_info",
@@ -231,6 +248,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ```
 
 **Response:**
+
 ```json
 {
   "frontier": "FF84533A571D953A596EA401FD41743AC85D04F406E76FDE4408EAED50B473C5",
@@ -252,16 +270,20 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 ---
 
 ### account_key
+
 Get the public key for **account**  
 
 **Request:**
+
 ```json
 {
   "action": "account_key",
   "account" : "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "key": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
@@ -271,16 +293,20 @@ Get the public key for **account**
 ---
 
 ### account_representative 
+
 Returns the representative for **account**  
 
 **Request:**
+
 ```json
 {
   "action": "account_representative",
   "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "representative" : "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
@@ -290,16 +316,20 @@ Returns the representative for **account**
 ---
 
 ### account_weight  
+
 Returns the voting weight for **account**  
 
 **Request:**
+
 ```json
 {
   "action": "account_weight",
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "weight": "10000"
@@ -309,6 +339,7 @@ Returns the voting weight for **account**
 ---
 
 ### accounts_balances  
+
 Returns how many RAW is owned and how many have not yet been received by **accounts list**  
 
 --8<-- "unconfirmed-information.md"
@@ -317,13 +348,16 @@ Returns how many RAW is owned and how many have not yet been received by **accou
 --8<-- "deprecation-info-pending.md"
 
 **Request:**
+
 ```json
 {
   "action": "accounts_balances",
   "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "balances" : {
@@ -350,6 +384,7 @@ Boolean, true by default. Results in `balance` only including blocks on the prov
     With _version 25.0+_, `accounts_balances` response errors come in a different entry, named as `errors`. This
     fixes the breaking change added in V24.0. Please notice that when an account is not found in the ledger, no error
     is returned anymore. It now returns a zero balance and zero as receivable.
+
     ```json
     {
       "balances": {
@@ -369,16 +404,20 @@ Boolean, true by default. Results in `balance` only including blocks on the prov
       }
     }
     ```
+
     If all requested entries result in errors, no entry will be added in the response for `balances`. Similarly,
     if there are no errors, no entry will be added for `errors`.  
     Request:
+
     ```json
     {  
       "action": "accounts_balances",  
       "accounts": ["nano_36uccgpjzhjsdbj44wm1y5hyz8gefx3wjpp1jircxt84nopxkxti5bzq1rnz"]  
     }
     ```
+
     Response:
+
     ```json
     {
       "errors": {
@@ -386,9 +425,11 @@ Boolean, true by default. Results in `balance` only including blocks on the prov
       }
     }
     ```
+
     In _version 24.0+_, `accounts_balances` response errors are returned per account entry in `balances` object.
     If an account does not exist, zero balance and zero receivables should be returned, but V24.0 has a bug: unopened
     accounts with receivables return an error instead of the receivables.
+
     ```json
     {
       "balances": {
@@ -404,22 +445,25 @@ Boolean, true by default. Results in `balance` only including blocks on the prov
     }
     ```
 
-
 ---
 
 ### accounts_frontiers  
+
 Returns a list of pairs of account and block hash representing the head block for **accounts list**  
 
 --8<-- "warning-includes-unconfirmed.md"
 
 **Request:**
+
 ```json
 {
   "action": "accounts_frontiers",
   "accounts": ["nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "frontiers" : {
@@ -431,6 +475,7 @@ Returns a list of pairs of account and block hash representing the head block fo
 
 !!! info "Error handling"
     With _version 25.0+_, `accounts_frontiers` response errors come in a different entry, named `errors`.
+
     ```json
     {
       "frontiers": {
@@ -442,16 +487,20 @@ Returns a list of pairs of account and block hash representing the head block fo
       }
     }
     ```
+
     If all requested entries result in errors, no entry will be added in the response for `frontiers`. Similarly,
     if there are no errors, no entry will be added for `errors`.  
     Request:
+
     ```json
     {  
       "action": "accounts_frontiers",  
       "accounts": ["nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy"]  
     }
     ```
+
     Response:  
+
     ```json
     {
       "errors": {
@@ -459,8 +508,10 @@ Returns a list of pairs of account and block hash representing the head block fo
       }
     }
     ```
+
     In _version 24.0+_, `accounts_frontiers` response errors were returned per account entry in the
     `frontiers` object.
+
     ```json
     {
       "frontiers": {
@@ -480,6 +531,7 @@ _since V24.0, use [accounts_pending](#accounts_pending) for V23.3 and below_
 Returns a list of confirmed block hashes which have not yet been received by these **accounts**  
 
 **Request:**
+
 ```json
 {
   "action": "accounts_receivable",
@@ -487,7 +539,9 @@ Returns a list of confirmed block hashes which have not yet been received by the
   "count": "1"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks" : {
@@ -496,11 +550,13 @@ Returns a list of confirmed block hashes which have not yet been received by the
   }
 }
 ```  
+
 **Optional "threshold"**  
 _version 8.0+_   
 Number (128 bit, decimal). Returns a list of receivable block hashes with amount more or equal to **threshold**   
 
 **Request:**
+
 ```json
 {
   "action": "accounts_receivable",
@@ -509,7 +565,9 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
   "threshold": "1000000000000000000000000"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks" : {
@@ -522,11 +580,13 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
   }
 }
 ```  
+
 **Optional "source"**  
 _version 9.0+_   
 Boolean, false by default. Returns a list of receivable block hashes with amount and source accounts   
 
 **Request:**
+
 ```json
 {
   "action": "accounts_receivable",
@@ -535,7 +595,9 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
   "source": "true"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks" : {
@@ -554,12 +616,14 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
   }
 }
 ```  
+
 **Optional "include_active"**
 
 _version 15.0+_   
 Boolean, false by default. Include active (not confirmed) blocks    
 
 **Request:**
+
 ```json
 {
   "action": "accounts_receivable",
@@ -582,16 +646,20 @@ Boolean, true by default (_version 22.0+_), previously false by default. Only re
 ---
 
 ### accounts_representatives 
+
 Returns the representatives for given **accounts**  
 
 **Request:**
+
 ```json
 {
   "action": "accounts_representatives",
   "accounts": ["nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5","nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"]
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "representatives" : {
@@ -603,6 +671,7 @@ Returns the representatives for given **accounts**
 
 !!! info "Error handling"
     With _version 25.0+_, `accounts_representatives` response errors come in a different entry, named `errors`.
+
     ```json
     {
       "representatives": {
@@ -614,16 +683,20 @@ Returns the representatives for given **accounts**
       }
     }
     ```
+
     If all requested entries result in errors, no entry will be added in the response for `representatives`. Similarly,
     if there are no errors, no entry will be added for `errors`.  
     Request:
+
     ```json
     {  
       "action": "accounts_representatives",  
       "accounts": ["nano_1hrts7hcoozxccnffoq9hqhngnn9jz783usapejm57ejtqcyz9dpso1bibuy"]  
     }
     ```
+
     Response:  
+
     ```json
     {
       "errors": {
@@ -631,8 +704,10 @@ Returns the representatives for given **accounts**
       }
     }
     ```
+
     In _version 24.0+_, `accounts_representatives` response errors were returned per account entry in the
     `representatives` object.
+
     ```json
     {
       "representatives": {
@@ -646,15 +721,19 @@ Returns the representatives for given **accounts**
 ---
 
 ### available_supply  
+
 Returns how many raw are in the public supply  
 
 **Request:**
+
 ```json
 {
   "action": "available_supply"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "available": "133248061996216572282917317807824970865"
@@ -664,16 +743,20 @@ Returns how many raw are in the public supply
 ---
 
 ### block_account  
+
 Returns the account containing block  
 
 **Request:**
+
 ```json
 {
   "action": "block_account",
   "hash": "023B94B7D27B311666C8636954FE17F1FD2EAA97A8BAC27DE5084FBBD5C6B02C"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
@@ -683,17 +766,21 @@ Returns the account containing block
 ---
 
 ### block_confirm   
+
 _version 12.2+_   
 Request confirmation for **block** from known online representative nodes. Check results with [confirmation history](#confirmation_history).
 
 **Request:**
+
 ```json
 {
   "action": "block_confirm",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "started": "1"
@@ -705,15 +792,19 @@ Request confirmation for **block** from known online representative nodes. Check
 ---
 
 ### block_count  
+
 Reports the number of blocks in the ledger and unchecked synchronizing blocks   
 
 **Request:**
+
 ```json
 {
   "action": "block_count"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "count": "1000",
@@ -721,6 +812,7 @@ Reports the number of blocks in the ledger and unchecked synchronizing blocks
   "cemented": "25"
 }
 ```
+
 **Note:** If the node is running the RocksDB backend the unchecked count may only be estimate.  
 
 **Optional "include_cemented"**
@@ -733,13 +825,14 @@ Default "true". If "true", "cemented" in the response will contain the number of
 ---
 
 ### block_create
+
 _enable_control required, version 9.0+_  
 Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. Using the optional `json_block` is recommended since v19.0.  
 
 --8<-- "warning-enable-control.md"
 
-
 **Request sample for state block:**  
+
 ```json
 {
   "action": "block_create",
@@ -752,6 +845,7 @@ Creates a json representations of new block based on input data & signed with **
   "previous": "F47B23107E5F34B2CE06F562B5C435DF72A533251CB414C51B2B62A8F63A00E4"
 }
 ```  
+
 Parameters for state block:
 
 * `balance`: **final** balance for account after block creation, formatted in 'raw' units using a decimal integer. If balance is less than previous, block is considered as send subtype!
@@ -790,6 +884,7 @@ If difficulty and work values are both not given, RPC processor tries to calcula
 **Examples**
 
 **Response sample for above request**:  
+
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17",
@@ -811,10 +906,12 @@ If difficulty and work values are both not given, RPC processor tries to calcula
 ---
 
 ### block_hash  
+
 _version 13.0+_   
 Returning block hash for given **block** content. Using the optional `json_block` is recommended since v19.0.  
 
 **Request:**
+
 ```json
 {  
   "action": "block_hash",
@@ -832,7 +929,9 @@ Returning block hash for given **block** content. Using the optional `json_block
   }
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17"
@@ -847,6 +946,7 @@ Default "false". If "true", "block" must contain a JSON subtree instead of a JSO
 ---
 
 ### block_info  
+
 Retrieves a json representation of the block in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
@@ -856,6 +956,7 @@ Retrieves a json representation of the block in `contents` along with:
 Using the optional `json_block` is recommended since v19.0.  
 
 **Request:**
+
 ```json
 {  
   "action": "block_info",
@@ -863,7 +964,9 @@ Using the optional `json_block` is recommended since v19.0.
   "hash": "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "block_account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
@@ -895,19 +998,19 @@ Note: The `Balance` in contents is a uint128. However, it will be a hex-encoded 
 _version 19.0+_  
 Default "false". If "true", "contents" will contain a JSON subtree instead of a JSON string.
 
-
 **Optional `include_linked_account`**
 
 _version 28.0+_
 (bool):  When set to `true`, the response will include a new field `linked_account`, which returns the linked account associated with the block (or "0" if no linked account exists/was found e.g. due to pruning).
 
-
 ---
 
 ### blocks  
+
 Retrieves a json representations of **blocks**. Using the optional `json_block` is recommended since v19.0.  
 
 **Request:**
+
 ```json
 {
   "action": "blocks",
@@ -915,7 +1018,9 @@ Retrieves a json representations of **blocks**. Using the optional `json_block` 
   "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"]
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks": {
@@ -942,6 +1047,7 @@ Default "false". If "true", "contents" will contain a JSON subtree instead of a 
 ---
 
 ### blocks_info   
+
 Retrieves a json representations of `blocks` in `contents` along with:
 
 * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
@@ -951,6 +1057,7 @@ Retrieves a json representations of `blocks` in `contents` along with:
 Using the optional `json_block` is recommended since v19.0.  
 
 **Request:**
+
 ```json
 {
   "action": "blocks_info",
@@ -958,7 +1065,9 @@ Using the optional `json_block` is recommended since v19.0.
   "hashes": ["87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9"]
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks": {
@@ -986,6 +1095,7 @@ Using the optional `json_block` is recommended since v19.0.
   }
 }
 ```
+
 **Optional `include_linked_account`**
 
 _version 28.0+_
@@ -999,6 +1109,7 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
 --8<-- "deprecation-info-pending.md"
 
 **Request:**
+
 ```json
 {
   "action": "blocks_info",
@@ -1007,7 +1118,9 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
   "source": "true"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks" : {
@@ -1024,12 +1137,14 @@ Booleans, false by default. Additionally checks if block is pending, returns sou
   }
 }
 ```
+
 **Optional "receive_hash"**
 
 _version 24.0+_  
 Boolean, default false. If "true", displays the hash of the send block's corresponding receive (if any). Returns 0 for non-send blocks, and for receivable blocks that do not yet have a corresponding receive.
 
 **Request:**
+
 ```json
 {
   "action": "blocks_info",
@@ -1039,6 +1154,7 @@ Boolean, default false. If "true", displays the hash of the send block's corresp
 ```
 
 **Response**
+
 ```json
 {
     "blocks": {
@@ -1069,6 +1185,7 @@ _version 19.0+_
 Default "false". If "true", an additional "blocks_not_found" is provided in the response, containing a list of the block hashes that were not found in the local database. Previously to this version an error would be produced if any block was not found.
 
 **Request:**
+
 ```json
 {
   "action": "blocks_info",
@@ -1078,6 +1195,7 @@ Default "false". If "true", an additional "blocks_not_found" is provided in the 
 ```
 
 **Response:**
+
 ```json
 {
   "blocks" : {
@@ -1102,9 +1220,11 @@ Default "false". If "true", an additional "blocks_not_found" is provided in the 
 ---
 
 ### bootstrap  
+
 Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](/commands/command-line-interface/#-disable_legacy_bootstrap)   
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap",
@@ -1112,7 +1232,9 @@ Initialize bootstrap to specific **IP address** and **port**. Not compatible wit
   "port": "7075"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "success": ""
@@ -1130,20 +1252,25 @@ String, empty by default. Set specific ID for new bootstrap attempt for better t
 ---
 
 ### bootstrap_any  
+
 Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](/commands/command-line-interface/#-disable_legacy_bootstrap)   
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap_any"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "success": ""
 }
 ```
+
 **Optional "force"**  
 _version 20.0+_  
 Boolean, false by default. Manually force closing of all current bootstraps  
@@ -1159,25 +1286,30 @@ String, empty by default. Public address for targeting a specific account on boo
 ---
 
 ### bootstrap_lazy  
+
 _enable_control required, version 17.0+_   
 Initialize lazy bootstrap with given block **hash**. Not compatible with launch flag [--disable_lazy_bootstrap](/commands/command-line-interface/#-disable_lazy_bootstrap). As of _version 22.0_, response includes whether new election was `started` and whether a new lazy `key_inserted` was successful.
 
 --8<-- "warning-enable-control.md"
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap_lazy",
   "hash": "FF0144381CFF0B2C079A115E7ADA7E96F43FD219446E7524C48D1CC9900C4F17"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "started": "1",
   "key_inserted": "0"
 }
 ```
+
 **Optional "force"**
 
 Boolean, false by default. Manually force closing of all current bootstraps  
@@ -1189,12 +1321,14 @@ String, empty by default. Set specific ID for new bootstrap attempt for better t
 ---
 
 ### bootstrap_priorities  
+
 _enable_control required, version 28.0+_   
 Dumps info about priority and blocking sets to aid in debugging any potential problems
 
 --8<-- "warning-enable-control.md"
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap_priorities"
@@ -1204,12 +1338,14 @@ Dumps info about priority and blocking sets to aid in debugging any potential pr
 ---
 
 ### bootstrap_reset  
+
 _enable_control required, version 28.0+_   
 Resets ascending bootstrap state - both priority and blocking sets are cleared.
 
 --8<-- "warning-enable-control.md"
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap_reset"
@@ -1219,6 +1355,7 @@ Resets ascending bootstrap state - both priority and blocking sets are cleared.
 ---
 
 ### bootstrap_status  
+
 _version 17.0+_
 
 --8<-- "warning-debug-only-command.md"
@@ -1226,13 +1363,16 @@ _version 17.0+_
 Returning status of current bootstrap attempt
 
 **Request:**
+
 ```json
 {
   "action": "bootstrap_status"
 }
 ```  
+
 **Response:**
 _versions 21.0+_
+
 ```json
 {
   "bootstrap_threads": "2",
@@ -1283,6 +1423,7 @@ _versions 21.0+_
 ```
 
 ??? abstract "Response V17.0-V20.0"
+
     ```json
     {
       "clients": "0",
@@ -1312,9 +1453,11 @@ _versions 21.0+_
 ---
 
 ### chain  
+
 Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Will list all blocks back to the open block of this chain when count is set to "-1". The requested block hash is included in the answer.  
 
 **Request:**
+
 ```json
 {
   "action": "chain",
@@ -1322,7 +1465,9 @@ Returns a consecutive list of block hashes in the account chain starting at **bl
   "count": "1"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "blocks": [
@@ -1330,6 +1475,7 @@ Returns a consecutive list of block hashes in the account chain starting at **bl
   ]
 }
 ```
+
 **Optional "offset"**
 
 _version 18.0+_   
@@ -1343,6 +1489,7 @@ Boolean, false by default. Returns a list of block hashes in the account chain s
 ---
 
 ### confirmation_active  
+
 _version 16.0+_   
 Returns list of active elections qualified roots (excluding stopped & aborted elections); since V21, also includes the number of unconfirmed and confirmed active elections. Find info about specific qualified root with [confirmation_info](#confirmation_info)  
 
@@ -1352,14 +1499,16 @@ Returns list of active elections qualified roots (excluding stopped & aborted el
     * First account block (open): account public key + `0000000000000000000000000000000000000000000000000000000000000000`
     * Other blocks: previous hash + previous hash
 
-
 **Request:**
+
 ```json
 {
   "action": "confirmation_active"
 }
 ```  
+
 **Response:**
+
 ```json
 {
  "confirmations": [
@@ -1377,6 +1526,7 @@ Number, 0 by default. Returns only active elections with equal or higher announc
 ---
 
 ### confirmation_history  
+
 _version 12.0+_
 
 --8<-- "warning-debug-only-command.md"
@@ -1387,12 +1537,15 @@ Returns hash, tally weight, election duration (in milliseconds), election confir
 With version 19.0+ `confirmation_history_size` can be managed in the configuration file to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](/integration-guides/websockets) instead.
 
 **Request:**
+
 ```json
 {
   "action": "confirmation_history"
 }
 ```  
+
 **Response:**
+
 ```json
 {
   "confirmation_stats": {
@@ -1423,9 +1576,11 @@ With version 19.0+ `confirmation_history_size` can be managed in the configurati
   ]
 }
 ```   
+
 **Optional "hash"**
 
 Valid block hash, filters return for only the provided hash. If there is no confirmation available for that hash anymore, the following return can be expected:  
+
 ```json
 {
   "confirmation_stats": {
@@ -1436,6 +1591,7 @@ Valid block hash, filters return for only the provided hash. If there is no conf
 ```  
 
 If the block is unknown on the node, the following error will be returned:  
+
 ```"error": "Invalid block hash"```  
  
 ---
@@ -1453,14 +1609,17 @@ Returns info about an unconfirmed active election by **root**. Including announc
 
 **Request:**
 ```json
+
 {
   "action": "confirmation_info",
   "json_block": "true",
   "root": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "announcements": "2",
   "voters": "29",
@@ -1484,6 +1643,7 @@ Returns info about an unconfirmed active election by **root**. Including announc
     }
   }
 }   
+
 ```   
 
 **Optional "contents"**
@@ -1501,15 +1661,18 @@ Boolean, false by default. Returns list of votes representatives & its weights f
 
 **Request:**
 ```json
+
 {
   "action": "confirmation_info",
   "json_block": "true",
   "root": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44",
   "representatives": "true"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "announcements": "5",
   "last_winner": "B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F",
@@ -1537,6 +1700,7 @@ Boolean, false by default. Returns list of votes representatives & its weights f
     }
   }
 }
+
 ```   
 
 ---
@@ -1555,12 +1719,15 @@ Returns information about node elections settings & observed network state:
 
 **Request:**
 ```json
+
 {  
   "action": "confirmation_quorum"      
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "quorum_delta": "41469707173777717318245825935516662250",
   "online_weight_quorum_percent": "50",
@@ -1569,6 +1736,7 @@ Returns information about node elections settings & observed network state:
   "peers_stake_total": "69026910610720098597176027400951402360",
   "trended_stake_total": "81939414347555434636491651871033324568"
 }   
+
 ```   
 
 **Optional "peer_details"**
@@ -1596,14 +1764,17 @@ Returns a list of open database transactions which are equal or greater than the
 
 **Request:**
 ```json
+
 {
   "action": "database_txn_tracker",
   "min_read_time" : "1000",
   "min_write_time" : "0"
 }
+
 ```
 **Response on Windows/Debug:**  
 ```json
+
 {
   "txn_tracking": [
     {
@@ -1635,6 +1806,7 @@ Returns a list of open database transactions which are equal or greater than the
     ... // other threads
   ]
 }
+
 ```
 
 ---
@@ -1645,19 +1817,23 @@ Returns a list of pairs of delegator accounts and balances given a representativ
 
 **Request:**
 ```json
+
 {
   "action": "delegators",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "delegators": {
     "nano_13bqhi1cdqq8yb9szneoc38qk899d58i5rcrgdk5mkdm86hekpoez3zxw5sd": "500000000000000000000000000000000000",
     "nano_17k6ug685154an8gri9whhe5kb5z1mf5w6y39gokc1657sh95fegm8ht1zpn": "961647970820730000000000000000000000"
   }
 }
+
 ```   
 
 **Optional parameters:**  
@@ -1675,16 +1851,20 @@ Get number of delegators for a specific representative **account**
 
 **Request:**
 ```json
+
 {
   "action": "delegators_count",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "count": "2"
 }
+
 ```   
 
 ---
@@ -1694,19 +1874,23 @@ Derive deterministic keypair from **seed** based on **index**
 
 **Request:**
 ```json
+
 {
   "action": "deterministic_key",
   "seed": "0000000000000000000000000000000000000000000000000000000000000000",
   "index": "0"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "private": "9F0E444C69F77A49BD0BE89DB92C38FE713E0963165CCA12FAF5712D7657120F",
   "public": "C008B814A7D269A1FA3C6528B19201A24D797912DB9996FF02A1FF356E45552B",
   "account": "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"
 }
+
 ```  
 
 ---
@@ -1720,12 +1904,15 @@ Values in `max_election_age` and `average_election_age` are in milliseconds.
 
 **Request:**
 ```json
+
 {
   "action": "election_statistics"
 }
+
 ```  
 **Response sample:**
 ```json
+
 {
     "normal": "152",
     "priority": "1",
@@ -1736,6 +1923,7 @@ Values in `max_election_age` and `average_election_age` are in milliseconds.
     "max_election_age": "5493",
     "average_election_age": "421"
 }
+
 ```
 
 ---
@@ -1751,17 +1939,21 @@ Upgrade network to new **epoch** with epoch signer private **key**. This spawns 
 
 **Request:**
 ```json
+
 {
   "action": "epoch_upgrade",
   "epoch": "1",
   "key": "0000000000000000000000000000000000000000000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "started": "1"
 }
+
 ```  
 **Optional "count"**  
 Number. Determines limit of number of accounts to upgrade.
@@ -1777,15 +1969,19 @@ Reports the number of accounts in the ledger
 
 **Request:**
 ```json
+
 {
   "action": "frontier_count"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "count": "920471"
 }
+
 ```
 
 ---
@@ -1795,19 +1991,23 @@ Returns a list of pairs of account and block hash representing the head block st
 
 **Request:**
 ```json
+
 {
   "action": "frontiers",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "frontiers" : {
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
   }
 }
+
 ```
 
 ---
@@ -1820,17 +2020,21 @@ Tells the node to send a keepalive packet to **address**:**port**
 
 **Request:**
 ```json
+
 {
   "action": "keepalive",
   "address": "::ffff:192.169.0.1",
   "port": "1024"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "started": "1"
 }
+
 ```
 
 ---
@@ -1840,17 +2044,21 @@ Generates an **adhoc random keypair**
 
 **Request:**
 ```json
+
 {
   "action": "key_create"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }
+
 ```  
 
 ---
@@ -1860,18 +2068,22 @@ Derive public key and account number from **private key**
 
 **Request:**
 ```json
+
 {
   "action": "key_expand",
   "key": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "private": "781186FB9EF17DB6E3D1056550D9FAE5D5BBADA6A6BC370E4CBB938B1DC71DA3",
   "public": "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039",
   "account": "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3sxwjym5rx"
 }
+
 ```  
 
 ---
@@ -1886,14 +2098,17 @@ Returns frontier, open block, change representative block, balance, last modifie
 
 **Request:**
 ```json
+
 {
   "action": "ledger",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": {
     "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {
@@ -1906,12 +2121,14 @@ Returns frontier, open block, change representative block, balance, last modifie
     }
   }
 }
+
 ```  
 **Optional "representative", "weight", "receivable"**  
 Booleans, false by default. Additionally returns representative, voting weight, receivable balance for each account   
 
 **Request:**
 ```json
+
 {
   "action": "ledger",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
@@ -1920,9 +2137,11 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "weight": "true",
   "receivable": "true"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": {
     "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {
@@ -1939,6 +2158,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
     }   
   }   
 }
+
 ```  
 **Optional "modified_since"**  
 _version 11.0+_   
@@ -1966,18 +2186,22 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
 
 **Request:**
 ```json
+
 {
   "action": "node_id"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "private": "2AD75C9DC20EA497E41722290C4DC966ECC4D6C75CAA4E447961F918FD73D8C7",
   "public": "78B11E1777B8E7DF9090004376C3EDE008E84680A497C0805F68CA5928626E1C",
   "as_account": "nano_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3",
   "node_id": "node_1y7j5rdqhg99uyab1145gu3yur1ax35a3b6qr417yt8cd6n86uiw3d4whty3"
 }
+
 ```  
 
 ---
@@ -1987,27 +2211,33 @@ Returns a list of pairs of online peer IPv6:port and its node protocol network v
 
 **Request:**
 ```json
+
 {
   "action": "peers"
 }
+
 ```  
  
 **Response version 8.0+:**
 ```json
+
 {
   "peers": {
     "[::ffff:172.17.0.1]:32841": "16"
   }
 }
+
 ```   
 
 **Response before version 8.0:**
 ```json
+
 {
   "peers": [
       "[::ffff:172.17.0.1]:32841"
   ]
 }
+
 ```   
 **Optional "peer_details"**
 
@@ -2023,10 +2253,12 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
   "action": "peers",
   "peer_details": "true"
 }
+
 ```
 
 **Response:**
 ```json
+
 {
   "peers": {
     "[::ffff:172.17.0.1]:7075": {
@@ -2036,6 +2268,7 @@ _version 20.0 will generate the node_id with `node_` prefix, earlier versions wi
     }
   }
 }
+
 ```
 
 ---
@@ -2048,15 +2281,19 @@ Scans all accounts, checks for unconfirmed blocks in account chains, and then qu
 
 **Request**
 ```json
+
 { 
   "action": "populate_backlog"   
 }
+
 ```
 **Response**
 ```json
+
 {
   "success": "" 
 }
+
 ```
 
 ---
@@ -2070,6 +2307,7 @@ Note: after v25.0, it is possible that the block processing queue can internally
 
 **Request:**
 ```json
+
 {
   "action": "process",
   "json_block": "true",
@@ -2086,12 +2324,15 @@ Note: after v25.0, it is possible that the block processing queue can internally
     "work": "000bc55b014e807d"
   }
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
 }
+
 ```
 **Optional "force"**  
 _version 13.1+_  
@@ -2129,17 +2370,21 @@ Returns a list of block hashes which have not yet been received by this account.
 
 **Request:**
 ```json
+
 {
   "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": [ "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F" ]
 }
+
 ```   
 **Optional "count"**  
 Number. Determines limit of number of blocks to return.
@@ -2150,20 +2395,24 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 
 **Request:**
 ```json
+
 {
   "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "threshold": "1000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks" : {
     "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": "6000000000000000000000000000000"
   }
 }
+
 ```  
 **Optional "source"**  
 _version 9.0+_   
@@ -2171,15 +2420,18 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 
 **Request:**
 ```json
+
 {
   "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "source": "true"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks" : {
     "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F": {
@@ -2188,6 +2440,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
     }
   }
 }
+
 ```  
 **Optional "include_active"**
 
@@ -2196,12 +2449,14 @@ Boolean, false by default. Include active blocks without finished confirmations
 
 **Request:**
 ```json
+
 {
   "action": "receivable",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda",
   "count": "1",
   "include_active": "true"
 }
+
 ```  
 
 **Optional "min_version"**
@@ -2233,16 +2488,20 @@ Check whether block is receivable by **hash**
 
 **Request:**
 ```json
+
 {
   "action": "receivable_exists",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "exists" : "1"
 }
+
 ```
 
 **Optional "include_active"**
@@ -2252,11 +2511,13 @@ Boolean, false by default. Include active blocks without finished confirmations
 
 **Request:**
 ```json
+
 {
   "action": "receivable_exists",
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "include_active": "true"
 }
+
 ```  
 
 **Optional "include_only_confirmed"**
@@ -2271,12 +2532,15 @@ Returns a list of pairs of representative and its voting weight
 
 **Request:**
 ```json
+
 {
   "action": "representatives"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "representatives": {
     "nano_1111111111111111111111111111111111111111111111111117353trpda": "3822372327060170000000000000000000000",
@@ -2284,6 +2548,7 @@ Returns a list of pairs of representative and its voting weight
     "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": "0"
   }
 }
+
 ```
 **Optional "count"**
 
@@ -2304,12 +2569,15 @@ Returns a list of online representative accounts that have voted recently
 
 **Request:**
 ```json
+
 {
   "action": "representatives_online"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "representatives": [
     "nano_1111111111111111111111111111111111111111111111111117353trpda",
@@ -2317,11 +2585,13 @@ Returns a list of online representative accounts that have voted recently
     "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi"
   ]
 }
+
 ```
 _versions 11.2–17.1_   
 Returns a list of pairs of online representative accounts that have voted recently and empty strings  
 **Response:**
 ```json
+
 {
   "representatives" : {
     "nano_1111111111111111111111111111111111111111111111111117353trpda": "",
@@ -2329,6 +2599,7 @@ Returns a list of pairs of online representative accounts that have voted recent
     "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": ""
   }
 }
+
 ```
 **Optional "weight"**
 
@@ -2336,6 +2607,7 @@ _version 17.0+_
 Boolean, false by default. Returns voting weight for each representative.  
 **Response:**
 ```json
+
 {
   "representatives": {
     "nano_114nk4rwjctu6n6tr6g6ps61g1w3hdpjxfas4xj1tq6i8jyomc5d858xr1xi": {
@@ -2343,6 +2615,7 @@ Boolean, false by default. Returns voting weight for each representative.
     }
   }
 }
+
 ```
 
 **Optional "accounts"**  
@@ -2350,18 +2623,22 @@ Array of accounts. Returned list is filtered for only these accounts.
 
 **Request:**
 ```json
+
 {
   "action": "representatives_online",
   "accounts": ["nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p", "nano_1111111111111111111111111111111111111111111111111117353trpda"]
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "representatives": [
     "nano_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p"
   ]
 }
+
 ```
 
 ---
@@ -2371,13 +2648,16 @@ Rebroadcast blocks starting at **hash** to the network
 
 **Request:**
 ```json
+
 {
   "action": "republish",
   "hash": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": "",
   "blocks": [
@@ -2385,6 +2665,7 @@ Rebroadcast blocks starting at **hash** to the network
     "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293"
   ]
 }
+
 ```   
 
 **Optional "sources"**
@@ -2394,15 +2675,18 @@ Boolean, false by default. Additionally rebroadcast source chain blocks for rece
 
 **Request:**
 ```json
+
 {
   "action": "republish",
   "hash": "90D0C16AC92DD35814E84BFBCC739A039615D0A42A76EF44ADAEF1D99E9F8A35",
   "count": "1",
   "sources": "2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": [
     "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
@@ -2410,6 +2694,7 @@ Boolean, false by default. Additionally rebroadcast source chain blocks for rece
     "90D0C16AC92DD35814E84BFBCC739A039615D0A42A76EF44ADAEF1D99E9F8A35"
   ]
 }
+
 ```   
 
 **Optional "destinations"**
@@ -2419,15 +2704,18 @@ Boolean, false by default. Additionally rebroadcast destination chain blocks fro
 
 **Request:**
 ```json
+
 {
   "action": "republish",
   "hash": "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293",
   "count": "1",
   "destinations": "2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": [
     "A170D51B94E00371ACE76E35AC81DC9405D5D04D4CEBC399AEACE07AE05DD293",
@@ -2435,6 +2723,7 @@ Boolean, false by default. Additionally rebroadcast destination chain blocks fro
     "18563C814A54535B7C12BF76A0E23291BA3769536634AB90AD0305776A533E8E"
   ]
 }
+
 ```   
 
 ---
@@ -2445,6 +2734,7 @@ Signing provided **block** with private **key** or key of **account** from **wal
 
 **Request with private key:**
 ```json
+
 {
   "action": "sign",
   "json_block": "true",
@@ -2461,10 +2751,12 @@ Signing provided **block** with private **key** or key of **account** from **wal
     "work": "000bc55b014e807d"
   }
 }
+
 ```
 
 **Request with account from wallet:**
 ```json
+
 {
   "action": "sign",
   "json_block": "true",
@@ -2482,9 +2774,11 @@ Signing provided **block** with private **key** or key of **account** from **wal
     "work": "000bc55b014e807d"
   }
 }
+
 ```
 **Response:**
 ```json
+
 {
   "signature": "2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D",
   "block": {
@@ -2499,6 +2793,7 @@ Signing provided **block** with private **key** or key of **account** from **wal
     "work": "000bc55b014e807d"
   }
 }
+
 ```
 
 **Optional "json_block"**
@@ -2512,16 +2807,20 @@ _Requires configuration changes. Set "rpc.enable_sign_hash" to "true"_
 
 **Request:**
 ```json
+
 {
   "action": "sign",
   "hash": "E2FB233EF4554077A7BF1AA85851D5BF0B36965D2B0FB504B2BC778AB89917D3"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "signature": "2A71F3877033F5966735F260E906BFCB7FA82CDD543BCD1224F180F85A96FC26CB3F0E4180E662332A0DFE4EE6A0F798A71C401011E635604E532383EC08C70D"
 }
+
 ```  
 
 ---
@@ -2532,14 +2831,17 @@ For configuration and other details, please see [Statistics from RPC](/running-a
 
 **Request counters:**
 ```json
+
 {
   "action": "stats",
   "type": "counters"
 }
+
 ```
 
 **Counters response:**
 ```json
+
 {
   "type": "counters",
   "created": "2018.03.29 01:46:36",
@@ -2561,20 +2863,24 @@ For configuration and other details, please see [Statistics from RPC](/running-a
     ...
   ]
 }
+
 ```
 
 _version 18.0+ also returns "stat_duration_seconds": the number of seconds since startup or since the last "stats_clear" call_
 
 **Request samples:**
 ```json
+
 {
   "action": "stats",
   "type": "samples"
 }
+
 ```
 
 **Samples response:**
 ```json
+
 {
   "type": "samples",
   "created": "2018.03.29 01:47:08",
@@ -2596,20 +2902,24 @@ _version 18.0+ also returns "stat_duration_seconds": the number of seconds since
     ...
    ]
 }
+
 ```
 _version 18.0+_  
 NOTE: This call is for debug purposes only and is unstable as returned objects may be frequently changed.
 
 **Request objects:**
 ```json
+
 {
   "action": "stats",
   "type": "objects"
 }
+
 ```
 
 **Objects response:**
 ```json
+
 {
   "node": {
     "ledger": {
@@ -2631,6 +2941,7 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
     ...
   }
 }
+
 ```
 
 _version 22.0+_  
@@ -2638,15 +2949,18 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
 
 **Request database:**
 ```json
+
 {
   "action": "stats",
   "type": "database"
 }
+
 ```
 
 **Database response:**  
 **LMDB:**
 ```json
+
 {
     "branch_pages": "0",
     "depth": "1",
@@ -2655,9 +2969,11 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
     "overflow_pages": "0",
     "page_size": "4096"
 }
+
 ```
 **RocksDB:**  
 ```json
+
 {
     "cur-size-all-mem-tables": "74063072",
     "size-all-mem-tables": "487744504",
@@ -2670,6 +2986,7 @@ NOTE: This call is for debug purposes only and is unstable as returned objects m
     "block-cache-capacity": "318767104",
     "block-cache-usage": "150310696"
 }
+
 ```
 ---
 
@@ -2681,15 +2998,19 @@ Clears all collected statistics. The "stat_duration_seconds" value in the "stats
 
 **Request:**
 ```json
+
 {
   "action": "stats_clear"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```
 
 ---
@@ -2702,15 +3023,19 @@ Method to safely shutdown node
 
 **Request:**
 ```json
+
 {
   "action": "stop"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```  
 
 ---
@@ -2720,19 +3045,23 @@ Returns a list of block hashes in the account chain starting at **block** up to 
 
 **Request:**
 ```json
+
 {
   "action": "successors",
   "block": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks" : [
     "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948"
   ]
 }
+
 ```
 **Optional "offset"**
 
@@ -2752,12 +3081,15 @@ Return metrics from other nodes on the network. By default, returns a summarized
 [Networking - node telemetry](/protocol-design/networking#node-telemetry) contains more detailed information on the protocol implementation of telemetry.  
 **Request:**
 ```json
+
 {
   "action": "telemetry"
 }
+
 ```
 **Response:**
 ```json
+
 {
     "block_count": "214104509",
     "cemented_count": "214104509",
@@ -2783,6 +3115,7 @@ Return metrics from other nodes on the network. By default, returns a summarized
     "node_id": "node_3odec59q6i9qarh5txyrxmu3aqhfzm54mxoxgtumwpzyq6obxqktdzcxkfag",
     "signature": "067523993D0B4C07525DF4C5AA814FBCC40875F868C2A04A85AC288F75E152763196B7DCB11240921F6D8BA92E3E9F094D8F2F9D8B0970114CDAD48838372100"
 }
+
 ```
 
 This contains a summarized view of the network with 10% of lower/upper bound results removed to reduce the effect of outliers. Returned values are calculated as follows:
@@ -2816,14 +3149,17 @@ When setting raw to true metrics from all nodes are displayed. It additionally c
 
 **Request:**
 ```json
+
 {
   "action": "telemetry",
   "raw" : "true"
 }
+
 ```
 
 **Response:**
 ```json
+
 {
   "metrics": [
     {
@@ -2845,16 +3181,19 @@ When setting raw to true metrics from all nodes are displayed. It additionally c
     ...
   ]
 }
+
 ```
 
 **Optional "address" & "port"**  
 Get metrics from a specific peer. It accepts both ipv4 and ipv6 addresses
 ```json
+
 {
   "action": "telemetry",
   "address": "246.125.123.456",
   "port": "7075"
 }
+
 ```
 
 !!!tip "Requesting telemetry data from the local node"
@@ -2867,16 +3206,20 @@ Check whether **account** is a valid account number using checksum
 
 **Request:**
 ```json
+
 {
   "action": "validate_account_number",
   "account": "nano_1111111111111111111111111111111111111111111111111117353trpda"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "valid" : "1"
 }
+
 ```
 
 ---
@@ -2888,12 +3231,15 @@ _RPC Version always returns "1" as of 01/11/2018_
 
 **Request:**
 ```json
+
 {
   "action": "version"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "rpc_version": "1",
   "store_version": "14",
@@ -2904,6 +3250,7 @@ _RPC Version always returns "1" as of 01/11/2018_
   "network_identifier": "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948", // since v20.0
   "build_info": "Build Info <git hash> \"<compiler> version \" \"<compiler version string>\" \"BOOST <boost version>\" BUILT \"<build date>\"" // since v20.0
 }
+
 ```
 
 ---
@@ -2914,14 +3261,17 @@ Returns a list of pairs of unchecked block hashes and their json representation 
 
 **Request:**
 ```json
+
 {
   "action": "unchecked",
   "json_block": "true",
   "count": "1",
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": {
     "87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9": {
@@ -2937,6 +3287,7 @@ Returns a list of pairs of unchecked block hashes and their json representation 
     }
   }
 }
+
 ```
 
 ---
@@ -2949,15 +3300,19 @@ Clear unchecked synchronizing blocks
 
 **Request:**
 ```json
+
 {
     "action": "unchecked_clear"
 }
+
 ```  
 **Response:**
 ```json
+
 {
     "success": ""
 }
+
 ```  
 
 ---
@@ -2968,14 +3323,17 @@ Retrieves a json representation of unchecked synchronizing block by **hash**. Us
 
 **Request:**
 ```json
+
 {
   "action": "unchecked_get",
   "json_block": "true",
   "hash": "19BF0C268C2D9AED1A8C02E40961B67EA56B1681DE274CD0C50F3DD972F0655C"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "modified_timestamp": "1565856525",
   "contents": {
@@ -2990,6 +3348,7 @@ Retrieves a json representation of unchecked synchronizing block by **hash**. Us
     "work": "0dfb32653e189699"
   }
 }
+
 ```
 **Optional "json_block"**
 
@@ -3006,15 +3365,18 @@ Retrieves unchecked database keys, blocks hashes & a json representations of unc
 
 **Request:**
 ```json
+
 {
   "action": "unchecked_keys",
   "json_block": "true",
   "key": "19BF0C268C2D9AED1A8C02E40961B67EA56B1681DE274CD0C50F3DD972F0655C",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "unchecked": [
     {
@@ -3035,6 +3397,7 @@ Retrieves unchecked database keys, blocks hashes & a json representations of unc
     }
   ]
 }
+
 ```   
 
 **Optional "json_block"**
@@ -3054,20 +3417,24 @@ Returns the total receivable balance for unopened accounts in the local database
 
 **Request:**
 ```json
+
 {
   "action": "unopened",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
   "count": "1"
 }
+
 ```   
 
 **Response:**
 ```json 
+
 {
   "accounts": {
     "nano_1111111111111111111111111111111111111111111111111111hifc8npp": "207034077034226183413773082289554618448"
   }
 }
+
 ```   
 
 **Optional "threshold"**  
@@ -3081,15 +3448,19 @@ Return node uptime in seconds
 
 **Request:**
 ```json
+
 {
   "action": "uptime"
 }
+
 ```  
 **Response:**
 ```json
+
 {
     "seconds": "6000"
 }
+
 ```  
 
 ---
@@ -3102,16 +3473,20 @@ Stop generating **work** for block
 
 **Request:**
 ```json
+
 {
   "action": "work_cancel",
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```  
 
 ---
@@ -3124,19 +3499,23 @@ Generates **work** for block. **hash** is the frontier of the account or in the 
 
 **Request:**
 ```json
+
 {
   "action": "work_generate",
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "work": "2b3d689bbcb21dca",
   "difficulty": "fffffff93c41ec94", // of the resulting work
   "multiplier": "1.182623871097636", // since v19.0, calculated from default base difficulty
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2" // since v20.0
 }
+
 ```  
 
 **Optional "use_peers"**
@@ -3193,17 +3572,21 @@ Add specific **IP address** and **port** as work peer for node until restart
 
 **Request:**
 ```json
+
 {
   "action": "work_peer_add",
   "address": "::ffff:172.17.0.1",
   "port": "7076"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```  
 
 ---
@@ -3215,17 +3598,21 @@ _enable_control required, version 8.0+_
 
 **Request:**
 ```json
+
 {
   "action": "work_peers"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "work_peers": [
     "::ffff:172.17.0.1:7076"
   ]
 }
+
 ```  
 
 ---
@@ -3238,15 +3625,19 @@ Clear work peers node list until restart
 
 **Request:**
 ```json
+
 {
   "action": "work_peers_clear"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```  
 
 ---
@@ -3266,29 +3657,35 @@ Check whether **work** is valid for block. Provides two values: **valid_all** is
 
 **Request:**
 ```json
+
 {
   "action": "work_validate",
   "work": "2bf29ef00786a6bc",
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
+
 ```  
 **Response since v21.0:**
 ```json
+
 {
   "valid_all": "1",
   "valid_receive": "1",
   "difficulty": "fffffff93c41ec94",
   "multiplier": "1.182623871097636" // calculated from the default base difficulty
 }
+
 ```
 
 ??? abstract "Response up to v20.0"
     ```json
+
     {
       "valid": "1",
       "difficulty": "fffffff93c41ec94", // since v19.0
       "multiplier": "9.4609" // since v19.0
     }
+
     ```
 
 **Optional "difficulty"**
@@ -3298,15 +3695,18 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
 
 **Request with given "difficulty"**  
 ```json
+
 {
   "action": "work_validate",
   "difficulty": "ffffffffffffffff",
   "work": "2bf29ef00786a6bc",
   "hash": "718CC2121C3E641059BC1C2CFC45666C99E8AE922F7A807B7D07B62C995D79E2"
 }
+
 ```
 **Response with given "difficulty:**
 ```json
+
 {
   "valid": "0",
   "valid_all": "1", // since v21.0
@@ -3314,6 +3714,7 @@ Difficulty value (16 hexadecimal digits string, 64 bit). Uses **difficulty** val
   "difficulty": "fffffff93c41ec94",
   "multiplier": "1.182623871097636"
 }
+
 ```
 
 **Optional "multiplier"**
@@ -3344,17 +3745,21 @@ Creates a new account, insert next deterministic key in **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "account_create",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
   
 **Response:**
 ```json
+
 {
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```
 **Optional "index"**
 
@@ -3363,11 +3768,13 @@ unset by default. Indicates which index to create account for starting with 0
 
 **Request:**
 ```json
+
 {
   "action": "account_create",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "index": "1"
 }
+
 ```
 
 **Optional "work"**
@@ -3377,11 +3784,13 @@ Boolean, true by default. Setting false disables work generation after creating 
 
 **Request:**
 ```json
+
 {
   "action": "account_create",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "work": "false"
 }
+
 ```
 
 ---
@@ -3391,18 +3800,22 @@ Lists all the accounts inside **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "account_list",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": [
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
   ]
 }
+
 ```
 
 ---
@@ -3415,6 +3828,7 @@ Moves **accounts** from **source** to **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "account_move",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -3423,12 +3837,15 @@ Moves **accounts** from **source** to **wallet**
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
   ]
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "moved" : "1"
 }
+
 ```
 
 ---
@@ -3441,17 +3858,21 @@ Remove **account** from **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "account_remove",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "removed": "1"
 }
+
 ```
 
 ---
@@ -3464,18 +3885,22 @@ Sets the representative for **account** in **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "account_representative_set",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_39a73oy5ungrhxy5z5oao1xso4zo7dmgpjd4u74xcrx3r1w6rtazuouw6qfi",
   "representative": "nano_16u1uufyoig8777y6r8iqjtrw8sg8maqrm36zzcm95jmbd9i9aj5i8abr8u5"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
 **Optional "work"**
 
@@ -3492,20 +3917,24 @@ Creates new accounts, insert next deterministic keys in **wallet** up to **count
 
 **Request:**
 ```json
+
 {
   "action": "accounts_create",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": [
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
     "nano_1e5aqegc1jb7qe964u4adzmcezyo6o146zb8hm6dft8tkp79za3s00000000"
   ]
 }
+
 ```
 **Optional enabling work generation**  
 _version 11.2+_  
@@ -3513,12 +3942,14 @@ Boolean, false by default. Enables work generation after creating accounts
 
 **Request:**
 ```json
+
 {
   "action": "accounts_create",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "2",
   "work": "true"
 }
+
 ```  
 ***Note:*** Before version 11.2 work generation was enabled by default, if you want to disable work generation for previous versions, use "work": "false"
 
@@ -3537,17 +3968,21 @@ Changes the password for **wallet** to **password**
 
 **Request:**
 ```json
+
 {
   "action": "password_change",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "password": "test"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "changed" : "1"
 }
+
 ```
 
 ---
@@ -3557,17 +3992,21 @@ Enters the **password** in to **wallet** to unlock it
 
 **Request:**
 ```json
+
 {
   "action": "password_enter",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "password": "test"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "valid": "1"
 }
+
 ```
 
 ---
@@ -3577,16 +4016,20 @@ Checks whether the password entered for **wallet** is valid
 
 **Request:**
 ```json
+
 {
   "action": "password_valid",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "valid" : "1"
 }
+
 ```
 
 ---
@@ -3599,18 +4042,22 @@ Receive receivable **block** for **account** in **wallet**. If receiving the blo
 
 **Request:**
 ```json
+
 {
   "action": "receive",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "block": "53EAA25CE28FA0E6D55EA9704B32604A736966255948594D55CBB05267CECD48"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "block": "EE5286AB32F580AB65FD84A69E107C69FBEB571DEC4D99297E19E3FA5529547B"
 }
+
 ```
 **Optional "work"**
 
@@ -3627,15 +4074,19 @@ Returns receive minimum for node wallet
 
 **Request:**
 ```json
+
 {
   "action": "receive_minimum"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1000000000000000000000000"
 }
+
 ```
 
 ---
@@ -3648,16 +4099,20 @@ Set **amount** as new receive minimum for node wallet until restart
 
 **Request:**
 ```json
+
 {
   "action": "receive_minimum_set",
   "amount": "1000000000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""
 }
+
 ```
 
 ---
@@ -3679,16 +4134,20 @@ Tells the node to look for receivable blocks for any account in **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "search_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "started": "1"
 }
+
 ```
 ---
 
@@ -3709,15 +4168,19 @@ Tells the node to look for receivable blocks for any account in all available wa
 
 **Request:**
 ```json
+
 {
   "action": "search_receivable_all"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success": ""  
 }
+
 ```
 
 ---
@@ -3733,6 +4196,7 @@ Send **amount** from **source** in **wallet** to **destination**
 
 **Request:**
 ```json
+
 {
   "action": "send",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -3741,12 +4205,15 @@ Send **amount** from **source** in **wallet** to **destination**
   "amount": "1000000",
   "id": "your-unique-id"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
 Proof of Work is precomputed for **one** transaction in the background when you are using the node wallet to track accounts.  If it has been a while since your last transaction it will send instantly, the next one will need to wait for Proof of Work to be generated.
 
@@ -3765,6 +4232,7 @@ Using the same id for requests with different parameters (wallet, source, destin
 
 **Request:**
 ```json
+
 {
   "action": "send",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -3773,12 +4241,15 @@ Using the same id for requests with different parameters (wallet, source, destin
   "amount": "1000000",
   "id": "7081e2b8fec9146e"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "block": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
 
 Sending the request again will yield the same block, and will not affect the ledger.
@@ -3790,6 +4261,7 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
 
 **Request:**
 ```json
+
 {
   "action": "send",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -3798,6 +4270,7 @@ Work value (16 hexadecimal digits string, 64 bit). Uses **work** value for block
   "amount": "1000000",
   "work": "2bf29ef00786a6bc"
 }
+
 ```  
 
 ---
@@ -3815,17 +4288,21 @@ Add an adhoc private key **key** to **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_add",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "key": "34F0A37AAD20F4A260F0A5B3CB3D7FB50673212263E58A380BC10474BB039CE4"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```
 **Optional disabling work generation**
 
@@ -3834,12 +4311,14 @@ Boolean, false by default. Disables work generation after adding account
 
 **Request:**
 ```json
+
 {
   "action": "wallet_add",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "key": "34F0A37AAD20F4A260F0A5B3CB3D7FB50673212263E58A380BC10474BB039CE4",
   "work": "false"
 }
+
 ```  
 
 ---
@@ -3852,6 +4331,7 @@ Add watch-only **accounts** to **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_add_watch",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -3860,12 +4340,15 @@ Add watch-only **accounts** to **wallet**
     "nano_111111111111111111111111111111111111111111111111111000000000"
   ]
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success" : ""
 }
+
 ```
 
 ---
@@ -3879,13 +4362,16 @@ Returns how many raw is owned and how many have not yet been received by all acc
 
 **Request:**
 ```json
+
 {
   "action": "wallet_balances",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "balances" : {
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {
@@ -3895,6 +4381,7 @@ Returns how many raw is owned and how many have not yet been received by all acc
     }
   }
 }
+
 ```
 **Optional "threshold"**
 
@@ -3912,19 +4399,23 @@ Changes seed for **wallet** to **seed**.  ***Notes:*** Clear all deterministic a
 
 **Request:**
 ```json
+
 {
   "action": "wallet_change_seed",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "seed": "74F2B37AAD20F4A260F0A5B3CB3D7FB51673212263E58A380BC10474BB039CEE"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "success" : "",
   "last_restored_account": "nano_1mhdfre3zczr86mp44jd3xft1g1jg66jwkjtjqixmh6eajfexxti7nxcot9c",
   "restored_count": "1"
 }
+
 ```
 
 **Optional "count"**
@@ -3939,17 +4430,21 @@ Check whether **wallet** contains **account**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_contains",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "exists": "1"
 }
+
 ```
 
 ---
@@ -3962,15 +4457,19 @@ Creates a new random wallet id
 
 **Request:**
 ```json
+
 {
   "action": "wallet_create"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
 **Optional "seed"**
 
@@ -3987,16 +4486,20 @@ Destroys **wallet** and all contained accounts
 
 **Request:**
 ```json
+
 {
   "action": "wallet_destroy",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "destroyed": "1"
 }
+
 ```
 
 ---
@@ -4006,16 +4509,20 @@ Return a json representation of **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_export",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "json" : "{\"0000000000000000000000000000000000000000000000000000000000000000\": \"0000000000000000000000000000000000000000000000000000000000000001\"}"
 }
+
 ```
 
 ---
@@ -4025,18 +4532,22 @@ Returns a list of pairs of account and block hash representing the head block st
 
 **Request:**
 ```json
+
 {
   "action": "wallet_frontiers",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "frontiers": {
     "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
   }
 }
+
 ```
 
 ---
@@ -4049,13 +4560,16 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
 
 **Request:**
 ```json
+
 {
   "action": "wallet_history",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "history":
   [
@@ -4077,6 +4591,7 @@ Reports send/receive information for accounts in wallet. Change blocks are skipp
     }
   ]
 }
+
 ```
 **Optional "modified_since"**
 
@@ -4102,13 +4617,16 @@ Given a **wallet** id, from all of the accounts in the wallet, returns:
 
 **Request:**
 ```json
+
 {
   "action": "wallet_info",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "balance": "10000",
   "pending": "10000",
@@ -4120,6 +4638,7 @@ Given a **wallet** id, from all of the accounts in the wallet, returns:
   "accounts_block_count": "14",
   "accounts_cemented_block_count": "13"
 }
+
 ```
 
 ---
@@ -4136,13 +4655,16 @@ Returns frontier, open block, change representative block, balance, last modifie
 
 **Request:**
 ```json
+
 {
   "action": "wallet_ledger",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": {
     "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {
@@ -4155,6 +4677,7 @@ Returns frontier, open block, change representative block, balance, last modifie
     }
   }
 }
+
 ```  
 **Optional "representative", "weight", "receivable"**
 
@@ -4162,6 +4685,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
 
 **Request:**
 ```json
+
 {
   "action": "wallet_ledger",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
@@ -4169,9 +4693,11 @@ Booleans, false by default. Additionally returns representative, voting weight, 
   "weight": "true",
   "receivable": "true"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "accounts": {
     "nano_11119gbh8hb4hj1duf7fdtfyf5s75okzxdgupgpgm1bj78ex3kgy7frt3s9n": {
@@ -4188,6 +4714,7 @@ Booleans, false by default. Additionally returns representative, voting weight, 
     }
   }
 }
+
 ```  
 **Optional "modified_since"**
 
@@ -4203,16 +4730,20 @@ Locks **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_lock",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "locked": "1"
 }
+
 ```
 
 ---
@@ -4222,16 +4753,20 @@ Checks whether **wallet** is locked
 
 **Request:**
 ```json
+
 {
   "action": "wallet_locked",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "locked": "0"
 }
+
 ```
 ---
 
@@ -4252,20 +4787,24 @@ Returns a list of block hashes which have not yet been received by accounts in t
 
 **Request:**
 ```json
+
 {
   "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": {
     "nano_1111111111111111111111111111111111111111111111111117353trpda": ["142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D"],
     "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": ["4C1FEEF0BEA7F50BE35489A1233FE002B212DEA554B55B1B470D78BD8F210C74"]
   }
 }
+
 ```  
 **Optional "threshold"**
 
@@ -4273,15 +4812,18 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
 
 **Request:**
 ```json
+
 {
   "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "threshold": "1000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": {
     "nano_1111111111111111111111111111111111111111111111111117353trpda": {
@@ -4292,6 +4834,7 @@ Number (128 bit, decimal). Returns a list of receivable block hashes with amount
     }
   }
 }
+
 ```  
 **Optional "source"**
 
@@ -4300,15 +4843,18 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
 
 **Request:**
 ```json
+
 {
   "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "source": "true"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": {
     "nano_1111111111111111111111111111111111111111111111111117353trpda": {
@@ -4325,6 +4871,7 @@ Boolean, false by default. Returns a list of receivable block hashes with amount
     }
   }
 }
+
 ```  
 **Optional "include_active"**
 
@@ -4333,12 +4880,14 @@ Boolean, false by default. Include active blocks without finished confirmations
 
 **Request:**
 ```json
+
 {
   "action": "wallet_receivable",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "1",
   "include_active": "true"
 }
+
 ```  
 
 **Optional "min_version"**
@@ -4358,16 +4907,20 @@ Returns the default representative for **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_representative",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "representative": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```
 
 ---
@@ -4380,17 +4933,21 @@ Sets the default **representative** for **wallet** _(used only for new accounts,
 
 **Request:**
 ```json
+
 {
   "action": "wallet_representative_set",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "representative": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "set": "1"
 }
+
 ```
 
 **Optional "update_existing_accounts"**
@@ -4408,14 +4965,17 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
 
 **Request:**
 ```json
+
 {
   "action": "wallet_republish",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "count": "2"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "blocks": [
     "991CF190094C00F0B68E2E5F75F6BEE95A2E0BD93CEAA4A6734DB9F19B728948",
@@ -4423,6 +4983,7 @@ Rebroadcast blocks for accounts from **wallet** starting at frontier down to **c
     "90D0C16AC92DD35814E84BFBCC739A039615D0A42A76EF44ADAEF1D99E9F8A35"
   ]       
 }
+
 ```   
 
 ---
@@ -4435,18 +4996,22 @@ Returns a list of pairs of account and work from **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "wallet_work_get",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "works": {
     "nano_1111111111111111111111111111111111111111111111111111hifc8npp": "432e5cf728c90f4f"
   }
 }
+
 ```  
 
 ---
@@ -4459,17 +5024,21 @@ Retrieves work for **account** in **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "work_get",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "work": "432e5cf728c90f4f"
 }
+
 ```  
 
 ---
@@ -4482,18 +5051,22 @@ Set **work** for **account** in **wallet**
 
 **Request:**
 ```json
+
 {
   "action": "work_set",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F",
   "account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
   "work": "0000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
     "success": ""
 }
+
 ```  
 
 ---
@@ -4507,16 +5080,20 @@ Convert `nano` amount (10^30 raw) into `raw` (10^0)
 
 **Request:**
 ```json
+
 {
   "action": "nano_to_raw",
   "amount": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1000000000000000000000000000000"
 }
+
 ```
 
 ### raw_to_nano    
@@ -4524,16 +5101,20 @@ Convert `raw` amount (10^0) into `nano` (10^30 raw)
 
 **Request:**
 ```json
+
 {
   "action": "raw_to_nano",
   "amount": "1000000000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1"
 }
+
 ```
 
 ---
@@ -4562,13 +5143,16 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) and related
 
 **Request:**
 ```json
+
 {
   "action": "active_difficulty"
 }
+
 ```  
 
 **Response:**
 ```json
+
 {
     "deprecated": "1",
     "network_minimum": "fffffff800000000",
@@ -4577,6 +5161,7 @@ Returns the difficulty values (16 hexadecimal digits string, 64 bit) and related
     "network_receive_current": "fffffe0000000000", // since V21.2
     "multiplier": "1"
 }
+
 ```
 
 **Optional "include_trend"**
@@ -4586,14 +5171,17 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
 
 **Request:**
 ```json
+
 {
   "action": "active_difficulty",
   "include_trend": "true"
 }
+
 ```
 
 **Response:**
 ```json
+
 {
   ...,
   "difficulty_trend": [
@@ -4605,6 +5193,7 @@ Note: Before v20, the sampling period was between 16 and 36 seconds.
     "1.000000000000000"
   ]
 }
+
 ```
 
 ---
@@ -4629,16 +5218,20 @@ Divide a raw amount down by the krai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "krai_from_raw",
   "amount": "1000000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1"
 }
+
 ```
 
 ---
@@ -4651,16 +5244,20 @@ Multiply an krai amount by the krai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "krai_to_raw",
   "amount": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1000000000000000000000000000"
 }
+
 ```
 
 ---
@@ -4673,16 +5270,20 @@ Divide a raw amount down by the Mrai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "mrai_from_raw",
   "amount": "1000000000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1"
 }
+
 ```
 
 ---
@@ -4695,16 +5296,20 @@ Multiply an Mrai amount by the Mrai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "mrai_to_raw",
   "amount": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1000000000000000000000000000000"
 }
+
 ```
 
 ---
@@ -4721,15 +5326,19 @@ Removing node ID (restart required to take effect)
 
 **Request:**
 ```json
+
 {
   "action": "node_id_delete"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "deprecated": "1"
 }
+
 ```  
 
 ---
@@ -4742,16 +5351,20 @@ Divide a raw amount down by the rai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "rai_from_raw",
   "amount": "1000000000000000000000000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1"
 }
+
 ```
 
 ---
@@ -4764,16 +5377,20 @@ Multiply an rai amount by the rai ratio.
 
 **Request:**
 ```json
+
 {
   "action": "rai_to_raw",
   "amount": "1"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "amount": "1000000000000000000000000"
 }
+
 ```
 
 ---
@@ -4804,15 +5421,19 @@ Returns the hash of the block which is having the confirmation height set for, e
 
 **Request:**
 ```json
+
 {
   "action": "confirmation_height_currently_processing"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "hash": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```
 
 ---
@@ -4822,12 +5443,15 @@ Reports the number of blocks in the ledger by type (send, receive, open, change,
 
 **Request:**
 ```json
+
 {
   "action": "block_count_type"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "send": "5016664",
   "receive": "4081228",
@@ -4837,6 +5461,7 @@ Reports the number of blocks in the ledger by type (send, receive, open, change,
   "state_v1": "10653709",
   "state": "14870246"
 }
+
 ```  
 
 ---
@@ -4846,16 +5471,20 @@ Begin a new payment session. Searches wallet for an account that's marked as ava
 
 **Request:**
 ```json
+
 {
   "action": "payment_begin",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "account" : "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000"
 }
+
 ```  
 
 ---
@@ -4865,16 +5494,20 @@ End a payment session.  Marks the account as available for use in a payment sess
 
 **Request:**
 ```json
+
 {
   "action": "payment_end",
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "wallet": "FFFD1BAEC8EC20814BBB9059B393051AAA8380F9B5A2E6B2489A277D81789EEE"
 }
+
 ```  
 **Response:**
 ```json
+
 {
 }
+
 ```   
 
 ---
@@ -4884,16 +5517,20 @@ Marks all accounts in wallet as available for being used as a payment session.
 
 **Request:**
 ```json
+
 {
   "action": "payment_init",
   "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "status": "Ready"
 }
+
 ```  
 
 ---
@@ -4903,17 +5540,21 @@ Wait for payment of 'amount' to arrive in 'account' or until 'timeout' milliseco
 
 **Request:**
 ```json
+
 {
   "action": "payment_wait",
   "account": "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
   "amount": "1",
   "timeout": "1000"
 }
+
 ```  
 **Response:**
 ```json
+
 {
   "deprecated": "1",
   "status" : "success"
 }
-```  
+
+```

@@ -17,7 +17,6 @@ description: Explore how work generation and management has been implemented in 
 
 ---
 
-
 Existing whitepaper sections related to this page:
 
 * [Implementation](../whitepaper/english.md#implementation)

@@ -82,11 +82,13 @@ The RPC gateway automatically translates between Flatbuffers and JSON messages o
 	The examples below assumes the node is compiled with TLS support. If not, replace https with http. If using TLS with a self-signed certificate, add --insecure to curl commands.
 
 ### Making calls without a message envelope
+
 A message envelope is a way to tell the server which message type is sent, as well as other information such as credentials.
 
 For HTTP clients, it's convenient to send messages _without_ an envelope. They do so by appending the message name (using uppercase CamelCase) to the path:
 
 `POST` to https://www.example.com:7076/api/v2/AccountWeight
+
 ```
 {
     "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"
@@ -139,6 +141,7 @@ The correlation header is Nano-Correlation-Id, which can be an arbitrary string.
 If the message name is missing from the path, an envelope will be expected which tells the node about the message type.
 
 `POST` to https://www.example.com:7076/api/v2
+
 ```json
 { 
     "message_type" : "AccountWeight", 
@@ -231,6 +234,7 @@ curl --header "Nano-Api-Key:mywalletuser" --insecure -d \
    '{ "account": "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3"}' \
    https://www.example.com:7076/api/v2/AccountWeight
 ```
+
 This uses HTTPS (which the node supports through a build option), and the `--insecure` is there because the node's certificate in this example is self-signed.
 
 Using an envelope instead of the `AccountWeight` endpoint:

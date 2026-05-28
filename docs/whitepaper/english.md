@@ -386,6 +386,7 @@ change {
    signature: 83B0...006433265C7B204
 }
 ```
+
 ### Forks and Voting
 
 A fork occurs when $j$ signed blocks $b_1, b_2, \dots, b_j$ claim the

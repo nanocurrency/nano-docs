@@ -10,12 +10,14 @@ description: All about the methods for signing messages, hashing data and derivi
 ED25519 is an elliptic curve algorithm developed in an academic setting with a focus on security from side channel attack, performance, and fixing a lot of the little annoyances in most elliptic curve systems[^1]. However, it should be noted that instead of using SHA-512 in the key derivation function, Nano uses Blake2b-512.
 
 !!! failure "Incorrect, SHA-512 has been used"
+
   ```
   0000000000000000000000000000000000000000000000000000000000000000 ->
   3B6A27BCCEB6A42D62A3A8D02A6F0D73653215771DE243A63AC048A18B59DA29
   ```
 
 !!! success "Correct, Blake2b-512 digested the seed"
+
   ```
   0000000000000000000000000000000000000000000000000000000000000000 ->
   19D3D919475DEED4696B5D13018151D1AF88B2BD3BCFF048B45031C1F36D1858

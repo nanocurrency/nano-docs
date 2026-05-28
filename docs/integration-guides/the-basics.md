@@ -12,7 +12,6 @@ Action  | Description
 Send    | Send funds from users account to another account
 Receive | Receive funds from a given "Send" transaction
 
-
 The system is akin to writing (send) and cashing (receive) a Cashier's Check.  There are a few things to consider about transactions:
 
 * The receiving account does not have to be online during the Send transaction.
@@ -45,6 +44,7 @@ When dealing with the various IDs in the node it is important to understand the 
     There are several things that can have a similar form but may have very different functions, and mixing them up can result in loss of funds. Use caution when handling them.
 
 ### Wallet ID
+
 This is a series of 32 random bytes of data and is **not the seed**. It is used in several RPC actions and command line options for the node. It is a **purely local** UUID that is a reference to a block of data about a specific wallet (set of seed/private keys/info about them) in your node's local database file.
 
 The reason this is necessary is because we want to store information about each account in a wallet: whether it's been used, what its account is so we don't have to generate it every time, its balance, etc. Also, so we can hold ad hoc accounts, which are accounts that are not derived from the seed. This identifier is only useful in conjunction with your node's database file and **it will not recover funds if that database is lost or corrupted**. 
@@ -52,6 +52,7 @@ The reason this is necessary is because we want to store information about each 
 This is the value that you get back when using the `wallet_create` etc RPC commands, and what the node expects for RPC commands with a `"wallet"` field as input.
 
 ### Seed
+
 This is a series of 32 random bytes of data, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). This value is used to derive **account private keys** for accounts by combining it with an index and then putting that into the following hash function where `||` means concatenation and `i` is a 32-bit big-endian unsigned integer: `PrivK[i] = blake2b(outLen = 32, input = seed || i)`
 
 Private keys are derived **deterministically** from the seed, which means that as long as you put the same seed and index into the derivation function, you will get the same resulting private key every time. Therefore, knowing just the seed allows you to be able to access all the derived private keys from index 0 to $2^{32} - 1$ (because the index value is a unsigned 32-bit integer).
@@ -81,6 +82,7 @@ It should be noted that Nano reference wallet is using described Blake2b private
 === "Bitcoinjs"
 
 	Mnemonic words for Blake2b Nano seed using [Bitcoinjs](https://github.com/bitcoinjs/bip39):
+
 	```js
 	const bip39 = require('bip39')
 	
@@ -91,14 +93,16 @@ It should be noted that Nano reference wallet is using described Blake2b private
 	// => '0000000000000000000000000000000000000000000000000000000000000001'
 	```
 
-
 ### Account private key
+
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string(0-9A-F). It can either be random (an *ad-hoc key*) or derived from a seed, as described above. This is what represents control of a specific account on the ledger. If you know or can know the private key of someone's account, you can transact as if you own that account.
 
 ### Account public key
+
 This is also a 32 byte value, usually represented as a 64 character, uppercase hexadecimal string (0-9A-F). It is derived from an *account private key* by using the ED25519 curve using Blake2b-512 as the hash function (instead of SHA-512). Usually account public keys will not be passed around in this form, rather the below address is used.
 
 ### Account public address
+
 This is what you think of as someone's Nano address: it's a string that starts with `nano_` (previously `xrb_`), then has 52 characters which are the *account public key* but encoded with a specific base32 encoding algorithm to prevent human transcription errors by limiting ambiguity between different characters (no `O` and `0` for example). Then the final 8 characters are Blake2b-40 checksum of the account public key to aid in discovering typos, also encoded with the same base32 scheme (5 bytes).
 
 So for address `nano_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs`:
@@ -142,6 +146,7 @@ If an account balance decreases, the transaction that caused the decrease is con
     Because final balances are recorded rather than transaction amounts, API calls must be done carefully to avoid sending erroneous amounts.
 
 ### Block Format
+
 Because each block contains the current state of the account, the `"type"` of the block is always `"state"`. The following table presents the anatomy of a block, along with the format used within RPC calls for building blocks, and the serialized, binary representation:
 
 | Key            | RPC Format              | Serialized | Description |
@@ -166,6 +171,7 @@ Depending on the action each transaction intends to perform, the `"link"` field 
  If using the [block_create](/commands/rpc-protocol#block_create) RPC command the optional fields `"source"` (with the block hash to be received) and `"destination"` (with the target `nano_` address) fields can be used instead of directly defining the `"link"` field.
 
 !!! note
+
     * Any transaction may also simultaneously change the representative. The above description of the "Change" action is for creating a block with an explicit representative change where no funds are transferred (balance is not changed).
     * In the completed, signed transaction json, the `"link"` field is **always** hexadecimal.
     * The first block on an account must be receiving funds (cannot be an explicit representative change). The first block is often referred to as "opening the account".
@@ -243,6 +249,7 @@ Change to representative with label and message
     nanoseed:<encoded seed>[?][label=<label>][&][message=<message>][&][lastindex=<index>]
 
 ### Process a JSON blob block
+
 (to be sent as the `block` argument to the RPC call `process`)
 
     nanoblock:<blob>

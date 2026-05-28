@@ -52,6 +52,7 @@ This difference in transaction structures means the terminology used can have di
   "work": "cab7404f0b5449d0"
 }
 ```
+
 _Figure 2 - An example Nano block with all required fields_
 
 Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.

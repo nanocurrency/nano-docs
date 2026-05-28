@@ -3,6 +3,7 @@ description: Reference for the CLI commands available for the nano node
 
 # Command Line Interface
 ## nano_node commands
+
 | Command | Description |
 |---------|-------------|      
 | `--account_create --wallet=<wallet>` | Insert next deterministic key into `<wallet>` |
@@ -41,11 +42,13 @@ description: Reference for the CLI commands available for the nano node
 | `--wallet_representative_set`<br>`--wallet=<wallet>`<br>&nbsp;&nbsp;`--account=<account>` | Set `<account>` as default representative for `<wallet>`. |
 
 ## Launch Options
+
 The node is typically run like this:
 
 ```bash
 ./nano_node --daemon [--launch_options]
 ```
+
 !!! note "Intended for developer use"
 	These options are only for developer use so please understand the impacts before use.
 
@@ -88,6 +91,7 @@ The node is typically run like this:
 | `--disable_wallet_bootstrap` | Turn off use of wallet-based bootstrap. |
 
 ## Debug commands
+
 | Command | Description |
 |---------|-------------|
 | `--debug_account_count` | Display the number of accounts. |

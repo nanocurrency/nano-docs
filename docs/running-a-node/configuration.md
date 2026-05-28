@@ -205,9 +205,11 @@ For backwards compatibility this is also supported in _v22_+
 As of _V20.0_ the sample TOML packaged with the binaries and available for [generation via the command line](#configuration-file-locations) are commented out with descriptions of each option. Where applicable the following integration areas have those options included along with additional context where necessary.
 
 ### Work generation
+
 See the [Work Generation guide](../integration-guides/work-generation.md#node-configuration).
 
 ### WebSockets
+
 See the [WebSockets Integration guide](../integration-guides/websockets.md#configuration).
 
 ### RPC
@@ -215,6 +217,7 @@ See the [WebSockets Integration guide](../integration-guides/websockets.md#confi
 --8<-- "config-node-option-rpc-enable-true.md"
 
 #### enable_control
+
 This configuration option is set in the [`config-rpc.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
 
 Due to their sensitive or dangerous nature, certain RPC calls/options require this setting to be enabled before they can be used. Examples of RPC calls that require this include:
@@ -237,15 +240,19 @@ enable_control = false
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
 ### IPC
+
 See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
 
 ### Voting
+
 See the [Voting as a Representative guide](voting-as-a-representative.md).
 
 ### Ledger backends
+
 See the [Ledger Management guide](ledger-management.md).
 
 ### HTTPS support
+
 Support for TLS is deprecated from V27.
 Secure RPC/Websockets can be achieved by using a reverse proxy.
 

@@ -66,9 +66,11 @@ To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be 
 Before using this method there are a few considerations to ensure it is done safely:
 
 ### Data source
+
 Make sure you trust the source providing the data to you. If you are unfamiliar with the individual or organization providing the ledger, consider other options for the data or fallback to the default of [bootstrapping](#bootstrapping) from the network.
 
 ### Validating blocks and voting weights
+
 Blocks are confirmed using the voting weight of representatives and these weights are determined by the account balances assigned to those representatives. In addition, the node releases contain a hard-coded set of representative weights captured at the time of the node release to help this process during bootstrapping.
 
 If looking to use a downloaded ledger there is a risk of it providing inaccurate representative voting weights. Although the potential impacts of this are minimal, below are some recommended steps to take which can help provide additional confidence the ledger can be used.
@@ -79,6 +81,7 @@ If looking to use a downloaded ledger there is a risk of it providing inaccurate
 If you need support with this process or need help in evaluating some of the CLI command results, join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
 
 ### Confirmation data
+
 Within each account on the ledger a confirmation height is set. This indicates the height of the last block on that chain where quorum was observed on the network. This is set locally by the node and a new ledger file may include this information with it. If the ledger is from a trusted source this confirmation data can be kept, which will save bandwidth and resources on the network by not querying for votes to verify these confirmations.
 
 If confirmation data for the ledger is not trusted the [--confirmation_height_clear](/commands/command-line-interface/#-confirmation_height_clear) CLI can be used to clear these out.
@@ -125,6 +128,7 @@ The node ledger currently uses LMDB (Lightning memory-mapped database) by defaul
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
 
 ### Enable RocksDB
+
 This can be enabled by adding the following to the `config-node.toml` file:
 
 ```
@@ -133,13 +137,16 @@ enable = true
 ```
 
 The other options are:
+
 ```
 io_threads = 4
 memory_multiplier = 2
 ```
+
 It shouldn't be necessary to update these variables manually. See TOML comments in the generated file for more information on what these do.
 
 ### Migrating existing ledger from LMDB to RocksDB
+
 An existing LMDB ledger can be upgraded by running the [--migrate_database_lmdb_to_rocksdb](/commands/command-line-interface/#-migrate_database_lmdb_to_rocksdb) CLI command. This process can take some time, estimates range from 20 minutes to 1 hour depending on node hardware specs. There are some internal checks which are made to determine if the migration was successful, however it is recommended to run the node first (after [enabling RocksDB](#enable-rocksdb)) for a period of time to make sure things are working as expected. After which the `data.ldb` file can be deleted if no longer required to save on disk space. Please also note the [limitations](#rocksdb-limitations) most notably is that the `unchecked_count` from the `block_count` RPC will only be an estimate.
 
 Ledger backend comparison:

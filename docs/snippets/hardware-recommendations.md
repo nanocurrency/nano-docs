@@ -1,4 +1,5 @@
 ### Principal Representative Nodes
+
 The following are minimum recommended specifications for nodes with more than 0.1% of the online voting weight ([Principal Representatives](../glossary.md#principal-representative)):
 
 * 16GB RAM
@@ -7,6 +8,7 @@ The following are minimum recommended specifications for nodes with more than 0.
 * SSD-based hard drive with 400GB+ of free space
 
 ### Non-voting and Representative Nodes
+
 The following are minimum recommended specifications for non-voting nodes and Representative nodes with less than 0.1% of the online voting weight (regular [Representatives](../glossary.md#representative)):
 
 * 8GB RAM

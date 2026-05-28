@@ -6,9 +6,11 @@ description: Learn best practices for private key management for the nano protoc
 ## Seeds
 
 ### Hex Seed
+
 Nano's private key(s) have been traditionally derived from a 64 character, uppercase hexadecimal string (0-9A-F). This is currently the more popular form of seed supported by a variety of services and wallets. Additional details available in [The Basics guide](/integration-guides/the-basics/#seed).
 
 ### Mnemonic Seed
+
 Wallets that provide mnemonic seeds should use the [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) standard word list and methods for generating the seed. When BIP32 master keys are generated from the seed, the HMAC hash key variation "ed25519 seed" should be used due to nano using [ed25519 for the signing algorithm](../protocol-design/signing-hashing-and-key-derivation.md#signing-algorithm-ed25519) (see [SLIP-0010](https://github.com/satoshilabs/slips/blob/master/slip-0010.md)).
 
 A non-standard derivation path is used for nano in the [Ledger Nano implementation](https://github.com/LedgerHQ/app-nano), as well as other popular wallets. With a coin-type of `165'` (`0x800000a5`), this is a partial BIP44 path of `m/44'/165'/[address index]`. Only hardened paths are defined.
@@ -36,11 +38,15 @@ https://github.com/numsu/nanocurrency-web-js
 ```
 edge defense waste choose enrich upon flee junk siren film clown finish luggage leader kid quick brick print evidence swap drill paddle truly occur
 ```
+
 Given Passphrase:
+
 ```
 some password
 ```
+
 Derived BIP39 Seed:
+
 ```
 0dc285fde768f7ff29b66ce7252d56ed92fe003b605907f7a4f683c3dc8586d34a914d3c71fc099bb38ee4a59e5b081a3497b7a323e90cc68f67b5837690310c
 ```
@@ -48,14 +54,19 @@ Derived BIP39 Seed:
 ??? success "Index 0 (`44'/165'/0'`)"
 
     Derived Private Key:
+
     ```
     3be4fc2ef3f3b7374e6fc4fb6e7bb153f8a2998b3b3dab50853eabe128024143
     ```
+
     Derived Public key:
+
     ```
     5b65b0e8173ee0802c2c3e6c9080d1a16b06de1176c938a924f58670904e82c4
     ```
+
     Derived Address:
+
     ```
     nano_1pu7p5n3ghq1i1p4rhmek41f5add1uh34xpb94nkbxe8g4a6x1p69emk8y1d
     ```
@@ -63,14 +74,19 @@ Derived BIP39 Seed:
 ??? success "Index 1 (`44'/165'/1'`)"
 
     Derived Private Key:
+
     ```
     ce7e429e683d652446261c17a96da9ed1897aea96c8046f2b8036f6b05cb1a83
     ```
+
     Derived Public key:
+
     ```
     d9f7762e9cd4e7ed632481308cdb8f54abf0241332c0a8641f61e92e2fb03c12
     ```
+
     Derived Address:
+
     ```
     nano_3phqgrqbso99xojkb1bijmfryo7dy1k38ep1o3k3yrhb7rqu1h1k47yu78gz
     ```
@@ -78,14 +94,19 @@ Derived BIP39 Seed:
 ??? success "Index 2 (`44'/165'/2'`)"
 
     Derived Private Key:
+
     ```
     1257df74609b9c6461a3f4e7fd6e3278f2ddcf2562694f2c3aa0515af4f09e38
     ```
+
     Derived Public key:
+
     ```
     a46da51986e25a14d82e32d765dcee69b9eeccd4405411430d91ddb61b717566
     ```
+
     Derived Address:
+
     ```
     nano_3b5fnnerfrkt4me4wepqeqggwtfsxu8fai4n473iu6gxprfq4xd8pk9gh1dg
     ```
@@ -99,6 +120,7 @@ company public remove bread fashion tortoise ahead shrimp onion prefer waste bla
 No Passphrase
 
 Derived BIP39 Seed:
+
 ```
 924a962cae64448812be28a514093ebfeeed537d61a44318eb35f902961d21b2fccd30008d33c8d1d5327a34b9b73281c4b27a0a3d004c1c2e85e8dbb234cba8
 ```
@@ -106,14 +128,19 @@ Derived BIP39 Seed:
 ??? success "Index 0 (`44'/165'/0'`)"
 
     Derived Private Key:
+
     ```
     6f73d61ca0b56fcdb79d69d437f102348ad75ca971433eb92b2b003f8c99b48d
     ```
+
     Derived Public key:
+
     ```
     134d938215f68bcaa3a0e574fde325fc4b1abad9bd3d698bfef95633b54ffb57
     ```
+
     Derived Address:
+
     ```
     nano_16tfkg33dxndscjt3sdnzqjkdz4d5cxfmhbxf87zxycp8gtnzytqmcosi3zr
     ```
@@ -121,14 +148,19 @@ Derived BIP39 Seed:
 ??? success "Index 1 (`44'/165'/1'`)"
 
     Derived Private Key:
+
     ```
     7e104389811a0967ef574af1f3f423f23cbf7b614be17844f67fb6fd315f9a7e
     ```
+
     Derived Public key:
+
     ```
     71e6caac915affe836c3e822be6a5b3464f40c74bd2e5459d4e74205c6a7c0df
     ```
+
     Derived Address:
+
     ```
     nano_1wh8scpb4pqzx1ue9t34qso7pf56yi89bhbgcjexbst41q5chi8zqtwb74ih
     ```
@@ -136,18 +168,22 @@ Derived BIP39 Seed:
 ??? success "Index 2 (`44'/165'/2'`)"
 
     Derived Private Key:
+
     ```
     8b7250869207a277ac37068dbe32782c2ab9fc6a5342f0deabbfdfae1285196a
     ```
+
     Derived Public key:
+
     ```
     fcebc6554853ed01c242817abf1b5050b887002f8de8f55d00c7c6b5fe01075d
     ```
+
     Derived Address:
+
     ```
     nano_3z9drscninzf193671dtqwfo1n7riw14z5hayogi3jy8pqz143txaghe4gbk
     ```
-
 
 ## External Management
 
@@ -161,6 +197,7 @@ For larger, more robust systems, external private key management is recommended.
     [WALLET\_IDs](/integration-guides/the-basics/#wallet-id) are not used for External Private Key Management since private keys are not stored in the nano\_node. Much of this section builds off of the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
 ---
+
 ### External accounting systems
 
 In order to properly implement accounting systems external to the Nano node the following best practices should be put into place, which ensure only fully confirmed blocks are used for external tracking of credits, debits, etc.
@@ -174,7 +211,6 @@ In order to properly implement accounting systems external to the Nano node the 
 #### Block confirmation procedures
 
 Before crediting funds to an account internally based on a deposit on the network, the block sending the funds must be confirmed. This is done by verifying the network has reached quorum on the block. Details of the recommended verification process can be found in the [block confirmation tracking guide](/integration-guides/block-confirmation-tracking).
-
 
 #### Tracking confirmed balances
 
@@ -193,6 +229,7 @@ However, you must always wait for the confirmation of **receivable blocks** befo
 A Nano private key is a 256-bit piece of data produced from a cryptographically secure random number generator.
 
 !!! danger "Secure Private Keys" 
+
     * Generating private keys from an insecure source may result in loss of funds.
     * Be sure to backup any generated private key; if lost the funds in the account will become inaccessible.
 
@@ -320,6 +357,7 @@ curl -d '{
 ```
 
 !!! info "Additional details"
+
     * The option `json_block`, available since V19.0, makes the RPC call return a non-stringified version of the block, which is easier to parse and always recommended.
     * [`block_create`](/commands/rpc-protocol#block_create) RPC commands generally take longer than other RPC commands because the nano\_node has to generate the [Proof-of-Work](/integration-guides/the-basics/#proof-of-work) for the transaction. The response block data is already properly formatted to include in the [`process`](/commands/rpc-protocol#process) RPC command.
     * The nano\_node creating and signing this transaction has no concept of what the transaction amount is, nor network state; all the nano\_node knows is that it is creating a block whose previous block on the account chain has hash `92BA74A7D6DC7557F3EDA95ADC6341D51AC777A0A6FF0688A5C492AB2B2CB40D` results in the account having a balance of `3618869000000000000000000000000`.
@@ -536,6 +574,7 @@ curl -d '{
 --8<-- "warning-process-sub-type-recommended.md"
 
 ##### Request Example
+
 ```bash
 curl -d '{
   "action": "process",
@@ -556,6 +595,7 @@ curl -d '{
 ```
 
 ##### Success Response
+
 ```json
 { 
   "hash": "42A723D2B60462BF7C9A003FE9A70057D3A6355CA5F1D0A57581000000000000"
@@ -571,8 +611,8 @@ curl -d '{
     * The target proof-of-work difficulty threshold is obtained internally as the minimum between [`active_difficulty`](/commands/rpc-protocol/#active_difficulty) and `max_work_generate_multiplier` (converted to difficulty).
     * With a new, [higher difficulty](/integration-guides/the-basics/#difficulty-multiplier) proof-of-work, the block will get higher confirmation priority across the network.
 
-
 !!! info "When a transaction does not confirm"
+
     * If a transaction is taking too long to confirm, you may call the [`process`](/commands/rpc-protocol#process) RPC command with the same block data with no risk.
     * If for some reason a transaction fails to properly broadcast, subsequent transactions on the account-chain after that transaction will not be accepted by the network since the `"previous"` field in the transaction data refers to a non-existant block.
     * If this situation occurs, rebroadcasting the missing transaction(s) will make the subsequent blocks valid in the network's ledger.
@@ -725,6 +765,7 @@ curl -d '{
 ##### Error Response
 
 Response if the wallet_id isn't found in nano\_node:
+
 ```json
 {
   "error": "Wallet not found"
@@ -732,6 +773,7 @@ Response if the wallet_id isn't found in nano\_node:
 ```
 
 Response if the seed field contains non-hexidecimal values or is too long:
+
 ```json
 { 
   "error": "Bad seed"
@@ -941,4 +983,5 @@ curl -d '{
   ]
 }
 ```
+
 On success, the nano\_node returns the hashes of all republished blocks.

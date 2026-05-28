@@ -126,6 +126,7 @@ Determines the number of local CPU threads to used for work generation. **While 
 Set to `0` to turn off local CPU work generation.
 
 ### node.work_peers
+
 Used when offloading work generation to another node or service. Format must be ipv6, preceded by `::ffff:` if ipv4. Hostnames are supported since v21. Calls are made to the address:port designated using the standard RPC format [work_generate](../commands/rpc-protocol.md#work_generate). Example:
 
 ```toml
@@ -145,7 +146,6 @@ Sets a limit on the generation difficulty. Multiplier is based off the [base dif
 ## Benchmarks
 
 ### Benchmark commands
-
 
 **Nano PoW Benchmarking tool**
 
@@ -274,6 +274,7 @@ $$
 
 ??? example "Code Snippets"
     === "Python"
+
         ```python
         def to_multiplier(difficulty: int, base_difficulty) -> float:
           return float((1 << 64) - base_difficulty) / float((1 << 64) - difficulty)
@@ -283,6 +284,7 @@ $$
         ```
 
     === "Rust"
+
         ```rust
         fn to_multiplier(difficulty: u64, base_difficulty: u64) -> f64 {
           (base_difficulty.wrapping_neg() as f64) / (difficulty.wrapping_neg() as f64)
@@ -294,6 +296,7 @@ $$
         ```
 
     === "C++"
+
         ```cpp
         double to_multiplier(uint64_t const difficulty, uint64_t const base_difficulty) {
           return static_cast<double>(-base_difficulty) / (-difficulty);
