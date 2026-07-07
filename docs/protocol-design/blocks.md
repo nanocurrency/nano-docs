@@ -31,8 +31,8 @@ Depending on the action each transaction intends to perform, the `"link"` field 
 | Send    | string             | Destination "nano_" address                |
 | Receive | 64 hex-char string | Pairing block's hash (block sending funds) |
 
-
 An example of a Nano block:
+
 ```
 "block": {
   "type": "state",
@@ -46,6 +46,7 @@ An example of a Nano block:
   "work": "cab7404f0b5449d0"
 }
 ```
+
 Note that there is an open [proposal](https://github.com/nanocurrency/nano-node/issues/2864) to update the state block with version, block height, and subtype fields.
 
 ### Account balance
@@ -63,7 +64,6 @@ In traditional blockchain-based cryptocurrencies like Bitcoin, a block is a grou
 ### Open (Receive)
 
 To create an account, an open transaction must be issued first. This is always the first transaction (block height 1) of every account-chain and can be created upon the first receipt of funds. To open an account, you must have sent some funds to it with a send transaction from another account. The funds will be pending on the receiving account. The account field stores the public-key (address) derived from the private-key that is used for signing. The link field contains the hash of the transaction that sent the funds. On account creation, a representative must be chosen to vote on your behalf; this can be changed later. The account can declare itself as its own representative. 
-
 
 ### Send
 

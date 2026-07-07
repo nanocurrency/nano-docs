@@ -8,12 +8,14 @@ description: Details of the V19.0 nano node release including upgrade notices, m
 ## Upgrade Notices
 
 ### Version Limits
+
 Upgrades from versions V17.1 and to V19 will involve a sequential database upgrade and impact participation of the node on the network. RPC calls will be unavailable for a long period of time amongst other impacts.
 
 !!! warning "Upgrading from V17.1 and earlier to V19.0 not recommended"
 	It is highly recommended that nodes are upgraded to V18.0 first or a V18.0 ledger is acquired and used when upgrading to V19.0.
 
 ### Confirmation tracking considerations
+
 The addition of confirmation height to the database requires the node to validate that blocks are confirmed before the cementing can occur. This process can take up to 24 hours or longer to complete and will cause an increase in some resource usage, particularly CPU and network bandwidth increases, but won’t impact participation on the network. For integrations watching confirmations, the existing [HTTP callback](/integration-guides/advanced/#http-callback), [block_confirm](/commands/rpc-protocol/#block_confirm) RPC and [confirmation_history](/commands/rpc-protocol/#confirmation_history) RPC methods will continue to function as before.
 
 !!! warning "Tracking confirmed block hashes required"
@@ -26,9 +28,11 @@ For those looking to utilize the new WebSocket confirmation subscription or new 
 * To validate that confirmation height upgrade is complete, note the `count` value from the [`block_count`](/commands/rpc-protocol/#block_count) RPC when the upgrade is started and once the `cemented` amount returned by this call (include the `include_cemented` option) is higher than that previous count, cementing is in sync.
 
 ### Emitting nano_ prefixed addresses
+
 In this and future versions, all addresses emitted from the node will use the `nano_` prefix. It will continue to support input for `xrb_` prefixed addresses, but all services must verify they are properly set up to handle the node outputting `nano_` prefixed addresses.
 
 ### Live network over TCP
+
 Live network traffic over TCP is now available and operates on the same port (7075 for main network, 54000 for beta network) as the bootstrapping network that was already available over TCP. Because of this, existing network setups that are open inbound and outbound on port 7075 for TCP should function as expected with V19.0. For those running production services, it is still recommended to verify [network ports setup](/running-a-node/node-setup/#network-ports) and consider setting up a new node on internal networks to ensure it can connect and participate on the main network before production nodes are upgraded.
 
 * To check for proper connection via TCP, call the [`peers`](/commands/rpc-protocol/#peers) RPC with `peer_details` option and look for peers with `type` = `tcp`. This command can be used to search for these instances:
@@ -42,15 +46,19 @@ curl -sd '{"action": "peers", "peer_details":"true"}' [::1]:7076 | grep "\"type\
 ## Major Updates
 
 ### Confirmation Height
+
 This provides cementing of blocks by marking on an account the highest block height that has been confirmed for the account. A more detailed look at this feature can be found in the relatd Medium article: https://medium.com/nanocurrency/looking-up-to-confirmation-height-69f0cd2a85bc
 
 ### TCP Network
+
 Blocks being published and voted on live are now supported via TCP, with UDP remaining as a fallback. See the TCP callouts in [Upgrade Notices](#upgrade-notices) above for information about verifying your network setup is ready for the upgrade.
 
 ### Dynamic Proof-of-Work and Prioritization
+
 With the ability to track work difficulty seen on the network and have the node wallet produce more difficult work for local blocks, this feature allows users to get their transactions prioritized for processing. More details about this feature can be found in the Medium article: https://medium.com/nanocurrency/dynamic-proof-of-work-prioritization-4618b78c5be9
 
 ### RPC Process Options
+
 By default the RPC server will run in the node process, but can be configured to run as a child process or completely out of process (currently limited to running on the same computer), depending on your needs. See [Running Nano as a service](/integration-guides/advanced/#running-nano-as-a-service) for more details.
 
 ---

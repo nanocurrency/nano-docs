@@ -16,7 +16,6 @@ It is recommended to have an understanding of how the nano protocol is designed 
 - Participate in the community through [Discord](https://chat.nano.org)
 - Start perusing the code in the repositories below and don't be afraid to ask questions
 
-
 ## Code repositories
 
 The Nano Foundation manages the [`nanocurrency`](https://github.com/nanocurrency) GitHub Organization account which includes various repositories for nano tools and implementations. Below is a partial list of the most common repositories referenced.

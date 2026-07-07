@@ -6,6 +6,7 @@ description: Details of the V23.3 nano node release including upgrade notices an
 --8<-- "release-details-v23-3.md"
 
 ## Upgrade notices
+
 There are no special considerations when upgrading from V22.X or V23.X to V23.3. There are no database upgrades or API changes.
 
 ## Fixes

@@ -6,14 +6,17 @@ description: Details of networking setup design for nano protocol
 --8<-- "wip-living-whitepaper.md"
 
 ## TCP messages
+
 TCP is used for traffic on the [live network](/glossary#live-network) and for bulk data transfer on the [bootstrap network](/glossary#bootstrap-network).
 
 --8<-- "network-details.md"
 
 ## IPV4/IPV6 addressing
+
 The system is built to only operate on IPv6 and uses IPv4-mapped IPv6 addresses to connect to IPv4 hosts.
 
 ## Node telemetry
+
 In _v21_ node telemetry was added to node. This allows peers to communicate telemetry metrics to each other. For specific details on the message format see `telemetry_ack` in the [protocol specification](https://github.com/nanocurrency/protocol/tree/master/reference).
 
 The nodes are designed to reply to `telemetry_req` messages. They avoid replying if messages are received from the same peer in quick succession; the minimum time until another reply is 60 seconds on the main network, 15 seconds on beta. This is done to reduce bandwidth.
@@ -21,6 +24,7 @@ The nodes are designed to reply to `telemetry_req` messages. They avoid replying
 Telemetry messages bypass the node's bandwidth limiter so that services monitoring the network can still do so during when the network is heavily used. Sending `telemetry_req` frequently within this exclusion zone could see your ip blacklisted by other peers. The node safely handles this for you by doing ongoing requests periodically and only sent when valid to do so.
 
 ### Signing
+
 `Telemetry_ack` messages are signed using [ED25519](/protocol-design/signing-hashing-and-key-derivation/#signing-algorithm-ed25519) as follows:
 
 ```

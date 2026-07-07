@@ -13,14 +13,17 @@ description: Details of the V21.0 nano node release including upgrade notices, m
 The following key upgrade details should be reviewed by all node operators to determine how they will impact plans for upgrading:
 
 ### Database upgrades
+
 An in-place database upgrade will occur with this release to accomodate epoch-related flags. Machines will need at least 30GB free disk space to accommodate the upgrade. During the upgrade process, which may take multiple hours to complete depending on the machine specs, the node will not participate on the network or respond to RPC calls.
 
 As a result, **the recommended approach is to upgrade the ledger in a separate environment before replacing on production**. For detailed steps on this approach and other options, see the [Updating the node section](/running-a-node/ledger-management/#updating-the-node) of the Ledger Management page.
 
 ### Minor RPC breaking changes
+
 Although breaking changes were kept to a minimum in this release, there are two RPC calls with such changes: `work_validate` and `bootstrap_status`. For integrations using them, carefully review the additional details on these changes included in the [RPC Updates](#rpc-updates) section below.
 
 ### Upcoming v2 epoch upgrade
+
 As outlined in the [February Development Update: V21 PoW Difficulty Increases](https://medium.com/nanocurrency/development-update-v21-pow-difficulty-increases-362b5d052c8e), an epoch block distribution must be done to complete the upgrade to the new work difficulty thresholds. **All integrations generating work are encouraged to review the details on the [Network Upgrades page under the Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) ahead of the epoch V2 distribution.**
 
 !!! danger "Only nodes V21.0+ will be active after epoch distribution"
@@ -31,6 +34,7 @@ As outlined in the [February Development Update: V21 PoW Difficulty Increases](h
 	**All network participants are encouraged to upgrade to V21.1 as soon as possible to avoid disruption.**
 
 ### UDP disabled by default
+
 With all active peers capable of communicating via TCP, the UDP connections will be disabled by default in this version. To avoid disruptions, all nodes should allow traffic on 7075 TCP (see [Network Ports](/running-a-node/node-setup/#network-ports) details) and once upgraded, the [`peers`](/commands/rpc-protocol/#peers) RPC call should return at least dozens of peers and the [`confirmation_quorum`](/commands/rpc-protocol/#confirmation_quorum) RPC call should have a `peers_stake_total` value in the high tens of millions of Nano.
 
 Although not recommended, if necessary the temporary use of UDP can be done with the new [`--enable_udp`](/commands/command-line-interface/#-enable_udp) flag.
@@ -40,11 +44,13 @@ Although not recommended, if necessary the temporary use of UDP can be done with
 ## Major Updates
  
 ### Work difficulty increase
+
 As mentioned in the [Upgrade Notices](#upgrade-notices) section above, work difficulty changes were implemented in V21, but will not be activated until epoch v2 blocks are distributed at a future date. Please review the [Upcoming upgrades section](/releases/network-upgrades#increased-work-difficulty) of the Network Upgrades page for details.
 
 Updates on the progress toward the epoch upgrade will be posted in our many social channels as well as sent through our technical updates mailing list which can be joined here: <a href="http://eepurl.com/gZucL1" class="button" target="_blank" rel="noopener">Join Mailing List</a>.
 
 ### Node Telemetry
+
 To allow better communication between nodes about various performance and other details, telemetry was added between peers. Various version details, account and block counts, active difficulty and more can be discovered from individual peers or summarized across them.
 
 Details of what is shared and options for receiving them can be found in the [node telemetry WebSocket section](../integration-guides/websockets.md#node-telemetry) and [`node_telemetry`](/commands/rpc-protocol/#telemetry) RPC.  For protocol level details, see [Node Telemetry section](/protocol-design/networking/#node-telemetry) under Protocol Design > Networking.
@@ -54,9 +60,11 @@ Details of what is shared and options for receiving them can be found in the [no
 Continued conversation around telemetry is happening through the [related forum discussion](https://forum.nano.org/t/node-telemetry-metrics/112/8).
 
 ### IPC 2.0
+
 As a key update towards the upcoming RPC 2.0 redesign, this background upgrade will provide more performant communication to the node, allow easier integration across various languages by supporting Flatbuffers and provide the foundation for [more granular authorization of specific calls](https://github.com/cryptocode/notes/wiki/IPC-Authorization).
 
 ### Better election alignment and performance
+
 Behind the scenes many improvements were made to better streamline alignment of elections across the network and allow for better performance. Resource usage by nodes, particularly network bandwidth, will be reduced even further than previous levels. No action is needed to take advantage of this increase other than upgrading your node to V21 as soon as you can!
 
 ---

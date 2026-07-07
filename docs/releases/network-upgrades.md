@@ -168,9 +168,11 @@ Of course many features, including protocol changes, can be activated immediatel
 ---
 
 ## Upgrade methods
+
 There are various methods used to upgrade and a brief overview of each, along with benefits and drawbacks, are included below. Upgrades for behaviors contained and activated with a single node release are not included as they are the foundation on top of which these other methods are made capable.
 
 ### Phased node upgrades
+
 A feature is introduced in a node release but not activated for use across the network until a subsequent node release. See [State block upgrade](#state-blocks) details for an example.
 
 | Trigger | Uses blocks | Benefits | Drawbacks |
@@ -178,6 +180,7 @@ A feature is introduced in a node release but not activated for use across the n
 | Multiple node upgrades | No | <ul><li>No manual intervention or automated process needed</li><li>Uses already established upgrade process node operators are used to</li></ul> | <ul><li>Longer time period to get feature activated</li><li>Cannot be used to perform upgrades needed simultaneously across the network</li></ul> |
 
 ### Hardcoded date
+
 A date is hardcoded into the node release to activate a feature or behavior at a specific time in the future. See [Vote-by-Hash upgrade](#vote-by-hash) details for an example.
 
 | Trigger | Uses blocks | Benefits | Drawbacks |
@@ -185,6 +188,7 @@ A date is hardcoded into the node release to activate a feature or behavior at a
 | Node upgrade + specific date | No | <ul><li><span class="no-break">Simple to implement</span></li><li>No manual activity required</li></ul> | <ul><li>Inability to adjust timing without rushing new release out</li></ul> |
 
 ### Canary block(s)
+
 The hash of a block is hardcoded in the node such that once that hash is seen by the node, it will activate a feature or behavior. Multiple block hashes can be used to perform different phases of a transition. See [State blocks upgrade](#state-blocks) details for an example. 
 
 | Trigger | Uses blocks | Benefits | Drawbacks |
@@ -192,6 +196,7 @@ The hash of a block is hardcoded in the node such that once that hash is seen by
 | Node upgrade + distribution of one block per transition phase | Yes | <ul><li>Can be used for multi-phase upgrades, including in combination with other options</li><li>Timing flexible</li></ul> | <ul><li>Requires manual intervention</li><li>Adds additional code complexity</li><li>Can cause unchecked table to fill during transition</li></ul> |
 
 ### Epoch blocks
+
 A special block type that can only be generated using a pre-determined private key. These will be accepted by nodes and be attached as the frontier blocks on each account-chain on the network. This feature was built to allow very limited controls using these blocks: they cannot change account balances or representatives, only upgrade the account versions to allow new block structures. See [State block upgrade](#state-blocks) details for an example.
 
 | Trigger | Uses blocks | Benefits | Drawbacks |

@@ -47,6 +47,7 @@ After this configuration change you can create a wallet using the ['wallet_creat
 
 === "Test network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "wallet_create"
@@ -55,6 +56,7 @@ After this configuration change you can create a wallet using the ['wallet_creat
 
 === "Main network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "wallet_create"
@@ -63,12 +65,15 @@ After this configuration change you can create a wallet using the ['wallet_creat
 
 === "Beta network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "wallet_create"
 	}' http://127.0.0.1:55000
 	```
+
 **Response**
+
 ```json
 { 
   "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
@@ -85,15 +90,20 @@ Note that the seed generated in the wallet isn't returned in the RPC response. T
 
 === "Docker"
 	**Request**
+
 	```bash
 	docker exec ${NANO_CONTAINER_NAME} nano_node --wallet_decrypt_unsafe --wallet E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446
 	```
+
 === "Other builds"
 	**Request**
+
 	```bash
 	/path/to/nano_node --wallet_decrypt_unsafe --wallet E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446
 	```
+
 **Response**
+
 ```bash
 Seed: A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6
 ```
@@ -105,6 +115,7 @@ If you would like to replace the wallet's automatically generated seed with your
 
     === "Test network"
       **Request**
+
       ```bash
       curl -d '{
           "action": "wallet_change_seed",
@@ -112,8 +123,10 @@ If you would like to replace the wallet's automatically generated seed with your
           "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
       }' http://127.0.0.1:17076
       ```
+
 	=== "Main network"
       **Request**
+
       ```bash
       curl -d '{
           "action": "wallet_change_seed",
@@ -121,8 +134,10 @@ If you would like to replace the wallet's automatically generated seed with your
           "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
       }' http://127.0.0.1:7076
       ```
+
     === "Beta network"
       **Request**
+
       ```bash
       curl -d '{
           "action": "wallet_change_seed",
@@ -139,9 +154,9 @@ It is a best practice to set the wallet password for additional security. Use th
 
 By default a newly created wallet with a seed will not have any accounts in it, but they are easy to add by simply calling the ['account_create' RPC](../commands/rpc-protocol.md#account-create). By default this will derive the private key for index `0` first from the seed and return the related public address. See the [seed](../integration-guides/the-basics.md#seed) section for more information about private key derivation.
 
-
 === "Test network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_create",
@@ -151,6 +166,7 @@ By default a newly created wallet with a seed will not have any accounts in it, 
 
 === "Main network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_create",
@@ -160,24 +176,27 @@ By default a newly created wallet with a seed will not have any accounts in it, 
 
 === "Beta network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_create",
 	  "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
 	}' http://127.0.0.1:55000
 	```
+
 **Response**
+
 ```json
 {
     "account": "nano_3z3ntcdh5st3mtsogwip7kys1mgp6febnk3pwtex7acggykdkc9kexj4j87b"
 }
 ```
 
-
 If the optional `index` parameter is included the private key for that specific index will be added. Any subsequent calls to ['account_create' RPC](../commands/rpc-protocol.md#account-create) without the `index` parameter will return to incrementing one from the lowest derived index above 0. Test out the command by generating a few accounts and then using the [`account_list` RPC](../commands/rpc-protocol.md#account_list) to see them all.
 
 === "Test network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_list",
@@ -187,6 +206,7 @@ If the optional `index` parameter is included the private key for that specific 
 
 === "Main network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_list",
@@ -196,13 +216,16 @@ If the optional `index` parameter is included the private key for that specific 
 
 === "Beta network"
 	**Request**
+
 	```bash
 	curl -d '{
 	  "action": "account_list",
 	  "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
 	}' http://127.0.0.1:55000
 	```
+
 **Response**
+
 ```json
 {
     "accounts": [

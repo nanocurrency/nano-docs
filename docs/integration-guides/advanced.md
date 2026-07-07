@@ -32,7 +32,6 @@ This guide extends the concepts covered in [External Private Key Management](/in
 	1. Transfer the signed transaction back to the `(HOT)` insecure online-computer.
 	1. `(HOT)` Publish the signed transaction to the Nano Network.
 
-
 <div class="mermaid-wrapper">
 
 ```mermaid
@@ -234,6 +233,7 @@ For details on configuring the HTTP callback within a node, see the [HTTP callba
 ```
 
 Send state blocks have special fields "is_send" & "subtype"   
+
 ```json
 {  
     "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",  
@@ -254,7 +254,6 @@ Send state blocks have special fields "is_send" & "subtype"
     "subtype": "send"  
 }
 ```  
-
 
 !!! warning
     It is recommended to fetch the block using the hash provided in the callback rather than trust this data is valid, and check that data instead, since a malicious 3rd party can also make a fake callback request to your endpoint.
@@ -340,7 +339,6 @@ curl -d '{
 
     sudo systemctl enable nano_node
     
-    
 !!! tip
     To manage node, use [RPC commands](/commands/rpc-protocol) or [CLI](/commands/command-line-interface)
 
@@ -356,12 +354,14 @@ and should be increased to at least 16384.
 ```
 
 To resolve this on Linux increase max open files limit by editing `/etc/security/limits.conf` and adding or updating:    
+
 ```
     *               soft    nofile          65535    
     *               hard    nofile          65535    
     root            soft    nofile          65535    
     root            hard    nofile          65535    
 ```
+
 Then restart session & `nano_node` service. Check changes with `ulimit -n`.
 
 For macOS the version impacts the steps necessary, but some people had success with the recipe in [https://superuser.com/a/1171028](https://superuser.com/a/1171028).

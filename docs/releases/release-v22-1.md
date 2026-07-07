@@ -6,8 +6,8 @@ description: Details of the V22.1 nano node release including upgrade notices an
 --8<-- "release-details-v22-1.md"
 
 ## Upgrade notices
-There are no special considerations when upgrading from V22.0 to V22.1. There are no database upgrades or API changes.
 
+There are no special considerations when upgrading from V22.0 to V22.1. There are no database upgrades or API changes.
 
 ## Major updates
 

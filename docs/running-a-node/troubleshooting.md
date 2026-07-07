@@ -27,7 +27,6 @@ If the node crashes, the most commonly seen message is "Segmentation fault (core
 
 When you are done gathering all information, please [create a new Github issue](https://github.com/nanocurrency/nano-node/issues/new), or [reach us on Discord](https://chat.nano.org) in the *#support* channel, detailing your issue as much as possible.
 
-
 !!! note "Getting the latest node log"
     The following command will order the log files such that the first one in the output is the most recent. If you restarted the node since the crash, then the relevant log file is not the latest one. Please be careful to give us the relevant log file.
 
@@ -39,6 +38,7 @@ When you are done gathering all information, please [create a new Github issue](
     Please provide the complete log file.
 
 Please follow the steps below for the corresponding node version you are using. Should there be an error obtaining the information in a newer version, the older version steps should then be attempted.
+
 #### _v21_+ nodes
 
 !!! example "Step 1: Make sure addr2line is installed"
@@ -69,6 +69,7 @@ Please follow the steps below for the corresponding node version you are using. 
     ```
 
     Example output:
+
     ```
     [    6.336071] IPv6: ADDRCONF(NETDEV_CHANGE): wlp2s0: link becomes ready
     [    6.375123] wlp2s0: Limiting TX power to 23 (23 - 0) dBm as advertised by **:**:**:**:**:**
@@ -87,6 +88,7 @@ Please follow the steps below for the corresponding node version you are using. 
     ```
 
     Example output:
+
     ```
     Aug 15 11:56:07 ubuntu-server kernel: [6141.711993] show_signal_msg: 23 callbacks suppressed
     Aug 15 11:56:07 ubuntu-server kernel: [6141.711995] I/O[25975]: segfault at 1 ip 000055b2960e2d24 sp 00007fcff50f6fc0 error 6 in nano_node[55b295f9b000+6d8000]
@@ -99,11 +101,13 @@ Please follow the steps below for the corresponding node version you are using. 
     This command will produce some basic information about the error.
 
     **Not using docker**:
+
     ```bash
     ./nano_node --debug_output_last_backtrace_dump > nano_node_backtrace_output.txt
     ```
 
     **Using docker**:
+
     ```bash
     mkdir -p /tmp/nano_node_crash && cd $_
     docker exec ${NANO_NAME} nano_node --debug_output_last_backtrace_dump > nano_node_backtrace_output.txt
@@ -113,6 +117,7 @@ Please follow the steps below for the corresponding node version you are using. 
 
 !!! example "Step 4: Producing the archive file"
     See the output of this command for the name of the file you should include in your report.
+
     ```bash
     FILE="nano_node_crash_$(date +"%Y-%m-%d_%H-%M-%S.tar.gz")" && tar czf $FILE --exclude=*.tar.gz nano_node_* && echo "Created archive $FILE"
     ```
@@ -682,6 +687,7 @@ dir (direction) :
     "type": "samples"
 }
 ```
+
 #### Samples response
 
 ```json
@@ -825,7 +831,9 @@ samples,2018.03.29 01:45:41
 ## Troubleshooting UPnP
 
 ### Ensure UPnP is enabled
+
 UPnP will be enabled unless the external port is set in either the config
+
 ```toml
 [node]
 ...
@@ -833,12 +841,15 @@ UPnP will be enabled unless the external port is set in either the config
 # type:string,ip
 external_address = "::ffff:<some_public_ipv4>"
 ```
+
 or via cli flag
+
 ```bash
 --config node.external_address="::ffff:<some_public_ipv4>"
 ```
 
 ### Enable UPnP logging
+
 Appending this to your launch command will enable upnp debug logging.
 
 ```bash
@@ -850,11 +861,14 @@ Appending this to your launch command will enable upnp debug logging.
 # V26 or before
 --config node.logging.upnp_details=true
 ```
+
 ### Error UPnP Messages
+
 Check the beginning of the logs for UPNP_* messages
 
 !!! error "Port Mapping Conflict"
     Check for static routes
+
     ```bash
     [2019-Oct-29 11:06:56.641389]: UPnP failed 718: ConflictInMappingEntry
     [2019-Oct-29 11:06:56.644387]: UPnP failed 718: ConflictInMappingEntry
@@ -863,10 +877,12 @@ Check the beginning of the logs for UPNP_* messages
 ### Normal UPnP Messages
 
 !!! note ""
+
     ```bash
     [2019-Oct-29 11:06:56.641389]: UPNP_GetSpecificPortMappingEntry failed 714: NoSuchEntryInArray
     [2019-Oct-29 11:06:56.644387]: UPNP_GetSpecificPortMappingEntry failed 714: NoSuchEntryInArray
     ```
+
     This message is expected when starting the node and will go away after the UPnP has mappeded the port
 
 ---

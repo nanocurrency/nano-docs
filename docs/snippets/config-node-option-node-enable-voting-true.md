@@ -1,4 +1,5 @@
 #### node.enable_voting
+
 Newly setup nodes have voting disabled by default. In order to participate in network consensus, this value must be updated in the [`config-node.toml`](../running-a-node/configuration.md#configuration-file-locations) file.
 
 ```toml

@@ -88,11 +88,9 @@ This community built wallet is a production-ready, high performance developer wa
 
 [![Pippin](https://opengraph.githubassets.com/38565027a4d84e26310588fd4712b3cf836745cbe2b4a20ac44590225da01765/appditto/pippin_nano_wallet){width=50%}](https://github.com/appditto/pippin_nano_wallet)
 
-
 ### Nault
 
 This community built wallet is more end-user focused with a robust GUI full of various options. It can be useful in development and testing as it supports setting the custom backend to your own node and can function as a basic account/block explorer. If you use this wallet, it also has an open source license so contributions are encouraged.
-
 
 [![Nault](https://repository-images.githubusercontent.com/274627453/14c0c180-bc4a-11ea-82e9-cc23b8b5a718){width=50%}](https://github.com/Nault/Nault)
 
@@ -115,4 +113,3 @@ If you've made it this far you may have a node running with a wallet setup and h
 - Tracking block confirmations: see [Block Confirmation Tracking guide](block-confirmation-tracking.md)
 - Performing efficient work generation: see [Work Generation guide](work-generation.md)
 - Optional WebSocket integration: see [WebSockets guide](websockets.md)
-

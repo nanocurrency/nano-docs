@@ -66,18 +66,21 @@ If you are building a version before V25.0, the node build commands further down
 * From inside [boost.src] run:
 
 === "*nix"
+
     ```bash
     ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
     ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
     ```
 
 === "macOS"
+
     ```bash
     ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
     ./b2 --prefix=[boost] --build-dir=[boost.build] link=static install
     ```
 
 === "Windows"
+
     ```bash
     ./bootstrap.sh --with-libraries=context,coroutine,filesystem,log,program_options,system,thread
     ./b2 --prefix=[boost] --build-dir=[boost.build] address-model=64 link=static install
@@ -90,6 +93,7 @@ If using this option, remove `bash util/build_prep/bootstrap_boost.sh -m` from t
 If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source edition](https://www.qt.io/download) and extract to [qt.src]. In [qt.build] execute:
 
 === "*nix"
+
     ```bash
     [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
     make
@@ -97,6 +101,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source e
     ```
 
 === "macOS"
+
     ```bash
     [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
     make
@@ -104,6 +109,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source e
     ```
 
 === "Windows"
+
     ```bash
     [qt.src]/configure -shared -opensource -nomake examples -nomake tests -confirm-license  -prefix [qt]
     nmake
@@ -177,6 +183,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source e
         ```
 
         **Configure repository with modern GCC**
+
         ```bash
         sudo yum install gcc-toolset-12
         scl enable gcc-toolset-12 bash
@@ -215,6 +222,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source e
 The process below will create a release build of the node for the main network. See [network options](#network-options) below for details on building for the test or beta networks.
 
 === "*nix"
+
     ```bash
     git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
@@ -227,6 +235,7 @@ The process below will create a release build of the node for the main network. 
     ```
 
 === "macOS"
+
     ```bash
     git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node.git nano_build
     cd nano_build
@@ -245,6 +254,7 @@ The process below will create a release build of the node for the main network. 
     *Download Source*
 
     Using git_bash:
+
     ```bash
     git clone --branch V25.0 --recursive https://github.com/nanocurrency/nano-node
     cd nano-node
@@ -253,15 +263,18 @@ The process below will create a release build of the node for the main network. 
     *Create a `build` directory inside nano-node (makes for easier cleaning of build)*
 
     Using git_bash:
+
     ```bash
     mkdir build
     cd build
     ``` 
+
     * **Note:** all subsequent commands should be run within this "build" directory.
 
     *Get redistributables*
 
     Using Powershell:
+
     ```bash
     Invoke-WebRequest -Uri https://aka.ms/vs/16/release/vc_redist.x64.exe -OutFile .\vc_redist.x64.exe
     ```
@@ -364,7 +377,6 @@ Run CMake GUI
 
 ![CMake Generator](../images/windows-10-build-instructions/cmake-generator.jpg)
 
-
 **Visual studio**
 
 - Open project solution file in `C:\Users\YourUser\Documents\NanoSolution\nano-node-beta.sln`
@@ -455,17 +467,20 @@ A number of tests binaries can be built when the CMake variable `-DNANO_TEST=ON`
 ### Running Tests
 
 To run all tests in a binary just launch it:
+
 ```bash
 ./core_test
 ```
 
 To check a specific subset of tests, gtest filtering can be used (with optional wildcards):
+
 ```bash
 ./core_test --gtest_filter=confirmation_height.single
 ./rpc_test --gtest_filter=rpc.*
 ```
 
 To run tests multiple times:
+
 ```bash
 ./core_test --gtest_repeat=10
 ```
@@ -484,6 +499,7 @@ If running on a debugger, add the argument `--gtest_break_on_failure` break at t
 3 different CMake sanitizer options are supported: `NANO_ASAN_INT`, `NANO_TSAN` and `NANO_ASAN`. They cannot be used in conjunction with each other.
 
 #### Thread Sanitizer
+
 Use `-DNANO_TSAN=ON` as an extra CMake option. The following environment variable should also be set:
 
 `export TSAN_OPTIONS="suppressions=../tsan_suppressions"`
@@ -491,6 +507,7 @@ Use `-DNANO_TSAN=ON` as an extra CMake option. The following environment variabl
 `tsan_suppressions` should be a path to the file in the root nano directory. This suppresses many errors relating to the mdb and rocksdb libraries.
 
 #### Address Sanitizer
+
 Use the CMake variable `-DNANO_ASAN=ON` or `-DNANO_ASAN_INT=ON` before running an executable.
 
 ### Valgrind

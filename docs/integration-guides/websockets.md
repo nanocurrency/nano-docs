@@ -123,6 +123,7 @@ To receive notifications through the websocket you must subscribe to the specifi
 Unsubscribing also has the format:
 
 To unsubscribe:
+
 ```json
 {
   "action": "unsubscribe",
@@ -209,6 +210,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
 !!! tip "Updating the list of accounts"
     _version 21.0+_  
     The list of `accounts` for which blocks are broadcasted can be updated (see [Update](#update)):
+
     ```json
     {
       "action": "update",
@@ -223,6 +225,7 @@ Filters for **confirmation** can be used to subscribe only to selected accounts.
       }
     }
     ```
+
     Note that this can result in an empty filter.
 
 ##### Response Options
@@ -290,6 +293,7 @@ The sideband fields when its option is set to true are:
 ##### Sample Results
 
 !!! note "Differences from the HTTP callback"
+
     * The "block" contains JSON instead of an escaped string. This makes parsing easier.
     * The JSON received by the client contains a topic, event time (milliseconds since epoch) and the message itself.
     * Subtype is part of block (if it's a state block)
@@ -602,8 +606,8 @@ No filters are currently available for the `telemetry` topic.
   }
 }
 ```
-See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response.  
 
+See the [telemetry](../commands/rpc-protocol.md#telemetry) RPC command which gives more information about the message response.  
 
 ### New unconfirmed blocks
 
@@ -658,6 +662,7 @@ This subscription is available since _v21.0_
 ##### Subscribing
 
 To subscribe to bootstrap attempts start/exit notifications:
+
 ```json
 {
   "action": "subscribe",
@@ -706,6 +711,7 @@ Notes:
 ## Removed Topics
 
 ### Active difficulty
+
 _removed in version 22.0_
 
 ##### Subscribing

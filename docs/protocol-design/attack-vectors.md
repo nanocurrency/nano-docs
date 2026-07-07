@@ -6,6 +6,7 @@ description: Understand the different attack vectors on the nano network and the
 --8<-- "wip-living-whitepaper.md"
 
 ## Block gap synchronization
+
 | | |
 |----------------|-------------
 | **Risk**        | Low risk

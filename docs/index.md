@@ -2,11 +2,14 @@
 title: Home
 description: Explore the design, features, releases and other related resources for the nano protocol and node implementation.
 hide:
+
   - navigation
   - toc
+
 ---
 
 # Nano Node and Protocol Documentation
+
 Welcome! This documentation is focused on helping developers understand Nano, including setup, maintenance, and building on top of the Nano node. Details of how this documentation has been arranged are below:
 
 | Section | Details | Audience |

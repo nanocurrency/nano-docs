@@ -77,6 +77,7 @@ Xrb_ratio has been removed and replaced with nano_ratio:
 | xrb_ratio | 10^24 | 0.000001 | __removed__ |
  
 The following deprecated RPC endpoints for conversion have been removed:
+
 * `krai_from_raw`
 * `krai_to_raw`
 * `mrai_from_raw`
@@ -103,16 +104,19 @@ Consider reviewing and updating your configuration files with the `--update_conf
 Bootstrapping from scratch with pruning enabled causes the node to crash. As a potential workaround, node operators may be able to bootstrap with pruning disabled, and then enable pruning after bootstrapping is complete. A higher max_pruning_depth may also reduce the frequency of crashes. Pruning is considered experimental, so use it at your own risk - pruning is not currently recommended for important production services.
 
 #### Sideband Crashes
+
 Some nodes may experience occasional crashes due to missing sideband in election blocks. Please upgrade to v28.1 to resolve this issue.
 
 ---
 
 ## Official V28 Blog Post
+
 See [here](https://nano.org/en/blog/v28-electrum-the-start-of-commercial-grade--1b8adb83) for the official V28 blog post.
 
 ---
 
 ## V28 GitHub Milestone
+
 See [here](https://github.com/nanocurrency/nano-node/milestone/34?closed=1) for the V28 GitHub milestone.
 
 ---

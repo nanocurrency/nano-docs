@@ -34,6 +34,7 @@ All executables have `nano_` prefix and projects have a `main` function inside `
 The googletest (gtest) framework is used to validate a variety of functionality in the node, we do not currently use gmock in the codebase.  
 
 ### Running tests
+
 The dev network is forced for locally run tests, this lowers work and other settings to make it simpler to test.
 Build with `cmake -DNANO_TEST=ON ..`
 See docs.nano.org for more information. There may be intermittent failures, if so add them here https://github.com/nanocurrency/nano-node/issues/1121 and fix if possible.
@@ -47,12 +48,14 @@ See docs.nano.org for more information. There may be intermittent failures, if s
 **load_test** – This creates a dynamic number of nodes, sends blocks from 1 of the nodes (primary) and waits until all other nodes have the same number of blocks. This does not normally need to be modified but is run as part CI at the end.  
 
 **rpc_test** – All RPC tests go here. There is some boilerplate to follow which creates an `ipc_server` for the node which mimics out of process rpc commands communicating with it. Care must be taken when creating write transactions as they are not allowed on io-threads (https://github.com/nanocurrency/nano-node/pull/1264). To make sure this is adhered to when calling the RPC commands, there is an RAII object `scoped_io_thread_name_change` which changes the current thread (normally the main one) to be `io`, and restores it when the object goes out of scope. For instance
+
 ```
 ...
 scoped_thread_name_io.reset ();
 node.process (state_block);
 scoped_thread_name_io.renew ();
 ```
+
 **slow_test** – Any core tests which are not suitable for CI because they take a long time (> a few seconds) should go here. There is a desire to make this file run once per night, but until then should be periodically run by developers.
 
 ### Work/Sig verification modifying for tests
@@ -71,7 +74,9 @@ The fuzzer uses libfuzzer which inputs arbitrary data continuously trying to fin
 There aren’t currently tests for specific CLIs so it’s recommended to abstract the functionality so that it can be tested in `core_test`.
 
 ### Testing implementation details
+
 Sometimes it is necessary to be able to change something about a class only for a test. Rather than make this the class interface public just for tests, the specific tests can be added as friends to the class, this is done like so for a test named like so TEST (node, example);
+
 ```
 class my_class
 {
@@ -80,9 +85,11 @@ private:
    friend class node_example_Test;
 };
 ```
+
 The test itself needs to be wrapped with the nano { } namespace for this to work correctly, if the class itself is in the nano namespace which is normally the case.
 
 ### Additional pre-release testing
+
 - Run tests with TSAN/ASAN/Valgrind. All errors should be fixed before launch unless these are determined to be test related or false positives. We currently have some errors with using coroutines. There are blacklist files for the sanitizers which remove some errors caused by lmdb & rocksdb.
 
 ---
@@ -147,6 +154,7 @@ The wallets database uses the wallets_store which only has an LMDB backend.
 `nano::lmdb::store::do_upgrades ()` is where LMDB database upgrades are done. For instance `void nano::lmdb::store::upgrade_v21_to_v22 ()` combines all block databases into a single one. Raw mdb functions are normally required as `block_store::get ()` and other functions normally can’t be used because they are updated to the latest db spec. The RocksDB upgrades were introduced by V25.0. It follows a similar approach implemented for LMDB. There were in the past multiple upgrades during a release when a beta build went out and a subsequent upgrade was desired. Previously a ledger reset was done and the version was re-used but this was deemed too inconvenient.
 
 ### write_database_queue
+
 This was introduced to reduce LMDB write lock contention between the block processor and the confirmation height processor. As during bootstrapping or high TPS the block processor can hold onto the lock up to 5s (by default), before the lock is held by the blockprocessor it signals that it is about to get the LMDB lock, the confirmation height processor can make use of this information and continue processing where it would otherwise be stalled. Ongoing pruning also makes use of this.
 
 ---
@@ -178,6 +186,7 @@ The biggest bottleneck for node start-up is caused by setting up the ledger cach
 Some classes use `node_initialized_latch.wait ();` The latch was added in https://github.com/nanocurrency/nano-node/pull/2042 this is to prevent some of the issues in the node constructor initializer list where the `node` object is passed and a child constructor is wants to use a node member which is not yet initialized. This makes it resume operation once the latch is incremented at the beginning of the `node` constructor.
 
 ### Initial output
+
 When the node is run it prints out some information about the database used, compiler etc. An example of appending to the output is here: https://github.com/nanocurrency/nano-node/pull/2807
 
 ---
@@ -227,6 +236,7 @@ In `nano/lib/memory.hpp` a `nano::make_shared` function is defined which checks 
 ## Libraries and submodules
 
 ### Boost
+
 We use the Boost library where possible, such as coroutine, filesystem, endian converter, lexical_cast, multi_index_container etc. If there is a static/dynamic Boost library which is not used, there are generally no issues in adding it. Just make sure the build scripts and documentation are updated.
 
 **nano/boost**
@@ -241,9 +251,11 @@ This is a small library which has no dependency to anything in the nano core, wh
 Any functionality which is shared between test projects and may also use gtest library. There is also `nano/node/testing.cpp` which has no gtest dependency because it is also used in CLI commands too.
 
 ### `nano/lib` vs. `nano/secure`
+
 The`nano/lib` library was originally intended to be used by other programs wanting some of the nano functionality, but those specific external C functions were removed and it has now become the place to put all commonly used code. As such anything which doesn’t depend on the node should go here, and the `secure` library is now mostly for ledger specific things.
 
 ### git submodules
+
 We have a variety of submodules https://docs.nano.org/node-implementation/contributing/?h=+submodule#about-the-code-base third party dependencies are to be kept as minimal as possible in order to keep build times lean, but if there is a suitable one it can be added a submodule.
 
 ---
@@ -263,23 +275,29 @@ We have a variety of submodules https://docs.nano.org/node-implementation/contri
 To confirm a block a sufficient number of votes which are taken from `confirm_ack` messages are tallied up. If the tally is above the delta inside `nano::election::have_quorum ()` it returns true and the block is considered confirmed. `confirm_ack` messages can either contain the whole block or a hash (vote by hash). `confirm_req` message header as well as `confirm_ack` indicate what the type of the contents is in the header, either `not_a_block` which means dealing with block hashes or the block type. `nano/node/common.cpp` contains these messages (among others) and (de)serializing functions.
 
 ### voting
+
 The vote generator `nano::vote_generator::vote_generator` is responsible for collecting hashes that need a vote generated, combining them into a single `vote by hash` message, signing the package with the representative key and publishing the votes to the network.  A maximum of `nano::network::confirm_ack_hashes_max` hashes can be combined into a single vote `confirm_ack` message, this provides a decent tradeoff between optimizing vote signatures and reducing bandwidth.  While the process is running it waits for `config.vote_generator_delay` time in order to pack more hashes into a single vote message.  If there are more than `config.vote_generator_threshold` after waiting then it will wait for one additional `config.vote_generator_delay` before broadcasting the message.  This allows for fast vote publishing at lower rates while enabling more hashes to be combined together at higher rates.
 
 ### vote_processor
+
 Votes are signed by the representative and the vote processor schedules checking these votes through the `signature_checker` inside `nano::vote_processor::verify_votes ()`.  Once a vote signature has been verified, the hashes within the vote packet are passed to active_elections where they are either added to an active election or added to the inactive votes cache if an election does not exist.
 
 ### active_transactions
+
 The active transactions class handles election management and prioritization.  When a block is processed and `nano::active_transactions::insert` called, a new election is started for the block hash if one does not already exist.  In addition to starting elections there is a 500ms `request_loop` that handles election management.  This process assists with moving elections through the different transition states as well as moving elections to a prioritized status if there is a backlog of elections.  During the requst loop the current network difficulty is updated through `update_active_multiplier` which takes the top `prioritized_cutoff` number of active elections that have not been confirmed and samples their difficulty multiplier.
 
 Finally, the active transactions class also handles frontiers that have not been confirmed.  Most commonly this is from bootstrapping, where the frontier of an account is added to the active elections and vote requests are sent to other nodes to confirm the frontier and thereby the rest of the account and ancestors through confirmation height processing.
 
 ### confirmation_solicitor
+
 During the `request_loop` of the active transactions process, any election that is in the `active` state for more than 5 seconds will request votes from Principle Representative nodes that it has not seen a vote from yet.  These requests are added to the `confirmation_solicitor` which aggregates the hashes up to `nano::network::confirm_req_hashes_max` into a single `confirm_req` message and publishes it to select PR nodes that have not voted.  This helps fill any gaps in network communication failures where a vote may have been dropped which helps reach quorum on the highest priority elections.
 
 ### request_aggregator
+
 The request aggregator is responsible for collecting vote requests `confirm_req` messages from other nodes and finding the optimal responses.  A local vote cache is used for recently generated votes, if the block hash in the request exists in the cache then a cached vote is returned, if the hash does not exist then the hash is added to the vote generator and a new vote is generated and published to the requesting node.  The request aggregator also handles publishing forks if the request is for a competing fork.  If the local node has a different winning hash it will publish a vote for the winning hash instead of the requested hash in addition to sending the requesting node the winning block as well.
 
 ### election
+
 An election is created when a new block is processed.  The primary purpose of the election class is to tally the vote weight and ensure consensus between any competing forks. In order to efficiently move an election through the process it can have several states.  Initially `passive` where it is waiting for votes from other nodes, then after 5 seconds if it has not been confirmed it will transition to `active` where vote requests to other nodes are made.  After `active_request_count_min` rounds of requesting votes are complete if the election is still not confirmed it moves to `broadcasting` where it will publish the block to PR nodes that have not voted in an attempt to ensure the block has been propagated throughout the network.  Under low load the `active` and `broadcasting` states are rarely used as all elections are complete within the `passive` window.
 
 Every vote that is added to the election triggers a check for whether quorum has been reached on the election.  Quorum requires that the winning hash has `node.online_reps.delta` more weight than any competing forks.  If quorum is reached the election is marked confirmed, transitions to the `confirmed` state and is added to the confirmation height procesor which updates the ledger.
@@ -303,6 +321,7 @@ Instead of confirming every block in every account-chain one-by-one, the optimis
 See [here](https://github.com/nanocurrency/nano-node/pull/4111) for more details.
 
 ### Confirmation height processor
+
 When a block is confirmed `void nano::node::process_confirmed ()` the block is added to the confirmation height processor. This begins the process of cementing it and all of its dependents, once this occurs these blocks can never be rolled back. There are 2 confirmation height algorithms bounded and unbounded. Originally only the unbounded one existed, this would store the block hash for the original block confirmed, all its previous blocks, and recurse the bottom most receive block to the source and repeat the process. If this hit something like the binance chain or (any long chain) it could use a lot of memory (unbounded amount). So this brought about the bounded confirmation height processor algorithm which starts at the very bottom of the account chains but does the same recursion when a receive block is hit. This limits the amount of block hashes needing to be stored in memory to be able to cement the bottom most blocks. Checkpoints are used if there are a lot of accounts which need to be traversed to reach which exceeds the maximum amount of memory . It does mean in certain cases the same iteration will need to be done more than once but this should be a rare case only during initial cementing.  
 
 Once the uncemented count (block count – cemented count) is less than 16K the unbounded processor is used. As mentioned above this instead starts from the top (original confirmed block) and works downwards and saves all the blocks hit (not just hash) which means they don’t need to be re-read during writing  later. This does use a lot more memory though which is why this is limited to a certain number of blocks, once the unbounded cutoff is exceeded the bounded processor resumes.  
@@ -310,11 +329,13 @@ Once the uncemented count (block count – cemented count) is less than 16K the 
 Both algorithms operate with a read transaction first which reduces write lock held time as it can do a lot of iterating. This does mean that there can be some inconsistency by the time the writing is done, but this shouldn’t be an issue because once a block is confirmed by the network it will stay confirmed by `debug_assert` checks are added to catch any programming mistakes. While it is more effort to maintain 2 algorithms the unbounded one largely existed before so it made sense to re-use it, given the performance improvements in almost cemented ledgers.
 
 ### Frontiers confirmation
+
 `nano/node/frontiers_confirmation.cpp` contains code which starts at the beginning of the accounts database (`nano::blockstore_partial::accounts_begin`) and iterates in ascending order and prioritises accounts based on the number of uncemented blocks (stores up to 100k) and requests confirmation for a limited number of these accounts. When the cemented count is above the hardcoded bootstrap weights this is limited to the number of optimistic elections which is 50 in this case so it is expected to be quite slow in this case. Accounts in wallets are also checked.
 
 ---
 
 ## Telemetry
+
 nano/node/telemetry.cpp contains the logic for telemetry processing. This sets up an ongoing telemetry request round (every 60 seconds on the live network) where a telemetry_req message is sent to every peer. There is an `alarm` timeout of about 10 seconds in which we require the response (telemetry_ack) to be received otherwise it is rejected. Any calls to get_metrics_* return a cached result. To add a new definition to the telemetry_ack message this can be used as a guide which added the `active_multiplier`: https://github.com/nanocurrency/nano-node/pull/2728
 `telemetry_ack` messages are signed and are backwards compatible with older nodes (from v22 onwards). Those nodes will verify the whole message including any extra unknown data which is appended at the end is just ignored. To prevent ddosing by `telemetry_req` messages, nodes ignore messages received within that 60second (on live) boundary. This is done in `void nano::bootstrap_server::receive_header_action ()`
 
@@ -323,9 +344,11 @@ nano/node/telemetry.cpp contains the logic for telemetry processing. This sets u
 ## Stats
 
 ### Counters
+
 The `stats` object is used to keep a count of events that have happened, this is a useful idiom for checking values in tests and is aggregated in the stats->counts RPC. There are main stat types and then details for that type. A simple example of adding new details and incrementing the stats can be seen here: https://github.com/nanocurrency/nano-node/pull/2515 Adding a type for a stat is a similar procedure just using the `nano::stat::type` enumerator.
 
 ### Objects
+
 Most classes which have a member variable of container of multiple items (map, vector, list etc..) should have a function with a prototype of:
 `std::unique_ptr<container_info_component> collect_container_info (my_class & my_class, std::string const & name);`
 And then call this in an owning object which should itself be called recursively until it reaches the `node` object `collect_container_info`. They are typically not made as part of the class itself because it’s a very specialised function which is only called as part of the stats->object RPC, like so:
@@ -334,17 +357,21 @@ And then call this in an owning object which should itself be called recursively
 ---
 
 ## Pruning
+
 Pruning occurs periodically inside `nano::node::ongoing_ledger_pruning ()`. Pruning currently requires a full ledger to be bootstrapped and when an account frontier is confirmed it can then be pruned. The hashes of the pruned blocks are put into the pruned database so that we know to ignore any of these old blocks should the node bootstrap them again. Pending blocks cannot be pruned currently.
 
 ---
 
 ## Config files
+
 TOML config files are used, previously we used json files but TOML config files have the benefit of providing comments inside. There are no versions or upgrades done here, instead any defaults not explicitly overridden in the toml file get updated implicitly. There are few config files:
 
 ### config-node.toml
+
 This is actually called `daemonconfig.cpp` in the code base, but it wraps a `node_config` object.
 
 ### Other config files  
+
 `config-rpc.toml` & `config-wallet.toml` contain settings which can be modified by the user to override the defaults. The most common ones are enabling rpc/websocket & rocksdb.
 
 The `nano/node/node_rpc_config.cpp` are the rpc settings for the node.
@@ -386,11 +413,11 @@ This is used by both blocks/votes and creates (total threads / 2) to perform sig
 Peers are written to disk periodically. This was added in https://github.com/nanocurrency/nano-node/pull/1608 
 If the node has not been run in a long time (1 week), the peers list is cleared and the preconfigured peers list is used, this was added in https://github.com/nanocurrency/nano-node/pull/2506
 
-
 - Do not use the `node` object or include `node.hpp` in new core source files unless necessary, instead include the dependencies that it requires. We are still in the process of removing this idiom from other files because it adds circular dependencies, potentially ordering bugs and increases the build time.
 - Take care not to have nested `tx_begin_write ()`, it is quite easy to forget about this in tests, it will just cause a deadlock. To solve it, limit the scope:
 	- Pass `std::shared_ptr` parameters by reference where possible, https://github.com/nanocurrency/nano-node/pull/3029
 	- Be cautious with random DB reads, they are much slower than sequential reads. This PR sped up the delegators by a factor of 100 RPC by removing the block_get call needed in the loop. https://github.com/nanocurrency/nano-node/pull/2283
+
 	```
 	{ // Limit scope
 	auto transaction = store->tx_begin_write ();
@@ -399,9 +426,11 @@ If the node has not been run in a long time (1 week), the peers list is cleared 
 	…
 	auto transaction = store->tx_begin_write ();
 	```
+
 	or if it’s a single write can create a temporary just for that use:
 	`block_put (store.tx_begin_write (), block);`
 	Be cautious with callback lifetimes with asynchronous callbacks, such as the worker, alarm and asio. The following issue was because of them:
+
 	```
 	int x = 4;
 	worker.push_back ([&x]() { 
