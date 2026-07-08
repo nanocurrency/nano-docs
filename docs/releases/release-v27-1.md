@@ -11,7 +11,7 @@ description: Details of the V27.1 nano node release.
 
 All nodes are encouraged to upgrade to V27.1, including exchanges.
 
-In general, exchanges, services and integrations are encouraged to join [the test network](../running-a-node/test-network.md) for performing integration testing. This network mimics the live network in work requirements but has a smaller number of nodes and a lower block count for easier setup.
+In general, exchanges, services and integrations are encouraged to join [the beta network](../running-a-node/beta-network.md) for performing integration testing.
 
 ### Database upgrade
 

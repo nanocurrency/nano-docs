@@ -3,7 +3,7 @@ description: Find out how to join the nano community in testing the latest nano 
 
 # Joining the beta network
 
-The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing](#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features. As a result, an alternative [test network](test-network.md) is also available which will be more stable and is a better fit for learning node setup and management, and testing out upgrades and other activities for Nano before moving to production.
+The beta network exists for the purpose of conducting certain network-wide activites including load testing and [new node releases and features testing](#node-release-testing). These activities can cause the network to become unstable or inaccessible at times due to heavy traffic, occasional resetting of the genesis/ledger or the introduction of bugs due to new features.
 
 With those things in consideration, if you are interested in helping with testing on the beta network we are excited to help you out - so keep reading!
 
@@ -12,7 +12,7 @@ With those things in consideration, if you are interested in helping with testin
 The Nano Foundation maintains a few beta nodes on the network and various community members also setup nodes to help provide an environment more similar to the main network. During each development cycle Development Builds (DB) are prepared and shared in the Discord Beta Testing section of channels where early testing is coordinated. Once features are stabilized and included, release builds are published as Release Candidates (RC). Starting with RC1 and incrementing with each published build if needed (RC2, RC3, etc.). Final release of a version typically follows quickly once the RC is observed to be stable.
 
 !!! warning
-	Development Builds (DBs) are only recommended for use on the beta network, and Release Candidate builds (RCs) are only recommended for use on the test and beta networks
+	Development Builds (DBs) and Release Candidate builds (RCs) are only recommended for use on the beta network
 
 ## Running a beta node
 

@@ -1,2 +1,2 @@
-!!! info "Setup for testing on beta or test network"
-	If you are looking to test the latest version of the node ahead of release, check out the [Beta Network](../running-a-node/beta-network.md) and [Test Network](../running-a-node/test-network.md) pages for more details about how to get setup on the appropriate network. Typically general integration and node upgrades are tested on the public test network, while new feature and load testing are conducted on the beta network.
+!!! info "Setup for testing on the beta network"
+	If you are looking to test the latest version of the node ahead of release, check out the [Beta Network](../running-a-node/beta-network.md) page for more details about how to get setup. General integration and node upgrade testing, along with new feature and load testing, are conducted on the beta network.

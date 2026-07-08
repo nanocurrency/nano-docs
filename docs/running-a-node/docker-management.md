@@ -209,7 +209,7 @@ For example the version of the node:
 ```bash
 curl -d '{
   "action": "version"
-}' http://127.0.0.1:17076
+}' http://127.0.0.1:7076
 ```
 
 Or the blockcount:
@@ -217,7 +217,7 @@ Or the blockcount:
 ```bash
 curl -d '{
   "action": "block_count"
-}' http://127.0.0.1:17076
+}' http://127.0.0.1:7076
 ```
 
 --8<-- "docker-ipv6-tip.md"

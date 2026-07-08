@@ -14,7 +14,7 @@ The following are minimum recommended specifications for non-voting nodes and Re
 * 250 Mbps bandwidth (4TB or more of available monthly bandwidth)
 * SSD-based hard drive with 400GB+ of free space
 
-These lower specifications are also valid for any type of node run on the [Beta network](../running-a-node/beta-network.md) and [Test network](../running-a-node/test-network.md).
+These lower specifications are also valid for any type of node run on the [Beta network](../running-a-node/beta-network.md).
 
 !!! warning "Varied resource usage"
 	Various factors affect resource usage including how often RPC calls are made, other applications running on the machine, etc. These recommendations should be evaluated along with other considerations.

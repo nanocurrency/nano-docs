@@ -7,7 +7,7 @@ description: Details of the V23.0 nano node release including upgrade notices, m
 
 ## Upgrade notices
 
-There are no upgrade impacts to be considered with V23.0. However all exchanges, services and integrations are encouraged to test their implementations on the [test network](../running-a-node/test-network.md) (excluding load testing).
+There are no upgrade impacts to be considered with V23.0. However all exchanges, services and integrations are encouraged to test their implementations on the [beta network](../running-a-node/beta-network.md).
 
 ---
 
