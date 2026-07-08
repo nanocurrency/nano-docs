@@ -20,15 +20,14 @@ In addition to the lifecycle details and processes mentioned above, it can be he
 
 ## Choose a network
 
-There are three networks the Nano Foundations published builds for:
+There are two networks the Nano Foundations published builds for:
 
 | <span class="no-break">Network name</span> | Purpose | <span class="no-break">Do funds have value?</span> |
 |--------------|---------|------------------|
-| Test network | Used for basic integration testing, no load testing | No, test nano has no value |
 | Main network | Primary network that exchanges and services integrate with | Yes |
 | Beta network | Experimental network used to test new features and do load and performance testing | No, beta nano has no value |
 
-If you are just looking to try out and experiment with basic node setup, we recommend setting up on the test network first and then exploring the beta and main networks after.
+If you are just looking to try out and experiment with basic node setup, we recommend setting up on the beta network first and then exploring the main network after.
 
 At this point if you know which network you want to setup a node for, have a machine with the proper [hardware specifications](overview.md#hardware-recommendations), understand how to manage ports and firewall settings on it and are comfortable with the [maintenance requirements](overview.md#maintenance), you should be ready to get started!
 
@@ -37,10 +36,6 @@ At this point if you know which network you want to setup a node for, have a mac
 ## Configure network ports
 
 The node has a few configurable ports it may use throughout its lifecycle, but at a minimum the port for the live network and bootstrap traffic over TCP must be open to the internet for proper connectivity. The port numbers vary based on the network being joined:
-
-=== "Test network"
-
-	--8<-- "network-details-simple-test.md"
 
 === "Main network"
 
@@ -83,12 +78,6 @@ Docker must be installed on the host machine and instructions can be found here:
 	
 The Docker image can be downloaded via `docker pull` for a specific version/tag.
 
-=== "Test network"
-
-	```bash
-	docker pull nanocurrency/nano-test:V25.1
-	```
-
 === "Main network"
 
 	```bash
@@ -117,10 +106,6 @@ The following command will start the node container. Either set the specified en
 
 `${NANO_HOST_DIR}` - Location on the host computer where the ledger, configuration files, and logs will be stored. The Docker container will directly store files such as `config-node.toml`, `config-rpc.toml` and `data.ldb` into this directory.
 
-
-=== "Test network"
-
-	--8<-- "docker-run-command-test.md"
 
 === "Main network"
 
@@ -157,10 +142,10 @@ Database backend: LMDB 0.9.25
 Database used for the backend - default LMDB but [RocksDB](ledger-management.md#rocksdb-ledger-backend) can also be configured.
 
 ```
-Active network: test
+Active network: live
 ```
 :exclamation: Verify you are running on the correct network  
-Indicates which of the three network (test, main, beta) the node is running on.
+Indicates which of the networks (main, beta) the node is running on.
 
 ```
 Work pool running 12 threads 
@@ -215,25 +200,6 @@ The above examples are subset of potential entries in logging.
 
 Once the node is up and running you can query via RPC. Below is a basic command example to return the block counts on the node and example responses. If you are unable to connect to the server, it may be worth trying IPv6 `[::1]` or `localhost` instead of `http://127.0.0.1`.
 
-=== "Test network"
-
-	**Request**
-
-	```bash
-	curl -d '{
-	  "action": "block_count"
-	}' http://127.0.0.1:17076
-	```
-
-	**Response**
-	```json
-	{
-	    "count": "16599",
-	    "unchecked": "0",
-	    "cemented": "12456"
-	}
-	```
-
 === "Main network"
 
 	**Request**
@@ -285,38 +251,6 @@ After your node has been running or a few minutes you should see the `count` inc
 It is important to wait for your node to be synced with the network before attempting to setup a representative or send and receive transactions from a wallet it uses. In order to determine when the node should be able to carry out these activities you will want to use the above [`block_count` RPC](../commands/rpc-protocol.md#block_count) to see your local `count` and `cemented` values, and compare those to other nodes on the network.
 
 The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.md#telemetry). This will return average/median/mode values from all peers for each of the values nodes share with each other.
-
-=== "Test network"
-
-	**Request**
-
-	```bash
-	curl -d '{
-	  "action": "telemetry"
-	}' http://127.0.0.1:17076
-	```
-
-	**Response**
-	```json
-	{
-	    "block_count": "16599",
-	    "cemented_count": "16599",
-	    "unchecked_count": "0",
-	    "account_count": "413",
-	    "bandwidth_cap": "10485760",
-	    "peer_count": "8",
-	    "protocol_version": "18",
-	    "uptime": "928162",
-	    "genesis_block": "B1D60C0B886B57401EF5A1DAA04340E53726AA6F4D706C085706F31BBD100CEE",
-	    "major_version": "22",
-	    "minor_version": "1",
-	    "patch_version": "0",
-	    "pre_release_version": "0",
-	    "maker": "0",
-	    "timestamp": "1624923328669",
-	    "active_difficulty": "ffffffe300000000"
-	}
-	```
 
 === "Main network"
 
@@ -382,7 +316,7 @@ The fastest way compare is using the ['telemetry' RPC](../commands/rpc-protocol.
 	}
 	```
 
-Although the threshold for being synced can vary based on the level of network activity, typically if your node has `count` and `cemented` each within 1% of the network telemetry values, you can consider it in sync. In the example above from the test network the local node has 100% of `count` vs. other nodes, but only \~75% of `cemented`. This means it is still working to confirm all available blocks to get in sync.
+Although the threshold for being synced can vary based on the level of network activity, typically if your node has `count` and `cemented` each within 1% of the network telemetry values, you can consider it in sync. In the example above the local node has 100% of `count` vs. other nodes, but only \~75% of `cemented`. This means it is still working to confirm all available blocks to get in sync.
 
 This is a common situation when starting a new node, as it takes time to bootstrap all the blocks and confirm them. As you check the counts over time you should see them both getting closer to the 99% mark, although there may be interruptions in progress lasting minutes to hours or longer.
 

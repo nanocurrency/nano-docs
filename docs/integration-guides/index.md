@@ -48,7 +48,7 @@ Most integrations send and receive funds by making RPC calls to a Nano node. Thi
 
 Running a node involves installing, configuring and maintaining software on a server, preferably on a stable cloud service for the best performance and uptime. This approach gives you more control at the cost of additional effort.
 
-If going this route, we encourage use of the existing test network for initial integrations. Head over to the [Running a node](../running-a-node/overview.md) guide and make your way through the overview and security pages before stepping through the node setup guide. Make sure you have "Test network" selected in all the example commands.
+If going this route, we encourage use of the beta network for initial integrations. Head over to the [Running a node](../running-a-node/overview.md) guide and make your way through the overview and security pages before stepping through the node setup guide. Make sure you have "Beta network" selected in all the example commands.
 
 !!! info "Production integration node should be non-voting"
 	When moving to production with a node on the main network, we recommend running dedicated, non-voting node for your integration. If you are interested in running a representative node to help further decentralize the network consensus, please setup a separate node for this purpose to ensure both operate as effectively as possible. See the [Voting as a Representative guide](../running-a-node/voting-as-a-representative.md) for further details.
@@ -106,7 +106,7 @@ There are plenty of additional libraries and tools worth exploring to help with 
 
 ## Next steps
 
-If you've made it this far you may have a node running with a wallet setup and have started playing around on the test network. The next steps from here are understanding more about how to handle the various operations most integration require, such as:
+If you've made it this far you may have a node running with a wallet setup and have started playing around on the beta network. The next steps from here are understanding more about how to handle the various operations most integration require, such as:
 
 - Managing public and private keys: see [Key Management](key-management.md), sending and receiving transactions and handling work generation.
 - Creating and sending transactions:

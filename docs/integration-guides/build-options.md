@@ -7,15 +7,11 @@ description: Instructions for manually building the Nano node for a variety of o
 
 ## Official release builds
  
-Throughout the development cycle and after releases official builds of the node for Docker, Linux, macOS and Windows are generated and published for test, beta and main networks.
+Throughout the development cycle and after releases official builds of the node for Docker, Linux, macOS and Windows are generated and published for beta and main networks.
 
 === "Main network"
 
     --8<-- "current-build-links-main.md"
-
-=== "Test network"
-
-    --8<-- "current-build-links-test.md"
 
 === "Beta network"
 
@@ -32,10 +28,6 @@ Throughout the development cycle and after releases official builds of the node 
 === "Main network"
 
     --8<-- "directory-locations-main.md"
-
-=== "Test network"
-
-    --8<-- "directory-locations-test.md"
 
 === "Beta network"
 
@@ -432,11 +424,6 @@ Format: `cmake -D VARNAME=VARVALUE`
 **Main network**
 
 The default build network is the main network. No option needs to be specified.
-
-**Test Network**
-
-* To run a node on the test network, set CMake variable: `-DACTIVE_NETWORK=nano_test_network`
-* More information can be found on the [Test Network page](../running-a-node/test-network.md)
 
 **Beta Network**
 

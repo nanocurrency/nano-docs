@@ -45,14 +45,6 @@ For the purposes of this guide we will proceed as if these didn't exist, which w
 
 After this configuration change you can create a wallet using the ['wallet_create' RPC](../commands/rpc-protocol.md#wallet_create). During this call not only will a wallet be created, but a cryptographically secure [seed](../integration-guides/the-basics.md#seed) will also be created and added to the wallet. If you wish to use an existing seed instead of have one generated, make sure to include it using the optional `seed` parameter.
 
-=== "Test network"
-	**Request**
-	```bash
-	curl -d '{
-	  "action": "wallet_create"
-	}' http://127.0.0.1:17076
-	```
-
 === "Main network"
 	**Request**
 	```bash
@@ -103,15 +95,6 @@ If you would like to replace the wallet's automatically generated seed with your
 ??? danger "wallet_change_seed replaces the previous seed"
     This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
 
-    === "Test network"
-      **Request**
-      ```bash
-      curl -d '{
-          "action": "wallet_change_seed",
-          "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446", 
-          "seed": "A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6" 
-      }' http://127.0.0.1:17076
-      ```
 	=== "Main network"
       **Request**
       ```bash
@@ -140,15 +123,6 @@ It is a best practice to set the wallet password for additional security. Use th
 By default a newly created wallet with a seed will not have any accounts in it, but they are easy to add by simply calling the ['account_create' RPC](../commands/rpc-protocol.md#account-create). By default this will derive the private key for index `0` first from the seed and return the related public address. See the [seed](../integration-guides/the-basics.md#seed) section for more information about private key derivation.
 
 
-=== "Test network"
-	**Request**
-	```bash
-	curl -d '{
-	  "action": "account_create",
-	  "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
-	}' http://127.0.0.1:17076
-	```
-
 === "Main network"
 	**Request**
 	```bash
@@ -175,15 +149,6 @@ By default a newly created wallet with a seed will not have any accounts in it, 
 
 
 If the optional `index` parameter is included the private key for that specific index will be added. Any subsequent calls to ['account_create' RPC](../commands/rpc-protocol.md#account-create) without the `index` parameter will return to incrementing one from the lowest derived index above 0. Test out the command by generating a few accounts and then using the [`account_list` RPC](../commands/rpc-protocol.md#account_list) to see them all.
-
-=== "Test network"
-	**Request**
-	```bash
-	curl -d '{
-	  "action": "account_list",
-	  "wallet": "E3E67B1B3FFA46F606240F1D0B964873D42E9C6D0B7A0BF376A2E128541CC446"
-	}' http://127.0.0.1:17076
-	```
 
 === "Main network"
 	**Request**
