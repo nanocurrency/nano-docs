@@ -144,7 +144,7 @@ Each node configured with a [Representative](#representative) votes on every blo
 The amount of weight delegated to a [Representative](#representative).
 
 #### wallet
-A wallet is an organizational object in a nano\_node that holds a single seed from which multiple accounts are deterministically derived via a 32-bit unsigned integer index starting at 0. Private keys are derived from the seed and index as follows: (`||` means concatenation; `blake2b` is a [highly optimized cryptographic hash function](/protocol-design/signing-hashing-and-key-derivation/#hashing-algorithm-blake2))
+A wallet is an organizational object in a nano\_node that holds a single seed from which multiple accounts are deterministically derived via a 32-bit unsigned integer (in big endian format) index starting at 0. Private keys are derived from the seed and index as follows: (`||` means concatenation; `blake2b` is a [highly optimized cryptographic hash function](/protocol-design/signing-hashing-and-key-derivation/#hashing-algorithm-blake2))
 
 $$
 k_{private} = blake2b(\text{seed} || \text{index})
