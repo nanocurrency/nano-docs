@@ -6,6 +6,21 @@ The Nano developer documentation, built with **MkDocs (Material)**. Live at
 Task tracking is **beads** — run `bd prime` first. Use `bd` for all tasks; do
 not create markdown TODO lists.
 
+## English-only / brand protection
+
+docs.nano.org is English-only (no MkDocs i18n). Readers use browser
+translate. Chrome otherwise turns **Nano** into Spanish **enano** and can
+mangle **XNO** and **Ӿ**. In Markdown/HTML wrap those tokens (and
+addresses / CLI via `` `code` ``) so they stay intact:
+
+```html
+<span translate="no">Nano</span>
+```
+
+Do not wrap `nano.org` or `docs.nano.org`. Theme chrome and existing pages
+are not yet systematically marked — bead `nano_site_move-kbx`. Cross-repo
+status: [nano-org INFRA.md](https://github.com/nanocurrency/nano-org/blob/main/docs/agents/INFRA.md).
+
 ## Make a change and ship it
 
 - Documentation content is Markdown under **`docs/`**; navigation and theme are
