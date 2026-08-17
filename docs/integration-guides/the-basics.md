@@ -162,6 +162,7 @@ Depending on the action each transaction intends to perform, the `"link"` field 
 | Change  | decimal string     | Must be "0"                                |
 | Send    | 64 hex-char string | Public key for destination account         |
 | Receive | 64 hex-char string | Pairing block's hash (block sending funds) |
+| Epoch   | 64 hex-char string | ASCII "epoch v1 block" or "epoch v2 block" |
 
  If using the [block_create](/commands/rpc-protocol#block_create) RPC command the optional fields `"source"` (with the block hash to be received) and `"destination"` (with the target `nano_` address) fields can be used instead of directly defining the `"link"` field.
 
