@@ -65,7 +65,6 @@ The node is typically run like this:
 | `--vote_processor_capacity` | Vote processor queue size before dropping votes, default 144k. |
 | `--disable_activate_successors` | Disables activate_successors in active_elections |
 | `--disable_add_initial_peers` | Disables the add initial peers function called on startup which reads the peers table and contacts all the peers listed in it. |
-| `--disable_ascending_bootstrap` | Disable ascending bootstrap |
 | `--disable_backup` | Turn off automatic wallet backup process. |
 | `--disable_block_processor_republishing` | Disables block republishing by disabling the local_block_broadcaster component |
 | `--disable_block_processor_unchecked_deletion` | Disable deletion of unchecked blocks after processing. |
@@ -73,11 +72,11 @@ The node is typically run like this:
 | `--disable_bootstrap_bulk_push_client` | Disables the legacy bulk push client for bootstrap operations | 
 | `--disable_bootstrap_listener` | Turn off listener on the bootstrap network so incoming TCP (bootstrap) connections are rejected. Note: this does not impact TCP traffic for the live network. |
 | `--disable_lazy_bootstrap` | Turn off use of lazy bootstrap. |
+| `--disable_large_votes` | Disable large votes. |
 | `--disable_legacy_bootstrap` | Turn off use of legacy bootstrap. |
 | `--disable_max_peers_per_ip` | Disables the limit on the number of peer connections allowed per IP address |
 | `--disable_max_peers_per_subnetwork` | Disables the limit on the number of peer connections allowed per subnetwork |
 | `--disable_ongoing_bootstrap` | Turn off the ability for ongoing bootstraps to occur. |
-| `--disable_ongoing_telemetry_requests` | Disables ongoing telemetry requests to peers | 
 | `--disable_providing_telemetry_metrics` | Do not provide any telemetry data to nodes requesting it. Responses are still made to requests, but they will have an empty payload. |
 | `--disable_rep_crawler` | Turn off the rep crawler process. |
 | `--disable_request_loop` | Turn off the request loop. |
@@ -86,18 +85,18 @@ The node is typically run like this:
 | `--disable_unchecked_cleanup` | Prevent periodic cleaning of unchecked table. |
 | `--disable_unchecked_drop` | Prevent drop of all unchecked entries at node/wallet start. |
 | `--disable_wallet_bootstrap` | Turn off use of wallet-based bootstrap. |
+| `--skip_consistency_check` | Skip ledger consistency check on startup. Not recommended; should only be used for testing or recovery purposes. |
 
 ## Debug commands
 | Command | Description |
 |---------|-------------|
 | `--debug_account_count` | Display the number of accounts. |
-| `--debug_account` | Display the total counts of each version for all accounts (including unpocketed). |
+| `--debug_account_versions` | Display the total counts of each version for all accounts (including unpocketed). |
 | `--debug_block_count` | Display the number of blocks. |
 | `--debug_block_dump` | Print ledger blocks - use with caution due to the potentially large amount of data this can output. |
 | `--debug_bootstrap_generate` | Generate bootstrap sequence of blocks. |
 | `--debug_cemented_block_count` | Display the number of cemented blocks (blocks which are under the confirmation height of their accounts). |
 | `--debug_dump_frontier_unchecked_dependents` | Dump frontiers which have matching unchecked keys. |
-| `--debug_dump_online_weight` | List online weights table and current online_weights value. |
 | `--debug_dump_representatives` | List representatives and weights. |
 | `--debug_generate_crash_report` | After a node crash on Linux, this command reads the dump files generated from that crash and produces a "nano_node_crash_report.txt" file. Requires `addr2line` to be installed on the system. |
 | `--debug_opencl` | Profile OpenCL work generation for (optional) `--device=<device>` on `--device=<platform>` using `--threads=<threads>` count. |
@@ -115,6 +114,7 @@ The node is typically run like this:
 | `--debug_unconfirmed_frontiers` | Prints the account, height, frontiers and cemented frontier for all accounts which are not fully confirmed. Sorted by height in descending order. |
 | `--debug_validate_blocks` | Alias to `--validate_blocks`. |
 | `--debug_verify_profile` | Profile signature verification. |
+| `--debug_verify_profile_batch` | Profile batch signature verification. |
 | `--debug_dump_trended_weight`| Dump trended weights table |
 | `--debug_profile_process`| Profile active blocks processing (only for nano_dev_network)|
 | `--debug_random_feed`| Generates output to RNG test suites |
