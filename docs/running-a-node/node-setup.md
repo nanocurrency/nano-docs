@@ -3,7 +3,7 @@ description: Get the basic recommendations and instructions for setting up a nan
 
 # Node Setup
 
-The following guide will help you get started running a nano node on the various network available. If you haven't already, reviewing both the [overview](overview.md) and [security](security.md) pages of this running a node section is highly encouraged.
+The following guide will help you get started running a nano node on the various networks available. If you haven't already, reviewing both the [overview](overview.md) and [security](security.md) pages of this running a node section is highly encouraged.
 
 ## Overview and node lifecycle
 
