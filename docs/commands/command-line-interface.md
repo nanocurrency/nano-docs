@@ -51,7 +51,7 @@ The node is typically run like this:
 
 | Option | Description |
 |--------|-------------|
-| `--network` | Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported. |
+| `--network` | Allows selection of a different network at runtime. Values `live`, `beta` and `test` supported. The public test network was retired in July 2026, so `test` is only for self-hosted test networks. |
 | `--data_path=<path>` | Use the supplied `<path>` as the data directory. |
 | `--config key=value` | Pass node configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times. |
 | `--rpcconfig key=value` | Pass RPC configuration values. This takes precedence over any values in the configuration file. This option can be repeated multiple times. |

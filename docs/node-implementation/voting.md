@@ -31,7 +31,7 @@ The rep crawler is a repeating process to help track the online (actively voting
 
 To help fill these potential gaps in online status, the rep crawler pulls a set of random representatives from its peers list - either 15 entries if the weight of peers is higher than quorum delta, otherwise 50 entries - and sends confirmation requests to them for a randomly chosen block in the local ledger.
 
-If the confirmation acknowledgement is returned for those peers they will be considered online and actively voting. This ongoing crawl happens every 7 seconds on the live, beta and test networks, and every 0.1 seconds on the dev network for unit test purposes.
+If the confirmation acknowledgement is returned for those peers they will be considered online and actively voting. This ongoing crawl happens every 7 seconds on the live and beta networks, and every 0.1 seconds on the dev network for unit test purposes.
 
 ---
 

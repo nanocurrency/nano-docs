@@ -204,7 +204,7 @@ If building the Qt-based `nano_wallet`, first download [Qt 5.15.2+ open source e
 
 ### Node
 
-The process below will create a release build of the node for the main network. See [network options](#network-options) below for details on building for the test or beta networks.
+The process below will create a release build of the node for the main network. See [network options](#network-options) below for details on building for the beta network.
 
 === "*nix"
     ```bash

@@ -289,7 +289,7 @@ There are 3 different ways to enable RPC for the node:
 
 The choice depends on the setup and security that you want. The easiest way is to use RPC *in_process* according to [configuration](/running-a-node/configuration)
 
-**Launch nano_node in test mode**   
+**Launch nano_node in test mode (a local, self-hosted test network)**   
 
     ./nano_node --daemon --network=test
 
