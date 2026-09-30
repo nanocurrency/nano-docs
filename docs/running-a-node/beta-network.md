@@ -60,7 +60,6 @@ A list of beta tags can be found at the official [Nano Currency Docker Hub](http
 
 | URL                                     | Description |
 |                                         |             |	
-| https://beta.nanobrowse.com             | Beta Explorer |
 | https://nanoticker.bnano.info/          | Beta node details and stats |
 
 ## Differences from the main network

@@ -54,7 +54,7 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 [^9]: C. LeMahieu, “Raiblocks distributed ledger network”, 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
 [^10]: S. D. Lerner, “DagCoin Draft”, 2015. Available: https://bitslog.files.wordpress.com/2015/09/dagcoin-v41.pdf
 [^11]: A. Churyumov, “Byteball: A Decentralized System for Storage and Transfer of Value”, 2016. Available: https://obyte.org/Byteball.pdf
-[^12]: S. Popov, “The tangle”, 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
+[^12]: S. Popov, “The tangle”, 2016. Available (archived): https://web.archive.org/web/20250223161110/https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
 
 ---
 
