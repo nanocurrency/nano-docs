@@ -12,7 +12,7 @@ The node automatically manages the full Nano ledger in the `data.ldb` file which
 
 --8<-- "directory-locations-all.md"
 
-This file will grow in size as the ledger does. As of September 2020 there are over 56 million blocks in the ledger which requires at least 29GB of free space. See [hardware recommendations](/running-a-node/node-setup/#hardware-recommendations) for more preferred node specs.
+This file will grow in size as the ledger does. As of September 2026 there are over 224 million blocks in the ledger. See [hardware recommendations](overview.md#hardware-recommendations) for the current disk space requirements and more preferred node specs.
 
 !!! warning "RocksDB uses many files"
 	The above details are for the default LMDB database setup. If using RocksDB, please note that it uses potentially 100s of SST files to manage the ledger so details should be followed from the [RocksDB Ledger Backend](#rocksdb-ledger-backend) section below.
@@ -61,7 +61,7 @@ The additional resource usage these options cause should be considered, especial
 !!! tip "Always backup your ledgers file"
 	Whenever you are attempting to change the ledger, it is highly recommended you create backups of the existing `data.ldb` file to ensure you have a rollback point if issues are encountered.
 
-To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". The Nano Foundation uploads a new ledger file every other day for downloading in the `#ledger-download` channel of our [Discord server](https://chat.nano.org). This is posted by the robot `Nano Snapshots Uploader` and contains checksums for validation.
+To avoid bootstrapping times, a [ledger file](#ledger-file) (`data.ldb`) can be downloaded off-network and added to the data file used by the node. This process is sometimes referred to as a "fast sync". Ledger snapshots have been shared in the `#ledger-download` channel of our [Discord server](https://chat.nano.org); ask there for a current, trusted source and its checksums. Always validate a downloaded ledger as described below.
 
 Before using this method there are a few considerations to ensure it is done safely:
 
