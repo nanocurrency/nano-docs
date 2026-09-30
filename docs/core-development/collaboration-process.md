@@ -55,7 +55,7 @@ Note that you can also update the last commit with `git commit --amend`. Say you
 ## Finding issues or features to work on
 
 - Issues are available on GitHub, with the most urgent being in the latest milestone for release
-- Start with issues labeled as [`good first issue`](https://github.com/nanocurrency/nano-node/labels/good%20first%20issue) or connect with the NF core developers on [Discord](https://chat.nano.org) or the [forum](https://forum.nano.org) for ideas on how to help
+- Start with issues labeled as [`good first issue`](https://github.com/nanocurrency/nano-node/labels/good%20first%20issue) or connect with the NF core developers on [Discord](https://chat.nano.org) for ideas on how to help
 - If you find an issue you'd like to help with, comment and tag a [Nano Foundation team member](https://github.com/orgs/nanocurrency/people) who can evaluate and assign it to you
 
 ## Submitting issues and feature requests
@@ -76,11 +76,11 @@ For live chat, join the server at https://chat.nano.org and check out the `#prot
 
 **Forum**
 
-Another area for technical and code related discussions is the [forum](https://forum.nano.org). There are categories for `Protocol Design` and `Development` that are useful in discussing ideas. This can be a great place for getting feedback on ideas and exploring further before finalizing fixes and features in GitHub.
+Another area for technical and code related discussions is the [Nano Discord](https://chat.nano.org). This can be a great place for getting feedback on ideas and exploring further before finalizing fixes and features in GitHub.
 
 ## Proposals
 
-There currently is no formal process for proposals on the nano network. This is an area actively being investigated and if requirements for submissions change, this area will be updated. For now, if you wish to propose an new idea, it is recommended to discuss on the [forum](https://forum.nano.org) first to gather feedback and use the [GitHub Issues](https://github.com/nanocurrency/nano-node/issues/new/choose) on the concept is solidifed/validated.
+There currently is no formal process for proposals on the nano network. This is an area actively being investigated and if requirements for submissions change, this area will be updated. For now, if you wish to propose an new idea, it is recommended to discuss on [Discord](https://chat.nano.org) first to gather feedback and use the [GitHub Issues](https://github.com/nanocurrency/nano-node/issues/new/choose) once the concept is solidified/validated.
 
 [^1]: https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/
 [^2]: https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/

@@ -45,7 +45,7 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 
 [^1]: S. Nakamoto, “Bitcoin: A peer-to-peer electronic cash system,” 2008. [Online]. Available: http://bitcoin.org/bitcoin.pdf
 [^2]: "Block Confirmation Times", 2021. [Online]. Available: https://nanoticker.info
-[^3]: "Nano Stress Tests - Measuring BPS, CPS, & TPS in the real world", 2020. [Online]. Available: https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
+[^3]: "Nano Stress Tests - Measuring BPS, CPS, & TPS in the real world", 2020. [Online]. Available (archived): https://web.archive.org/web/20220706094241/https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
 [^4]: “Bitcoin median transaction fee historical chart.” [Online]. Available: https://bitinfocharts.com/comparison/bitcoin-median-transaction-fee.html
 [^5]: “Bitcoin average confirmation time.” [Online]. Available: https://www.blockchain.com/charts/avg-confirmation-time
 [^6]: "Irreversible Transactions - How many confirmation are required", 2020. [Online]. Available: https://en.bitcoin.it/wiki/Irreversible_Transactions#How_many_confirmations_are_required

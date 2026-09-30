@@ -320,7 +320,7 @@ Although the threshold for being synced can vary based on the level of network a
 
 This is a common situation when starting a new node, as it takes time to bootstrap all the blocks and confirm them. As you check the counts over time you should see them both getting closer to the 99% mark, although there may be interruptions in progress lasting minutes to hours or longer.
 
-If your node stops making progress on syncing for over 24 hours, try connecting with the nano community for troubleshooting assistance on [Discord](https://chat.nano.org) or the [Forum](https://forum.nano.org).
+If your node stops making progress on syncing for over 24 hours, try connecting with the nano community for troubleshooting assistance on [Discord](https://chat.nano.org).
 
 ---
 

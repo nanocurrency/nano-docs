@@ -31,7 +31,7 @@ To stay updated on progress towards the canary block distribution, please sign u
 
 ### Remove election difficulty sorting
 
-Higher work difficulty on blocks will no longer result in increased election priority. Instead, a [new election prioritization and scheduling mechanism](https://forum.nano.org/t/election-scheduler-and-prioritization-revamp/1837) was designed with initial changes being made in this release. With these changes the work generation is still required for transactions to be valid, but higher difficulties are no longer part of prioritization. Instead, the balance of the account and the time it was last used will be used to determine when elections are started.
+Higher work difficulty on blocks will no longer result in increased election priority. Instead, a [new election prioritization and scheduling mechanism](https://web.archive.org/web/20220120050004/https://forum.nano.org/t/election-scheduler-and-prioritization-revamp/1837) was designed with initial changes being made in this release. With these changes the work generation is still required for transactions to be valid, but higher difficulties are no longer part of prioritization. Instead, the balance of the account and the time it was last used will be used to determine when elections are started.
 
 For nearly all services and integrations this will have no noticeable impact on how quickly voting will begin on a published transaction. As more improvements are added in V23, addition details will be available about the future of work generation and recommendations for optimizing this in the long term.
 
@@ -62,7 +62,7 @@ An initial, experimental version of a much requested feature is being made avail
 
 ### Election scheduler and prioritization changes
 
-A [new election prioritization and scheduling mechanism](https://forum.nano.org/t/election-scheduler-and-prioritization-revamp/1837) was designed and the initial updates for this feature are included in this release. These changes will keep work generation as a requirement for transactions to be valid, but switch the [election scheduler](https://github.com/nanocurrency/nano-node/pull/3208) and [prioritization](https://github.com/nanocurrency/nano-node/pull/3190) behaviors to use a combination of balance and time since the account was last used. With this approach nodes across the network are expected to see improved performance in clearing the backlog of elections while the network is not actively under spam attack. Future changes in V23 will be targeting improved performance while the network is under load. 
+A [new election prioritization and scheduling mechanism](https://web.archive.org/web/20220120050004/https://forum.nano.org/t/election-scheduler-and-prioritization-revamp/1837) was designed and the initial updates for this feature are included in this release. These changes will keep work generation as a requirement for transactions to be valid, but switch the [election scheduler](https://github.com/nanocurrency/nano-node/pull/3208) and [prioritization](https://github.com/nanocurrency/nano-node/pull/3190) behaviors to use a combination of balance and time since the account was last used. With this approach nodes across the network are expected to see improved performance in clearing the backlog of elections while the network is not actively under spam attack. Future changes in V23 will be targeting improved performance while the network is under load. 
 
 ---
 

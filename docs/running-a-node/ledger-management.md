@@ -76,7 +76,7 @@ If looking to use a downloaded ledger there is a risk of it providing inaccurate
 1. **Scan the ledger for integrity using the [`--debug_validate_blocks`](/commands/command-line-interface/#-debug_validate_blocks) CLI command**. If issues are found they should be inspected carefully and alternative sources of a ledger may need to be considered as failures with this command have a high chance of indicating potentially malicious behavior.
 1. **Review the differences in representative voting weights by running the [`--compare_rep_weights`](/commands/command-line-interface/#-compare_rep_weights) CLI command** (_v21.0+ only)_ with the new ledger in the default data directory (old ledger backed up) or in a different data directory by using the optional `--data_path` argument. This will compare the new ledger voting weights against the hardcoded values in the node (set at the time of release). See the [CLI command](/commands/command-line-interface/#-compare_rep_weights) for details on the output with special attention paid to entries in the `outliers` and `newcomers` sections. By inspecting those addresses in public explorers such as [BlockLattice.io](https://blocklattice.io/), [Nano.community](https://nano.community/), or [NanoCharts.info](https://nanocharts.info/), this can help to determine if voting weight may have been manipulated in the downloaded ledger.
 
-If you need support with this process or need help in evaluating some of the CLI command results, join the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep/8) on the [Nano Forums](https://forum.nano.org).
+If you need support with this process or need help in evaluating some of the CLI command results, ask in the node operator channels of the [Nano Discord](https://chat.nano.org).
 
 ### Confirmation data
 Within each account on the ledger a confirmation height is set. This indicates the height of the last block on that chain where quorum was observed on the network. This is set locally by the node and a new ledger file may include this information with it. If the ledger is from a trusted source this confirmation data can be kept, which will save bandwidth and resources on the network by not querying for votes to verify these confirmations.
@@ -119,7 +119,7 @@ In the event that you are unable to upgrade the ledger on another machine but wo
 ## RocksDB Ledger Backend
 
 !!! info ""
-    If you are testing RocksDB and want to discuss results, configurations, etc. please join the forum topic here: https://forum.nano.org/t/rocksdb-ledger-backend-testing/111
+    If you are testing RocksDB and want to discuss results, configurations, etc. please join the [Nano Discord](https://chat.nano.org). Earlier discussion from the retired forum is [archived here](https://web.archive.org/web/20220629162950/https://forum.nano.org/t/rocksdb-ledger-backend-testing/111).
 
 The node ledger currently uses LMDB (Lightning memory-mapped database) by default as the data store. As of _v20+_ the option to use RocksDB became available as an experimental option and should not be used in production.
 This document will not go into much detail about theses key-value data stores as there is a lot of information available online.
