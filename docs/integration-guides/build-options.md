@@ -47,7 +47,7 @@ Throughout the development cycle and after releases official builds of the node 
 --8<-- "warning-unsupported-configuration.md"
 
 !!! tip "Alternate Windows setup"
-    Some users have trouble using the command line approach below for getting setup to build on Windows. An alternative setup is available further down for [Windows 10 & Visual Studio 2019](#windows-10-visual-studio-2019). Variations on these instructions with different versions of Windows, Visual Studio, Cmake, etc. may work as well, but may require adjustments.
+    Some users have trouble using the command line approach below for getting setup to build on Windows. An alternative setup is available further down for [Windows 10 & Visual Studio 2019](#windows-visual-studio). Variations on these instructions with different versions of Windows, Visual Studio, Cmake, etc. may work as well, but may require adjustments.
 
 ### Boost (before V25.0)
 

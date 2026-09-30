@@ -52,7 +52,7 @@ When a block (transaction) gathers enough votes from the network to pass [quorum
 A number stored in the local node database that represents the highest (most recent) [confirmed](#confirmation) block in an account chain. Related to (but different from) [block height](#block-height).
 
 #### Confirmations Per Second (CPS)
-The rate of [confirmed](#confirmation) [blocks](#blocks).
+The rate of [confirmed](#confirmation) [blocks](#block).
 
 #### election
 

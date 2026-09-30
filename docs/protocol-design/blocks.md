@@ -18,7 +18,7 @@ All new transactions on the Nano Protocol are communicated via blocks. The accou
 | account        | string              | 32 bytes   | This account's nano_ address |
 | previous       | 64 hex-char string  | 32 bytes   | Previous head block on account; 0 if *open* block |
 | representative | string              | 32 bytes   | Representative nano_ address |
-| balance        | decimal string      | 16 bytes   | Resulting balance (in [raw](#units)) |
+| balance        | decimal string      | 16 bytes   | Resulting balance (in [raw](distribution-and-units.md#unit-dividers)) |
 | link           | -                   | 32 bytes   | Multipurpose field - see link table below |
 | signature      | 128 hex-char string | 64 bytes   | ED25519+Blake2b 512-bit signature |
 | work           | 16 hex-char string  | 8 bytes    | [Proof of Work](../glossary.md#proof-of-work-pow) Nonce |

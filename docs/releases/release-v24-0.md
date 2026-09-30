@@ -108,8 +108,8 @@ There are two main types of changes: RPC call name changes and updates to keys i
 
 ## CLI updates 
 
-* [`--confirmation_height_clear`](../commands/command-line-interface.md#--confirmationheightclear) now requires `'all'` to be specified by the `account` parameter to clear all the accounts
-* [`--help`](../commands/command-line-interface.md#--help) now displays the options in alphabetical order
+* [`--confirmation_height_clear`](../commands/command-line-interface.md#nano_node-commands) now requires `'all'` to be specified by the `account` parameter to clear all the accounts
+* [`--help`](../commands/command-line-interface.md#nano_node-commands) now displays the options in alphabetical order
 
 ---
 

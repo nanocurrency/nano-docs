@@ -91,12 +91,12 @@ Support added for `wss://` to allow secure WebSocket connections alongside exist
 
 * **NEW CONFIGURATION OPTION** `node.rep_crawler_weight_minimum` allows configuration of the minimum vote weight a node needs to qualify for the [rep crawler](../node-implementation/voting.md#rep-crawler) to solicit confirmations from them. By default the rep crawler only tracks Principal Representatives (all previous versions behave this way) but a lower value for this option can provide broader tracking for debugging purposes.
 * **NEW CLI COMMANDS**
-    * [`--disable_add_initial_peers`](../commands/command-line-interface.md#-disable_add_initial_peers)
-    * [`--debug_block_dump`](../commands/command-line-interface.md#-debug_block_dump)
-    * [`--initialize`](../commands/command-line-interface.md#-initialize)
-    * [`--disable_ongoing_bootstrap`](../commands/command-line-interface.md#-disable_ongoing_bootstrap)
-    * [`--disable_rep_crawler`](../commands/command-line-interface.md#-disable_rep_crawler)
-    * [`--disable_request_loop`](../commands/command-line-interface.md#-disable_request_loop)
+    * [`--disable_add_initial_peers`](../commands/command-line-interface.md#launch-options)
+    * [`--debug_block_dump`](../commands/command-line-interface.md#debug-commands)
+    * [`--initialize`](../commands/command-line-interface.md#nano_node-commands)
+    * [`--disable_ongoing_bootstrap`](../commands/command-line-interface.md#launch-options)
+    * [`--disable_rep_crawler`](../commands/command-line-interface.md#launch-options)
+    * [`--disable_request_loop`](../commands/command-line-interface.md#launch-options)
 
 ---
 

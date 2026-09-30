@@ -73,7 +73,7 @@ Make sure to backup this wallet ID as this will be needed for other calls (you c
 
 #### Backup or import your seed
 
-Note that the seed generated in the wallet isn't returned in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface.md#-wallet_decrypt_unsafe-walletwallet-passwordpassword). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
+Note that the seed generated in the wallet isn't returned in the RPC response. This is also for security reasons. The node will only output the wallet seed to stdout via the [`--wallet_decrypt_unsafe` CLI command](../commands/command-line-interface.md#nano_node-commands). Run this command and backup your seed now (see [backing up seed](../integration-guides/key-management.md#backing-up-seed) for more details).
 
 === "Docker"
 	**Request**
@@ -90,7 +90,7 @@ Note that the seed generated in the wallet isn't returned in the RPC response. T
 Seed: A7EA09F17C914AE8BA1B7FD1747DB8942DF551C271A7085187B8A20C21898CC6
 ```
 
-If you would like to replace the wallet's automatically generated seed with your own, you can use the [`wallet_change_seed` RPC](../commands/rpc-protocol.md#wallet-change-seed) command:
+If you would like to replace the wallet's automatically generated seed with your own, you can use the [`wallet_change_seed` RPC](../commands/rpc-protocol.md#wallet_change_seed) command:
 
 ??? danger "wallet_change_seed replaces the previous seed"
     This command replaces the existing seed and clears all deterministic accounts in the wallet! Backup the old seed first if necessary.
@@ -120,7 +120,7 @@ It is a best practice to set the wallet password for additional security. Use th
 
 ### Create accounts
 
-By default a newly created wallet with a seed will not have any accounts in it, but they are easy to add by simply calling the ['account_create' RPC](../commands/rpc-protocol.md#account-create). By default this will derive the private key for index `0` first from the seed and return the related public address. See the [seed](../integration-guides/the-basics.md#seed) section for more information about private key derivation.
+By default a newly created wallet with a seed will not have any accounts in it, but they are easy to add by simply calling the ['account_create' RPC](../commands/rpc-protocol.md#account_create). By default this will derive the private key for index `0` first from the seed and return the related public address. See the [seed](../integration-guides/the-basics.md#seed) section for more information about private key derivation.
 
 
 === "Main network"
@@ -148,7 +148,7 @@ By default a newly created wallet with a seed will not have any accounts in it, 
 ```
 
 
-If the optional `index` parameter is included the private key for that specific index will be added. Any subsequent calls to ['account_create' RPC](../commands/rpc-protocol.md#account-create) without the `index` parameter will return to incrementing one from the lowest derived index above 0. Test out the command by generating a few accounts and then using the [`account_list` RPC](../commands/rpc-protocol.md#account_list) to see them all.
+If the optional `index` parameter is included the private key for that specific index will be added. Any subsequent calls to ['account_create' RPC](../commands/rpc-protocol.md#account_create) without the `index` parameter will return to incrementing one from the lowest derived index above 0. Test out the command by generating a few accounts and then using the [`account_list` RPC](../commands/rpc-protocol.md#account_list) to see them all.
 
 === "Main network"
 	**Request**
