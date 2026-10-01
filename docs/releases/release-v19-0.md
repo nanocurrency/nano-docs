@@ -124,4 +124,4 @@ The following RPC calls are being deprecated and will be removed in a future rel
 A new nanorep [QR code standard](/integration-guides/the-basics/#uri-and-qr-code-standards) for easier management of representative changes was added for wallets and other services to consider supporting.
 
 **New recommended block explorer**  
-The Nano Foundation supports a new recommended block explorer - [NanoCrawler](https://web.archive.org/web/20190720180239/https://nanocrawler.cc/) (no longer online). We encourage services and exchanges linking out to block explorers to consider using NanoCrawler going forward as it provides solid design and performance for referencing blocks, accounts and more.
+The Nano Foundation supported a new recommended block explorer - [NanoCrawler](https://web.archive.org/web/20190720180239/https://nanocrawler.cc/) (no longer online). At the time of this release, we encouraged services and exchanges linking out to block explorers to consider using NanoCrawler, as it provided solid design and performance for referencing blocks, accounts and more.
