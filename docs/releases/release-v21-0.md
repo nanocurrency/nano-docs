@@ -63,7 +63,7 @@ Behind the scenes many improvements were made to better streamline alignment of 
 
 ## Node Configuration and Management Updates
 
-!!! info "Support in Nano Forum"
+!!! info "Support on Discord"
 	For node operators looking to upgrade their node or tune their configurations, the [Nano Discord](https://chat.nano.org) is a great resource to use.
 
 The following options are notable node configuration updates. Additional configuration changes have been included in this release and can be found when generating the config files.

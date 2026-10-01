@@ -96,7 +96,7 @@ As part of the original implementation work we were able to setup infrastructure
 
 ## Node Configuration Updates
 
-!!! info "Support in Nano Forum"
+!!! info "Support on Discord"
 	For node operators looking to upgrade to V20.0 or tune their configurations, the [Nano Discord](https://chat.nano.org) is a great resource to use.
 
 !!! tip "Generate .toml config to see options"
