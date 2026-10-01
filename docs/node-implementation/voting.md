@@ -3,8 +3,6 @@ description: Review the various aspects of voting and vote management in the nan
 
 # Node Implementation - Voting
 
---8<-- "wip-living-whitepaper.md"
-
 ## Vote rebroadcasting
 
 When a block is processed, Principal Representatives evaluate whether they can generate a vote for the block (dependent blocks already confirmed, etc.). If they can, they generate the vote and publish to all other PRs they are aware of in addition to `2*sqrt(peers)` of non-PR nodes.  To reduce the load on PRs nodes, they do not republish incoming votes - only Non-PR nodes republish other votes to `1/2*sqrt(peers)` to ensure enough coverage across the rest of the network.
@@ -31,7 +29,7 @@ The rep crawler is a repeating process to help track the online (actively voting
 
 To help fill these potential gaps in online status, the rep crawler pulls a set of random representatives from its peers list - either 15 entries if the weight of peers is higher than quorum delta, otherwise 50 entries - and sends confirmation requests to them for a randomly chosen block in the local ledger.
 
-If the confirmation acknowledgement is returned for those peers they will be considered online and actively voting. This ongoing crawl happens every 7 seconds on the live, beta and test networks, and every 0.1 seconds on the dev network for unit test purposes.
+If the confirmation acknowledgement is returned for those peers they will be considered online and actively voting. This ongoing crawl happens every 7 seconds on the live and beta networks, and every 0.1 seconds on the dev network for unit test purposes.
 
 ---
 

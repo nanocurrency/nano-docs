@@ -3,8 +3,6 @@ description: Learn how Nano fights spam using balance-bucket transaction priorit
 
 # Protocol Design - Spam, Work, & Prioritization
 
---8<-- "wip-living-whitepaper.md"
-
 ## Spam resistance
 
 A spam transaction is loosely defined as a block broadcasted with the intent to saturate the network, reduce network availability, or increase the size of the ledger. In order to make spam more costly, each valid block in Nano requires a proof-of-work (PoW) solution to be attached to it - similar to the original Hashcash proposition[^1]. Participants can compute the required work in a few seconds, and verification time for this work is negligible (to prevent invalid blocks, large work, and/or invalid work from becoming a denial-of-service attack vector). The cost of spamming the network then increases linearly with the number of spam transactions, reducing the impact of spam from theoretically infinite to a manageable amount.

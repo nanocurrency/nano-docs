@@ -237,7 +237,7 @@ enable_control = false
 More advanced options for controlling the process the RPC server runs under can be found in the [Running Nano as a service guide](../integration-guides/advanced.md#running-nano-as-a-service).
 
 ### IPC
-See the [IPC Integration guide](../integration-guides/ipc-integration.md#configuration).
+See the [IPC Integration guide](../integration-guides/ipc-integration.md).
 
 ### Voting
 See the [Voting as a Representative guide](voting-as-a-representative.md).

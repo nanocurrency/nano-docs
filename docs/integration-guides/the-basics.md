@@ -33,7 +33,7 @@ The Nano Network achieves consensus using the unique [Open Representative Voting
     * Choosing a representative with good uptime that is also a unique entity (to prevent sybil attacks) helps maintain high Nano network security.
     * If an account's representative goes offline, the account's funds are no longer used to help secure the network; however, the account is unaffected.
     * Anyone that runs a full-time node may be a representative and be delegated voting weight from other users of the protocol.
-    * An account can freely change its representative anytime within any transaction or explicitly by publishing [a block which only changes the representative](#change) (sends no funds), which most wallets support.
+    * An account can freely change its representative anytime within any transaction or explicitly by publishing [a block which only changes the representative](#representative-change) (sends no funds), which most wallets support.
 
 ---
 

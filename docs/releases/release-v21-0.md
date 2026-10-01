@@ -51,7 +51,7 @@ Details of what is shared and options for receiving them can be found in the [no
 
 --8<-- "warning-telemetry-can-be-forged.md"
 
-Continued conversation around telemetry is happening through the [related forum discussion](https://forum.nano.org/t/node-telemetry-metrics/112/8).
+Continued conversation around telemetry is happening through the [related forum discussion (archived)](https://web.archive.org/web/20220524175250/https://forum.nano.org/t/node-telemetry-metrics/112).
 
 ### IPC 2.0
 As a key update towards the upcoming RPC 2.0 redesign, this background upgrade will provide more performant communication to the node, allow easier integration across various languages by supporting Flatbuffers and provide the foundation for [more granular authorization of specific calls](https://github.com/cryptocode/notes/wiki/IPC-Authorization).
@@ -63,8 +63,8 @@ Behind the scenes many improvements were made to better streamline alignment of 
 
 ## Node Configuration and Management Updates
 
-!!! info "Support in Nano Forum"
-	For node operators looking to upgrade their node or tune their configurations, the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) of the forum is a great resource to use.
+!!! info "Support on Discord"
+	For node operators looking to upgrade their node or tune their configurations, the [Nano Discord](https://chat.nano.org) is a great resource to use.
 
 The following options are notable node configuration updates. Additional configuration changes have been included in this release and can be found when generating the config files.
 
@@ -94,10 +94,10 @@ The following options are notable node configuration updates. Additional configu
 
 ## CLI Updates
 
-* **NEW** [`--debug_generate_crash_report`](../commands/command-line-interface.md#-debug_generate_crash_report) greatly simplifies [troubleshooting when a node crashes in Linux](../running-a-node/troubleshooting.md#what-to-do-if-the-node-crashes-linux).
-* **NEW** [`--rebuild_database`](../commands/command-line-interface.md#-rebuild_database) provides a better compaction method for LMDB. **NOTE:** This requires approximately `data.ldb` file size * 2 in free space on disk.
-* **NEW** [`--compare_rep_weights`](../commands/command-line-interface.md#-compare_rep_weights) gives the ability to compare the current ledger voting weight distribution against the hard coded weights provided in the node on release. Useful when attempting to use a downloaded ledger. More details on use can be found on the [Ledger Management page](../running-a-node/ledger-management.md).
-* **NEW** [`--inactive_votes_cache_size`](../commands/command-line-interface.md#-inactive_votes_cache_size) allows adjusting of the cache that holds votes where the block does not have an action election, default is 16384 votes.
+* **NEW** [`--debug_generate_crash_report`](../commands/command-line-interface.md#debug-commands) greatly simplifies [troubleshooting when a node crashes in Linux](../running-a-node/troubleshooting.md#what-to-do-if-the-node-crashes-linux).
+* **NEW** [`--rebuild_database`](../commands/command-line-interface.md#nano_node-commands) provides a better compaction method for LMDB. **NOTE:** This requires approximately `data.ldb` file size * 2 in free space on disk.
+* **NEW** [`--compare_rep_weights`](../commands/command-line-interface.md#nano_node-commands) gives the ability to compare the current ledger voting weight distribution against the hard coded weights provided in the node on release. Useful when attempting to use a downloaded ledger. More details on use can be found on the [Ledger Management page](../running-a-node/ledger-management.md).
+* **NEW** [`--inactive_votes_cache_size`](../commands/command-line-interface.md#launch-options) allows adjusting of the cache that holds votes where the block does not have an action election, default is 16384 votes.
 
 ---
 

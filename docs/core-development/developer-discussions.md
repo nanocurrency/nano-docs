@@ -8,7 +8,7 @@ Links & notes for recurring live discussions about Nano development. Includes di
 !!! note
     These developer discussions are best effort, live discussions, and may not contain the most accurate (or most recent) information. The intent of these discussions is to promote transparency, collaboration, & community-driven efforts, but development plans may change at any time. 
     
-    The below notes are also best effort, and may not be 100% accurate.
+    The below notes are also best effort, and may not be 100% accurate. Notes were not recorded after September 2024.
 
 ## Sept 3, 2024
 

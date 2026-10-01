@@ -31,7 +31,7 @@ The Block Lattice is a data-structure in which individual accounts control their
 The transmission rate of [unconfirmed](#confirmation) blocks (transactions) on the network. 
 
 #### bootstrap network
-A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main, beta and test networks).
+A sub-network established between peers via Transmission Control Protocol (TCP) for managing bulk transmission of blocks. This is used on initial bootstrapping of peers and when out-of-sync peers attempt to fill large gaps in their ledgers. This is available within all Nano networks (main and beta networks).
 
 #### bootstrapping
 During initial sync, the nano\_node requests old transactions to independently verify and populate its local ledger database. Bootstrapping will also occur when the nano\_node becomes out of sync with the network.
@@ -52,7 +52,7 @@ When a block (transaction) gathers enough votes from the network to pass [quorum
 A number stored in the local node database that represents the highest (most recent) [confirmed](#confirmation) block in an account chain. Related to (but different from) [block height](#block-height).
 
 #### Confirmations Per Second (CPS)
-The rate of [confirmed](#confirmation) [blocks](#blocks).
+The rate of [confirmed](#confirmation) [blocks](#block).
 
 #### election
 
@@ -72,7 +72,7 @@ A block with funds being transferred to an [account](#account) owned by a [walle
 Blocks on an account chain before the first v1 block (which is often the v1 epoch block but can be other types). The first v1 block and all subsequent blocks are stateful blocks.
 
 #### live network
-A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main, beta and test networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. In V21 it was deprecated, and in V25 it was fully removed.
+A sub-network established between peers via Transmission Control Protocol (TCP) for communicating newly published blocks, votes and other non-bootstrap related traffic. This is available within all Nano networks (main and beta networks). In versions prior to V19, this was done via User Datagram Protocol (UDP). UDP was retained as a fallback for peer connection for versions 19 and 20. In V21 it was deprecated, and in V25 it was fully removed.
 
 #### node version
 The version used to identify a unique release build of the node. Each node version is tied to a single [protocol version](#protocol-version), but they are updated independently.

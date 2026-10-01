@@ -166,9 +166,9 @@ The [Nano Work Server](https://github.com/nanocurrency/nano-work-server) also of
 
 Note that these commands do not use the configuration of the node. Prefer using the alternative above for that purpose, such as changing the number of threads for CPU work generation, or using work peers.
 
-[CPU](../commands/command-line-interface.md#-debug_profile_generate) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
+[CPU](../commands/command-line-interface.md#debug-commands) with all available threads: `nano_node --debug_profile_generate [--difficulty fffffff800000000] [--multiplier 1.0]`
 
-[GPU](../commands/command-line-interface.md#-debug_opencl) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
+[GPU](../commands/command-line-interface.md#debug-commands) acceleration: `nano_node --debug_opencl --platform=0 --device=0 [--difficulty fffffff800000000] [--multiplier 1.0]`
 
 The command will trigger continual work generation, so let it run until a sufficient sample size of times are generated (at least 100 instances). Compute the average of these times which are the number of microseconds it took to generate each sample.
 

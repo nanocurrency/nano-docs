@@ -3,8 +3,6 @@ description: As the beginning of the living whitepaper, get details and backgrou
 
 # Protocol Design - Introduction
 
---8<-- "wip-living-whitepaper.md"
-
 !!! tip "Contributing to the protocol"
 	If you are interested in helping develop the Nano protocol check out our details on [contributing code to the Nano node](../core-development/overview.md) as a starting point to understanding the current implementation contributions, as these are often tightly coupled with protocol-related changes.
 
@@ -44,8 +42,8 @@ While Nano uses a weighted-voting system that can be compared to PoS, it differs
 The original Nano (RaiBlocks) paper and first beta implementation were published in December, 2014, making it one of the first Directed Acyclic Graph (DAG) based cryptocurrencies [^9]. Soon after, other DAG cryptocurrencies began to develop, most notably DagCoin, Obyte (formerly Byteball) and IOTA [^10], [^11], [^12]. These DAG-based cryptocurrencies broke the blockchain mold, improving system performance and security. Obyte achieves consensus by relying on a “main-chain” comprised of honest, reputable and user-trusted “witnesses”, while IOTA achieves consensus via the cumulative PoW of stacked transactions. Nano achieves consensus via a balance-weighted vote on conflicting transactions. This consensus system provides quicker, more deterministic transactions while still maintaining a strong, decentralized system. Nano continues this development and has positioned itself as one of the highest performing cryptocurrencies.
 
 [^1]: S. Nakamoto, “Bitcoin: A peer-to-peer electronic cash system,” 2008. [Online]. Available: http://bitcoin.org/bitcoin.pdf
-[^2]: "Block Confirmation Times", 2021. [Online]. Available: https://nanoticker.info
-[^3]: "Nano Stress Tests - Measuring BPS, CPS, & TPS in the real world", 2020. [Online]. Available: https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
+[^2]: "Block Confirmation Times", 2021. [Online]. Available (archived): https://web.archive.org/web/20210524191510/https://nanoticker.info/
+[^3]: "Nano Stress Tests - Measuring BPS, CPS, & TPS in the real world", 2020. [Online]. Available (archived): https://web.archive.org/web/20220706094241/https://forum.nano.org/t/nano-stress-tests-measuring-bps-cps-tps-in-the-real-world/436
 [^4]: “Bitcoin median transaction fee historical chart.” [Online]. Available: https://bitinfocharts.com/comparison/bitcoin-median-transaction-fee.html
 [^5]: “Bitcoin average confirmation time.” [Online]. Available: https://www.blockchain.com/charts/avg-confirmation-time
 [^6]: "Irreversible Transactions - How many confirmation are required", 2020. [Online]. Available: https://en.bitcoin.it/wiki/Irreversible_Transactions#How_many_confirmations_are_required
@@ -54,7 +52,7 @@ The original Nano (RaiBlocks) paper and first beta implementation were published
 [^9]: C. LeMahieu, “Raiblocks distributed ledger network”, 2014. https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf
 [^10]: S. D. Lerner, “DagCoin Draft”, 2015. Available: https://bitslog.files.wordpress.com/2015/09/dagcoin-v41.pdf
 [^11]: A. Churyumov, “Byteball: A Decentralized System for Storage and Transfer of Value”, 2016. Available: https://obyte.org/Byteball.pdf
-[^12]: S. Popov, “The tangle”, 2016. Available: https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
+[^12]: S. Popov, “The tangle”, 2016. Available (archived): https://web.archive.org/web/20250223161110/https://assets.ctfassets.net/r1dr6vzfxhev/2t4uxvsIqk0EUau6g2sw0g/45eae33637ca92f85dd9f4a3a218e1ec/iota1_4_3.pdf
 
 ---
 

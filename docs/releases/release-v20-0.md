@@ -37,7 +37,7 @@ The following commands can be used to generated commented out, complete config f
 More details on the new configuration setup can be found in the node [Configuration documentation](https://docs.nano.org/running-a-node/configuration/).
 
 ### Networking changes
-Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing systems that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the [Troubleshooting UPnP documentation](/running-a-node/troubleshooting/#troubleshooting-upnp) for assistance. Additional help can be sought in the [Node and Representative Management forum category](https://forum.nano.org/c/node-and-rep). 
+Improvements to default network setup in this version requires less setup from node operators, specifically around port forwarding. Although new setups will immediately benefit, any existing systems that have already setup port forwarding may be impacted by these changes. For those systems, we recommend validating your network setup allows proper peering with a test V20.0 node prior to upgrading. If you run into issues, review the [Troubleshooting UPnP documentation](/running-a-node/troubleshooting/#troubleshooting-upnp) for assistance. Additional help can be sought on the [Nano Discord](https://chat.nano.org). 
 
 ### Proof-of-Work management
 A couple changes to PoW management that services should be aware of:
@@ -60,7 +60,7 @@ Better legibility, support for comments, and no more having the node write to yo
 Any requests to the [process RPC](https://docs.nano.org/commands/rpc-protocol/#process) will have the new `watch_work` option turned on by default, allowing the node to regenerate Proof-of-Work for blocks even if they are outside of the node’s development wallet. This makes Dynamic PoW and prioritization function more consistently across the network. If you have an external integration utilizing this RPC call, you will automatically start taking advantage of rework during confirmation delays on the network.
 
 ### RocksDB experimental support
-With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout [how to install RocksDB](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) and try it out on development and test systems. We also have a [related discussion in our forum](https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4) for those interested.
+With better disk IO usage, RocksDB is being introduced in this version with experimental support. It is not recommended for use in production, but those interested in testing out a more performant database for the ledger should checkout [how to install RocksDB](https://docs.nano.org/running-a-node/rocksdb-ledger-backend/) and try it out on development and test systems. We also have a [related discussion in our forum (archived)](https://web.archive.org/web/20191207134620/https://forum.nano.org/t/rocksdb-ledger-backend-testing/111/4) for those interested.
 
 ### Active elections and other optimizations
 Thanks to our excellent community testers putting effort into collecting and analyzing block, voting and confirmation data from the beta network, we’ve found various optimizations with the active elections process, confirmation request attempts and bootstrapping behaviors. Various changes have been implemented to help reduce resource usage on nodes in various areas and increase the available throughput on the network. This feature also enhances the effectiveness of prioritization and rework of PoW. No action is needed to take advantage of these great updates. 
@@ -96,8 +96,8 @@ As part of the original implementation work we were able to setup infrastructure
 
 ## Node Configuration Updates
 
-!!! info "Support in Nano Forum"
-	For node operators looking to upgrade to V20.0 or tune their configurations, the [Node and Representative Management category](https://forum.nano.org/c/node-and-rep) of the forum is a great resource to use.
+!!! info "Support on Discord"
+	For node operators looking to upgrade to V20.0 or tune their configurations, the [Nano Discord](https://chat.nano.org) is a great resource to use.
 
 !!! tip "Generate .toml config to see options"
 	As noted in the [Upgrade Notices](#upgrade-notices) above, this version will migrate your existing .json files over to .toml files. Only non-default values for these fields will be added to the new .toml file. If you wish to adjust other options, use the [config generation commands](/running-a-node/configuration/#configuration-file-locations) to see all available options.

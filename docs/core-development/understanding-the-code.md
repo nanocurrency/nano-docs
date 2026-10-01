@@ -114,10 +114,6 @@ Legacy bootstrapping works by requesting frontiers periodically (every 5 minutes
 
 Lazy bootstrapping works by having nodes monitor the real-time network and observing live block confirmation. In combination with [optimistic elections](https://github.com/nanocurrency/nano-node/pull/4111), when a node sees confirmation for a new block, all previous blocks in the newly confirmed block's account-chain are also considered valid & confirmed, and are then inserted into node's local ledger.
 
-### Wallet lazy
-
-TODO
-
 ### How messages are handled
 
 `node/bootstrap/bootstrap_server.cpp` 

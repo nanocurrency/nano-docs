@@ -90,6 +90,6 @@ At nano.community [[1]](https://github.com/mistakia/nano-community/blob/main/dat
 
 As you continue maintaining your representative there are great community resources available for support:
 
-* Ask questions in the [Node and Representative Management](https://forum.nano.org/c/node-and-rep/8) category of the Nano Forum
+* Ask questions in the node operator channels of the [Nano Discord](https://chat.nano.org)
 * Connect on the [Nano Discord server](https://chat.nano.org) for discussion around node maintenance
 * Join our [Technical Updates Mailing List](http://eepurl.com/gZucL1) to stay updated on releases, network upgrade details and more

@@ -3,8 +3,6 @@ description: Explore the structure of the ledger in nano including accounts, blo
 
 # Protocol Design - Ledger
 
---8<-- "wip-living-whitepaper.md"
-
 ## Ledger design
 
 The Nano ledger is the global set of accounts where each account has its own chain of transactions (<a href="#account-chains-diagram">Figure 1</a>). This is a key design component that falls under the category of replacing a run-time agreement with a design-time agreement - everyone agrees via signature checking that only an account owner can modify the balance and representative on their own chain. This converts a seemingly shared data structure (a global blockchain) into a set of non-shared ones (individual account-chains).
@@ -78,9 +76,9 @@ As illustrated above, the ledger was initiated with a genesis account containing
 
 ## Ledger pruning
 
-Since every transaction in Nano includes a block with the complete current state of an account, the ledger can be significantly pruned. While there are a few exceptions (e.g. pending transactions), Nano's ledger design could be pruned down to one block per account (plus pending), regardless of how many transactions the account has sent or received. Note that pruning is not implemented yet, and exact implementation details are still being tested and discussed. 
+Since every transaction in Nano includes a block with the complete current state of an account, the ledger can be significantly pruned. While there are a few exceptions (e.g. pending transactions), Nano's ledger design could be pruned down to one block per account (plus pending), regardless of how many transactions the account has sent or received. Experimental ledger pruning has been available since V22.0 for non-voting nodes only (see `--enable_pruning` in the [command line interface](../commands/command-line-interface.md)). It requires the full ledger to be bootstrapped first, and in V28.x bootstrapping from scratch with pruning enabled can crash the node (see the [V28.2 release notes](../releases/release-v28-2.md)). It is not recommended for production services. 
 
-See the official [forum](https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
+See the official [forum (archived)](https://web.archive.org/web/20230426195409/https://forum.nano.org/t/ledger-pruning/114) or [GitHub](https://github.com/nanocurrency/nano-node/issues/1094) discussions for more detail.
 
 ---
 

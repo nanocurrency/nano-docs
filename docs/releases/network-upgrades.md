@@ -29,9 +29,7 @@ To help ensure Quality of Service on the network by providing the ability to gen
 |------|------|-------------|
 | <span class="no-break">2019-11-21</span>  | Node release | Nano node V20.0 released to include a new PoW server and epoch block support. These are only foundational updates and will not be configured for activation in this release. |
 | <span class="no-break">2020-08-29</span> | Epoch blocks | Following the [postponing of the Nano PoW algorithm](https://medium.com/nanocurrency/nano-pow-v20-update-e2197ff52941) in favor or research towards other options, the original epoch v2 blocks intended for the PoW algorithm update were modified for increasing work difficulty using the existing algorithm in V21.0 and [subsequently distributed in August 2020](#increased-work-difficulty). Any future PoW algorithm updates will require a different epoch block version. |
-| TBD  | Node release | Nano node VXX.X released to include new PoW algorithm in PoW server and final changes allowing transition via epoch blocks. |
-| TBD | <span class="no-break">Epoch blocks start</span> | Distribution of epoch blocks to each account which upgrades them to use the new PoW algorithm.  Once an account is upgraded nodes will only validate work made using the new PoW algorithm for that account. |
-| TBD | Epoch blocks end | Distribution of epoch blocks ends after all accounts are upgraded. |
+| TBD  | Not scheduled | No node release, epoch block distribution, or timeline is currently scheduled for a new PoW algorithm. |
 
 **Transition Explanation**
 
@@ -163,7 +161,7 @@ In most blockchain networks these upgrades can be scheduled to take effect once 
 
 There are a couple different options for handling these upgrades and the process is currently managed primarily by the Nano Foundation. The upgrades are tested on the beta network to ensure all components are behaving as expecting before being considered for updating on the main network. If the behavior being changed involves consensus, any manual upgrade actions are triggered once a large majority of nodes and major services have upgraded. 
 
-Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in [this GitHub issue](https://github.com/nanocurrency/nano-node/issues/1308). There is also a discussion around how to potentially automate network upgrade processes in this forum topic: https://forum.nano.org/t/automated-network-upgrades/113.
+Of course many features, including protocol changes, can be activated immediately with a new node release, so these network upgrade scenarios are only reserved for certain cases. Options for providing better agreement on capabilities between nodes has been discussed in [this GitHub issue](https://github.com/nanocurrency/nano-node/issues/1308). There is also a discussion around how to potentially automate network upgrade processes in this [forum topic (archived)](https://web.archive.org/web/20211018065541/https://forum.nano.org/t/automated-network-upgrades/113).
 
 ---
 
