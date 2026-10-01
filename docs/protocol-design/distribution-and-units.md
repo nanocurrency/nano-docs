@@ -3,11 +3,6 @@ description: Review the breakdown of divisibility, distribution and units within
 
 # Protocol Design - Distribution and Units
 
-!!! warning "Page may be migrating"
-	This page may be migrated into another page or section - TBD.
-
---8<-- "wip-living-whitepaper.md"
-
 ## Divisibility
 There are three important aspects of divisibility of the supply which are satisfied by the final distributed amount:
 

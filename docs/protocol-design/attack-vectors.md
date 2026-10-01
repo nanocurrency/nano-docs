@@ -3,8 +3,6 @@ description: Understand the different attack vectors on the nano network and the
 
 # Protocol Design - Attack Vectors
 
---8<-- "wip-living-whitepaper.md"
-
 ## Block gap synchronization
 | | |
 |----------------|-------------

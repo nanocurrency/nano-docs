@@ -3,8 +3,6 @@ description: Details of networking setup design for nano protocol
 
 # Protocol Design - Networking
 
---8<-- "wip-living-whitepaper.md"
-
 ## TCP messages
 TCP is used for traffic on the [live network](/glossary#live-network) and for bulk data transfer on the [bootstrap network](/glossary#bootstrap-network).
 

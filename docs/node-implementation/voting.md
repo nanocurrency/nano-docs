@@ -3,8 +3,6 @@ description: Review the various aspects of voting and vote management in the nan
 
 # Node Implementation - Voting
 
---8<-- "wip-living-whitepaper.md"
-
 ## Vote rebroadcasting
 
 When a block is processed, Principal Representatives evaluate whether they can generate a vote for the block (dependent blocks already confirmed, etc.). If they can, they generate the vote and publish to all other PRs they are aware of in addition to `2*sqrt(peers)` of non-PR nodes.  To reduce the load on PRs nodes, they do not republish incoming votes - only Non-PR nodes republish other votes to `1/2*sqrt(peers)` to ensure enough coverage across the rest of the network.

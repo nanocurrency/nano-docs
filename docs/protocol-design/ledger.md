@@ -3,8 +3,6 @@ description: Explore the structure of the ledger in nano including accounts, blo
 
 # Protocol Design - Ledger
 
---8<-- "wip-living-whitepaper.md"
-
 ## Ledger design
 
 The Nano ledger is the global set of accounts where each account has its own chain of transactions (<a href="#account-chains-diagram">Figure 1</a>). This is a key design component that falls under the category of replacing a run-time agreement with a design-time agreement - everyone agrees via signature checking that only an account owner can modify the balance and representative on their own chain. This converts a seemingly shared data structure (a global blockchain) into a set of non-shared ones (individual account-chains).

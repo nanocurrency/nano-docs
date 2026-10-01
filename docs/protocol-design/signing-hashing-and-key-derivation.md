@@ -3,8 +3,6 @@ description: All about the methods for signing messages, hashing data and derivi
 
 # Protocol Design - Signing, Hashing and Key Derivation
 
---8<-- "wip-living-whitepaper.md"
-
 ### Signing algorithm: ED25519
 
 ED25519 is an elliptic curve algorithm developed in an academic setting with a focus on security from side channel attack, performance, and fixing a lot of the little annoyances in most elliptic curve systems[^1]. However, it should be noted that instead of using SHA-512 in the key derivation function, Nano uses Blake2b-512.
