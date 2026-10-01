@@ -9,7 +9,7 @@ Congrats! Now that you understand more about how Nano works and setup your own n
 
 ## Need some inspiration?
 
-A big part of the Nano community is [the Nano Center](https://nanocenter.org/). Run by a group of Nano enthusiasts, their website helps manage requests for assistance and funding for Nano-related projects. Check out the in progress and past funded projects for some great ideas and opportunities to join in building on top of Nano!
+A big part of the Nano community is [the Nano Center](https://web.archive.org/web/20210619153038/https://nanocenter.org/). Run by a group of Nano enthusiasts, their website helps manage requests for assistance and funding for Nano-related projects. Check out the in progress and past funded projects for some great ideas and opportunities to join in building on top of Nano!
 
 For even more details about the many projects that help make our ecosystem robust, head over to [Nano.org](https://nano.org) for examples of wallets, services and more that have integrated Nano.
 
