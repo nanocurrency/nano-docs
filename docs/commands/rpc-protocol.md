@@ -3573,7 +3573,7 @@ Enters the **password** in to **wallet** to unlock it
 ---
 
 ### password_valid  
-Checks whether the password entered for **wallet** is valid  
+Checks the current unlock state of **wallet** without taking a password. Returns the same result as [wallet_key_valid](#wallet_key_valid).
 
 **Request:**
 ```json
@@ -4121,6 +4121,30 @@ Given a **wallet** id, from all of the accounts in the wallet, returns:
   "accounts_cemented_block_count": "13"
 }
 ```
+
+---
+
+### wallet_key_valid
+Checks whether the node currently holds the correct password key for **wallet**. The request takes the wallet ID, not a password or a private key. It does not unlock the wallet or require `enable_control`.
+
+**Request:**
+```json
+{
+  "action": "wallet_key_valid",
+  "wallet": "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+}
+```
+
+**Response:**
+```json
+{
+  "valid": "1"
+}
+```
+
+`valid` is the string `"1"` when the wallet is unlocked and `"0"` when it is locked. An unknown wallet ID returns `{"error": "Wallet not found"}` instead.
+
+[password_valid](#password_valid) returns the same result. [wallet_locked](#wallet_locked) reports the inverse state in its `locked` field.
 
 ---
 
