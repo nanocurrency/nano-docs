@@ -40,9 +40,13 @@ Once [block_confirm](/commands/rpc-protocol#block_confirm) is called, a notifica
 
 ### Account frontier confirmation status
 
-For some systems the starting point for checking block status may be the account, such as when a user views their account. The following process is recommended when the account is known and the confirmation status of the frontier block is desired.
+To check whether an account's current frontier is confirmed, call [`account_info`](../commands/rpc-protocol.md#account_info). Compare `frontier` with the confirmed frontier hash from the same response:
 
-1. Call [account_info](/commands/rpc-protocol/#account_info) RPC to get current frontier hash
-1. Call [block_info](/commands/rpc-protocol#block_info) for the frontier hash and check if `confirmed` = `true`
+- V21.0+: use `confirmation_height_frontier` in the default response.
+- V22.0+ with `"include_confirmed": "true"`: use `confirmed_frontier` instead.
 
-If the block is not confirmed, you can follow a similar process outlined in the [Requesting block confirmation status](#requesting-block-confirmation-status) section above for requesting block confirmation and re-checking confirmation status before escalating in external systems.
+If the hashes match, the node reports the current frontier as confirmed. If they differ, the current frontier is not confirmed on that node.
+
+If `account_info` returns a `frontier` but no confirmed frontier field, call [`block_info`](../commands/rpc-protocol.md#block_info) for that `frontier` hash and check its `confirmed` field.
+
+If the block is not confirmed, follow the steps in [Requesting block confirmation status](#requesting-block-confirmation-status).
