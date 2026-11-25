@@ -237,7 +237,12 @@ curl -d '{
 
 ### Creating Transactions
 
-Using external keys, transactions are generated in two steps: creation and broadcast. This section will be more heavy on example rather than precise specifications.
+Using external keys, create and sign the block before broadcasting it.
+
+!!! danger "Keep private keys off public and third-party nodes"
+    The `block_create` examples below send the private key in the request. Use them only on a local node you run and trust. Never send a private key or seed to a public or third-party RPC endpoint, even over HTTPS.
+
+    If you use a third-party node, use it only for public data and to broadcast the completed block. Verify any ledger data you use to build the block against a trusted source. Then create and sign the block locally with a library that supports local signing (see [Developer Tools](https://hub.nano.org/developer-tools)). Attach valid [proof of work](work-generation.md) and submit the signed block with [`process`](../commands/rpc-protocol.md#process). The RPC node does not need your private key to publish it.
 
 #### Send Transaction
 
@@ -268,10 +273,10 @@ curl -d '{
 }
 ```
 
-!!! example "Step 2: Build `block_create` request"
-    Using details from the `account_info` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request.
+!!! example "Step 2: Create and sign the send block"
+    If you use a public or third-party RPC endpoint, build and sign the block locally instead of sending a `block_create` request. On a local node you run and trust, you can use the [`block_create`](/commands/rpc-protocol#block_create) example below.
 
-    For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
+    Use the account details from `account_info`, decrease the balance by the amount to send, and set `link` to the destination public key. The local `block_create` example accepts the destination address in `link` and encodes it for the state block. See the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) for field details.
 
     | Field              | Value |
     |                    |       |
@@ -343,7 +348,7 @@ curl -d '{
     For this reason, **only populate transaction data source from a single [`account_info`](/commands/rpc-protocol#account_info) RPC call**.
 
 !!! example "Step 3: Broadcast the transaction"
-    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
+    Broadcast the signed block with valid work as described in [Broadcasting Transactions](#broadcasting-transactions).
 
 ---
 
@@ -379,8 +384,10 @@ curl -d '{
 }
 ```
 
-!!! example "Step 2: Build `block_create` request"
-    Using details from the `account_info` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The two differences between the send transaction are the `"link"` and `"balance"` fields.
+!!! example "Step 2: Create and sign the receive block"
+    If you use a public or third-party RPC endpoint, build and sign the block locally instead of sending a `block_create` request. On a local node you run and trust, you can use the [`block_create`](/commands/rpc-protocol#block_create) example below.
+
+    Use the account details from `account_info`, increase the balance by the receivable amount, and set `link` to the hash of the corresponding send block.
 
     For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
@@ -438,7 +445,7 @@ curl -d '{
     * Final balance becomes 11618869000000000000000000000000 $raw$
 
 !!! example "Step 3: Broadcast the transaction"
-    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
+    Broadcast the signed block with valid work as described in [Broadcasting Transactions](#broadcasting-transactions).
 
 ---
 
@@ -471,8 +478,10 @@ curl -d '{
 }
 ```
 
-!!! example "Step 2: Build `block_create` request"
-    Using the block hash and raw transaction amount from the `receivable` call response, along with other information, we can create the [`block_create`](/commands/rpc-protocol#block_create) RPC request. The only difference between the normal receive transactions is the `"previous"` field.
+!!! example "Step 2: Create and sign the first receive block"
+    If you use a public or third-party RPC endpoint, build and sign the block locally instead of sending a `block_create` request. On a local node you run and trust, you can use the [`block_create`](/commands/rpc-protocol#block_create) example below.
+
+    Because there is no previous block, use zero for `previous`, the full receivable amount for `balance`, and the corresponding send block's hash for `link`.
 
     For more details on values, see the [Blocks Specifications](/integration-guides/the-basics/#blocks-specifications) documentation.
 
@@ -481,7 +490,7 @@ curl -d '{
     | `"json_block"`     | always `"true"`, so that the output is JSON-formatted |
     | `"type"`           | always the constant `"state"` |
     | `"previous"`       | always the constant "0" as this request is for the first block of the account |
-    | `"account"`        | `"account"` address used in the `account_info` call above that the block will be created for |
+    | `"account"`        | unopened account address used in the `receivable` call above |
     | `"representative"` | `"representative"` the account address to use as [representative](/integration-guides/the-basics#representatives) for your account. Choose a reliable, trustworthy representative. |
     | `"balance"`        | balance of the account in $raw$ **after** this transaction is completed. In this example, we will receive $100\ raw$, based on the assumed details from the `"receivable"` response above. |
     | `"link"`           | block hash of its paired send transaction, in this case assumed to be the block `5B2DA492506339C0459867AA1DA1E7EDAAC4344342FAB0848F43B46D248C8E99` |
@@ -523,15 +532,14 @@ curl -d '{
 ```
 
 !!! example "Step 3: Broadcast the transaction"
-    As a result of the command above, the nano\_node will return a signed, but not yet broadcasted transaction. Broadcasting of the signed transaction is covered in the [Broadcasting Transactions](#broadcasting-transactions) section.
+    Broadcast the signed block with valid work as described in [Broadcasting Transactions](#broadcasting-transactions).
 
 ---
 
 ### Broadcasting Transactions
 
 !!! example "Broadcast using [`process`](/commands/rpc-protocol/#process) RPC command"
-    Common to all of these transactions is the need to broadcast the completed block to the network. This is achieved by the [`process`](/commands/rpc-protocol#process) RPC command which accepts the block as stringified JSON data. If you followed the previous examples, you used the option `json_block` for RPC [`block_create`](/commands/rpc-protocol#block_create), which allows you use the non-stringified version, as long as you include the same option in this RPC call.  
-    A successful broadcast will return the broadcasted block's hash.
+    Submit the signed block with valid work to a node that accepts [`process`](/commands/rpc-protocol/#process). Set `json_block` to `true` to pass `block` as a JSON object, whether you signed it locally with a library or used `block_create` on your own node. Do not include the private key or seed. A successful response returns the block hash.
 
 --8<-- "warning-process-sub-type-recommended.md"
 
